@@ -1,0 +1,103 @@
+{
+  "id": "card_20bf06",
+  "slug": "code-review-eras-ai-adoption",
+  "type": "paper",
+  "title": "From Human-Centric to Agentic Code Review: The Impact of Different Generations of Generative AI Technology on Review Quality",
+  "hook": "1.02 million pull requests tracked across three code-review eras find AI reviewers speed up decisions — but faster isn't better: review quality doesn't improve alongside it.",
+  "key_points": [
+    "Studies 1.02M reviewed pull requests from 207 GitHub projects spanning three eras: human-centric, LLM-assisted, and agentic code review.",
+    "Identifies three adoption patterns: Gradual AI Adoption, Rapid LLM Adoption, and Rapid AI Agent Adoption.",
+    "Reviews initiated by AI agents, or involving multiple agents, associate with faster review decisions under two of the three adoption patterns.",
+    "Those speed gains don't translate into better review quality — efficiency and quality move independently.",
+    "Once LLM and agent reviewers join, human-AI collaboration patterns become the strongest predictor of review efficiency, more than activity level or PR type alone."
+  ],
+  "content_html": "\u003cp\u003eCode review is quietly changing hands: from a purely human process, to one where LLMs chime in, to one where AI agents themselves open and drive reviews. This paper asks the obvious follow-up question nobody had measured at scale yet — as that shift happens, does review actually get \u003cem\u003ebetter\u003c/em\u003e, or just faster?\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eSuzhen Zhong and colleagues mine 1.02 million reviewed pull requests from 207 GitHub projects, tracking each through three eras — human-centric, LLM-assisted, and agentic review — and sorting projects into three adoption patterns: Gradual AI Adoption, Rapid LLM Adoption, and Rapid AI Agent Adoption. Modeling review discussions as sequences of reviewer interactions, they find that agent-initiated or multi-agent reviews are associated with faster decisions under Gradual AI Adoption and Rapid AI Agent Adoption specifically. But that speed doesn't carry over to review quality, which the AI transition doesn't reliably improve.\u003c/p\u003e\n\u003cp\u003eThe more durable finding is about \u003cem\u003ewhat\u003c/em\u003e predicts efficiency: while review activity and PR type matter early on, once LLM and agent reviewers are in the mix, the pattern of human-AI collaboration itself becomes the strongest explanatory factor. The authors frame this as guidance for teams designing AI-supported review processes — chase efficiency carelessly and you can get faster decisions without safer code. Zhong, Noei, Adams, and Zou, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Suzhen Zhong",
+      "Shayan Noei",
+      "Bram Adams",
+      "Ying Zou"
+    ],
+    "url": "https://arxiv.org/abs/2607.13196",
+    "published_at": "2026-07-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-14",
+  "related": [
+    {
+      "id": "card_957955",
+      "slug": "agentic-code-review-developer-feedback",
+      "type": "paper",
+      "title": "Is Agentic Code Review Helpful? Mining Developers' Feedback to CodeRabbit Reviews in the Wild",
+      "hook": "CodeRabbit leaves review comments on hundreds of thousands of real pull requests. A large-scale study of how developers actually respond finds more than half get rejected outright.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-03"
+    },
+    {
+      "id": "card_000849",
+      "slug": "govern-the-repository-not-the-agent",
+      "type": "paper",
+      "title": "Govern the Repository, Not the Agent",
+      "hook": "Across 930,000+ agent-authored pull requests, half the friction of merging code traces to the repository, not the agent — and AI contributions concentrate that risk 2x more than human ones.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_20bf06#0",
+      "format": "flip",
+      "prompt": "What three code-review eras does this study track across 1.02M pull requests?",
+      "back_html": "\u003cp\u003eHuman-centric review, LLM-assisted review, and agentic code review — the progression as generative AI took on more of the reviewer role.\u003c/p\u003e"
+    },
+    {
+      "id": "card_20bf06#1",
+      "format": "quiz",
+      "prompt": "Do faster AI-agent-involved reviews come with better review quality, per this study?",
+      "choices": [
+        {
+          "text": "No — reviews initiated by or involving AI agents are faster, but the speed gains don't translate into better quality",
+          "correct": true
+        },
+        {
+          "text": "Yes, faster reviews were consistently higher quality across all three eras",
+          "correct": false
+        },
+        {
+          "text": "Quality wasn't measurable in this study",
+          "correct": false
+        },
+        {
+          "text": "Speed and quality were never associated with AI agent involvement",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper explicitly separates the two: agent involvement predicts faster decisions, but review quality doesn't rise in step with that speed.\u003c/p\u003e"
+    },
+    {
+      "id": "card_20bf06#2",
+      "format": "flip",
+      "prompt": "Once LLM and AI agent reviewers enter the process, what becomes the strongest predictor of review efficiency?",
+      "back_html": "\u003cp\u003eHuman-AI collaboration patterns — how humans, LLMs, and agents interact during review — outweigh review activity level or pull-request type.\u003c/p\u003e"
+    }
+  ]
+}

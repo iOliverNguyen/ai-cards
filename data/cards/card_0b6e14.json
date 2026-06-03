@@ -1,0 +1,97 @@
+{
+  "id": "card_0b6e14",
+  "slug": "graphcast",
+  "type": "paper",
+  "title": "GraphCast: Skillful Medium-Range Weather Forecasting",
+  "hook": "A graph neural network predicts 10-day global weather in under a minute on one machine, matching or beating physics-based forecast models on most variables.",
+  "key_points": [
+    "Encodes Earth's atmosphere as a multi-mesh graph; message-passing propagates information across scales.",
+    "Trained on 39 years of ERA5 reanalysis data, predicting the next 6-hour state autoregressively.",
+    "Generates a 10-day, 37-level global forecast in roughly 60 seconds on a single TPU.",
+    "Outperformed ECMWF's HRES (a leading physics model) on the majority of tracked variables."
+  ],
+  "content_html": "\u003cp\u003eLam and colleagues at Google DeepMind introduced GraphCast, a graph neural network for medium-range weather forecasting. Originally posted to arXiv in December 2022, an expanded version was published in Science in 2023. The model matches or beats ECMWF's high-resolution physics-based forecast on many standard metrics.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eGraphCast represents the atmosphere as a hierarchical multi-mesh graph - a set of nodes covering the globe at multiple resolutions - and uses three learned GNNs to encode atmospheric state, perform message-passing over the graph, and decode back to a latitude-longitude grid. Given the current and previous 6-hour atmospheric state, it predicts the next 6-hour state; rolling this out autoregressively produces a full 10-day forecast.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eTraditional numerical weather prediction solves partial differential equations on supercomputers over hours. GraphCast runs on a single accelerator in under a minute, opening up the possibility of ensemble forecasting at far lower cost and enabling faster iteration on forecast systems. It also suggests that decades of reanalysis data are enough to teach a data-driven model the effective dynamics of the atmosphere. See the arXiv paper for the full benchmark comparisons.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Remi Lam",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2212.12794",
+    "published_at": "2022-12-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-science",
+    "papers-this-week"
+  ],
+  "tags": [
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2022-12-24",
+  "related": [
+    {
+      "id": "card_880baf",
+      "slug": "alphafold-3",
+      "type": "paper",
+      "title": "AlphaFold 3: Predicting Biomolecular Interactions",
+      "hook": "AlphaFold 3 extends protein structure prediction to full biomolecular complexes - proteins with DNA, RNA, ligands, and ions - using a diffusion-based architecture.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-05-08"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_0b6e14#0",
+      "format": "flip",
+      "prompt": "How does GraphCast represent the atmosphere and produce a forecast?",
+      "back_html": "\u003cp\u003eAs a hierarchical multi-mesh graph; learned GNNs encode the state, do message-passing, and decode. It predicts the next 6-hour state and rolls out autoregressively to 10 days.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0b6e14#1",
+      "format": "quiz",
+      "prompt": "What is GraphCast's key practical advantage over traditional numerical weather prediction?",
+      "choices": [
+        {
+          "text": "It produces a 10-day forecast in under a minute on a single accelerator",
+          "correct": true
+        },
+        {
+          "text": "It requires no training data at all",
+          "correct": false
+        },
+        {
+          "text": "It needs no atmospheric observations as input",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eTraditional NWP solves PDEs on supercomputers over hours; GraphCast runs in ~60 seconds on one TPU, enabling cheap ensembles.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0b6e14#2",
+      "format": "quiz",
+      "prompt": "How did GraphCast compare to ECMWF's HRES physics model?",
+      "choices": [
+        {
+          "text": "It matched or beat HRES on the majority of tracked variables",
+          "correct": true
+        },
+        {
+          "text": "It lagged HRES but ran faster",
+          "correct": false
+        },
+        {
+          "text": "It only matched HRES for short 1-day forecasts",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGraphCast outperformed ECMWF's leading physics-based HRES forecast on most standard metrics.\u003c/p\u003e"
+    }
+  ]
+}

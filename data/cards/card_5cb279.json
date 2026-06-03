@@ -1,0 +1,104 @@
+{
+  "id": "card_5cb279",
+  "slug": "gpt-5",
+  "type": "news",
+  "title": "GPT-5",
+  "hook": "GPT-5 folds OpenAI's two lines into one: a router decides on the fly whether a prompt needs a fast answer or deep step-by-step reasoning, so you stop picking models.",
+  "key_points": [
+    "OpenAI's flagship released August 2025, unifying the GPT chat line and the o-series reasoning models.",
+    "A built-in router chooses between a fast model and a deeper 'thinking' mode per request.",
+    "Pitched on lower hallucination rates and stronger coding and agentic performance.",
+    "Became the default model in ChatGPT, replacing the manual model picker for most users."
+  ],
+  "content_html": "\u003cp\u003eOpenAI released GPT-5 in August 2025, its flagship model and the long-awaited successor to the GPT-4 line. Its defining idea is unification: rather than asking users to choose between a fast chat model and a slower reasoning model, GPT-5 routes each request automatically, deciding whether to answer quickly or to think through the problem step by step.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's new\u003c/h2\u003e\n\u003cp\u003eGPT-5 merges the two product lines OpenAI had been running in parallel — the GPT chat models and the o-series reasoning models. A router inspects each prompt and dispatches it to either a fast path or a deeper \u0026quot;thinking\u0026quot; path that spends more inference compute, the test-time-scaling idea made into a product. OpenAI emphasized reduced hallucinations, better instruction-following, and gains on coding and agentic tasks, and made GPT-5 the default in ChatGPT.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe router is the interesting part: it operationalizes the finding that more test-time compute helps hard problems but wastes effort on easy ones. By hiding the model-selection decision, OpenAI made \u0026quot;think longer when it matters\u0026quot; the default behavior rather than a setting. GPT-5's reception was mixed — some saw an incremental step rather than a leap — but it set the template of one model that adapts its effort to the task.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "authors": [
+      "OpenAI"
+    ],
+    "url": "https://openai.com/index/introducing-gpt-5/",
+    "published_at": "2025-08-07",
+    "license": "OpenAI news"
+  },
+  "topic_ids": [
+    "pretraining",
+    "releases"
+  ],
+  "tags": [
+    "nlp",
+    "reasoning",
+    "agent"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2025-08-07",
+  "related": [
+    {
+      "id": "card_ee605b",
+      "slug": "gpt-4o",
+      "type": "news",
+      "title": "GPT-4o: One Model for Text, Audio, and Vision",
+      "hook": "GPT-4o is a single model that natively processes text, audio, and images end-to-end - no separate speech pipeline - cutting voice response latency to near human conversational speed.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2024-05-13"
+    },
+    {
+      "id": "card_bf92f3",
+      "slug": "openai-o3",
+      "type": "news",
+      "title": "OpenAI o3: Reasoning that Uses Tools",
+      "hook": "o3 is the first reasoning model that can agentically reach for every ChatGPT tool mid-thought - web search, Python on your files, image input, image generation - and combine them to solve a problem.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-04-16"
+    },
+    {
+      "id": "card_1f00c3",
+      "slug": "test-time-compute-scaling",
+      "type": "paper",
+      "title": "Scaling LLM Test-Time Compute",
+      "hook": "A new scaling axis: instead of a bigger model, let a model think longer at inference — often a better use of compute, and the principle behind o1 and R1.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-08-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_5cb279#0",
+      "format": "flip",
+      "prompt": "What does GPT-5's built-in router do?",
+      "back_html": "\u003cp\u003eIt inspects each prompt and dispatches it to a fast path or a deeper 'thinking' path that spends more inference compute — so users stop picking models.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5cb279#1",
+      "format": "quiz",
+      "prompt": "What finding does GPT-5's router operationalize?",
+      "choices": [
+        {
+          "text": "More test-time compute helps hard problems but wastes effort on easy ones",
+          "correct": true
+        },
+        {
+          "text": "Bigger training datasets always reduce hallucination",
+          "correct": false
+        },
+        {
+          "text": "Reasoning models are obsolete",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBy routing automatically, OpenAI made 'think longer when it matters' the default rather than a manual setting.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5cb279#2",
+      "format": "flip",
+      "prompt": "Which two OpenAI product lines did GPT-5 unify?",
+      "back_html": "\u003cp\u003eThe GPT chat models and the o-series reasoning models, merged into one model that adapts its effort per request.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "id": "card_b2f385",
+  "slug": "statistically-undetectable-backdoors",
+  "type": "paper",
+  "title": "Statistically Undetectable Backdoors in Deep Neural Networks",
+  "hook": "A malicious trainer can plant a backdoor that's provably indistinguishable from honest weights — even to someone holding every parameter.",
+  "key_points": [
+    "Backdoored and honest feedforward networks are provably close in total variation distance, under standard cryptographic assumptions.",
+    "The backdoor grants invariance-based adversarial examples for every input, mapping far-apart inputs to nearly identical outputs.",
+    "Without knowing the backdoor, finding those adversarial examples is provably hard in polynomial time — even for someone who has the weights.",
+    "Shows a fundamental power asymmetry: whoever trains a model can hold a permanent, undetectable edge over whoever later uses it."
+  ],
+  "content_html": "\u003cp\u003eModel training is increasingly outsourced — to cloud platforms, contractors, or open-weight releases whose provenance no one fully audits. This paper asks how bad that trust gap can get, and answers with a cryptographic construction: a feedforward DNN backdoor that is, in a precise statistical sense, impossible to detect even by someone holding every weight.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe authors show that under standard cryptographic assumptions, a backdoored network's parameters are close enough in total variation distance to an honestly-trained network's that no test — however thorough — can reliably tell them apart, even with full white-box access. Yet the backdoor is not decorative: it hands its holder invariance-based adversarial examples for any input, mapping distant inputs to nearly identical outputs, exploitable at will. Without knowing the backdoor, generating such an example is provably infeasible in polynomial time. The result formalizes something practitioners already suspect: whoever trains a model — not just whoever deploys it — may hold a lasting, undetectable edge. Andrej Bogdanov, Alon Rosen, and Neekon Vafa, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Andrej Bogdanov",
+      "Alon Rosen",
+      "Neekon Vafa"
+    ],
+    "url": "https://arxiv.org/abs/2607.09532",
+    "published_at": "2026-07-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "interpretability",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-16",
+  "date": "2026-07-10",
+  "related": [
+    {
+      "id": "card_a06ff6",
+      "slug": "avoid-debate-interactive-proofs-ai-safety",
+      "type": "paper",
+      "title": "How to Avoid Debate: Scalable AI Safety via Interactive Proofs",
+      "hook": "AI safety via debate assumes two equally matched AIs arguing before a human judge. This paper shows a weak verifier can be convinced by a single powerful AI instead — no opponent required.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-03"
+    },
+    {
+      "id": "card_e2857d",
+      "slug": "sae-interventions-unreliable",
+      "type": "paper",
+      "title": "SAE Interventions Are Unreliable",
+      "hook": "Clamping a 'harmful' sparse-autoencoder feature looks like it stops bad behavior — but this paper recovers it 95.8% of the time, exposing the gap between feature-level and real control.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-16"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b2f385#0",
+      "format": "flip",
+      "prompt": "What does 'statistically undetectable' mean for the backdoors in this paper?",
+      "back_html": "\u003cp\u003eThe backdoored model's full weight description is provably close in total variation distance to an honestly-trained model's — no white-box test can tell them apart.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b2f385#1",
+      "format": "quiz",
+      "prompt": "What can someone who knows the backdoor do that an outside observer can't?",
+      "choices": [
+        {
+          "text": "Generate invariance-based adversarial examples for any input, in polynomial time",
+          "correct": true
+        },
+        {
+          "text": "Recover the original training data used to train the model",
+          "correct": false
+        },
+        {
+          "text": "Prove the model was backdoored using only its outputs",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe backdoor gives its holder an efficient way to build these adversarial examples; without it, doing so is provably intractable under standard cryptographic assumptions.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b2f385#2",
+      "format": "flip",
+      "prompt": "Why does this paper describe a 'power asymmetry' between trainers and users?",
+      "back_html": "\u003cp\u003eA trainer can embed a permanent, invisible backdoor that survives full weight inspection — giving them lasting leverage over anyone who later deploys the model.\u003c/p\u003e"
+    }
+  ]
+}

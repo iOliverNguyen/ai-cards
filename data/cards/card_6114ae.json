@@ -1,0 +1,107 @@
+{
+  "id": "card_6114ae",
+  "slug": "bounded-agents-delegation-security",
+  "type": "paper",
+  "title": "Bounded Agents: Delegation Security for Multi-Agent AI Systems",
+  "hook": "Prompt injection only matters if the agent had the authority to obey. Treat it as an authorization-architecture bug and enforce the limits outside the model.",
+  "key_points": [
+    "Today's agents get static permissions at session start, and each request is judged alone with no memory of prior actions.",
+    "Three failure shapes: acting against the delegated task, chaining individually-allowed actions into a prohibited outcome, and handing unbounded authority to a sub-agent.",
+    "The Agentic Principal Chain (APC) tracks delegated authority principal-to-principal and evaluates each request against accumulated session state via six checks.",
+    "Composition closure compares a request against prior actions, so forbidden combinations are blocked even when each step is permitted.",
+    "Enforcement lives outside the model; the author proves Blast Radius Monotonicity and (under stated restrictions) Composition Soundness.",
+    "Evaluated on 3,154 instances: AgentDojo exfiltration fell from 75-100% to 0%, all 544 InjecAgent data-stealing cases blocked, at 0.24 ms p99 authorization latency — with utility 8.6-13.9 points lower."
+  ],
+  "content_html": "\u003cp\u003eLLM agents act on a user's behalf: they call cloud services, invoke tools, and spawn sub-agents. Muruaga's observation is that the permissions for all of that are fixed when the session starts and every request is then judged in isolation, with no reference to what the agent has already done. That leaves three gaps — an agent can act contrary to the task it was delegated, combine individually permitted actions into a prohibited outcome, or delegate its authority to a sub-agent without narrowing it. Under that framing, a prompt injection is dangerous only when the agent already holds the authority to comply, which makes it an authorization-architecture problem rather than purely a model problem.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe mechanism\u003c/h2\u003e\n\u003cp\u003eThe Agentic Principal Chain (APC) tracks delegated authority as it passes from one principal to the next, carrying forward and progressively restricting scope and budgets. Each request is evaluated against the accumulated session state through six authorization checks, and a \u0026quot;composition closure\u0026quot; check compares the request against prior actions to block prohibited combinations. Crucially, the decision is enforced outside the model. The author proves two properties — Blast Radius Monotonicity, and Composition Soundness limited to prohibited combinations under a complete restriction set with serialized admission.\u003c/p\u003e\n\u003ch2\u003eThe numbers\u003c/h2\u003e\n\u003cp\u003eAcross 3,154 instances drawn from InjecAgent, AgentDojo, and ASB — including a compromised-model setup that injects the ground-truth attack call after the first legitimate tool call, so APC is tested independently of model behavior — AgentDojo exfiltration went from 75-100% to 0% in all four domains and all 544 InjecAgent data-stealing cases were blocked. Intent binding cut destruction from 38.6% to 4.0% and manipulation from 90.5% to 12.1%. Authorization added 0.24 ms at p99. The honest catch: task utility fell 8.6 and 13.9 percentage points in the two settings, so the guardrail is not free. Implementation and data are public.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xabier Muruaga"
+    ],
+    "url": "https://arxiv.org/abs/2608.15888",
+    "published_at": "2026-08-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "agent",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-24",
+  "date": "2026-08-16",
+  "related": [
+    {
+      "id": "card_1be11a",
+      "slug": "agent-safety-runtime-contract",
+      "type": "paper",
+      "title": "Agent Safety Should Be a Runtime Contract",
+      "hook": "Safety trained into the weights can't stop an agent that deletes a file or claims a test passed. This position paper argues the unit of safety is the trajectory, not the model.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-11"
+    },
+    {
+      "id": "card_adc58b",
+      "slug": "untrusted-content-masking-web-agents",
+      "type": "paper",
+      "title": "Untrusted Content Masking: A Trust Boundary for Web Agents",
+      "hook": "Provable prompt-injection defenses rely on never letting an agent read untrusted content directly. Web agents break that just by looking at the page — this restores it via the page's own structure.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_d4400d",
+      "slug": "toolhazard-adversarial-agent-environments",
+      "type": "paper",
+      "title": "ToolHazard: Synthesizing Adversarial Environments for Agent Security",
+      "hook": "Prompt-injection benchmarks are hand-built, so they cover the domains someone had time to write. ToolHazard generates the environments — and the attacks inside them — instead.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-12"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_6114ae#0",
+      "format": "flip",
+      "prompt": "Why does this paper call prompt injection an authorization problem rather than a model problem?",
+      "back_html": "\u003cp\u003eAn injected instruction is only dangerous if the agent holds the authority to carry it out — so bounding delegated authority outside the model removes the risk regardless of what the model believes.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6114ae#1",
+      "format": "quiz",
+      "prompt": "What does APC's 'composition closure' check catch that per-request permission checks miss?",
+      "choices": [
+        {
+          "text": "Sequences where each action is individually allowed but the combination is prohibited",
+          "correct": true
+        },
+        {
+          "text": "Requests that exceed the session's token budget",
+          "correct": false
+        },
+        {
+          "text": "Tool calls whose arguments fail schema validation",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePer-request evaluation is stateless. Composition closure checks a request against the actions already taken in the session, so a prohibited outcome assembled from permitted steps is refused.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6114ae#2",
+      "format": "flip",
+      "prompt": "What is the reported cost of APC's protection?",
+      "back_html": "\u003cp\u003eTask utility dropped 8.6 and 13.9 percentage points in the two settings tested — real safety gains come with a measurable capability tax.\u003c/p\u003e"
+    }
+  ]
+}

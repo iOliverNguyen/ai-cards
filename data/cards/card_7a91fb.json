@@ -1,0 +1,121 @@
+{
+  "id": "card_7a91fb",
+  "slug": "hydra-0-action-flow",
+  "type": "paper",
+  "title": "Hydra-0: Action Flow for Generalist World Modeling and Control",
+  "hook": "Every robot has a different action space, which fragments training data. Hydra-0 sidesteps that by expressing actions as pixel motion — a shared visual interface any embodiment can speak.",
+  "key_points": [
+    "Represents robot actions as 'action flow' — pixel motion in the camera view — instead of embodiment-specific joint or gripper commands.",
+    "That shared visual interface lets one world model learn action consequences across embodiments, tasks, environments, and video backbones.",
+    "Best configuration cuts robot-motion error 90.4% and object-motion error 60.2% versus the authors' action-conditioned baseline.",
+    "Supports zero-shot composition and data-efficient adaptation to new settings.",
+    "On RoboLab, replayed success rates correlate with reference success rates at r=0.96, suggesting use as an open-loop policy evaluator.",
+    "An emergent inverse mode predicts robot motion from desired object flow taken from a human demo — no task-specific robot demonstrations needed."
+  ],
+  "content_html": "\u003cp\u003eRobot learning is data-starved partly for a boring reason: every platform has its own action space, so a dataset collected on one arm barely transfers to another. Hydra-0 proposes a common currency — represent an action as \u003cstrong\u003eaction flow\u003c/strong\u003e, the pixel motion it produces in the camera view. Motion is something every embodiment shares, so a single world model can learn what actions do across robots, tasks, environments, and even different video-generation backbones.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe team (Hongyu Li, Bowen Wen, Yilun Du, Yunzhu Li, George Konidaris, Stan Birchfield and colleagues, arXiv, August 2026) reports that their best configuration reduces robot-motion error by 90.4% and object-motion error by 60.2% against their own action-conditioned baseline, while supporting zero-shot composition of behaviors and data-efficient adaptation. On the RoboLab benchmark, success rates replayed inside the world model correlate with reference success rates at r=0.96 — the kind of fidelity that makes open-loop policy evaluation in simulation plausible instead of aspirational.\u003c/p\u003e\n\u003cp\u003eThe most interesting claim is an emergent one. Because the interface is visual and symmetric, it can be run backwards: give the model the object motion you want — lifted from a human demonstration — and it predicts robot motion compatible with producing it. A trained action head then converts those latent features into executable actions, with no task-specific expert robot demonstrations in the loop. If that holds up, action flow becomes a bridge between human video, policy evaluation, and control.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Hongyu Li",
+      "Bowen Wen",
+      "Xinghao Zhu",
+      "Yixuan Wang",
+      "Yilun Du",
+      "Yunzhu Li",
+      "George Konidaris",
+      "Stan Birchfield",
+      "Soha Pouya",
+      "Chenran Li",
+      "Yan Chang"
+    ],
+    "url": "https://arxiv.org/abs/2608.18077",
+    "published_at": "2026-08-18",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "multimodal",
+    "paper",
+    "vision"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-24",
+  "date": "2026-08-18",
+  "related": [
+    {
+      "id": "card_b9d1db",
+      "slug": "world-action-models-survey",
+      "type": "paper",
+      "title": "World Action Models: A Survey",
+      "hook": "Robots are learning to imagine the future before acting. This survey untangles 'world action models' from video generators and VLA policies — and finds them converging on one idea.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    },
+    {
+      "id": "card_2995d2",
+      "slug": "gigaworld-1-robot-policy-evaluation",
+      "type": "paper",
+      "title": "GigaWorld-1: World Models as Robot Policy Evaluators",
+      "hook": "Testing a robot policy for real means slow, costly rollouts. GigaWorld-1 asks whether a video world model can judge a policy instead — and finds visual realism is the wrong thing to optimize for.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-02"
+    },
+    {
+      "id": "card_5b91a4",
+      "slug": "geometric-action-model",
+      "type": "paper",
+      "title": "Geometric Action Model: One Backbone for Geometry and Action",
+      "hook": "GAM turns a pretrained 3D-geometry model into a robot's brain - a single backbone that forecasts both future geometry and the actions to get there, beating heavier VLA baselines.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_7a91fb#0",
+      "format": "flip",
+      "prompt": "What is 'action flow', and why does representing actions that way help?",
+      "back_html": "\u003cp\u003eAction flow encodes a robot's action as pixel motion in the camera view rather than embodiment-specific commands. Because every robot's motion looks like moving pixels, one model can learn action consequences across different embodiments, tasks, and environments.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7a91fb#1",
+      "format": "quiz",
+      "prompt": "What is the 'inverse mode' the Hydra-0 authors report as emergent?",
+      "choices": [
+        {
+          "text": "Given desired object flow from a human demo, the model predicts compatible robot motion",
+          "correct": true
+        },
+        {
+          "text": "Given a video, the model reconstructs the camera trajectory that filmed it",
+          "correct": false
+        },
+        {
+          "text": "Given a robot's joint angles, the model renders a photorealistic scene",
+          "correct": false
+        },
+        {
+          "text": "Given a language instruction, the model writes the reward function",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRunning the shared visual interface backwards turns desired object motion — transferable from a human demonstration — into compatible robot motion, which a trained action head maps to executable actions without task-specific expert robot demos.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7a91fb#2",
+      "format": "flip",
+      "prompt": "What does the r=0.96 correlation on the RoboLab benchmark suggest Hydra-0 can be used for?",
+      "back_html": "\u003cp\u003eReplayed success rates in the world model track reference success rates closely, so Hydra-0 can stand in for costly real rollouts as an open-loop policy evaluator.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "id": "card_eb1147",
+  "slug": "agents-last-exam",
+  "type": "paper",
+  "title": "Agents' Last Exam: Benchmarking Agents on Real Economic Work",
+  "hook": "Frontier agents ace academic benchmarks but flop on real jobs — Agents' Last Exam scores them on 1,000+ economically valuable workflows, where the hardest tier sees just a 2.6% pass rate.",
+  "key_points": [
+    "Argues the gap between benchmark scores and real deployment is itself an evaluation problem: benchmarks rarely test sustained, economically valuable workflows.",
+    "Built with 250+ industry experts, ALE tests agents on long-horizon, real-world tasks with verifiable outcomes.",
+    "Tasks map to the U.S. O*NET/SOC occupational taxonomy: 55 subfields across 13 industry clusters, 1,000+ tasks.",
+    "On the hardest tier, mainstream agent harnesses average just a 2.6% full pass rate — far from saturated."
+  ],
+  "content_html": "\u003cp\u003eAI systems post strong numbers on a wide range of benchmarks, yet those gains haven't translated into economically meaningful deployment across many professional fields. The authors argue this is largely an \u003cstrong\u003eevaluation problem\u003c/strong\u003e: widely used benchmarks don't sustainedly measure performance on real, economically valuable workflows.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe benchmark\u003c/h2\u003e\n\u003cp\u003e\u003cstrong\u003eAgents' Last Exam (ALE)\u003c/strong\u003e evaluates AI agents on long-horizon, economically valuable, real-world tasks with verifiable outcomes. Developed with 250+ industry experts, it covers non-physical industries defined against the U.S. federal occupational taxonomy (O*NET / SOC 2018), organized into 55 subfields grouped into 13 industry clusters spanning more than 1,000 tasks. Crucially, the hardest tier is far from saturated: across mainstream harness and backbone configurations, the average full pass rate is just 2.6%.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eALE is pitched as a \u003cstrong\u003eliving benchmark\u003c/strong\u003e — its task pool grows as new workflows and industries are onboarded — and as an instrument, not just a leaderboard. The goal is to close the gap between benchmark success and GDP-relevant impact, giving a more honest picture of where agents stand on the work people actually get paid to do.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yiyou Sun",
+      "Xinyang Han",
+      "Weichen Zhang",
+      "Yuanbo Pang",
+      "Tianyu Wang",
+      "Dawn Song",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.05405",
+    "published_at": "2026-06-03",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "agent",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-11",
+  "date": "2026-06-03",
+  "related": [
+    {
+      "id": "card_6a097e",
+      "slug": "humanitys-last-exam",
+      "type": "paper",
+      "title": "Humanity's Last Exam",
+      "hook": "Humanity's Last Exam is a 3,000-question expert benchmark built to be the hardest closed-ended test there is — designed to outlast frontier models as MMLU saturated.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-01-23"
+    },
+    {
+      "id": "card_cda7aa",
+      "slug": "arc-agi-2",
+      "type": "paper",
+      "title": "ARC-AGI-2",
+      "hook": "ARC-AGI-2 rebuilt the abstraction benchmark to defeat brute-force search — frontier models that aced version 1 initially scored near zero, while humans still solve it.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-05-19"
+    },
+    {
+      "id": "card_b2c4ec",
+      "slug": "harness-1-search-agents",
+      "type": "paper",
+      "title": "Harness-1: RL for Search Agents with State-Externalizing Harnesses",
+      "hook": "Stop making the policy remember everything. Harness-1 moves a search agent's bookkeeping into the environment, so RL only has to learn the decisions that matter.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_eb1147#0",
+      "format": "flip",
+      "prompt": "What gap is Agents' Last Exam (ALE) designed to measure?",
+      "back_html": "\u003cp\u003eThe gap between strong benchmark scores and economically meaningful real-world deployment — it tests agents on long-horizon, economically valuable workflows with verifiable outcomes.\u003c/p\u003e"
+    },
+    {
+      "id": "card_eb1147#1",
+      "format": "quiz",
+      "prompt": "How saturated is ALE's hardest tier for current agents?",
+      "choices": [
+        {
+          "text": "Far from saturated — about a 2.6% average full pass rate",
+          "correct": true
+        },
+        {
+          "text": "Roughly half solved, around a 50% pass rate",
+          "correct": false
+        },
+        {
+          "text": "Nearly solved, above a 90% pass rate",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAcross mainstream harness and backbone configurations, the average full pass rate on the hardest tier is just 2.6% — showing how far agents are from real economic competence.\u003c/p\u003e"
+    },
+    {
+      "id": "card_eb1147#2",
+      "format": "flip",
+      "prompt": "How are ALE's tasks organized?",
+      "back_html": "\u003cp\u003eAround the U.S. O*NET/SOC 2018 occupational taxonomy — 55 subfields grouped into 13 industry clusters, 1,000+ tasks, built with 250+ industry experts.\u003c/p\u003e"
+    }
+  ]
+}

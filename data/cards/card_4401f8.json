@@ -1,0 +1,107 @@
+{
+  "id": "card_4401f8",
+  "slug": "mixture-of-depths",
+  "type": "paper",
+  "title": "Mixture-of-Depths",
+  "hook": "Mixture-of-Depths lets a transformer spend more compute on some tokens than others — routing each token through, or around, layers within a fixed budget.",
+  "key_points": [
+    "Allocates compute per token: not every token needs every layer's full attention.",
+    "A learned router picks the top-k tokens each block processes; the rest skip via the residual.",
+    "Caps total compute per layer, so the model is faster at the same parameter count.",
+    "A compute-allocation cousin of Mixture-of-Experts, but across depth rather than width."
+  ],
+  "content_html": "\u003cp\u003eMixture-of-Depths (MoD), from DeepMind, challenges the assumption that every token must pass through every layer of a transformer with the same amount of computation. Some tokens are easy and some are hard, so MoD lets the model decide, layer by layer, which tokens deserve the full treatment and which can be passed along untouched.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eAt each block, a small router scores every token and selects only the top-k to be processed by that block's attention and feed-forward computation; the remaining tokens bypass it through the residual connection. Because k is fixed, the compute per layer is capped and known in advance — making the model faster and more predictable than one that processes all tokens everywhere. It is conceptually parallel to Mixture-of-Experts, which routes tokens across parallel experts (width); MoD routes them across layers (depth).\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eMoD is part of a broader shift toward dynamic, conditional computation: spending the compute budget where it matters instead of uniformly. That idea — already proven by sparse MoE models — is one of the main levers for making large models cheaper to run, and MoD shows it applies to the depth dimension too.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "David Raposo",
+      "Sam Ritter",
+      "Adam Santoro",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2404.02258",
+    "published_at": "2024-04-02",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "moe"
+  ],
+  "tags": [
+    "efficiency",
+    "architecture",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2024-04-02",
+  "related": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    },
+    {
+      "id": "card_bf9cd2",
+      "slug": "switch-transformer",
+      "type": "paper",
+      "title": "Switch Transformer: Scaling to Trillion-Parameter Models",
+      "hook": "Route every token to exactly one expert instead of many - this single simplification made trillion-parameter MoE models stable enough to train at scale.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2021-01-11"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_4401f8#0",
+      "format": "flip",
+      "prompt": "What assumption about transformers does Mixture-of-Depths challenge?",
+      "back_html": "\u003cp\u003eThat every token must pass through every layer with the same compute — MoD lets the model decide layer by layer which tokens get the full treatment.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4401f8#1",
+      "format": "quiz",
+      "prompt": "In MoD, what happens to tokens not selected by a block's router?",
+      "choices": [
+        {
+          "text": "They bypass the block through the residual connection",
+          "correct": true
+        },
+        {
+          "text": "They are dropped from the sequence entirely",
+          "correct": false
+        },
+        {
+          "text": "They are routed to a separate expert network",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe router picks the top-k tokens to process; the rest skip the block's computation via the residual.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4401f8#2",
+      "format": "flip",
+      "prompt": "How does MoD relate to Mixture-of-Experts?",
+      "back_html": "\u003cp\u003eBoth are conditional-compute methods, but MoD routes tokens across layers (depth) while MoE routes them across parallel experts (width).\u003c/p\u003e"
+    }
+  ]
+}

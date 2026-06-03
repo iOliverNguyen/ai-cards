@@ -1,0 +1,113 @@
+{
+  "id": "card_4f0144",
+  "slug": "mobilepa-bench",
+  "type": "paper",
+  "title": "MobilePA-Bench: Phone Agents in a Live Sandbox",
+  "hook": "GUI benchmarks test tapping; function-call benchmarks test string matching. This one runs a real phone sandbox with live app databases — and frontier models get brittle fast.",
+  "key_points": [
+    "Existing mobile agent benchmarks split into GUI screen manipulation and offline API matching; neither tests long-horizon planning under real runtime constraints.",
+    "MobilePA-Bench runs an executable sandbox with live application databases that return structured feedback.",
+    "It spans 13 functional domains and 212 realistic mobile tools.",
+    "Beyond basic tool use it scores three dimensions: sub-agent collaboration, memory usage, and skill usage.",
+    "Frontier LLMs degrade sharply under strict tool ordering, permission limits, and unexpected runtime errors."
+  ],
+  "content_html": "\u003cp\u003ePhones are becoming the main venue for personal agents, which makes evaluating them on a phone — not on a transcript of one — the interesting problem. Zhu and colleagues argue existing benchmarks fall into two camps with complementary blind spots: GUI benchmarks measure screen manipulation and ignore background tool use and planning, while static function-calling benchmarks compare against offline API traces that have nothing to do with runtime reality.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eA stateful sandbox\u003c/h2\u003e\n\u003cp\u003eMobilePA-Bench runs agents against an executable sandbox with live application databases that return structured feedback, covering 13 functional domains and 212 realistic mobile tools. Because the state persists, an agent's earlier mistakes actually cost it later. On top of straightforward tool use, the benchmark grades a central planner on three harder abilities: decomposing a task and delegating to specialized sub-agents, recalling stored memories and user preferences to resolve implicit requests, and invoking pre-packaged composite skills instead of replanning from scratch.\u003c/p\u003e\n\u003ch2\u003eWhat it finds\u003c/h2\u003e\n\u003cp\u003eCurrent frontier models are not reliable here. The authors report sharp drops when tools must be called in a strict order, when permissions are restricted, and when the runtime throws unexpected errors — the ordinary conditions of a real device. The sandbox doubles as an environment for agentic RL, which is arguably its longer-term contribution.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yi Zhu",
+      "Xiongwei Wu",
+      "Qiyi Wang",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.23035",
+    "published_at": "2026-08-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-24",
+  "related": [
+    {
+      "id": "card_63374b",
+      "slug": "osworld-2-computer-use-agents",
+      "type": "paper",
+      "title": "OSWorld 2.0: Long-Horizon Computer Use, Stress-Tested",
+      "hook": "108 realistic computer-use workflows averaging 1.6 human-hours each expose how far agents are from professional-grade computer use — the best model completes only 20.6%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-28"
+    },
+    {
+      "id": "card_ab099d",
+      "slug": "knowact-guiclaw",
+      "type": "paper",
+      "title": "KnowAct-GUIClaw: Know Deeply, Act Perfectly, Personal GUI Assistant with Self-Evolving Memory and Skill",
+      "hook": "A GUI agent framework that treats every finished task as a lesson: it banks the experience into memory and skills, then reuses them across Android, iOS, HarmonyOS, and Windows.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-15"
+    },
+    {
+      "id": "card_a0d8fb",
+      "slug": "planbench-xl",
+      "type": "paper",
+      "title": "PlanBench-XL: Long-Horizon Planning in Large Tool Ecosystems",
+      "hook": "A benchmark of 1,665 tools shows top agents plan fine until tools start failing silently — then GPT-5.4's success crashes from 52% to 11%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-21"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_4f0144#0",
+      "format": "flip",
+      "prompt": "What blind spot do GUI-centric mobile agent benchmarks have?",
+      "back_html": "\u003cp\u003eThey test surface-level screen manipulation and skip background tool use and long-horizon planning — the parts that actually break in deployment.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4f0144#1",
+      "format": "quiz",
+      "prompt": "Which three advanced dimensions does MobilePA-Bench score beyond basic tool use?",
+      "choices": [
+        {
+          "text": "Sub-agent collaboration, memory usage, and skill usage",
+          "correct": true
+        },
+        {
+          "text": "Latency, token cost, and battery consumption",
+          "correct": false
+        },
+        {
+          "text": "Screen reading, gesture accuracy, and app coverage",
+          "correct": false
+        },
+        {
+          "text": "Safety, privacy, and permission hygiene",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe benchmark evaluates a central planning agent on delegating to sub-agents, recalling stored memories and preferences, and invoking pre-packaged composite skills.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4f0144#2",
+      "format": "flip",
+      "prompt": "What conditions cause frontier models to drop sharply on this benchmark?",
+      "back_html": "\u003cp\u003eStrict tool ordering, permission limits, and unexpected runtime errors — the messy realities a static function-matching benchmark never presents.\u003c/p\u003e"
+    }
+  ]
+}

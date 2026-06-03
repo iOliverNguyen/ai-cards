@@ -1,0 +1,118 @@
+{
+  "id": "card_c3d320",
+  "slug": "rynnworld-teleop",
+  "type": "paper",
+  "title": "RynnWorld-Teleop: Digital Teleoperation for Robot Data",
+  "hook": "Collecting robot demonstrations means binding an operator's time to one physical robot. RynnWorld-Teleop swaps in a world model: move your hands, and it generates the footage instead.",
+  "key_points": [
+    "Introduces 'digital teleoperation': a generative world model stands in for the physical robot, decoupling data collection from hardware.",
+    "An operator's hand-pose stream drives the model to synthesize realistic egocentric robot video from a single reference image.",
+    "The recorded pose stream is an embodiment-agnostic action label, retargetable to any target robot via standard retargeting.",
+    "Streaming autoregressive distillation compresses generation to single-pass inference: 40+ FPS in real time on one H100 GPU.",
+    "Policies trained purely on this generated data reach zero-shot sim-to-real transfer; mixing in real data lifts success rates further."
+  ],
+  "content_html": "\u003cp\u003eScaling robot learning needs more demonstrations than physical teleoperation can supply — every session ties an operator's time to one specific robot and room. RynnWorld-Teleop proposes cutting that cord entirely: replace the physical robot with a generative world model.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe system streams an operator's hand-pose input into a video Diffusion Transformer that synthesizes high-fidelity egocentric robot footage from a single reference image, using depth-aware skeletal conditioning and progressive human-to-robot training. Because the recorded action label is the hand-pose stream itself rather than a robot-specific trajectory, it's embodiment-agnostic — standard retargeting can map it onto any target robot, turning one recording into state-action data for many robots at once. Streaming autoregressive distillation then compresses the generative process into single-pass inference, reaching 40+ FPS real-time generation on a single H100 GPU. Policies trained exclusively on this generated data achieve zero-shot sim-to-real transfer across dexterous, diverse bimanual tasks, and mixing the generated data into real-world datasets consistently pushes success rates higher. Haoyu Zhao and colleagues, arXiv 2026 (67 HF community upvotes).\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Haoyu Zhao",
+      "Xingyue Zhao",
+      "Hangyu Li",
+      "Biao Gong",
+      "Kehan Li",
+      "Siteng Huang",
+      "Xin Li",
+      "Deli Zhao",
+      "Zhongyu Li"
+    ],
+    "url": "https://arxiv.org/abs/2607.06558",
+    "published_at": "2026-07-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "papers-this-week"
+  ],
+  "tags": [
+    "generative",
+    "training",
+    "vision",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-07",
+  "related": [
+    {
+      "id": "card_08a765",
+      "slug": "rynnworld-4d-embodied-world-models",
+      "type": "paper",
+      "title": "RynnWorld-4D: RGB-Depth-Flow World Models for Robot Manipulation",
+      "hook": "A robot needs to know how a scene's 3D structure will move, not just what it looks like. This world model predicts RGB, depth, and optical flow together, then hands the result straight to a policy.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-07"
+    },
+    {
+      "id": "card_2995d2",
+      "slug": "gigaworld-1-robot-policy-evaluation",
+      "type": "paper",
+      "title": "GigaWorld-1: World Models as Robot Policy Evaluators",
+      "hook": "Testing a robot policy for real means slow, costly rollouts. GigaWorld-1 asks whether a video world model can judge a policy instead — and finds visual realism is the wrong thing to optimize for.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-02"
+    },
+    {
+      "id": "card_b9d1db",
+      "slug": "world-action-models-survey",
+      "type": "paper",
+      "title": "World Action Models: A Survey",
+      "hook": "Robots are learning to imagine the future before acting. This survey untangles 'world action models' from video generators and VLA policies — and finds them converging on one idea.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_c3d320#0",
+      "format": "flip",
+      "prompt": "What problem does 'digital teleoperation' solve, and how?",
+      "back_html": "\u003cp\u003ePhysical teleoperation binds every demonstration to one robot and workspace. Digital teleoperation replaces the real robot with a generative world model, driven purely by the operator's hand movements.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c3d320#1",
+      "format": "quiz",
+      "prompt": "Why is the recorded hand-pose stream called an 'embodiment-agnostic' action label?",
+      "choices": [
+        {
+          "text": "It isn't tied to one robot's joints — it can be retargeted to any target robot via standard retargeting",
+          "correct": true
+        },
+        {
+          "text": "It only works with the exact robot used during recording",
+          "correct": false
+        },
+        {
+          "text": "It requires re-recording separately for each robot embodiment",
+          "correct": false
+        },
+        {
+          "text": "It is a text description rather than a pose signal",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBecause the label is a hand-pose stream, not a robot-specific joint trajectory, standard retargeting can map it onto any target robot's action space — one recording, many embodiments.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c3d320#2",
+      "format": "flip",
+      "prompt": "What real-world result did policies trained purely on RynnWorld-Teleop-generated data achieve?",
+      "back_html": "\u003cp\u003eZero-shot sim-to-real transfer across dexterous, diverse bimanual tasks — with no real robot data in training. Adding this generated data to real datasets further improved success rates.\u003c/p\u003e"
+    }
+  ]
+}

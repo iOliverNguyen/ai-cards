@@ -1,0 +1,131 @@
+{
+  "id": "card_6857a8",
+  "slug": "t2mlr-temporal-middle-layer-recurrence",
+  "type": "paper",
+  "title": "T^2MLR: Transformer with Temporal Middle-Layer Recurrence",
+  "hook": "Decoding squeezes a transformer's thinking through token space each step. T2MLR pipes a cached middle-layer state into the next pass — recurring 20% of the network often beats looping it all.",
+  "key_points": [
+    "Standard autoregressive decoding repeatedly compresses rich intermediate computation into discrete tokens, making it hard for reasoning states to persist across decoding steps.",
+    "T2MLR fuses a cached middle-layer hidden state from the previous token directly into an earlier layer of the current token's forward pass, letting abstract computation carry over with little added inference cost.",
+    "Recurrence localized to a small middle-layer block (as little as 20% of the network) often outperforms recurrence applied across all layers.",
+    "Doesn't require pretraining from scratch: retrofitting the recurrent pathway into an existing pretrained 1.7B transformer and briefly finetuning substantially improves math reasoning."
+  ],
+  "content_html": "\u003cp\u003eA transformer decoding one token at a time has to squeeze everything it \u0026quot;figured out\u0026quot; internally back down into a single discrete token before moving to the next step — a real bottleneck for reasoning that should span multiple steps. Ziyang Cai, Sanjeev Arora, and colleagues introduce Transformers with Temporal Middle-Layer Recurrence (T2MLR) to give that intermediate computation a way to persist.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe mechanism is a direct hidden-state pathway: T2MLR caches a middle-layer representation from the previous token and fuses it into an earlier layer of the current token's forward pass, letting abstract intermediate computation carry across decoding steps with little added inference cost. Tested on natural-language pretraining and multi-hop reasoning finetuning, T2MLR consistently beats data- and parameter-matched transformer baselines. Notably, applying the recurrence to only a small, localized middle-layer block — as little as 20% of the network — often works better than looping the entire stack, contrary to prior latent-reasoning approaches that recur over all layers.\u003c/p\u003e\n\u003cp\u003eThe authors also show it's practical to retrofit: adding the recurrent pathway into an already-pretrained 1.7B-parameter transformer and briefly finetuning it substantially improves math reasoning, without needing to pretrain a new model from scratch. Their takeaway is that effective latent reasoning doesn't require full-network recurrence — targeted, middle-layer recurrence can do more with less. Source: arXiv, arxiv.org/abs/2607.15178.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ziyang Cai",
+      "Xingyu Zhu",
+      "Yihe Dong",
+      "Yinghui He",
+      "Sanjeev Arora"
+    ],
+    "url": "https://arxiv.org/abs/2607.15178",
+    "published_at": "2026-07-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "transformers",
+    "context-memory",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "reasoning",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-20",
+  "date": "2026-07-16",
+  "related": [
+    {
+      "id": "card_b85342",
+      "slug": "next-latent-prediction",
+      "type": "paper",
+      "title": "Next-Latent Prediction: Beyond Next-Token",
+      "hook": "Microsoft's NextLat teaches a transformer to predict its own next hidden state, not just the next token - building a compact internal world model and decoding up to 3.3x faster.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-17"
+    },
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_6857a8#0",
+      "format": "flip",
+      "prompt": "What problem with standard autoregressive decoding does T2MLR target?",
+      "back_html": "\u003cp\u003eDecoding repeatedly forces rich intermediate hidden computation through the narrow bottleneck of discrete token space, making it hard for intermediate reasoning states to persist across decoding steps.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6857a8#1",
+      "format": "quiz",
+      "prompt": "How does T2MLR let computation persist across decoding steps?",
+      "choices": [
+        {
+          "text": "It caches a middle-layer hidden representation from the previous token and fuses it into an earlier layer of the current token's forward pass",
+          "correct": true
+        },
+        {
+          "text": "It re-runs the entire transformer twice on every token",
+          "correct": false
+        },
+        {
+          "text": "It stores previous tokens' final-layer outputs and re-feeds them as new input tokens",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe recurrence is a direct hidden-state pathway between decoding steps at a specific layer, not a token-level trick or a full re-run of the network.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6857a8#2",
+      "format": "flip",
+      "prompt": "Does recurring over more of the network's layers work better than a localized middle-layer block?",
+      "back_html": "\u003cp\u003eNot necessarily — the paper finds that recurrence localized to a small middle-layer block, as little as 20% of the network, often outperforms applying recurrence across all layers.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6857a8#3",
+      "format": "quiz",
+      "prompt": "Does T2MLR require training a new model from scratch to see benefits?",
+      "choices": [
+        {
+          "text": "No — retrofitting the recurrent pathway into an existing pretrained 1.7B transformer and briefly finetuning it substantially improved math reasoning",
+          "correct": true
+        },
+        {
+          "text": "Yes, it only works when pretrained from scratch with the recurrent pathway built in",
+          "correct": false
+        },
+        {
+          "text": "It requires a completely separate model trained only on math data",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe retrofit result is what the authors highlight as lowering the barrier to practical adoption — existing pretrained models can gain the benefit without a full retrain.\u003c/p\u003e"
+    }
+  ]
+}

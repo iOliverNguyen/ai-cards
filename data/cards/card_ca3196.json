@@ -1,0 +1,139 @@
+{
+  "id": "card_ca3196",
+  "slug": "pixel-linguist-ii",
+  "type": "paper",
+  "title": "The Design Fundamentals of Pixel Text Representation Learning",
+  "hook": "What if a model read text as an image instead of tokens? Controlled ablations pin down the four ingredients that make pixel-space text encoders actually work.",
+  "key_points": [
+    "Pixel text encoders render text as an image, sidestepping tokenizers — but naive recipes learn visual shortcuts instead of language.",
+    "Varying image resolution and font size during pretraining is what lets the encoder generalize to high-resolution documents.",
+    "Natural image-text pairs are indispensable for grounding; without them the model collapses to text-only behaviour.",
+    "Layout-aware rendering blocks pixel-level shortcuts, and a two-stage multilingual curriculum enables cross-lingual alignment.",
+    "The resulting Pixel Linguist II, trained on 280M examples, reports state-of-the-art visual STS and ViDoRe results.",
+    "The authors report it stays robust under 80% visual token compression — a hint for optical context compression."
+  ],
+  "content_html": "\u003cp\u003eYuan and colleagues ask a basic question about pixel-space text encoders — models that read language as a rendered image rather than a token sequence — and answer it with controlled ablations rather than a single big system. They isolate four design choices that matter: variable image resolutions and font sizes, natural image-text pairs, layout-aware rendering, and a two-stage multilingual curriculum. Folding all four into one recipe gives Pixel Linguist II, a native-resolution vision encoder trained on 280M examples.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhy pixel text at all\u003c/h2\u003e\n\u003cp\u003eTokenizers are a lossy, language-biased interface: they fix a vocabulary, fragment rare scripts, and throw away layout. Rendering text as pixels keeps the page as it looks, which matters for documents, tables, and screenshots. The catch is that pixel encoders are easy to train badly — they latch onto visual shortcuts, overfit one resolution, or drift away from real visual grounding.\u003c/p\u003e\n\u003ch2\u003eWhat the ablations found\u003c/h2\u003e\n\u003cp\u003eEach of the four ingredients fixes one of those failures. Varying resolution and font size acts as a spatial proxy so the encoder generalizes to high-resolution documents; natural image-text pairs supply grounding; layout-aware rendering removes pixel-level shortcuts; the multilingual curriculum aligns scripts. The authors report state-of-the-art results on English, cross-lingual, and multilingual Visual STS and on ViDoRe, and note the encoder stays robust under 80% visual token compression — which they frame as promising for optical context compression. Code and resources are on the project's GitHub.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Chaohao Yuan",
+      "Ruifeng Yuan",
+      "Zhuoxu Huang",
+      "Yu Rong",
+      "Hong Cheng",
+      "Hou Pong Chan",
+      "Chenghao Xiao"
+    ],
+    "url": "https://arxiv.org/abs/2609.01147",
+    "published_at": "2026-09-01",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "tokenization",
+    "vlms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "nlp",
+    "multimodal",
+    "paper",
+    "efficiency"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-09-03",
+  "date": "2026-09-01",
+  "related": [
+    {
+      "id": "card_7bdd52",
+      "slug": "rate-utility-tokens-bytes-pixels",
+      "type": "paper",
+      "title": "Rate-Utility Frontiers for Language Encodings: Comparing Tokens, Bytes, and Pixels",
+      "hook": "Tokens, bytes, or pixels — which encodes language best? A controlled head-to-head across 13 languages finds no single winner: each encoding trades off differently by task.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-17"
+    },
+    {
+      "id": "card_3d7d44",
+      "slug": "clip",
+      "type": "paper",
+      "title": "CLIP: Learning Visual Models from Language",
+      "hook": "Skip the fixed label list. Train on image–caption pairs so pictures and text share one space, and you can classify images from plain-text labels you make up on the spot.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-02-26"
+    },
+    {
+      "id": "card_a2690e",
+      "slug": "byte-pair-encoding",
+      "type": "paper",
+      "title": "Subword Tokenization with Byte-Pair Encoding",
+      "hook": "Whole words make a giant vocabulary; single characters make long sequences. Subwords split the difference — and let models read words they've never seen.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2015-08-31"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7bdd52",
+      "slug": "rate-utility-tokens-bytes-pixels",
+      "type": "paper",
+      "title": "Rate-Utility Frontiers for Language Encodings: Comparing Tokens, Bytes, and Pixels",
+      "hook": "Tokens, bytes, or pixels — which encodes language best? A controlled head-to-head across 13 languages finds no single winner: each encoding trades off differently by task.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-17"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_ca3196#0",
+      "format": "flip",
+      "prompt": "What does a pixel text encoder do differently from a normal language model?",
+      "back_html": "\u003cp\u003eIt reads text rendered as an image, encoding language directly in pixel space instead of splitting it into tokens.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ca3196#1",
+      "format": "quiz",
+      "prompt": "Why do the authors include natural image-text pairs in pretraining?",
+      "choices": [
+        {
+          "text": "Without them the encoder loses visual grounding and collapses to text-only behaviour",
+          "correct": true
+        },
+        {
+          "text": "They are the only source of multilingual text available at scale",
+          "correct": false
+        },
+        {
+          "text": "They let the model skip the rendering step at inference time",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper finds natural image-text pairs indispensable for grounding — they prevent text-only collapse.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ca3196#2",
+      "format": "quiz",
+      "prompt": "What role does layout-aware rendering play in the recipe?",
+      "choices": [
+        {
+          "text": "It prevents the model from exploiting pixel-level shortcuts",
+          "correct": true
+        },
+        {
+          "text": "It compresses the image so fewer visual tokens are needed",
+          "correct": false
+        },
+        {
+          "text": "It aligns scripts across languages during the second training stage",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLayout-aware rendering is listed as the guard against pixel-level shortcut learning; cross-lingual alignment comes from the two-stage multilingual curriculum instead.\u003c/p\u003e"
+    }
+  ]
+}

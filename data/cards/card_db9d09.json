@@ -1,0 +1,115 @@
+{
+  "id": "card_db9d09",
+  "slug": "task-crossover-at-work",
+  "type": "blog",
+  "title": "Task Crossover: AI Is Redrawing Who Does What at Work",
+  "hook": "In 800,000+ ChatGPT messages, 43.5% of occupation-specific work use involves tasks from another job. AI is redrawing job boundaries before the job titles catch up.",
+  "key_points": [
+    "OpenAI analyzed 800,000+ messages from US ChatGPT users; 16.8% of work-related and 43.5% of occupation-specific messages cross job lines.",
+    "They call the pattern 'task crossover': work historically tied to one occupation showing up in another occupation's AI use.",
+    "Outside-occupation work dominates for some roles: 77% of customer-experience messages, 75% design, 69% HR, 56% legal, 53% marketing.",
+    "Engineering exports tasks (18.5% inbound, but 7.4% of others' messages); design imports them (35.2% inbound, only 1.7% outbound).",
+    "Crossover is higher at small firms: an 18.9% outside-occupation share at 2–5 seat workspaces vs 16.3% above 100 seats.",
+    "OpenAI argues usage is an early signal of occupational change, visible before firms rewrite job descriptions."
+  ],
+  "content_html": "\u003cp\u003eOpenAI analyzed more than 800,000 messages from US ChatGPT users and found that much work-related use isn't people doing their own job faster — it's people doing somebody else's job. Among occupation-specific messages, 43.5% involve tasks traditionally associated with a different occupation. OpenAI calls the pattern \u003cstrong\u003etask crossover\u003c/strong\u003e.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow they measured it\u003c/h2\u003e\n\u003cp\u003eThe method matters, because the headline number depends on it. OpenAI first separates \u003cem\u003egeneric\u003c/em\u003e work — writing, summarizing, scheduling — that is shared too broadly across jobs to count as evidence of anything. Of what remains, they ask whether a task falls inside or outside the user's own occupation. That filtered slice is where the 43.5% comes from; measured against all work-related messages, crossover is 16.8%. Some roles skew far higher: 77% for customer-experience workers, 75% for designers, 69% in HR.\u003c/p\u003e\n\u003ch2\u003eImporters and exporters\u003c/h2\u003e\n\u003cp\u003eThe more interesting result is that crossover has a direction. Design is a net importer — designers spend 35.2% of their messages on other people's work, while design tasks show up in only 1.7% of everyone else's. Engineering is closer to the reverse: 18.5% inbound, but engineering tasks account for 7.4% of other occupations' messages, mostly troubleshooting and technical systems. Marketing runs high both ways. Financial calculation and technology troubleshooting turn up among the three most common outside tasks in all seven other occupation groups — those two travel almost everywhere.\u003c/p\u003e\n\u003cp\u003eCrossover is also more common at small companies (18.9% at 2–5 seat workspaces, 16.3% above 100), which fits the intuition that AI substitutes for specialists you don't have. OpenAI's framing, in the first report of its \u003cem\u003eWork at the Frontier\u003c/em\u003e series, is that usage data is a leading indicator: people recombine tasks well before firms rewrite job descriptions or invent new titles. Worth reading as a claim from a company with a commercial stake in the answer — but it is a genuinely unusual window into the question.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "authors": [
+      "OpenAI"
+    ],
+    "url": "https://openai.com/index/how-ai-is-expanding-what-people-do-at-work",
+    "published_at": "2026-07-27",
+    "license": "OpenAI blog"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "lab-updates"
+  ],
+  "tags": [
+    "news",
+    "safety"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-07-27",
+  "date": "2026-07-27",
+  "related": [
+    {
+      "id": "card_2015b0",
+      "slug": "chatgpt-work",
+      "type": "news",
+      "title": "ChatGPT Work: An Agent That Delivers Finished Work",
+      "hook": "ChatGPT Work doesn't just chat — it reaches into your actual apps and files, grinds on a project for hours, and hands back a real spreadsheet or slide deck instead of a wall of text.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-07-09"
+    },
+    {
+      "id": "card_49d7dc",
+      "slug": "ai-floods-book-market",
+      "type": "paper",
+      "title": "Generative AI Floods and Dilutes the Market for Books",
+      "hook": "AI-written fiction gets dismissed as 'slop' — but across 14,419 books, AI-heavy titles climb the bestseller ranks and thin revenue per book. Scale, not quality, is reshaping the market.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-07-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_db9d09#0",
+      "format": "flip",
+      "prompt": "What does OpenAI mean by 'task crossover'?",
+      "back_html": "\u003cp\u003eWork historically associated with one occupation showing up in the AI use of someone in a different occupation — a salesperson exploring a dataset, a marketer troubleshooting a website.\u003c/p\u003e"
+    },
+    {
+      "id": "card_db9d09#1",
+      "format": "quiz",
+      "prompt": "Among occupation-specific ChatGPT messages, roughly what share involve tasks outside the user's own occupation?",
+      "choices": [
+        {
+          "text": "About 43.5%",
+          "correct": true
+        },
+        {
+          "text": "About 5% — crossover is real but marginal",
+          "correct": false
+        },
+        {
+          "text": "About 90% — almost all work use is someone else's job",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOnce generic work like writing and scheduling is excluded, 43.5% of occupation-specific messages fall outside the user's own occupation.\u003c/p\u003e"
+    },
+    {
+      "id": "card_db9d09#2",
+      "format": "flip",
+      "prompt": "Why are engineering and design described as opposite directions of crossover?",
+      "back_html": "\u003cp\u003eDesign imports: 35.2% of designers' messages are other-occupation work, but design tasks are just 1.7% of others'. Engineering exports: 18.5% inbound, yet 7.4% of others' messages.\u003c/p\u003e"
+    },
+    {
+      "id": "card_db9d09#3",
+      "format": "quiz",
+      "prompt": "How does workspace size relate to task crossover among average users?",
+      "choices": [
+        {
+          "text": "Crossover is higher in small workspaces — 18.9% at 2–5 seats vs 16.3% above 100 seats",
+          "correct": true
+        },
+        {
+          "text": "Crossover is higher at large companies, which have more specialized teams to borrow from",
+          "correct": false
+        },
+        {
+          "text": "Workspace size shows no relationship to crossover at any usage level",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIn a smaller organization the worker closest to the problem is likelier to take it on than delegate. Among the heaviest users, though, the pattern is not monotonic.\u003c/p\u003e"
+    }
+  ]
+}

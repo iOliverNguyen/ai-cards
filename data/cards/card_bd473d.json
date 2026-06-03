@@ -1,0 +1,111 @@
+{
+  "id": "card_bd473d",
+  "slug": "unlimited-ocr",
+  "type": "paper",
+  "title": "Unlimited OCR: Constant KV Cache for Long Documents",
+  "hook": "LLM-based OCR slows down as documents get longer because the KV cache keeps growing. Unlimited OCR holds the cache constant, transcribing dozens of pages in one pass.",
+  "key_points": [
+    "End-to-end OCR with an LLM decoder (e.g., DeepSeek OCR) slows as output grows — the KV cache keeps expanding.",
+    "Unlimited OCR replaces the decoder's attention with Reference Sliding Window Attention (R-SWA), keeping the KV cache constant throughout decoding.",
+    "Paired with DeepSeek OCR's high-compression encoder, it transcribes dozens of pages in a single forward pass within a 32K length.",
+    "R-SWA is general-purpose parsing attention — usable beyond OCR for tasks like ASR and translation.",
+    "Released open: a 3.3B multilingual model (MIT) on GitHub and ModelScope, with base and 'gundam' image modes."
+  ],
+  "content_html": "\u003cp\u003eEnd-to-end OCR models with LLM decoders — DeepSeek OCR being the headline example — put OCR back in the spotlight by letting the decoder lean on a language model's priors. But there's a catch: as the output sequence grows, the accumulated KV cache drives up memory and progressively slows generation. Humans don't slow down copying a long document; these models do. Yin, Liu, Jia and colleagues at Baidu address that with Unlimited OCR.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eTaking DeepSeek OCR as the baseline, Unlimited OCR replaces all attention layers in the decoder with Reference Sliding Window Attention (R-SWA), which reduces attention cost and — critically — keeps the KV cache constant throughout the entire decoding process. Combined with DeepSeek OCR's high-compression encoder, that constant-cache design lets the model transcribe dozens of pages of documents in a single forward pass under a standard 32K maximum length.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eR-SWA isn't OCR-specific: the authors frame it as a general-purpose parsing attention mechanism applicable to tasks like ASR and translation, wherever a model emits long sequences. The work is released openly — a 3.3B multilingual model under an MIT license on GitHub and ModelScope, with base and \u0026quot;gundam\u0026quot; image modes for different layouts — making the constant-KV trick easy to study.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Youyang Yin",
+      "Huanhuan Liu",
+      "Lei Jia",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.23050",
+    "published_at": "2026-06-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "vlms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "inference",
+    "efficiency",
+    "attention",
+    "multimodal",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-25",
+  "date": "2026-06-22",
+  "related": [
+    {
+      "id": "card_688904",
+      "slug": "kv-cache-and-batching",
+      "type": "concept",
+      "title": "The KV Cache \u0026 Continuous Batching",
+      "hook": "Generating one token reuses every prior key and value - that growing cache is why LLM inference is memory-bound, and continuous batching is how servers fight back.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-11-09"
+    },
+    {
+      "id": "card_5e9c4b",
+      "slug": "multi-query-attention",
+      "type": "paper",
+      "title": "Multi-Query Attention: Faster Decoding",
+      "hook": "Share one key/value head across all query heads - the KV cache shrinks by a factor of H and decoding gets dramatically faster with barely any quality cost.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2019-11-05"
+    },
+    {
+      "id": "card_ef8b5f",
+      "slug": "paged-attention-vllm",
+      "type": "paper",
+      "title": "PagedAttention / vLLM: Efficient LLM Serving",
+      "hook": "LLM serving wastes huge amounts of GPU memory on the attention cache. PagedAttention borrows an OS trick — paging — to recover it and serve many more requests at once.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-09-12"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_bd473d#0",
+      "format": "flip",
+      "prompt": "Why does LLM-decoder OCR slow down on long documents, and how does Unlimited OCR fix it?",
+      "back_html": "\u003cp\u003eThe KV cache grows with output length, raising memory and slowing generation; Reference Sliding Window Attention (R-SWA) keeps the KV cache constant throughout decoding.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bd473d#1",
+      "format": "quiz",
+      "prompt": "What does R-SWA's constant KV cache buy for OCR?",
+      "choices": [
+        {
+          "text": "It can transcribe dozens of pages in one forward pass without speed and memory degrading as output grows",
+          "correct": true
+        },
+        {
+          "text": "It raises character accuracy by using a much larger cache",
+          "correct": false
+        },
+        {
+          "text": "It removes the need for a vision encoder",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA constant-size cache means cost doesn't balloon with output length, so very long transcriptions stay efficient in a single pass under a 32K limit.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bd473d#2",
+      "format": "flip",
+      "prompt": "Beyond OCR, where else can R-SWA apply?",
+      "back_html": "\u003cp\u003eIt's a general-purpose parsing attention mechanism, applicable to other long-output sequence tasks such as ASR (speech recognition) and translation.\u003c/p\u003e"
+    }
+  ]
+}

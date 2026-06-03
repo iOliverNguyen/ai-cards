@@ -1,0 +1,117 @@
+{
+  "id": "card_426fcd",
+  "slug": "scaling-monosemanticity",
+  "type": "paper",
+  "title": "Scaling Monosemanticity: Features from Claude 3 Sonnet",
+  "hook": "Does dictionary learning survive at production scale? Anthropic found millions of features in Claude 3 Sonnet — and could steer the model by turning one up.",
+  "key_points": [
+    "Scales sparse autoencoders from a toy model to a production model, Claude 3 Sonnet.",
+    "Trained three SAEs of roughly 1M, 4M, and 34M features.",
+    "The 'Golden Gate Bridge' feature activates across languages and on relevant images.",
+    "Clamping it to about 10x its max makes the model identify with the bridge — causal steering."
+  ],
+  "content_html": "\u003cp\u003eAdly Templeton, Tom Conerly, Jonathan Marcus, and colleagues at Anthropic take the dictionary-learning approach that worked on a toy transformer and scale it up to a real production model, Claude 3 Sonnet. They train three sparse autoencoders of roughly 1 million, 4 million, and 34 million features, and find that the features stay interpretable — including the now-famous \u0026quot;Golden Gate Bridge\u0026quot; feature, which they can use to steer the model's behavior directly.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe team trains sparse autoencoders on Claude 3 Sonnet's activations, learning dictionaries of up to 34 million features. The features generalize in striking ways: the Golden Gate Bridge feature activates across multiple languages and even on relevant images, not just the English phrase. Crucially, the link is causal. Clamping that feature to about ten times its maximum natural activation makes the model behave as though it identifies with the Golden Gate Bridge, demonstrating that these features are levers, not just labels.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThis is the proof that monosemanticity research is not confined to tiny demos — the same method finds interpretable, steerable features inside a frontier model people actually use. Causal steering matters for safety: if you can locate and turn a concept up or down, you have a handle on model behavior that does not depend on prompting alone. It made interpretability feel like a practical tool for understanding and influencing large models, not only an academic exercise.\u003c/p\u003e",
+  "source": {
+    "name": "Anthropic (Transformer Circuits)",
+    "authors": [
+      "Adly Templeton",
+      "Tom Conerly",
+      "Jonathan Marcus",
+      "et al."
+    ],
+    "url": "https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html",
+    "published_at": "2024-05-21",
+    "license": "Anthropic (open access)"
+  },
+  "topic_ids": [
+    "interpretability"
+  ],
+  "tags": [
+    "interpretability",
+    "safety",
+    "paper"
+  ],
+  "importance": 5,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2024-05-21",
+  "related": [
+    {
+      "id": "card_0946f0",
+      "slug": "towards-monosemanticity",
+      "type": "paper",
+      "title": "Towards Monosemanticity: Decomposing Models with Dictionary Learning",
+      "hook": "If neurons mean several things at once, can we find cleaner units? A sparse autoencoder pulled 4,000+ single-concept features out of one tiny transformer layer.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2023-10-05"
+    },
+    {
+      "id": "card_a2cf0d",
+      "slug": "claude-3",
+      "type": "news",
+      "title": "The Claude 3 Model Family",
+      "hook": "Anthropic's Claude 3 family offers a three-tier speed-capability tradeoff - Haiku, Sonnet, Opus - with multimodal input and alignment built on Constitutional AI methods.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-03-04"
+    },
+    {
+      "id": "card_321aee",
+      "slug": "toy-models-superposition",
+      "type": "paper",
+      "title": "Toy Models of Superposition",
+      "hook": "Why is a single neuron so hard to interpret? It may be doing several jobs at once. Networks pack more features than they have neurons by overlapping them.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2022-09-14"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_0946f0",
+      "slug": "towards-monosemanticity",
+      "type": "paper",
+      "title": "Towards Monosemanticity: Decomposing Models with Dictionary Learning",
+      "hook": "If neurons mean several things at once, can we find cleaner units? A sparse autoencoder pulled 4,000+ single-concept features out of one tiny transformer layer.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2023-10-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_426fcd#0",
+      "format": "flip",
+      "prompt": "What did clamping the 'Golden Gate Bridge' feature high demonstrate?",
+      "back_html": "\u003cp\u003eThat features are causal levers, not just labels — clamping it to about 10x its max made the model behave as though it identifies with the bridge.\u003c/p\u003e"
+    },
+    {
+      "id": "card_426fcd#1",
+      "format": "quiz",
+      "prompt": "What was the key significance of finding interpretable features in Claude 3 Sonnet?",
+      "choices": [
+        {
+          "text": "Monosemanticity research works on a real frontier model, not just toy demos",
+          "correct": true
+        },
+        {
+          "text": "It proved toy models are more interpretable than large ones",
+          "correct": false
+        },
+        {
+          "text": "It eliminated the need for prompting entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe work proved the dictionary-learning method finds interpretable, steerable features inside a frontier model people actually use, not just tiny demos.\u003c/p\u003e"
+    },
+    {
+      "id": "card_426fcd#2",
+      "format": "flip",
+      "prompt": "In what ways did the Golden Gate Bridge feature generalize?",
+      "back_html": "\u003cp\u003eIt activated across multiple languages and even on relevant images, not just the English phrase.\u003c/p\u003e"
+    }
+  ]
+}

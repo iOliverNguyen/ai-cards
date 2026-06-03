@@ -1,0 +1,116 @@
+{
+  "id": "card_dd86b0",
+  "slug": "sdxl",
+  "type": "paper",
+  "title": "SDXL: Improving Latent Diffusion for High-Resolution Synthesis",
+  "hook": "A larger UNet, two text encoders, and a refinement diffusion stage gave open-source Stable Diffusion a major quality leap - now the workhorse of community image generation.",
+  "key_points": [
+    "The UNet is substantially larger than SD 1.x/2.x, with more attention blocks and parameters concentrated in lower-resolution stages.",
+    "Two text encoders run in parallel (OpenCLIP ViT-bigG and CLIP ViT-L) and their embeddings are concatenated for richer conditioning.",
+    "A separate refiner diffusion model operates in the same latent space to sharpen high-frequency details.",
+    "Image-size and crop-position conditioning at training time reduce artifacts from mismatched resolutions."
+  ],
+  "content_html": "\u003cp\u003ePodell and colleagues at Stability AI published SDXL in July 2023 as a major revision of the open Stable Diffusion lineage. Rather than a new architecture from scratch, SDXL refines the latent diffusion recipe: bigger model, smarter conditioning, and a two-stage generation pipeline that produces noticeably sharper results than its predecessors.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eSDXL's UNet has more transformer blocks and a higher parameter count than earlier versions, with the extra capacity placed at lower-resolution feature maps where global composition is determined. Two text encoders run in parallel on the prompt and their embeddings are concatenated, giving the model a richer semantic signal. After the base model generates a latent, an optional refiner model - trained to denoise from a high noise level on the same latent - sharpens fine details before decoding to pixels.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eSDXL became a practical standard in the open image-generation community: better prompt following, higher default resolution, and plug-in compatible with ControlNet and LoRA tooling. It shows that careful engineering improvements to an existing open recipe can close much of the gap with proprietary systems. The full architecture details are in the paper on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Dustin Podell",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2307.01952",
+    "published_at": "2023-07-04",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "text-to-image"
+  ],
+  "tags": [
+    "generative",
+    "vision",
+    "open-source",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2023-07-04",
+  "related": [
+    {
+      "id": "card_7e3221",
+      "slug": "latent-diffusion-models",
+      "type": "paper",
+      "title": "High-Resolution Image Synthesis with Latent Diffusion (Stable Diffusion)",
+      "hook": "Running diffusion on raw pixels is brutally expensive. Do it in a compressed latent space instead, and high-res text-to-image becomes cheap enough to run on a consumer GPU.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-12-20"
+    },
+    {
+      "id": "card_7ca1ea",
+      "slug": "imagen",
+      "type": "paper",
+      "title": "Imagen: Photorealistic Text-to-Image Diffusion",
+      "hook": "Google found that a large frozen T5 text encoder matters more than a bigger image diffusion model - scaling language understanding is the key lever for photorealistic generation.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-05-23"
+    },
+    {
+      "id": "card_c9a4a9",
+      "slug": "controlnet",
+      "type": "paper",
+      "title": "ControlNet: Adding Conditional Control to Diffusion Models",
+      "hook": "Lock a diffusion model's weights, attach a trainable copy of its encoder fed with spatial signals like edges or pose, and gain precise compositional control without touching the original model.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-02-10"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7e3221",
+      "slug": "latent-diffusion-models",
+      "type": "paper",
+      "title": "High-Resolution Image Synthesis with Latent Diffusion (Stable Diffusion)",
+      "hook": "Running diffusion on raw pixels is brutally expensive. Do it in a compressed latent space instead, and high-res text-to-image becomes cheap enough to run on a consumer GPU.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-12-20"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_dd86b0#0",
+      "format": "quiz",
+      "prompt": "How does SDXL enrich text conditioning over earlier Stable Diffusion?",
+      "choices": [
+        {
+          "text": "Runs two text encoders in parallel and concatenates their embeddings",
+          "correct": true
+        },
+        {
+          "text": "Replaces CLIP with a frozen T5-XXL encoder",
+          "correct": false
+        },
+        {
+          "text": "Adds chain-of-thought reasoning to the prompt",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSDXL runs OpenCLIP ViT-bigG and CLIP ViT-L in parallel, concatenating embeddings for richer conditioning.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dd86b0#1",
+      "format": "flip",
+      "prompt": "What does SDXL's separate refiner model do?",
+      "back_html": "\u003cp\u003eIt operates in the same latent space, denoising from a high noise level to sharpen high-frequency details before decoding.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dd86b0#2",
+      "format": "flip",
+      "prompt": "What broader point does SDXL demonstrate about open models?",
+      "back_html": "\u003cp\u003eCareful engineering of an existing open recipe — bigger UNet, smarter conditioning, two-stage pipeline — can close much of the gap with proprietary systems.\u003c/p\u003e"
+    }
+  ]
+}

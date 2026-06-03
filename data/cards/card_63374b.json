@@ -1,0 +1,150 @@
+{
+  "id": "card_63374b",
+  "slug": "osworld-2-computer-use-agents",
+  "type": "paper",
+  "title": "OSWorld 2.0: Long-Horizon Computer Use, Stress-Tested",
+  "hook": "108 realistic computer-use workflows averaging 1.6 human-hours each expose how far agents are from professional-grade computer use — the best model completes only 20.6%.",
+  "key_points": [
+    "Tasks average 318 tool calls each (versus ~30 in OSWorld 1.0), spanning streaming interaction, dynamic environments, and hidden state.",
+    "Claude Opus 4.8 tops out at 20.6% full completion (54.8% partial); GPT-5.5 plateaus near 13% but is far more token-efficient.",
+    "Agents don't fail at basic GUI control — they lose track of constraints, miss mid-task information, guess instead of asking, and skip verification.",
+    "Tasks are grounded in authentic artifacts and stateful user profiles, with separate safety audits for sensitive actions."
+  ],
+  "content_html": "\u003cp\u003eComputer-use agents look impressive on short demo tasks. OSWorld 2.0 asks what happens when the task takes a human 1.6 hours and hundreds of steps — and the answer is: agents are still far from ready.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe benchmark introduces 108 long-horizon workflows across everyday and professional computer use, each requiring an average of 318 tool calls with Claude Opus 4.7 at maximum thinking — over ten times the roughly 30 calls OSWorld 1.0 tasks needed. Tasks target challenges prior benchmarks underrepresent: streaming interaction, dynamic environments, cross-source reasoning, implicit-state inference, and visual-spatial precision, all grounded in authentic artifacts and realistic stateful user profiles, with separate safety audits for sensitive actions. Under the primary binary-completion metric at 500 steps, the strongest agent — Claude Opus 4.8 with maximum thinking and batched tool calls — completes only 20.6% of tasks fully (54.8% partial), while GPT-5.5 is far more token-efficient but plateaus near 13%. The failure modes are telling: agents rarely stumble on basic GUI control or coding. They lose track of constraints, miss information that arrives mid-task, guess rather than ask the user, and skip verification — struggling most when a task hinges on hidden state they must recover themselves. Mengqi Yuan and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Mengqi Yuan",
+      "Zilong Zhou",
+      "Xinzhuang Xiong",
+      "Weiming Wu",
+      "Jiayang Sun",
+      "Jiamin Song",
+      "Kaiqian Cui",
+      "Bowen Wang",
+      "Haoyuan Wu",
+      "Yitong Li",
+      "Dunjie Lu",
+      "Haikong Lu",
+      "Qi Zhen",
+      "Xinyuan Wang",
+      "Jiaqi Deng",
+      "Yuhao Yang",
+      "Cheng Chen",
+      "Boyuan Zheng",
+      "Alex Su",
+      "Xiao Yu",
+      "Hao Zou",
+      "Saaket Agashe",
+      "Xing Han Lu",
+      "Manpreet Kaur",
+      "Zhengyang Qi",
+      "Vincent Sunn Chen",
+      "Frederic Sala",
+      "Dayiheng Liu",
+      "Junyang Lin",
+      "Zhou Yu",
+      "Yu Su",
+      "Siva Reddy",
+      "Xin Eric Wang",
+      "Peng Qi",
+      "Tianbao Xie",
+      "Tao Yu"
+    ],
+    "url": "https://arxiv.org/abs/2606.29537",
+    "published_at": "2026-06-28",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-02",
+  "date": "2026-06-28",
+  "related": [
+    {
+      "id": "card_72286a",
+      "slug": "gemini-3-5-flash-computer-use",
+      "type": "news",
+      "title": "Computer Use in Gemini 3.5 Flash",
+      "hook": "DeepMind put computer-use agents — reading the screen, then clicking, typing, and scrolling through real UIs — into its fast, low-cost Flash tier.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-24"
+    },
+    {
+      "id": "card_3a0d83",
+      "slug": "gui-vs-cli-computer-use-agents",
+      "type": "paper",
+      "title": "GUI vs. CLI: Where Computer-Use Agents Get Stuck",
+      "hook": "Should an agent click buttons or type commands? A matched benchmark giving both the same 440 tasks finds GUI agents win by default — but CLI agents leap ahead once their skill library is filled in.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-22"
+    },
+    {
+      "id": "card_48a3f2",
+      "slug": "tua-bench-terminal-agents",
+      "type": "paper",
+      "title": "TUA-Bench: Benchmarking General-Purpose Terminal Agents",
+      "hook": "120 real terminal tasks — from email triage to PhD-level scientific workflows — show even Claude Opus 4.8 tops out around 66%, far from reliable general computer use.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-26"
+    },
+    {
+      "id": "card_f4c3e0",
+      "slug": "docops-document-operations-benchmark",
+      "type": "paper",
+      "title": "DocOps: Benchmarking Agents That Edit Real Documents",
+      "hook": "Even frontier agents can't reliably edit complex documents: a verifiable benchmark pins the failures on three modes — state-tracking collapse, shallow verification, and destructive metadata edits.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_63374b#0",
+      "format": "flip",
+      "prompt": "What is the headline completion rate for the best agent on OSWorld 2.0?",
+      "back_html": "\u003cp\u003eClaude Opus 4.8 with maximum thinking completes only 20.6% of tasks fully (54.8% partial credit) — far below professional-level reliability.\u003c/p\u003e"
+    },
+    {
+      "id": "card_63374b#1",
+      "format": "quiz",
+      "prompt": "Where does the paper say agents actually fail on long-horizon computer-use tasks?",
+      "choices": [
+        {
+          "text": "Losing track of constraints, missing mid-task information, guessing instead of asking, and skipping verification",
+          "correct": true
+        },
+        {
+          "text": "Basic mouse and keyboard control, which they cannot perform at all",
+          "correct": false
+        },
+        {
+          "text": "Rendering the screen, which is too slow to be usable",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe bottleneck isn't low-level GUI control — it's higher-level planning and information management over long, realistic workflows.\u003c/p\u003e"
+    },
+    {
+      "id": "card_63374b#2",
+      "format": "flip",
+      "prompt": "How much harder is an average OSWorld 2.0 task than one from OSWorld 1.0?",
+      "back_html": "\u003cp\u003eAbout 318 tool calls per task versus roughly 30 in OSWorld 1.0 — reflecting far longer, more realistic professional workflows.\u003c/p\u003e"
+    }
+  ]
+}

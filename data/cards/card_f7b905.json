@@ -1,0 +1,111 @@
+{
+  "id": "card_f7b905",
+  "slug": "actioncache-vla-acceleration",
+  "type": "paper",
+  "title": "ActionCache: A Warm-Start Cache for Slow Robot Action Generation",
+  "hook": "Flow-matching robot policies denoise every action from scratch, which is precise but slow. ActionCache lets a new action warm-start from a similar past one instead — no retraining, up to 34x faster.",
+  "key_points": [
+    "Flow-matching Vision-Language-Action (VLA) models generate precise, smooth actions but pay for it with an iterative denoising step per action — a major inference bottleneck.",
+    "ActionCache is an external, plug-and-play cache: it stores past intermediate actions keyed by compact multimodal context (not tied to one episode or task).",
+    "New action generation retrieves a similar cached intermediate action and warm-starts denoising from there instead of starting from pure noise.",
+    "Requires no retraining of the underlying VLA model.",
+    "Cuts inference latency up to 11.75x on Physical Intelligence's pi_0.5 and 34.43x on NVIDIA's GR00T-N1.6, while maintaining task success rates in simulation and real-world tests."
+  ],
+  "content_html": "\u003cp\u003eFlow-matching Vision-Language-Action (VLA) models like pi_0.5 and GR00T-N1.6 generate robot actions by iteratively denoising, which is what gives them smooth, precise, multimodal-aware control — and also what makes them slow enough to threaten real-time deployment.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eActionCache attacks that bottleneck from the outside: it's an external, plug-and-play cache that stores intermediate actions from past generations, keyed by compact multimodal context so they can be retrieved across different episodes or even different tasks, not just replayed within one. When the robot needs a new action, ActionCache looks up a similar cached intermediate action and warm-starts the denoising process from there instead of from pure noise — shortcutting most of the iterative work without changing the underlying model at all.\u003c/p\u003e\n\u003cp\u003eAcross simulation and real-world experiments, the authors report inference speedups of up to 11.75x on Physical Intelligence's pi_0.5 and 34.43x on NVIDIA's GR00T-N1.6, while task success rates hold up in the low-latency regime. The work comes from Ryuji Oi, Hikari Otsuka, Kosuke Matsushima, and colleagues.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ryuji Oi",
+      "Hikari Otsuka",
+      "Kosuke Matsushima",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.06370",
+    "published_at": "2026-07-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "inference",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "agent",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-07",
+  "related": [
+    {
+      "id": "card_0dc810",
+      "slug": "pi-zero",
+      "type": "paper",
+      "title": "π0: A Vision-Language-Action Model",
+      "hook": "π0 is a generalist robot policy: it takes camera images, joint angles, and a plain-language instruction, and outputs smooth action sequences — folding laundry, bussing tables, bagging groceries.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-10-31"
+    },
+    {
+      "id": "card_1bff26",
+      "slug": "jetspec-speculative-decoding",
+      "type": "paper",
+      "title": "JetSpec: Breaking the Scaling Ceiling of Speculative Decoding",
+      "hook": "Speculative decoding stalls when bigger draft trees stop paying off. JetSpec trains a causal parallel draft head that drafts in one pass yet stays branch-consistent — hitting up to 9.64x speedup.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-25"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_0dc810",
+      "slug": "pi-zero",
+      "type": "paper",
+      "title": "π0: A Vision-Language-Action Model",
+      "hook": "π0 is a generalist robot policy: it takes camera images, joint angles, and a plain-language instruction, and outputs smooth action sequences — folding laundry, bussing tables, bagging groceries.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-10-31"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_f7b905#0",
+      "format": "flip",
+      "prompt": "Why are flow-matching VLA robot models slow at inference time?",
+      "back_html": "\u003cp\u003eGenerating each action requires an iterative denoising process in the action head, which is precise and smooth but computationally expensive per step — a major bottleneck for real-time control.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f7b905#1",
+      "format": "quiz",
+      "prompt": "How does ActionCache speed up action generation without retraining the VLA model?",
+      "choices": [
+        {
+          "text": "It caches past intermediate actions keyed by compact multimodal context, letting new generations warm-start denoising instead of starting from scratch",
+          "correct": true
+        },
+        {
+          "text": "It replaces the flow-matching action head with a lookup table of fixed actions",
+          "correct": false
+        },
+        {
+          "text": "It distills the VLA model into a smaller retrained model",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eActionCache is an external, plug-and-play cache that retrieves similar past intermediate actions and warm-starts new generations from them, cutting the denoising work needed without touching the model's weights.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f7b905#2",
+      "format": "flip",
+      "prompt": "What speedups does ActionCache report, and on which models?",
+      "back_html": "\u003cp\u003eUp to 11.75x on Physical Intelligence's pi_0.5 and 34.43x on NVIDIA's GR00T-N1.6, while maintaining task success rates in simulation and real-world environments.\u003c/p\u003e"
+    }
+  ]
+}

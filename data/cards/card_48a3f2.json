@@ -1,0 +1,108 @@
+{
+  "id": "card_48a3f2",
+  "slug": "tua-bench-terminal-agents",
+  "type": "paper",
+  "title": "TUA-Bench: Benchmarking General-Purpose Terminal Agents",
+  "hook": "120 real terminal tasks — from email triage to PhD-level scientific workflows — show even Claude Opus 4.8 tops out around 66%, far from reliable general computer use.",
+  "key_points": [
+    "Existing benchmarks split badly: GUI benchmarks skip terminals, and terminal benchmarks focus almost entirely on coding.",
+    "TUA-Bench adds 120 real-world terminal tasks across five families, including document editing, email, and PhD-level scientific workflows.",
+    "Each task runs in a real terminal with deterministic setup and execution-based scoring.",
+    "The best frontier agent (Claude Code, Opus 4.8, max reasoning) scores 65.8% overall — with large gaps across tracks."
+  ],
+  "content_html": "\u003cp\u003eCoding agents already live in the terminal, but most benchmarks judge them only on shell scripting and programming tasks. TUA-Bench asks a broader question: can an agent use the terminal the way a person handling everyday digital work — and even specialized science — actually would?\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe gap TUA-Bench fills is real: general computer-use benchmarks mostly target graphical interfaces, while terminal benchmarks lean almost entirely on programming-centric shell workflows. TUA-Bench instead introduces 120 manually designed, real-world tasks across five task families — routine activities like document editing, email management, and live-web information seeking, plus scientific and engineering workflows co-designed with PhD-level domain experts requiring specialized software. Every task runs in a real terminal with a deterministic setup script and execution-based scoring. Even the strongest agent tested, Claude Code running Claude Opus 4.8 at maximum reasoning effort, reaches only 65.8% overall, with substantial gaps between task tracks — a sign that general-purpose terminal competence is still an open problem, not a solved one. Shoufa Chen and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Shoufa Chen",
+      "Luyuan Wang",
+      "Xuan Yang",
+      "Zhiheng Liu",
+      "Yuren Cong",
+      "Yuanfeng Ji",
+      "Feiyan Zhou",
+      "Xiaohui Zhang",
+      "Fanny Yang",
+      "Belinda Zeng"
+    ],
+    "url": "https://arxiv.org/abs/2606.28480",
+    "published_at": "2026-06-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-02",
+  "date": "2026-06-26",
+  "related": [
+    {
+      "id": "card_3a0d83",
+      "slug": "gui-vs-cli-computer-use-agents",
+      "type": "paper",
+      "title": "GUI vs. CLI: Where Computer-Use Agents Get Stuck",
+      "hook": "Should an agent click buttons or type commands? A matched benchmark giving both the same 440 tasks finds GUI agents win by default — but CLI agents leap ahead once their skill library is filled in.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-22"
+    },
+    {
+      "id": "card_72286a",
+      "slug": "gemini-3-5-flash-computer-use",
+      "type": "news",
+      "title": "Computer Use in Gemini 3.5 Flash",
+      "hook": "DeepMind put computer-use agents — reading the screen, then clicking, typing, and scrolling through real UIs — into its fast, low-cost Flash tier.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-24"
+    },
+    {
+      "id": "card_63374b",
+      "slug": "osworld-2-computer-use-agents",
+      "type": "paper",
+      "title": "OSWorld 2.0: Long-Horizon Computer Use, Stress-Tested",
+      "hook": "108 realistic computer-use workflows averaging 1.6 human-hours each expose how far agents are from professional-grade computer use — the best model completes only 20.6%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_48a3f2#0",
+      "format": "flip",
+      "prompt": "What gap does TUA-Bench target that prior benchmarks miss?",
+      "back_html": "\u003cp\u003eGeneral-purpose terminal use beyond coding — routine digital work plus PhD-level scientific workflows — since GUI benchmarks skip terminals and terminal benchmarks skip non-coding tasks.\u003c/p\u003e"
+    },
+    {
+      "id": "card_48a3f2#1",
+      "format": "quiz",
+      "prompt": "How well did the best frontier agent do on TUA-Bench?",
+      "choices": [
+        {
+          "text": "65.8% overall, with substantial gaps across task tracks",
+          "correct": true
+        },
+        {
+          "text": "Over 95%, essentially solving the benchmark",
+          "correct": false
+        },
+        {
+          "text": "Below 10%, unable to complete any task",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eClaude Code with Claude Opus 4.8 at max reasoning led at 65.8%, showing real but incomplete progress toward general terminal-use competence.\u003c/p\u003e"
+    }
+  ]
+}

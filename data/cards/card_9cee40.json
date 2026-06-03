@@ -1,0 +1,108 @@
+{
+  "id": "card_9cee40",
+  "slug": "seq2seq",
+  "type": "paper",
+  "title": "Sequence to Sequence Learning",
+  "hook": "Translate a sentence by reading it into one vector, then writing a new sentence out of that vector. This encoder–decoder recipe powered early neural machine translation.",
+  "key_points": [
+    "An encoder RNN reads the input sequence and compresses it into a fixed-length vector.",
+    "A decoder RNN generates the output sequence from that vector, one token at a time.",
+    "Demonstrated strong results on English-to-French machine translation.",
+    "Reversing the input word order improved performance noticeably.",
+    "Established the encoder–decoder framework reused across many sequence tasks."
+  ],
+  "content_html": "\u003cp\u003eSutskever, Vinyals, and Le showed you could map one sequence to another with a pair of recurrent networks: an encoder that reads the input and a decoder that writes the output. Applied to translation, this end-to-end neural approach reached results competitive with established systems and helped launch neural machine translation.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe encoder, an LSTM, reads the source sentence token by token and ends up with a single fixed-length vector meant to summarize the whole input. The decoder, another LSTM, takes that vector and generates the target sentence one word at a time, feeding each predicted word back in as context for the next. The authors found that reversing the order of the input words made the optimization easier and improved translation quality.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThis paper crystallized the encoder–decoder pattern that underlies translation, summarization, and many other sequence-to-sequence tasks. Its main limitation — squeezing an entire sentence into one fixed vector — directly motivated the attention mechanism that followed, and ultimately the Transformer.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ilya Sutskever",
+      "Oriol Vinyals",
+      "Quoc V. Le"
+    ],
+    "url": "https://arxiv.org/abs/1409.3215",
+    "published_at": "2014-09-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rnns"
+  ],
+  "tags": [
+    "nlp"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2014-09-10",
+  "related": [
+    {
+      "id": "card_63d7de",
+      "slug": "rnns-and-lstms",
+      "type": "concept",
+      "title": "RNNs, LSTMs \u0026 Sequences",
+      "hook": "To read a sequence, a network can loop over it one step at a time, carrying a memory of what came before. Plain RNNs forget fast; LSTMs add gates so they remember longer.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2015-05-21"
+    },
+    {
+      "id": "card_c23bf2",
+      "slug": "bahdanau-attention",
+      "type": "paper",
+      "title": "Neural Machine Translation by Jointly Learning to Align and Translate",
+      "hook": "Cramming a whole sentence into one vector loses information. This 2014 paper let the decoder look back at relevant source words at each step — the original attention mechanism.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2014-09-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_9cee40#0",
+      "format": "flip",
+      "prompt": "In the seq2seq model, what does the encoder produce from the input sentence?",
+      "back_html": "\u003cp\u003eA single fixed-length vector meant to summarize the whole input, which the decoder then reads.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9cee40#1",
+      "format": "quiz",
+      "prompt": "What trick did the authors find improved translation quality?",
+      "choices": [
+        {
+          "text": "Reversing the order of the input words",
+          "correct": true
+        },
+        {
+          "text": "Using a convolutional encoder",
+          "correct": false
+        },
+        {
+          "text": "Adding an attention mechanism",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors found reversing the input word order made optimization easier and improved quality. Attention came later, in a different paper.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9cee40#2",
+      "format": "quiz",
+      "prompt": "What was the main limitation of the seq2seq encoder-decoder design?",
+      "choices": [
+        {
+          "text": "Squeezing the entire sentence into one fixed-length vector",
+          "correct": true
+        },
+        {
+          "text": "It could not be trained end to end",
+          "correct": false
+        },
+        {
+          "text": "It only worked on fixed-length inputs",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eForcing the whole input through one fixed vector was the bottleneck that directly motivated the attention mechanism.\u003c/p\u003e"
+    }
+  ]
+}

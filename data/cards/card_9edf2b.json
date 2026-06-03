@@ -1,0 +1,111 @@
+{
+  "id": "card_9edf2b",
+  "slug": "openai-o1",
+  "type": "news",
+  "title": "OpenAI o1: Learning to Reason with Reinforcement Learning",
+  "hook": "OpenAI's o1 lets a model think via a long internal chain-of-thought before answering - spending more compute at inference time visibly improves reasoning.",
+  "key_points": [
+    "Trained with RL to generate an extended internal reasoning trace before producing its final answer.",
+    "More 'thinking' tokens at inference time correlates with better performance on hard reasoning tasks.",
+    "Outperformed PhD-level humans on select science benchmarks and ranked highly on math competitions.",
+    "Kicked off the 'reasoning model' era, with competitors quickly following with similar approaches."
+  ],
+  "content_html": "\u003cp\u003eOpenAI released o1 in September 2024, a model trained with reinforcement learning to produce an extended internal reasoning trace before delivering its final response. Rather than answering immediately, o1 \u0026quot;thinks out loud\u0026quot; in a hidden scratchpad, then returns a polished answer.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eo1 is trained with RL to maximize correctness on problems with verifiable answers. During training, the model learns to use its reasoning trace to explore, backtrack, and self-correct. At inference time, giving the model more \u0026quot;thinking\u0026quot; budget - more tokens in that trace - consistently improves accuracy, trading compute for quality.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eBefore o1, scaling meant training bigger models; o1 showed that scaling inference-time compute is a complementary axis. This \u0026quot;reasoning model\u0026quot; framing - where thinking longer produces better answers - launched a wave of similar work, including open-source efforts like DeepSeek-R1. Read OpenAI's full technical post for benchmark details and the RL training setup.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "authors": [
+      "OpenAI"
+    ],
+    "url": "https://openai.com/index/learning-to-reason-with-llms/",
+    "published_at": "2024-09-12",
+    "license": "OpenAI blog"
+  },
+  "topic_ids": [
+    "agents",
+    "lab-updates"
+  ],
+  "tags": [
+    "reasoning",
+    "nlp",
+    "agent",
+    "news",
+    "landmark"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2024-09-12",
+  "related": [
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    },
+    {
+      "id": "card_812537",
+      "slug": "self-consistency",
+      "type": "paper",
+      "title": "Self-Consistency Improves Chain-of-Thought Reasoning",
+      "hook": "Sample the model many times, let each run reason its own way, then take the majority answer - diverse reasoning paths vote out individual errors.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-03-21"
+    },
+    {
+      "id": "card_4cd8fd",
+      "slug": "deepseek-r1",
+      "type": "paper",
+      "title": "DeepSeek-R1: Incentivizing Reasoning via Reinforcement Learning",
+      "hook": "DeepSeek shows strong reasoning can emerge from RL on verifiable rewards with minimal supervised data - and those reasoning traces can be distilled into smaller models.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2025-01-22"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_9edf2b#0",
+      "format": "flip",
+      "prompt": "What does o1 do before producing its final answer?",
+      "back_html": "\u003cp\u003eIt generates an extended internal reasoning trace — a hidden scratchpad where it explores, backtracks, and self-corrects — trained via RL on verifiable answers.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9edf2b#1",
+      "format": "quiz",
+      "prompt": "What new scaling axis did o1 demonstrate?",
+      "choices": [
+        {
+          "text": "Scaling inference-time compute (more thinking tokens) improves accuracy",
+          "correct": true
+        },
+        {
+          "text": "Scaling only training data improves reasoning",
+          "correct": false
+        },
+        {
+          "text": "Shrinking the model improves reasoning",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eo1 showed inference-time compute is a complementary axis: more thinking budget consistently improves accuracy, trading compute for quality.\u003c/p\u003e"
+    }
+  ]
+}

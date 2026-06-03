@@ -1,0 +1,101 @@
+{
+  "id": "card_f6fb90",
+  "slug": "seededgrasp",
+  "type": "paper",
+  "title": "SeededGrasp: Language-Guided Grasping in Complex Scenes with Multiple Embodiments",
+  "hook": "Instead of one giant end-to-end model, let the VLM just point — predict a seed point, then hand off to a lightweight grasp generator. Data-efficient, and it transfers across robot hands.",
+  "key_points": [
+    "Splits grasping in two: a VLM does high-level semantic reasoning and predicts a seed point; a lightweight model turns that seed into a grasp.",
+    "Decoupling avoids expensive end-to-end VLM-plus-grasp training, so it's far more data-efficient than joint approaches.",
+    "The seed-point conditioning lets one system support multiple embodiments — different grippers — in cluttered scenes.",
+    "Ships what the authors call the first multi-embodiment tabletop grasping dataset: over 2.5M grasps in cluttered scenes.",
+    "Reports 72% grasp success in simulation and 78% in real-world experiments, beating prior baselines."
+  ],
+  "content_html": "\u003cp\u003eRobotic grasping in cluttered scenes needs both 3D spatial reasoning and an understanding of what the task actually asks for. SeededGrasp, from a University of Toronto group, gets there without one monolithic model: a vision-language model reads the scene and the instruction and predicts a single seed point, which then conditions a lightweight grasp-generation model. Splitting high-level semantic reasoning from low-level geometric execution keeps training cheap and lets the same system drive different robot hands.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eExisting language-guided grasping either asks a VLM to predict the grasp directly — with limited spatial awareness — or trains the VLM and grasp model jointly, which is data- and compute-hungry. SeededGrasp instead uses the VLM only to pick a seed point from the scene and instruction; a small downstream model turns that point into a full grasp for whatever gripper is in use. To train it, the authors release what they describe as the first multi-embodiment tabletop grasping dataset, over 2.5 million grasps in cluttered scenes.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe decoupling is the transferable idea: let a big pretrained model handle semantics and let a specialized, cheap model handle geometry. The authors report 72% grasp success in simulation and 78% in real-world experiments, ahead of prior baselines, while supporting multiple embodiments — a combination end-to-end approaches had struggled to scale. Code and data are on the project site.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yang Xu",
+      "Gurpreet Singh Mukker",
+      "Raymond Wang",
+      "Jasper Gerigk",
+      "Maria Attarian",
+      "Igor Gilitschenski"
+    ],
+    "url": "https://arxiv.org/abs/2607.20207",
+    "published_at": "2026-07-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "multimodal",
+    "dataset",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-23",
+  "date": "2026-07-22",
+  "related": [
+    {
+      "id": "card_5b91a4",
+      "slug": "geometric-action-model",
+      "type": "paper",
+      "title": "Geometric Action Model: One Backbone for Geometry and Action",
+      "hook": "GAM turns a pretrained 3D-geometry model into a robot's brain - a single backbone that forecasts both future geometry and the actions to get there, beating heavier VLA baselines.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-15"
+    },
+    {
+      "id": "card_0dc810",
+      "slug": "pi-zero",
+      "type": "paper",
+      "title": "π0: A Vision-Language-Action Model",
+      "hook": "π0 is a generalist robot policy: it takes camera images, joint angles, and a plain-language instruction, and outputs smooth action sequences — folding laundry, bussing tables, bagging groceries.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-10-31"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_f6fb90#0",
+      "format": "flip",
+      "prompt": "How does SeededGrasp split the grasping problem into two stages?",
+      "back_html": "\u003cp\u003eA vision-language model does the high-level semantic reasoning and predicts a seed point; a separate lightweight model turns that seed into the actual grasp.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f6fb90#1",
+      "format": "quiz",
+      "prompt": "Why is SeededGrasp more data-efficient than training the VLM and grasp model together?",
+      "choices": [
+        {
+          "text": "It decouples semantic reasoning from grasp generation, avoiding costly end-to-end training",
+          "correct": true
+        },
+        {
+          "text": "It uses a smaller VLM with far fewer parameters",
+          "correct": false
+        },
+        {
+          "text": "It drops the vision-language model entirely at inference time",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe VLM only predicts a seed point that conditions a lightweight grasp model, sidestepping the data and compute of joint end-to-end training.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f6fb90#2",
+      "format": "flip",
+      "prompt": "What does SeededGrasp's seed-point design enable beyond a single robot?",
+      "back_html": "\u003cp\u003eSupport for multiple embodiments — different grippers — since the lightweight downstream model handles per-embodiment geometry while the VLM's seed point stays high-level.\u003c/p\u003e"
+    }
+  ]
+}

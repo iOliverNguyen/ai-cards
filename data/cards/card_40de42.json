@@ -1,0 +1,94 @@
+{
+  "id": "card_40de42",
+  "slug": "ppo",
+  "type": "paper",
+  "title": "PPO: Proximal Policy Optimization",
+  "hook": "Reinforcement learning is notoriously unstable. PPO's fix is simple: never let a single update move the policy too far. That restraint made it the field's workhorse.",
+  "key_points": [
+    "Limits how far each policy update can change behavior, keeping training stable.",
+    "Uses a clipped objective that's simple to implement yet effective.",
+    "Reaches strong results with first-order optimization and easy tuning.",
+    "Became the default RL method, including the RL step inside RLHF."
+  ],
+  "content_html": "\u003cp\u003eJohn Schulman and colleagues at OpenAI wanted the reliability of careful policy-gradient methods without their complexity. PPO's idea is to improve the policy with each update but stop it from changing too drastically in one step. It delivers stable, sample-efficient training with plain gradient descent and little tuning, which is why it spread across robotics, games, and later the RL step in RLHF.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003ePolicy gradient methods can take a step so large it wrecks performance. PPO guards against this with a clipped surrogate objective: it measures the ratio between the new and old policy's probability for each action, and clips that ratio so updates favoring an action are capped once the policy has moved far enough. The result discourages overly aggressive changes while still letting the policy improve, all using standard first-order optimization instead of the heavier machinery earlier methods required.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eBefore PPO, getting reinforcement learning to train reliably often meant complex algorithms or fragile hyperparameters. PPO offered a rare combination of simplicity, stability, and strong results, so it became a default choice across the field. That reliability is exactly why it was picked as the optimizer for the reinforcement-learning stage of RLHF in systems like InstructGPT.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "John Schulman",
+      "Filip Wolski",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/1707.06347",
+    "published_at": "2017-07-20",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf"
+  ],
+  "tags": [
+    "training"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-02",
+  "date": "2017-07-20",
+  "related": [
+    {
+      "id": "card_1098fc",
+      "slug": "instructgpt",
+      "type": "paper",
+      "title": "InstructGPT: Aligning LMs with Human Feedback (RLHF)",
+      "hook": "A smaller model people actually like beats a bigger one they don't. InstructGPT used human preferences to make a model follow instructions — the recipe behind ChatGPT.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-03-04"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7921e0",
+      "slug": "gradient-descent",
+      "type": "concept",
+      "title": "Gradient Descent",
+      "hook": "Lost in fog on a hillside, you'd feel for the steepest downhill step and take it, again and again. That's how models learn.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_40de42#0",
+      "format": "flip",
+      "prompt": "What is PPO's core idea for keeping training stable?",
+      "back_html": "\u003cp\u003eImprove the policy each update but never let it change too drastically in one step.\u003c/p\u003e"
+    },
+    {
+      "id": "card_40de42#1",
+      "format": "quiz",
+      "prompt": "How does PPO prevent overly large policy updates?",
+      "choices": [
+        {
+          "text": "A clipped surrogate objective that caps the new/old probability ratio",
+          "correct": true
+        },
+        {
+          "text": "A second-order trust-region solve every step",
+          "correct": false
+        },
+        {
+          "text": "Freezing the policy after the first epoch",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePPO clips the ratio between new and old policy probabilities so updates are capped once the policy has moved far enough.\u003c/p\u003e"
+    },
+    {
+      "id": "card_40de42#2",
+      "format": "flip",
+      "prompt": "Why was PPO chosen for the RL stage of RLHF?",
+      "back_html": "\u003cp\u003eIts rare combination of simplicity, stability, and strong results with plain first-order optimization made it a reliable default.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "id": "card_00e1b0",
+  "slug": "visual-retrieval-heads",
+  "type": "paper",
+  "title": "Visual Retrieval Heads: 2% of Attention Does the Grounding",
+  "hook": "VLMs point at the right part of an image through a tiny set of attention heads — mask the top 20 and grounding accuracy drops by up to 80 points.",
+  "key_points": [
+    "Visual Retrieval Heads (VRHs) are about 1.7-2.6% of attention heads and are causally responsible for grounding text to image regions.",
+    "Best identification method: score attention from output prediction tokens, summed over the ground-truth referent region.",
+    "Across eleven VLMs and five referring-expression benchmarks, masking the top 20 VRHs cuts grounding accuracy by up to 80 points; masking random heads barely matters.",
+    "VRHs generalize beyond how they were found — still causal on attribute, spatial, counting, and visual-math tasks despite discovery via bounding boxes.",
+    "They are functionally specific: ablation corrupts localization while preserving output format.",
+    "They are architecturally shared, transferring causally across VLMs with the same LLM backbone but different vision encoders, projectors, and instruction tuning."
+  ],
+  "content_html": "\u003cp\u003eText-only LLMs have retrieval heads: a small set of attention heads causally responsible for fetching a specific fact out of context. Park and colleagues ask whether vision-language models have the same thing for images, and answer yes.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eFinding them\u003c/h2\u003e\n\u003cp\u003eThe paper recasts existing head-scoring methods into a unified design space over query tokens, key aggregation, and cross-sample aggregation — then asks which point in that space actually finds causal heads. The winner: score attention from the \u003cem\u003eoutput prediction tokens\u003c/em\u003e, summed over the ground-truth referent region.\u003c/p\u003e\n\u003cp\u003eThat identifies Visual Retrieval Heads, roughly 1.7-2.6% of all attention heads. Across eleven VLMs and five referring-expression benchmarks, masking just the top 20 reduces grounding accuracy by up to 80 percentage points, while masking the same number of random heads has little effect.\u003c/p\u003e\n\u003ch2\u003eThree properties beyond the text analogue\u003c/h2\u003e\n\u003cp\u003eThe text literature established that retrieval heads are causal, sparse, and universal. VRHs add three findings. They \u003cstrong\u003egeneralize\u003c/strong\u003e — discovered through bounding-box prediction, they remain causal on attribute, spatial, counting, and visual-math benchmarks. They are \u003cstrong\u003efunctionally specific\u003c/strong\u003e — ablating them corrupts localization while leaving output format intact, so the model still answers, just about the wrong region. And they are \u003cstrong\u003earchitecturally shared\u003c/strong\u003e, transferring causally across VLMs that share an LLM backbone but differ in vision encoder, projector, and instruction tuning.\u003c/p\u003e\n\u003cp\u003eThat last one is the most suggestive: it points at the language model, not the vision tower, as the seat of visual grounding.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Chanho Park",
+      "Daehyeon Choi",
+      "Jihyun Lee",
+      "Minhyuk Sung"
+    ],
+    "url": "https://arxiv.org/abs/2608.27417",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "vlms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "multimodal",
+    "vision",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_a19b09",
+      "slug": "circuit-condensation",
+      "type": "paper",
+      "title": "Circuit Condensation: Train the Circuit Smaller",
+      "hook": "Circuit discovery on a frozen model returns hundreds of edges nobody can check. Post-train the model to route the behavior through fewer, and circuits shrink 8x on average — up to 316x.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-08-27"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_00e1b0#0",
+      "format": "flip",
+      "prompt": "What makes the random-head control essential to this result?",
+      "back_html": "\u003cp\u003eIt separates \u0026quot;these heads matter\u0026quot; from \u0026quot;removing any 20 heads hurts.\u0026quot; Masking the top 20 VRHs drops grounding accuracy by up to 80 points; masking the same number of random heads has little effect.\u003c/p\u003e"
+    },
+    {
+      "id": "card_00e1b0#1",
+      "format": "quiz",
+      "prompt": "What does it mean that VRHs are 'architecturally shared'?",
+      "choices": [
+        {
+          "text": "They transfer causally across VLMs that share an LLM backbone but differ in vision encoder, projector, and tuning",
+          "correct": true
+        },
+        {
+          "text": "Every VLM has them in exactly the same layer index",
+          "correct": false
+        },
+        {
+          "text": "They are copied explicitly during distillation",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe shared factor is the language backbone, not the visual front end — which suggests the grounding mechanism lives in the LLM rather than the vision tower.\u003c/p\u003e"
+    },
+    {
+      "id": "card_00e1b0#2",
+      "format": "flip",
+      "prompt": "Why is it notable that VRHs found via bounding-box prediction stay causal on counting and visual-math tasks?",
+      "back_html": "\u003cp\u003eIt shows they are a general visual-reference mechanism rather than an artifact of the discovery task — the heads generalize beyond the objective used to find them.\u003c/p\u003e"
+    }
+  ]
+}

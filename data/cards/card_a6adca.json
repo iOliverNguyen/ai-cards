@@ -1,0 +1,101 @@
+{
+  "id": "card_a6adca",
+  "slug": "researchstudio-reel-paper-dissemination",
+  "type": "paper",
+  "title": "ResearchStudio-Reel: One Extraction, Three Editable Outputs From a Paper",
+  "hook": "Turning a paper into a poster, talk video, and blog is usually done by hand, three times over. ResearchStudio-Reel extracts it once and generates all three — beating even authors' own posters.",
+  "key_points": [
+    "Built as five Claude Code / Codex agent skills: one shared extractor (Paper2Assets) feeds three generators (Paper2Poster, Paper2Video, Paper2Blog) plus a convergence layer (Paper2Reel).",
+    "Paper2Assets extracts a paper once into a shared bundle reused by every downstream skill, instead of each tool re-extracting from scratch.",
+    "Outputs are editable, not one-way renders: posters and blogs round-trip through PowerPoint/Word, unlike prior systems' locked outputs.",
+    "Paper2Reel binds poster, video, and blog into one HTML viewer where clicking a section jumps all three artifacts to matching content.",
+    "On the Paper2Poster benchmark, its posters win 84-93% of head-to-head comparisons against prior automated systems and even the papers' own authors' posters, on aesthetics and information content.",
+    "Uses hard pass/fail render gates on deterministic primitives rather than relying only on soft VLM-preference scores, which the authors say plateau while sections still look empty."
+  ],
+  "content_html": "\u003cp\u003eWriting a poster, a talk video, and a blog post from a research paper is grunt work most researchers do by hand, once per artifact, usually starting from the paper each time. ResearchStudio-Reel tries to automate that \u0026quot;last mile\u0026quot; without producing the locked, throwaway outputs earlier automation tools shipped.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe system is built as five Claude Code and Codex agent skills. Paper2Assets extracts a paper once into a shared bundle that every downstream skill reuses, rather than each tool re-reading the paper from scratch. Three generators — Paper2Poster, Paper2Video, and Paper2Blog — turn that shared bundle into a print-ready poster, a synchronized talk video, and a bilingual blog post, all designed to stay factually consistent with each other and to round-trip through PowerPoint or Word so a human can still edit them. Paper2Reel then binds all three into a single interactive HTML viewer where clicking a section jumps the video, slides, captions, and blog to the matching content. Rather than leaning only on soft VLM-preference scores — which the authors say plateau while load-bearing sections still read as empty — the pipeline enforces deterministic, hard pass/fail render gates.\u003c/p\u003e\n\u003cp\u003eOn the Paper2Poster benchmark, the authors report their posters lead on every aesthetic and information sub-criterion against both prior automated systems and single-shot frontier LLMs, winning 84% to 93% of head-to-head comparisons overall — including against the papers' own authors' posters. The team, led by Lingao Xiao and collaborators, frames the result as the first pipeline to ship all three editable artifacts rather than one-way renders. Project page: aka.ms/ResearchStudio.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Lingao Xiao",
+      "Yalun Dai",
+      "Yangyu Huang",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.04438",
+    "published_at": "2026-07-05",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-science",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "multimodal",
+    "tutorial",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-05",
+  "related": [
+    {
+      "id": "card_611d9b",
+      "slug": "quest-deep-research-agent",
+      "type": "news",
+      "title": "QUEST: An Open Deep-Research Agent",
+      "hook": "A fully open Deep Research agent trained on ~32 H100s and ~8K synthetic samples — recipe, code, weights, and data all released, and reportedly competitive with frontier closed systems.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-19"
+    },
+    {
+      "id": "card_2e50ab",
+      "slug": "claude-agent-skills",
+      "type": "news",
+      "title": "Claude Agent Skills",
+      "hook": "Agent Skills package instructions, scripts, and resources into folders an agent loads on demand — composable, portable expertise, later opened as a standard like MCP.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2025-10-16"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a6adca#0",
+      "format": "flip",
+      "prompt": "What is the core inefficiency ResearchStudio-Reel targets in how papers get turned into posters, videos, and blogs?",
+      "back_html": "\u003cp\u003ePrior automation treats each artifact separately, re-extracting the paper from scratch each time, and typically ships one-way renders the author can't reopen and edit in PowerPoint or Word.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a6adca#1",
+      "format": "quiz",
+      "prompt": "How does ResearchStudio-Reel avoid redundant work across its poster, video, and blog generators?",
+      "choices": [
+        {
+          "text": "A shared upstream extractor (Paper2Assets) pulls the paper into one asset bundle reused by all three generators",
+          "correct": true
+        },
+        {
+          "text": "Each generator independently re-reads and re-extracts the paper from the PDF",
+          "correct": false
+        },
+        {
+          "text": "It only generates one artifact at a time and discards intermediate results",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePaper2Assets extracts the paper once into a shared bundle that Paper2Poster, Paper2Video, and Paper2Blog all reuse, rather than each generator repeating extraction work.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a6adca#2",
+      "format": "flip",
+      "prompt": "How did ResearchStudio-Reel's generated posters compare to the original papers' own authors' posters?",
+      "back_html": "\u003cp\u003eThey won overall on 84-93% of papers in head-to-head comparisons under held-out VLM judges, and even surpassed the authors' own posters on aesthetics, per the paper's benchmark.\u003c/p\u003e"
+    }
+  ]
+}

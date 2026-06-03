@@ -1,0 +1,143 @@
+{
+  "id": "card_6845d0",
+  "slug": "power-sampling-coverage-mismatch",
+  "type": "paper",
+  "title": "More Correct Mass, Worse Answers: Where Power Sampling Breaks",
+  "hook": "Sharpening a model's distribution can push more probability onto correct reasoning paths and still make the final answer worse — by up to 18.5 points. The culprit is coverage, not correctness.",
+  "key_points": [
+    "Power Sampling sharpens the distribution over whole generation trajectories — a verifier-free reasoning boost.",
+    "Paradox: it can raise probability mass on correct trajectories while degrading downstream self-consistency.",
+    "Reported accuracy drops of up to 18.5 percentage points across models and reasoning benchmarks.",
+    "Dose mismatch: one fixed exponent causes wildly different amounts of sharpening per problem.",
+    "Coverage mismatch: global sharpening concentrates mass on a few dominant paths, so high pass@k can hide lost path diversity.",
+    "Fix: a deformation-controlled, support-preserving target that limits suppression of moderate-probability paths."
+  ],
+  "content_html": "\u003cp\u003ePower Sampling is a verifier-free way to improve reasoning at inference time: sharpen the model's distribution over complete generation trajectories so that better paths get more mass. It's attractive as a general front end for other sampling methods. This paper finds it can backfire — pushing \u003cem\u003emore\u003c/em\u003e probability onto correct trajectories while making the downstream answer worse, with accuracy drops of up to 18.5 percentage points when self-consistency sits on top.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eTwo mismatches\u003c/h2\u003e\n\u003cp\u003e\u003cstrong\u003eDose mismatch.\u003c/strong\u003e A single fixed exponent doesn't mean the same thing to every problem's distribution — it induces drastically different amounts of distributional change depending on the problem, over-sharpening some and barely touching others.\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003eCoverage mismatch.\u003c/strong\u003e Global sharpening concentrates mass onto a narrow set of dominant paths. That's fatal for anything that aggregates: self-consistency, search, and selection all need broad support over reasoning paths, not just a peak. The subtle part is that pass@k stays high — usually read as proof that diversity survived — even as the support that downstream aggregation depends on collapses.\u003c/p\u003e\n\u003ch2\u003eThe repair\u003c/h2\u003e\n\u003cp\u003eThe authors replace uniform trajectory exponentiation with a \u003cstrong\u003edeformation-controlled, support-preserving\u003c/strong\u003e Power target: calibrate the amount of sharpening per problem, and cap how much moderate-probability paths get suppressed. Instantiated with weighted self-consistency at the same budget, the repaired sampler recovers the losses. The transferable lesson is that \u0026quot;the distribution got better\u0026quot; is not the same claim as \u0026quot;the pipeline that consumes the distribution got better.\u0026quot;\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Haohui Yang",
+      "Jiaxing Sun",
+      "Xiujun Ma"
+    ],
+    "url": "https://arxiv.org/abs/2608.14420",
+    "published_at": "2026-08-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "prompting",
+    "papers-this-week"
+  ],
+  "tags": [
+    "reasoning",
+    "inference",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-17",
+  "date": "2026-08-14",
+  "related": [
+    {
+      "id": "card_812537",
+      "slug": "self-consistency",
+      "type": "paper",
+      "title": "Self-Consistency Improves Chain-of-Thought Reasoning",
+      "hook": "Sample the model many times, let each run reason its own way, then take the majority answer - diverse reasoning paths vote out individual errors.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-03-21"
+    },
+    {
+      "id": "card_1f00c3",
+      "slug": "test-time-compute-scaling",
+      "type": "paper",
+      "title": "Scaling LLM Test-Time Compute",
+      "hook": "A new scaling axis: instead of a bigger model, let a model think longer at inference — often a better use of compute, and the principle behind o1 and R1.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-08-06"
+    },
+    {
+      "id": "card_ad5b9e",
+      "slug": "claim-level-reliability-assessment",
+      "type": "paper",
+      "title": "Refute, Don't Resample: Claim-Level Reliability Assessment",
+      "hook": "Refuting a wrong claim needs one decisive flaw; building a right answer needs a flawless path. CLR spends test-time compute on that asymmetry instead of on more samples.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-12"
+    },
+    {
+      "id": "card_9f80ef",
+      "slug": "modal-ceiling-test-time-scaling",
+      "type": "paper",
+      "title": "When More Sampling Hurts: The Modal Ceiling and Correlation Ceiling of Test-Time Scaling",
+      "hook": "Sample a reasoning model dozens of times and coverage keeps climbing — but picking the right answer from the pile plateaus fast, and extra samples past that point can backfire.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-27"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_812537",
+      "slug": "self-consistency",
+      "type": "paper",
+      "title": "Self-Consistency Improves Chain-of-Thought Reasoning",
+      "hook": "Sample the model many times, let each run reason its own way, then take the majority answer - diverse reasoning paths vote out individual errors.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-03-21"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_6845d0#0",
+      "format": "flip",
+      "prompt": "How can Power Sampling put more mass on correct trajectories yet lower final accuracy?",
+      "back_html": "\u003cp\u003eDownstream methods like self-consistency need broad support across reasoning paths. Global sharpening concentrates mass on a few dominant paths, so aggregation has less to work with even though correct mass rose.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6845d0#1",
+      "format": "quiz",
+      "prompt": "What is 'dose mismatch' in this paper?",
+      "choices": [
+        {
+          "text": "A fixed sharpening exponent induces drastically different amounts of distributional change across problems",
+          "correct": true
+        },
+        {
+          "text": "The sampler uses the wrong temperature for the model's size",
+          "correct": false
+        },
+        {
+          "text": "Too many samples are drawn per problem relative to the budget",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDose mismatch is the problem that one fixed exponent over-sharpens some problems and barely touches others, because the same exponent means different things to different distributions.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6845d0#2",
+      "format": "quiz",
+      "prompt": "Why is a high pass@k misleading here?",
+      "choices": [
+        {
+          "text": "It can coexist with the loss of the broad path support that aggregation and search need",
+          "correct": true
+        },
+        {
+          "text": "It is measured on a different benchmark than self-consistency",
+          "correct": false
+        },
+        {
+          "text": "It always falls when sharpening increases",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper notes high pass@k is often read as evidence of preserved diversity, but it can hold even as the broad reasoning-path support required for downstream aggregation, search, and selection disappears.\u003c/p\u003e"
+    }
+  ]
+}

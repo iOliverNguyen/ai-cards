@@ -1,0 +1,148 @@
+{
+  "id": "card_e2153f",
+  "slug": "adam-basis-dependence-low-rank-bias",
+  "type": "blog",
+  "title": "The Loss Doesn't See the Basis, But Adam Does",
+  "hook": "A factored model's loss can't tell which basis you wrote the factors in — but Adam's per-coordinate scaling can. That asymmetry predicts which optimizers keep gradient descent's low-rank bias.",
+  "key_points": [
+    "In a factored model W = UV^T, the loss is unchanged if you rotate both factors, (U,V) → (UQ, VQ); plain gradient descent respects that symmetry.",
+    "Adam's per-coordinate second moment does not: it depends on the basis the factors happen to be written in, so rotating the parameterization changes the update.",
+    "The claim: that single property sorts optimizers into those that keep gradient descent's implicit bias toward low-rank solutions and those that lose it.",
+    "Nine update rules were run on underdetermined matrix sensing, all compared at matched training loss so no method wins by simply fitting the data less.",
+    "Bias kept: gradient descent, Adam with a shared scalar second moment, Muon, and Shampoo. Bias lost: Adam, RMSProp, Lion, signum, and Adafactor.",
+    "Making Adam's second moment a single shared scalar restores the symmetry — evidence that per-coordinate scaling, not adaptivity itself, is what breaks the bias."
+  ],
+  "content_html": "\u003cp\u003eFactor a matrix as W = UV^T and you get a symmetry for free: rotate both factors by the same\northogonal matrix Q and the product — and therefore the loss — is unchanged. Gradient descent\ninherits that blindness, which is part of why it drifts toward low-rank solutions on\nunderdetermined problems. Adam does not. Its per-coordinate second moment is computed in whatever\nbasis you happened to write the factors in, so two mathematically identical parameterizations get\ndifferent updates. This write-up, posted to r/MachineLearning in August 2026, argues that this\nsingle property is what decides whether an optimizer keeps gradient descent's implicit low-rank\nbias or throws it away.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe author ran nine update rules on underdetermined matrix sensing and compared them all at\nmatched training loss, so no method could look better simply by fitting the data less. The results\nsplit cleanly in two. Gradient descent, Adam with a shared scalar second moment, Muon, and Shampoo\nkept the bias; Adam, RMSProp, Lion, signum, and Adafactor lost it. The shared-scalar variant is the\ntelling case: adaptivity itself isn't the culprit, per-coordinate scaling is.\u003c/p\u003e\n\u003cp\u003eTreat this as a claim with supporting experiments rather than a settled result — it's a\nself-published research post, not a peer-reviewed paper. But it's a useful lens on why\n\u0026quot;just swap in Adam\u0026quot; sometimes changes what a model converges to, not merely how fast it gets\nthere. See the linked post for the full setup and the diagnostic the author used to separate the\ntwo clusters.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit r/MachineLearning",
+    "authors": [
+      "/u/EtherealGlyph"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1vmjb3p/the_loss_does_not_see_the_basis_but_adam_does_r",
+    "published_at": "2026-08-12",
+    "license": "Reddit post (link-out)"
+  },
+  "topic_ids": [
+    "optimization",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "foundational"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-13",
+  "date": "2026-08-12",
+  "related": [
+    {
+      "id": "card_e41b8a",
+      "slug": "adam-optimizer",
+      "type": "paper",
+      "title": "Adam: The Default Optimizer",
+      "hook": "Adam gives every parameter its own adaptive step size by tracking the gradient's recent average and spread — and it mostly just works.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2014-12-22"
+    },
+    {
+      "id": "card_f399a5",
+      "slug": "muon-optimizer",
+      "type": "blog",
+      "title": "Muon: An Optimizer for Hidden Layers",
+      "hook": "Muon orthogonalizes each gradient update before applying it — and trained networks faster than AdamW, the first serious challenger to Adam's reign in years.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-12-08"
+    },
+    {
+      "id": "card_82301e",
+      "slug": "omniopt-optimizer-taxonomy",
+      "type": "paper",
+      "title": "OmniOpt: A Taxonomy and Benchmark of 100+ Optimizers",
+      "hook": "Choosing an optimizer for training a large model is now a system-level design decision, but the field has 100+ methods and no shared map. This paper builds one — and a benchmark to go with it.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-04"
+    },
+    {
+      "id": "card_8e09e5",
+      "slug": "muon-saddle-to-saddle-dynamics",
+      "type": "paper",
+      "title": "Why Muon Skips Gradient Descent's Slow Start",
+      "hook": "Small-init gradient descent crawls through a 'saddle-to-saddle' bottleneck — Muon skips it, learning every mode at once and staying stable past where gradient descent blows up.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-29"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_e41b8a",
+      "slug": "adam-optimizer",
+      "type": "paper",
+      "title": "Adam: The Default Optimizer",
+      "hook": "Adam gives every parameter its own adaptive step size by tracking the gradient's recent average and spread — and it mostly just works.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2014-12-22"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_e2153f#0",
+      "format": "flip",
+      "prompt": "Why is Adam's update sensitive to the basis a factored model is written in?",
+      "back_html": "\u003cp\u003eAdam scales each coordinate by its own running second moment. Rotating the factors, (U,V) → (UQ, VQ), leaves the loss identical but redistributes gradient magnitude across coordinates, so the per-coordinate scaling — and the resulting step — changes.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e2153f#1",
+      "format": "quiz",
+      "prompt": "Per this write-up, which change to Adam restores gradient descent's implicit low-rank bias?",
+      "choices": [
+        {
+          "text": "Replacing the per-coordinate second moment with a single shared scalar",
+          "correct": true
+        },
+        {
+          "text": "Lowering the learning rate until the updates are small",
+          "correct": false
+        },
+        {
+          "text": "Dropping the momentum term and keeping only the second moment",
+          "correct": false
+        },
+        {
+          "text": "Adding explicit weight decay to the factors",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA shared-scalar second moment scales all coordinates identically, so the update becomes rotation-invariant again. In the experiments it clustered with gradient descent, Muon, and Shampoo as bias-keeping.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e2153f#2",
+      "format": "quiz",
+      "prompt": "Why were the nine update rules compared at matched training loss?",
+      "choices": [
+        {
+          "text": "So no optimizer appears to generalize better merely by fitting the training data less",
+          "correct": true
+        },
+        {
+          "text": "Because matrix sensing has no held-out test set to evaluate on",
+          "correct": false
+        },
+        {
+          "text": "To equalize wall-clock training cost across the optimizers",
+          "correct": false
+        },
+        {
+          "text": "Because the low-rank bias only appears at convergence to zero loss",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eUnderfitting can look like a helpful bias. Fixing the training loss removes that confound, so any remaining difference in solution rank comes from the update rule itself.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "id": "card_7180ec",
+  "slug": "hils-attention-infinite-context",
+  "type": "paper",
+  "title": "HiLS Attention: Learning Chunk Selection for Near-Infinite Context",
+  "hook": "Sparse attention never quite matched full attention because chunk selection was a heuristic. This version trains chunk selection end-to-end — then extrapolates 64x past its training length.",
+  "key_points": [
+    "Dense attention's quadratic cost and poor length extrapolation motivate chunk-wise sparse attention, but prior methods fall short of full attention due to inaccurate chunk selection.",
+    "HiLS (Hierarchical Landmark Sparse) Attention factorizes attention hierarchically and folds chunk-retrieval scores directly into the forward pass, so they're optimized by the language-modeling loss itself — not a separate heuristic.",
+    "Matches or beats full attention at in-domain context lengths.",
+    "Extrapolates more than 64x the training context length while holding 90% retrieval accuracy — far beyond what full attention manages.",
+    "Existing full-attention models can convert to HiLS with lightweight continued pretraining, keeping in-domain performance while gaining ultra-long-context extrapolation."
+  ],
+  "content_html": "\u003cp\u003eSparse attention promises to break the trade-off between context length and compute — skip the chunks that don't matter, keep only the relevant ones. In practice, every prior version has paid for that speed with accuracy, because deciding \u003cem\u003ewhich\u003c/em\u003e chunks matter was never quite trained right.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eHierarchical Landmark Sparse (HiLS) Attention factorizes attention hierarchically: each query attends independently to each retrieved chunk to pull out chunk-specific information, then fuses the results weighted by chunk-retrieval scores. The key move is folding those retrieval scores directly into the forward attention computation, so they get optimized by the language-modeling loss itself — end-to-end retrieval learning, not a bolted-on heuristic. The payoff shows up at both ends of the context-length spectrum: HiLS matches or beats full attention within the training context length, and extrapolates more than 64x beyond it while holding 90% retrieval accuracy, far past what full attention can do. Existing full-attention models don't need to be retrained from scratch either — lightweight continued pretraining converts them to HiLS, preserving in-domain performance while picking up the long-context extrapolation. Together, the sparse KV access and computation break the usual efficiency-versus-performance trade-off outright. Xiang Hu and colleagues, arXiv 2026 (34 HF community upvotes).\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xiang Hu",
+      "Xinyu Wei",
+      "Hao Gu",
+      "Minshen Zhang",
+      "Tian Liang",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.02980",
+    "published_at": "2026-07-03",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "context-memory",
+    "attention-mechanisms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "attention",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-03",
+  "related": [
+    {
+      "id": "card_958844",
+      "slug": "ring-attention",
+      "type": "paper",
+      "title": "Ring Attention for Near-Infinite Context",
+      "hook": "Spread one long sequence across many devices and compute attention blockwise - the context length you can handle grows with the number of devices, all with exact attention and no extra overhead.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2023-10-03"
+    },
+    {
+      "id": "card_2f4185",
+      "slug": "longformer",
+      "type": "paper",
+      "title": "Longformer: The Long-Document Transformer",
+      "hook": "Most tokens only need to look at their neighbors, so swap full attention for a sliding window plus a few global tokens and the cost goes from quadratic to linear in sequence length.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2020-04-10"
+    },
+    {
+      "id": "card_a114e8",
+      "slug": "grouped-query-attention",
+      "type": "paper",
+      "title": "Grouped-Query Attention (GQA)",
+      "hook": "Split the difference between multi-head and multi-query attention: share KV heads across groups of query heads and get most of the memory savings with little quality loss.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2023-05-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_7180ec#0",
+      "format": "flip",
+      "prompt": "Why did prior chunk-wise sparse attention methods fall short of full attention, according to this paper?",
+      "back_html": "\u003cp\u003eTheir chunk selection was inaccurate — typically a separate heuristic not directly optimized by the training objective, so the model sometimes attended to the wrong chunks.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7180ec#1",
+      "format": "quiz",
+      "prompt": "What lets HiLS Attention learn accurate chunk selection, unlike prior sparse-attention methods?",
+      "choices": [
+        {
+          "text": "It incorporates chunk-retrieval scores directly into the forward attention computation, so they're optimized end-to-end by the language-modeling loss",
+          "correct": true
+        },
+        {
+          "text": "It uses a much larger model to compensate for selection errors",
+          "correct": false
+        },
+        {
+          "text": "It abandons sparsity and falls back to dense attention when accuracy drops",
+          "correct": false
+        },
+        {
+          "text": "It relies on a human-labeled dataset of correct chunk selections",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBy fusing retrieval scores into the forward pass, HiLS lets the LM loss directly train which chunks to attend to — end-to-end retrieval learning — rather than bolting a heuristic selector onto attention after the fact.\u003c/p\u003e"
+    }
+  ]
+}

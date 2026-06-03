@@ -1,0 +1,107 @@
+{
+  "id": "card_202003",
+  "slug": "refreekv-threshold-free-kv-cache",
+  "type": "paper",
+  "title": "ReFreeKV: Threshold-Free KV Cache Compression",
+  "hook": "Most KV-cache pruning needs a hand-tuned budget threshold per input — pick wrong and performance craters. ReFreeKV adapts the budget on the fly instead.",
+  "key_points": [
+    "KV-cache pruning usually needs a pre-set, input-specific compression threshold to stay lossless — brittle when real inputs vary in domain, length, and difficulty.",
+    "ReFreeKV adaptively allocates cache budget per input instead of relying on a fixed threshold.",
+    "Tested across 13 datasets spanning context lengths, task types, and model sizes.",
+    "Aims to preserve full-cache performance without threshold tuning per deployment."
+  ],
+  "content_html": "\u003cp\u003eKV-cache pruning can shrink an LLM's memory footprint almost for free — as long as you pick the right compression threshold for that specific input. Pick wrong, and quality falls off a cliff. ReFreeKV removes the threshold entirely.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eExisting KV-cache pruning methods can achieve lossless memory reduction, but they typically depend on a pre-determined, input- or domain-specific budget threshold to hit that performance. Real-world traffic spans wildly different domains, lengths, and difficulty levels with no clean boundary for choosing that threshold, so a method tuned for one setting can badly degrade on another. ReFreeKV instead adaptively adjusts how much cache budget to allocate per input, aiming to preserve full-cache performance without any threshold tuning step. Across 13 datasets covering varied context lengths, task types, and model sizes, the authors report it holds up where fixed-threshold methods falter. Code is public. Xuanfan Ni and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xuanfan Ni",
+      "Liyan Xu",
+      "Chenyang Lyu",
+      "Longyue Wang",
+      "Mo Yu",
+      "Lemao Liu",
+      "Fandong Meng",
+      "Jie Zhou",
+      "Piji Li"
+    ],
+    "url": "https://arxiv.org/abs/2502.16886",
+    "published_at": "2026-06-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "quantization",
+    "inference",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-02",
+  "date": "2026-06-26",
+  "related": [
+    {
+      "id": "card_b52032",
+      "slug": "kvarn-kv-cache-quantization",
+      "type": "paper",
+      "title": "KVarN: Variance-Normalized KV-Cache Quantization",
+      "hook": "Long reasoning chains blow up the KV cache. Squeeze it to 2 bits and errors snowball over thousands of decode steps — unless you fix the token scales first.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_cf813a",
+      "slug": "rope-aware-kv-quantization",
+      "type": "paper",
+      "title": "Block-GTQ: RoPE-Aware Bit Allocation for KV-Cache Quantization",
+      "hook": "Most KV-cache quantizers spend bits evenly across a key. Block-GTQ shows that under RoPE some frequency blocks matter far more — and gives them more bits, hitting near-fp16 quality at 2–3 bits.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-23"
+    },
+    {
+      "id": "card_688904",
+      "slug": "kv-cache-and-batching",
+      "type": "concept",
+      "title": "The KV Cache \u0026 Continuous Batching",
+      "hook": "Generating one token reuses every prior key and value - that growing cache is why LLM inference is memory-bound, and continuous batching is how servers fight back.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-11-09"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_202003#0",
+      "format": "flip",
+      "prompt": "What's the hidden weakness in most KV-cache pruning methods, per this paper?",
+      "back_html": "\u003cp\u003eThey need a pre-determined, input-specific budget threshold to stay lossless, which breaks down on open-domain inputs with no clear boundary for picking the threshold.\u003c/p\u003e"
+    },
+    {
+      "id": "card_202003#1",
+      "format": "quiz",
+      "prompt": "What does 'threshold-free' mean in ReFreeKV?",
+      "choices": [
+        {
+          "text": "The cache budget adapts automatically per input instead of relying on a fixed, pre-tuned threshold",
+          "correct": true
+        },
+        {
+          "text": "No compression is applied at all",
+          "correct": false
+        },
+        {
+          "text": "The threshold is set once and shared across all future models",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eReFreeKV adjusts how much cache budget to keep based on the input itself, removing the need to pre-tune a threshold for each deployment.\u003c/p\u003e"
+    }
+  ]
+}

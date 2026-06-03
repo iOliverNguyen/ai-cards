@@ -1,0 +1,99 @@
+{
+  "id": "card_8fff9b",
+  "slug": "qwen3-8-27b-identical-architecture",
+  "type": "news",
+  "title": "Qwen3.8-27B Has the Same Architecture as Qwen3.6-27B",
+  "hook": "A community diff of the two model configs came back with zero changes — so whatever Qwen3.8-27B gained over its predecessor came entirely from the training recipe.",
+  "key_points": [
+    "Qwen released a dense 27B model in the Qwen3.8 line on 14 August 2026, alongside the flagship MoE.",
+    "A community architecture diff against Qwen3.6-27B reportedly showed no changes at all.",
+    "If the architecture is fixed, gains have to come from data, curriculum, post-training, or compute budget — not from a new block design.",
+    "This is the normal state of the field now: most released capability jumps are recipe improvements wearing a version number.",
+    "It also makes the comparison unusually clean — same shape, same inference cost, so any measured delta is attributable to training."
+  ],
+  "content_html": "\u003cp\u003eWhen Qwen shipped a dense 27B model in the Qwen3.8 line, someone in the community diffed its configuration against Qwen3.6-27B and reported back zero changes. Same architecture, same size, same per-token compute — and yet it's a new release, which means the improvement, whatever its size, came out of the training recipe.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThat's worth pausing on because it describes the field's current default. The transformer block has been largely stable for a while; the frontier moves through data curation, curriculum, token budgets, and post-training, none of which are visible in a config file. A version bump with an identical architecture isn't a sign that nothing happened — it's a sign that everything that happened happened during training.\u003c/p\u003e\n\u003cp\u003eIt also hands you an unusually clean experiment. Because the shape and inference cost are fixed, any benchmark delta between 3.6-27B and 3.8-27B is attributable to the recipe rather than confounded by a design change. The claim here is a community observation from a config diff, not a Qwen statement about its training process, so treat the \u003cem\u003ecause\u003c/em\u003e of any gains as unspecified — the absence of architectural change is the verifiable part.\u003c/p\u003e",
+  "source": {
+    "name": "r/LocalLLaMA",
+    "authors": [
+      "/u/Course_Latter"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1voblcs/qwen3827b_is_identical_to_qwen3627b",
+    "published_at": "2026-08-14",
+    "license": "Reddit (link post)"
+  },
+  "topic_ids": [
+    "pretraining",
+    "releases"
+  ],
+  "tags": [
+    "open-source",
+    "news",
+    "training"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-17",
+  "date": "2026-08-14",
+  "related": [
+    {
+      "id": "card_142fdd",
+      "slug": "qwen3-8-2-4t-a95b",
+      "type": "news",
+      "title": "Qwen3.8-2.4T-A95B Is Out",
+      "hook": "Qwen's next flagship landed after a week of countdown threads — and the name says it all: a sparse mixture-of-experts in the trillions, with under a hundred billion awake per token.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-08-12"
+    },
+    {
+      "id": "card_3e4a3f",
+      "slug": "qwen3",
+      "type": "news",
+      "title": "Qwen3: Hybrid Thinking, Open Weights",
+      "hook": "Qwen3 puts a reasoning switch in one model - a slow 'thinking' mode and a fast 'non-thinking' mode with a controllable budget - across a lineup that runs from 0.6B to a 235B MoE.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-04-29"
+    },
+    {
+      "id": "card_46fd66",
+      "slug": "chinchilla-scaling-laws",
+      "type": "paper",
+      "title": "Chinchilla: Compute-Optimal Scaling",
+      "hook": "Most giant models were starved of data. Chinchilla showed that for a fixed compute budget you should grow parameters and tokens together — and a smaller, longer-trained model won.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2022-03-29"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_8fff9b#0",
+      "format": "quiz",
+      "prompt": "A community diff found Qwen3.8-27B and Qwen3.6-27B have identical architectures. What follows?",
+      "choices": [
+        {
+          "text": "Any capability difference must come from the training recipe, not the model design",
+          "correct": true
+        },
+        {
+          "text": "The two releases are the same model with a new version label",
+          "correct": false
+        },
+        {
+          "text": "The newer model must be slower, since architecture is unchanged but capability improved",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIdentical architecture fixes the shape and the per-token compute. Whatever changed — data mix, curriculum, post-training, token budget — lives in the training process.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8fff9b#1",
+      "format": "flip",
+      "prompt": "Why is an unchanged architecture actually useful for evaluating a new release?",
+      "back_html": "\u003cp\u003eIt makes the comparison clean. Same parameter count and same inference cost mean any measured gain is attributable to training rather than confounded by a design change.\u003c/p\u003e"
+    }
+  ]
+}

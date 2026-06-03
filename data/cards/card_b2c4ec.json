@@ -1,0 +1,136 @@
+{
+  "id": "card_b2c4ec",
+  "slug": "harness-1-search-agents",
+  "type": "paper",
+  "title": "Harness-1: RL for Search Agents with State-Externalizing Harnesses",
+  "hook": "Stop making the policy remember everything. Harness-1 moves a search agent's bookkeeping into the environment, so RL only has to learn the decisions that matter.",
+  "key_points": [
+    "Search agents usually act over a growing transcript, mixing semantic decisions with routine state-tracking.",
+    "Harness-1 externalizes that state: the environment keeps a candidate pool, evidence links, verification records, and deduped observations.",
+    "The 20B policy keeps only the semantic choices — what to search, what to keep, what to verify, when to stop.",
+    "Beats the next-best open search subagent by +11.4 points avg curated recall, with especially strong held-out transfer."
+  ],
+  "content_html": "\u003cp\u003eA search agent has to do two very different jobs at once: make smart semantic decisions (what to look up, which evidence matters, when it's done) and manage a pile of routine state (what it has already seen, what's still open, what's been verified). When you train such an agent with reinforcement learning over its raw transcript, RL is forced to optimize both — and the bookkeeping is exactly the kind of thing the environment could track far more reliably.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eHarness-1 is a 20B retrieval subagent trained with RL \u003cem\u003einside\u003c/em\u003e a stateful \u0026quot;harness.\u0026quot; The harness maintains environment-side working memory: a candidate pool, an importance-tagged curated set, compact evidence links, verification records, compressed and deduplicated observations, and budget-aware rendering of the context. With state externalized, the policy is left to learn only the semantic decisions — what to search for, which documents to keep or discard, what to verify, and when to stop.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAcross eight retrieval benchmarks spanning web, finance, patents, and multi-hop QA, Harness-1 reaches 0.730 average curated recall, beating the next strongest open search subagent by +11.4 points and staying competitive with much larger frontier-model searchers. The gains are largest on held-out transfer benchmarks — evidence that when RL stops wasting capacity on recoverable bookkeeping, the search behaviors it learns generalize better beyond the training domains.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Pengcheng Jiang",
+      "Zhiyi Shi",
+      "Kelly Hong",
+      "Xueqiang Xu",
+      "Jiashuo Sun",
+      "Jimeng Sun",
+      "Hammad Bashir",
+      "Jiawei Han"
+    ],
+    "url": "https://arxiv.org/abs/2606.02373",
+    "published_at": "2026-06-01",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "rag",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-04",
+  "date": "2026-06-01",
+  "related": [
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    },
+    {
+      "id": "card_e283b9",
+      "slug": "model-context-protocol",
+      "type": "news",
+      "title": "Model Context Protocol (MCP): A Standard for Connecting LLMs to Tools",
+      "hook": "MCP is an open protocol that standardizes how AI applications expose tools, data, and resources to models - think USB-C for AI tool integrations.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-11-25"
+    },
+    {
+      "id": "card_36d545",
+      "slug": "fort-searcher",
+      "type": "paper",
+      "title": "FORT-Searcher: Shortcut-Resistant Tasks for Search Agents",
+      "hook": "Harder-looking questions aren't harder to search. FORT builds tasks where the intended search can't collapse into a cheap shortcut — and trains better deep-search agents on them.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-10"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_b2c4ec#0",
+      "format": "flip",
+      "prompt": "What does Harness-1 externalize from the policy, and why?",
+      "back_html": "\u003cp\u003eIt moves routine state-tracking (candidate pool, evidence links, verification records, deduped observations) into the environment, so RL only learns the semantic decisions.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b2c4ec#1",
+      "format": "quiz",
+      "prompt": "What is the 20B policy left to learn once state is externalized?",
+      "choices": [
+        {
+          "text": "Semantic choices: what to search, keep, verify, and when to stop",
+          "correct": true
+        },
+        {
+          "text": "How to compress and dedup its own observations",
+          "correct": false
+        },
+        {
+          "text": "How to render the context within budget",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eWith bookkeeping handled by the harness, the policy learns only the semantic decisions that matter.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b2c4ec#2",
+      "format": "quiz",
+      "prompt": "Where were Harness-1's gains over the next-best open subagent largest?",
+      "choices": [
+        {
+          "text": "On held-out transfer benchmarks",
+          "correct": true
+        },
+        {
+          "text": "Only on the training-domain benchmarks",
+          "correct": false
+        },
+        {
+          "text": "Only on finance retrieval tasks",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe gains are largest on held-out transfer — evidence that freeing RL from recoverable bookkeeping helps behaviors generalize.\u003c/p\u003e"
+    }
+  ]
+}

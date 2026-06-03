@@ -1,0 +1,104 @@
+{
+  "id": "card_261868",
+  "slug": "srm-lora-hallucination-mitigation",
+  "type": "paper",
+  "title": "SRM-LoRA: Steering LoRA's Gradients Away from Hallucination-Prone Directions",
+  "hook": "Most LoRA variants just shrink how many parameters you tune. SRM-LoRA changes which directions get updated at all — using geometry to steer fine-tuning away from directions tied to hallucination.",
+  "key_points": [
+    "SRM-LoRA builds a sensitivity-based Riemannian metric over the LoRA parameter space, inspired by sub-Riemannian geometry.",
+    "That metric reshapes backward gradients during fine-tuning, suppressing updates along 'high-cost' directions associated with hallucination.",
+    "Forward computation and inference cost are left unchanged — the intervention is purely in how gradients update the adapter during training.",
+    "Accepted at the ICML 2026 workshop FoGen, with an official implementation released on GitHub."
+  ],
+  "content_html": "\u003cp\u003eMost parameter-efficient fine-tuning methods focus on cutting how many weights you touch. A new method called SRM-LoRA instead targets which directions in that reduced parameter space get updated, using a geometry-inspired metric to specifically dial down directions linked to hallucination.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eA Reddit user shared their research, accepted at the ICML 2026 FoGen workshop: SRM-LoRA builds a sensitivity-based Riemannian metric over LoRA's parameter space and uses it to reshape backward gradients during fine-tuning, suppressing updates along \u0026quot;high-cost\u0026quot; directions the authors tie to hallucination. The forward pass and inference cost are left untouched — the change is purely in how the adapter's own weights get updated during training. An official implementation is linked on GitHub via the source post.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit r/MachineLearning",
+    "authors": [
+      "/u/Round_Apple2573"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1uw4j6a/llm_hallucination_paperusing_math_accepted_to",
+    "published_at": "2026-07-14",
+    "license": "Reddit post (link-out)"
+  },
+  "topic_ids": [
+    "finetuning"
+  ],
+  "tags": [
+    "training",
+    "alignment",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-20",
+  "date": "2026-07-14",
+  "related": [
+    {
+      "id": "card_cae140",
+      "slug": "lora",
+      "type": "paper",
+      "title": "LoRA: Low-Rank Adaptation",
+      "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-06-17"
+    },
+    {
+      "id": "card_2e95ee",
+      "slug": "qlora",
+      "type": "paper",
+      "title": "QLoRA: Fine-tuning Quantized LLMs",
+      "hook": "Fine-tune a model with tens of billions of parameters on a single GPU. QLoRA squeezes the frozen base to 4-bit, then trains LoRA adapters on top — without losing quality.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-23"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_cae140",
+      "slug": "lora",
+      "type": "paper",
+      "title": "LoRA: Low-Rank Adaptation",
+      "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-06-17"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_261868#0",
+      "format": "flip",
+      "prompt": "What does SRM-LoRA change about standard LoRA fine-tuning?",
+      "back_html": "\u003cp\u003eIt reshapes backward gradients with a sensitivity-based Riemannian metric, suppressing updates along directions linked to hallucination — not just shrinking parameter count.\u003c/p\u003e"
+    },
+    {
+      "id": "card_261868#1",
+      "format": "quiz",
+      "prompt": "What does SRM-LoRA leave unchanged, according to the author's summary?",
+      "choices": [
+        {
+          "text": "Forward computation and inference cost",
+          "correct": true
+        },
+        {
+          "text": "The LoRA rank used for adaptation",
+          "correct": false
+        },
+        {
+          "text": "The size of the fine-tuning dataset used",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe metric only reshapes backward gradients during training; forward computation and inference cost stay the same as regular LoRA.\u003c/p\u003e"
+    },
+    {
+      "id": "card_261868#2",
+      "format": "flip",
+      "prompt": "What's the practical goal of suppressing 'high-cost' gradient directions in SRM-LoRA?",
+      "back_html": "\u003cp\u003eTo mitigate hallucination — steering fine-tuning updates away from directions in the LoRA parameter space that the authors tie to hallucination-prone behavior.\u003c/p\u003e"
+    }
+  ]
+}

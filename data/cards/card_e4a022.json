@@ -1,0 +1,79 @@
+{
+  "id": "card_e4a022",
+  "slug": "hf-cerebras-gemma4-voice-ai",
+  "type": "news",
+  "title": "Hugging Face and Cerebras Bring Gemma 4 to Real-Time Voice AI",
+  "hook": "Multi-second delays are why voice assistants feel like phone menus. Running Gemma 4 on Cerebras hardware in a modular speech pipeline already powers 9,000+ Reachy Mini robots in production.",
+  "key_points": [
+    "A speech-to-speech pipeline chains together: speech recognition (Nvidia Parakeet) -\u003e Gemma 4 31B inference on Cerebras hardware -\u003e text-to-speech (Alibaba Qwen3TTS) -\u003e spoken response.",
+    "Each stage is modular and swappable, not a monolithic voice model.",
+    "The pitch is response time, not just accuracy: many voice systems hit frustrating multi-second delays at the P95, and Cerebras's inference speed targets exactly that bottleneck.",
+    "The pipeline already runs in production, powering over 9,000 Reachy Mini robots."
+  ],
+  "content_html": "\u003cp\u003eVoice assistants that pause for a beat before answering don't feel like a conversation — they feel like a phone menu. Hugging Face and Cerebras built a real-time voice pipeline around Gemma 4 specifically to close that gap.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe stack\u003c/h2\u003e\n\u003cp\u003eThe system chains four swappable, open components: speech recognition via Nvidia's Parakeet, language understanding and generation via Google DeepMind's Gemma 4 31B running on Cerebras hardware, and text-to-speech via Alibaba's Qwen3TTS. Cerebras's inference speed is the piece meant to solve the pipeline's biggest UX problem: many voice systems suffer multi-second delays at the P95 — long enough to break the feeling of a live exchange.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe announcement is explicit that for robots, voice assistants, and embodied AI, responsiveness isn't cosmetic — it's what makes an interaction feel alive rather than mechanical. It's not just a demo: the same pipeline already powers over 9,000 Reachy Mini robots in production, a reasonably concrete signal that fast, open-model voice pipelines are viable outside a lab setting.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face",
+    "authors": [
+      "Hugging Face",
+      "Cerebras"
+    ],
+    "url": "https://huggingface.co/blog/cerebras-gemma4-voice-ai",
+    "published_at": "2026-07-01",
+    "license": "Hugging Face blog"
+  },
+  "topic_ids": [
+    "video-audio",
+    "releases"
+  ],
+  "tags": [
+    "speech",
+    "inference",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-07-06",
+  "date": "2026-07-01",
+  "related": [
+    {
+      "id": "card_b3d85d",
+      "slug": "gemma-4",
+      "type": "news",
+      "title": "Gemma 4: Google DeepMind's Open Multimodal Models",
+      "hook": "An open-weight multimodal family (2.3B-31B) that now thinks before answering and, at 12B, skips separate vision/audio encoders entirely — still small enough for a 16GB laptop.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-03"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_e4a022#0",
+      "format": "flip",
+      "prompt": "What four stages make up the Hugging Face / Cerebras real-time voice pipeline?",
+      "back_html": "\u003cp\u003eSpeech recognition (Nvidia Parakeet) -\u0026gt; language model inference (Gemma 4 31B on Cerebras) -\u0026gt; text-to-speech (Alibaba Qwen3TTS) -\u0026gt; spoken response — each stage modular and swappable.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e4a022#1",
+      "format": "quiz",
+      "prompt": "What specific problem is Cerebras's fast inference meant to solve in this voice pipeline?",
+      "choices": [
+        {
+          "text": "Multi-second P95 response delays that break the feeling of a live conversation",
+          "correct": true
+        },
+        {
+          "text": "Poor transcription accuracy from the speech recognition stage",
+          "correct": false
+        },
+        {
+          "text": "The text-to-speech voice sounding robotic",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe announcement frames responsiveness, not raw capability, as what makes voice interaction feel natural — and names multi-second P95 delays as the bottleneck fast inference removes.\u003c/p\u003e"
+    }
+  ]
+}

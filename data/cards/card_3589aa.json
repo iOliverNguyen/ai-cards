@@ -1,0 +1,129 @@
+{
+  "id": "card_3589aa",
+  "slug": "lycheememory-v2",
+  "type": "paper",
+  "title": "Agent Memory: Consolidate by Segment, Not by Turn",
+  "hook": "Most agent memory systems call an LLM after every exchange, so memory gets more expensive as the conversation grows. Batching into semantic segments cut construction tokens by 86%.",
+  "key_points": [
+    "Existing memory systems use eager consolidation — invoking an LLM after each interaction to extract, summarize, or update — which scales badly with conversation length.",
+    "The alternatives each move the cost rather than remove it: coarse summarization loses fine-grained evidence, bigger retrieval contexts and multi-hop reasoning shift cost to query time.",
+    "LycheeMemory V2 replaces turn-level with semantic segment-level consolidation: batch several exchanges, then encode each finalized segment into context-independent typed records.",
+    "Semantic boundary detection (rather than fixed windows) keeps event-level and temporal evidence coherent.",
+    "With GPT-4.1-Mini: 89.22% on LoCoMo and 92.20% on LongMemEval-S, reported as state of the art.",
+    "Versus A-Mem, construction tokens fall 86.0% on LoCoMo and 75.9% on LongMemEval-S without raising query-time token usage."
+  ],
+  "content_html": "\u003cp\u003eLong-horizon agents need to carry information forward, and the standard way to do that is eager consolidation: after each interaction, call an LLM to extract, summarize, or update the memory store. It works, and it gets steadily more expensive the longer the conversation runs. Li and colleagues point out that the usual escapes just relocate the bill — coarse summarization is cheap but throws away fine-grained evidence, while larger retrieval contexts or multi-hop reasoning move the overhead to query time.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eLycheeMemory V2 changes the \u003cem\u003egranularity\u003c/em\u003e instead. Rather than consolidating every turn, it batches multiple exchanges into segments and encodes each finalized segment into context-independent typed memory records. Batching alone lowers how often the LLM runs; using semantic boundary detection rather than fixed windows is what keeps the batches from slicing through the middle of an event, preserving coherent event-level and temporal evidence. The resulting records sit behind lightweight structured indexes that support query-planned evidence retrieval.\u003c/p\u003e\n\u003cp\u003eUsing GPT-4.1-Mini, the authors report 89.22% on LoCoMo and 92.20% on LongMemEval-S — state of the art by their measurement — while cutting construction tokens by 86.0% on LoCoMo and 75.9% on LongMemEval-S relative to A-Mem, with no increase in query-time tokens. The generalizable claim is in their framing: the accuracy-cost trade-off of agent memory depends not only on \u003cem\u003ewhat\u003c/em\u003e you retain but on the granularity at which you consolidate it.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Dongfang Li",
+      "Zixuan Liu",
+      "Junmai Wang",
+      "Jiahe Huang",
+      "Fuhao Li",
+      "Bonian Jia",
+      "Baotian Hu",
+      "Min Zhang"
+    ],
+    "url": "https://arxiv.org/abs/2608.12990",
+    "published_at": "2026-08-13",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "context-memory",
+    "papers-this-week",
+    "agents"
+  ],
+  "tags": [
+    "agent",
+    "paper",
+    "efficiency",
+    "rag"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-17",
+  "date": "2026-08-13",
+  "related": [
+    {
+      "id": "card_0612bf",
+      "slug": "automem-memory-as-cognitive-skill",
+      "type": "paper",
+      "title": "AutoMem: Automated Learning of Memory as a Cognitive Skill",
+      "hook": "AutoMem treats knowing what to remember and when to retrieve it — metamemory — as a trainable skill, and tuning memory alone roughly doubles to quadruples performance on long-horizon games.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-01"
+    },
+    {
+      "id": "card_ce3099",
+      "slug": "compactionrl-context-compaction",
+      "type": "paper",
+      "title": "CompactionRL: Reinforcement Learning with Context Compaction for Long-Horizon Agents",
+      "hook": "Long-running coding agents eventually run out of context before finishing the job. CompactionRL trains them to summarize their own history mid-task, as part of the RL objective itself.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_9c1f76",
+      "slug": "plans-dont-persist-context",
+      "type": "paper",
+      "title": "Plans Don't Persist: Context Management Is Load-Bearing for Agents",
+      "hook": "An agent writes a plan, then context compression evicts it. This paper shows the plan never became internal state — once it leaves the window, the agent forgets it and task success craters.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_3589aa#0",
+      "format": "quiz",
+      "prompt": "What is the cost problem with 'eager' turn-level memory consolidation?",
+      "choices": [
+        {
+          "text": "It invokes an LLM after every interaction, so construction cost grows with conversation length",
+          "correct": true
+        },
+        {
+          "text": "It stores raw transcripts, so disk usage grows without bound",
+          "correct": false
+        },
+        {
+          "text": "It requires retraining the base model as memories accumulate",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe expense is LLM calls during memory \u003cem\u003econstruction\u003c/em\u003e. Coarse summarization reduces that but discards fine-grained evidence; bigger retrieval contexts just move the cost to query time.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3589aa#1",
+      "format": "flip",
+      "prompt": "Why detect semantic boundaries instead of batching a fixed number of turns?",
+      "back_html": "\u003cp\u003eFixed windows cut across events. Semantic boundaries keep coherent event-level and temporal evidence inside a single segment, so the typed records that come out stay context-independent.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3589aa#2",
+      "format": "quiz",
+      "prompt": "What token-cost result does LycheeMemory V2 report against A-Mem?",
+      "choices": [
+        {
+          "text": "86.0% fewer construction tokens on LoCoMo, without increasing query-time usage",
+          "correct": true
+        },
+        {
+          "text": "86.0% fewer query-time tokens, at the cost of slower memory construction",
+          "correct": false
+        },
+        {
+          "text": "An 86.0% reduction in total model parameters needed",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe savings are on the construction side (75.9% on LongMemEval-S) and are not paid back at query time — which is the paper's central efficiency claim.\u003c/p\u003e"
+    }
+  ]
+}

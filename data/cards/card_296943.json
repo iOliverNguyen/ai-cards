@@ -1,0 +1,96 @@
+{
+  "id": "card_296943",
+  "slug": "dreamerv3",
+  "type": "paper",
+  "title": "DreamerV3: Mastering Domains through World Models",
+  "hook": "Instead of learning only from real experience, DreamerV3 builds a world model and practices inside its own imagination — one fixed config, 150+ tasks.",
+  "key_points": [
+    "A general reinforcement-learning algorithm that learns a world model and improves from imagined rollouts.",
+    "With a single fixed configuration, outperforms specialized methods across 150+ diverse tasks.",
+    "Uses robustness techniques for stable learning across very different domains.",
+    "First method to collect diamonds in Minecraft from scratch — no human data or curricula."
+  ],
+  "content_html": "\u003cp\u003eDanijar Hafner, Jurgis Pasukonis, Jimmy Ba, and Timothy Lillicrap present DreamerV3, a general reinforcement-learning algorithm that learns a world model and then improves its behavior from \u0026quot;imagined\u0026quot; rollouts inside that model. With a single fixed configuration — no per-task tuning — it outperforms specialized methods across more than 150 diverse tasks.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eDreamerV3 learns a model of how its environment responds to actions. Once it has that internal model, it can generate imagined rollouts and improve its policy from them, rather than relying solely on costly real-world trials. To make one configuration work across wildly different domains, the authors layer in robustness techniques that keep learning stable whether the task is a control problem or an open-ended game.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eA single fixed setup clearing 150+ tasks is a strong signal of generality — most RL methods need careful per-task tuning. The headline demonstration is Minecraft: DreamerV3 is the first method to collect diamonds entirely from scratch, with no human data and no hand-built curriculum. Learning to plan inside a world model points toward agents that can practice efficiently before acting in the real world.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Danijar Hafner",
+      "Jurgis Pasukonis",
+      "Jimmy Ba",
+      "Timothy Lillicrap"
+    ],
+    "url": "https://arxiv.org/abs/2301.04104",
+    "published_at": "2023-01-10",
+    "license": "arXiv (CC BY 4.0)"
+  },
+  "topic_ids": [
+    "robotics"
+  ],
+  "tags": [
+    "agent",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2023-01-10",
+  "related": [
+    {
+      "id": "card_f14fdc",
+      "slug": "alphazero",
+      "type": "paper",
+      "title": "AlphaZero: Mastering Games from Scratch",
+      "hook": "AlphaGo learned from human games. AlphaZero threw those away — one algorithm reached superhuman chess, shogi, and Go knowing only the rules and playing itself.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2017-12-05"
+    },
+    {
+      "id": "card_30356a",
+      "slug": "rt-1",
+      "type": "paper",
+      "title": "RT-1: Robotics Transformer at Scale",
+      "hook": "What if a robot's controller was trained like a language model — on huge, diverse, task-agnostic data? Performance starts scaling with model size and data.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-12-13"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_296943#0",
+      "format": "flip",
+      "prompt": "How does DreamerV3 improve its behavior without relying solely on real-world trials?",
+      "back_html": "\u003cp\u003eIt learns a world model of how the environment responds to actions, then improves its policy from imagined rollouts inside that model.\u003c/p\u003e"
+    },
+    {
+      "id": "card_296943#1",
+      "format": "quiz",
+      "prompt": "Why is DreamerV3 clearing 150+ tasks with one fixed config notable?",
+      "choices": [
+        {
+          "text": "Most RL methods need careful per-task tuning, so it signals strong generality",
+          "correct": true
+        },
+        {
+          "text": "It proves world models are unnecessary for RL",
+          "correct": false
+        },
+        {
+          "text": "It shows real experience always beats imagined rollouts",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA single fixed setup beating specialized methods across 150+ tasks is a strong signal of generality.\u003c/p\u003e"
+    },
+    {
+      "id": "card_296943#2",
+      "format": "flip",
+      "prompt": "What was DreamerV3's headline Minecraft demonstration?",
+      "back_html": "\u003cp\u003eIt was the first method to collect diamonds from scratch — with no human data and no hand-built curriculum.\u003c/p\u003e"
+    }
+  ]
+}

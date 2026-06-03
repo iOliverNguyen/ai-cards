@@ -1,0 +1,107 @@
+{
+  "id": "card_9f80ef",
+  "slug": "modal-ceiling-test-time-scaling",
+  "type": "paper",
+  "title": "When More Sampling Hurts: The Modal Ceiling and Correlation Ceiling of Test-Time Scaling",
+  "hook": "Sample a reasoning model dozens of times and coverage keeps climbing — but picking the right answer from the pile plateaus fast, and extra samples past that point can backfire.",
+  "key_points": [
+    "Test-time scaling raises 'coverage' (odds some sample is correct), but a deployed system must pick just one — that's 'selection', and it caps far below coverage.",
+    "The gap between climbing coverage and stalled selection is the 'identifiability gap': correct answers the model can produce but not reliably pick.",
+    "Selection saturates within a few dozen samples (the 'modal ceiling'); predicting a benchmark score saturates even sooner (the 'correlation ceiling').",
+    "Past the ceiling, extra samples add cost and can make the model more confidently wrong, not just flat.",
+    "Reduces the cutoff to one diagnostic number, the 'effective number of samples', readable from any sampling run already collected."
+  ],
+  "content_html": "\u003cp\u003eTest-time scaling — sampling a reasoning model many times and picking the best answer — looks like it keeps paying off: draw enough samples and a correct answer turns up somewhere almost every time. This paper asks a sharper question: can you actually \u003cem\u003epick\u003c/em\u003e that correct answer, and for how long does drawing more samples help?\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eTwo different ceilings\u003c/h2\u003e\n\u003cp\u003eCoverage — the fraction of problems where at least one sample is correct — climbs steadily with more draws, which is why test-time scaling looks like free progress. But a deployed system must commit to one answer without knowing which sample is right; that's selection, and it saturates far below coverage. The authors call the difference the \u0026quot;identifiability gap\u0026quot; — correct answers the model generates but a selection rule can't reliably surface. For picking a single answer (e.g. majority vote), performance flattens within a few dozen samples, the \u0026quot;modal ceiling.\u0026quot; For predicting a benchmark score, it flattens even sooner, the \u0026quot;correlation ceiling.\u0026quot;\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003ePast either ceiling, extra samples aren't just wasted compute — the paper shows they can nudge the model into confidently converging on a wrong majority answer, making performance worse, not just flat. The authors distill the cutoff into one practical number, the \u0026quot;effective number of samples,\u0026quot; that can be read off any sampling run already collected, giving practitioners a concrete stopping point instead of sampling on faith.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yong Yi Bay",
+      "Kathleen A. Yearick"
+    ],
+    "url": "https://arxiv.org/abs/2606.28661",
+    "published_at": "2026-06-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "prompting",
+    "papers-this-week"
+  ],
+  "tags": [
+    "reasoning",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-06",
+  "date": "2026-06-27",
+  "related": [
+    {
+      "id": "card_1f00c3",
+      "slug": "test-time-compute-scaling",
+      "type": "paper",
+      "title": "Scaling LLM Test-Time Compute",
+      "hook": "A new scaling axis: instead of a bigger model, let a model think longer at inference — often a better use of compute, and the principle behind o1 and R1.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-08-06"
+    },
+    {
+      "id": "card_812537",
+      "slug": "self-consistency",
+      "type": "paper",
+      "title": "Self-Consistency Improves Chain-of-Thought Reasoning",
+      "hook": "Sample the model many times, let each run reason its own way, then take the majority answer - diverse reasoning paths vote out individual errors.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-03-21"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_1f00c3",
+      "slug": "test-time-compute-scaling",
+      "type": "paper",
+      "title": "Scaling LLM Test-Time Compute",
+      "hook": "A new scaling axis: instead of a bigger model, let a model think longer at inference — often a better use of compute, and the principle behind o1 and R1.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-08-06"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_9f80ef#0",
+      "format": "flip",
+      "prompt": "What is the 'identifiability gap' in this paper's terms?",
+      "back_html": "\u003cp\u003eThe gap between coverage (the fraction of problems where at least one sample is correct) and selection (how often you can actually pick the correct sample) — correct answers the model produces but can't reliably surface.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9f80ef#1",
+      "format": "quiz",
+      "prompt": "What happens if you keep sampling well past the 'modal ceiling'?",
+      "choices": [
+        {
+          "text": "Extra samples add cost and can make the model more confidently wrong, not just plateau",
+          "correct": true
+        },
+        {
+          "text": "Coverage and selection both keep improving indefinitely",
+          "correct": false
+        },
+        {
+          "text": "Selection improves while coverage stays flat",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSelection saturates within a few dozen samples; drawing more past that point can push the model toward a confident but incorrect majority answer.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9f80ef#2",
+      "format": "flip",
+      "prompt": "Why does coverage climbing with more samples not mean the deployed system is getting better?",
+      "back_html": "\u003cp\u003eA deployed system must commit to one answer without knowing which sample is correct. Coverage measures whether a correct answer exists somewhere in the batch; selection measures whether you can pick it, and selection caps much sooner.\u003c/p\u003e"
+    }
+  ]
+}

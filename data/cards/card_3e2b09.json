@@ -1,0 +1,121 @@
+{
+  "id": "card_3e2b09",
+  "slug": "hypernetwork-knowledge-injection",
+  "type": "paper",
+  "title": "Scaling Laws for Hypernetwork-Based Knowledge Injection",
+  "hook": "Instead of fine-tuning to memorize facts, train a hypernetwork to generate a LoRA adapter that injects them — and it follows clean scaling laws with steeper out-of-distribution gains.",
+  "key_points": [
+    "A hypernetwork is trained to map a corpus of facts to a fixed LoRA adapter that, inserted into a target model, lets it answer questions about those facts.",
+    "Reframes hypernetworks from their usual test-time adaptation to train-time knowledge injection.",
+    "Decoupling the hypernetwork's injection capacity from the target model's general ability enables the first clean scaling-law study of hypernetwork architectures.",
+    "Loss, reasoning accuracy, and OOD generalization all follow broadly predictive power laws in hypernetwork depth, width, and target size.",
+    "Beats LoRA and full fine-tuning on out-of-distribution generalization, with steeper scaling exponents.",
+    "Introduces MegaWikiQA: tens of millions of multi-hop QA pairs across 39 domains, built from Wikidata5M."
+  ],
+  "content_html": "\u003cp\u003eReliably stuffing new facts into a large language model is still an open problem — fine-tuning is expensive and prone to forgetting. This paper explores a different route: train a \u003cem\u003ehypernetwork\u003c/em\u003e (a network that outputs another network's weights) to read a corpus of facts and emit a fixed LoRA adapter that, dropped into a target model, lets it answer questions about those facts. Hypernetworks are normally used for on-the-fly test-time adaptation; here they do train-time knowledge injection.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe authors' key design move is to decouple the hypernetwork's \u003cem\u003einjection capacity\u003c/em\u003e from the target model's general capability, which lets them run — for the first time — a clean scaling-law study of hypernetwork architectures. Varying hypernetwork depth, width, and target-network size, they find that loss, reasoning accuracy, and out-of-distribution (OOD) generalization all follow broadly predictive power laws. Compared with LoRA fine-tuning and full fine-tuning, the hypernetwork approach shows steeper scaling exponents on every OOD evaluation, suggesting it generalizes better as it scales.\u003c/p\u003e\n\u003cp\u003eTo study this at scale they built MegaWikiQA, a dataset of tens of millions of multi-hop question–answer examples spanning 39 domains, derived from Wikidata5M. The authors frame hypernetworks as a principled, scalable substrate for train-time adaptation and offer the first empirically grounded scaling laws to guide them. (Reported on arXiv; the scaling behavior and OOD advantages are the authors' claims.)\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Nischay Dhankhar",
+      "Dos Baha",
+      "Abulhair Saparov"
+    ],
+    "url": "https://arxiv.org/abs/2607.19604",
+    "published_at": "2026-07-21",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "finetuning",
+    "pretraining",
+    "papers-this-week"
+  ],
+  "tags": [
+    "paper",
+    "training",
+    "nlp",
+    "dataset"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-23",
+  "date": "2026-07-21",
+  "related": [
+    {
+      "id": "card_85f66a",
+      "slug": "scaling-laws",
+      "type": "paper",
+      "title": "Scaling Laws for Neural Language Models",
+      "hook": "Loss doesn't drop randomly as models grow — it follows a smooth power law in size, data, and compute. That predictability is what made betting on bigger models rational.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2020-01-23"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_cae140",
+      "slug": "lora",
+      "type": "paper",
+      "title": "LoRA: Low-Rank Adaptation",
+      "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-06-17"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_3e2b09#0",
+      "format": "flip",
+      "prompt": "What is the core mechanism behind hypernetwork-based knowledge injection?",
+      "back_html": "\u003cp\u003eA hypernetwork reads a corpus of facts and generates a fixed LoRA adapter; dropped into the target model, that adapter lets it answer questions about those facts.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3e2b09#1",
+      "format": "quiz",
+      "prompt": "How does this work repurpose hypernetworks compared to their typical use?",
+      "choices": [
+        {
+          "text": "It uses them for train-time knowledge injection instead of test-time adaptation",
+          "correct": true
+        },
+        {
+          "text": "It uses them to compress the target model into fewer parameters",
+          "correct": false
+        },
+        {
+          "text": "It uses them to replace attention with a learned lookup",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eHypernetworks are usually applied for on-the-fly test-time adaptation; here they generate a LoRA adapter at train time to inject a fixed corpus of facts.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3e2b09#2",
+      "format": "quiz",
+      "prompt": "What did the scaling study find versus LoRA and full fine-tuning?",
+      "choices": [
+        {
+          "text": "Steeper scaling exponents on out-of-distribution generalization",
+          "correct": true
+        },
+        {
+          "text": "Exponentially more compute needed as the fact count grows",
+          "correct": false
+        },
+        {
+          "text": "It only works below a fixed number of facts",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAcross every OOD evaluation the hypernetwork showed steeper scaling exponents, meaning it generalized better as scale increased.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3e2b09#3",
+      "format": "flip",
+      "prompt": "Why does decoupling injection capacity from the target model's ability matter here?",
+      "back_html": "\u003cp\u003eIt lets the authors vary hypernetwork depth, width, and target size independently — enabling the first rigorous scaling-law study of hypernetwork architectures.\u003c/p\u003e"
+    }
+  ]
+}

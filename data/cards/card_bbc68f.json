@@ -1,0 +1,96 @@
+{
+  "id": "card_bbc68f",
+  "slug": "grokking",
+  "type": "paper",
+  "title": "Grokking: Generalization Long After Overfitting",
+  "hook": "A network memorizes the training set and seems done. Keep training anyway, and much later it can suddenly snap into real generalization — an effect called grokking.",
+  "key_points": [
+    "Networks can generalize suddenly and strongly long after they have already overfit.",
+    "Studied on small, algorithmically generated datasets like modular arithmetic tasks.",
+    "Smaller datasets require more optimization to reach the point of generalization.",
+    "Offers controlled tasks as a clean testbed for studying generalization."
+  ],
+  "content_html": "\u003cp\u003eAlethea Power, Yuri Burda, Harri Edwards, and colleagues describe \u0026quot;grokking\u0026quot;: a network reaches strong, sudden generalization long after it has already overfit the training set. They study it on small, algorithmically generated datasets — for example, tasks built from modular arithmetic — where the gap between memorizing and understanding is easy to watch unfold.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat it is\u003c/h2\u003e\n\u003cp\u003eOn these controlled tasks, a model first fits the training data perfectly while still failing on held-out examples, then much later jumps to high test accuracy. The authors find that smaller datasets require more optimization to reach that point of generalization, so the delay before grokking depends on how much data the model has to work with.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eBecause the tasks are simple and synthetic, they make a clean testbed for understanding how overparametrized networks eventually generalize. The phenomenon challenges the intuition that overfitting is a dead end and gives researchers a tractable setting to probe what changes inside a network between memorizing and truly learning a rule.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Alethea Power",
+      "Yuri Burda",
+      "Harri Edwards",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2201.02177",
+    "published_at": "2022-01-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "generalization"
+  ],
+  "tags": [
+    "foundational",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2022-01-06",
+  "related": [
+    {
+      "id": "card_aa026f",
+      "slug": "double-descent",
+      "type": "paper",
+      "title": "Deep Double Descent",
+      "hook": "Bigger models should overfit, then get worse — right? Instead test error often dips, climbs, then dips again as model size grows, breaking the classic bias-variance story.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2019-12-04"
+    },
+    {
+      "id": "card_a4574e",
+      "slug": "overfitting-and-regularization",
+      "type": "concept",
+      "title": "Overfitting \u0026 Regularization",
+      "hook": "A model that aces its training data but flops on anything new hasn't learned — it has memorized. Regularization is the cure.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_bbc68f#0",
+      "format": "flip",
+      "prompt": "What sequence of events defines grokking?",
+      "back_html": "\u003cp\u003eA network first fits the training data perfectly while still failing held-out examples, then much later jumps suddenly to strong generalization.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bbc68f#1",
+      "format": "quiz",
+      "prompt": "How does dataset size relate to when grokking happens?",
+      "choices": [
+        {
+          "text": "Smaller datasets require more optimization to reach generalization",
+          "correct": true
+        },
+        {
+          "text": "Smaller datasets generalize almost immediately",
+          "correct": false
+        },
+        {
+          "text": "Dataset size has no effect on the delay",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors find the delay before grokking depends on how much data the model has — smaller datasets need more optimization.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bbc68f#2",
+      "format": "flip",
+      "prompt": "Why are modular-arithmetic tasks a useful setting for studying grokking?",
+      "back_html": "\u003cp\u003eThey are small, synthetic, and controlled, making a clean testbed where the gap between memorizing and understanding is easy to watch unfold.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "id": "card_f65c85",
+  "slug": "formal-limit-meaning-from-text",
+  "type": "paper",
+  "title": "A Formal Limit on What Any Model Can Learn From Text Alone",
+  "hook": "There is a ceiling on how well meaning can be recovered from the form of an utterance — and it holds for any text representation, no matter how much data or supervision produced it.",
+  "key_points": [
+    "Models language use as a joint distribution over meanings, contexts, and utterances, then bounds the probability a decoder recovers the intended meaning.",
+    "The bound applies to any featurizer of text, including the hidden states of contemporary large language models.",
+    "Form leaves residual uncertainty about meaning; the authors split it into an irreducible part and a part only extralinguistic context can resolve.",
+    "Because both quantities are intrinsic to language, more text or more supervision cannot push past them.",
+    "The bounds hold whether the space of meanings is treated as discrete or continuous.",
+    "Evidence comes from artificial languages, Mandarin zero-pronoun resolution, and color reference."
+  ],
+  "content_html": "\u003cp\u003eCan a listener recover what a speaker meant from the form of an utterance alone? Cheng and Cotterell answer information-theoretically. Modeling language use as a joint distribution over meanings, contexts, and utterances, they derive upper bounds on the probability that a decoder recovers the intended meaning from a representation of the utterance — and the bounds apply to any featurizer of text, hidden states of today's large language models included.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat the bound says\u003c/h2\u003e\n\u003cp\u003eThe governing quantity is the uncertainty that form leaves about meaning. The authors split it in two: an irreducible part, and a part that only extralinguistic context — never the utterance alone — can resolve. Both are intrinsic to language rather than properties of a particular model, so no representation can surpass them however much text or supervision produced it. The result holds whether meanings are treated as discrete or continuous.\u003c/p\u003e\n\u003ch2\u003eEvidence\u003c/h2\u003e\n\u003cp\u003eThe theory is supported empirically on artificial languages, Mandarin zero-pronoun resolution, and color reference. The practical reading is a limit on text-only training rather than a claim about any specific system: some of what speakers mean is simply not in the text, and scale does not recover it. The derivations are in the paper.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Emily Cheng",
+      "Ryan Cotterell"
+    ],
+    "url": "https://arxiv.org/abs/2608.28560",
+    "published_at": "2026-08-28",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining",
+    "papers-this-week"
+  ],
+  "tags": [
+    "nlp",
+    "foundational",
+    "paper",
+    "interpretability"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-31",
+  "date": "2026-08-28",
+  "related": [
+    {
+      "id": "card_46fd66",
+      "slug": "chinchilla-scaling-laws",
+      "type": "paper",
+      "title": "Chinchilla: Compute-Optimal Scaling",
+      "hook": "Most giant models were starved of data. Chinchilla showed that for a fixed compute budget you should grow parameters and tokens together — and a smaller, longer-trained model won.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2022-03-29"
+    },
+    {
+      "id": "card_85f66a",
+      "slug": "scaling-laws",
+      "type": "paper",
+      "title": "Scaling Laws for Neural Language Models",
+      "hook": "Loss doesn't drop randomly as models grow — it follows a smooth power law in size, data, and compute. That predictability is what made betting on bigger models rational.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2020-01-23"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_f65c85#0",
+      "format": "flip",
+      "prompt": "Why can't scaling up text data break the bound this paper derives?",
+      "back_html": "\u003cp\u003eThe uncertainty that form leaves about meaning is intrinsic to language itself, not to any model. No representation built from text alone can surpass it.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f65c85#1",
+      "format": "quiz",
+      "prompt": "The paper splits the uncertainty form leaves about meaning into which two parts?",
+      "choices": [
+        {
+          "text": "An irreducible part, and a part only extralinguistic context can resolve",
+          "correct": true
+        },
+        {
+          "text": "A tokenization part and a positional-encoding part",
+          "correct": false
+        },
+        {
+          "text": "A bias part and a variance part, as in classical generalization theory",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe second part is resolvable in principle — but only by context outside the utterance, never by the utterance alone.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f65c85#2",
+      "format": "flip",
+      "prompt": "Which representations does the bound cover?",
+      "back_html": "\u003cp\u003eAny featurizer of text, explicitly including the hidden states of contemporary large language models.\u003c/p\u003e"
+    }
+  ]
+}

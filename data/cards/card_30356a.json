@@ -1,0 +1,96 @@
+{
+  "id": "card_30356a",
+  "slug": "rt-1",
+  "type": "paper",
+  "title": "RT-1: Robotics Transformer at Scale",
+  "hook": "What if a robot's controller was trained like a language model — on huge, diverse, task-agnostic data? Performance starts scaling with model size and data.",
+  "key_points": [
+    "A transformer-based model for real-world robotic control.",
+    "Trained on large, diverse, task-agnostic robot demonstration datasets.",
+    "Argues open-ended, task-agnostic training plus high-capacity architectures enables generalization in robotics.",
+    "Shows performance scales with model size and data diversity on real robots doing real tasks."
+  ],
+  "content_html": "\u003cp\u003eAnthony Brohan, Noah Brown, Justice Carbajal, and colleagues introduce RT-1, a transformer-based model for controlling real robots in the physical world. They train it on large, diverse, task-agnostic datasets of robot demonstrations, arguing that this open-ended style of training — paired with a high-capacity architecture — is what lets robots generalize rather than memorize a few hard-coded skills.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eRT-1 brings the recipe behind large language and vision models to robotics: collect a lot of varied data, then train a high-capacity transformer on it. The demonstrations are task-agnostic, gathered at scale from real robots performing real-world tasks rather than narrow scripted routines. Because the architecture has the capacity to absorb that diversity, the model learns broadly useful control rather than overfitting to a single setup.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe headline finding is that robotics behaves like other deep-learning domains: performance scales with model size and data diversity. That reframes the path forward — instead of engineering one behavior at a time, you can push capability by collecting more diverse data and training bigger models. It sets up the vision-language-action approach that RT-2 later builds on.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Anthony Brohan",
+      "Noah Brown",
+      "Justice Carbajal",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2212.06817",
+    "published_at": "2022-12-13",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics"
+  ],
+  "tags": [
+    "agent",
+    "vision",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2022-12-13",
+  "related": [
+    {
+      "id": "card_dd8539",
+      "slug": "rt-2",
+      "type": "paper",
+      "title": "RT-2: Vision-Language-Action Models",
+      "hook": "Treat a robot's actions as just more text tokens, and a vision-language model can learn to act — carrying its web knowledge into the physical world.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-07-28"
+    },
+    {
+      "id": "card_4aba44",
+      "slug": "vision-transformer-vit",
+      "type": "paper",
+      "title": "An Image is Worth 16x16 Words (ViT)",
+      "hook": "Chop an image into patches, treat each like a word, and feed them to a plain Transformer. With enough pretraining data, it matches or beats convolutional networks.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-10-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_30356a#0",
+      "format": "flip",
+      "prompt": "What recipe does RT-1 bring from large language and vision models to robotics?",
+      "back_html": "\u003cp\u003eCollect large, diverse, task-agnostic data, then train a high-capacity transformer on it so the model learns broadly useful control.\u003c/p\u003e"
+    },
+    {
+      "id": "card_30356a#1",
+      "format": "quiz",
+      "prompt": "What is RT-1's headline finding about robotics?",
+      "choices": [
+        {
+          "text": "Performance scales with model size and data diversity",
+          "correct": true
+        },
+        {
+          "text": "Scripted per-task routines beat learned policies",
+          "correct": false
+        },
+        {
+          "text": "Smaller models generalize better than larger ones",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRT-1 shows robotics behaves like other deep-learning domains: capability scales with model size and data diversity.\u003c/p\u003e"
+    },
+    {
+      "id": "card_30356a#2",
+      "format": "flip",
+      "prompt": "Why does RT-1 train on task-agnostic demonstrations rather than scripted routines?",
+      "back_html": "\u003cp\u003eSo the high-capacity model generalizes from the diversity instead of memorizing a few hard-coded skills.\u003c/p\u003e"
+    }
+  ]
+}

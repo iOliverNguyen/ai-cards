@@ -1,0 +1,99 @@
+{
+  "id": "card_2c2c1b",
+  "slug": "z-reward",
+  "type": "paper",
+  "title": "Beyond Scalar Rewards: Reward as a Score Distribution",
+  "hook": "Human taste isn't a single number. Z-Reward models visual preference as a distribution over rubric scores, then distills that reasoning judge into a small one needing no reasoning at inference.",
+  "key_points": [
+    "Visual preference is subjective; a scalar reward over-compresses uncertainty and fine score differences.",
+    "Z-Reward predicts a distribution over rubric scores, and decouples reasoning-heavy judgment from cheap reward deployment.",
+    "A large VLM teacher reasons to infer rubric-aligned score distributions, trained with Group-wise Direct Score Optimization (GDSO).",
+    "Reasoning-Internalized Score Distillation (RISD) transfers that score distribution into a compact student that needs no reasoning chains at inference.",
+    "Reported: 27B teacher 89.6% / 9B student 88.6% human-preference accuracy; used as a differentiable signal it gives ~41% net preference gain over SFT for text-to-image."
+  ],
+  "content_html": "\u003cp\u003eReward models are central to post-training image generators, but visual preference is subjective — the authors argue it is better represented as a \u003cem\u003edistribution\u003c/em\u003e over rubric scores than as one deterministic scalar. Scalar, score-token, and pairwise reward models over-compress uncertainty and small score gaps, while reasoning-based generative rewards judge well but are costly to deploy and awkward to use as a direct optimization signal. Z-Reward is a teacher–student framework that decouples the two.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe teacher is a large VLM that reasons to infer rubric-aligned score \u003cem\u003edistributions\u003c/em\u003e, trained with Group-wise Direct Score Optimization (GDSO) — combining policy-gradient rewards from distribution expectations with direct pointwise and pairwise supervision on score distributions and gaps. The student is trained with Reasoning-Internalized Score Distillation (RISD), inheriting the teacher's reasoning-conditioned distribution without producing explicit reasoning at inference. On the authors' annotated set, the 27B teacher reaches 89.6% human-preference accuracy and the 9B student 88.6%, closely matching the teacher while beating baselines. Used as a differentiable reward for text-to-image optimization, Z-Reward yields a reported ~41.3% net human-preference improvement over an SFT baseline.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xin Jin",
+      "Huanqia Cai",
+      "Zhen Li",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.09076",
+    "published_at": "2026-06-08",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "text-to-image",
+    "papers-this-week"
+  ],
+  "tags": [
+    "alignment",
+    "multimodal",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-15",
+  "date": "2026-06-08",
+  "related": [
+    {
+      "id": "card_d5a521",
+      "slug": "direct-preference-optimization",
+      "type": "paper",
+      "title": "Direct Preference Optimization (DPO)",
+      "hook": "RLHF works but is fiddly: a separate reward model and a finicky RL loop. DPO reaches the same goal with one simple loss — and became a popular default.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2023-05-29"
+    },
+    {
+      "id": "card_1098fc",
+      "slug": "instructgpt",
+      "type": "paper",
+      "title": "InstructGPT: Aligning LMs with Human Feedback (RLHF)",
+      "hook": "A smaller model people actually like beats a bigger one they don't. InstructGPT used human preferences to make a model follow instructions — the recipe behind ChatGPT.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-03-04"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_2c2c1b#0",
+      "format": "flip",
+      "prompt": "Why model a reward as a score distribution instead of a single scalar?",
+      "back_html": "\u003cp\u003eSubjective preference carries uncertainty and fine-grained differences; a scalar over-compresses them, while a distribution over rubric scores preserves that structure for optimization.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2c2c1b#1",
+      "format": "quiz",
+      "prompt": "What does Reasoning-Internalized Score Distillation (RISD) give the student model?",
+      "choices": [
+        {
+          "text": "The teacher's reasoning-conditioned score distribution, without needing reasoning chains at inference",
+          "correct": true
+        },
+        {
+          "text": "The ability to generate images directly",
+          "correct": false
+        },
+        {
+          "text": "A longer context window",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRISD distills the teacher's reasoning-conditioned score distribution into a compact VLM, so the student is cheap to run yet keeps most of the teacher's judgment.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2c2c1b#2",
+      "format": "flip",
+      "prompt": "What is the teacher–student split in Z-Reward?",
+      "back_html": "\u003cp\u003eA large VLM teacher uses reasoning to infer rubric-aligned score distributions; a compact student distills that judgment for cheap, reasoning-free reward deployment.\u003c/p\u003e"
+    }
+  ]
+}

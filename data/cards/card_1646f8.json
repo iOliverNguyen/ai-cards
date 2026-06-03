@@ -1,0 +1,95 @@
+{
+  "id": "card_1646f8",
+  "slug": "scaling-inherently-interpretable-lms",
+  "type": "paper",
+  "title": "Interpretability Doesn't Have to Be a Tax",
+  "hook": "The usual bargain: train an opaque model, then reverse-engineer it. Guide Labs made interpretability a training objective instead — and found it improves with scale rather than fighting it.",
+  "key_points": [
+    "Standard practice treats interpretability as post-hoc: explain a model after training, with methods whose reliability is hard to establish.",
+    "This work optimizes an interpretability constraint alongside the language modeling objective, inside the training pipeline.",
+    "Across three orders of magnitude of compute — on both autoregressive and diffusion language models — interpretability scaled with capability, not against it.",
+    "Representations became more disentangled and more aligned with human-understandable concepts as models got bigger.",
+    "Steerling-8B, a diffusion LM with a causal attention mask, attributes any group of generated tokens to input tokens, concepts, and training data.",
+    "That enables closed-loop intervention: diagnose an output, retrieve similar training data, and correct behavior by concept steering without retraining."
+  ],
+  "content_html": "\u003cp\u003eInterpretability is normally something you do \u003cem\u003eto\u003c/em\u003e a finished model: train the black box, then try to pry it open with probes and sparse autoencoders whose faithfulness is itself hard to verify. Guide Labs argues the ordering is the problem, and makes interpretability a constraint optimized jointly with the language modeling objective.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTheir headline claim is a scaling result. Across three orders of magnitude of compute, on both autoregressive and diffusion language models, interpretability improved \u003cem\u003ealongside\u003c/em\u003e capability — representations grew more disentangled and better aligned with human-understandable concepts as models got larger, rather than becoming more tangled.\u003c/p\u003e\n\u003cp\u003eThey instantiate the recipe as Steerling-8B, a diffusion language model with a causal attention mask. For any group of generated tokens it attributes the output to the relevant input tokens, to human-readable concepts, and to specific training data. That closes the loop: you can diagnose a bad output through its attributions, pull up the training data that produced it, and steer the concept to fix the behavior without retraining. The authors report Steerling-8B stays competitive with open peers trained on 2–16x more compute. Guide Labs, August 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Guide Labs Team",
+      "Andreas Madsen",
+      "Aya Abdelsalam Ismail",
+      "Giang Nguyen",
+      "Isaac Plant",
+      "Muawiz Chaudhary",
+      "Nathaniel Monson",
+      "Saqib Azim",
+      "Zhichen Guo",
+      "Julius Adebayo"
+    ],
+    "url": "https://arxiv.org/abs/2608.07594",
+    "published_at": "2026-08-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "training",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-13",
+  "date": "2026-08-06",
+  "related": [
+    {
+      "id": "card_54f98b",
+      "slug": "sae-feature-effect-geometry",
+      "type": "paper",
+      "title": "An SAE Feature Can Be Interpretable and Still Be Useless for Steering",
+      "hook": "Sparse-autoencoder features with clean descriptions often steer badly or backwards. Studying what they do to the logits explains why: few features act as reusable directions.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-27"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_1646f8#0",
+      "format": "flip",
+      "prompt": "What premise about interpretability does this paper challenge?",
+      "back_html": "\u003cp\u003eThat interpretability is a tax on capability — something you buy back after the fact by reverse-engineering an opaque model. Here it's a training-time constraint optimized alongside the LM objective.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1646f8#1",
+      "format": "quiz",
+      "prompt": "What happened to interpretability as the authors scaled compute by three orders of magnitude?",
+      "choices": [
+        {
+          "text": "It improved — representations became more disentangled and more concept-aligned",
+          "correct": true
+        },
+        {
+          "text": "It degraded steadily, confirming the capability/interpretability tradeoff",
+          "correct": false
+        },
+        {
+          "text": "It stayed flat, neither helped nor hurt by scale",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe surprising finding is that interpretability scales \u003cem\u003ewith\u003c/em\u003e capability under this recipe, on both autoregressive and diffusion language models.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1646f8#2",
+      "format": "flip",
+      "prompt": "What does 'closed-loop intervention' mean for Steerling-8B?",
+      "back_html": "\u003cp\u003eDiagnose an output via its concept or feature attribution, retrieve the similar training data behind it, then correct the behavior through concept steering — no retraining required.\u003c/p\u003e"
+    }
+  ]
+}

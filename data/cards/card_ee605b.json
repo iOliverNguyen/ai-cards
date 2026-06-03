@@ -1,0 +1,105 @@
+{
+  "id": "card_ee605b",
+  "slug": "gpt-4o",
+  "type": "news",
+  "title": "GPT-4o: One Model for Text, Audio, and Vision",
+  "hook": "GPT-4o is a single model that natively processes text, audio, and images end-to-end - no separate speech pipeline - cutting voice response latency to near human conversational speed.",
+  "key_points": [
+    "One unified model handles text, audio, and image input and output natively, without chaining separate models.",
+    "Voice latency dropped to roughly 232 ms average, close to natural human response time.",
+    "Removes the old pipeline of speech-to-text → LLM → text-to-speech, so tone and emotion are preserved end-to-end.",
+    "GPT-4-level text and vision performance while being faster and cheaper than GPT-4 Turbo."
+  ],
+  "content_html": "\u003cp\u003eOpenAI announced GPT-4o (the \u0026quot;o\u0026quot; stands for omni) in May 2024 as a single model trained end-to-end across text, audio, and vision. Previous voice features in ChatGPT stitched together three separate models; GPT-4o handles all modalities in one pass. The result is noticeably lower latency and better responsiveness to vocal cues like tone and pace.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eRather than routing audio through a speech recognizer into a language model and back out through a speech synthesizer, GPT-4o processes audio tokens directly alongside text and image tokens. This unified training means the model sees emotional and prosodic information that gets discarded in a transcription pipeline.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eNative omni-modality is a meaningful architectural step: it lets a single model reason jointly across senses without information loss at pipeline boundaries. For voice applications, near-human response latency changes the feel of an interaction entirely. See OpenAI's announcement for demos and details.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "authors": [
+      "OpenAI"
+    ],
+    "url": "https://openai.com/index/hello-gpt-4o/",
+    "published_at": "2024-05-13",
+    "license": "OpenAI blog"
+  },
+  "topic_ids": [
+    "vlms",
+    "lab-updates"
+  ],
+  "tags": [
+    "multimodal",
+    "nlp",
+    "speech",
+    "news"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2024-05-13",
+  "related": [
+    {
+      "id": "card_29a088",
+      "slug": "gpt-4",
+      "type": "paper",
+      "title": "GPT-4 Technical Report",
+      "hook": "GPT-4 clears the bar on a wide range of professional and academic benchmarks - passing the bar exam near the top of the score range, for instance - while accepting both text and images as input.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2023-03-15"
+    },
+    {
+      "id": "card_3d7d44",
+      "slug": "clip",
+      "type": "paper",
+      "title": "CLIP: Learning Visual Models from Language",
+      "hook": "Skip the fixed label list. Train on image–caption pairs so pictures and text share one space, and you can classify images from plain-text labels you make up on the spot.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-02-26"
+    },
+    {
+      "id": "card_8a4426",
+      "slug": "whisper",
+      "type": "paper",
+      "title": "Whisper: Robust Speech Recognition at Scale",
+      "hook": "Train a plain encoder-decoder transformer on 680,000 hours of weakly-labeled multilingual audio and you get near-human transcription robustness without task-specific fine-tuning.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_ee605b#0",
+      "format": "flip",
+      "prompt": "Why does GPT-4o preserve tone and emotion that the old voice pipeline lost?",
+      "back_html": "\u003cp\u003eIt processes audio tokens directly alongside text and images in one model, rather than routing through speech-to-text → LLM → text-to-speech, which discards prosodic information at the boundaries.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ee605b#1",
+      "format": "quiz",
+      "prompt": "What did GPT-4o's unified architecture achieve for voice interaction?",
+      "choices": [
+        {
+          "text": "Voice latency near human conversational speed (~232 ms average)",
+          "correct": true
+        },
+        {
+          "text": "Perfect transcription accuracy in every language",
+          "correct": false
+        },
+        {
+          "text": "Eliminating the need for any text input",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eHandling audio natively in one pass dropped voice latency to roughly 232 ms average, close to natural human response time.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ee605b#2",
+      "format": "flip",
+      "prompt": "What does the 'o' in GPT-4o stand for, and what does it signify?",
+      "back_html": "\u003cp\u003e'Omni' — one model trained end-to-end across text, audio, and vision, handling all modalities in a single pass instead of chaining separate models.\u003c/p\u003e"
+    }
+  ]
+}

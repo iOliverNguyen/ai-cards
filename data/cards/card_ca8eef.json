@@ -1,0 +1,105 @@
+{
+  "id": "card_ca8eef",
+  "slug": "forensic-trajectory-signatures-memory-poisoning",
+  "type": "paper",
+  "title": "Catching Agent Memory Poisoning from Tool-Call Logs Alone",
+  "hook": "A memory-poisoning attack on an LLM agent leaves a near-perfect fingerprint in its tool-call order — a simple rule catches it at AUC 0.956, a small classifier pushes that to 0.99.",
+  "key_points": [
+    "Finds a behavioral invariant: successful memory-poisoning attacks require calling a memory-recall tool before an exfiltration action like sending email.",
+    "A single rule exploiting that invariant reaches AUC 0.956; a Random Forest over 19 trajectory features reaches AUC 0.990.",
+    "The signature is 'overdetermined' — removing all recall-related features leaves accuracy unchanged, so poisoning imprints on multiple independent channels.",
+    "Generalizes across 9 models (7B–120B) and to frontier models (GPT-4.1, GPT-4o) with no retraining; also tells memory poisoning apart from plain prompt injection."
+  ],
+  "content_html": "\u003cp\u003eIf an LLM agent's memory gets poisoned to leak data later, does the attack leave a trace in what the agent actually does? This paper finds a strikingly reliable one — hidden in the simple order of tool calls.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe author identifies a behavioral invariant in agents under persistent memory poisoning: in architectures where routing information comes through observable memory-tool calls, a successful attack requires calling a memory-recall tool before an exfiltration action like sending email — a transition non-exfiltrating sessions rarely produce. A simple rule built on this invariant alone reaches AUC 0.9563; a Random Forest classifier over 19 trajectory features refines it to AUC 0.9904. The signature turns out to be overdetermined — removing every recall-related feature leaves accuracy unchanged, meaning the poisoning imprints on several independent behavioral channels at once, not one fragile tell. Cross-model testing on 9 models from 7B to 120B parameters confirms AUC 1.000 on 6 of 9 hold-out splits (with the exceptions mechanistically explained), and the invariant generalizes to frontier models like GPT-4.1 and GPT-4o with zero retraining. A prefix-only variant reaches AUC 0.934, suggesting real-time blocking is feasible, and the detector can separate memory-channel attacks from ordinary prompt injection using tool-call logs alone. Code is public. Jun Wen Leong, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jun Wen Leong"
+    ],
+    "url": "https://arxiv.org/abs/2606.30566",
+    "published_at": "2026-06-29",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "safety",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-02",
+  "date": "2026-06-29",
+  "related": [
+    {
+      "id": "card_395956",
+      "slug": "red-teaming-lms",
+      "type": "paper",
+      "title": "Red Teaming Language Models with Language Models",
+      "hook": "Finding the prompts that make a model misbehave is slow if humans do it by hand. So use another language model to generate those attacks automatically — at scale.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-02-07"
+    },
+    {
+      "id": "card_e283b9",
+      "slug": "model-context-protocol",
+      "type": "news",
+      "title": "Model Context Protocol (MCP): A Standard for Connecting LLMs to Tools",
+      "hook": "MCP is an open protocol that standardizes how AI applications expose tools, data, and resources to models - think USB-C for AI tool integrations.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-11-25"
+    },
+    {
+      "id": "card_f71629",
+      "slug": "entity-binding-failures-tool-agents",
+      "type": "paper",
+      "title": "Entity Binding Failures in Tool-Augmented Agents",
+      "hook": "An agent can pick the right tool and still email the wrong Alex — 'entity binding' failures slip past standard tool-correctness checks in up to 26% of runs.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-29"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_ca8eef#0",
+      "format": "flip",
+      "prompt": "What behavioral invariant did the researchers find in memory-poisoning attacks on agents?",
+      "back_html": "\u003cp\u003eSuccessful attacks require the agent to call a memory-recall tool before an exfiltration action, like sending an email — a sequence that legitimate sessions rarely produce.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ca8eef#1",
+      "format": "quiz",
+      "prompt": "How well did detection generalize to models it wasn't built or tuned on?",
+      "choices": [
+        {
+          "text": "It held up across 9 models from 7B to 120B parameters, including frontier models, with no retraining",
+          "correct": true
+        },
+        {
+          "text": "It only worked on the exact model it was trained on",
+          "correct": false
+        },
+        {
+          "text": "It failed completely outside the lab setting",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eCross-model hold-out testing confirmed AUC = 1.000 on most splits, and the invariant transferred to GPT-4.1 and GPT-4o without any retraining.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ca8eef#2",
+      "format": "flip",
+      "prompt": "How does this detector distinguish memory poisoning from a plain prompt-injection attack?",
+      "back_html": "\u003cp\u003eThe two produce distinct trajectory signatures — prompt-injection attacks that bypass memory score very differently, letting responders tell the attack types apart using tool-call logs alone.\u003c/p\u003e"
+    }
+  ]
+}

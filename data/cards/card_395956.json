@@ -1,0 +1,109 @@
+{
+  "id": "card_395956",
+  "slug": "red-teaming-lms",
+  "type": "paper",
+  "title": "Red Teaming Language Models with Language Models",
+  "hook": "Finding the prompts that make a model misbehave is slow if humans do it by hand. So use another language model to generate those attacks automatically — at scale.",
+  "key_points": [
+    "One language model generates test prompts designed to make a target model produce harmful outputs.",
+    "A classifier scores the target's responses to flag failures like toxicity or leaked private data.",
+    "Automation surfaces many more failure cases, far faster than manual red-teaming.",
+    "Discovered issues can then guide fixes and safer training of the target model."
+  ],
+  "content_html": "\u003cp\u003eEthan Perez, Saffron Huang, and colleagues showed you can red-team a language model using another language model. One model is prompted to generate test cases — questions and prompts likely to provoke bad behavior — and a separate classifier checks whether the target's replies are harmful. By automating the search for failures, they surfaced offensive content, private-data leaks, and other problems at a scale and speed that manual testing can't match.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe setup pairs a \u0026quot;red\u0026quot; language model that produces candidate attack prompts with a detector that evaluates the target model's responses for undesirable behavior. The authors explore several ways to generate prompts, from straightforward sampling to reinforcement learning that pushes the red model toward prompts most likely to elicit failures. Running this loop over many prompts builds up a catalog of cases where the target slips, which is hard to assemble by hand.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eYou can't fix harms you haven't found, and human red-teaming is expensive and limited in coverage. Using models to probe models scales the search dramatically, exposing weaknesses before deployment. The failure cases are not just diagnostic — they can feed back into training and filtering to make the target safer. This automated approach became an important tool in the broader effort to test and align language models.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ethan Perez",
+      "Saffron Huang",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2202.03286",
+    "published_at": "2022-02-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety"
+  ],
+  "tags": [
+    "safety",
+    "alignment"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2022-02-07",
+  "related": [
+    {
+      "id": "card_683aef",
+      "slug": "constitutional-ai",
+      "type": "paper",
+      "title": "Constitutional AI",
+      "hook": "What if a model could critique and improve its own answers against a written set of principles, instead of relying on humans to label every harmful case?",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-15"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_395956#0",
+      "format": "flip",
+      "prompt": "How does this approach red-team a target language model?",
+      "back_html": "\u003cp\u003eA 'red' language model generates attack prompts likely to provoke bad behavior, and a separate classifier scores the target's responses for harm.\u003c/p\u003e"
+    },
+    {
+      "id": "card_395956#1",
+      "format": "quiz",
+      "prompt": "What is the main advantage of automating red-teaming with models?",
+      "choices": [
+        {
+          "text": "It surfaces far more failure cases, much faster than manual testing",
+          "correct": true
+        },
+        {
+          "text": "It guarantees the target has zero vulnerabilities",
+          "correct": false
+        },
+        {
+          "text": "It removes the need for any classifier",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAutomation scales the search dramatically, exposing more weaknesses than expensive, limited human red-teaming.\u003c/p\u003e"
+    },
+    {
+      "id": "card_395956#2",
+      "format": "quiz",
+      "prompt": "Beyond diagnosis, how are discovered failure cases useful?",
+      "choices": [
+        {
+          "text": "They can feed back into training and filtering to make the target safer",
+          "correct": true
+        },
+        {
+          "text": "They are only useful as a public leaderboard",
+          "correct": false
+        },
+        {
+          "text": "They retrain the red model exclusively",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe failure cases are not just diagnostic — they can guide fixes and safer training of the target model.\u003c/p\u003e"
+    }
+  ]
+}

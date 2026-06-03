@@ -1,0 +1,106 @@
+{
+  "id": "card_450c0a",
+  "slug": "group-standard-deviation-identity",
+  "type": "paper",
+  "title": "GRPO, Dr. GRPO, and DAPO Are Three Operations on One Number: The Group-Standard-Deviation Identity",
+  "hook": "GRPO, Dr. GRPO, and DAPO look like three separate fixes to reasoning RL — this paper proves they're just three settings of one dial: how much weight to put on a group's disagreement.",
+  "key_points": [
+    "For right/wrong rewards, a prompt's group-standard-deviation (how much its sampled answers disagree) exactly equals the size of that prompt's training update.",
+    "GRPO divides by that number, Dr. GRPO drops the division, and DAPO discards groups where it's zero — three settings of the same dial, not three different tricks.",
+    "A group split evenly between right and wrong teaches the model the most; a unanimous group (all right or all wrong) teaches nothing and goes silent.",
+    "The identity is confirmed both mathematically and empirically, on the large Big-Math difficulty dataset and in a controlled training run."
+  ],
+  "content_html": "\u003cp\u003eGRPO, Dr. GRPO, and DAPO are usually presented as three separate fixes to reasoning-RL training — a normalization trick, a correction to that trick, and a filtering rule. This paper shows they're the same dial turned to three different settings.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe group-standard-deviation identity\u003c/h2\u003e\n\u003cp\u003eWhen a reward is simply right-or-wrong, the standard deviation of a prompt's sampled answers — how much they disagree — turns out to exactly equal the size of the gradient update that prompt produces. A group split evenly between correct and incorrect answers has high disagreement and teaches the model the most; a unanimous group, all right or all wrong, has zero disagreement and contributes nothing. GRPO divides its update by this standard deviation, Dr. GRPO removes that division, and DAPO instead throws out any group whose standard deviation is zero. Framed this way, all three are just choices about how to treat one number.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eWhat looked like a harmless normalization detail turns out to be the dial that decides which problems a training run learns the most from and how many attempts each one needs. The authors confirm the identity both mathematically and empirically, on the large Big-Math difficulty dataset and in a controlled training run — reframing a small implementation choice as the thing actually steering where reasoning RL puts its learning signal.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yong Yi Bay",
+      "Kathleen A. Yearick"
+    ],
+    "url": "https://arxiv.org/abs/2607.00152",
+    "published_at": "2026-06-30",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "papers-this-week"
+  ],
+  "tags": [
+    "alignment",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 5,
+  "difficulty": "deep",
+  "created_at": "2026-07-06",
+  "date": "2026-06-30",
+  "related": [
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    },
+    {
+      "id": "card_d5a521",
+      "slug": "direct-preference-optimization",
+      "type": "paper",
+      "title": "Direct Preference Optimization (DPO)",
+      "hook": "RLHF works but is fiddly: a separate reward model and a finicky RL loop. DPO reaches the same goal with one simple loss — and became a popular default.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2023-05-29"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_450c0a#0",
+      "format": "flip",
+      "prompt": "What is the 'group-standard-deviation identity' this paper proves?",
+      "back_html": "\u003cp\u003eFor right/wrong rewards, a prompt's group-standard-deviation (how much its sampled answers disagree) is exactly equal to the size of the training update that prompt produces.\u003c/p\u003e"
+    },
+    {
+      "id": "card_450c0a#1",
+      "format": "quiz",
+      "prompt": "How do GRPO, Dr. GRPO, and DAPO differ, according to this identity?",
+      "choices": [
+        {
+          "text": "GRPO divides by the group-standard-deviation, Dr. GRPO skips that division, and DAPO discards groups where it's zero",
+          "correct": true
+        },
+        {
+          "text": "They use three completely unrelated reward functions",
+          "correct": false
+        },
+        {
+          "text": "They differ only in the learning rate schedule",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eFramed through the identity, all three are just different choices about how to treat the same underlying number — not three unrelated algorithms.\u003c/p\u003e"
+    },
+    {
+      "id": "card_450c0a#2",
+      "format": "flip",
+      "prompt": "Why does a unanimous group (all answers right, or all wrong) contribute nothing to training?",
+      "back_html": "\u003cp\u003eIts group-standard-deviation is zero, and by the identity that number is exactly the size of the update — zero disagreement means zero learning signal from that group.\u003c/p\u003e"
+    }
+  ]
+}

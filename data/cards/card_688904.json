@@ -1,0 +1,114 @@
+{
+  "id": "card_688904",
+  "slug": "kv-cache-and-batching",
+  "type": "concept",
+  "title": "The KV Cache \u0026 Continuous Batching",
+  "hook": "Generating one token reuses every prior key and value - that growing cache is why LLM inference is memory-bound, and continuous batching is how servers fight back.",
+  "key_points": [
+    "The KV cache stores key and value tensors for all previous tokens so they are not recomputed each step.",
+    "Cache size grows linearly with sequence length and batch size, quickly saturating GPU memory.",
+    "Continuous batching (iteration-level scheduling) swaps finished sequences out and new ones in at each token step.",
+    "Together, these two ideas are the foundation of high-throughput LLM serving infrastructure."
+  ],
+  "content_html": "\u003cp\u003eWhen an LLM generates text one token at a time, it needs the attention keys and values for every earlier token in the sequence. Recomputing them from scratch each step would be prohibitively slow, so the inference engine stores them in a KV cache. Pope et al.'s \u0026quot;Efficiently Scaling Transformer Inference\u0026quot; systematically analyzed this bottleneck and the strategies used to work around it on TPU clusters, making it a foundational reference for LLM serving.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eDuring the prefill phase the model processes the full prompt and fills the KV cache. In each subsequent decode step it computes keys and values only for the new token, appends them to the cache, and reads the entire cache to compute attention. This makes every decode step memory-bandwidth-bound rather than compute-bound. Continuous batching addresses throughput: instead of waiting for a whole batch to finish before starting new requests, the server inserts new sequences and removes completed ones at every single token generation step, keeping GPUs busy.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eUnderstanding the KV cache explains almost every design decision in modern LLM serving - why multi-query attention exists, why PagedAttention virtualizes cache memory, why speculative decoding is worth the complexity. If you want to understand why serving a 70B model at scale is hard, start here with the Pope et al. paper on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Reiner Pope",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2211.05102",
+    "published_at": "2022-11-09",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "context-memory"
+  ],
+  "tags": [
+    "inference",
+    "efficiency"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2022-11-09",
+  "related": [
+    {
+      "id": "card_ef8b5f",
+      "slug": "paged-attention-vllm",
+      "type": "paper",
+      "title": "PagedAttention / vLLM: Efficient LLM Serving",
+      "hook": "LLM serving wastes huge amounts of GPU memory on the attention cache. PagedAttention borrows an OS trick — paging — to recover it and serve many more requests at once.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-09-12"
+    },
+    {
+      "id": "card_5e9c4b",
+      "slug": "multi-query-attention",
+      "type": "paper",
+      "title": "Multi-Query Attention: Faster Decoding",
+      "hook": "Share one key/value head across all query heads - the KV cache shrinks by a factor of H and decoding gets dramatically faster with barely any quality cost.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2019-11-05"
+    },
+    {
+      "id": "card_951958",
+      "slug": "speculative-decoding",
+      "type": "paper",
+      "title": "Speculative Decoding",
+      "hook": "Let a small, fast model guess the next few words, then have the big model check them all in one shot. Same output, fewer slow steps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-30"
+    },
+    {
+      "id": "card_bd473d",
+      "slug": "unlimited-ocr",
+      "type": "paper",
+      "title": "Unlimited OCR: Constant KV Cache for Long Documents",
+      "hook": "LLM-based OCR slows down as documents get longer because the KV cache keeps growing. Unlimited OCR holds the cache constant, transcribing dozens of pages in one pass.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_688904#0",
+      "format": "flip",
+      "prompt": "Why does the KV cache make each decode step memory-bandwidth-bound?",
+      "back_html": "\u003cp\u003eEach step computes K/V only for the new token but must read the entire growing cache to compute attention, so it's bound by memory bandwidth rather than compute.\u003c/p\u003e"
+    },
+    {
+      "id": "card_688904#1",
+      "format": "quiz",
+      "prompt": "What does continuous batching do to keep GPUs busy?",
+      "choices": [
+        {
+          "text": "Inserts new sequences and removes finished ones at every token step",
+          "correct": true
+        },
+        {
+          "text": "Waits for the whole batch to finish before starting new requests",
+          "correct": false
+        },
+        {
+          "text": "Recomputes keys and values for all tokens each step",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eContinuous batching uses iteration-level scheduling: it swaps finished sequences out and new ones in at each token generation step instead of waiting for the batch.\u003c/p\u003e"
+    },
+    {
+      "id": "card_688904#2",
+      "format": "flip",
+      "prompt": "Why does KV cache size quickly saturate GPU memory?",
+      "back_html": "\u003cp\u003eIt grows linearly with both sequence length and batch size, so longer prompts and bigger batches rapidly consume memory.\u003c/p\u003e"
+    }
+  ]
+}

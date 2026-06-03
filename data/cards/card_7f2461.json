@@ -1,0 +1,120 @@
+{
+  "id": "card_7f2461",
+  "slug": "discrete-diffusion-oracle-distance",
+  "type": "paper",
+  "title": "What Does a Discrete Diffusion Model Learn?",
+  "hook": "A discrete diffusion model can be read as a denoiser, a score, or a bridge predictor. This paper proves they're the same optimum in different coordinates — with one exact best solution.",
+  "key_points": [
+    "Proves the Oracle Distance theorem: a diffusion model's negative ELBO equals data entropy plus the KL divergence from the true reverse process — an exact identity, not just a bound.",
+    "The unique optimal model is the conditional expectation of the true reverse jump rate given the current noisy state; no model can beat the data-entropy floor.",
+    "For sequences, that same optimum has three exact, interconvertible readings: denoiser, cavity/bridge, and score.",
+    "Recovers MDM, UDM, SEDD, and GIDD as special cases, pinpointing exactly where and why their training losses diverge.",
+    "Shows a naive denoiser parameterization makes uniform diffusion's ELBO diverge at initialization, while the bridge/cavity form stays finite."
+  ],
+  "content_html": "\u003cp\u003eTrain a discrete diffusion model and you have to pick how it parameterizes its output: predict the clean token directly (a denoiser), predict a score ratio, or predict a bridge/cavity distribution. This paper — from Bernhard Schölkopf's and Thomas Hofmann's groups — proves these aren't just implementation choices: at the level of the underlying jump rates, they're the exact same mathematical object in different coordinates, and using the wrong one silently changes what process you're actually training and sampling from.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe core result is the \u003cstrong\u003eOracle Distance theorem\u003c/strong\u003e: for any noising process, a diffusion model's negative ELBO is exactly equal to the data's entropy plus the KL divergence between the true (\u0026quot;oracle\u0026quot;) reverse process and the one the model learned — not an approximation, an exact identity. That pins down the unique best-possible model: the conditional expectation of the true reverse jump rate given the current noisy state. Since every valid noising process shares the same floor (the data entropy), the theorem also gives a way to calibrate an ELBO implementation exactly, just by checking its value at initialization.\u003c/p\u003e\n\u003cp\u003eFor sequence models specifically, the authors show that same optimal solution can be written in three exact, mutually convertible ways — as a denoiser, a cavity/bridge predictor, or a score — with closed-form conversions between them. Existing methods like MDM, UDM, SEDD, and GIDD turn out to be special cases of this framework, and the paper pins down exactly when the coordinates coincide (denoiser and cavity match for masked diffusion) and when they don't (for uniform diffusion, a naive denoiser parameterization actually makes the training loss diverge at initialization, while the bridge form stays well-behaved). Every claim is verified numerically on an exactly solvable toy model. Rodrigo Casado Noguerales, Bernhard Schölkopf, Thomas Hofmann, and Aran Raoufi, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Rodrigo Casado Noguerales",
+      "Bernhard Schölkopf",
+      "Thomas Hofmann",
+      "Aran Raoufi"
+    ],
+    "url": "https://arxiv.org/abs/2607.05381",
+    "published_at": "2026-07-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "diffusion",
+    "papers-this-week"
+  ],
+  "tags": [
+    "paper",
+    "generative",
+    "foundational",
+    "architecture"
+  ],
+  "importance": 5,
+  "difficulty": "deep",
+  "created_at": "2026-07-13",
+  "date": "2026-07-06",
+  "related": [
+    {
+      "id": "card_cf3048",
+      "slug": "illada-diffusion-language-model",
+      "type": "paper",
+      "title": "iLLaDA: Improved Large Language Diffusion Models",
+      "hook": "An 8B language model trained from scratch with full bidirectional attention and a masked-diffusion objective — no autoregression — that holds its own against same-size autoregressive LLMs.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-24"
+    },
+    {
+      "id": "card_2b95b6",
+      "slug": "denoising-diffusion-probabilistic-models",
+      "type": "paper",
+      "title": "Denoising Diffusion Probabilistic Models (DDPM)",
+      "hook": "Wreck an image into pure static one tiny step at a time, then train a network to undo it. Run the undo from random noise and you get a brand-new image.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2020-06-19"
+    },
+    {
+      "id": "card_764d0e",
+      "slug": "nemotron-twotower-diffusion-lm",
+      "type": "news",
+      "title": "NVIDIA Nemotron-TwoTower: A Diffusion-Based Language Model",
+      "hook": "NVIDIA's open Nemotron-TwoTower bolts a diffusion 'denoiser' tower onto a frozen autoregressive model to fill token blocks in parallel — reportedly 2.42x faster at ~98.7% of baseline quality.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-25"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_2b95b6",
+      "slug": "denoising-diffusion-probabilistic-models",
+      "type": "paper",
+      "title": "Denoising Diffusion Probabilistic Models (DDPM)",
+      "hook": "Wreck an image into pure static one tiny step at a time, then train a network to undo it. Run the undo from random noise and you get a brand-new image.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2020-06-19"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_7f2461#0",
+      "format": "flip",
+      "prompt": "What does the Oracle Distance theorem say about a diffusion model's negative ELBO?",
+      "back_html": "\u003cp\u003eIt's exactly equal to the data's entropy plus the KL divergence from the true reverse process to the learned one — an exact identity, not just an upper bound.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7f2461#1",
+      "format": "quiz",
+      "prompt": "What is the unique optimal solution the Oracle Distance theorem identifies?",
+      "choices": [
+        {
+          "text": "The conditional expectation of the true reverse jump rate given the current noisy state",
+          "correct": true
+        },
+        {
+          "text": "The average of all previous training checkpoints",
+          "correct": false
+        },
+        {
+          "text": "The most likely single token, ignoring the noisy state",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBecause the negative ELBO decomposes exactly into entropy plus a KL term, minimizing it means matching the true reverse jump rate's conditional expectation — nothing else achieves the floor.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7f2461#2",
+      "format": "flip",
+      "prompt": "Why do denoiser and cavity/bridge parameterizations coincide for masked diffusion but not uniform diffusion?",
+      "back_html": "\u003cp\u003eIt's a structural property of the noising process: for masked diffusion the two coordinates always agree, but for uniform diffusion they diverge — and a naive denoiser form can blow up at initialization while the bridge form stays finite.\u003c/p\u003e"
+    }
+  ]
+}

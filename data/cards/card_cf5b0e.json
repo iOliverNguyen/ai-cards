@@ -1,0 +1,117 @@
+{
+  "id": "card_cf5b0e",
+  "slug": "from-agi-to-asi",
+  "type": "paper",
+  "title": "From AGI to ASI: Four Pathways to Superintelligence",
+  "hook": "A DeepMind team maps four routes from human-level AGI to superintelligence - and argues the leap may arrive as a series of transformative shifts, not one dramatic step change.",
+  "key_points": [
+    "Frames machine intelligence as a continuum from AGI toward Universal AI, whose endpoint is theoretically well understood.",
+    "Defines ASI as a system more cognitively capable than large organizations of humans.",
+    "Proposes four AGI-to-ASI pathways: scaling AGI, AI paradigm shifts, recursive self-improvement, and emergence from large-scale multi-agent collectives.",
+    "Stresses that frictions and bottlenecks along each path determine whether progress stalls or accelerates.",
+    "Argues the future may be many transformative changes across science and technology, not a single AGI step change."
+  ],
+  "content_html": "\u003cp\u003eFor most of the last decade, human-level AGI sat in the realm of speculation. This report,\nfrom a group of DeepMind researchers (including Shane Legg and Marcus Hutter), treats it\ninstead as a concrete next-decade target and asks the follow-up question: what happens\n\u003cem\u003eafter\u003c/em\u003e? It frames machine intelligence as a continuum stretching from AGI toward Universal\nAI — an endpoint that is, the authors note, theoretically well understood — and focuses on\nthe transition to artificial superintelligence (ASI), a system more capable than large\norganizations of humans.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe report lays out four candidate pathways from AGI to ASI: scaling AGI further, AI\nparadigm shifts, recursive self-improvement, and ASI emerging from large-scale multi-agent\ncollectives. For each, it weighs the frictions and bottlenecks that could either stall\nprogress or prove negligible. A central argument: the popular image of one transformative\nstep change when AGI arrives may be misleading. More apt, the authors suggest, is a series\nof transformative changes rippling across science and technology — which is why they call\nfor a broad, interdisciplinary effort to prepare. This is a position and analysis piece;\nits pathways and claims are the authors' framing, not settled results.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Tim Genewein",
+      "Matija Franklin",
+      "Alexander Lerchner",
+      "Laurent Orseau",
+      "Samuel Albanie",
+      "Adam Bales",
+      "Cole Wyeth",
+      "Stephanie Chan",
+      "Iason Gabriel",
+      "Joel Z. Leibo",
+      "Allan Dafoe",
+      "Marcus Hutter",
+      "Thore Graepel",
+      "Shane Legg"
+    ],
+    "url": "https://arxiv.org/abs/2606.12683",
+    "published_at": "2026-06-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-18",
+  "date": "2026-06-10",
+  "related": [
+    {
+      "id": "card_e9af36",
+      "slug": "on-the-measure-of-intelligence",
+      "type": "paper",
+      "title": "On the Measure of Intelligence (ARC)",
+      "hook": "Is a high benchmark score the same as intelligence? Chollet argues no — intelligence is how efficiently you acquire new skills, not how well you perform known ones.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2019-11-05"
+    },
+    {
+      "id": "card_490028",
+      "slug": "model-evaluation-for-extreme-risks",
+      "type": "paper",
+      "title": "Model Evaluation for Extreme Risks",
+      "hook": "General-purpose AI tends to pick up dangerous capabilities alongside useful ones. So test for those capabilities directly — before you ship, not after.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-24"
+    },
+    {
+      "id": "card_b475e8",
+      "slug": "frontier-ai-regulation",
+      "type": "paper",
+      "title": "Frontier AI Regulation",
+      "hook": "How do you regulate models too new to have rules yet? This paper sketches three building blocks: set standards, make labs report, then enforce.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-07-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_cf5b0e#0",
+      "format": "flip",
+      "prompt": "How does the report define ASI (artificial superintelligence)?",
+      "back_html": "\u003cp\u003eA system more intelligent and cognitively capable than large organizations of humans —\na point further along the machine-intelligence continuum than human-level AGI.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cf5b0e#1",
+      "format": "quiz",
+      "prompt": "Which is one of the four AGI-to-ASI pathways the report proposes?",
+      "choices": [
+        {
+          "text": "ASI emerging from large-scale multi-agent collectives",
+          "correct": true
+        },
+        {
+          "text": "Banning all frontier training runs worldwide",
+          "correct": false
+        },
+        {
+          "text": "Returning to symbolic expert systems",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe four pathways are scaling AGI, AI paradigm shifts, recursive self-improvement, and\nemergence from large-scale multi-agent collectives.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cf5b0e#2",
+      "format": "flip",
+      "prompt": "What's the report's view on whether AGI causes a single 'step change'?",
+      "back_html": "\u003cp\u003eProbably not — it may instead be a series of transformative societal changes driven by\nAI-enabled breakthroughs across many areas of science and technology.\u003c/p\u003e"
+    }
+  ]
+}

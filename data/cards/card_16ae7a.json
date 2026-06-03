@@ -1,0 +1,123 @@
+{
+  "id": "card_16ae7a",
+  "slug": "maia-200",
+  "type": "paper",
+  "title": "Maia 200: Dataflow Instead of Threads",
+  "hook": "Microsoft's AI accelerator bets that the bottleneck is moving data, not doing math — so the compiler programs the data movement explicitly instead of scheduling threads.",
+  "key_points": [
+    "Maia 200 is an AI accelerator reporting 10,145 Tflop/s FP4 and 5,072 Tflop/s FP8 in a 750W TDP with 7 TB/s HBM bandwidth.",
+    "It exemplifies a Software Defined Locally Accessed Dataflow Architecture (SDLA).",
+    "SDLA shifts from thread-centric to data-movement-centric design: software explicitly programs dataflow engines, specialized memories, and movement engines.",
+    "The authors offer a taxonomy of data management inspired by Flynn's classification of parallel machines.",
+    "The design targets large-scale inference workloads, aiming at cost and energy savings rather than training throughput."
+  ],
+  "content_html": "\u003cp\u003eXu, Heddes, and colleagues introduce Maia 200, an AI accelerator reporting 10,145 Tflop/s of FP4 and 5,072 Tflop/s of FP8 inside a 750W power envelope, fed by 7 TB/s of HBM bandwidth. The headline numbers matter less than the architectural argument behind them.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eProgram the movement, not the threads\u003c/h2\u003e\n\u003cp\u003eThe chip is presented as an instance of what the authors call a Software Defined Locally Accessed Dataflow Architecture. In a conventional GPU the programming model is thread-centric: you launch many threads and the hardware's caches and schedulers do their best with the resulting memory traffic. SDLA inverts that. Software explicitly programs dataflow engines that orchestrate specialized memories and data-movement engines, making the movement of tensors the thing you schedule.\u003c/p\u003e\n\u003ch2\u003eWhy this framing\u003c/h2\u003e\n\u003cp\u003eAt the scale of modern inference, energy and cost are dominated by shuffling bytes between memories, not by the multiply-accumulates themselves — the same pressure that produced systolic arrays and on-chip scratchpads elsewhere. The authors accompany the design with a taxonomy of data management inspired by Flynn's classification, positioning SDLA as a distinct point in the space, and target the result squarely at large-scale inference rather than training.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Sherry Xu",
+      "Marco Heddes",
+      "Jackson Peng",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.24664",
+    "published_at": "2026-08-25",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "hardware",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "architecture",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-27",
+  "date": "2026-08-25",
+  "related": [
+    {
+      "id": "card_242035",
+      "slug": "blackwell-gpu",
+      "type": "news",
+      "title": "NVIDIA Blackwell (B200 / GB200)",
+      "hook": "Blackwell is the chip the 2025 frontier ran on: a two-die GPU with an FP4 transformer engine, built to train and serve trillion-parameter models.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2024-03-18"
+    },
+    {
+      "id": "card_b185fa",
+      "slug": "tpu",
+      "type": "paper",
+      "title": "In-Datacenter Performance Analysis of a TPU",
+      "hook": "Google built a custom chip whose heart is a 256x256 grid of 8-bit multiply-accumulate units - and in production it ran neural-net inference roughly 15-30x faster than the GPUs and CPUs of its day.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2017-04-16"
+    },
+    {
+      "id": "card_855db0",
+      "slug": "openai-broadcom-jalapeno",
+      "type": "news",
+      "title": "Jalapeño: OpenAI and Broadcom's Inference Chip",
+      "hook": "OpenAI co-designed a custom chip — Jalapeño — built only for running LLMs, betting that inference-specific silicon beats general GPUs on cost and scale.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-24"
+    },
+    {
+      "id": "card_27a1ab",
+      "slug": "the-hardware-lottery",
+      "type": "paper",
+      "title": "The Hardware Lottery",
+      "hook": "A research idea can win not because it is genuinely better, but because it happens to fit the hardware and software we already have. Sara Hooker calls this the hardware lottery.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2020-09-14"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_16ae7a#0",
+      "format": "flip",
+      "prompt": "What does 'data-movement-centric' mean for an accelerator architecture?",
+      "back_html": "\u003cp\u003eRather than scheduling threads and letting the memory system react, software explicitly programs the dataflow engines, specialized memories, and movement engines that shuttle data around the chip.\u003c/p\u003e"
+    },
+    {
+      "id": "card_16ae7a#1",
+      "format": "quiz",
+      "prompt": "What workload is Maia 200 primarily aimed at?",
+      "choices": [
+        {
+          "text": "Large-scale AI inference, targeting cost and energy savings",
+          "correct": true
+        },
+        {
+          "text": "Frontier pretraining runs across thousands of nodes",
+          "correct": false
+        },
+        {
+          "text": "Scientific simulation in double precision",
+          "correct": false
+        },
+        {
+          "text": "On-device inference for phones and laptops",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper frames Maia 200 as a solution for massive-parallelism inference workloads, where cost and energy per token dominate.\u003c/p\u003e"
+    },
+    {
+      "id": "card_16ae7a#2",
+      "format": "flip",
+      "prompt": "Why does an explicit dataflow design help at 7 TB/s of memory bandwidth?",
+      "back_html": "\u003cp\u003eAt that scale the expensive resource is moving bytes, not issuing arithmetic — so making movement a first-class programmable thing is where the efficiency and scalability come from.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "id": "card_5efd90",
+  "slug": "feature-visualization",
+  "type": "resource",
+  "title": "Feature Visualization",
+  "hook": "What does a single neuron in a vision network actually look for? Generate the image that lights it up the most — and see for yourself.",
+  "key_points": [
+    "You can reveal what a neuron responds to by optimizing an input image to maximize its activation.",
+    "Early layers tend to favor edges and textures; deeper ones respond to parts and whole objects.",
+    "Raw optimization yields noisy, adversarial-looking images, so regularization is needed to get interpretable pictures.",
+    "It turns opaque internal features into visuals a human can actually inspect and reason about."
+  ],
+  "content_html": "\u003cp\u003eThis Distill article by Chris Olah, Alexander Mordvintsev, and Ludwig Schubert explains feature visualization: a way to ask a trained vision network what each neuron or layer is tuned to detect. Rather than searching a dataset for examples, you start from noise and optimize the image itself to drive a chosen unit as high as possible. The resulting pictures make abstract internal features something you can look at, turning a black box a little more transparent.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eYou pick a target — a neuron, a channel, or a whole layer — and treat the input image as the thing to optimize. Using gradients, you nudge pixels to increase that target's activation. Done naively, this produces high-frequency, hallucinatory noise that technically maximizes the unit but means nothing to us. The article shows how regularization and other tricks steer the optimization toward natural-looking, recognizable patterns, so the visualization reflects a genuine, human-legible feature.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eNeural networks learn rich internal representations, but those weights and activations are hard to read directly. Feature visualization gives a concrete window into them, showing that networks build up from simple edge and texture detectors to detectors for object parts and whole objects. That intuition underpins much of modern interpretability research. As an interactive Distill piece, it's also a great hands-on first encounter with the idea of peering inside a model.\u003c/p\u003e",
+  "source": {
+    "name": "Distill",
+    "authors": [
+      "Chris Olah",
+      "Alexander Mordvintsev",
+      "Ludwig Schubert"
+    ],
+    "url": "https://distill.pub/2017/feature-visualization/",
+    "published_at": "2017-11-07",
+    "license": "CC BY (Distill)"
+  },
+  "topic_ids": [
+    "interpretability"
+  ],
+  "tags": [
+    "interpretability",
+    "vision",
+    "tutorial"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2017-11-07",
+  "related": [
+    {
+      "id": "card_346b15",
+      "slug": "circuits-zoom-in",
+      "type": "resource",
+      "title": "Zoom In: An Introduction to Circuits",
+      "hook": "What if neural networks aren't black boxes but circuits you can read? This piece argues their features and weights form algorithms we can reverse-engineer.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2020-03-10"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_f94290",
+      "slug": "alexnet",
+      "type": "paper",
+      "title": "ImageNet Classification with Deep CNNs (AlexNet)",
+      "hook": "In 2012 a single deep CNN trained on two GPUs crushed the ImageNet contest by a wide margin — and kicked off the deep learning era.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2012-12-03"
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "id": "card_c5e31e",
+  "slug": "optstop-bayesian-stopping-evals",
+  "type": "paper",
+  "title": "Knowing When to Stop: Adaptive Sampling for LLM Evals",
+  "hook": "Most evals run every item the same number of times, long after the estimate has stopped moving. Treat it as sequential measurement instead and 57–97% of those trials turn out to be unnecessary.",
+  "key_points": [
+    "Fixed sampling budgets keep re-testing items whose scores are already precise.",
+    "optstop reframes evaluation as sequential measurement: sample where uncertainty is high, stop where it isn't.",
+    "Built on hierarchical Bayesian inference; supports binary, ordinal, and continuous outcomes.",
+    "Every benchmark item stays eligible for sampling — no pre-calibrated item bank required.",
+    "A safeguard samples more cautiously near zero performance, where rare successes carry the most information.",
+    "In a 200-item, 10-epoch illustration it removed 57–97% of planned trials with equivalent overall conclusions."
+  ],
+  "content_html": "\u003cp\u003eRunning an eval usually means picking a number — ten samples per item, say — and applying it uniformly. But items differ. Some settle after two samples; others stay genuinely uncertain after twenty. A fixed budget spends the same compute on both. optstop reframes evaluation as a \u003cstrong\u003esequential measurement problem\u003c/strong\u003e: keep sampling where uncertainty remains high, stop where estimates are precise or stable enough.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe framework builds on \u003cstrong\u003ehierarchical Bayesian inference\u003c/strong\u003e and handles binary, ordinal, and continuous outcomes. Two design choices make it practical. Every benchmark item stays eligible for sampling throughout, so it doesn't require a pre-calibrated item bank the way item-response-theory approaches often do. And it includes a safeguard that samples \u003cem\u003emore\u003c/em\u003e cautiously as measured performance approaches zero — the regime where a single rare success carries the most information and stopping early would be most misleading. It runs live during an evaluation or retrospectively over logged results.\u003c/p\u003e\n\u003ch2\u003eThe savings\u003c/h2\u003e\n\u003cp\u003eIn an illustrative 200-item, 10-epoch evaluation, the framework removed \u003cstrong\u003e57%–97% of planned trials\u003c/strong\u003e across nine validation settings while reaching overall conclusions equivalent to the full run. The size of the saving depends heavily on evaluation design — but the general point holds: eval compute can be allocated by uncertainty rather than by fixed repetition counts, and the second policy is rarely the efficient one.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Toby D. Pilditch"
+    ],
+    "url": "https://arxiv.org/abs/2608.14425",
+    "published_at": "2026-08-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-17",
+  "date": "2026-08-14",
+  "related": [
+    {
+      "id": "card_35a936",
+      "slug": "item-response-theory-ai-evaluation",
+      "type": "paper",
+      "title": "Can We Trust Item Response Theory for AI Evaluation?",
+      "hook": "IRT ranks models off a handful of items instead of averaging accuracy — but the math was built for human test-takers, and AI benchmarks break its assumptions in ways that quietly distort rankings.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-16"
+    },
+    {
+      "id": "card_7f92e0",
+      "slug": "budget-dependent-rankings",
+      "type": "paper",
+      "title": "Who Thinks Best Depends on How Long You Let Them",
+      "hook": "Change the token budget and the leaderboard changes with it. Model rankings reversed on every benchmark tested — which means a single-budget eval is measuring the budget as much as the model.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-12"
+    },
+    {
+      "id": "card_ddce7e",
+      "slug": "agent-benchmark-protocol-validity",
+      "type": "paper",
+      "title": "Do Agent Benchmarks Measure Capability?",
+      "hook": "An agent score only means something if the task still requires the skill it claims to test. Auditing 2,385 traces, two-thirds showed the agent taking a shortcut instead.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_c5e31e#0",
+      "format": "flip",
+      "prompt": "What is wasteful about a fixed sampling budget in LLM evaluation?",
+      "back_html": "\u003cp\u003eIt tests every item the same number of times even after that item's estimate is already precise — spending compute where there's no remaining uncertainty to resolve.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c5e31e#1",
+      "format": "quiz",
+      "prompt": "What safeguard does optstop apply as measured performance approaches zero?",
+      "choices": [
+        {
+          "text": "It samples more cautiously there, because rare successes matter most",
+          "correct": true
+        },
+        {
+          "text": "It stops sampling immediately to save budget",
+          "correct": false
+        },
+        {
+          "text": "It switches the outcome model from binary to continuous",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eNear-zero performance is exactly where a single rare success would change the conclusion, so the framework keeps sampling more cautiously rather than stopping early.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c5e31e#2",
+      "format": "quiz",
+      "prompt": "What did the illustrative 200-item, 10-epoch evaluation show?",
+      "choices": [
+        {
+          "text": "57–97% of planned trials removed across nine validation settings, with equivalent overall conclusions",
+          "correct": true
+        },
+        {
+          "text": "A 2x speedup but with materially different rankings",
+          "correct": false
+        },
+        {
+          "text": "Savings only on items the model answered correctly every time",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAcross nine validation settings the framework removed 57%–97% of planned trials while reaching conclusions equivalent to the full run.\u003c/p\u003e"
+    }
+  ]
+}

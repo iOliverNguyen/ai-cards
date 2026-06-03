@@ -1,0 +1,105 @@
+{
+  "id": "card_bc290b",
+  "slug": "state-of-open-models-summer-2026",
+  "type": "blog",
+  "title": "State of Open Models, Summer 2026: Attention Isn't Adoption",
+  "hook": "Hugging Face crunched a year of Hub data: Chinese labs shipped the biggest open models nearly every month, but models under 1B parameters took 83% of all downloads.",
+  "key_points": [
+    "In almost every month of 2026 the largest, strongest open model came from a Chinese lab — monthly ceilings of 754B to 2.78T parameters vs. under 130B for US releases.",
+    "Likes and downloads barely overlap: only one repo made both the top-25 most-liked and most-downloaded lists.",
+    "Sub-1B models captured 83% of all-time downloads; models above 100B took roughly 1%.",
+    "Qwen is the ecosystem's default base model — 151,448 derivatives, about 2.6x Meta's footprint, with ~180–210 new Qwen-based repos per day.",
+    "Most big Chinese models ship under Apache 2.0 or MIT, so the return has to come from API, cloud, or hardware positioning instead of licensing.",
+    "Autonomous agents became a meaningful source of Hub traffic for the first time; Claude Code led at 44.4% of agent usage in July."
+  ],
+  "content_html": "\u003cp\u003eHugging Face pulled a year of Hub telemetry into one picture of the open-weight ecosystem, and the headline is a split between what people talk about and what people run. On the frontier, Chinese labs led almost every month of 2026: their largest release ranged from 754B up to 2.78 trillion parameters, while American open releases typically stayed under 130B. On the ground, the story inverts — models below 1B parameters took about 83% of all-time downloads, and everything above 100B took roughly 1%.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTwo secondary findings are worth carrying around. First, Qwen has quietly become the ecosystem's substrate: 151,448 derivative repositories, about 2.6x Meta's footprint, growing by roughly 180–210 new repos a day. If you build on open weights, you are probably building on Qwen or on something built on Qwen. Second, agents showed up as real traffic for the first time, with Claude Code at 44.4% of agent usage in July, though the report notes that leadership shifted month to month.\u003c/p\u003e\n\u003cp\u003eThe licensing observation ties it together. Most of the large Chinese models carry Apache 2.0 or MIT terms, which means the business model can't be the license — Hugging Face's framing is that the return \u0026quot;has to come from somewhere else: API and cloud business, hardware and platform positioning.\u0026quot; Full data and charts are in the post.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face Blog",
+    "authors": [
+      "Hugging Face"
+    ],
+    "url": "https://huggingface.co/blog/state-of-open-models-summer-2026",
+    "published_at": "2026-08-14",
+    "license": "Hugging Face blog (link-out)"
+  },
+  "topic_ids": [
+    "lab-updates",
+    "releases"
+  ],
+  "tags": [
+    "open-source",
+    "news"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-08-17",
+  "date": "2026-08-14",
+  "related": [
+    {
+      "id": "card_3dbe9d",
+      "slug": "dean-ball-china-open-weight-models",
+      "type": "news",
+      "title": "Dean Ball: China's Open-Weight Strategy Could Backfire — Or Provoke Friction",
+      "hook": "OpenAI's head of strategic futures argues Chinese open-weight releases like Kimi slow AI capex and risk state-run infrastructure — and predicts deliberate US regulatory friction in response.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-19"
+    },
+    {
+      "id": "card_b2b72a",
+      "slug": "open-weights-american-leadership",
+      "type": "news",
+      "title": "Twenty Companies Sign for Open Weights — the Frontier Labs Don't",
+      "hook": "A Microsoft-initiated open letter urges policymakers not to restrict open-weight models prematurely. NVIDIA, Meta, Palantir and Hugging Face signed; OpenAI, Anthropic and Google were absent.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-07-24"
+    },
+    {
+      "id": "card_142fdd",
+      "slug": "qwen3-8-2-4t-a95b",
+      "type": "news",
+      "title": "Qwen3.8-2.4T-A95B Is Out",
+      "hook": "Qwen's next flagship landed after a week of countdown threads — and the name says it all: a sparse mixture-of-experts in the trillions, with under a hundred billion awake per token.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-08-12"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_bc290b#0",
+      "format": "quiz",
+      "prompt": "According to Hugging Face's Summer 2026 Hub data, which size class captured the bulk of downloads?",
+      "choices": [
+        {
+          "text": "Models under 1B parameters — about 83% of all-time downloads",
+          "correct": true
+        },
+        {
+          "text": "Models above 100B parameters, driven by frontier releases",
+          "correct": false
+        },
+        {
+          "text": "Models in the 7B–13B range, the classic local-inference sweet spot",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eFrontier size draws attention; tiny models draw usage. Models above 100B accounted for roughly 1% of downloads.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bc290b#1",
+      "format": "flip",
+      "prompt": "Why does the report argue permissive licensing on huge Chinese models isn't a giveaway?",
+      "back_html": "\u003cp\u003eIf the weights are Apache 2.0 or MIT, licensing can't be the revenue source — so the return has to come from API and cloud business, or hardware and platform positioning.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bc290b#2",
+      "format": "flip",
+      "prompt": "What evidence shows Qwen has become the community's default base model?",
+      "back_html": "\u003cp\u003e151,448 derivative repositories — roughly 2.6x Meta's footprint — with about 180–210 new Qwen-based repos appearing daily through 2026.\u003c/p\u003e"
+    }
+  ]
+}

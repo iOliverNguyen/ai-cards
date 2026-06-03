@@ -1,0 +1,118 @@
+{
+  "id": "card_31ff4e",
+  "slug": "mixtral",
+  "type": "paper",
+  "title": "Mixtral of Experts",
+  "hook": "Mixtral packs 8 experts per layer but routes each token through only 2, so you get the capacity of a ~47B model at the compute cost of a ~13B one - open weights included.",
+  "key_points": [
+    "Sparse Mixture-of-Experts: 8 feed-forward experts per layer, a learned router picks 2 per token, giving ~47B total params but ~13B active params per forward pass.",
+    "Matches or beats Llama 2 70B on most benchmarks while using roughly half the compute per token.",
+    "Released under Apache 2.0 with open weights, making a large-capacity MoE accessible to the community.",
+    "Builds on Mistral 7B's grouped-query and sliding-window attention, extending it to the MoE setting."
+  ],
+  "content_html": "\u003cp\u003eMistral AI published Mixtral 8x7B in January 2024, an open-weights sparse Mixture-of-Experts model built on top of the Mistral 7B architecture. The key structural choice — 8 expert feed-forward networks per transformer layer with only 2 activated per token — gives the model a large parameter count while keeping the per-token compute budget modest.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eEach transformer layer contains 8 feed-forward networks (the experts) and a small router network. For every token, the router scores all 8 experts and selects the top 2; the token is processed by just those two, and their outputs are combined. This means the model has roughly 47 billion total parameters but uses only around 13 billion for any single token, similar in cost to a dense 13B model.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eMixtral demonstrated that sparse MoE scaling works in practice for open releases, not just at proprietary labs like Google (Switch Transformer). Matching Llama 2 70B quality at half the active-parameter cost is a meaningful efficiency gain for anyone running inference. The Apache 2.0 license made it one of the most capable freely usable models at its release. Read the paper on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Albert Q. Jiang",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2401.04088",
+    "published_at": "2024-01-08",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "moe",
+    "releases"
+  ],
+  "tags": [
+    "nlp",
+    "open-source",
+    "architecture",
+    "landmark",
+    "paper"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2024-01-08",
+  "related": [
+    {
+      "id": "card_647d0f",
+      "slug": "mistral-7b",
+      "type": "paper",
+      "title": "Mistral 7B",
+      "hook": "Mistral 7B outperforms much larger open models on most benchmarks - showing that architecture choices and data quality can stretch a 7B parameter budget a long way.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    },
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    },
+    {
+      "id": "card_bf9cd2",
+      "slug": "switch-transformer",
+      "type": "paper",
+      "title": "Switch Transformer: Scaling to Trillion-Parameter Models",
+      "hook": "Route every token to exactly one expert instead of many - this single simplification made trillion-parameter MoE models stable enough to train at scale.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2021-01-11"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_31ff4e#0",
+      "format": "flip",
+      "prompt": "How does Mixtral get large capacity at modest per-token compute?",
+      "back_html": "\u003cp\u003eEach layer has 8 expert feed-forward networks but a learned router activates only 2 per token, giving ~47B total params while using ~13B per forward pass.\u003c/p\u003e"
+    },
+    {
+      "id": "card_31ff4e#1",
+      "format": "quiz",
+      "prompt": "What does Mixtral's router do for each token?",
+      "choices": [
+        {
+          "text": "Scores all 8 experts and selects the top 2, whose outputs are combined",
+          "correct": true
+        },
+        {
+          "text": "Sends the token through all 8 experts and averages them",
+          "correct": false
+        },
+        {
+          "text": "Routes the token to a single fixed expert by position",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe router scores all 8 experts per token and selects the top 2; the token is processed by just those two.\u003c/p\u003e"
+    },
+    {
+      "id": "card_31ff4e#2",
+      "format": "flip",
+      "prompt": "Why was Mixtral significant beyond its benchmark scores?",
+      "back_html": "\u003cp\u003eIt showed sparse MoE scaling works for open releases, not just proprietary labs — released under Apache 2.0 with open weights at Llama 2 70B quality.\u003c/p\u003e"
+    }
+  ]
+}

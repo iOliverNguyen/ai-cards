@@ -1,0 +1,107 @@
+{
+  "id": "card_9c1f76",
+  "slug": "plans-dont-persist-context",
+  "type": "paper",
+  "title": "Plans Don't Persist: Context Management Is Load-Bearing for Agents",
+  "hook": "An agent writes a plan, then context compression evicts it. This paper shows the plan never became internal state — once it leaves the window, the agent forgets it and task success craters.",
+  "key_points": [
+    "Long-horizon agents compress and evict old tokens to fit finite context windows — safe only if the dropped info is truly no longer needed.",
+    "Plans are the stress case: written early, used for many steps, and among the first things evicted.",
+    "'Replay pairing' reruns a trajectory with and without the plan and measures hidden-state cosine distance to see how much the plan still matters.",
+    "On Llama-3.1-70B, plan signal spikes right after the plan, then falls ~4.1x in a single action-observation step (12.4x on HotpotQA) — agents don't carry plans as persistent state.",
+    "Naive plan eviction cuts ALFWorld success by 34.7 percentage points; protecting the plan alone doesn't fully fix it."
+  ],
+  "content_html": "\u003cp\u003eA common assumption about LLM agents is that once they reason out a plan, that plan becomes part of their working state. \u003cstrong\u003ePlans Don't Persist\u003c/strong\u003e tests that assumption — and finds it mostly false.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe diagnostic\u003c/h2\u003e\n\u003cp\u003eLong-horizon agents survive finite context windows by compressing, summarizing, and evicting old tokens. That's only safe if the dropped information is genuinely no longer needed or has been internalized. Plans are the worst case: written early, relied on for many steps, and often first to be evicted. To probe this, the authors introduce \u003cstrong\u003ereplay pairing\u003c/strong\u003e — run the same trajectory with and without the plan in history, and measure the cosine distance between hidden states. On Llama-3.1-70B, the plan's influence spikes one step after it's written (≈0.453) and then falls about 4.1x in a single action-observation step; on HotpotQA it falls 12.4x. The plan, in other words, isn't being carried forward as persistent state — the agent leans on it remaining in context.\u003c/p\u003e\n\u003ch2\u003eWhy it matters (and a measurement trap)\u003c/h2\u003e\n\u003cp\u003eA practical stress test makes the cost concrete: naively evicting the plan cuts ALFWorld success by 34.7 percentage points, and probe-gated re-surfacing doesn't fully recover it. The authors also flag a \u003cstrong\u003ereasoning-trace confound\u003c/strong\u003e — a reasoning model's \u003ccode\u003e\u0026lt;think\u0026gt;\u003c/code\u003e blocks re-derive the plan, so naive stripping leaves plan evidence in the supposedly plan-free run; strict stripping fixes it. The broader lesson: agent-critical information is often context-\u003cem\u003eresident\u003c/em\u003e rather than internalized, which makes context management load-bearing, and protecting plans alone insufficient.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Aman Mehta",
+      "Anupam Datta"
+    ],
+    "url": "https://arxiv.org/abs/2606.22953",
+    "published_at": "2026-06-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "context-memory",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "interpretability",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-29",
+  "date": "2026-06-22",
+  "related": [
+    {
+      "id": "card_2c4ace",
+      "slug": "attention-amnesia-hybrid-llms",
+      "type": "paper",
+      "title": "Attention Amnesia: When Chain-of-Thought Tuning Breaks Long-Range Recall",
+      "hook": "Fine-tuning a hybrid LLM on chain-of-thought makes it reason better but quietly forget how to find a needle in a long haystack — and the fix is to just copy back two weight matrices.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-09"
+    },
+    {
+      "id": "card_bfcabe",
+      "slug": "language-models-need-sleep",
+      "type": "paper",
+      "title": "Language Models Need Sleep",
+      "hook": "Humans consolidate the day's memories while sleeping. This paper gives LLMs a 'sleep' phase to distill fragile short-term context into stable long-term weights — and a 'dreaming' phase to rehearse.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_42f624",
+      "slug": "agent-token-budget-overruns",
+      "type": "paper",
+      "title": "Token Budgets: When Agents Burn Money",
+      "hook": "A single retry loop can spend thousands of dollars before anyone notices. This paper catalogs 63 real budget-overrun incidents — and asks the type system to make over-spending a compile error.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_9c1f76#0",
+      "format": "flip",
+      "prompt": "What does 'replay pairing' measure, and what did it reveal about plans?",
+      "back_html": "\u003cp\u003eIt reruns the same trajectory with and without the plan in history and measures hidden-state cosine distance. The plan's signal spikes right after it appears, then decays sharply within a step or two — the agent isn't carrying it as persistent internal state.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9c1f76#1",
+      "format": "quiz",
+      "prompt": "What is the paper's central claim about context management for agents?",
+      "choices": [
+        {
+          "text": "Agent-critical information can be context-resident rather than internalized, so compressing/evicting it is load-bearing and risky",
+          "correct": true
+        },
+        {
+          "text": "Context windows are effectively infinite, so eviction never matters",
+          "correct": false
+        },
+        {
+          "text": "Plans are always internalized into weights after one step",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe work shows standard agents depend on the plan staying in context; evicting it isn't free — naive plan eviction cut ALFWorld success by 34.7 points.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9c1f76#2",
+      "format": "flip",
+      "prompt": "Why do reasoning models complicate measuring plan decay, and how is it handled?",
+      "back_html": "\u003cp\u003eTheir \u003c!-- raw HTML omitted --\u003e traces re-derive plan content, leaving plan evidence even in the 'stripped' run (the reasoning-trace confound). Strict stripping removes prior \u003c!-- raw HTML omitted --\u003e blocks from the stripped run only, recovering the true signal.\u003c/p\u003e"
+    }
+  ]
+}

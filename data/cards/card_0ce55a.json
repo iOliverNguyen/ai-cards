@@ -1,0 +1,99 @@
+{
+  "id": "card_0ce55a",
+  "slug": "vlm-plots-cut-token-costs",
+  "type": "paper",
+  "title": "Plot the Numbers Instead of Tokenizing Them",
+  "hook": "Feeding a multivariate time series to an LLM as text explodes into thousands of float tokens. Render it as a 2D plot and hand it to a VLM instead: 3.6–10.4x fewer input tokens, and better accuracy.",
+  "key_points": [
+    "LLM inference accounts for over 90% of AI operational energy, and it scales directly with input token count.",
+    "Raw multivariate KPI windows from 4G/5G cell sites expand into thousands of floating-point tokens as text.",
+    "Encoding the series as 2D plots for a VLM cut input tokens 3.6–10.4x across Llama-3.2-90B, Qwen2.5-VL-72B, and Pixtral-12B.",
+    "That translated to 1.8–2.5x measured inference energy reduction — about 7.2 MJ/day at a deployment monitoring 200 cells per 15-minute interval.",
+    "Accuracy improved rather than degraded: a fine-tuned Llama-3.2-90B-Vision reached 220.7% higher precision than its text-only counterpart on telecom anomaly detection.",
+    "At 24 KPIs, text representations exceed the 128K context window of most production LLMs, while the visual representation still fits."
+  ],
+  "content_html": "\u003cp\u003eThere's a mismatch at the heart of using LLMs for numerical monitoring data: a window of multivariate KPIs is a compact numerical object, but tokenizing it as text turns every value into a run of floating-point tokens. Jalli and colleagues, working on telecom network analytics over 4G/5G cell-site data, take the mismatch seriously — LLM inference accounts for over 90% of AI operational energy and scales directly with input token count, so this is an energy problem as much as a context problem.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe swap\u003c/h2\u003e\n\u003cp\u003eRender the time series as a 2D plot and give it to a vision-language model. Across Llama-3.2-90B, Qwen2.5-VL-72B, and Pixtral-12B, that cut input tokens by 3.6–10.4x, and measured inference energy by 1.8–2.5x — roughly 7.2 MJ/day at an edge or CloudRAN deployment monitoring 200 cells every 15 minutes.\u003c/p\u003e\n\u003ch2\u003eThe part that isn't a trade-off\u003c/h2\u003e\n\u003cp\u003eEfficiency results usually come with an accuracy cost, and this one doesn't. A fine-tuned Llama-3.2-90B-Vision reported 220.7% higher precision than its text-only counterpart on telecom anomaly detection, and beat LSTM and ARIMA baselines by over 144%; on public benchmarks Pixtral-12B showed a 20.6x improvement in J/F1 score at a mean F1 of 0.82. There's also a hard feasibility argument underneath: at 24 KPIs the text representation blows past the 128K context window most production LLMs offer, so text-only processing requires truncation, while the plot still fits comfortably. The authors' broader pitch is to treat energy consumption as a first-class engineering constraint when choosing an input modality at all.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Bhavika Jalli",
+      "Nikhil Korati Prasanna",
+      "Jayanta Choudhury"
+    ],
+    "url": "https://arxiv.org/abs/2608.07427",
+    "published_at": "2026-08-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "vlms"
+  ],
+  "tags": [
+    "efficiency",
+    "multimodal",
+    "inference",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-10",
+  "date": "2026-08-07",
+  "related": [
+    {
+      "id": "card_7bdd52",
+      "slug": "rate-utility-tokens-bytes-pixels",
+      "type": "paper",
+      "title": "Rate-Utility Frontiers for Language Encodings: Comparing Tokens, Bytes, and Pixels",
+      "hook": "Tokens, bytes, or pixels — which encodes language best? A controlled head-to-head across 13 languages finds no single winner: each encoding trades off differently by task.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-17"
+    },
+    {
+      "id": "card_969cdf",
+      "slug": "model-routing-systems-optimization",
+      "type": "blog",
+      "title": "Model Routing Is Simple. Until It Isn't.",
+      "hook": "Picking the 'right' model per query looks like classification. IBM Research argues it's really a systems-optimization problem — and treating it as less costs money and speed.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_0ce55a#0",
+      "format": "flip",
+      "prompt": "Why does rendering a time series as a plot save so many tokens?",
+      "back_html": "\u003cp\u003eAs text, every value in a multivariate window becomes its own run of floating-point tokens — thousands of them. As an image, the same window is a fixed, small number of visual tokens regardless of how many data points it contains.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0ce55a#1",
+      "format": "quiz",
+      "prompt": "What happened to accuracy when the numerical data was passed as plots instead of text?",
+      "choices": [
+        {
+          "text": "It improved — a fine-tuned Llama-3.2-90B-Vision reached 220.7% higher precision than the text-only model on telecom anomaly detection",
+          "correct": true
+        },
+        {
+          "text": "It dropped modestly, which the paper argues is an acceptable trade for the energy savings",
+          "correct": false
+        },
+        {
+          "text": "It was unchanged; only the energy cost differed",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper's central claim is that this is not an efficiency-for-accuracy trade: the visual representation was both cheaper and more accurate, also beating LSTM and ARIMA baselines by over 144%.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0ce55a#2",
+      "format": "flip",
+      "prompt": "At 24 KPIs, what makes text-only processing infeasible?",
+      "back_html": "\u003cp\u003eThe text representation exceeds the 128K context window of most production LLMs, so you'd have to truncate. The visual representation of the same data stays within standard limits.\u003c/p\u003e"
+    }
+  ]
+}

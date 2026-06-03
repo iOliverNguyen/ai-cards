@@ -1,0 +1,107 @@
+{
+  "id": "card_5e431b",
+  "slug": "gemini-3-6-flash",
+  "type": "news",
+  "title": "Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber",
+  "hook": "Google splits its fast tier three ways: a workhorse that answers in fewer tokens, a 350-tokens-per-second speed model, and a security specialist locked behind a government pilot.",
+  "key_points": [
+    "Gemini 3.6 Flash is the workhorse tier — Google says it uses 17% fewer output tokens than 3.5 Flash while scoring higher.",
+    "Reported gains: DeepSWE 37% → 49%, MLE Bench 49.7% → 63.9%, OSWorld-Verified 78.4% → 83.0%.",
+    "3.6 Flash is priced at $1.50 per million input tokens and $7.50 output.",
+    "3.5 Flash-Lite is the latency tier: 350 output tokens/second at $0.30 in / $2.50 out per million.",
+    "Flash-Lite goes 31% → 54% on Terminal-Bench 2.1 and beats the older Gemini 3 Flash on several agentic tasks.",
+    "3.5 Flash Cyber finds and fixes security vulnerabilities, shipping only as a limited pilot for governments and trusted partners via CodeMender."
+  ],
+  "content_html": "\u003cp\u003eGoogle refreshed the fast end of the Gemini lineup with three models at once. Gemini 3.6 Flash is the general workhorse for coding, knowledge work, and multimodal tasks; 3.5 Flash-Lite is the cheap, low-latency option; and 3.5 Flash Cyber is a narrow model for finding and fixing security vulnerabilities, available only to governments and trusted partners in a pilot.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe efficiency pitch\u003c/h2\u003e\n\u003cp\u003eThe claim Google leads with for 3.6 Flash isn't a bigger score, it's a shorter answer: 17% fewer output tokens than 3.5 Flash, alongside higher results — DeepSWE 37% → 49%, MLE Bench 49.7% → 63.9%, OSWorld-Verified 78.4% → 83.0%. That framing matters because output tokens are the pricier half of the bill (here $7.50 per million against $1.50 for input) and they set how long you wait for a reply. Reaching the same answer by a shorter route cuts cost and latency together, which compounds in agent loops that make many calls per task.\u003c/p\u003e\n\u003ch2\u003eThe speed tier and the specialist\u003c/h2\u003e\n\u003cp\u003e3.5 Flash-Lite targets throughput: 350 output tokens per second at $0.30 in / $2.50 out per million. Google reports it at 54% on Terminal-Bench 2.1, up from 31% for the prior version, and says it beats the older Gemini 3 Flash on several agentic tasks — a small model doing work that used to need a bigger one. 3.5 Flash Cyber is the outlier: tuned for vulnerability detection and repair, described as competitive on the CyberGym benchmark, and gated to a limited-access pilot rather than the API.\u003c/p\u003e\n\u003cp\u003e3.6 Flash and 3.5 Flash-Lite are available now through the Gemini API, Google AI Studio, Android Studio, Gemini Enterprise, and the Gemini app, with Flash-Lite also rolling out in Google Search. Google DeepMind, July 21, 2026.\u003c/p\u003e",
+  "source": {
+    "name": "Google DeepMind",
+    "authors": [
+      "Google DeepMind"
+    ],
+    "url": "https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber",
+    "published_at": "2026-07-21",
+    "license": "DeepMind blog"
+  },
+  "topic_ids": [
+    "releases",
+    "lab-updates",
+    "agents"
+  ],
+  "tags": [
+    "news",
+    "efficiency",
+    "agent"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-07-27",
+  "date": "2026-07-21",
+  "related": [
+    {
+      "id": "card_72286a",
+      "slug": "gemini-3-5-flash-computer-use",
+      "type": "news",
+      "title": "Computer Use in Gemini 3.5 Flash",
+      "hook": "DeepMind put computer-use agents — reading the screen, then clicking, typing, and scrolling through real UIs — into its fast, low-cost Flash tier.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-24"
+    },
+    {
+      "id": "card_e19fbb",
+      "slug": "gpt-5-6",
+      "type": "news",
+      "title": "GPT-5.6: Frontier Intelligence That Scales With Your Ambition",
+      "hook": "GPT-5.6 ships as three tiers instead of one model — Luna, Terra, Sol — built around squeezing more capability out of every token rather than just scaling up.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-07-09"
+    },
+    {
+      "id": "card_48a3f2",
+      "slug": "tua-bench-terminal-agents",
+      "type": "paper",
+      "title": "TUA-Bench: Benchmarking General-Purpose Terminal Agents",
+      "hook": "120 real terminal tasks — from email triage to PhD-level scientific workflows — show even Claude Opus 4.8 tops out around 66%, far from reliable general computer use.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_5e431b#0",
+      "format": "quiz",
+      "prompt": "What is the headline efficiency claim for Gemini 3.6 Flash?",
+      "choices": [
+        {
+          "text": "It uses 17% fewer output tokens than 3.5 Flash while scoring higher on coding and agentic benchmarks",
+          "correct": true
+        },
+        {
+          "text": "It generates 350 output tokens per second, the fastest in the lineup",
+          "correct": false
+        },
+        {
+          "text": "It costs the same per token as 3.5 Flash-Lite",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eFewer output tokens per answer lowers the bill and the wait even at an unchanged price per token. The 350 tokens/second figure belongs to 3.5 Flash-Lite.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5e431b#1",
+      "format": "flip",
+      "prompt": "Why does cutting output tokens matter as much as raising benchmark scores?",
+      "back_html": "\u003cp\u003eOutput tokens are the pricier half of the bill and set how long you wait for an answer, so a shorter route to the same result cuts both cost and latency.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5e431b#2",
+      "format": "flip",
+      "prompt": "Which of the three new models is not generally available, and how does it ship?",
+      "back_html": "\u003cp\u003eGemini 3.5 Flash Cyber — a limited-access pilot for governments and trusted partners, delivered through CodeMender. 3.6 Flash and 3.5 Flash-Lite are available now.\u003c/p\u003e"
+    }
+  ]
+}

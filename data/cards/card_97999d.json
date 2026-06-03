@@ -1,0 +1,106 @@
+{
+  "id": "card_97999d",
+  "slug": "glm-5-3",
+  "type": "news",
+  "title": "GLM-5.3: All the Gains From Post-Training",
+  "hook": "z.ai shipped GLM-5.3 on the same base model as GLM-5.2 — every improvement, including a claimed 50% jump on coding, comes from post-training alone.",
+  "key_points": [
+    "GLM-5.3 reuses the GLM-5.2 base model; all reported gains come from post-training rather than new pretraining.",
+    "z.ai claims a 50% improvement over GLM-5.2 on its in-house Z.ai Code Bench, plus open-weights SOTA on Terminal Bench 3.0 and Agents' Last Exam.",
+    "The lab reports cyber capability scaling faster than expected, with state-of-the-art CyberGym results for vulnerability discovery.",
+    "Explicitly targeted at complex coding and long-horizon agentic tasks rather than general chat quality.",
+    "Released as open weights on Hugging Face; benchmark figures are vendor-reported."
+  ],
+  "content_html": "\u003cp\u003ez.ai released GLM-5.3 in late August 2026, and the release note leads with an unusual admission: the base model is unchanged from GLM-5.2. Everything new comes from post-training. The lab claims a 50% improvement on its in-house Z.ai Code Bench, open-weights state of the art on Terminal Bench 3.0 and Agents' Last Exam, and markedly better performance on long-horizon tasks.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's new\u003c/h2\u003e\n\u003cp\u003eThe pitch is squarely agentic: complex coding and multi-step tasks that run for a long time before producing a result. z.ai also reports that cyber capability — finding software vulnerabilities — developed faster than they anticipated as post-training scaled, putting GLM-5.3 at the top of CyberGym.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eA same-base upgrade is a clean natural experiment. It says the pretrained model already had the capability latent in it, and that the recipe for eliciting agentic behavior is still improving quickly enough to deliver a headline release on its own. It also sharpens a familiar safety question: dual-use capability arriving as a side effect of general agentic post-training, in a model anyone can download. All benchmark numbers here are vendor-reported and include an in-house benchmark, so treat them as directional.\u003c/p\u003e",
+  "source": {
+    "name": "r/LocalLLaMA",
+    "authors": [
+      "/u/jacek2023"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1w0tgzl/zaiorgglm53_hugging_face",
+    "published_at": "2026-08-28",
+    "license": "Reddit (community post)"
+  },
+  "topic_ids": [
+    "pretraining",
+    "releases"
+  ],
+  "tags": [
+    "open-source",
+    "agent",
+    "news",
+    "nlp"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-28",
+  "related": [
+    {
+      "id": "card_eda172",
+      "slug": "glm-5-2",
+      "type": "news",
+      "title": "GLM-5.2",
+      "hook": "z.ai's GLM-5.2 became the strongest open-weights model of mid-2026 — the first reported to clear 80% on Terminal-Bench and a coding favorite that rivals top closed models at a fraction of the cost.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-16"
+    },
+    {
+      "id": "card_574bea",
+      "slug": "glm-4-6",
+      "type": "news",
+      "title": "GLM-4.6",
+      "hook": "Zhipu's GLM-4.6 is an open-weight MoE that became a popular drop-in coding backend — near Claude Sonnet 4 on real-world coding, with a 200K context and a permissive license.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2025-09-30"
+    },
+    {
+      "id": "card_bc290b",
+      "slug": "state-of-open-models-summer-2026",
+      "type": "blog",
+      "title": "State of Open Models, Summer 2026: Attention Isn't Adoption",
+      "hook": "Hugging Face crunched a year of Hub data: Chinese labs shipped the biggest open models nearly every month, but models under 1B parameters took 83% of all downloads.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-08-14"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_97999d#0",
+      "format": "flip",
+      "prompt": "What is unusual about how GLM-5.3 improved over GLM-5.2?",
+      "back_html": "\u003cp\u003eIt uses the same base model. Every reported gain — coding, long-horizon agentic work, cyber capability — comes from post-training, not from pretraining a new model.\u003c/p\u003e"
+    },
+    {
+      "id": "card_97999d#1",
+      "format": "quiz",
+      "prompt": "Why is a post-training-only upgrade notable for a frontier open-weights model?",
+      "choices": [
+        {
+          "text": "It shows substantial headroom can be unlocked without the cost of a fresh pretraining run",
+          "correct": true
+        },
+        {
+          "text": "It means the model has fewer parameters than its predecessor",
+          "correct": false
+        },
+        {
+          "text": "It implies the base model was undertrained on code",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePretraining is the expensive part. Extracting large capability gains from post-training alone means the base model already contained the ability, and the recipe — not the compute — was the bottleneck.\u003c/p\u003e"
+    },
+    {
+      "id": "card_97999d#2",
+      "format": "flip",
+      "prompt": "What capability did z.ai say scaled faster than they expected?",
+      "back_html": "\u003cp\u003eCyber capability — GLM-5.3 is reported as state of the art on CyberGym for vulnerability discovery, a gain that emerged as post-training was scaled.\u003c/p\u003e"
+    }
+  ]
+}

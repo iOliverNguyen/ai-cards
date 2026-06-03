@@ -1,0 +1,96 @@
+{
+  "id": "card_8171c0",
+  "slug": "ica-lens",
+  "type": "paper",
+  "title": "ICA Lens: Interpreting LLMs Without Training a Dictionary",
+  "hook": "Before you train a giant sparse autoencoder, just look at the geometry. ICA Lens revives a classic method to surface interpretable directions in an LLM with no dictionary training at all.",
+  "key_points": [
+    "Sparse autoencoders (SAEs) are the default interpretability tool, but they require training, storing, and evaluating large overcomplete dictionaries.",
+    "Insight: interpretable directions tend to be token-selective, which makes them look less Gaussian than random directions.",
+    "Independent component analysis (ICA) is built to find exactly those non-Gaussian directions — and it's revived here as a fast first lens.",
+    "ICALens is a practical workflow: GPU-parallel FastICA plus LLM-specific stability recipes and fitting diagnostics for layer-wise analysis.",
+    "Across GPT-2 Small, Gemma 2 2B, and Qwen 3.5 2B it recovers compact, human-interpretable directions; on SAEBench it's competitive with public SAEs and better under small probe-perturbation budgets."
+  ],
+  "content_html": "\u003cp\u003eFinding interpretable directions in a language model's representations is central to understanding and steering its behavior, and sparse autoencoders (SAEs) have become the default tool. But using an SAE as the \u003cem\u003efirst\u003c/em\u003e lens means training, storing, and evaluating large overcomplete dictionaries — a bottleneck that slows rapid exploration. The authors ask how much interpretable structure is already visible in activation geometry before training any dictionary, and revisit a classical answer: independent component analysis (ICA).\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTheir intuition is simple: many interpretable directions are token-selective, and such directions should look \u003cem\u003eless Gaussian\u003c/em\u003e than random ones — exactly what ICA is built to find. Prior ICA attempts on LLMs were brittle, so they introduce ICALens, a practical workflow combining an optimized GPU-parallel FastICA pipeline with LLM-specific stability recipes and fitting diagnostics for reliable layer-wise analysis. Across GPT-2 Small, Gemma 2 2B, and Qwen 3.5 2B Base, ICALens recovers compact, human-interpretable directions without per-layer gradient training, and on SAEBench it is competitive with public SAEs in sparse probing — outperforming them in targeted probe perturbation under small-to-medium budgets. The argument: ICA isn't a weak baseline but an efficient first lens, complementary to SAEs.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Sida Liu",
+      "Feijiang Han"
+    ],
+    "url": "https://arxiv.org/abs/2606.11722",
+    "published_at": "2026-06-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "nlp",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-15",
+  "date": "2026-06-10",
+  "related": [
+    {
+      "id": "card_704af4",
+      "slug": "scaling-evaluating-sparse-autoencoders",
+      "type": "paper",
+      "title": "Scaling and Evaluating Sparse Autoencoders",
+      "hook": "Tuning the sparsity penalty on an autoencoder is fiddly. Use a top-k constraint instead and you can dial sparsity directly — and scale SAEs to GPT-4.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-06-06"
+    },
+    {
+      "id": "card_0946f0",
+      "slug": "towards-monosemanticity",
+      "type": "paper",
+      "title": "Towards Monosemanticity: Decomposing Models with Dictionary Learning",
+      "hook": "If neurons mean several things at once, can we find cleaner units? A sparse autoencoder pulled 4,000+ single-concept features out of one tiny transformer layer.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2023-10-05"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_8171c0#0",
+      "format": "flip",
+      "prompt": "Why does ICA help find interpretable directions in an LLM's activations?",
+      "back_html": "\u003cp\u003eInterpretable directions tend to be token-selective, so they look less Gaussian than random directions — and ICA is specifically designed to recover non-Gaussian directions.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8171c0#1",
+      "format": "quiz",
+      "prompt": "What is ICA Lens's main practical advantage over a sparse autoencoder?",
+      "choices": [
+        {
+          "text": "It needs no training of a large overcomplete dictionary",
+          "correct": true
+        },
+        {
+          "text": "It produces higher-resolution generated images",
+          "correct": false
+        },
+        {
+          "text": "It works without access to model activations",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSAEs require training, storing, and evaluating large dictionaries; ICA Lens recovers interpretable directions directly from activation geometry, enabling faster exploration.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8171c0#2",
+      "format": "flip",
+      "prompt": "How does the paper reframe ICA's role in interpretability?",
+      "back_html": "\u003cp\u003eNot as a weak baseline, but as an efficient, complementary first lens for exploring LLM representations before committing to training a neural dictionary.\u003c/p\u003e"
+    }
+  ]
+}

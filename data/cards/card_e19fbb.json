@@ -1,0 +1,96 @@
+{
+  "id": "card_e19fbb",
+  "slug": "gpt-5-6",
+  "type": "news",
+  "title": "GPT-5.6: Frontier Intelligence That Scales With Your Ambition",
+  "hook": "GPT-5.6 ships as three tiers instead of one model — Luna, Terra, Sol — built around squeezing more capability out of every token rather than just scaling up.",
+  "key_points": [
+    "GPT-5.6 launches as a family of three variants, from least to most capable: Luna, Terra, and Sol.",
+    "Priced per million tokens: Luna $1 in / $6 out, Terra $2.50 / $15, Sol $5 / $30 — cheaper tiers for lighter work, Sol for the hardest tasks.",
+    "OpenAI says Sol is 54% more token-efficient at coding than prior GPT-5-series models — more useful work per token, not just bigger.",
+    "'Ultra' is a top-tier setting that coordinates multiple agents across parallel workstreams to finish tasks faster.",
+    "Ships with what OpenAI calls its most robust safeguards yet, after evaluation combining human red-teaming with automated testing."
+  ],
+  "content_html": "\u003cp\u003eGPT-5.6 is now fully out, arriving as three tiers instead of a single model. Luna is the cheap, fast option; Terra sits in the middle; Sol is the flagship built for the hardest work — all pitched around the same idea: squeeze more intelligence out of every token rather than just ship a bigger model.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003ePricing scales with capability: Luna runs $1 per million input tokens and $6 output, Terra $2.50/$15, and Sol $5/$30. OpenAI says Sol is 54% more token-efficient on coding tasks than prior GPT-5-series models, framing the release around performance-per-dollar rather than a pure capability jump. \u0026quot;Ultra\u0026quot; is the highest setting available, coordinating multiple agents across parallel workstreams to push through complex tasks faster. OpenAI also says the family ships with its most robust safeguards yet, following an evaluation period that combined human red-teaming with large-scale automated testing.\u003c/p\u003e\n\u003cp\u003eThis follows OpenAI's June 26 preview of GPT-5.6 Sol (see the related card) — GPT-5.6 is the full launch, now spanning three price/capability tiers with concrete numbers behind the \u0026quot;more intelligence per token\u0026quot; pitch. OpenAI, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "authors": [
+      "OpenAI"
+    ],
+    "url": "https://openai.com/index/gpt-5-6",
+    "published_at": "2026-07-09",
+    "license": "OpenAI (blog post)"
+  },
+  "topic_ids": [
+    "releases",
+    "lab-updates",
+    "pretraining"
+  ],
+  "tags": [
+    "news",
+    "efficiency",
+    "agent"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-07-13",
+  "date": "2026-07-09",
+  "related": [
+    {
+      "id": "card_30f481",
+      "slug": "gpt-5-6-sol",
+      "type": "news",
+      "title": "GPT-5.6 Sol Preview",
+      "hook": "OpenAI previewed GPT-5.6 Sol, a next-generation model it says is stronger at coding, science, and cybersecurity — and shipped with its most advanced safety stack yet.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-26"
+    },
+    {
+      "id": "card_2015b0",
+      "slug": "chatgpt-work",
+      "type": "news",
+      "title": "ChatGPT Work: An Agent That Delivers Finished Work",
+      "hook": "ChatGPT Work doesn't just chat — it reaches into your actual apps and files, grinds on a project for hours, and hands back a real spreadsheet or slide deck instead of a wall of text.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-07-09"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_e19fbb#0",
+      "format": "quiz",
+      "prompt": "How are GPT-5.6's three variants ranked by capability?",
+      "choices": [
+        {
+          "text": "Luna \u003c Terra \u003c Sol",
+          "correct": true
+        },
+        {
+          "text": "Sol \u003c Terra \u003c Luna",
+          "correct": false
+        },
+        {
+          "text": "They're equal in capability, differing only in speed",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLuna is the fastest, most budget-friendly tier; Terra sits in the middle; Sol is the flagship, priciest variant built for the hardest work.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e19fbb#1",
+      "format": "flip",
+      "prompt": "What efficiency claim does OpenAI make for GPT-5.6 Sol on coding tasks?",
+      "back_html": "\u003cp\u003eOpenAI says Sol is 54% more token-efficient at coding than earlier GPT-5-series models — getting more useful work out of each token rather than just adding raw scale.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e19fbb#2",
+      "format": "flip",
+      "prompt": "What is 'Ultra' in the GPT-5.6 lineup?",
+      "back_html": "\u003cp\u003eOpenAI's top-tier capability setting: it coordinates multiple agents across parallel workstreams to finish complex tasks faster.\u003c/p\u003e"
+    }
+  ]
+}

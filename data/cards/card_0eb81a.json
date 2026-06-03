@@ -1,0 +1,84 @@
+{
+  "id": "card_0eb81a",
+  "slug": "lottery-ticket-hypothesis",
+  "type": "paper",
+  "title": "The Lottery Ticket Hypothesis",
+  "hook": "You can prune over 90% of a trained network and keep its accuracy. The catch: a tiny 'winning ticket' subnetwork was hiding inside the dense one from the start.",
+  "key_points": [
+    "Pruning can remove over 90% of a network's parameters without sacrificing accuracy.",
+    "A dense random network contains small subnetworks — 'winning tickets' — that train as well alone.",
+    "Tickets match full accuracy in comparable iterations, trained from their original initialization.",
+    "An algorithm finds tickets under 10–20% of the original size on MNIST and CIFAR10."
+  ],
+  "content_html": "\u003cp\u003eJonathan Frankle and Michael Carbin noticed that pruning can strip over 90% of a network's parameters with no loss in accuracy, and asked what that says about the original dense network. Their answer is the lottery ticket hypothesis: a dense, randomly-initialized network already contains small subnetworks — \u0026quot;winning tickets\u0026quot; — that can match the full network's accuracy when trained on their own.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe key condition is that a winning ticket is trained in isolation from its original initialization, not reinitialized from scratch. Under those conditions it reaches comparable accuracy in a comparable number of iterations to the full network. The authors give an algorithm to find such tickets and consistently turn up ones smaller than 10–20% of the original network on MNIST and CIFAR10.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe result reframes pruning: rather than shrinking a trained model after the fact, it suggests the small, trainable network was present at initialization all along. That has practical pull for efficiency and raises a deeper question about why initialization matters so much to whether a subnetwork can learn.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jonathan Frankle",
+      "Michael Carbin"
+    ],
+    "url": "https://arxiv.org/abs/1803.03635",
+    "published_at": "2018-03-09",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "generalization"
+  ],
+  "tags": [
+    "foundational",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2018-03-09",
+  "related": [
+    {
+      "id": "card_aa026f",
+      "slug": "double-descent",
+      "type": "paper",
+      "title": "Deep Double Descent",
+      "hook": "Bigger models should overfit, then get worse — right? Instead test error often dips, climbs, then dips again as model size grows, breaking the classic bias-variance story.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2019-12-04"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_0eb81a#0",
+      "format": "flip",
+      "prompt": "What is a 'winning ticket' in the lottery ticket hypothesis?",
+      "back_html": "\u003cp\u003eA small subnetwork inside a dense, randomly-initialized network that can match the full network's accuracy when trained on its own.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0eb81a#1",
+      "format": "quiz",
+      "prompt": "What condition is essential for a winning ticket to reach full accuracy?",
+      "choices": [
+        {
+          "text": "Training it from its original initialization, not reinitialized from scratch",
+          "correct": true
+        },
+        {
+          "text": "Reinitializing it with fresh random weights before training",
+          "correct": false
+        },
+        {
+          "text": "Pruning it only after it is fully trained in isolation",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe ticket must keep its original initialization; under that condition it matches full accuracy in a comparable number of iterations.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0eb81a#2",
+      "format": "flip",
+      "prompt": "How does the lottery ticket hypothesis reframe pruning?",
+      "back_html": "\u003cp\u003eRather than shrinking a trained model after the fact, it suggests the small trainable network was present at initialization all along.\u003c/p\u003e"
+    }
+  ]
+}

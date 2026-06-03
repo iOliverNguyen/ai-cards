@@ -1,0 +1,87 @@
+{
+  "id": "card_33927c",
+  "slug": "closed-loop-generative-selection",
+  "type": "paper",
+  "title": "When Remembering More Slows the Search Down",
+  "hook": "Generate molecules, score them, keep the best, retrain, repeat. A convergence theory for this drug-discovery workhorse finds that training on more of the past can actually hurt.",
+  "key_points": [
+    "The loop is standard in computational drug discovery: a generative model proposes candidates, an oracle scores them, the elite are kept, the model retrains on them.",
+    "It had no rigorous convergence theory because retraining each round breaks the Markov property that classical evolutionary-algorithm analysis relies on.",
+    "The authors recover a Markov structure on an enlarged state space, show elitism makes the search absorbing, and prove almost-sure convergence.",
+    "Their runtime bound decomposes the search into the time spent escaping each fitness level.",
+    "On memory depth: when learning improves steadily with more data, deeper memory never hurts — otherwise excess memory can slow convergence, with an exit-time analysis pinpointing the optimum.",
+    "Extends to multi-objective search and noisy oracles, recast in terms of oracle evaluations — the real bottleneck in drug design."
+  ],
+  "content_html": "\u003cp\u003eClosed-loop generative selection has become a workhorse of computational drug discovery, and the recipe is simple enough to state in a sentence: a learned generative model proposes candidate molecules, a fitness oracle scores them, the best are kept, and the model is retrained on this elite set before the next round. Fackeldey and Schütte point out that despite its wide use, the method has lacked a rigorous convergence theory — largely because retraining the model each round breaks the Markov property that classical evolutionary-algorithm analysis depends on.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe theory\u003c/h2\u003e\n\u003cp\u003eThey recover a Markov structure by working on an enlarged state space, then show that elitism makes the search absorbing. From there they prove almost-sure convergence together with a runtime bound that decomposes the search into the time spent escaping each fitness level. The analysis extends to multi-objective search and to noisy oracles, where they quantify how many repeated evaluations certify progress under light-tailed noise and how robust estimators restore the guarantees under heavy tails. Recast in terms of oracle evaluations — the true bottleneck in drug design, since each one may be an assay — the analysis yields a concrete evaluation-minimal strategy.\u003c/p\u003e\n\u003ch2\u003eThe counterintuitive bit\u003c/h2\u003e\n\u003cp\u003eThe most transferable result concerns the model's \u003cem\u003ememory\u003c/em\u003e: how much of the past it is trained on. When learning improves steadily with more data, deeper memory never hurts. When it doesn't, an exit-time analysis pinpoints the optimal memory depth and shows that excess memory can actively slow convergence. The authors report a reproducible study confirming the predictions, including this surprising cost of remembering too much, and close with three open problems.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Konstantin Fackeldey",
+      "Christof Schütte"
+    ],
+    "url": "https://arxiv.org/abs/2607.22211",
+    "published_at": "2026-07-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-science",
+    "papers-this-week"
+  ],
+  "tags": [
+    "generative",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-27",
+  "date": "2026-07-24",
+  "related": [
+    {
+      "id": "card_880baf",
+      "slug": "alphafold-3",
+      "type": "paper",
+      "title": "AlphaFold 3: Predicting Biomolecular Interactions",
+      "hook": "AlphaFold 3 extends protein structure prediction to full biomolecular complexes - proteins with DNA, RNA, ligands, and ions - using a diffusion-based architecture.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-05-08"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_33927c#0",
+      "format": "flip",
+      "prompt": "Why couldn't classical evolutionary-algorithm analysis handle closed-loop generative selection?",
+      "back_html": "\u003cp\u003eBecause the model is retrained each round, which breaks the Markov property that analysis relies on. The authors recover a Markov structure by moving to an enlarged state space.\u003c/p\u003e"
+    },
+    {
+      "id": "card_33927c#1",
+      "format": "quiz",
+      "prompt": "When can a deeper memory — training on more of the past — slow convergence down?",
+      "choices": [
+        {
+          "text": "When learning does not improve steadily with more data",
+          "correct": true
+        },
+        {
+          "text": "Whenever the candidate pool exceeds the oracle's evaluation budget",
+          "correct": false
+        },
+        {
+          "text": "Only under heavy-tailed oracle noise; with clean oracles deeper memory always helps",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIf learning improves steadily with more data, deeper memory never hurts. It's when that condition fails that excess memory becomes costly, and an exit-time analysis locates the optimal depth.\u003c/p\u003e"
+    },
+    {
+      "id": "card_33927c#2",
+      "format": "flip",
+      "prompt": "What role does elitism play in the convergence proof?",
+      "back_html": "\u003cp\u003eKeeping the best candidates makes the search \u003cem\u003eabsorbing\u003c/em\u003e — it cannot fall back out of a reached fitness level — which is what enables the almost-sure convergence result and the level-by-level runtime bound.\u003c/p\u003e"
+    }
+  ]
+}

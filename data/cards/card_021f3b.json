@@ -1,0 +1,122 @@
+{
+  "id": "card_021f3b",
+  "slug": "swe-bench-promax",
+  "type": "paper",
+  "title": "SWE-Bench ProMax: Refactoring as the Harder Coding Test",
+  "hook": "Coding benchmarks keep saturating and keep turning out to be broken. ProMax swaps bug-fixing for multi-file refactoring — and the best frontier model still only solves 41.2%.",
+  "key_points": [
+    "An audit cited by the authors found nearly 60% of unsolved SWE-bench Verified instances have flawed tests — too narrow (rejecting correct fixes) or too broad (checking unstated requirements).",
+    "Frontier models can also reproduce SWE-bench gold patches verbatim, suggesting the tasks leaked into training data.",
+    "ProMax uses refactoring instead: coordinated, behavior-preserving edits across many files, which is much harder to memorize.",
+    "170 expert-curated instances from real commits in seven languages — Python, Java, TypeScript, Go, C, C++, Rust.",
+    "Issue descriptions were rewritten from scratch and test suites hand-reviewed; tasks average 11.4 modified files and 261.6 changed lines.",
+    "Best frontier model under two agent scaffolds resolves only 41.2%, so the benchmark is far from saturated."
+  ],
+  "content_html": "\u003cp\u003eCoding benchmarks are decaying faster than the field can replace them. The team behind SWE-Bench ProMax cites an audit finding that nearly 60% of unsolved SWE-bench Verified instances have flawed tests — some too narrow to accept a correct fix, some so broad they check requirements the issue never stated — and notes that frontier models can reproduce gold patches verbatim, a strong hint the tasks are in their training data.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTheir answer is to change the task rather than patch the old one. ProMax is built on code refactoring: behavior-preserving changes that have to stay coordinated across many files, which is both a more realistic picture of engineering work and far harder to solve from memory. The benchmark has 170 expert-curated instances drawn from real commits in Python, Java, TypeScript, Go, C, C++ and Rust. Issue descriptions were rewritten from scratch for precision, test suites were reviewed by hand to strip the narrow and broad cases, and small or single-file tasks were filtered out — leaving instances averaging 11.4 modified files and 261.6 lines.\u003c/p\u003e\n\u003cp\u003eThe headline result is the useful one: under two different agent scaffolds, the best frontier model resolves just 41.2%. Shi et al., August 2026; the dataset is on Hugging Face.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yuling Shi",
+      "Jinghan Xu",
+      "Kelin Fu",
+      "Wenhao Zeng",
+      "Shilin He",
+      "Lei Zhang",
+      "Yue Liu",
+      "Zelin Zhao",
+      "Terry Yue Zhuo",
+      "Jialun Cao",
+      "Siyu Ye",
+      "Tianyu Liu",
+      "Kai Cai",
+      "Shing-Chi Cheung",
+      "Xiaodong Gu"
+    ],
+    "url": "https://arxiv.org/abs/2608.09802",
+    "published_at": "2026-08-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "agent",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-13",
+  "date": "2026-08-10",
+  "related": [
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    },
+    {
+      "id": "card_e9167e",
+      "slug": "swe-bench-pro-audit",
+      "type": "blog",
+      "title": "Separating Signal from Noise in Coding Evaluations",
+      "hook": "OpenAI told the field to switch to SWE-Bench Pro after finding SWE-bench Verified contaminated. Now its own audit says ~30% of SWE-Bench Pro's tasks are broken too.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-08"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_021f3b#0",
+      "format": "flip",
+      "prompt": "Why did the ProMax authors pick refactoring rather than bug-fixing tasks?",
+      "back_html": "\u003cp\u003eRefactoring demands coordinated, behavior-preserving changes across many files — a harder, more realistic test of agent capability, and much less amenable to reproducing a memorized gold patch.\u003c/p\u003e"
+    },
+    {
+      "id": "card_021f3b#1",
+      "format": "quiz",
+      "prompt": "What two opposite test-quality failures did the cited SWE-bench Verified audit find?",
+      "choices": [
+        {
+          "text": "Overly narrow tests that reject correct solutions, and overly broad tests that check unstated requirements",
+          "correct": true
+        },
+        {
+          "text": "Tests that time out, and tests that depend on network access",
+          "correct": false
+        },
+        {
+          "text": "Tests written in the wrong language, and tests with no assertions",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBoth directions corrupt the score: narrow tests punish valid fixes, broad tests demand behavior the issue never asked for. ProMax's curation targets exactly these.\u003c/p\u003e"
+    },
+    {
+      "id": "card_021f3b#2",
+      "format": "flip",
+      "prompt": "Roughly how large is a typical SWE-Bench ProMax task?",
+      "back_html": "\u003cp\u003eAbout 11.4 modified files and 261.6 changed lines per instance — substantially bigger than the tasks in existing coding benchmarks.\u003c/p\u003e"
+    }
+  ]
+}

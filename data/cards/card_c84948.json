@@ -1,0 +1,116 @@
+{
+  "id": "card_c84948",
+  "slug": "flex-forcing-unified-video-diffusion",
+  "type": "paper",
+  "title": "Flex-Forcing: One Video Diffusion Model, Two Inference Modes",
+  "hook": "Video diffusion models used to force a choice: globally coherent but slow, or fast streaming that drifts apart. Flex-Forcing chunks time and denoising steps together so one model does both.",
+  "key_points": [
+    "Bidirectional diffusion is globally coherent but slow; autoregressive generation streams fast but drifts from exposure bias.",
+    "Flex-Forcing's core mechanism: a flexible chunking scheme defined jointly over the temporal axis and the denoising steps.",
+    "Plans structure bidirectionally across chunks for global coherence, while generating frames autoregressively within each chunk for speed.",
+    "Chunk size adapts to device compute budgets; the model also supports any-order, any-timestep generation without a strict causal constraint.",
+    "Beats rigid-schedule baselines on video quality and long-video stability while also running faster."
+  ],
+  "content_html": "\u003cp\u003eVideo diffusion models have long forced a choice at inference time: generate bidirectionally for strong global coherence and fidelity, but slowly — or generate autoregressively for fast streaming, but drift apart over long sequences from exposure bias. Flex-Forcing asks why a single model can't do both, depending on what a given moment needs.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe core idea is a chunking mechanism defined jointly over the temporal axis and the denoising steps. Chunks are planned bidirectionally against each other, giving the model global structural awareness across the whole video, while frames inside each chunk are generated autoregressively, keeping per-chunk synthesis efficient and fine-grained. Chunk size itself is flexible, tunable to different device compute budgets, and the framework supports any-order, any-timestep generation without the strict causal constraint autoregressive models usually impose. Across multiple video generation benchmarks, the authors report consistently better video quality and long-video stability than baselines locked into a rigid inference schedule — while also running faster. Xinyin Ma, Arash Vahdat, Weili Nie, and colleagues (NVIDIA-affiliated), arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xinyin Ma",
+      "Julius Berner",
+      "Chao Liu",
+      "Arash Vahdat",
+      "Weili Nie",
+      "Xinchao Wang"
+    ],
+    "url": "https://arxiv.org/abs/2607.03509",
+    "published_at": "2026-07-03",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "video-audio",
+    "diffusion",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "generative",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-13",
+  "date": "2026-07-03",
+  "related": [
+    {
+      "id": "card_4ac6bc",
+      "slug": "liveedit-streaming-video-editing",
+      "type": "paper",
+      "title": "LiveEdit: Real-Time Streaming Video Editing",
+      "hook": "A three-stage distillation pipeline turns a slow, bidirectional video editor into a causal, frame-by-frame one fast enough for live AR — 12.66 FPS with stable backgrounds.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-25"
+    },
+    {
+      "id": "card_edc166",
+      "slug": "sora-2",
+      "type": "news",
+      "title": "Sora 2",
+      "hook": "OpenAI's Sora 2 added synchronized audio and sharper physical consistency — and shipped inside a TikTok-style social app where you remix each other's generations.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-09-30"
+    },
+    {
+      "id": "card_1ccfb1",
+      "slug": "veo-3",
+      "type": "news",
+      "title": "Veo 3",
+      "hook": "Google's Veo 3 generates video with synchronized native audio — dialogue, sound effects, and ambient noise produced together with the picture, not dubbed on after.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-05-20"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_c84948#0",
+      "format": "flip",
+      "prompt": "What trade-off in video diffusion models does Flex-Forcing try to dissolve?",
+      "back_html": "\u003cp\u003eBidirectional diffusion gets strong global coherence but is slow; autoregressive diffusion streams fast but suffers exposure bias and drifts over long videos. Flex-Forcing lets one model get both.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c84948#1",
+      "format": "quiz",
+      "prompt": "How does Flex-Forcing combine bidirectional and autoregressive generation in one model?",
+      "choices": [
+        {
+          "text": "It plans structure bidirectionally across chunks for global coherence, then generates frames autoregressively within each chunk for speed",
+          "correct": true
+        },
+        {
+          "text": "It runs two entirely separate models and averages their outputs",
+          "correct": false
+        },
+        {
+          "text": "It always generates the whole video bidirectionally, then re-encodes it autoregressively afterward",
+          "correct": false
+        },
+        {
+          "text": "It disables autoregressive generation entirely and only supports bidirectional mode",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe chunking mechanism is defined jointly over time and denoising steps: chunks are planned bidirectionally for global structure, while frames within each chunk stream out autoregressively.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c84948#2",
+      "format": "flip",
+      "prompt": "What does Flex-Forcing's 'flexible chunking' let the model adapt to?",
+      "back_html": "\u003cp\u003eDifferent device compute budgets — chunk size can be tuned per deployment — plus any-order, any-timestep generation without being locked into a strict causal constraint.\u003c/p\u003e"
+    }
+  ]
+}

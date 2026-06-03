@@ -1,0 +1,99 @@
+{
+  "id": "card_2d4f95",
+  "slug": "pretraining-data-poisoned-computational-propaganda",
+  "type": "paper",
+  "title": "Pretraining Data Can Be Poisoned through Computational Propaganda",
+  "hook": "Most pretraining-poisoning research injects fake Wikipedia edits — a toy case next to messy web-scale reality. This paper shows public discussion forums are a real, live vector for attacking LLM pretraining data.",
+  "key_points": [
+    "Prior poisoning research mostly used established, curated sources (like Wikipedia) that don't represent the scale and heterogeneity of real pretraining corpora, and ignored how curation pipelines interact with poisoned data.",
+    "Demonstrates that public discussion interfaces (comment sections, forums) are a viable, existing content-injection mechanism for poisoning pretraining data at web scale.",
+    "Introduces HalfLife, a method for estimating whether adversarially injected content actually survives web crawling and curation into training data.",
+    "Establishes third-party webpage content (not just a site's own primary content) as a realistic attack vector on LLM pretraining."
+  ],
+  "content_html": "\u003cp\u003ePoisoning a language model's pretraining data can plant behaviors that are hard to detect and hard to remove later. But most prior work on this threat used tidy, well-curated sources like Wikipedia to demonstrate it — a setting that doesn't capture the scale or messiness of a real web-scale pretraining corpus, and one that skips over whether standard data-curation pipelines would even let the poisoned content through.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eVictoria Graf and colleagues, including researchers from the Allen Institute for AI, show poisoning is feasible well beyond that limited setting, using an existing and very ordinary content-injection mechanism: public discussion interfaces, like comment sections and forums that get swept into web crawls. To check whether such injected content actually makes it into training data after crawling and curation — rather than being filtered out along the way — they introduce HalfLife, a method for estimating adversarial content's survival rate through that pipeline.\u003c/p\u003e\n\u003cp\u003ePut together, the two contributions make the case that third-party webpage content, not just a site's own primary text, is a realistic and underappreciated vector for attacking LLM pretraining at web scale — and that measuring whether an injection actually survives curation is essential to judging how serious that risk really is. Source: arXiv, arxiv.org/abs/2607.15267.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Victoria Graf",
+      "Hannaneh Hajishirzi",
+      "Noah A. Smith",
+      "David Kohlbrenner",
+      "Kyle Lo"
+    ],
+    "url": "https://arxiv.org/abs/2607.15267",
+    "published_at": "2026-07-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "data",
+    "risks-policy",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "dataset",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-16",
+  "related": [
+    {
+      "id": "card_9237d7",
+      "slug": "deduplicating-training-data",
+      "type": "paper",
+      "title": "Deduplicating Training Data Makes LMs Better",
+      "hook": "Training corpora are full of copies — one 61-word sentence shows up 60,000+ times in C4. Strip the duplicates and models memorize far less and evaluate more honestly.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2021-07-14"
+    },
+    {
+      "id": "card_7a5e17",
+      "slug": "the-pile",
+      "type": "dataset",
+      "title": "The Pile: 800GB of Diverse Text",
+      "hook": "Web text alone leaves gaps. The Pile stitches together 22 curated sources — academic and professional — so a language model picks up knowledge plain web crawls miss.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-12-31"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_2d4f95#0",
+      "format": "flip",
+      "prompt": "What gap in prior pretraining-poisoning research does this paper address?",
+      "back_html": "\u003cp\u003eEarlier work mostly poisoned established curated sources like Wikipedia, which don't reflect the scale and messiness of real pretraining corpora, and ignored how data-curation pipelines interact with poisoned content.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2d4f95#1",
+      "format": "quiz",
+      "prompt": "What existing web mechanism does this paper show is a viable vector for poisoning pretraining data?",
+      "choices": [
+        {
+          "text": "Public discussion interfaces, like comment sections and forums, that get swept up in web crawls",
+          "correct": true
+        },
+        {
+          "text": "Directly editing Wikipedia articles",
+          "correct": false
+        },
+        {
+          "text": "Uploading fake research papers to arXiv",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper's core demonstration is that content injected through open discussion interfaces can enter web-scale training corpora — a more realistic vector than the Wikipedia-editing setups used in prior poisoning studies.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2d4f95#2",
+      "format": "flip",
+      "prompt": "What is HalfLife, and why does it matter?",
+      "back_html": "\u003cp\u003eA method the authors introduce for estimating whether adversarially injected content actually survives web crawling and data curation into a model's training data — since an injection that gets filtered out never poses a real risk.\u003c/p\u003e"
+    }
+  ]
+}

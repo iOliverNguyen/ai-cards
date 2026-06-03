@@ -1,0 +1,132 @@
+{
+  "id": "card_212864",
+  "slug": "lingbot-video",
+  "type": "paper",
+  "title": "LingBot-Video: A Sparse-MoE Video Diffusion World Model",
+  "hook": "Video diffusion models are usually dense — every parameter fires on every frame. LingBot-Video swaps in a sparse Mixture-of-Experts, then grades its own physics with a VLM judge.",
+  "key_points": [
+    "Single-stream diffusion transformer using a DeepSeek-V3-style sparse MoE: 128 experts, top-8 routing, 1.4B active of 13B total parameters.",
+    "Post-trained with six-reward RL, including a physical-plausibility reward scored by a VLM judging sampled frames.",
+    "Also supports action-to-video mode: predicts robot rollout videos conditioned on action and hand-pose streams.",
+    "Open weights, code, and a Diffusers/SGLang inference stack released under the LingBot-Video name.",
+    "Raises its own Goodhart's-law question: can a VLM reliably judge physics, or will the reward just get gamed?"
+  ],
+  "content_html": "\u003cp\u003eMost video diffusion models are dense — every parameter does work on every frame, whether or not that capacity is needed. LingBot-Video bets on sparsity instead, borrowing DeepSeek-V3's Mixture-of-Experts recipe for a video world model.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe architecture is a single-stream diffusion transformer with 128 experts per MoE layer and top-8 routing, so only 1.4B of its 13B total parameters activate per forward pass — trading a bigger model for cheaper inference. Post-training layers in six reward signals, one of them scoring physical plausibility by having a vision-language model judge sampled frames. The team also released an action-to-video mode, conditioning generation on action and hand-pose streams to predict robot rollout videos, plus open weights, code, and a Diffusers/SGLang serving stack. Posted to r/MachineLearning, 2026-07-08, the release author raised their own flag on the physics reward: grading plausibility with a VLM is convenient, but it's exactly the kind of proxy metric Goodhart's law warns about — a model can learn to look physically right to the judge without the underlying dynamics actually improving.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit (r/MachineLearning)",
+    "authors": [
+      "/u/Savings-Display5123"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1ur0bxq/lingbotvideo_sparsemoe_video_diffusion",
+    "published_at": "2026-07-08",
+    "license": "Community post"
+  },
+  "topic_ids": [
+    "video-audio",
+    "moe",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "generative",
+    "open-source",
+    "paper"
+  ],
+  "importance": 2,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-08",
+  "related": [
+    {
+      "id": "card_9ce5e7",
+      "slug": "lingbot-world-2",
+      "type": "paper",
+      "title": "LingBot-World 2.0: An Agent-Piloted Infinite World Model",
+      "hook": "Interactive world models usually run out of road — quality degrades, or the action set stays thin. LingBot-World 2.0 stays coherent forever and puts an agent inside to invent what's next.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-08"
+    },
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    },
+    {
+      "id": "card_bf9cd2",
+      "slug": "switch-transformer",
+      "type": "paper",
+      "title": "Switch Transformer: Scaling to Trillion-Parameter Models",
+      "hook": "Route every token to exactly one expert instead of many - this single simplification made trillion-parameter MoE models stable enough to train at scale.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2021-01-11"
+    },
+    {
+      "id": "card_2f157b",
+      "slug": "lingbot-vision-boundary-pretraining",
+      "type": "paper",
+      "title": "LingBot-Vision: Boundary-Aware Self-Supervised Pretraining",
+      "hook": "Masked-patch pretraining hopes boundary structure emerges on its own. This method forces the issue, masking exactly the regions a student can't infer by copying context — and beats a 7B model at 1.1B.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_212864#0",
+      "format": "flip",
+      "prompt": "What's the core architectural bet behind LingBot-Video?",
+      "back_html": "\u003cp\u003eIt's a single-stream video diffusion transformer that swaps a dense feed-forward stack for a DeepSeek-V3-style sparse MoE — 128 experts, top-8 routing — so only 1.4B of its 13B total parameters activate per token.\u003c/p\u003e"
+    },
+    {
+      "id": "card_212864#1",
+      "format": "quiz",
+      "prompt": "What concern does the release itself raise about LingBot-Video's physical-plausibility reward?",
+      "choices": [
+        {
+          "text": "A VLM grades physics from sampled frames, which may be gameable rather than a reliable judge of real physical plausibility",
+          "correct": true
+        },
+        {
+          "text": "The reward is computed by running a physics simulator on every frame",
+          "correct": false
+        },
+        {
+          "text": "There is no physical-plausibility reward in the training recipe",
+          "correct": false
+        },
+        {
+          "text": "Physical plausibility is measured by human annotators only",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe release uses a VLM to judge physical plausibility from sampled frames — convenient, but the author flags Goodhart's law: a proxy judge can be gamed without the underlying physics actually improving.\u003c/p\u003e"
+    },
+    {
+      "id": "card_212864#2",
+      "format": "flip",
+      "prompt": "Besides ordinary text-to-video, what extra mode does LingBot-Video support?",
+      "back_html": "\u003cp\u003eAn action-to-video mode: given action and hand-pose conditioning, it predicts robot rollout videos, extending the same diffusion backbone toward embodied/robotics use.\u003c/p\u003e"
+    }
+  ]
+}

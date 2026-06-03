@@ -1,0 +1,101 @@
+{
+  "id": "card_4bdc1f",
+  "slug": "layered-llm-defenses-ensemble",
+  "type": "paper",
+  "title": "Stacked Defenses Only Multiply If They Fail Independently",
+  "hook": "A seven-layer defense stack refuses four in five benign prompts and is statistically indistinguishable from its single best layer — because the layers all fail on the same inputs.",
+  "key_points": [
+    "Stacking defenses assumes the layers compound; a stack is an ensemble, and ensembles compound only if members fail on different inputs.",
+    "The Adversary Access-Tier Model (AATM) grades an attacker by access held, from system-only (A0) to training-data influence (A4).",
+    "Coverage saturates within a tier, cost rises by class, false refusals accumulate as a union, and residual attack success falls multiplicatively only under independence.",
+    "Measured on a seven-layer stack: failure correlation is positive in all 15 measurable pairs (phi 0.30-0.75), joint residual exceeds the multiplicative prediction by up to 0.172.",
+    "The dependence is architectural — members correlate through the shared model they all wrap — so a wider member pool does not help.",
+    "The stack refused four in five benign prompts while performing no better than its strongest single layer."
+  ],
+  "content_html": "\u003cp\u003ePractitioners defend LLMs by stacking filters, classifiers, and guardrails, on the assumption that the layers compound. Alotaibi and colleagues make the assumption explicit: a stack \u003cem\u003eis\u003c/em\u003e an ensemble, and ensembles compound only under a condition the security literature recommends but never measures — the members must fail on different inputs.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eTwo instruments\u003c/h2\u003e\n\u003cp\u003eThe \u003cstrong\u003eAdversary Access-Tier Model\u003c/strong\u003e grades an attacker by the access it holds, from system-only (A0) to influence over training data (A4). A \u003cstrong\u003ecost model\u003c/strong\u003e sorts defenses into five classes of inference-time overhead; because two of those classes require training weights or reading activations, the cost model also tiers the \u003cem\u003edefender\u003c/em\u003e. Together these predict how a stack behaves, and the prediction is that the quantities a defender cares about diverge: coverage saturates within a tier, cost rises by class, false refusals accumulate as a union, and residual attack success falls multiplicatively only under independence.\u003c/p\u003e\n\u003ch2\u003eThen they measure the independence\u003c/h2\u003e\n\u003cp\u003eRunning one adaptive adversary against a seven-layer stack, failure correlation is positive in all fifteen measurable pairs, with phi from 0.30 to 0.75, and the joint residual exceeds the multiplicative prediction by up to 0.172. Stratifying on behavior difficulty dissolves most of the association — so the dependence is predominantly common-cause — but it survives permutation inference, majority-vote grader labels, and externally calibrated thresholds.\u003c/p\u003e\n\u003cp\u003eMeanwhile the same stack refuses four in five benign prompts while remaining statistically indistinguishable from its strongest single layer. The correlation is architectural: the members all wrap the same model, so no wider member pool weakens it.\u003c/p\u003e\n\u003ch2\u003eThe lesson\u003c/h2\u003e\n\u003cp\u003eDiversity selects stack members but does not predict what an assembled stack delivers. That has to be measured end to end.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Abrar Alotaibi",
+      "Muhammad Shahid Jabbar",
+      "Sadam Al-Azani",
+      "Moataz Ahmed"
+    ],
+    "url": "https://arxiv.org/abs/2608.28327",
+    "published_at": "2026-08-28",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "risks-policy",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "benchmark",
+    "alignment",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-31",
+  "date": "2026-08-28",
+  "related": [
+    {
+      "id": "card_04a0f9",
+      "slug": "longpibench-long-context-prompt-injection",
+      "type": "paper",
+      "title": "Prompt Injection Defenses Fall Apart in Long Context",
+      "hook": "Injection benchmarks are all short-context, which has been flattering the defenses. Stretch the input to tens of thousands of tokens and even naive attacks walk through state-of-the-art protections.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-28"
+    },
+    {
+      "id": "card_4fbe16",
+      "slug": "sara-tool-outputs-as-commands",
+      "type": "paper",
+      "title": "When Tool Outputs Become Commands",
+      "hook": "Prompt injection into agents is really one confusion: the thing that suggests an action and the thing that authorizes it are treated as the same thing.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-27"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_4bdc1f#0",
+      "format": "flip",
+      "prompt": "Under what condition does residual attack success fall multiplicatively across a defense stack?",
+      "back_html": "\u003cp\u003eIndependence — the layers must fail on different inputs. If their failures correlate, the joint residual is worse than the product of the individual residuals.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4bdc1f#1",
+      "format": "quiz",
+      "prompt": "Why can't adding more defense layers fix the correlation the paper measures?",
+      "choices": [
+        {
+          "text": "The dependence is architectural — members correlate through the shared model they all wrap",
+          "correct": true
+        },
+        {
+          "text": "The correlation is caused by random sampling noise",
+          "correct": false
+        },
+        {
+          "text": "Extra layers exceed the inference budget before they can help",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBecause every layer wraps the same underlying model, they inherit a common cause. A wider pool of similarly-constructed members does not weaken that.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4bdc1f#2",
+      "format": "flip",
+      "prompt": "What happens to false refusals as you stack defenses?",
+      "back_html": "\u003cp\u003eThey accumulate as a union — any layer refusing is a refusal. The measured seven-layer stack rejected roughly four in five benign prompts.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "id": "card_a6b294",
+  "slug": "adam-convergence-revisited",
+  "type": "paper",
+  "title": "On the Convergence of Adam, Revisited",
+  "hook": "A 2018 result showed Adam can fail to converge only in a specific hyperparameter regime. This paper shows it can fail for ANY choice — a flaw that spreads to AdamW, RMSProp, even Muon.",
+  "key_points": [
+    "Reddi, Kale \u0026 Kumar (2018) showed Adam can fail to converge in online optimization when β1 \u003c √β2 — a specific relationship between the decay parameters.",
+    "This paper shows a strictly weaker guarantee: projected Adam's average regret can stay bounded away from zero for ANY β1, β2 in [0,1).",
+    "The construction is a three-periodic sequence of linear functions on [-1,1] with slopes c, -1, -1, where c is only slightly larger than 2.",
+    "The same non-convergence result extends to AdamW, RMSProp, NAdam, Adan, AdaMax, and Muon.",
+    "It also holds for an i.i.d. (randomized) version of the three-periodic sequence, not just the fixed adversarial one."
+  ],
+  "content_html": "\u003cp\u003eAdam is the field's default optimizer, but its convergence guarantees have always had gaps. This paper closes one of them: it shows projected Adam can fail to converge for any choice of its moment-decay hyperparameters, not just the narrow regime prior work had flagged.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eIn 2018, Reddi, Kale, and Kumar showed Adam could fail to converge in online convex optimization when β1 \u0026lt; √β2 — a specific relationship between the two decay rates. Steven Heilman and Sampad Mohanty now prove a strictly stronger negative result: projected Adam's average regret can stay bounded away from zero for any β1, β2 in [0,1), using a similar three-periodic sequence of linear functions on [-1,1] with slopes c, -1, -1, where c only needs to be slightly larger than 2.\u003c/p\u003e\n\u003cp\u003eThey extend the same construction to show non-convergence for AdamW, RMSProp, NAdam, Adan, AdaMax, and even Muon, plus a randomized (i.i.d.) version of the adversarial sequence. The takeaway isn't that Adam is broken in practice — it's that the theoretical convergence story for the whole family of adaptive optimizers is weaker than commonly assumed, and holds up worse than the specific 2018 counterexample suggested.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Steven Heilman",
+      "Sampad Mohanty"
+    ],
+    "url": "https://arxiv.org/abs/2607.03519",
+    "published_at": "2026-07-03",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "optimization",
+    "papers-this-week"
+  ],
+  "tags": [
+    "paper",
+    "training",
+    "foundational"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-13",
+  "date": "2026-07-03",
+  "related": [
+    {
+      "id": "card_e41b8a",
+      "slug": "adam-optimizer",
+      "type": "paper",
+      "title": "Adam: The Default Optimizer",
+      "hook": "Adam gives every parameter its own adaptive step size by tracking the gradient's recent average and spread — and it mostly just works.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2014-12-22"
+    },
+    {
+      "id": "card_f399a5",
+      "slug": "muon-optimizer",
+      "type": "blog",
+      "title": "Muon: An Optimizer for Hidden Layers",
+      "hook": "Muon orthogonalizes each gradient update before applying it — and trained networks faster than AdamW, the first serious challenger to Adam's reign in years.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-12-08"
+    },
+    {
+      "id": "card_203675",
+      "slug": "adamw",
+      "type": "paper",
+      "title": "AdamW: Decoupled Weight Decay",
+      "hook": "L2 regularization and weight decay are the same thing for plain SGD - but not for Adam. Decoupling them fixes Adam's generalization and makes the best decay value independent of the learning rate.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-11-14"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_e41b8a",
+      "slug": "adam-optimizer",
+      "type": "paper",
+      "title": "Adam: The Default Optimizer",
+      "hook": "Adam gives every parameter its own adaptive step size by tracking the gradient's recent average and spread — and it mostly just works.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2014-12-22"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_a6b294#0",
+      "format": "flip",
+      "prompt": "What did Reddi, Kale \u0026 Kumar (2018) show about Adam's convergence, and how does this paper go further?",
+      "back_html": "\u003cp\u003eRKK showed Adam can fail to converge in online optimization when β1 \u0026lt; √β2. This paper shows non-convergence (average regret bounded away from zero) for ANY β1, β2 in [0,1) — no special relationship required.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a6b294#1",
+      "format": "quiz",
+      "prompt": "What construction does the paper use to prove Adam's average regret stays bounded away from zero?",
+      "choices": [
+        {
+          "text": "A three-periodic sequence of linear functions on [-1,1] with slopes c, -1, -1, where c is just above 2",
+          "correct": true
+        },
+        {
+          "text": "A single non-differentiable function evaluated once",
+          "correct": false
+        },
+        {
+          "text": "A randomly initialized deep network's training loss curve",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe adversarial online-optimization sequence cycles through three linear functions with slopes c, -1, -1 (c slightly above 2), which drives Adam's average regret away from zero for any moment-decay parameters.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a6b294#2",
+      "format": "flip",
+      "prompt": "Beyond plain Adam, which other optimizers does the non-convergence result extend to?",
+      "back_html": "\u003cp\u003eAdamW, RMSProp, NAdam, Adan, AdaMax, and Muon — plus an i.i.d. (randomized) variant of the adversarial sequence.\u003c/p\u003e"
+    }
+  ]
+}

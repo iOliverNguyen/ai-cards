@@ -1,0 +1,118 @@
+{
+  "id": "card_b7dfd5",
+  "slug": "single-transformer-layer-rl",
+  "type": "paper",
+  "title": "Is One Layer Enough? Training A Single Transformer Layer Can Match Full-Parameter RL Training",
+  "hook": "Full-parameter RL post-training updates every layer — but this study finds that training just ONE middle layer alone often recovers all the gains, and sometimes more.",
+  "key_points": [
+    "Across 7 models (Qwen3, Qwen2.5), 3 RL algorithms (GRPO, GiGPO, Dr. GRPO), and tasks spanning math, code, and agentic decisions, training a single transformer layer often matches or beats full-parameter RL.",
+    "Introduces 'layer contribution': the fraction of full RL's improvement a single layer recovers when trained alone.",
+    "RL gains concentrate in a small subset of layers — frequently just one — rather than spreading evenly across the network.",
+    "High-contribution layers cluster in the MIDDLE of the transformer stack; layers near the input and output ends contribute far less.",
+    "Layer rankings stay strongly correlated across different datasets, tasks, model families, and RL algorithms — a consistent structural pattern, not a fluke of one setup."
+  ],
+  "content_html": "\u003cp\u003eRL post-training usually updates every parameter in a model, implicitly assuming every layer pulls its weight equally. This study tests that assumption directly — and finds it's mostly wrong.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe authors systematically train a single transformer layer at a time (freezing the rest) and compare the resulting gains to full-parameter RL, across seven models spanning Qwen3 and Qwen2.5, three RL algorithms (GRPO, GiGPO, Dr. GRPO), and tasks in math reasoning, code generation, and agentic decision-making. To quantify this, they define \u003cstrong\u003elayer contribution\u003c/strong\u003e — the fraction of full RL's improvement a single isolated layer recovers. Surprisingly, a single layer often recovers most of the full-parameter gain, and in some cases exceeds it.\u003c/p\u003e\n\u003cp\u003eThe pattern is strikingly consistent: high-contribution layers cluster in the middle of the network, while layers near the input and output ends matter much less, and layer rankings stay correlated across datasets, tasks, model families, and RL algorithms alike. That points to RL post-training doing most of its real work in a narrow structural location inside the model, rather than distributing adaptation evenly — with obvious implications for cheaper, more targeted RL fine-tuning. Zijian Zhang, Mingyi Hong, and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zijian Zhang",
+      "Rizhen Hu",
+      "Athanasios Glentis",
+      "Dawei Li",
+      "Chung-Yiu Yau",
+      "Hongzhou Lin",
+      "Mingyi Hong"
+    ],
+    "url": "https://arxiv.org/abs/2607.01232",
+    "published_at": "2026-07-02",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "interpretability",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "interpretability",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-02",
+  "related": [
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    },
+    {
+      "id": "card_822dbf",
+      "slug": "geometry-of-on-policy-distillation",
+      "type": "paper",
+      "title": "On the Geometry of On-Policy Distillation",
+      "hook": "On-policy distillation isn't a midpoint between fine-tuning and RL — it carves its own narrow path through parameter space, locking into a low-dimensional subspace early in training.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-05"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_b7dfd5#0",
+      "format": "flip",
+      "prompt": "What is 'layer contribution' in this paper?",
+      "back_html": "\u003cp\u003eThe fraction of full-parameter RL's performance gain that training a single transformer layer in isolation recovers on its own.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b7dfd5#1",
+      "format": "quiz",
+      "prompt": "Where do the highest-contribution layers tend to sit in the transformer stack?",
+      "choices": [
+        {
+          "text": "In the middle of the stack",
+          "correct": true
+        },
+        {
+          "text": "Right at the input embedding layer",
+          "correct": false
+        },
+        {
+          "text": "Right at the final output layer",
+          "correct": false
+        },
+        {
+          "text": "Spread evenly across all layers",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors find high-contribution layers consistently cluster in the middle of the network, while layers near the input and output ends contribute much less.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b7dfd5#2",
+      "format": "flip",
+      "prompt": "How consistent was the single-layer finding across the study's setups?",
+      "back_html": "\u003cp\u003eHighly consistent: it held across 7 models (Qwen3, Qwen2.5), 3 RL algorithms (GRPO, GiGPO, Dr. GRPO), and math/code/agentic tasks, with correlated layer rankings throughout.\u003c/p\u003e"
+    }
+  ]
+}

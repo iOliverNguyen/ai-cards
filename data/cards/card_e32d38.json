@@ -1,0 +1,90 @@
+{
+  "id": "card_e32d38",
+  "slug": "llamacpp-deepseek-v4-flash-1m-context",
+  "type": "news",
+  "title": "A Hobbyist CUDA Kernel Brings DeepSeek-V4 Flash's Full 1M Context to One GPU",
+  "hook": "Missing CUDA support for DeepSeek-V4 Flash's sparse-attention indexer meant llama.cpp needed ~256GB of VRAM for 1M-token context. One contributor's kernel patch shrinks that to a single RTX 5090.",
+  "key_points": [
+    "DeepSeek-V4 Flash's DSA (DeepSeek Sparse Attention) relies on a 'lightning indexer' to pick which tokens to attend to at long context.",
+    "llama.cpp had no CUDA path for the indexer, so it fell back to a dense-attention-like memory cost — about 256GB of VRAM at 1M tokens.",
+    "A community contributor wrote a CUDA kernel and wired the indexer into llama.cpp's model graph, building on an incomplete upstream PR (#24231).",
+    "Result: DeepSeek-V4 Flash's full 1M-token context now runs locally on a single RTX 5090 instead of needing server-class multi-GPU VRAM."
+  ],
+  "content_html": "\u003cp\u003eRunning DeepSeek-V4 Flash's full 1M-token context locally sounded great — until the VRAM bill showed up: roughly 256GB, because llama.cpp couldn't use the model's sparse-attention shortcut.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe bottleneck was DSA, DeepSeek Sparse Attention: a \u0026quot;lightning indexer\u0026quot; decides which tokens actually need attending to at long context, keeping memory in check. llama.cpp had no CUDA implementation for that indexer, so it silently fell back to something closer to full dense attention's memory cost. A Reddit user (u/da_dragon321), building on an incomplete upstream pull request that lacked a CUDA path or model-graph wiring, wrote the missing CUDA kernel and connected it up themselves. The payoff: DeepSeek-V4 Flash's full 1M-token context now runs on a single RTX 5090 rather than requiring server-grade multi-GPU VRAM. Posted to r/LocalLLaMA, 2026-07-02.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit (r/LocalLLaMA)",
+    "authors": [
+      "/u/da_dragon321"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1ulymml/llamacpp_patch_deepseek_v4_flash_running_with",
+    "published_at": "2026-07-02",
+    "license": "Community post"
+  },
+  "topic_ids": [
+    "inference",
+    "context-memory"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "open-source",
+    "news"
+  ],
+  "importance": 2,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-02",
+  "related": [
+    {
+      "id": "card_c0948e",
+      "slug": "deepseek-v4",
+      "type": "news",
+      "title": "DeepSeek-V4: Sparse Attention, Million-Token Default",
+      "hook": "DeepSeek-V4 makes a 1M-token context window the default and pairs token-wise compression with sparse attention, so long-context inference no longer pays the usual compute and memory tax.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-04-24"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_c0948e",
+      "slug": "deepseek-v4",
+      "type": "news",
+      "title": "DeepSeek-V4: Sparse Attention, Million-Token Default",
+      "hook": "DeepSeek-V4 makes a 1M-token context window the default and pairs token-wise compression with sparse attention, so long-context inference no longer pays the usual compute and memory tax.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-04-24"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_e32d38#0",
+      "format": "flip",
+      "prompt": "Why did DeepSeek-V4 Flash need ~256GB of VRAM for 1M-token context in llama.cpp before this patch?",
+      "back_html": "\u003cp\u003eIts DSA lightning indexer — which picks which tokens to sparsely attend to — had no CUDA implementation in llama.cpp, so long context fell back to a far more memory-hungry path instead of using sparse attention.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e32d38#1",
+      "format": "quiz",
+      "prompt": "What did the community contributor actually build to fix this?",
+      "choices": [
+        {
+          "text": "A CUDA kernel for the lightning indexer, wired into llama.cpp's model graph",
+          "correct": true
+        },
+        {
+          "text": "A quantized version of the whole model to shrink its memory footprint",
+          "correct": false
+        },
+        {
+          "text": "A new sparse-attention algorithm to replace DSA entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAn upstream PR (#24231) had added partial support but no CUDA path or graph wiring; the contributor finished the job by implementing the CUDA kernel and hooking the indexer into the model graph.\u003c/p\u003e"
+    }
+  ]
+}

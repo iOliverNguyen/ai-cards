@@ -1,0 +1,139 @@
+{
+  "id": "card_c3ffdb",
+  "slug": "opsd-collapse-three-levers",
+  "type": "paper",
+  "title": "One Symptom, Three Levers: A Critical Review of On-Policy Self-Distillation",
+  "hook": "Self-distillation drops the costly teacher by letting a model teach itself with privileged information. The asymmetry that creates the signal also biases it — into collapse.",
+  "key_points": [
+    "On-policy distillation trains a model on its own generations while a teacher scores them token by token — dense supervision plus on-policy sampling.",
+    "OPSD replaces the larger teacher with the model itself, conditioned on privileged info (a reference solution, a plan, environment feedback).",
+    "The teacher is no stronger than the student, only better informed — that asymmetry is both the signal and the bias.",
+    "The dominant failure mode is collapse: progressive narrowing of the reasoning paths the model can produce.",
+    "The review frames collapse via three levers — where the signal is applied, what the teacher is shown, and when the guidance changes.",
+    "No new experiments; the contribution is a shared vocabulary and a line between what's settled and what's disputed."
+  ],
+  "content_html": "\u003cp\u003eOn-policy distillation trains a language model on its own generations while a teacher scores them token by token — combining imitation learning's dense supervision with reinforcement learning's on-policy sampling. Its catch is the second, larger model you need as teacher. \u003cstrong\u003eOn-Policy Self-Distillation (OPSD)\u003c/strong\u003e removes that cost by making the model its own teacher, conditioned on privileged information the student won't have at test time.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe asymmetry cuts both ways\u003c/h2\u003e\n\u003cp\u003eThe privileged teacher sees a reference solution, a plan, or environment feedback. It is no stronger than the student, only better informed — and early results were promising, reaching accuracy comparable to reinforcement learning at a fraction of the generated tokens. But Robert and Qader argue the same asymmetry that produces the training signal also biases it, and one failure mode now dominates the literature: \u003cstrong\u003ecollapse\u003c/strong\u003e, the progressive narrowing of the set of reasoning paths the model can produce. Collapse isn't unique to OPSD, though privileged information aggravates it.\u003c/p\u003e\n\u003ch2\u003eThe framing\u003c/h2\u003e\n\u003cp\u003eThe review's contribution is structural rather than experimental — it reports no new results. It treats collapse as a symptom governed by three levers: (i) \u003cem\u003ewhere\u003c/em\u003e the signal is applied, meaning how tokens are weighted; (ii) \u003cem\u003ewhat\u003c/em\u003e the teacher is shown, meaning the nature of the privileged information; and (iii) \u003cem\u003ewhen\u003c/em\u003e the signal changes, meaning the teacher's dynamics and how guidance decays. Scope is restricted to mathematical reasoning, where the method originated and its failure modes are best documented. What you get is a shared vocabulary for phenomena named differently across papers, plus an explicit line between what's settled and what's still disputed — useful if you're trying to read this fast-moving subfield without re-deriving everyone's notation. arXiv, 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Justin Robert",
+      "Raheel Qader"
+    ],
+    "url": "https://arxiv.org/abs/2608.25936",
+    "published_at": "2026-08-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "distillation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "alignment",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_3dde74",
+      "slug": "rethinking-on-policy-self-distillation-thinking-models",
+      "type": "paper",
+      "title": "Rethinking On-Policy Self-Distillation for Thinking Models",
+      "hook": "Giving a model the answer as privileged context sounds like it should only help. For thinking models on long reasoning traces, it backfires — accuracy drops up to 17%, and this explains why.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_faa6a6",
+      "slug": "unsupervised-on-policy-self-distillation",
+      "type": "paper",
+      "title": "On-Policy Self-Distillation without Any Supervision",
+      "hook": "Self-distillation that finally deserves the name: no ground truth, no bigger teacher — just a model voting against itself and fixing where it was confidently wrong.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-09"
+    },
+    {
+      "id": "card_948b0a",
+      "slug": "denser-is-not-better-self-distillation-limits",
+      "type": "paper",
+      "title": "Denser ≠ Better: Limits of On-Policy Self-Distillation for Continual Post-Training",
+      "hook": "On-policy self-distillation was supposed to fight forgetting in continual post-training — instead, denser self-distillation can drift further off course and collapse outright.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-02"
+    },
+    {
+      "id": "card_822dbf",
+      "slug": "geometry-of-on-policy-distillation",
+      "type": "paper",
+      "title": "On the Geometry of On-Policy Distillation",
+      "hook": "On-policy distillation isn't a midpoint between fine-tuning and RL — it carves its own narrow path through parameter space, locking into a low-dimensional subspace early in training.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-05"
+    },
+    {
+      "id": "card_63a204",
+      "slug": "direct-on-policy-distillation",
+      "type": "paper",
+      "title": "Weak-to-Strong Generalization via Direct On-Policy Distillation",
+      "hook": "RL post-training gets pricier as models scale, since it needs the strong model's own rollouts. Direct-OPD reuses a cheap RL run on a small model instead, transferring the direction RL moved it.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-06"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_c3ffdb#0",
+      "format": "flip",
+      "prompt": "What makes the teacher in on-policy self-distillation useful if it isn't a bigger model?",
+      "back_html": "\u003cp\u003eIt's the same model conditioned on privileged information the student won't have at test time — a reference solution, a plan, or environment feedback. Not stronger, just better informed.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c3ffdb#1",
+      "format": "quiz",
+      "prompt": "What is the dominant failure mode the review organizes itself around?",
+      "choices": [
+        {
+          "text": "Collapse — the progressive narrowing of reasoning paths the model can produce",
+          "correct": true
+        },
+        {
+          "text": "Catastrophic forgetting of the pretraining distribution",
+          "correct": false
+        },
+        {
+          "text": "Divergence of the teacher's loss to infinity",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe review treats collapse as the shared symptom appearing under different names across papers, and notes it isn't unique to OPSD — privileged information just aggravates it.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c3ffdb#2",
+      "format": "flip",
+      "prompt": "What are the three levers the review says govern collapse?",
+      "back_html": "\u003cp\u003eWhere the signal is applied (how tokens are weighted), what the teacher is shown (the nature of the privileged information), and when the signal changes (teacher dynamics and the decay of guidance).\u003c/p\u003e"
+    }
+  ]
+}

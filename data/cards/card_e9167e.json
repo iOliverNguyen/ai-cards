@@ -1,0 +1,98 @@
+{
+  "id": "card_e9167e",
+  "slug": "swe-bench-pro-audit",
+  "type": "blog",
+  "title": "Separating Signal from Noise in Coding Evaluations",
+  "hook": "OpenAI told the field to switch to SWE-Bench Pro after finding SWE-bench Verified contaminated. Now its own audit says ~30% of SWE-Bench Pro's tasks are broken too.",
+  "key_points": [
+    "OpenAI previously found contamination and design flaws in SWE-bench Verified and recommended the community move to SWE-Bench Pro instead.",
+    "A fresh audit — automated review plus checks by five experienced engineers — flagged roughly 30% of SWE-Bench Pro's tasks as broken.",
+    "OpenAI is retracting its own recommendation, saying the benchmark no longer reliably measures frontier coding capability.",
+    "Reported pass rates on SWE-Bench Pro climbed from 23.3% to 80.3% in eight months — a jump OpenAI blames partly on benchmark noise.",
+    "The episode shows how fast a widely-adopted coding benchmark can decay once models start being optimized against it."
+  ],
+  "content_html": "\u003cp\u003eOpenAI just retracted its own advice. Months after telling the field to trade SWE-bench Verified for SWE-Bench Pro — a fix for contamination it had found in the older benchmark — an internal audit found that roughly 30% of SWE-Bench Pro's own tasks are broken.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe audit combined an automated pipeline — reviewing model attempts, task metadata, and failure traces — with independent checks from five experienced software engineers, to separate genuinely broken tasks from ones that are merely hard. Reported pass rates on the benchmark had climbed from 23.3% to 80.3% over roughly eight months, a rise OpenAI says reflects the benchmark hitting a noise ceiling rather than a leap in real capability of that size.\u003c/p\u003e\n\u003cp\u003eThe reversal is a reminder that coding benchmarks decay fast once they become the target everyone optimizes against — even a benchmark the field's top lab endorsed months earlier can turn out to be quietly broken underneath its own leaderboard. OpenAI, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "authors": [
+      "OpenAI"
+    ],
+    "url": "https://openai.com/index/separating-signal-from-noise-coding-evaluations",
+    "published_at": "2026-07-08",
+    "license": "OpenAI (blog post)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "ai-for-code",
+    "lab-updates"
+  ],
+  "tags": [
+    "benchmark",
+    "safety",
+    "agent",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-08",
+  "related": [
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_e9167e#0",
+      "format": "flip",
+      "prompt": "Why did OpenAI retract its own recommendation to use SWE-Bench Pro?",
+      "back_html": "\u003cp\u003eIts audit found around 30% of the benchmark's tasks are broken, so it no longer reliably measures frontier coding ability — the same kind of problem OpenAI had earlier flagged in SWE-bench Verified.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e9167e#1",
+      "format": "quiz",
+      "prompt": "What happened to frontier model pass rates on SWE-Bench Pro over about eight months?",
+      "choices": [
+        {
+          "text": "They jumped from 23.3% to 80.3%",
+          "correct": true
+        },
+        {
+          "text": "They stayed roughly flat near 50%",
+          "correct": false
+        },
+        {
+          "text": "They dropped as newer models were tested",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOpenAI says a rise that steep signals the benchmark is saturating and noisy, not that models alone improved by that much.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e9167e#2",
+      "format": "flip",
+      "prompt": "How did OpenAI audit SWE-Bench Pro's task quality?",
+      "back_html": "\u003cp\u003eIt combined automated analysis of model attempts and task metadata with independent review from five experienced software engineers to flag which tasks were actually broken.\u003c/p\u003e"
+    }
+  ]
+}

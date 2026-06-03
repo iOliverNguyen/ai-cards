@@ -1,0 +1,99 @@
+{
+  "id": "card_4e9f3d",
+  "slug": "linear-ensembles-wash-watermarks",
+  "type": "paper",
+  "title": "Linear Ensembles Wash Away Watermarks",
+  "hook": "Text watermarks survive paraphrasing — but not arithmetic. Averaging the outputs of 3–5 different models cancels the signal almost entirely, and improves quality while doing it.",
+  "key_points": [
+    "Watermarks nudge a model's output distribution; across competing providers, those nudges are roughly independent.",
+    "Averaging probability distributions provably recovers the unwatermarked distribution up to a second-order error.",
+    "Across six watermarking schemes, averaging 3 models drops detection z-scores from 5–300 to below 2 (threshold 4).",
+    "Their WASH method handles vocabulary and tokenization mismatches across heterogeneous models — 27.5% better quality, 6× faster."
+  ],
+  "content_html": "\u003cp\u003eWatermarking is one of the leading proposals for detecting and attributing AI-generated text: a model embeds a faint statistical signature in its outputs that a detector can later spot. This paper argues the whole approach has a structural weakness in a world where users can access many models at once — which is already today's reality.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe vulnerability\u003c/h2\u003e\n\u003cp\u003eWatermarks work by perturbing a model's output distribution away from the original. In a competitive market, each provider's perturbation is essentially independent of the others'. The authors prove that simply averaging the output probability distributions across several models recovers the original, unwatermarked distribution up to a small second-order error term — so the signatures cancel. Empirically, averaging just 3–5 models is enough.\u003c/p\u003e\n\u003cp\u003eTheir method, WASH (Watermark Attenuation via Statistical Hybridisation), makes this practical by solving the messy engineering problem of combining heterogeneous models with different vocabularies and tokenizers. Across six watermarking schemes and three LLMs, averaging three models pushes detection z-scores from a range of 5–300 down below 2 — under the detection threshold of 4 — and cuts true-positive rate at 5% false-positive rate below 50%, while \u003cem\u003eimproving\u003c/em\u003e text quality by 27.5% and running 6× faster than the strongest baseline.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe takeaway for AI governance is sobering: robust watermark-based detection may require either accepting this fundamental fragility or unprecedented coordination among model providers. As watermarking is increasingly floated in policy discussions as a provenance tool, results like this set realistic expectations for what it can and can't enforce.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zhihao Wu",
+      "Gracia Gong",
+      "Qinglin Zhu",
+      "Yudong Chen",
+      "Runcong Zhao"
+    ],
+    "url": "https://arxiv.org/abs/2605.30501",
+    "published_at": "2026-05-28",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "nlp",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-04",
+  "date": "2026-05-28",
+  "related": [
+    {
+      "id": "card_395956",
+      "slug": "red-teaming-lms",
+      "type": "paper",
+      "title": "Red Teaming Language Models with Language Models",
+      "hook": "Finding the prompts that make a model misbehave is slow if humans do it by hand. So use another language model to generate those attacks automatically — at scale.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-02-07"
+    },
+    {
+      "id": "card_490028",
+      "slug": "model-evaluation-for-extreme-risks",
+      "type": "paper",
+      "title": "Model Evaluation for Extreme Risks",
+      "hook": "General-purpose AI tends to pick up dangerous capabilities alongside useful ones. So test for those capabilities directly — before you ship, not after.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_4e9f3d#0",
+      "format": "quiz",
+      "prompt": "Why does averaging outputs of several models wash away text watermarks?",
+      "choices": [
+        {
+          "text": "Each provider's distribution perturbation is roughly independent, so they cancel",
+          "correct": true
+        },
+        {
+          "text": "Averaging paraphrases the text beyond recognition",
+          "correct": false
+        },
+        {
+          "text": "Larger models simply overwrite the watermark signal",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eWatermarks nudge a model's output distribution; across providers those nudges are roughly independent, so averaging recovers the unwatermarked distribution up to a small second-order error.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4e9f3d#1",
+      "format": "flip",
+      "prompt": "What practical problem does the WASH method solve?",
+      "back_html": "\u003cp\u003eCombining heterogeneous models with different vocabularies and tokenizers, making cross-model averaging practical.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4e9f3d#2",
+      "format": "flip",
+      "prompt": "What is the governance takeaway of this watermark result?",
+      "back_html": "\u003cp\u003eRobust watermark-based detection may require either accepting this fundamental fragility or unprecedented coordination among model providers.\u003c/p\u003e"
+    }
+  ]
+}

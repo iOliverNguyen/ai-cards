@@ -1,0 +1,126 @@
+{
+  "id": "card_57f8b7",
+  "slug": "reproducing-2200-icml-papers",
+  "type": "blog",
+  "title": "What 2,226 Reproduced ICML Papers Revealed",
+  "hook": "A community hackathon re-ran a third of ICML 2026. Half the papers had a claim verified — and 23% had a claim falsified or contested.",
+  "key_points": [
+    "1,221 participants produced 6,816 logbooks covering 2,226 papers, about 34% of ICML 2026's accepted set.",
+    "51% of examined papers (1,103) had at least one claim independently verified; 266 were fully reproduced.",
+    "23% had at least one claim falsified or contested — not fraud, mostly ordinary slippage between theory, code, and metrics.",
+    "Recurring failure modes: theory-code mismatch (reverse vs. forward KL in a self-distillation paper) and evaluation artifacts (padding tokens inflating gains 3x).",
+    "One theorem broke only after step 224 — found independently by three teams using exact rational arithmetic.",
+    "Pure agent execution hit limits; the most reliable reproductions had humans steering agents and questioning assumptions."
+  ],
+  "content_html": "\u003cp\u003eBetween July and August 2026, 1,221 people ran a distributed reproduction hackathon over ICML 2026, filing 6,816 logbooks across 2,226 papers — roughly a third of everything the conference accepted. Hugging Face's write-up puts the result plainly: 51% of examined papers had at least one claim independently verified, 266 were fully reproduced with every claim confirmed, and 23% had at least one claim falsified or contested.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe interesting part is \u003cem\u003ehow\u003c/em\u003e things broke. A paging-algorithm paper's robustness bound omitted a logarithmic term. An attention-Frank-Wolfe theorem held for hundreds of iterations and then failed after step 224 — caught independently by three teams working in exact rational arithmetic. A self-distillation paper analyzed reverse KL while its code optimized forward KL. A transformer-projections paper let padding tokens inflate its evaluation metric, making the claimed efficiency win look about three times larger than it was. None of these are the kind of error peer review reliably catches; all of them are the kind that reruns catch.\u003c/p\u003e\n\u003cp\u003eThe write-up is also candid about tooling. Agents did enormous volume, but \u0026quot;pure agent execution hits real limits\u0026quot; — the reproductions that held up best had a human in the loop steering the agent, rejecting bad assumptions, and making the judgment calls. Individual logbooks and the full findings are in the post.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face Blog",
+    "authors": [
+      "Hugging Face"
+    ],
+    "url": "https://huggingface.co/blog/icml-2026-open-reproductions",
+    "published_at": "2026-08-13",
+    "license": "Hugging Face blog (link-out)"
+  },
+  "topic_ids": [
+    "evaluation",
+    "lab-updates"
+  ],
+  "tags": [
+    "benchmark",
+    "news",
+    "agent"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-17",
+  "date": "2026-08-13",
+  "related": [
+    {
+      "id": "card_ddce7e",
+      "slug": "agent-benchmark-protocol-validity",
+      "type": "paper",
+      "title": "Do Agent Benchmarks Measure Capability?",
+      "hook": "An agent score only means something if the task still requires the skill it claims to test. Auditing 2,385 traces, two-thirds showed the agent taking a shortcut instead.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    },
+    {
+      "id": "card_17d07c",
+      "slug": "predictive-validity-agent-evals",
+      "type": "paper",
+      "title": "Beyond Static Leaderboards for Agents",
+      "hook": "Topping an agent leaderboard doesn't mean it'll work when deployed: aggregate-score rankings don't transfer out-of-distribution. Rank by predictive validity instead.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    },
+    {
+      "id": "card_948b0a",
+      "slug": "denser-is-not-better-self-distillation-limits",
+      "type": "paper",
+      "title": "Denser ≠ Better: Limits of On-Policy Self-Distillation for Continual Post-Training",
+      "hook": "On-policy self-distillation was supposed to fight forgetting in continual post-training — instead, denser self-distillation can drift further off course and collapse outright.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-02"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_57f8b7#0",
+      "format": "quiz",
+      "prompt": "Across the 2,226 reproduced ICML 2026 papers, roughly what share had at least one claim falsified or contested?",
+      "choices": [
+        {
+          "text": "About 23%",
+          "correct": true
+        },
+        {
+          "text": "About 3% — reproduction almost always succeeded",
+          "correct": false
+        },
+        {
+          "text": "About 70% — most results did not hold up at all",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003e51% had at least one claim independently verified and 23% had at least one claim falsified or contested; only 266 papers were fully reproduced with every claim confirmed.\u003c/p\u003e"
+    },
+    {
+      "id": "card_57f8b7#1",
+      "format": "flip",
+      "prompt": "What kind of bug did the self-distillation paper turn out to have?",
+      "back_html": "\u003cp\u003eA theory-code mismatch: the code implemented forward KL divergence while the analysis was written about reverse KL. The paper was internally inconsistent, not obviously wrong on its face.\u003c/p\u003e"
+    },
+    {
+      "id": "card_57f8b7#2",
+      "format": "flip",
+      "prompt": "What did the hackathon conclude about running reproductions with agents alone?",
+      "back_html": "\u003cp\u003ePure agent execution hits real limits. The most reliable reproductions came from human-agent collaboration — a person steering the agent, questioning assumptions, and making perceptual judgments the agent couldn't.\u003c/p\u003e"
+    },
+    {
+      "id": "card_57f8b7#3",
+      "format": "quiz",
+      "prompt": "How were the claimed efficiency gains in the transformer-projections paper inflated?",
+      "choices": [
+        {
+          "text": "Padding tokens counted toward the evaluation metric, making gains look ~3x better",
+          "correct": true
+        },
+        {
+          "text": "The baseline was trained for far fewer steps than the proposed method",
+          "correct": false
+        },
+        {
+          "text": "Results were reported on the training split rather than a held-out split",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAn evaluation artifact, not a modelling error: once padding tokens were excluded, the measured advantage shrank by about a factor of three.\u003c/p\u003e"
+    }
+  ]
+}

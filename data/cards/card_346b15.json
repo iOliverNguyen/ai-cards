@@ -1,0 +1,60 @@
+{
+  "id": "card_346b15",
+  "slug": "circuits-zoom-in",
+  "type": "resource",
+  "title": "Zoom In: An Introduction to Circuits",
+  "hook": "What if neural networks aren't black boxes but circuits you can read? This piece argues their features and weights form algorithms we can reverse-engineer.",
+  "key_points": [
+    "Claims networks contain meaningful 'features' — directions that detect understandable things — as their building blocks.",
+    "Weights between features form 'circuits' that implement legible algorithms, like a curve or car detector.",
+    "Proposes that similar features and circuits recur across different models (universality).",
+    "Lays out a research agenda for mechanistic interpretability: understand a network by studying it part by part."
+  ],
+  "content_html": "\u003cp\u003eIn this Distill article, Chris Olah, Nick Cammarata, and colleagues lay out the \u0026quot;circuits\u0026quot; view: the idea that a neural network can be reverse-engineered much like an electronic circuit. They argue networks are built from features — units that detect interpretable things — wired together by weights into small algorithms you can actually trace. The piece reads like a manifesto, proposing concrete claims and inviting researchers to test them, and it helped seed the field of mechanistic interpretability.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe authors make three claims. First, features: directions in a network's activations correspond to meaningful concepts, like an edge, a curve, or a dog's snout. Second, circuits: the weights connecting features implement understandable computations — for instance, combining curve detectors to recognize a circle. Third, universality: analogous features and circuits appear again and again across different networks. Together these suggest you can understand a model by carefully studying its components and their connections, not just its overall behavior.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAs models grow more capable, knowing what they actually compute internally becomes a real concern for trust and safety. This article reframed interpretability from after-the-fact attribution toward genuinely reverse-engineering the mechanisms inside a network. It set the agenda for a wave of mechanistic interpretability work, including later studies of language model internals. It's a foundational read for anyone curious about taking a model apart to see how it ticks.\u003c/p\u003e",
+  "source": {
+    "name": "Distill",
+    "authors": [
+      "Chris Olah",
+      "Nick Cammarata",
+      "et al."
+    ],
+    "url": "https://distill.pub/2020/circuits/zoom-in/",
+    "published_at": "2020-03-10",
+    "license": "CC BY (Distill)"
+  },
+  "topic_ids": [
+    "interpretability"
+  ],
+  "tags": [
+    "interpretability",
+    "tutorial"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-02",
+  "date": "2020-03-10",
+  "related": [
+    {
+      "id": "card_5efd90",
+      "slug": "feature-visualization",
+      "type": "resource",
+      "title": "Feature Visualization",
+      "hook": "What does a single neuron in a vision network actually look for? Generate the image that lights it up the most — and see for yourself.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-11-07"
+    },
+    {
+      "id": "card_321aee",
+      "slug": "toy-models-superposition",
+      "type": "paper",
+      "title": "Toy Models of Superposition",
+      "hook": "Why is a single neuron so hard to interpret? It may be doing several jobs at once. Networks pack more features than they have neurons by overlapping them.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2022-09-14"
+    }
+  ],
+  "prereqs": []
+}

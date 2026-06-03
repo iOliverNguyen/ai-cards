@@ -1,0 +1,99 @@
+{
+  "id": "card_b9fac2",
+  "slug": "learning-on-the-job-frozen-weight-agents",
+  "type": "paper",
+  "title": "Agents That Learn on the Job Without Weight Updates",
+  "hook": "An agent that cracks a hard request today starts from zero tomorrow. Distil each episode into a retrievable rule and a frozen model gets 2.6x better — no fine-tuning.",
+  "key_points": [
+    "Frozen deployed models discard the feedback ordinary operation already produces: outcome verdicts and after-the-fact corrections.",
+    "Pairs the frozen model with an external memory that distils each episode into retrievable natural-language rules.",
+    "On tau-bench's banking domain, learning from just the one-bit outcome verdict lifts single-trial success to 1.6x the static-RAG baseline.",
+    "Learning from corrections reaches 2.6x, solving 22 of the 84 tasks the baseline never solves.",
+    "Holds on Mistral Large (self-hostable open weights) and replicates on a frontier model, Claude Sonnet 5.",
+    "The memory transfers between models: each one reading the store built by the other beats its own no-memory baseline."
+  ],
+  "content_html": "\u003cp\u003eTablan, Taylor, and Bernhem start from a waste observation: an AI agent meets learning opportunities in every episode and throws nearly all of them away, because the model is frozen at deployment. Solve a hard request today and the agent begins from scratch when it recurs tomorrow. Yet ordinary operation already emits usable feedback — outcome verdicts and after-the-fact corrections. Their claim is that this feedback suffices for continual learning if you pair the frozen model with an external memory that distils each episode into retrievable natural-language rules.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe numbers\u003c/h2\u003e\n\u003cp\u003eOn the banking domain of τ-bench, measured against a static-RAG control that retrieves over the complete policy corpus, learning from the one-bit outcome verdict alone lifts single-trial success to 1.6× the baseline, and learning from corrections reaches 2.6×. That converts 22 of the 84 tasks the baseline never solves. The result spans the deployment spectrum: it holds on Mistral Large — open weights that organisations with data-sovereignty requirements can self-host — and replicates on a frontier model, Claude Sonnet 5.\u003c/p\u003e\n\u003ch2\u003eWhy the transfer result matters\u003c/h2\u003e\n\u003cp\u003eThe accumulated memory is not model-specific. Each model reading the store built by the other rose above its own no-memory baseline, which suggests the rules capture genuine task knowledge rather than one model's idiosyncrasies — and hints that such a store could outlive the model that produced it. The authors release the harness, protocol, and data.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Valentin Tablan",
+      "Scott Taylor",
+      "Kristoffer Bernhem"
+    ],
+    "url": "https://arxiv.org/abs/2607.22157",
+    "published_at": "2026-07-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "context-memory",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "paper",
+    "rag"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-27",
+  "date": "2026-07-24",
+  "related": [
+    {
+      "id": "card_9624de",
+      "slug": "agent-optimizers-compound-continual-learning",
+      "type": "paper",
+      "title": "Do Agent Optimizers Compound? A Continual-Learning Evaluation",
+      "hook": "Most agent-optimization papers report a one-shot gain and stop. Rerun the optimizer on new tasks and two of three popular methods actually make the agent worse than doing nothing.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-15"
+    },
+    {
+      "id": "card_7e5a32",
+      "slug": "agentic-test-time-training",
+      "type": "paper",
+      "title": "Agentic Test-Time Training: Adapting Mid-Episode",
+      "hook": "LLM agents degrade over long episodes, repeating failed moves — this method updates the model's weights continuously during the episode itself, but only on genuinely new information.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-03"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b9fac2#0",
+      "format": "flip",
+      "prompt": "How can an agent keep improving when the underlying model's weights are frozen at deployment?",
+      "back_html": "\u003cp\u003eBy writing to an external memory instead of the weights: each episode is distilled into retrievable natural-language rules that later runs read back, so yesterday's solved request informs tomorrow's.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b9fac2#1",
+      "format": "quiz",
+      "prompt": "Which feedback signal produced the larger gain in this study?",
+      "choices": [
+        {
+          "text": "After-the-fact corrections (2.6x baseline) beat the one-bit outcome verdict (1.6x)",
+          "correct": true
+        },
+        {
+          "text": "The one-bit outcome verdict, because it is available on every single episode",
+          "correct": false
+        },
+        {
+          "text": "Both landed at the same multiple — the signal's content didn't matter, only its presence",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRicher feedback helped more, but the striking part is that even a single bit of outcome verdict was enough to lift success to 1.6x the static-RAG control.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b9fac2#2",
+      "format": "flip",
+      "prompt": "What does it mean that the accumulated memory 'transfers' across models?",
+      "back_html": "\u003cp\u003eEach model reading the rule store built by the \u003cem\u003eother\u003c/em\u003e model rose above its own no-memory baseline — so what the memory captures is reusable knowledge, not quirks of one model.\u003c/p\u003e"
+    }
+  ]
+}

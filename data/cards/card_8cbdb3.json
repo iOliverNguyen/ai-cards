@@ -1,0 +1,122 @@
+{
+  "id": "card_8cbdb3",
+  "slug": "spork-self-speculative-forking",
+  "type": "paper",
+  "title": "SPORK: Self-Speculative Forking to Accelerate Agentic LLM Inference",
+  "hook": "An agent's tool-call loop idles the GPU 16-37% of the time waiting on results. SPORK has the model predict its own next tool call early enough to start it before reasoning even finishes.",
+  "key_points": [
+    "A probe forked at the start of generation predicts Qwen3-32B's upcoming tool name with 74.6-99.6% accuracy.",
+    "SPORK dispatches the speculated tool call early, overlapping its execution with the remaining chain-of-thought decode.",
+    "Training-free: no auxiliary predictor model, historical traces, or static workflow graph — a thin controller over completion APIs.",
+    "On rejection it falls back to serial execution with no correctness penalty; rejected probes recycle as speculative-decoding drafts.",
+    "Cuts Qwen3-32B's GAIA P95 latency by 18% (131.9s to 108.1s), holding across 4B-32B dense and MoE models."
+  ],
+  "content_html": "\u003cp\u003eLLM agents that reason, call a tool, then wait, waste a lot of GPU time doing it: 16-37% of wall time in the authors' own workloads. \u003cstrong\u003eSPORK\u003c/strong\u003e's trick is to have the model predict its own next tool call early enough to start it before reasoning even finishes.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eA probe forked at the start of generation predicts Qwen3-32B's upcoming tool name with 74.6-99.6% accuracy across five benchmarks — good enough that SPORK dispatches the guessed tool call immediately, overlapping its execution with the rest of the chain-of-thought decode. A cost model decides when speculation is worth it, a confidence gate filters out likely mispredictions, and if a probe turns out wrong, its partial tokens get reused as a speculative-decoding draft instead of being thrown away. On acceptance the tool result is often ready by the time reasoning ends; on rejection, SPORK just falls back to normal serial execution with no accuracy cost.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eIt's training-free — no auxiliary predictor model, no historical traces, no static workflow graph, just a thin controller sitting over standard completion APIs, so it deploys day one. On real-tool benchmarks it cuts Qwen3-32B's GAIA P95 latency by 18% (131.9s to 108.1s), holds up across model sizes from 4B to 32B and across dense and mixture-of-experts models, and keeps task accuracy within 1 percentage point of baseline or better everywhere it was measured. It's also orthogonal to token-level speculative decoding, so the two can stack. Bai and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Huajun Bai",
+      "Weiwei Lv",
+      "Huichuan Zheng",
+      "Youyou Lu",
+      "Jiwu Shu"
+    ],
+    "url": "https://arxiv.org/abs/2607.03333",
+    "published_at": "2026-07-03",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "inference",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-03",
+  "related": [
+    {
+      "id": "card_1bff26",
+      "slug": "jetspec-speculative-decoding",
+      "type": "paper",
+      "title": "JetSpec: Breaking the Scaling Ceiling of Speculative Decoding",
+      "hook": "Speculative decoding stalls when bigger draft trees stop paying off. JetSpec trains a causal parallel draft head that drafts in one pass yet stays branch-consistent — hitting up to 9.64x speedup.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-25"
+    },
+    {
+      "id": "card_951958",
+      "slug": "speculative-decoding",
+      "type": "paper",
+      "title": "Speculative Decoding",
+      "hook": "Let a small, fast model guess the next few words, then have the big model check them all in one shot. Same output, fewer slow steps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-30"
+    },
+    {
+      "id": "card_7862c7",
+      "slug": "tracelab-coding-agent-workloads",
+      "type": "paper",
+      "title": "TraceLab: What Coding-Agent Traffic Actually Looks Like",
+      "hook": "The first real trace of day-to-day coding-agent usage — 350,000 LLM steps from Claude Code and Codex sessions — reveals serving patterns no prior benchmark captured.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-29"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_951958",
+      "slug": "speculative-decoding",
+      "type": "paper",
+      "title": "Speculative Decoding",
+      "hook": "Let a small, fast model guess the next few words, then have the big model check them all in one shot. Same output, fewer slow steps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-30"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_8cbdb3#0",
+      "format": "flip",
+      "prompt": "What's the key insight behind SPORK's speculation?",
+      "back_html": "\u003cp\u003eThe model can predict its own next tool call: a probe forked at the start of generation predicts it with 74.6-99.6% accuracy, so SPORK can dispatch that tool call before reasoning finishes.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8cbdb3#1",
+      "format": "quiz",
+      "prompt": "What happens when SPORK's forked probe mispredicts the tool call?",
+      "choices": [
+        {
+          "text": "It falls back to normal serial execution with no correctness penalty, and can reuse the probe's partial tokens as a speculative-decoding draft",
+          "correct": true
+        },
+        {
+          "text": "The agent's answer is discarded and the task fails",
+          "correct": false
+        },
+        {
+          "text": "It silently keeps the wrong tool call result and continues",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOn rejection SPORK just executes serially as usual; the failed probe isn't wasted since its tokens can double as a speculative-decoding draft.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8cbdb3#2",
+      "format": "flip",
+      "prompt": "Why is SPORK described as 'training-free' and deployable day one?",
+      "back_html": "\u003cp\u003eIt needs no auxiliary predictor model, no historical usage traces, and no static workflow graph — just a thin controller layered over standard completion APIs.\u003c/p\u003e"
+    }
+  ]
+}

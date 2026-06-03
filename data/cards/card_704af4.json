@@ -1,0 +1,126 @@
+{
+  "id": "card_704af4",
+  "slug": "scaling-evaluating-sparse-autoencoders",
+  "type": "paper",
+  "title": "Scaling and Evaluating Sparse Autoencoders",
+  "hook": "Tuning the sparsity penalty on an autoencoder is fiddly. Use a top-k constraint instead and you can dial sparsity directly — and scale SAEs to GPT-4.",
+  "key_points": [
+    "Uses k-sparse (top-k) autoencoders to control sparsity directly, dropping the L1 penalty tuning.",
+    "Trained a 16-million-latent autoencoder on GPT-4 activations over 40 billion tokens.",
+    "Finds clean scaling laws relating reconstruction quality to autoencoder size and sparsity.",
+    "Introduces feature-quality metrics that improve as the autoencoder grows."
+  ],
+  "content_html": "\u003cp\u003eLeo Gao, Tom Dupré la Tour, Henk Tillman, and colleagues at OpenAI tackle a stubborn practical headache in dictionary learning: the L1 sparsity penalty is hard to tune and trades off cleanly against reconstruction in messy ways. Their fix is to use k-sparse (top-k) autoencoders that fix the number of active features directly, then scale the recipe up — training a 16-million-latent autoencoder on GPT-4 activations over 40 billion tokens.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eInstead of penalizing activation magnitude with an L1 term and tuning its weight, a top-k autoencoder simply keeps the k largest latents and zeroes the rest, so sparsity is a knob you set, not a hyperparameter you hunt for. With that in hand, the team trains very large autoencoders and finds clean scaling laws: reconstruction quality improves predictably with autoencoder size and chosen sparsity. They also introduce feature-quality metrics that get better as the autoencoder grows, giving a way to judge progress beyond raw reconstruction loss.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThis is OpenAI's take on sparse autoencoders, and it makes the method more of an engineering discipline than an art. Controlling sparsity directly removes a brittle tuning step, and the scaling laws suggest that bigger autoencoders keep buying cleaner features rather than hitting a wall. Together with Anthropic's work on Claude 3 Sonnet, it signals a shared push to make dictionary learning a reliable, scalable lens on frontier models.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Leo Gao",
+      "Tom Dupré la Tour",
+      "Henk Tillman",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2406.04093",
+    "published_at": "2024-06-06",
+    "license": "arXiv (CC BY 4.0)"
+  },
+  "topic_ids": [
+    "interpretability"
+  ],
+  "tags": [
+    "interpretability",
+    "safety",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2024-06-06",
+  "related": [
+    {
+      "id": "card_0946f0",
+      "slug": "towards-monosemanticity",
+      "type": "paper",
+      "title": "Towards Monosemanticity: Decomposing Models with Dictionary Learning",
+      "hook": "If neurons mean several things at once, can we find cleaner units? A sparse autoencoder pulled 4,000+ single-concept features out of one tiny transformer layer.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2023-10-05"
+    },
+    {
+      "id": "card_426fcd",
+      "slug": "scaling-monosemanticity",
+      "type": "paper",
+      "title": "Scaling Monosemanticity: Features from Claude 3 Sonnet",
+      "hook": "Does dictionary learning survive at production scale? Anthropic found millions of features in Claude 3 Sonnet — and could steer the model by turning one up.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2024-05-21"
+    },
+    {
+      "id": "card_29a088",
+      "slug": "gpt-4",
+      "type": "paper",
+      "title": "GPT-4 Technical Report",
+      "hook": "GPT-4 clears the bar on a wide range of professional and academic benchmarks - passing the bar exam near the top of the score range, for instance - while accepting both text and images as input.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2023-03-15"
+    },
+    {
+      "id": "card_8171c0",
+      "slug": "ica-lens",
+      "type": "paper",
+      "title": "ICA Lens: Interpreting LLMs Without Training a Dictionary",
+      "hook": "Before you train a giant sparse autoencoder, just look at the geometry. ICA Lens revives a classic method to surface interpretable directions in an LLM with no dictionary training at all.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-10"
+    },
+    {
+      "id": "card_e2857d",
+      "slug": "sae-interventions-unreliable",
+      "type": "paper",
+      "title": "SAE Interventions Are Unreliable",
+      "hook": "Clamping a 'harmful' sparse-autoencoder feature looks like it stops bad behavior — but this paper recovers it 95.8% of the time, exposing the gap between feature-level and real control.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-16"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_704af4#0",
+      "format": "flip",
+      "prompt": "What problem does a top-k autoencoder solve compared to an L1-penalty SAE?",
+      "back_html": "\u003cp\u003eIt controls sparsity directly by keeping the k largest latents, so sparsity becomes a knob you set rather than a brittle L1-penalty weight you have to tune.\u003c/p\u003e"
+    },
+    {
+      "id": "card_704af4#1",
+      "format": "quiz",
+      "prompt": "How does reconstruction quality behave as the autoencoder is scaled up?",
+      "choices": [
+        {
+          "text": "It improves predictably, following clean scaling laws",
+          "correct": true
+        },
+        {
+          "text": "It quickly plateaus and hits a wall",
+          "correct": false
+        },
+        {
+          "text": "It degrades as the latent count grows",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe team found clean scaling laws: reconstruction quality improves predictably with autoencoder size and chosen sparsity, suggesting bigger SAEs keep buying cleaner features.\u003c/p\u003e"
+    },
+    {
+      "id": "card_704af4#2",
+      "format": "flip",
+      "prompt": "Why introduce feature-quality metrics beyond reconstruction loss?",
+      "back_html": "\u003cp\u003eThey give a way to judge progress that improves as the autoencoder grows, rather than relying on raw reconstruction loss alone to measure feature usefulness.\u003c/p\u003e"
+    }
+  ]
+}

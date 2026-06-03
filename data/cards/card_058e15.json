@@ -1,0 +1,114 @@
+{
+  "id": "card_058e15",
+  "slug": "loopie",
+  "type": "paper",
+  "title": "Loop the Loopies!",
+  "hook": "Looping a Transformer instead of growing it usually loses to just adding more parameters — Loopie is the looped MoE model that finally breaks that pattern, with IMO/IPhO gold-level reasoning.",
+  "key_points": [
+    "Loopie: two looped-Transformer MoE models — 20B params (2B active) and 6B params (0.6B active).",
+    "Long-standing problem: for an N-fold compute increase, growing parameters by N usually beats looping N times — Loopie is built to close that gap.",
+    "Beats vanilla Transformer baselines trained at the same compute budget, including a vanilla 30B-A3B comparison.",
+    "A novel post-training pipeline gives Loopie strong reasoning abilities on top of the looped-MoE backbone.",
+    "Achieves gold-medal-level performance on 2025 IMO and IPhO problems without using external tools."
+  ],
+  "content_html": "\u003cp\u003eLooped Transformers — reusing the same layers multiple times instead of stacking new ones — have long promised compute efficiency, but kept losing to the simpler trick of just adding more parameters. Loopie is the authors' attempt to finally make looping pay off.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eZitian Gao, Bryan Dai, and colleagues present Loopie, described as the most powerful looped Transformer to date, released as two Mixture-of-Experts models: 20B total parameters with 2B active, and 6B total with 0.6B active. Through extensive ablations — including a head-to-head with a vanilla 30B-A3B baseline — they show Loopie substantially outperforms standard Transformer baselines trained under the same compute budget, addressing the well-known gap where looping N times usually loses to scaling parameters by N.\u003c/p\u003e\n\u003cp\u003eA novel post-training pipeline then equips Loopie with strong reasoning ability: the model reaches gold-medal-level performance on the 2025 International Mathematical Olympiad and International Physics Olympiad problem sets, without relying on external tools. Paper posted to arXiv, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zitian Gao",
+      "Yilong Chen",
+      "Yihao Xiao",
+      "Xinyu Yang",
+      "Ran Tao",
+      "Joey Zhou",
+      "Bryan Dai"
+    ],
+    "url": "https://arxiv.org/abs/2607.16051",
+    "published_at": "2026-07-17",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "transformers",
+    "moe",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "reasoning",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-17",
+  "related": [
+    {
+      "id": "card_bf9cd2",
+      "slug": "switch-transformer",
+      "type": "paper",
+      "title": "Switch Transformer: Scaling to Trillion-Parameter Models",
+      "hook": "Route every token to exactly one expert instead of many - this single simplification made trillion-parameter MoE models stable enough to train at scale.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2021-01-11"
+    },
+    {
+      "id": "card_31ff4e",
+      "slug": "mixtral",
+      "type": "paper",
+      "title": "Mixtral of Experts",
+      "hook": "Mixtral packs 8 experts per layer but routes each token through only 2, so you get the capacity of a ~47B model at the compute cost of a ~13B one - open weights included.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-01-08"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_bf9cd2",
+      "slug": "switch-transformer",
+      "type": "paper",
+      "title": "Switch Transformer: Scaling to Trillion-Parameter Models",
+      "hook": "Route every token to exactly one expert instead of many - this single simplification made trillion-parameter MoE models stable enough to train at scale.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2021-01-11"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_058e15#0",
+      "format": "flip",
+      "prompt": "What long-standing tradeoff has made looped Transformers a hard sell?",
+      "back_html": "\u003cp\u003eGiven an N-fold increase in compute, simply multiplying parameter count by N usually beats looping the same model N times — looping tended to underperform scaling up.\u003c/p\u003e"
+    },
+    {
+      "id": "card_058e15#1",
+      "format": "quiz",
+      "prompt": "How is Loopie structured?",
+      "choices": [
+        {
+          "text": "A looped-Transformer Mixture-of-Experts design, released as 20B (2B active) and 6B (0.6B active) variants",
+          "correct": true
+        },
+        {
+          "text": "A dense, non-looped 30B parameter Transformer",
+          "correct": false
+        },
+        {
+          "text": "A distillation of a larger closed model into a small student",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe Loopie series consists of two MoE models built on looped Transformers: 20B total/2B active, and 6B total/0.6B active parameters.\u003c/p\u003e"
+    },
+    {
+      "id": "card_058e15#2",
+      "format": "flip",
+      "prompt": "What reasoning result do the authors highlight for Loopie?",
+      "back_html": "\u003cp\u003eGold-medal performance at the 2025 IMO and IPhO, achieved without using external tools, thanks to a novel post-training pipeline.\u003c/p\u003e"
+    }
+  ]
+}

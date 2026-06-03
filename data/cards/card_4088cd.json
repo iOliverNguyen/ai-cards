@@ -1,0 +1,100 @@
+{
+  "id": "card_4088cd",
+  "slug": "sparsepr-training-free-sparse-attention",
+  "type": "paper",
+  "title": "SparsePR: Training-Free Sparse Attention for Video Generation",
+  "hook": "Skipping attention blocks in a video model is cheap; knowing what you threw away is the hard part. SparsePR partitions queries by response and then reconstructs the missing residual.",
+  "key_points": [
+    "Training-free block-sparse attention speeds up video transformers, but knowing a row's attention is concentrated does not tell you which executable sparse operator to use.",
+    "Queries routed to the same block can have poorly overlapping supports, and retained attention mass alone does not predict post-softmax error from skipped interactions.",
+    "Response-Coupled Partitioning groups keys and values by sampled-query responses, using group centroids as query coordinates so co-routed queries actually share support.",
+    "Probe-Fitted Residual Reconstruction runs a few exact query rows per call and fits an affine correction that adds the dropped mass back into the sparse output.",
+    "Across four video generation and world models, SparsePR holds generation quality at 22-26% executed-pair density with 1.48x-2.61x end-to-end speedups.",
+    "Ablations attribute most of the error reduction to probe fitting; the partitioning mainly lowers hard-drop error under a small probe budget."
+  ],
+  "content_html": "\u003cp\u003eTraining-free sparse attention is the cheap way to speed up video diffusion and world models: keep the heavy attention blocks, skip the rest, no retraining. Taghavi, Langari and Pandey argue the usual recipe is under-specified — observing that a query row's attention is concentrated doesn't tell you how to group queries into a routable block, and the attention mass you retain doesn't predict the post-softmax error from what you dropped.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eSparsePR attacks both halves. \u003cstrong\u003eResponse-Coupled Partitioning\u003c/strong\u003e builds K/V groups from how sampled queries actually respond, then uses the group centroids as coordinates so queries sharing a route also share support. \u003cstrong\u003eProbe-Fitted Residual Reconstruction\u003c/strong\u003e spends a small budget of exact query rows per call to fit an affine correction that pushes the skipped mass back into the sparse output, within the subspace the probe residuals expose.\u003c/p\u003e\n\u003cp\u003eAcross four heterogeneous video generation and world models the authors report consistently lower attention-reconstruction error, preserved generation quality at 22.0-26.0% realized executed-pair density, and 1.48x-2.61x end-to-end speedups. Their ablations credit probe fitting with most of the gain. See the arXiv paper and project page for the full results.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Pardis Taghavi",
+      "Reza Langari",
+      "Gaurav Pandey"
+    ],
+    "url": "https://arxiv.org/abs/2608.18484",
+    "published_at": "2026-08-19",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "attention-mechanisms",
+    "video-audio",
+    "papers-this-week"
+  ],
+  "tags": [
+    "attention",
+    "efficiency",
+    "inference",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-24",
+  "date": "2026-08-19",
+  "related": [
+    {
+      "id": "card_cf6cda",
+      "slug": "minimax-sparse-attention",
+      "type": "paper",
+      "title": "MiniMax Sparse Attention (MSA)",
+      "hook": "Quadratic attention chokes at a million tokens. MiniMax runs exact attention over only a Top-k of key-value blocks per query group — cutting per-token attention compute ~28x at 1M context.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-11"
+    },
+    {
+      "id": "card_dae8db",
+      "slug": "sana-video-2",
+      "type": "paper",
+      "title": "SANA-Video 2.0: Softmax Where It Counts",
+      "hook": "Pure linear attention is cheap but loses full-rank token mixing. SANA-Video 2.0 sprinkles softmax anchors back in at a 3:1 ratio and reaches softmax-level video quality at linear-attention cost.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-23"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_4088cd#0",
+      "format": "flip",
+      "prompt": "Why isn't row-wise attention concentration enough to build a sparse attention operator?",
+      "back_html": "\u003cp\u003eConcentration is per-row. Queries routed to the same block may have poorly overlapping supports, and retained attention mass alone does not determine the post-softmax error from the interactions you skipped.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4088cd#1",
+      "format": "quiz",
+      "prompt": "What does SparsePR's Probe-Fitted Residual Reconstruction actually do?",
+      "choices": [
+        {
+          "text": "Runs a few exact query rows and fits an affine correction to the sparse output",
+          "correct": true
+        },
+        {
+          "text": "Fine-tunes the video model so it tolerates dropped attention blocks",
+          "correct": false
+        },
+        {
+          "text": "Increases the block budget until reconstruction error falls below a threshold",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA small set of exact rows calibrates a call-specific affine correction inside the output subspace the probe residuals reveal — no retraining, and the sparsity budget stays fixed.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4088cd#2",
+      "format": "flip",
+      "prompt": "Which of SparsePR's two components contributes most of the error reduction?",
+      "back_html": "\u003cp\u003eProbe fitting. Ablations show the residual reconstruction accounts for most of the drop in attention-reconstruction error; response-coupled partitioning mainly reduces hard-drop error under a finite probe budget.\u003c/p\u003e"
+    }
+  ]
+}

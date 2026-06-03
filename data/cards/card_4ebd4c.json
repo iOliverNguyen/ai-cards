@@ -1,0 +1,118 @@
+{
+  "id": "card_4ebd4c",
+  "slug": "random-forests",
+  "type": "paper",
+  "title": "Random Forests",
+  "hook": "Grow hundreds of slightly different decision trees and average their votes - the crowd is smarter than any individual tree, and much harder to overfit.",
+  "key_points": [
+    "Each tree is trained on a bootstrap sample (random subset of rows with replacement).",
+    "At each split, only a random subset of features is considered - this decorrelates the trees.",
+    "Predictions are made by majority vote (classification) or averaging (regression).",
+    "Out-of-bag samples provide a free validation estimate without a separate holdout set.",
+    "A strong, low-maintenance baseline for tabular data with minimal tuning required."
+  ],
+  "content_html": "\u003cp\u003eA random forest is an ensemble of decision trees, each grown on a slightly different random sample of the data and allowed to look at only a random subset of features at each split. When predicting, the trees vote and the majority wins.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eLeo Breiman introduced the method in 2001. The two sources of randomness - bootstrap sampling of rows and random feature subsets at each split - keep the trees from being correlated with each other. Correlated errors would cancel less effectively; uncorrelated ones largely cancel out when averaged, which is why the ensemble does far better than any individual tree. The algorithm also tracks which samples each tree did not see during training (out-of-bag samples), using them as a built-in validation set to estimate generalization error.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eRandom forests remain a go-to first model for tabular data because they are robust, resistant to overfitting, and require little hyperparameter tuning. They also naturally provide feature importance scores. Breiman's original paper is still worth reading for the theoretical intuition behind why averaging decorrelated trees is so effective.\u003c/p\u003e",
+  "source": {
+    "name": "Machine Learning (Springer)",
+    "authors": [
+      "Leo Breiman"
+    ],
+    "url": "https://link.springer.com/article/10.1023/A:1010933404324",
+    "published_at": "2001-10-01",
+    "license": "Springer"
+  },
+  "topic_ids": [
+    "trees-ensembles"
+  ],
+  "tags": [
+    "classic-ml",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2001-10-01",
+  "related": [
+    {
+      "id": "card_1d915b",
+      "slug": "decision-trees",
+      "type": "concept",
+      "title": "Decision Trees",
+      "hook": "A decision tree asks a series of yes/no questions about your data and follows the answers to a prediction - it learns which questions to ask from the training set.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-03"
+    },
+    {
+      "id": "card_820bce",
+      "slug": "gradient-boosting-xgboost",
+      "type": "paper",
+      "title": "XGBoost: Scalable Tree Boosting",
+      "hook": "Boosting builds an ensemble one tree at a time, each tree correcting the mistakes of all the ones before it - XGBoost made this fast enough to dominate competitions.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2016-03-09"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_1d915b",
+      "slug": "decision-trees",
+      "type": "concept",
+      "title": "Decision Trees",
+      "hook": "A decision tree asks a series of yes/no questions about your data and follows the answers to a prediction - it learns which questions to ask from the training set.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-03"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_4ebd4c#0",
+      "format": "flip",
+      "prompt": "What two sources of randomness make a random forest's trees decorrelated?",
+      "back_html": "\u003cp\u003eBootstrap sampling of rows (random subset with replacement) and considering only a random subset of features at each split.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4ebd4c#1",
+      "format": "quiz",
+      "prompt": "Why does averaging decorrelated trees beat any single tree?",
+      "choices": [
+        {
+          "text": "Uncorrelated errors largely cancel out when averaged, while correlated ones would not",
+          "correct": true
+        },
+        {
+          "text": "Each tree is individually tuned to be near-perfect",
+          "correct": false
+        },
+        {
+          "text": "Averaging removes the need for any training data",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe randomness keeps trees uncorrelated, so their errors cancel under averaging - the basis for the ensemble's gain.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4ebd4c#2",
+      "format": "quiz",
+      "prompt": "What do out-of-bag samples provide?",
+      "choices": [
+        {
+          "text": "A free validation estimate without a separate holdout set",
+          "correct": true
+        },
+        {
+          "text": "Extra training rows for the deepest trees",
+          "correct": false
+        },
+        {
+          "text": "The features used at each split",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSamples a tree didn't see during training (out-of-bag) serve as a built-in validation set to estimate generalization error.\u003c/p\u003e"
+    }
+  ]
+}

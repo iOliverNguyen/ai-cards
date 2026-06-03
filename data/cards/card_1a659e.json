@@ -1,0 +1,127 @@
+{
+  "id": "card_1a659e",
+  "slug": "rubric-to-code-credit-assignment",
+  "type": "paper",
+  "title": "Grading a Web App Feature by Feature, Then Sending the Reward Back to the Right Lines",
+  "hook": "A generated app fails in localized ways — a broken handler, a wrong selector. GRPO flattens all of it into one number. RCCA routes each rubric item's verdict back to the code that caused it.",
+  "key_points": [
+    "Interactive app generation is judged by many user-facing requirements, each usually living in a small code region: a handler, a state update, a DOM fragment, a CSS rule.",
+    "Standard GRPO collapses those outcomes into one sequence-level reward and spreads the advantage evenly over every token.",
+    "RCCA builds training tasks around explicit functional rubrics instead of a single pass/fail.",
+    "A hierarchical reward separates format, source-code, runtime, and functional failures so different breakages aren't conflated.",
+    "Evaluator-written textual attributions are aligned to the responsible code spans, and through them to the generated tokens.",
+    "Ling-RCCA-Flash scores 41.25 on MiniAppBench (+32.20 over Ling-3.0-Flash) and 76.19 on ArtifactsBench, which the authors report as a new top score in the official leaderboard setting."
+  ],
+  "content_html": "\u003cp\u003eAsk a model for an interactive web app and you get HTML, CSS, and JavaScript that is rarely wholly right or wholly wrong. One requirement works, another doesn't, and the reason for each usually sits in a handful of lines — an event handler, a state update, a selector. Standard GRPO throws that structure away: it reduces the rollout to one reward and applies the resulting advantage uniformly across every token, which is exactly the situation credit assignment is worst at.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eAttribution as the training signal\u003c/h2\u003e\n\u003cp\u003eRubric-to-Code Credit Assignment (RCCA), from Jin and colleagues at Ant Group, keeps the structure. Training tasks are built around explicit functional rubrics, so the reward arrives as a set of per-requirement verdicts rather than a scalar. A hierarchical reward keeps four kinds of failure — format, source code, runtime, functional — on separate levels. The distinctive part is the alignment step: the evaluator's textual explanation of \u003cem\u003ewhy\u003c/em\u003e a rubric item failed is matched to the code spans responsible for it, and those spans to the tokens that produced them, so the advantage concentrates where the fault was.\u003c/p\u003e\n\u003cp\u003eThe authors report Ling-RCCA-Flash at 41.25 on MiniAppBench, 32.20 points above Ling-3.0-Flash and slightly ahead of Claude Opus 4.5, and 76.19 on ArtifactsBench — 4.48 over their SFT model, which they describe as a new top score under the official leaderboard setting. They read the ArtifactsBench transfer as evidence that the gains are implementation-level rather than benchmark-specific.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Rui Jin",
+      "Jikai Chen",
+      "Yihan Chen",
+      "Hao Zhou",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.27906",
+    "published_at": "2026-08-28",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "ai-for-code",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "alignment",
+    "agent",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-31",
+  "date": "2026-08-28",
+  "related": [
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    },
+    {
+      "id": "card_5a32cc",
+      "slug": "agentopsd-turn-level-credit",
+      "type": "paper",
+      "title": "Finding the Turn That Mattered in a Long Agent Rollout",
+      "hook": "RL with verifiable rewards scores a whole trajectory pass/fail, which tells an agent nothing about which of its forty turns was the pivotal one. AgentOPSD recovers turn-level credit without a critic.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-08-06"
+    },
+    {
+      "id": "card_55a59d",
+      "slug": "dynamicrubric-co-evolving-evaluators",
+      "type": "paper",
+      "title": "DynamicRubric: Co-Evolving LLM Evaluators and Policies",
+      "hook": "As a model improves, its candidate answers get so close in quality that the reward model can't tell them apart. DynamicRubric fixes the bottleneck by evolving the evaluator alongside the policy.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-22"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_1a659e#0",
+      "format": "flip",
+      "prompt": "Why is a single sequence-level reward a poor fit for generated web applications?",
+      "back_html": "\u003cp\u003eApp quality is a bundle of independent functional requirements, and each one usually depends on a small localized region of the code. One scalar reward spread evenly over all tokens can't say which requirement failed or which lines caused it.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1a659e#1",
+      "format": "quiz",
+      "prompt": "How does RCCA turn rubric-level feedback into a token-level learning signal?",
+      "choices": [
+        {
+          "text": "It aligns the evaluator's textual attributions with the responsible code spans, and those spans with the generated tokens",
+          "correct": true
+        },
+        {
+          "text": "It trains a separate value network to predict each token's contribution to the rubric score",
+          "correct": false
+        },
+        {
+          "text": "It resamples the rollout once per rubric item and compares the outcomes",
+          "correct": false
+        },
+        {
+          "text": "It averages the rubric scores into a single reward with per-item weights",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe attribution chain is the mechanism: rubric verdict to explanatory text, text to code span, span to tokens — so the advantage lands on the code that actually caused the failure.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1a659e#2",
+      "format": "flip",
+      "prompt": "What does RCCA's hierarchical reward distinguish between?",
+      "back_html": "\u003cp\u003eFormat failures, source-code failures, runtime failures, and functional failures — kept as separate levels so an app that won't parse isn't scored like one that runs but misses a requirement.\u003c/p\u003e"
+    }
+  ]
+}

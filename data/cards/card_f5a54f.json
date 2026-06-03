@@ -1,0 +1,120 @@
+{
+  "id": "card_f5a54f",
+  "slug": "recursive-synthetic-terminal-tasks",
+  "type": "paper",
+  "title": "Growing Agent Training Tasks by Recursion, at Five Cents Each",
+  "hook": "Hand-authored long-horizon agent tasks cost hundreds of dollars apiece. RST grows them recursively from verified seeds — 37,484 tasks at roughly $0.05 each, with no ceiling in sight.",
+  "key_points": [
+    "A terminal-agent task needs instruction, environment, reference solution, and verifier to stay mutually consistent — which is why hand-authoring costs hundreds to thousands of dollars per task.",
+    "RST starts from verified seeds, extends the reference solution, realigns verifier and instruction, revalidates in a fresh sandbox, then reuses accepted tasks as the next round's seeds.",
+    "Fifteen rounds produced 37,484 tasks at roughly $0.05 each.",
+    "Difficulty climbs sharply: median reference solution 67 → 374 lines, median executed commands 40 → 244, DeepSeek-V4-Pro pass@4 90% → 2.5%.",
+    "Fine-tuning on rejection-sampled trajectories lifted Qwen3.5-27B and 122B-A10B by up to 10 points on three Terminal-Bench variants.",
+    "After 15 rounds synthesis yield and validation rates stayed stable — the authors see no ceiling on the recursion."
+  ],
+  "content_html": "\u003cp\u003eTraining agents on long-horizon terminal work runs into a data wall: a usable task has to keep its instruction, environment, reference solution, and verifier all consistent with each other, and getting that right by hand costs hundreds to thousands of dollars per task. Asking an LLM to write one from scratch tends to break exactly those dependencies. Li and colleagues propose growing tasks instead of authoring them.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe loop\u003c/h2\u003e\n\u003cp\u003eRecursive Synthetic Terminal Tasks (RST) starts from a small set of verified seed tasks. Each round, it extends the reference solution into a longer workflow, realigns the verifier and the instruction so they still describe what the new solution does, and validates the whole thing in a fresh sandbox. Tasks that pass become seeds for the next round. Fifteen rounds yielded 37,484 tasks at roughly $0.05 each.\u003c/p\u003e\n\u003ch2\u003eDoes harder actually mean better?\u003c/h2\u003e\n\u003cp\u003eDifficulty compounds visibly: the median reference solution grew from 67 to 374 lines, the median number of executed commands from 40 to 244, and DeepSeek-V4-Pro's pass@4 fell from 90% in round one to 2.5% by round fifteen. To show the tasks are useful and not just hard, the authors collected rejection-sampled Qwen3.5 trajectories on them and fine-tuned: up to 10 points of improvement on Terminal-Bench 2, Terminal-Bench Hard, and Long-Horizon Terminal Bench, with agentic PPO pushing Qwen3.5-27B further still. The result they emphasize most is negative in an encouraging way — after fifteen rounds, yield and validation rates hadn't degraded, so the process appears able to keep going.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zhongzhi Li",
+      "Yucheng Shi",
+      "Zongxia Li",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.05466",
+    "published_at": "2026-08-05",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "synthetic-data",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "agent",
+    "dataset",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-10",
+  "date": "2026-08-05",
+  "related": [
+    {
+      "id": "card_e51b4a",
+      "slug": "self-instruct",
+      "type": "paper",
+      "title": "Self-Instruct: Aligning LMs with Self-Generated Instructions",
+      "hook": "Instead of paying humans to write instruction data, have the model write its own — bootstrap instructions, inputs, and outputs from its own generations, filter, and fine-tune.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-20"
+    },
+    {
+      "id": "card_c54cf2",
+      "slug": "star",
+      "type": "paper",
+      "title": "STaR: Bootstrapping Reasoning With Reasoning",
+      "hook": "Let the model write its own step-by-step rationales, keep only the ones that reach the right answer, fine-tune on those, and repeat — reasoning data that bootstraps itself.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2022-03-28"
+    },
+    {
+      "id": "card_488a94",
+      "slug": "long-horizon-terminal-bench",
+      "type": "paper",
+      "title": "Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks",
+      "hook": "46 terminal tasks that take hours, not minutes — and today's best agent still only nails 15% of them, with the average model managing barely 4%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-09"
+    },
+    {
+      "id": "card_48a3f2",
+      "slug": "tua-bench-terminal-agents",
+      "type": "paper",
+      "title": "TUA-Bench: Benchmarking General-Purpose Terminal Agents",
+      "hook": "120 real terminal tasks — from email triage to PhD-level scientific workflows — show even Claude Opus 4.8 tops out around 66%, far from reliable general computer use.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_f5a54f#0",
+      "format": "flip",
+      "prompt": "Why are long-horizon terminal-agent tasks so expensive to author by hand?",
+      "back_html": "\u003cp\u003eEach task must keep four things mutually consistent — the instruction, the environment, the reference solution, and the verifier. Getting that right by hand costs hundreds to thousands of dollars per task, and naive LLM generation breaks the dependencies.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f5a54f#1",
+      "format": "quiz",
+      "prompt": "What makes RST *recursive*?",
+      "choices": [
+        {
+          "text": "Accepted synthesized tasks become the seeds for the next round of synthesis",
+          "correct": true
+        },
+        {
+          "text": "The verifier calls itself until the reference solution stops changing",
+          "correct": false
+        },
+        {
+          "text": "Each task is solved by an agent that spawns copies of itself",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRST extends a verified seed's reference solution, realigns the verifier and instruction, revalidates in a fresh sandbox — then feeds accepted tasks back in as seeds, so difficulty compounds across rounds.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f5a54f#2",
+      "format": "flip",
+      "prompt": "What evidence suggests the recursion hasn't hit a ceiling after 15 rounds?",
+      "back_html": "\u003cp\u003eSynthesis yield and validation rates stayed stable even as difficulty kept climbing — median solutions grew from 67 to 374 lines and a strong model's pass@4 fell from 90% to 2.5%, without the pipeline breaking down.\u003c/p\u003e"
+    }
+  ]
+}

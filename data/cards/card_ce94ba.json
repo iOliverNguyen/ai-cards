@@ -1,0 +1,109 @@
+{
+  "id": "card_ce94ba",
+  "slug": "j-zero-challenger-solver-judge",
+  "type": "paper",
+  "title": "J-Zero: Co-Evolving a Challenger, a Solver, and a Judge From Zero Data",
+  "hook": "Self-improvement works when answers can be checked. J-Zero's trick for the unverifiable half: derive the judge's training labels from how each answer was produced, not from the judge's own scores.",
+  "key_points": [
+    "Three roles co-evolve from no seed data: a Challenger that invents harder tasks, a Solver that answers them, and a Judge that scores quality.",
+    "Challenger and Solver improve adversarially — harder problems pull the Solver up, which forces the Challenger higher.",
+    "The Judge trains on preference pairs whose ordering is known by construction, sidestepping the circularity of a judge grading with its own scores.",
+    "Two such construction rules: the Solver's answer beats the Challenger's, and a decomposed-then-recombined answer beats a one-shot answer.",
+    "Reported gains average 4.2 points on verifiable domains and 8.0 on unverifiable ones over the baselines.",
+    "The authors report improvement continuing through at least ten iterations, where baselines degrade after two."
+  ],
+  "content_html": "\u003cp\u003eSelf-improving models work well where answers can be checked automatically — math, code, anything with a verifier. The unverifiable half of the world is harder, because the training signal has to come from a judge, and a judge trained on its own scores can drift with nothing to correct it. Chu, Jeon, and Yang propose J-Zero, which starts from no seed data and co-evolves three roles: a Challenger that invents tasks, a Solver that answers them, and a Judge that ranks answers.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe trick with the Judge\u003c/h2\u003e\n\u003cp\u003eThe Judge never learns from its own scores. Instead it trains on preference pairs whose ordering is known in advance from how each response was produced — the Solver's answer is taken to beat the Challenger's, and an answer that was decomposed and recombined is taken to beat a one-shot answer. That gives supervision that is independent of what the Judge currently believes.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe authors report average gains of 4.2 points on verifiable domains and 8.0 on unverifiable ones over their baselines, and — more interesting than the deltas — improvement that continues through at least ten iterations where the baselines degrade after two. Sustained self-improvement, rather than two good rounds followed by collapse, is the claim worth watching. Full details are in the paper.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Gyouk Chu",
+      "Myeongho Jeon",
+      "Eunho Yang"
+    ],
+    "url": "https://arxiv.org/abs/2608.26582",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "synthetic-data",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "alignment",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_439589",
+      "slug": "skill-self-play",
+      "type": "paper",
+      "title": "Skill Self-Play: Pushing the Frontier of LLM Capability with Co-Evolving Skills",
+      "hook": "Self-evolving models face a dilemma: verifiable environments are narrow, open-ended task generation is unreliable. This uses agent skills as the middle ground.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    },
+    {
+      "id": "card_971f11",
+      "slug": "self-improving-agents-survey",
+      "type": "paper",
+      "title": "Self-Improvements in Modern Agentic Systems: A Survey",
+      "hook": "Self-improving agents are leaving the lab for production. This survey, co-authored by Jürgen Schmidhuber, gives the field a shared vocabulary for what an agent can update about itself, and what drives that update.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-07-14"
+    },
+    {
+      "id": "card_f4c73d",
+      "slug": "llm-as-a-verifier",
+      "type": "paper",
+      "title": "LLM-as-a-Verifier: Verification as a New Scaling Axis",
+      "hook": "Everyone scales pretraining, post-training, and test-time compute. This paper argues verification — checking if a solution is correct — is its own scaling axis, and hits SOTA on four agentic benchmarks.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_ce94ba#0",
+      "format": "flip",
+      "prompt": "Why is self-evolution harder in unverifiable domains than in verifiable ones?",
+      "back_html": "\u003cp\u003eWith no checker to say whether an answer is right, the training signal has to come from a judge — and a judge grading with its own scores can drift without anything correcting it.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ce94ba#1",
+      "format": "quiz",
+      "prompt": "Where does J-Zero's Judge get the ordering of its preference pairs?",
+      "choices": [
+        {
+          "text": "From how each response was produced — e.g. the Solver's answer ranks above the Challenger's",
+          "correct": true
+        },
+        {
+          "text": "From the Judge's own confidence scores on each response",
+          "correct": false
+        },
+        {
+          "text": "From human annotators labelling a held-out sample each iteration",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe ordering is known in advance by construction, so the Judge never bootstraps off its own scores.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ce94ba#2",
+      "format": "flip",
+      "prompt": "What do the Challenger and Solver each optimize for?",
+      "back_html": "\u003cp\u003eThe Challenger generates increasingly difficult tasks; the Solver learns to answer them better. Each one's progress raises the bar for the other.\u003c/p\u003e"
+    }
+  ]
+}

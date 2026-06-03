@@ -1,0 +1,141 @@
+{
+  "id": "card_4cd8fd",
+  "slug": "deepseek-r1",
+  "type": "paper",
+  "title": "DeepSeek-R1: Incentivizing Reasoning via Reinforcement Learning",
+  "hook": "DeepSeek shows strong reasoning can emerge from RL on verifiable rewards with minimal supervised data - and those reasoning traces can be distilled into smaller models.",
+  "key_points": [
+    "RL with verifiable rewards (math, code) drives reasoning ability without heavy supervised fine-tuning.",
+    "An early RL-only experiment (R1-Zero) spontaneously developed reflection and chain-of-thought behaviors.",
+    "Full R1 combines a small amount of supervised fine-tuning with large-scale RL for stable, readable output.",
+    "Reasoning traces from R1 can be distilled into compact models that punch well above their parameter count.",
+    "Released openly, matching or approaching o1-level math and reasoning performance."
+  ],
+  "content_html": "\u003cp\u003eDeepSeek-AI released R1 in January 2025, an open reasoning model that acquires strong chain-of-thought reasoning primarily through reinforcement learning rather than large amounts of supervised demonstrations. The paper also introduced distilled smaller variants that inherit R1's reasoning style.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe authors first trained R1-Zero using only RL with verifiable reward signals (correctness on math and code problems). Remarkably, this model spontaneously developed reflective reasoning and self-correction in its traces. Full R1 adds a small cold-start supervised phase before RL to stabilize output format. The resulting reasoning traces were then used to fine-tune smaller dense models via distillation.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eDeepSeek-R1 validated that reasoning capabilities are not locked behind proprietary training pipelines: open RL on verifiable tasks gets you most of the way there. The distillation finding is especially practical - teams can get strong reasoning in a 7B or 14B model without training from scratch. Dig into the paper on arXiv for the full ablations and training recipe.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "DeepSeek-AI"
+    ],
+    "url": "https://arxiv.org/abs/2501.12948",
+    "published_at": "2025-01-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "reasoning",
+    "nlp",
+    "open-source",
+    "paper"
+  ],
+  "importance": 5,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2025-01-22",
+  "related": [
+    {
+      "id": "card_9edf2b",
+      "slug": "openai-o1",
+      "type": "news",
+      "title": "OpenAI o1: Learning to Reason with Reinforcement Learning",
+      "hook": "OpenAI's o1 lets a model think via a long internal chain-of-thought before answering - spending more compute at inference time visibly improves reasoning.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-09-12"
+    },
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    },
+    {
+      "id": "card_40de42",
+      "slug": "ppo",
+      "type": "paper",
+      "title": "PPO: Proximal Policy Optimization",
+      "hook": "Reinforcement learning is notoriously unstable. PPO's fix is simple: never let a single update move the policy too far. That restraint made it the field's workhorse.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2017-07-20"
+    },
+    {
+      "id": "card_0bb3c4",
+      "slug": "vibethinker-3b",
+      "type": "paper",
+      "title": "VibeThinker-3B: Frontier Reasoning in a Small Model",
+      "hook": "A 3B model matches giant flagships on hard math and coding - because verifiable reasoning, it turns out, compresses into a tiny 'reasoning core.'",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-15"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_4cd8fd#0",
+      "format": "flip",
+      "prompt": "How did R1 acquire its reasoning ability, and what did R1-Zero show?",
+      "back_html": "\u003cp\u003ePrimarily via RL with verifiable rewards (math, code) rather than heavy supervised data. R1-Zero, an RL-only run, spontaneously developed reflection and chain-of-thought.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4cd8fd#1",
+      "format": "quiz",
+      "prompt": "Why did full R1 add a small supervised cold-start phase before RL?",
+      "choices": [
+        {
+          "text": "To stabilize output format for readable results",
+          "correct": true
+        },
+        {
+          "text": "To replace RL entirely",
+          "correct": false
+        },
+        {
+          "text": "To remove the need for verifiable rewards",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eFull R1 adds a small cold-start supervised phase before RL to stabilize the output format.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4cd8fd#2",
+      "format": "quiz",
+      "prompt": "What is the practical payoff of R1's distillation finding?",
+      "choices": [
+        {
+          "text": "Strong reasoning can be put into compact models without training from scratch",
+          "correct": true
+        },
+        {
+          "text": "Reasoning only works in proprietary pipelines",
+          "correct": false
+        },
+        {
+          "text": "Smaller models must be trained longer than R1 itself",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eR1's reasoning traces fine-tune smaller dense models, so teams get strong reasoning in a 7B or 14B model without training from scratch.\u003c/p\u003e"
+    }
+  ]
+}

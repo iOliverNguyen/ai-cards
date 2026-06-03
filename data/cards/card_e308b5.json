@@ -1,0 +1,119 @@
+{
+  "id": "card_e308b5",
+  "slug": "ultrax-pretraining-data-refinement",
+  "type": "paper",
+  "title": "UltraX: Refining Pre-Training Data at Scale with Adaptive Programmatic Editing",
+  "hook": "Rule-based data cleaning is too rigid; LLM rewrites are too slow at pretraining scale. UltraX teaches a model to emit structured, executable edit programs instead — insertions included.",
+  "key_points": [
+    "As pretraining data hits its physical limits, gains now come more from refining data quality than adding more of it.",
+    "Rule-based refinement is rigid (fixed heuristics); LLM-rewriting is higher quality but too slow and unreliable to run reliably at pretraining scale.",
+    "UltraX adds insertion to deletion/modification, enabling fine-grained instance-level edits beyond what prior refinement pipelines could express.",
+    "Converts an expert LLM's rewrites into structured, executable edit programs via alignment mapping — turning one-off LLM judgment into something cheap to apply at scale.",
+    "Stabilizes training via low-confidence example filtering and ratio-controlled sampling, plus sliding-window validation at execution time.",
+    "Achieves the best average performance across tested corpora, matching or beating baselines while using fewer training tokens."
+  ],
+  "content_html": "\u003cp\u003ePretraining data is running up against its physical limits, so squeezing more out of the data you already have matters more than collecting still more of it. UltraX, from Tsinghua's THUNLP group, tackles the gap between refinement that's too rigid (rule-based) and refinement that's too slow and unreliable at scale (raw LLM rewriting).\u003c/p\u003e",
+  "extra_html": "\u003cp\u003ePrior instance-level refinement methods could only delete or modify text; UltraX completes the edit space by adding insertion, letting it express fine-grained fixes that rule-based heuristics can't capture. Rather than calling an LLM on every document at pretraining scale, UltraX distills that judgment once: dataset-adaptive prompting guides an expert LLM to produce high-quality rewritten texts, and a Line Alignment Mapping plus Dynamic Context Replacement step converts each original-refined pair into a structured, executable edit program. Low-confidence examples get filtered and edit types are ratio-controlled to keep the training distribution stable, and at execution time, sliding-window prediction plus global operation aggregation and post-processing keep large-scale runs reliable.\u003c/p\u003e\n\u003cp\u003eAcross the corpora tested, UltraX reports the best average downstream performance, matching or beating baselines while using fewer training tokens — evidence that smarter, executable refinement can substitute for some of the data that scaling laws say we're running out of. Xinlong Zhao, Zhiyuan Liu, and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xinlong Zhao",
+      "Dongsheng Liu",
+      "Hengyu Zhao",
+      "Zixuan Fu",
+      "Zheng Wang",
+      "Jie Cai",
+      "Jie Zhou",
+      "Qiang Ma",
+      "Xuanhe Zhou",
+      "Xu Han",
+      "Yudong Wang",
+      "Zhiyuan Liu"
+    ],
+    "url": "https://arxiv.org/abs/2607.08646",
+    "published_at": "2026-07-09",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "data",
+    "pretraining",
+    "papers-this-week"
+  ],
+  "tags": [
+    "dataset",
+    "training",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-09",
+  "related": [
+    {
+      "id": "card_7f483b",
+      "slug": "dataclaw0",
+      "type": "paper",
+      "title": "DataClaw0: Data Refinement as a Learnable Skill",
+      "hook": "Instead of scrubbing data with fixed rules, what if an agent learned to tailor it? DataClaw0 turns data refinement into a trainable skill judged by how well models train on its output.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-19"
+    },
+    {
+      "id": "card_9237d7",
+      "slug": "deduplicating-training-data",
+      "type": "paper",
+      "title": "Deduplicating Training Data Makes LMs Better",
+      "hook": "Training corpora are full of copies — one 61-word sentence shows up 60,000+ times in C4. Strip the duplicates and models memorize far less and evaluate more honestly.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2021-07-14"
+    },
+    {
+      "id": "card_7a5e17",
+      "slug": "the-pile",
+      "type": "dataset",
+      "title": "The Pile: 800GB of Diverse Text",
+      "hook": "Web text alone leaves gaps. The Pile stitches together 22 curated sources — academic and professional — so a language model picks up knowledge plain web crawls miss.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-12-31"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_e308b5#0",
+      "format": "flip",
+      "prompt": "What editing capability does UltraX add that prior instance-level refinement pipelines lacked?",
+      "back_html": "\u003cp\u003eInsertion — prior methods could only delete or modify text; UltraX completes the edit space with insertion for finer-grained instance-level fixes.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e308b5#1",
+      "format": "quiz",
+      "prompt": "How does UltraX make an expert LLM's judgment cheap to apply at pretraining scale?",
+      "choices": [
+        {
+          "text": "It converts original-refined text pairs into structured, executable edit programs via alignment mapping, instead of calling the LLM on every document",
+          "correct": true
+        },
+        {
+          "text": "It fine-tunes the pretraining model directly on the LLM's rewritten text",
+          "correct": false
+        },
+        {
+          "text": "It replaces the LLM entirely with fixed rule-based heuristics",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eUltraX uses an expert LLM once to produce high-quality rewrites, then Line Alignment Mapping and Dynamic Context Replacement turn those rewrites into reusable, executable edit programs.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e308b5#2",
+      "format": "flip",
+      "prompt": "What's the headline result UltraX reports?",
+      "back_html": "\u003cp\u003eThe highest average performance across tested corpora, matching or surpassing baselines while using fewer training tokens — better data efficiency and refinement reliability.\u003c/p\u003e"
+    }
+  ]
+}

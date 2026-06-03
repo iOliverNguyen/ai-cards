@@ -1,0 +1,146 @@
+{
+  "id": "card_7eeaf2",
+  "slug": "agentrewind-recoverable-execution",
+  "type": "paper",
+  "title": "AgentRewind: Give Agents an Undo Button",
+  "hook": "Most agent research tries to prevent mistakes. AgentRewind asks what happens after one — checkpoint the context and the environment together, so the agent can rewind and retry with what it learned.",
+  "key_points": [
+    "Early errors in long-horizon runs propagate through both the agent's context and the environment's state.",
+    "Existing work focuses on prevention — plan refinement, safety checks — and offers little recovery afterward.",
+    "AgentRewind records aligned checkpoints of the agent context and a controlled environment.",
+    "The agent can return to an earlier state and resume, carrying information from the failed attempt.",
+    "MettleBench, a companion benchmark, scores long-horizon engineering tasks on partial checklist progress, not just success.",
+    "Reported gains in success rate and checklist progress across models, strategies, and agent harnesses."
+  ],
+  "content_html": "\u003cp\u003eLong-horizon agent work has a characteristic failure shape: a mistake early in the run quietly poisons everything after it. The bad state lives in two places at once — the agent's context, which now contains a wrong belief, and the environment, which now has a wrong file or a half-applied migration. Most of the field's answer has been prevention: better plans, more safety checks. AgentRewind takes the other half of the problem.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eAligned checkpoints\u003c/h2\u003e\n\u003cp\u003eThe framework records checkpoints of the agent's context and of a controlled environment \u003cstrong\u003etogether\u003c/strong\u003e, so they can be restored as a matched pair. When execution goes wrong, the agent returns to an earlier state and resumes — but with information carried over from the failed attempt, so the retry isn't a blind repeat. Rolling back only one half would leave the agent reasoning about an environment that no longer matches its memory, which is why the alignment matters.\u003c/p\u003e\n\u003ch2\u003eMeasuring partial progress\u003c/h2\u003e\n\u003cp\u003eThe authors also build \u003cstrong\u003eMettleBench\u003c/strong\u003e, a benchmark of long-horizon engineering assignments made of a series of related requirements. Because such tasks rarely end in clean success or clean failure, it scores average checklist progress alongside completion. Across tasks, models, execution strategies, and agent harnesses, the authors report AgentRewind improving both metrics over the compared baselines — evidence that recoverability, not just reliability, is a lever worth pulling.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yu Zhuang",
+      "Kefei Chen",
+      "Yitong Duan",
+      "Shuxin Zheng",
+      "Jian Li",
+      "Xu-Yao Zhang"
+    ],
+    "url": "https://arxiv.org/abs/2608.14380",
+    "published_at": "2026-08-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-17",
+  "date": "2026-08-14",
+  "related": [
+    {
+      "id": "card_488a94",
+      "slug": "long-horizon-terminal-bench",
+      "type": "paper",
+      "title": "Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks",
+      "hook": "46 terminal tasks that take hours, not minutes — and today's best agent still only nails 15% of them, with the average model managing barely 4%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-09"
+    },
+    {
+      "id": "card_26a94f",
+      "slug": "agents-a1-scaling-the-horizon",
+      "type": "paper",
+      "title": "Scaling the Horizon, Not the Parameters",
+      "hook": "A 35B mixture-of-experts agent matches trillion-parameter models on long-horizon tasks — by scaling how long its trajectories run, not how big its weights are.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-29"
+    },
+    {
+      "id": "card_d3efb7",
+      "slug": "doomed-from-the-start-early-abort",
+      "type": "paper",
+      "title": "Doomed from the Start: Predicting Agent Failure Before It Happens",
+      "hook": "An agent that's going to fail often shows it in its hidden activations from round one — long before its actual behavior looks any different. Reading that signal saves nearly half the compute.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-07"
+    },
+    {
+      "id": "card_42f624",
+      "slug": "agent-token-budget-overruns",
+      "type": "paper",
+      "title": "Token Budgets: When Agents Burn Money",
+      "hook": "A single retry loop can spend thousands of dollars before anyone notices. This paper catalogs 63 real budget-overrun incidents — and asks the type system to make over-spending a compile error.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_7eeaf2#0",
+      "format": "flip",
+      "prompt": "Why isn't it enough for an agent to just 'try again' after an early mistake?",
+      "back_html": "\u003cp\u003eThe error propagates through both the agent's context and the environment's state, and its effects may be irreversible through further actions alone — so you need to roll back both.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7eeaf2#1",
+      "format": "quiz",
+      "prompt": "What does AgentRewind checkpoint?",
+      "choices": [
+        {
+          "text": "Aligned snapshots of both the agent context and the controlled environment",
+          "correct": true
+        },
+        {
+          "text": "Only the agent's conversation history, replayed against a live environment",
+          "correct": false
+        },
+        {
+          "text": "Only the environment's filesystem, with a fresh agent context each time",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRecovery requires the two to stay in sync, so AgentRewind records checkpoints of the agent context and the environment together.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7eeaf2#2",
+      "format": "quiz",
+      "prompt": "What does MettleBench measure that plain success rate doesn't?",
+      "choices": [
+        {
+          "text": "Partial progress against a checklist of related requirements",
+          "correct": true
+        },
+        {
+          "text": "Token cost per completed task",
+          "correct": false
+        },
+        {
+          "text": "How closely the agent's plan matches a human reference plan",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMettleBench evaluates long-horizon engineering assignments containing a series of related requirements, scoring average checklist progress alongside task completion.\u003c/p\u003e"
+    }
+  ]
+}

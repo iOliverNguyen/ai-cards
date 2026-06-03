@@ -1,0 +1,146 @@
+{
+  "id": "card_319ef2",
+  "slug": "full-bandwidth-transformer",
+  "type": "paper",
+  "title": "Full-Bandwidth Transformer: Feed the Hidden State Back",
+  "hook": "Between decoding steps a transformer throws away everything except the sampled token. Widening that channel with the top-layer hidden state buys roughly 1.5x the training tokens' worth of quality.",
+  "key_points": [
+    "Standard autoregressive decoding passes only the sampled token to the next step; the top-layer hidden state is discarded.",
+    "The full-bandwidth transformer fuses that previous hidden state with the sampled token embedding through a gated linear unit and feeds it back as the next input.",
+    "This lets non-verbalized computation re-enter the stack with a fresh depth budget, while keeping the standard architecture, KV cache, and language-modeling objective.",
+    "Training uses a scheduled multi-pass objective — latent feedback is introduced late in pretraining, with a fraction of deeper passes for stability — to preserve parallel teacher forcing.",
+    "At 1B parameters and 400B tokens, the authors report gains in validation loss, 5-shot evaluation, math and coding generation, and instruction-tuned performance.",
+    "The reported effect is roughly matching a standard transformer trained on ~1.5x more tokens, at negligible per-token decoding overhead — with shorter reasoning traces at equal or better accuracy."
+  ],
+  "content_html": "\u003cp\u003eAn autoregressive transformer computes along two axes: horizontally across generated tokens, and vertically through its layers. Attention has made the horizontal axis very wide. The vertical one between steps is a straw — at each decoding step the model does a full forward pass, produces a rich top-layer hidden state, samples one discrete token from it, and throws the rest away. Everything the model \u0026quot;thought\u0026quot; that didn't make it into that token is gone.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eWang, Cai, Langford and colleagues widen that channel. In their full-bandwidth transformer, the previous step's top-layer hidden state is fused with the sampled token embedding through a gated linear unit and fed back in as the next input. Non-verbalized computation gets to re-enter the stack from the bottom with a renewed depth budget, and the architecture, KV cache, and plain language-modeling objective all stay standard. The catch is training: naive feedback destroys parallel teacher forcing, so they use a scheduled multi-pass objective that introduces latent feedback late in pretraining and mixes in a small fraction of deeper passes for stability.\u003c/p\u003e\n\u003cp\u003eTraining 1B-parameter models up to 400B tokens, the authors report improvements in validation loss, 5-shot evaluation, math and coding generation, and instruction-tuned performance — summarized as matching or approaching a standard transformer trained on roughly 1.5x more tokens, with negligible per-token decoding cost and shorter reasoning traces at equal or better accuracy. These are the authors' results at 1B scale; whether the advantage holds at frontier scale is still open. Details and ablations in the paper.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xi Wang",
+      "Ziyang Cai",
+      "Zheng Zhan",
+      "Harry Dong",
+      "Ying Fan",
+      "Gustavo de Rosa",
+      "Tim Pearce",
+      "John Langford"
+    ],
+    "url": "https://arxiv.org/abs/2608.08888",
+    "published_at": "2026-08-09",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "transformers",
+    "papers-this-week",
+    "pretraining"
+  ],
+  "tags": [
+    "architecture",
+    "paper",
+    "training",
+    "reasoning"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-17",
+  "date": "2026-08-09",
+  "related": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    },
+    {
+      "id": "card_5d2914",
+      "slug": "latent-context-language-models",
+      "type": "paper",
+      "title": "Latent Context Language Models: Compressing the Prompt, Not the Cache",
+      "hook": "Instead of shrinking the KV cache, compress the prompt itself: a small encoder folds a long context into a few latent embeddings that a bigger decoder reads — letting agents skim and expand on demand.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-08"
+    },
+    {
+      "id": "card_fda922",
+      "slug": "llms-encode-remaining-output-length",
+      "type": "paper",
+      "title": "How Much Is Left? LLMs Linearly Encode Their Remaining Output Length",
+      "hook": "Before an LLM writes a single token of its answer, its hidden state already seems to know roughly how long the answer will be — and the estimate jumps when it restarts a draft.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-06"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_319ef2#0",
+      "format": "quiz",
+      "prompt": "What is the 'narrow channel' the full-bandwidth transformer widens?",
+      "choices": [
+        {
+          "text": "The vertical feedback between decoding steps — only the sampled token returns to the bottom of the stack",
+          "correct": true
+        },
+        {
+          "text": "The horizontal attention span, which limits how far back a token can look",
+          "correct": false
+        },
+        {
+          "text": "The KV cache bandwidth between GPU memory and compute units",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDense attention already gives broad horizontal access to the past. The bottleneck is vertical: the top-layer hidden state is thrown away at each step, and only the discrete sampled token survives.\u003c/p\u003e"
+    },
+    {
+      "id": "card_319ef2#1",
+      "format": "flip",
+      "prompt": "How is the previous hidden state reintroduced?",
+      "back_html": "\u003cp\u003eIt's fused with the sampled token embedding through a gated linear unit and fed in as the next step's input — so non-verbalized computation re-enters the stack with a renewed depth budget.\u003c/p\u003e"
+    },
+    {
+      "id": "card_319ef2#2",
+      "format": "flip",
+      "prompt": "Why does training need a scheduled multi-pass objective?",
+      "back_html": "\u003cp\u003eNaive latent feedback breaks parallel teacher forcing. The authors introduce feedback late in pretraining and mix in a small fraction of deeper feedback passes, keeping training parallel and stable.\u003c/p\u003e"
+    },
+    {
+      "id": "card_319ef2#3",
+      "format": "quiz",
+      "prompt": "What headline efficiency claim do the authors make for 1B models trained to 400B tokens?",
+      "choices": [
+        {
+          "text": "Matching or approaching a standard transformer trained on roughly 1.5x more tokens",
+          "correct": true
+        },
+        {
+          "text": "A 14x reduction in total pretraining FLOPs",
+          "correct": false
+        },
+        {
+          "text": "Equal quality with half the model parameters",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe claim is data efficiency at negligible per-token decoding overhead — plus shorter reasoning traces at equal or better accuracy.\u003c/p\u003e"
+    }
+  ]
+}

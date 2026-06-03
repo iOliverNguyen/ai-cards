@@ -1,0 +1,99 @@
+{
+  "id": "card_5af72a",
+  "slug": "agentmercury-synthesized-environments",
+  "type": "paper",
+  "title": "AgentMercury: Synthesizing Worlds, Not Tasks",
+  "hook": "Instead of building an environment per task, build a persistent business world with entities, services and invariants — and let the tasks fall out of it.",
+  "key_points": [
+    "Agent RL is bottlenecked on environments, usually hand-built or synthesized around a target benchmark.",
+    "AgentMercury inverts this: instantiate a persistent world (entities, services, tools, state, executable cross-service invariants) first.",
+    "Diverse tasks and interaction trajectories then emerge from the world instead of being specified up front.",
+    "4,783 executable environments were generated across 14 industries and 50 countries as RL training substrate.",
+    "Qwen3.5-4B improved 12.3 → 15.7 on EnterpriseOps-GYM and 45.9 → 56.0 on AIME26 — gains transferring out of domain.",
+    "World construction is itself learnable: fine-tuning on construction traces lifted authoring success from 3.3% to 83.3%."
+  ],
+  "content_html": "\u003cp\u003eTraining agents means having somewhere for them to act, and environments are expensive — usually handwritten, or generated backwards from whatever benchmark you plan to report on. Minbyul Jeong and Chanwoong Yoon argue that this task-centric framing is the bottleneck, and flip it: AgentMercury takes a high-level business scenario and instantiates a persistent world of entities, services, tools, state, and executable cross-service invariants. Tasks and trajectories then emerge from the world.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThey generate 4,783 executable environments spanning 14 industries and 50 countries and use them as reinforcement-learning substrate. Despite no benchmark targeting, the paper reports Qwen3.5-4B improving from 12.3 to 15.7 on EnterpriseOps-GYM and from 45.9 to 56.0 on AIME26, along with gains on coding, scientific computing and tool use. A second result is arguably the more useful one: fine-tuning Qwen3.5-35B-A3B on construction traces raised executable-world authoring success from 3.3% to 83.3% on held-out scenarios — the environment factory can be learned too. Paper on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Minbyul Jeong",
+      "Chanwoong Yoon"
+    ],
+    "url": "https://arxiv.org/abs/2608.20634",
+    "published_at": "2026-08-21",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "synthetic-data",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "dataset",
+    "training",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-24",
+  "date": "2026-08-21",
+  "related": [
+    {
+      "id": "card_1b799b",
+      "slug": "agentic-environment-engineering-survey",
+      "type": "paper",
+      "title": "Agentic Environment Engineering: A Survey",
+      "hook": "Agents only get as good as the worlds they practice in. This survey maps the full lifecycle of agent environments — how we model, synthesize, evaluate, and grow them.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-06-10"
+    },
+    {
+      "id": "card_439589",
+      "slug": "skill-self-play",
+      "type": "paper",
+      "title": "Skill Self-Play: Pushing the Frontier of LLM Capability with Co-Evolving Skills",
+      "hook": "Self-evolving models face a dilemma: verifiable environments are narrow, open-ended task generation is unreliable. This uses agent skills as the middle ground.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_5af72a#0",
+      "format": "quiz",
+      "prompt": "What distinguishes AgentMercury's approach from typical environment synthesis?",
+      "choices": [
+        {
+          "text": "It instantiates a persistent world with state and invariants first, then lets tasks emerge from it",
+          "correct": true
+        },
+        {
+          "text": "It generates one hand-verified environment per benchmark task",
+          "correct": false
+        },
+        {
+          "text": "It replaces environments entirely with a reward model",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper calls the usual approach 'task-centric' and argues it can't scale to realistic evolving workflows; building the world first lets diverse tasks emerge naturally.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5af72a#1",
+      "format": "flip",
+      "prompt": "Why is it significant that AIME26 scores improved after training on business environments?",
+      "back_html": "\u003cp\u003eThe environments were built without targeting that benchmark, so the gain suggests scenario-grounded environments give learning signal that generalizes out of domain — into reasoning, coding, and tool use.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5af72a#2",
+      "format": "flip",
+      "prompt": "What did the authors show about the environment-construction process itself?",
+      "back_html": "\u003cp\u003eIt is a learnable capability. Fine-tuning Qwen3.5-35B-A3B on construction traces raised executable-world authoring success on held-out scenarios from 3.3% to 83.3%.\u003c/p\u003e"
+    }
+  ]
+}

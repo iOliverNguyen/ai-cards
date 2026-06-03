@@ -1,0 +1,101 @@
+{
+  "id": "card_e8e6f5",
+  "slug": "probabilistic-kv-cache-eviction",
+  "type": "paper",
+  "title": "KV Cache Eviction, Formalized",
+  "hook": "Everyone drops KV cache entries with clever heuristics. Formalize the problem properly and it turns into expectation estimation — which finally lets you correct for what you threw away.",
+  "key_points": [
+    "Gives KV eviction a formal statement, then proves the optimal-eviction problem is computationally hard.",
+    "Framed probabilistically, eviction reduces to estimating an expectation, which can be approximated by sampling.",
+    "That framing makes decode-time correction for evicted entries possible — a problem previously ignored.",
+    "Existing heuristic methods are shown to be zero-variance biased estimators of the same quantity.",
+    "Those methods can be adapted to support correction, giving more robustness across tasks at the same compression budget."
+  ],
+  "content_html": "\u003cp\u003eKV cache eviction is one of the most-used tricks in LLM serving: drop some of the stored keys and values, get more throughput, hope quality holds. Empirically it works, and the literature is full of ingenious rules for deciding what to drop. Geh and colleagues note that nobody had written down what the problem actually is.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat they do\u003c/h2\u003e\n\u003cp\u003eThey formalize eviction, and immediately prove the bad news: choosing the optimal set to evict is computationally hard. The good news comes from restating it probabilistically — the thing eviction is meant to preserve is an expectation, so keeping a subset of entries is an estimation problem, approximable by sampling.\u003c/p\u003e\n\u003cp\u003eThat reframing pays off twice. First, it exposes existing heuristics as zero-variance \u003cem\u003ebiased\u003c/em\u003e estimators: they pick one deterministic subset, so there is no randomness, but there is uncontrolled bias. Second, and more useful, it makes correcting for evicted entries during decoding a well-posed operation, which prior work had simply ignored. Their probabilistic version with decode-time correction is reported to be more robust across tasks at the same compression budget, and existing methods can be adapted to use the correction.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThis is a nice example of formalization as a research contribution. The empirical methods were fine; the missing definition was hiding a whole free improvement — you can only correct an error you have a language for.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Renato Geh",
+      "Alex Chen",
+      "Daniel Israel",
+      "Aditya Grover",
+      "Guy Van den Broeck"
+    ],
+    "url": "https://arxiv.org/abs/2608.28293",
+    "published_at": "2026-08-28",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "context-memory",
+    "inference",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "attention",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-31",
+  "date": "2026-08-28",
+  "related": [
+    {
+      "id": "card_7ab593",
+      "slug": "sliding-window-beats-linear-attention",
+      "type": "paper",
+      "title": "Sliding Window Beats Linear Attention",
+      "hook": "The cheap baseline nobody bothered to run wins: sliding-window attention with sinks matches or beats retrofitted linear-attention models, and needs no post-training at all.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-28"
+    },
+    {
+      "id": "card_26ff49",
+      "slug": "pask-parser-aware-kv-persistence",
+      "type": "paper",
+      "title": "Your Parser Already Knows Which Tokens Matter",
+      "hook": "Constrained decoding tracks grammar state to keep JSON valid. PASK reuses that same signal to decide what to keep in the KV cache — and a wrong field is a failed tool call, not a stylistic blemish.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-08-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_e8e6f5#0",
+      "format": "flip",
+      "prompt": "What is KV cache eviction trying to buy, and at what cost?",
+      "back_html": "\u003cp\u003eHigher throughput and lower memory, by dropping some stored keys and values — betting that the quality loss is negligible.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e8e6f5#1",
+      "format": "quiz",
+      "prompt": "Under the probabilistic framing, what does KV eviction reduce to?",
+      "choices": [
+        {
+          "text": "Expectation estimation, approximable by sampling",
+          "correct": true
+        },
+        {
+          "text": "A shortest-path problem over attention layers",
+          "correct": false
+        },
+        {
+          "text": "Low-rank matrix factorization of the cache",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOnce you say what quantity eviction is meant to preserve, keeping a subset is estimating an expectation — and sampling estimators come with variance, bias, and correction machinery.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e8e6f5#2",
+      "format": "flip",
+      "prompt": "How does the paper characterize existing heuristic eviction methods?",
+      "back_html": "\u003cp\u003eAs zero-variance biased estimators of the target expectation — they commit to one deterministic subset, so they have no variance but carry bias that was never corrected.\u003c/p\u003e"
+    }
+  ]
+}

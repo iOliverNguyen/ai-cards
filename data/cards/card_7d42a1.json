@@ -1,0 +1,122 @@
+{
+  "id": "card_7d42a1",
+  "slug": "chain-of-thought",
+  "type": "paper",
+  "title": "Chain-of-Thought Prompting",
+  "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+  "key_points": [
+    "Prompting the model to write intermediate reasoning steps boosts multi-step tasks.",
+    "Especially helps arithmetic, commonsense, and symbolic reasoning.",
+    "Just a few worked examples with reasoning can trigger the effect — no fine-tuning.",
+    "The benefit emerges mainly in sufficiently large models.",
+    "Exposes the model's intermediate steps, making answers easier to inspect."
+  ],
+  "content_html": "\u003cp\u003eWei, Wang, and colleagues at Google in 2022 showed that prompting a large language model to spell out its intermediate reasoning — a \u0026quot;chain of thought\u0026quot; — sharply improves performance on problems that need several steps, like math word problems. You trigger it just by including a few examples that work through their reasoning, no fine-tuning required. Notably, the gain shows up mainly in large enough models.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eInstead of asking only for the final answer, you give the model a few examples where each answer is preceded by the reasoning that leads to it. The model then imitates that pattern, generating its own step-by-step reasoning before committing to an answer. Breaking a hard problem into a sequence of smaller steps gives the model room to work through it rather than guessing in one shot.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eA short change in how you prompt unlocked reasoning that big models seemingly already had but couldn't express in a single jump. This was a turning point for getting reliable multi-step reasoning out of LLMs, and the visible steps make answers easier to check and debug. It's also a building block for agents, where models reason before deciding what action to take next.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jason Wei",
+      "Xuezhi Wang",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2201.11903",
+    "published_at": "2022-01-28",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "pretraining"
+  ],
+  "tags": [
+    "nlp",
+    "agent",
+    "landmark"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2022-01-28",
+  "related": [
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    },
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_7d42a1#0",
+      "format": "flip",
+      "prompt": "What does chain-of-thought prompting actually change about how a model answers?",
+      "back_html": "\u003cp\u003eIt gets the model to write intermediate reasoning steps before the final answer, by showing a few worked examples — no fine-tuning needed.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7d42a1#1",
+      "format": "quiz",
+      "prompt": "In which models does the chain-of-thought benefit mainly appear?",
+      "choices": [
+        {
+          "text": "Sufficiently large models",
+          "correct": true
+        },
+        {
+          "text": "Only models that were fine-tuned for reasoning",
+          "correct": false
+        },
+        {
+          "text": "Small models, where it matters most",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe card notes the gain emerges mainly in large enough models.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7d42a1#2",
+      "format": "quiz",
+      "prompt": "Besides accuracy, what practical benefit do the visible reasoning steps give?",
+      "choices": [
+        {
+          "text": "Answers become easier to inspect and debug",
+          "correct": true
+        },
+        {
+          "text": "The model runs faster at inference",
+          "correct": false
+        },
+        {
+          "text": "The model needs less training data",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eExposing intermediate steps makes answers easier to check and debug.\u003c/p\u003e"
+    }
+  ]
+}

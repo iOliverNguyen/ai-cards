@@ -1,0 +1,106 @@
+{
+  "id": "card_6a3036",
+  "slug": "kernel-trick",
+  "type": "concept",
+  "title": "The Kernel Trick",
+  "hook": "Instead of explicitly mapping data into a high-dimensional space, just define a function that computes similarities as if you had - and you get nonlinear learning for free.",
+  "key_points": [
+    "A kernel function K(x, y) computes the dot product in some high-dim feature space without building that space.",
+    "Common kernels: polynomial, RBF (radial basis function / Gaussian), and sigmoid.",
+    "Any algorithm that only uses dot products between training points - like an SVM - can be kernelized.",
+    "RBF kernel lets a linear SVM learn effectively circular or blob-shaped boundaries.",
+    "The trick trades explicitness for efficiency: you skip the expensive feature expansion entirely."
+  ],
+  "content_html": "\u003cp\u003eMany datasets are not linearly separable - no straight line can cleanly divide the classes. One fix is to map the data into a higher-dimensional space where it becomes separable, then draw the boundary there. The kernel trick lets you do this without ever explicitly computing those high-dimensional coordinates.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eA kernel function takes two data points and returns a number representing their similarity in some (possibly infinite-dimensional) feature space. Because SVMs only ever need dot products between points - not the points themselves - you can swap in a kernel function and the rest of the algorithm runs unchanged. The RBF kernel, for example, treats similarity as falling off exponentially with distance, effectively giving every training point a soft \u0026quot;influence zone\u0026quot; around it.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe kernel trick turned linear models into general-purpose learners and was responsible for much of the practical success of SVMs on image and text tasks before deep learning. It also appears in other algorithms like kernel PCA and Gaussian processes. The Wikipedia article on kernel methods explains the mathematical foundations and lists the most common kernel functions.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/Kernel_method",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "svm-kernels"
+  ],
+  "tags": [
+    "classic-ml"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2026-06-03",
+  "related": [
+    {
+      "id": "card_cc73e9",
+      "slug": "support-vector-machines",
+      "type": "paper",
+      "title": "Support-Vector Networks (SVMs)",
+      "hook": "An SVM draws the decision boundary that maximizes the gap to the nearest training points - the wider the margin, the better it generalizes to new data.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "1995-09-01"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_cc73e9",
+      "slug": "support-vector-machines",
+      "type": "paper",
+      "title": "Support-Vector Networks (SVMs)",
+      "hook": "An SVM draws the decision boundary that maximizes the gap to the nearest training points - the wider the margin, the better it generalizes to new data.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "1995-09-01"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_6a3036#0",
+      "format": "flip",
+      "prompt": "What does the kernel trick let you avoid computing?",
+      "back_html": "\u003cp\u003eThe explicit high-dimensional feature coordinates - a kernel function returns the dot product in that space directly.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6a3036#1",
+      "format": "quiz",
+      "prompt": "Which kind of algorithm can be kernelized?",
+      "choices": [
+        {
+          "text": "Any algorithm that only uses dot products between training points, like an SVM",
+          "correct": true
+        },
+        {
+          "text": "Only algorithms that store the full feature matrix",
+          "correct": false
+        },
+        {
+          "text": "Only deep neural networks",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIf an algorithm needs only dot products (not the points themselves), you can swap in a kernel and run it unchanged.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6a3036#2",
+      "format": "quiz",
+      "prompt": "What does an RBF kernel let a linear SVM learn?",
+      "choices": [
+        {
+          "text": "Effectively circular or blob-shaped (nonlinear) boundaries",
+          "correct": true
+        },
+        {
+          "text": "Only straight-line boundaries, but faster",
+          "correct": false
+        },
+        {
+          "text": "A boundary that ignores distance entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe RBF kernel treats similarity as falling off with distance, giving each point an influence zone and enabling nonlinear boundaries.\u003c/p\u003e"
+    }
+  ]
+}

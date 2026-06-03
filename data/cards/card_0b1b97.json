@@ -1,0 +1,103 @@
+{
+  "id": "card_0b1b97",
+  "slug": "dream-exe-executable-video",
+  "type": "paper",
+  "title": "Dream.exe: Can a Video Generator Dream a Robot's Next Move?",
+  "hook": "A video model that 'understands' physics should produce motion a robot can perform. Dream.exe runs generated videos through a real execution pipeline — and finds pretty isn't physical.",
+  "key_points": [
+    "Video generators make compelling clips, but do their motions obey real-world physics?",
+    "Dream.exe turns a generated manipulation video into robot trajectories and executes them in simulation.",
+    "Execution success is a grounding signal that purely visual quality metrics can't provide.",
+    "Across 8 models and 101 tasks, several achieved real execution success — but visual quality poorly predicted executability."
+  ],
+  "content_html": "\u003cp\u003eVideo generation models produce strikingly realistic clips, but their output lives entirely on-screen. Zhao and colleagues ask a sharper question: if a model has really internalized how the physical world works, the motion it depicts should be \u003cem\u003edoable\u003c/em\u003e — translatable into actions a robot can carry out. They turn that into a concrete test.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eDream.exe is a video-to-execution pipeline. Given a scene image and a task description, it has a model generate a manipulation video, converts the depicted motion into robot trajectories, and executes them in a physics simulator — yielding a pass/fail grounding signal that visual quality scores alone can't provide. The authors evaluate 8 models (frontier closed-source generators, open-source generators, and robot-specific models) across 101 hand-curated manipulation tasks at three levels of physical complexity, scoring visual quality, trajectory fidelity, and execution success. Encouragingly, several models achieve measurable execution success — evidence that priors learned from internet-scale video already encode meaningful physics. But the headline finding is a disconnect: visual quality is a poor predictor of executability, revealing a dimension of capability that standard visual benchmarks miss entirely. The benchmark is being open-sourced; see the arXiv link.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Rui Zhao",
+      "Kaiming Yang",
+      "Jifeng Zhu",
+      "Siyang Chen",
+      "Ziqi Wang",
+      "Weijia Wu",
+      "Kevin Qinghong Lin",
+      "Heng Wang",
+      "Mike Zheng Shou"
+    ],
+    "url": "https://arxiv.org/abs/2606.04811",
+    "published_at": "2026-06-04",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "papers-this-week"
+  ],
+  "tags": [
+    "generative",
+    "multimodal",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-08",
+  "date": "2026-06-04",
+  "related": [
+    {
+      "id": "card_296943",
+      "slug": "dreamerv3",
+      "type": "paper",
+      "title": "DreamerV3: Mastering Domains through World Models",
+      "hook": "Instead of learning only from real experience, DreamerV3 builds a world model and practices inside its own imagination — one fixed config, 150+ tasks.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2023-01-10"
+    },
+    {
+      "id": "card_dd8539",
+      "slug": "rt-2",
+      "type": "paper",
+      "title": "RT-2: Vision-Language-Action Models",
+      "hook": "Treat a robot's actions as just more text tokens, and a vision-language model can learn to act — carrying its web knowledge into the physical world.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-07-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_0b1b97#0",
+      "format": "flip",
+      "prompt": "What does Dream.exe use as a grounding signal that visual metrics can't give?",
+      "back_html": "\u003cp\u003eExecution success: it converts a generated manipulation video into robot trajectories and runs them in a physics simulator, testing whether the depicted motion is physically executable.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0b1b97#1",
+      "format": "quiz",
+      "prompt": "What surprising result did Dream.exe reveal about video generation models?",
+      "choices": [
+        {
+          "text": "Visual quality is a poor predictor of whether the generated motion is actually executable",
+          "correct": true
+        },
+        {
+          "text": "The most visually realistic models were always the most executable",
+          "correct": false
+        },
+        {
+          "text": "No model produced any executable motion at all",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSeveral models achieved measurable execution success — generative priors encode some physics — but visual quality didn't predict executability, exposing a capability axis standard visual evals miss.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0b1b97#2",
+      "format": "flip",
+      "prompt": "Why does robot manipulation make a good test of a video model's physical understanding?",
+      "back_html": "\u003cp\u003eIf a model has truly internalized physical laws, the motion it depicts should translate into executable robot behavior — turning an abstract 'understands physics?' question into a concrete, measurable one.\u003c/p\u003e"
+    }
+  ]
+}

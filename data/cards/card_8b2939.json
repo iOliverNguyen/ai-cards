@@ -1,0 +1,95 @@
+{
+  "id": "card_8b2939",
+  "slug": "musicgen",
+  "type": "paper",
+  "title": "MusicGen: Simple and Controllable Music Generation",
+  "hook": "Generate music from a text description or a melody reference using a single autoregressive transformer over discrete audio tokens - no cascade of specialized models required.",
+  "key_points": [
+    "Audio is tokenized by a neural codec (EnCodec) into discrete codes; a single transformer predicts these tokens left-to-right.",
+    "Interleaved pattern for multi-stream codec codes avoids multi-model cascades while preserving audio fidelity.",
+    "Conditioned on text descriptions and optionally a melody extracted from a reference audio clip.",
+    "Open weights released by Meta, covering multiple model sizes."
+  ],
+  "content_html": "\u003cp\u003eCopet and colleagues at Meta AI published MusicGen in June 2023, proposing that a single transformer trained on discrete audio tokens can generate coherent, controllable music without the multi-stage pipelines that earlier systems relied on. The model accepts a text prompt describing genre, mood, and instrumentation, and can optionally use a melody from a reference clip as an additional constraint.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eA neural audio codec (EnCodec) compresses raw waveforms into multiple streams of discrete integer tokens at a much lower time resolution than the original audio. MusicGen uses a carefully chosen interleaving pattern that folds these parallel streams into a single sequence, allowing one autoregressive transformer to predict all streams jointly without requiring separate models per stream. Text conditioning uses a frozen T5 encoder; melody conditioning extracts a chromagram from the reference and injects it as an additional input.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eMusicGen demonstrated that the language-model approach to generation - tokenize, then predict tokens - transfers cleanly to music, producing results competitive with systems that rely on complex cascades. Open weights and a simple API made it a practical tool for creators and researchers. See the full method and audio samples in the paper on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jade Copet",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2306.05284",
+    "published_at": "2023-06-08",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "video-audio"
+  ],
+  "tags": [
+    "generative",
+    "multimodal",
+    "open-source",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2023-06-08",
+  "related": [
+    {
+      "id": "card_8a4426",
+      "slug": "whisper",
+      "type": "paper",
+      "title": "Whisper: Robust Speech Recognition at Scale",
+      "hook": "Train a plain encoder-decoder transformer on 680,000 hours of weakly-labeled multilingual audio and you get near-human transcription robustness without task-specific fine-tuning.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-06"
+    },
+    {
+      "id": "card_a2690e",
+      "slug": "byte-pair-encoding",
+      "type": "paper",
+      "title": "Subword Tokenization with Byte-Pair Encoding",
+      "hook": "Whole words make a giant vocabulary; single characters make long sequences. Subwords split the difference — and let models read words they've never seen.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2015-08-31"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_8b2939#0",
+      "format": "flip",
+      "prompt": "How does MusicGen apply the language-model recipe to music?",
+      "back_html": "\u003cp\u003eA neural codec (EnCodec) tokenizes audio into discrete codes, then a single autoregressive transformer predicts those tokens left-to-right — tokenize, then predict tokens.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8b2939#1",
+      "format": "quiz",
+      "prompt": "What does MusicGen's interleaving pattern accomplish?",
+      "choices": [
+        {
+          "text": "Folds parallel codec streams into one sequence so a single transformer handles them",
+          "correct": true
+        },
+        {
+          "text": "Trains a separate model for each codec stream",
+          "correct": false
+        },
+        {
+          "text": "Removes the need for a neural audio codec",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe interleaving pattern lets one autoregressive transformer predict all the multi-stream codec codes jointly, avoiding a cascade of specialized models.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8b2939#2",
+      "format": "flip",
+      "prompt": "What two kinds of conditioning can guide MusicGen's output?",
+      "back_html": "\u003cp\u003eA text description (genre, mood, instrumentation) and optionally a melody extracted as a chromagram from a reference audio clip.\u003c/p\u003e"
+    }
+  ]
+}

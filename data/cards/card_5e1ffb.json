@@ -1,0 +1,116 @@
+{
+  "id": "card_5e1ffb",
+  "slug": "real-world-voiceeq-benchmark",
+  "type": "blog",
+  "title": "Real World VoiceEQ: Measuring the Human Quality of Voice AI",
+  "hook": "Voice AI benchmarks mostly grade transcripts. Hume AI's new eval says most systems still miss tone, hesitation, and emotion - the parts that make speech sound human.",
+  "key_points": [
+    "Evaluates 4 components - ASR, TTS, speech-to-speech, and speech understanding - across 40+ proprietary and open-source voice models.",
+    "Built on 15+ evaluation dimensions and 60+ metrics, grounded in over 1 million human ratings via Hume's 'Kairos' evaluation platform.",
+    "No single model ranks in the top five across all capability groups - voice AI is specializing, not converging on one winner.",
+    "Many voice models remain fundamentally transcript-driven: they track words spoken but miss tone, pacing, hesitation, emphasis, and volume.",
+    "Scores swing sharply with accents, background noise, and emotional speech - gaps transcript-only metrics miss entirely."
+  ],
+  "content_html": "\u003cp\u003eMost voice AI benchmarks grade what a system transcribes, not how it sounds. Hume AI's Real World VoiceEQ tries to close that gap: it evaluates whether voice systems recognize, produce, and respond to tone, emotion, speaker identity, and context - not just words.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe benchmark covers four components - automatic speech recognition, text-to-speech, speech-to-speech, and speech understanding - tested across more than 40 leading proprietary and open-source models on 15+ evaluation dimensions and 60+ metrics, grounded in over a million human ratings collected through Hume's Kairos evaluation platform. The headline findings: no model dominates across all capability groups, each specializes differently; most systems remain transcript-driven, tracking words while missing paralinguistic cues like tone and hesitation; scores swing heavily with accents, noise, and emotional speech in ways word-error-rate-style metrics don't capture; and even AI evaluators struggle on subjective judgments where human raters are still hard to replace. Full methodology and leaderboard via the source link.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face",
+    "authors": [
+      "Hume AI"
+    ],
+    "url": "https://huggingface.co/blog/real-world-voiceeq",
+    "published_at": "2026-07-15",
+    "license": "Hugging Face blog"
+  },
+  "topic_ids": [
+    "evaluation",
+    "video-audio",
+    "lab-updates"
+  ],
+  "tags": [
+    "benchmark",
+    "speech",
+    "multimodal"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-07-16",
+  "date": "2026-07-15",
+  "related": [
+    {
+      "id": "card_8a4426",
+      "slug": "whisper",
+      "type": "paper",
+      "title": "Whisper: Robust Speech Recognition at Scale",
+      "hook": "Train a plain encoder-decoder transformer on 680,000 hours of weakly-labeled multilingual audio and you get near-human transcription robustness without task-specific fine-tuning.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-06"
+    },
+    {
+      "id": "card_e4a022",
+      "slug": "hf-cerebras-gemma4-voice-ai",
+      "type": "news",
+      "title": "Hugging Face and Cerebras Bring Gemma 4 to Real-Time Voice AI",
+      "hook": "Multi-second delays are why voice assistants feel like phone menus. Running Gemma 4 on Cerebras hardware in a modular speech pipeline already powers 9,000+ Reachy Mini robots in production.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-07-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_5e1ffb#0",
+      "format": "flip",
+      "prompt": "What does Real World VoiceEQ evaluate that word-transcript benchmarks miss?",
+      "back_html": "\u003cp\u003eWhether voice systems recognize, produce, and respond to tone, emotion, speaker\nidentity, and context - not just the words spoken.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5e1ffb#1",
+      "format": "quiz",
+      "prompt": "What did Hume AI find about how voice models rank across capability groups?",
+      "choices": [
+        {
+          "text": "No single model ranks top-five across all groups - models specialize differently",
+          "correct": true
+        },
+        {
+          "text": "One model dominates every capability group tested",
+          "correct": false
+        },
+        {
+          "text": "All models perform identically once averaged",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eReal World VoiceEQ found no system in the top five across all capability groups -\nspecialization, not one universal winner.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5e1ffb#2",
+      "format": "flip",
+      "prompt": "What is the 'transcript-driven' problem the benchmark surfaces in current voice models?",
+      "back_html": "\u003cp\u003eMany systems track the words spoken but miss paralinguistic cues - tone, pacing,\nhesitation, emphasis, volume - that make speech sound human.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5e1ffb#3",
+      "format": "quiz",
+      "prompt": "Why does the benchmark lean so heavily on human ratings instead of automated scoring alone?",
+      "choices": [
+        {
+          "text": "AI evaluators show weak agreement with humans on subjective calls like tone and speaker identity",
+          "correct": true
+        },
+        {
+          "text": "Automated metrics are more accurate than humans for all voice tasks",
+          "correct": false
+        },
+        {
+          "text": "Human ratings are only used for TTS, never the other components",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe benchmark reports AI evaluators struggle most on subjective, open-ended\njudgments - an area where human evaluation remains hard to replace.\u003c/p\u003e"
+    }
+  ]
+}

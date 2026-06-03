@@ -1,0 +1,119 @@
+{
+  "id": "card_7f11ff",
+  "slug": "diffusion-gemma",
+  "type": "news",
+  "title": "DiffusionGemma: Generating Text by Denoising, Not Decoding",
+  "hook": "DeepMind's DiffusionGemma generates text by refining a whole sequence in parallel instead of one token at a time — which the team reports is about 4x faster than standard autoregressive decoding.",
+  "key_points": [
+    "Google DeepMind announced DiffusionGemma, bringing diffusion-style generation to text in the open Gemma family.",
+    "Diffusion language models refine an entire token sequence over a few denoising steps, rather than decoding left-to-right one token at a time.",
+    "DeepMind reports roughly 4x faster text generation versus autoregressive decoding.",
+    "Signals growing interest in non-autoregressive, diffusion-based approaches to fast LLM inference."
+  ],
+  "content_html": "\u003cp\u003eGoogle DeepMind announced \u003cstrong\u003eDiffusionGemma\u003c/strong\u003e, a member of the open Gemma family that generates text by diffusion rather than the usual autoregressive decoding — and reports it runs about 4x faster.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe shift\u003c/h2\u003e\n\u003cp\u003eStandard LLMs produce text one token at a time, left to right: each new token waits on the previous one. \u003cstrong\u003eDiffusion language models\u003c/strong\u003e take a different route, refining an entire sequence of tokens in parallel over a small number of denoising steps — the same broad idea that powers image diffusion models, applied to text. Because the steps operate over the whole sequence at once rather than serially, generation can be considerably faster.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAutoregressive decoding has been the default for text generation, and its sequential nature is a core latency bottleneck. A major lab shipping a diffusion-based text model in an open family is a notable signal that non-autoregressive generation is moving from research curiosity toward practical, fast inference. (Details and benchmarks are in DeepMind's announcement, linked as the source.)\u003c/p\u003e",
+  "source": {
+    "name": "Google DeepMind blog",
+    "authors": [
+      "Google DeepMind"
+    ],
+    "url": "https://deepmind.google/blog/diffusiongemma-4x-faster-text-generation",
+    "published_at": "2026-06-10",
+    "license": "DeepMind blog (link-out)"
+  },
+  "topic_ids": [
+    "releases",
+    "diffusion",
+    "lab-updates"
+  ],
+  "tags": [
+    "generative",
+    "efficiency",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-06-11",
+  "date": "2026-06-10",
+  "related": [
+    {
+      "id": "card_2b95b6",
+      "slug": "denoising-diffusion-probabilistic-models",
+      "type": "paper",
+      "title": "Denoising Diffusion Probabilistic Models (DDPM)",
+      "hook": "Wreck an image into pure static one tiny step at a time, then train a network to undo it. Run the undo from random noise and you get a brand-new image.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2020-06-19"
+    },
+    {
+      "id": "card_b3d85d",
+      "slug": "gemma-4",
+      "type": "news",
+      "title": "Gemma 4: Google DeepMind's Open Multimodal Models",
+      "hook": "An open-weight multimodal family (2.3B-31B) that now thinks before answering and, at 12B, skips separate vision/audio encoders entirely — still small enough for a 16GB laptop.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-03"
+    },
+    {
+      "id": "card_7e3221",
+      "slug": "latent-diffusion-models",
+      "type": "paper",
+      "title": "High-Resolution Image Synthesis with Latent Diffusion (Stable Diffusion)",
+      "hook": "Running diffusion on raw pixels is brutally expensive. Do it in a compressed latent space instead, and high-res text-to-image becomes cheap enough to run on a consumer GPU.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-12-20"
+    },
+    {
+      "id": "card_cf3048",
+      "slug": "illada-diffusion-language-model",
+      "type": "paper",
+      "title": "iLLaDA: Improved Large Language Diffusion Models",
+      "hook": "An 8B language model trained from scratch with full bidirectional attention and a masked-diffusion objective — no autoregression — that holds its own against same-size autoregressive LLMs.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-24"
+    },
+    {
+      "id": "card_764d0e",
+      "slug": "nemotron-twotower-diffusion-lm",
+      "type": "news",
+      "title": "NVIDIA Nemotron-TwoTower: A Diffusion-Based Language Model",
+      "hook": "NVIDIA's open Nemotron-TwoTower bolts a diffusion 'denoiser' tower onto a frozen autoregressive model to fill token blocks in parallel — reportedly 2.42x faster at ~98.7% of baseline quality.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-25"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_7f11ff#0",
+      "format": "flip",
+      "prompt": "How does a diffusion language model like DiffusionGemma generate text differently from a standard LLM?",
+      "back_html": "\u003cp\u003eIt denoises and refines a whole token sequence in parallel over a few steps, instead of generating one token at a time left-to-right (autoregressive decoding).\u003c/p\u003e"
+    },
+    {
+      "id": "card_7f11ff#1",
+      "format": "quiz",
+      "prompt": "What is DiffusionGemma's headline advantage, as reported by DeepMind?",
+      "choices": [
+        {
+          "text": "About 4x faster text generation",
+          "correct": true
+        },
+        {
+          "text": "A 4x longer context window",
+          "correct": false
+        },
+        {
+          "text": "4x cheaper training",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDeepMind frames DiffusionGemma around speed — roughly 4x faster text generation by replacing autoregressive decoding with parallel diffusion-style refinement.\u003c/p\u003e"
+    }
+  ]
+}

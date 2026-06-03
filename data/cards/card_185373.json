@@ -1,0 +1,98 @@
+{
+  "id": "card_185373",
+  "slug": "deepseek-agi-over-commercialization",
+  "type": "news",
+  "title": "DeepSeek Says It Isn't Optimizing for Users or Revenue",
+  "hook": "Reported remarks from a four-hour investor meeting: DeepSeek's founder frames products as one rung on the ladder to AGI, and treats commercial restraint as a deliberate strategy.",
+  "key_points": [
+    "A Chinese write-up compiled 52 remarks attributed to founder Liang Wenfeng from a four-hour investor meeting.",
+    "The stated central objective is AGI, not maximizing returns through products.",
+    "Products are described as one rung on the path to AGI, not something to spend much energy on.",
+    "DeepSeek has always been commercializing, per the remarks, but commercialization is not the objective.",
+    "A full pivot toward commercialization is said to be still very far away, with restraint framed as a strategy.",
+    "This is a community summary of a compiled secondhand account — treat the specific wording as reported, not verbatim."
+  ],
+  "content_html": "\u003cp\u003eA Chinese article compiled 52 remarks attributed to DeepSeek founder \u003cstrong\u003eLiang Wenfeng\u003c/strong\u003e from a four-hour investor meeting, and an English summary circulated widely. The strategic picture it paints is unusual for a lab of DeepSeek's profile: user growth and revenue are explicitly not the target.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe stance\u003c/h2\u003e\n\u003cp\u003ePer the remarks, DeepSeek has one central objective — AGI — and this is not the moment to maximize returns through products. Products are a rung on that ladder, not a destination, and the lab reportedly doesn't intend to spend much thought or energy on consumer or enterprise offerings. It has always been commercializing, the account says, but commercialization is not the objective, and the point at which the company fully pivots toward it is probably still very far away. Restraint, in this framing, is itself a strategy rather than an absence of one.\u003c/p\u003e\n\u003ch2\u003eHow much to trust it\u003c/h2\u003e\n\u003cp\u003eThree layers separate a reader from the speaker: a private meeting, a compiled Chinese write-up, and a community translation and summary. Individual sentences are not safe to quote as verbatim policy. What's worth holding onto is the direction — a frontier-capable lab publicly declining the growth-and-monetization playbook its Western peers are running — because that stance, if real, shapes what DeepSeek ships and what it open-weights. Summarized on r/LocalLLaMA, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit r/LocalLLaMA",
+    "authors": [
+      "/u/MagicZhang"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1v49lxp/deepseek_founders_4hour_investor_meeting_deepseek",
+    "published_at": "2026-07-23",
+    "license": "Reddit post (link-out)"
+  },
+  "topic_ids": [
+    "lab-updates"
+  ],
+  "tags": [
+    "news",
+    "open-source"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-07-27",
+  "date": "2026-07-23",
+  "related": [
+    {
+      "id": "card_c0948e",
+      "slug": "deepseek-v4",
+      "type": "news",
+      "title": "DeepSeek-V4: Sparse Attention, Million-Token Default",
+      "hook": "DeepSeek-V4 makes a 1M-token context window the default and pairs token-wise compression with sparse attention, so long-context inference no longer pays the usual compute and memory tax.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-04-24"
+    },
+    {
+      "id": "card_4cd8fd",
+      "slug": "deepseek-r1",
+      "type": "paper",
+      "title": "DeepSeek-R1: Incentivizing Reasoning via Reinforcement Learning",
+      "hook": "DeepSeek shows strong reasoning can emerge from RL on verifiable rewards with minimal supervised data - and those reasoning traces can be distilled into smaller models.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2025-01-22"
+    },
+    {
+      "id": "card_3dbe9d",
+      "slug": "dean-ball-china-open-weight-models",
+      "type": "news",
+      "title": "Dean Ball: China's Open-Weight Strategy Could Backfire — Or Provoke Friction",
+      "hook": "OpenAI's head of strategic futures argues Chinese open-weight releases like Kimi slow AI capex and risk state-run infrastructure — and predicts deliberate US regulatory friction in response.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-19"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_185373#0",
+      "format": "flip",
+      "prompt": "How do the reported remarks position DeepSeek's products relative to its goal?",
+      "back_html": "\u003cp\u003eAs one rung on the path to AGI — worth building and commercializing along the way, but not something to devote much thought or energy to as an end in itself.\u003c/p\u003e"
+    },
+    {
+      "id": "card_185373#1",
+      "format": "quiz",
+      "prompt": "Why should this account be read with care?",
+      "choices": [
+        {
+          "text": "It is a community summary of a Chinese article that itself compiled remarks from a private meeting",
+          "correct": true
+        },
+        {
+          "text": "DeepSeek issued a statement denying the meeting took place",
+          "correct": false
+        },
+        {
+          "text": "The remarks were made years before DeepSeek's current models existed",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThree layers sit between the reader and the speaker — private meeting, compiled write-up, community summary — so the strategic thrust is more reliable than any specific sentence.\u003c/p\u003e"
+    }
+  ]
+}

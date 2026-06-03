@@ -1,0 +1,125 @@
+{
+  "id": "card_f58fe4",
+  "slug": "what-are-state-space-models",
+  "type": "concept",
+  "title": "What Are State-Space Models?",
+  "hook": "A compact hidden state summarizes everything seen so far - update it with each new input and you get sequence modeling that scales linearly, not quadratically.",
+  "key_points": [
+    "Borrowed from control theory: a system evolves via two equations - one updates hidden state, one produces output.",
+    "Processing a sequence is linear in length, unlike Transformer self-attention which is quadratic.",
+    "The same model can run as a recurrence (step-by-step) for inference or as a convolution (parallelized) for training.",
+    "The hidden state is fixed-size, so memory cost does not grow with sequence length during inference."
+  ],
+  "content_html": "\u003cp\u003eState-space models (SSMs) come from control theory, where they describe how a dynamical system evolves over time using a hidden state vector. Researchers in deep learning have adapted the idea into sequence models that can handle very long inputs more cheaply than Transformers.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eAn SSM defines two linear equations: the state equation updates a hidden vector h using the current input and a transition matrix A, and the output equation produces the model's prediction from h. With the right parameterization, the recurrence can be \u0026quot;unrolled\u0026quot; into a convolution over the input sequence - allowing fully parallel training while reverting to the recurrent form at inference time. This dual mode is what makes SSMs attractive: training speed close to attention, inference cost close to an RNN.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eQuadratic attention cost becomes a real bottleneck at context lengths in the tens of thousands. SSMs sidestep this, making long documents, audio, and genomics sequences tractable. S4 and Mamba are the most prominent deep-learning SSMs; starting with the Wikipedia article on state-space representation gives you the mathematical backbone before diving into either.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/State-space_representation",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "ssm-mamba"
+  ],
+  "tags": [
+    "architecture"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2026-06-03",
+  "related": [
+    {
+      "id": "card_e74a78",
+      "slug": "s4-structured-state-spaces",
+      "type": "paper",
+      "title": "S4: Efficiently Modeling Long Sequences with Structured State Spaces",
+      "hook": "A clever matrix parameterization turns the notoriously unstable state-space recurrence into a stable, fast sequence model that handles sequences 100x longer than Transformers.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2021-10-31"
+    },
+    {
+      "id": "card_5dd64e",
+      "slug": "mamba",
+      "type": "paper",
+      "title": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+      "hook": "Make the state-space transitions depend on the input itself, add a hardware-aware scan, and you get a linear-time sequence model that matches Transformers on language - with no KV cache.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2023-12-01"
+    },
+    {
+      "id": "card_63d7de",
+      "slug": "rnns-and-lstms",
+      "type": "concept",
+      "title": "RNNs, LSTMs \u0026 Sequences",
+      "hook": "To read a sequence, a network can loop over it one step at a time, carrying a memory of what came before. Plain RNNs forget fast; LSTMs add gates so they remember longer.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2015-05-21"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_63d7de",
+      "slug": "rnns-and-lstms",
+      "type": "concept",
+      "title": "RNNs, LSTMs \u0026 Sequences",
+      "hook": "To read a sequence, a network can loop over it one step at a time, carrying a memory of what came before. Plain RNNs forget fast; LSTMs add gates so they remember longer.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2015-05-21"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_f58fe4#0",
+      "format": "flip",
+      "prompt": "What two equations define a state-space model?",
+      "back_html": "\u003cp\u003eA state equation that updates a hidden vector from the current input, and an output equation that produces the prediction from that state.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f58fe4#1",
+      "format": "quiz",
+      "prompt": "How does an SSM's compute cost scale with sequence length, versus self-attention?",
+      "choices": [
+        {
+          "text": "Linear in length, whereas self-attention is quadratic",
+          "correct": true
+        },
+        {
+          "text": "Quadratic, the same as self-attention",
+          "correct": false
+        },
+        {
+          "text": "Constant regardless of length",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eProcessing a sequence is linear in length for SSMs, unlike the quadratic cost of Transformer self-attention.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f58fe4#2",
+      "format": "quiz",
+      "prompt": "Why can the same SSM train fast yet infer cheaply?",
+      "choices": [
+        {
+          "text": "It runs as a parallelizable convolution for training and a recurrence for inference",
+          "correct": true
+        },
+        {
+          "text": "It uses a different set of weights for each mode",
+          "correct": false
+        },
+        {
+          "text": "It grows its hidden state with the sequence at inference",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe dual mode - convolution for parallel training, recurrence with a fixed-size state for inference - gives both benefits.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "id": "card_0aa2e3",
+  "slug": "linguistic-vs-internal-confidence",
+  "type": "paper",
+  "title": "When a Model Says 90%, Does It Mean It?",
+  "hook": "Across 30 models, the confidence an LLM reports in words is only loosely coupled to the confidence in its logits — a lossy channel, not a readout.",
+  "key_points": [
+    "Studies 8 classification and 2 generation tasks across 30 models from three families.",
+    "For classification, compares verbalized confidence to logit-based confidence on association, magnitude agreement, and calibration.",
+    "Instance-level association is weak on average, improving on easier items and for stronger base models.",
+    "Instruction-tuned models report higher confidence and sometimes correlate better, but have larger confidence gaps and worse calibration.",
+    "Attitude cues in the prompt inflate reported confidence without improving alignment.",
+    "Supports a lossy-channel view: a more dispersed verbal confidence distribution carries useful rank information even when the numbers are wrong."
+  ],
+  "content_html": "\u003cp\u003e\u0026quot;How confident are you?\u0026quot; is the cheapest uncertainty estimate available, and a lot of deployed systems rely on it. Zhang and colleagues check whether the answer tracks anything real, across eight classification tasks, two generation tasks, and thirty models from three families.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat they measure\u003c/h2\u003e\n\u003cp\u003eFor classification, verbalized confidence is compared against logit-based confidence along three separate axes — association (do they move together?), magnitude agreement (are the numbers close?), and calibration (does 80% mean 80%?). For generation, the test is whether verbalized confidence tracks semantic-entropy-based uncertainty. The axes frequently diverge, which is itself the finding: a model can be well-associated and badly calibrated at once.\u003c/p\u003e\n\u003cp\u003eInstance-level association is weak on average. It improves on easier items and for stronger base models. Instruction-tuned models report higher confidence and sometimes show higher association, but also have larger confidence gaps and worse calibration. Prompt design mostly changes the \u003cem\u003edistribution\u003c/em\u003e of reported confidence rather than its information content: attitude cues inflate confidence without improving alignment, while score exemplars can preserve rank-order signal provided they do not collapse everything onto a few values. Regression analysis attributes much of the observed alignment pattern to distributional properties of the scores, with model metadata mattering less after controls.\u003c/p\u003e\n\u003ch2\u003eThe takeaway\u003c/h2\u003e\n\u003cp\u003eTreat verbalized confidence as a lossy channel. Do not read the number as a probability; you may still be able to use it to rank which answers to trust more — and a more dispersed verbal distribution is a better channel than a confident-sounding one.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Hefan Zhang",
+      "Bingquan Zhang",
+      "Ming Cheng",
+      "Saeed Hassanpour",
+      "Weicheng Ma",
+      "Soroush Vosoughi"
+    ],
+    "url": "https://arxiv.org/abs/2608.28382",
+    "published_at": "2026-08-28",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "benchmark",
+    "safety",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-28",
+  "related": [
+    {
+      "id": "card_88397a",
+      "slug": "fabricated-evidence-agent-commitment",
+      "type": "paper",
+      "title": "A Fake Dashboard Is Enough to Make an Agent Commit",
+      "hook": "Show an agent a professional-looking market panel and it will make a directional call on a provably unpredictable question — just as readily when every number on the panel is invented.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-27"
+    },
+    {
+      "id": "card_dff496",
+      "slug": "post-training-confidence-calibration",
+      "type": "paper",
+      "title": "Post-Training Shifts Confidence: SFT, RL, and OPD Shape Calibration Differently",
+      "hook": "SFT, RL, and on-policy distillation all boost reasoning accuracy — but they leave completely different fingerprints on when a model's confidence signal can actually be trusted.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_0aa2e3#0",
+      "format": "flip",
+      "prompt": "What does the 'lossy channel' view of verbalized confidence claim?",
+      "back_html": "\u003cp\u003eThat a spoken confidence number is a degraded transmission of internal uncertainty — it can retain useful rank ordering while the absolute values are unreliable.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0aa2e3#1",
+      "format": "quiz",
+      "prompt": "What effect do attitude cues in the prompt have on reported confidence?",
+      "choices": [
+        {
+          "text": "They inflate the reported number without improving its alignment to internal confidence",
+          "correct": true
+        },
+        {
+          "text": "They improve calibration by making the model more careful",
+          "correct": false
+        },
+        {
+          "text": "They have no measurable effect on reported confidence",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePrompt design mostly moves the distribution of reported values around. Cues that push toward confidence raise the number, not the information in it.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0aa2e3#2",
+      "format": "flip",
+      "prompt": "Why did instruction tuning not fix confidence reporting?",
+      "back_html": "\u003cp\u003eInstruction-tuned models report higher confidence and sometimes correlate better with internals, but they also show larger confidence gaps and worse calibration.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "id": "card_17177c",
+  "slug": "training-multi-vector-encoders",
+  "type": "blog",
+  "title": "Training Your Own Late-Interaction Retriever",
+  "hook": "A domain-specific multi-vector retriever took 14.5 hours on one RTX 3090 and beat every zero-shot model tested — including dense retrievers 33 times its size.",
+  "key_points": [
+    "Sentence Transformers v6.0 adds MultiVectorEncoder plus the training infrastructure to finetune or train ColBERT-style models from scratch.",
+    "The author's medical-domain model trained in 14.5 hours on a single RTX 3090 and reached 0.9139 NDCG@10.",
+    "It outperformed every zero-shot retriever tested, including dense models 33x larger.",
+    "Starting point matters: pre-supervised checkpoints adapt to new domains better than fully finetuned general-purpose models.",
+    "Most released multi-vector models truncate documents at 180–512 tokens, so long-document domains lose a lot without custom training.",
+    "Index size is manageable — quantization and pooling brought the example index to 1.45GB, smaller than dense alternatives."
+  ],
+  "content_html": "\u003cp\u003eLate-interaction retrieval — one vector per token, scored with MaxSim instead of a single pooled embedding — has been the better-recall option for a while, but training your own has largely been a well-resourced-team activity. Sentence Transformers v6.0 adds a \u003ccode\u003eMultiVectorEncoder\u003c/code\u003e model type and the training infrastructure around it, and this post walks through actually using it.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe headline experiment\u003c/h2\u003e\n\u003cp\u003eThe author finetunes a medical-domain retriever in 14.5 hours on a single RTX 3090, reaching 0.9139 NDCG@10 and beating every zero-shot retriever tested — including dense models 33 times larger. That is the practical argument for domain training in one line: a modest model that has seen your domain beats a big one that has not.\u003c/p\u003e\n\u003ch2\u003eLessons worth stealing\u003c/h2\u003e\n\u003cp\u003eWhich checkpoint you start from matters more than expected. Pre-supervised checkpoints, taken before general-purpose finetuning, adapt to new domains best; putting a fresh projection on a strong backbone ranks second. Watch document length, too — most released multi-vector models truncate at 180 to 512 tokens, so long-document domains lose material silently. And the usual objection, index size, is softer than it looks: quantization and pooling brought the example index to 1.45GB, under the comparable dense setup.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face Blog",
+    "authors": [
+      "Hugging Face"
+    ],
+    "url": "https://huggingface.co/blog/train-multi-vector-encoder",
+    "published_at": "2026-08-26",
+    "license": "Hugging Face blog"
+  },
+  "topic_ids": [
+    "rag",
+    "tokenization"
+  ],
+  "tags": [
+    "rag",
+    "tutorial",
+    "open-source",
+    "efficiency"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_d9524a",
+      "slug": "multi-vector-late-interaction-sentence-transformers",
+      "type": "blog",
+      "title": "Multi-Vector Retrieval: One Vector Per Token, Scored Late",
+      "hook": "Squeezing a document into one vector throws away where the match was. Late interaction keeps a vector per token and defers scoring — better recall, 42x the index.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-18"
+    },
+    {
+      "id": "card_7f35b4",
+      "slug": "signed-maxsim-late-interaction-capacity",
+      "type": "paper",
+      "title": "Why ColBERT-Style Retrieval Fails on Negation — and the Fix",
+      "hook": "Late-interaction retrieval (MaxSim, as in ColBERT) is provably as expressive as vector search for ordinary matches — but provably can't handle negation. Signed MaxSim closes that exact gap.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-07"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_d9524a",
+      "slug": "multi-vector-late-interaction-sentence-transformers",
+      "type": "blog",
+      "title": "Multi-Vector Retrieval: One Vector Per Token, Scored Late",
+      "hook": "Squeezing a document into one vector throws away where the match was. Late interaction keeps a vector per token and defers scoring — better recall, 42x the index.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-18"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_17177c#0",
+      "format": "flip",
+      "prompt": "Why do pre-supervised checkpoints make better starting points for domain finetuning?",
+      "back_html": "\u003cp\u003eThey come from before general-purpose finetuning, so they have not yet specialized to a broad retrieval distribution and adapt to a new domain more readily.\u003c/p\u003e"
+    },
+    {
+      "id": "card_17177c#1",
+      "format": "quiz",
+      "prompt": "What silently hurts multi-vector retrieval on long documents?",
+      "choices": [
+        {
+          "text": "Most released models truncate documents at 180–512 tokens",
+          "correct": true
+        },
+        {
+          "text": "MaxSim cannot score documents longer than the query",
+          "correct": false
+        },
+        {
+          "text": "Token pooling deletes the final tokens of every document",
+          "correct": false
+        },
+        {
+          "text": "Long documents overflow the index quantizer",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe truncation limit is a property of the released checkpoints, and everything past it is simply never seen — which is a strong argument for training your own in long-document domains.\u003c/p\u003e"
+    },
+    {
+      "id": "card_17177c#2",
+      "format": "flip",
+      "prompt": "Is the index size of a multi-vector retriever prohibitive?",
+      "back_html": "\u003cp\u003eNot necessarily. Raw indexes look large, but quantization and pooling brought the post's example down to 1.45GB — smaller than the comparable dense setup.\u003c/p\u003e"
+    }
+  ]
+}

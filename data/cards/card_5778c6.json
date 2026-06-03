@@ -1,0 +1,95 @@
+{
+  "id": "card_5778c6",
+  "slug": "linear-representations-of-grammaticality",
+  "type": "paper",
+  "title": "Linear representations of grammaticality in neural language models",
+  "hook": "Does a language model 'know' grammar, or just favor familiar-sounding sentences? Probing hidden states finds a clean linear direction for grammaticality that survives even once you strip probability away.",
+  "key_points": [
+    "Prior evidence for grammatical knowledge in LMs relied on probability comparisons (grammatical \u003e ungrammatical), which critics argue conflates grammar with frequency, plausibility, and world knowledge.",
+    "Used mass-mean probing on internal representations instead, testing whether grammatical and ungrammatical sentences separate linearly in representation space.",
+    "Grammatical vs. ungrammatical sentences separate cleanly along a consistent direction across a wide range of pretrained models, even controlling for other correlated sentence properties.",
+    "This representational separation generalizes across many grammatical phenomena and, to some degree, across languages."
+  ],
+  "content_html": "\u003cp\u003eWhether neural language models actually \u0026quot;know\u0026quot; grammar, versus just favoring text that sounds statistically familiar, has been argued over for years. Most of that evidence came from comparing probabilities: models assign higher likelihood to grammatical sentences than to broken ones. Critics have pushed back that probability is too tangled up with word frequency, plausibility, and world knowledge to prove anything about grammar specifically.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eJane Li and Najoung Kim sidestep the probability debate entirely by looking inside the model. Using mass-mean probing on internal representations, they test whether grammatical and ungrammatical sentences fall into separate regions of representation space — and whether that separation survives once you control for other sentence properties that happen to correlate with grammaticality.\u003c/p\u003e\n\u003cp\u003eAcross a wide range of pretrained language models, they find a clear, consistent direction in representation space that separates grammatical from ungrammatical sentences, one that can't be fully explained by those confounding factors. The separation also generalizes broadly — across many distinct grammatical phenomena and, to a degree, across languages — which the authors read as evidence that grammaticality is a coherent, extractable dimension inside these models, and offer probing as a complementary way to evaluate grammatical competence that doesn't depend on probability alone. Source: arXiv, arxiv.org/abs/2607.15175.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jane Li",
+      "Najoung Kim"
+    ],
+    "url": "https://arxiv.org/abs/2607.15175",
+    "published_at": "2026-07-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "nlp",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-16",
+  "related": [
+    {
+      "id": "card_426fcd",
+      "slug": "scaling-monosemanticity",
+      "type": "paper",
+      "title": "Scaling Monosemanticity: Features from Claude 3 Sonnet",
+      "hook": "Does dictionary learning survive at production scale? Anthropic found millions of features in Claude 3 Sonnet — and could steer the model by turning one up.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2024-05-21"
+    },
+    {
+      "id": "card_b85e27",
+      "slug": "mance-manifold-concept-erasure",
+      "type": "paper",
+      "title": "MANCE: Erasing Concepts Without Leaving the Data Manifold",
+      "hook": "Erase a concept from a representation and you often damage everything correlated with it. This method's fix: constrain every edit to stay on the manifold real representations actually live on.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-04"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_5778c6#0",
+      "format": "flip",
+      "prompt": "Why do the authors move past probability-based tests of grammatical knowledge in language models?",
+      "back_html": "\u003cp\u003eModel probability reflects many entangled factors beyond grammar — like lexical frequency, plausibility, and world knowledge — so higher probability for grammatical strings doesn't cleanly prove grammatical knowledge.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5778c6#1",
+      "format": "quiz",
+      "prompt": "What method did the authors use to test whether grammaticality is encoded in a model's internal representations?",
+      "choices": [
+        {
+          "text": "Mass-mean probing, checking whether grammatical and ungrammatical sentences separate along a consistent direction in representation space",
+          "correct": true
+        },
+        {
+          "text": "Fine-tuning the model and measuring the change in output probability",
+          "correct": false
+        },
+        {
+          "text": "Asking the model to explain its own grammatical reasoning in natural language",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eProbing looks directly at hidden states rather than at output probabilities, letting the authors ask whether grammaticality is a representational property, not just a probability pattern.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5778c6#2",
+      "format": "flip",
+      "prompt": "How well does the grammaticality direction found in these models generalize?",
+      "back_html": "\u003cp\u003eIt holds up across a broad range of grammatical phenomena and, to some degree, across different languages — and isn't fully explained away by other sentence-level factors correlated with grammaticality.\u003c/p\u003e"
+    }
+  ]
+}

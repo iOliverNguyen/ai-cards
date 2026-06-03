@@ -1,0 +1,107 @@
+{
+  "id": "card_3f7554",
+  "slug": "ttpo-test-time-policy-optimization",
+  "type": "paper",
+  "title": "TTPO: Training at Test Time Without Labels",
+  "hook": "Majority voting is a fragile teacher — one bad vote poisons every token. TTPO exploits an asymmetry: rollouts that disagree with the vote are usually wrong even when the vote is too.",
+  "key_points": [
+    "RL and on-policy self-distillation need ground-truth labels, which rules out test-time training.",
+    "Majority-vote pseudo-labels are the obvious substitute but are fragile: a wrong vote corrupts the teacher signal.",
+    "Key observation: the failure is asymmetric — disagreeing rollouts are typically wrong regardless of whether the vote is right.",
+    "TTPO distils agreeing rollouts via OPSD and penalizes disagreeing rollouts with grouped RL.",
+    "Token-level selection refines both: distillation down-weights converged positions, RL penalizes only confident errors.",
+    "Label-free, it matches label-supervised OPSD on five competition benchmarks and lifts Qwen3-1.7B from 38.0% to 45.2%."
+  ],
+  "content_html": "\u003cp\u003ePost-training methods that work — RL with verifiable rewards, on-policy self-distillation — all need labels. That blocks test-time training, where you would like a model to improve on the very problems it is currently facing. The natural workaround is majority voting over rollouts, and it is brittle: if the vote is wrong, the teacher is wrong, and every token gets pulled the wrong way.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe insight\u003c/h2\u003e\n\u003cp\u003eWang and colleagues observe that the failure mode is asymmetric. Rollouts that \u003cem\u003edisagree\u003c/em\u003e with the majority label are usually wrong — not just when the vote is right, but also when it is wrong. Agreement is weak evidence of correctness; disagreement is much stronger evidence of error. So the two groups deserve different objectives.\u003c/p\u003e\n\u003cp\u003eTTPO distils the agreeing rollouts with on-policy self-distillation, and penalizes the disagreeing ones with grouped RL. Token-level selection then refines each branch: distillation down-weights positions that have already converged, and the RL penalty applies only to confident errors. Both updates stay well-grounded even when pseudo-labels are frequently wrong, and majority-vote routing tightens as the model improves.\u003c/p\u003e\n\u003ch2\u003eResults\u003c/h2\u003e\n\u003cp\u003eWithout any labels, TTPO matches label-supervised OPSD on five competition-level benchmarks, raises Qwen3-1.7B from 38.0% to 45.2% in test-time training, reports +25.2 to +36.4 points in the no-thinking setting, and generalizes across tasks. The transferable idea is the design pattern: when a noisy signal is \u003cem\u003easymmetrically\u003c/em\u003e noisy, split it and use each half where it is reliable.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Aozhe Wang",
+      "Zhengxi Lu",
+      "Jianze Wang",
+      "Shangke Lv",
+      "Ying Liu",
+      "Weiming Lu",
+      "Jun Xiao",
+      "Yueting Zhuang",
+      "Hua Yang",
+      "Qianglong Chen",
+      "Yongliang Shen"
+    ],
+    "url": "https://arxiv.org/abs/2608.27448",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "reasoning",
+    "inference",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_c3ffdb",
+      "slug": "opsd-collapse-three-levers",
+      "type": "paper",
+      "title": "One Symptom, Three Levers: A Critical Review of On-Policy Self-Distillation",
+      "hook": "Self-distillation drops the costly teacher by letting a model teach itself with privileged information. The asymmetry that creates the signal also biases it — into collapse.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-26"
+    },
+    {
+      "id": "card_8a1aa9",
+      "slug": "evolution-strategies-vs-grpo",
+      "type": "paper",
+      "title": "Evolution Strategies Beat GRPO on Reasoning Coverage",
+      "hook": "GRPO sharpens one answer and collapses entropy. Evolution strategies keep the population diverse — improving pass@1 while also raising pass@k, which GRPO gives up.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-08-27"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_3f7554#0",
+      "format": "flip",
+      "prompt": "What asymmetry lets TTPO survive wrong majority votes?",
+      "back_html": "\u003cp\u003eRollouts that disagree with the pseudo-label are typically wrong whether or not the vote itself is correct. So penalizing disagreement is safe even when trusting the vote as a teacher would not be.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3f7554#1",
+      "format": "quiz",
+      "prompt": "How does TTPO treat the two groups of rollouts differently?",
+      "choices": [
+        {
+          "text": "Agreeing rollouts are distilled; disagreeing rollouts are penalized with grouped RL",
+          "correct": true
+        },
+        {
+          "text": "Both groups are distilled, weighted by vote share",
+          "correct": false
+        },
+        {
+          "text": "Disagreeing rollouts are discarded and only agreeing ones are used",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe two branches use different objectives precisely because the reliability of the signal differs: agreement is weak evidence of correctness, disagreement is strong evidence of error.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3f7554#2",
+      "format": "flip",
+      "prompt": "What does TTPO achieve without any ground-truth labels?",
+      "back_html": "\u003cp\u003eIt matches label-supervised OPSD across five competition-level benchmarks, and raises Qwen3-1.7B from 38.0% to 45.2% in the test-time-training setting.\u003c/p\u003e"
+    }
+  ]
+}

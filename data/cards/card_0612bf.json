@@ -1,0 +1,100 @@
+{
+  "id": "card_0612bf",
+  "slug": "automem-memory-as-cognitive-skill",
+  "type": "paper",
+  "title": "AutoMem: Automated Learning of Memory as a Cognitive Skill",
+  "hook": "AutoMem treats knowing what to remember and when to retrieve it — metamemory — as a trainable skill, and tuning memory alone roughly doubles to quadruples performance on long-horizon games.",
+  "key_points": [
+    "Frames memory management as 'metamemory' — a learnable skill about what to encode, when to retrieve, and how to organize knowledge — and promotes filesystem operations to first-class memory actions alongside task actions.",
+    "Optimizes two axes automatically: the memory structure (prompts, file schemas, action vocabulary) and the model's proficiency at using it.",
+    "A strong LLM reviews complete agent trajectories to iteratively revise the memory structure; separately, the agent's own good memory decisions become training signal that sharpens memory proficiency directly.",
+    "Across Crafter, MiniHack, and NetHack, optimizing memory alone (task-action behavior untouched) improved a base agent ~2x-4x, making a 32B open model competitive with frontier systems like Claude Opus 4.5.",
+    "Shows memory management is an independently learnable skill, not just a byproduct of general capability."
+  ],
+  "content_html": "\u003cp\u003eKnowing what to remember, when to retrieve it, and how to organize it — metamemory, in cognitive-science terms — is treated by AutoMem as a skill an LLM agent can learn, not a fixed mechanism bolted on from outside. The authors promote filesystem operations to first-class memory actions alongside an agent's normal task actions, and let the model decide how to manage its own memory.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eTwo loops, two axes\u003c/h2\u003e\n\u003cp\u003eMemory improves along two axes that both resist manual tuning: the structure supporting it (prompts, file schemas, the action vocabulary) and the model's proficiency at exercising it. AutoMem automates both. In the first loop, a strong LLM reviews complete agent trajectories — which can run for thousands of steps, long enough that a single memory mistake can hide before it surfaces — and iteratively revises the memory structure. In the second loop, the agent's own good memory decisions, identified across many episodes, become training signal that directly sharpens the model's memory proficiency.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAcross three procedurally generated long-horizon games — Crafter, MiniHack, and NetHack — optimizing memory alone, without touching the agent's task-action behavior at all, improved the base agent roughly 2x to 4x, enough to bring a 32B open-weight model into competitive range with frontier systems like Claude Opus 4.5 and Gemini 3.1 Pro Thinking. That's a strong demonstration that memory management is an independently learnable skill and a high-leverage target for anyone building long-horizon agents.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Shengguang Wu",
+      "Hao Zhu",
+      "Yuhui Zhang",
+      "Xiaohan Wang",
+      "Serena Yeung-Levy"
+    ],
+    "url": "https://arxiv.org/abs/2607.01224",
+    "published_at": "2026-07-01",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "context-memory",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "training",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-06",
+  "date": "2026-07-01",
+  "related": [
+    {
+      "id": "card_bfcabe",
+      "slug": "language-models-need-sleep",
+      "type": "paper",
+      "title": "Language Models Need Sleep",
+      "hook": "Humans consolidate the day's memories while sleeping. This paper gives LLMs a 'sleep' phase to distill fragile short-term context into stable long-term weights — and a 'dreaming' phase to rehearse.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_cc4fb6",
+      "slug": "memsyco-bench",
+      "type": "paper",
+      "title": "MemSyco-Bench: Benchmarking Sycophancy in Agent Memory",
+      "hook": "Agent memory sounds purely good — until retrieved memories start pushing an agent to agree with the user over the facts. MemSyco-Bench is built specifically to catch that failure.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_0612bf#0",
+      "format": "flip",
+      "prompt": "What is 'metamemory' in AutoMem's framing?",
+      "back_html": "\u003cp\u003eThe cognitive-science idea of knowing what to encode, when to retrieve, and how to organize knowledge — applied to LLM agents by treating memory management as a trainable skill, not a fixed mechanism.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0612bf#1",
+      "format": "quiz",
+      "prompt": "What two things does AutoMem optimize automatically?",
+      "choices": [
+        {
+          "text": "The memory structure (prompts, file schemas, action vocabulary) and the model's proficiency at using it",
+          "correct": true
+        },
+        {
+          "text": "Only the size of the model's context window",
+          "correct": false
+        },
+        {
+          "text": "Only the choice of vector database used for retrieval",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOne loop revises the memory structure by reviewing full agent trajectories; a second loop turns the agent's own good memory decisions into training signal to sharpen proficiency directly.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0612bf#2",
+      "format": "flip",
+      "prompt": "How much did optimizing memory alone (without touching task-action behavior) improve the base agent on long-horizon games?",
+      "back_html": "\u003cp\u003eRoughly 2x-4x across Crafter, MiniHack, and NetHack — enough to make a 32B open-weight model competitive with frontier systems like Claude Opus 4.5.\u003c/p\u003e"
+    }
+  ]
+}

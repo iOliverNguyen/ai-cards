@@ -1,0 +1,128 @@
+{
+  "id": "card_661848",
+  "slug": "advancedmathbench-proof-generation-bottleneck",
+  "type": "paper",
+  "title": "AdvancedMathBench: A Benchmark Suite for Advanced Mathematical Proof Generation and Verification",
+  "hook": "Frontier models look near-perfect on final-answer math benchmarks. Ask for a rigorous PhD-level proof instead, and even GPT-5.5 tops out near 75 — automated grading barely catches the bad ones.",
+  "key_points": [
+    "ProverBench has 296 proof problems from undergrad to PhD-qualifying level — graded on the proof itself, not just the final number.",
+    "Best-tested model, GPT-5.5 at extra-high reasoning effort, scores only 75.8 (undergrad split) and 66.1 (PhD-qualifying split) out of 100.",
+    "VerifierBench (888 model-written proofs with expert ground truth) shows even the best automatic verifier reaches only 65.1 Balanced F1.",
+    "Verifiers show low true-negative rates — they're bad at flagging genuinely flawed proofs, not just at confirming correct ones.",
+    "Shows proof construction and proof verification both remain major bottlenecks even as models saturate final-answer math benchmarks."
+  ],
+  "content_html": "\u003cp\u003eFrontier models have gotten very good at olympiad-style math where a final numeric answer is enough to grade. AdvancedMathBench, from an OpenCompass/Shanghai AI Lab team, tests something harder: whether a model can write (and whether an automated system can verify) a genuinely rigorous proof, at levels spanning undergraduate coursework up to PhD qualifying exams.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe core benchmark, ProverBench, contains 296 proof problems across those levels. Even the best model tested — GPT-5.5 running at extra-high reasoning effort — scores only 75.8 on the undergraduate split and 66.1 on the PhD-qualifying split, out of 100, showing real room left in proof construction alone. The team also built VerifierBench, 888 model-generated proof trajectories paired with expert ground truth, to test whether automated verification can be trusted: the best verifier manages only 65.1 Balanced F1 and, more worryingly, a low true-negative rate — meaning it often fails to catch proofs that are actually broken. Together the two results argue that both writing and grading advanced math proofs remain open problems for frontier LLMs, even as final-answer math benchmarks approach saturation. See arxiv.org/abs/2607.11849.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Lingkai Kong",
+      "Zijian Wu",
+      "Yuzhe Gu",
+      "Haiteng Zhao",
+      "Wenyong Huang",
+      "Shuang Sun",
+      "Zhicheng Xiong",
+      "Xiaotian Zhang",
+      "Shuya Zhao",
+      "Yan Wang",
+      "Disheng Xu",
+      "Wenwei Zhang",
+      "Kai Chen"
+    ],
+    "url": "https://arxiv.org/abs/2607.11849",
+    "published_at": "2026-07-13",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evaluation",
+    "language-models",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-16",
+  "date": "2026-07-13",
+  "related": [
+    {
+      "id": "card_edaaae",
+      "slug": "gsm8k",
+      "type": "paper",
+      "title": "GSM8K: Training Verifiers for Grade-School Math",
+      "hook": "Instead of trusting a model's first answer, sample many and let a learned 'verifier' pick the best — and it beats just finetuning, scaling better with data.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2021-10-27"
+    },
+    {
+      "id": "card_cda7aa",
+      "slug": "arc-agi-2",
+      "type": "paper",
+      "title": "ARC-AGI-2",
+      "hook": "ARC-AGI-2 rebuilt the abstraction benchmark to defeat brute-force search — frontier models that aced version 1 initially scored near zero, while humans still solve it.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-05-19"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_661848#0",
+      "format": "flip",
+      "prompt": "What gap does AdvancedMathBench target that final-answer math benchmarks miss?",
+      "back_html": "\u003cp\u003eWhether a model can construct (and have verified) a full, rigorous mathematical proof — not just arrive at the right final number.\u003c/p\u003e"
+    },
+    {
+      "id": "card_661848#1",
+      "format": "quiz",
+      "prompt": "How did the best-tested model, GPT-5.5-xhigh, score on AdvancedMathBench's proof-generation splits?",
+      "choices": [
+        {
+          "text": "75.8 on the undergrad split and 66.1 on the PhD-qualifying split, out of 100",
+          "correct": true
+        },
+        {
+          "text": "Above 95 on both splits, near-saturating the benchmark",
+          "correct": false
+        },
+        {
+          "text": "Below 20 on both splits, near total failure",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEven the best frontier model tested left substantial room to improve on both the undergraduate (UGD) and PhD-qualifying (QE) proof splits.\u003c/p\u003e"
+    },
+    {
+      "id": "card_661848#2",
+      "format": "flip",
+      "prompt": "What did VerifierBench reveal about automated proof-checking models?",
+      "back_html": "\u003cp\u003eEven the best verifier reached only 65.1 Balanced F1, with a low true-negative rate — it struggles to catch flawed proofs, not just to confirm correct ones.\u003c/p\u003e"
+    },
+    {
+      "id": "card_661848#3",
+      "format": "quiz",
+      "prompt": "Why does a low true-negative rate matter for an automatic proof verifier?",
+      "choices": [
+        {
+          "text": "It means the verifier often passes proofs that are actually flawed",
+          "correct": true
+        },
+        {
+          "text": "It means the verifier runs too slowly to use at scale",
+          "correct": false
+        },
+        {
+          "text": "It means the verifier only works on short proofs",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA low true-negative rate means the verifier fails to flag genuinely flawed proofs as flawed — undermining trust in automated grading.\u003c/p\u003e"
+    }
+  ]
+}

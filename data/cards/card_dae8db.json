@@ -1,0 +1,131 @@
+{
+  "id": "card_dae8db",
+  "slug": "sana-video-2",
+  "type": "paper",
+  "title": "SANA-Video 2.0: Softmax Where It Counts",
+  "hook": "Pure linear attention is cheap but loses full-rank token mixing. SANA-Video 2.0 sprinkles softmax anchors back in at a 3:1 ratio and reaches softmax-level video quality at linear-attention cost.",
+  "key_points": [
+    "A hybrid video diffusion transformer at 5B and 14B scales, generating up to 720p on a single GPU.",
+    "Hybrid Linear-Softmax Attention: gated linear attention for O(N) mixing plus periodic gated-softmax anchors at a 3:1 ratio.",
+    "Block Attention Residuals route completed block summaries into later linear layers, lifting deep-layer effective rank about 12%.",
+    "Trained from scratch as a hybrid rather than linearizing a pretrained softmax model; proxy studies pick 25% softmax as the sweet spot.",
+    "VBench 84.30 with 40-step sampling in 13.2s at 480p on one H100.",
+    "Compiled forward pass runs 3.2x faster than a matched full-softmax baseline at 720p/60s, and the gap widens with duration."
+  ],
+  "content_html": "\u003cp\u003eVideo diffusion transformers are strangled by attention: token counts scale with resolution \u003cem\u003eand\u003c/em\u003e duration, so a full-softmax model gets expensive fast. Linear attention fixes the scaling but gives up the full-rank token interactions that make softmax expressive. \u003cstrong\u003eSANA-Video 2.0\u003c/strong\u003e takes the middle road, and trains it from scratch rather than converting a softmax model after the fact.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe hybrid\u003c/h2\u003e\n\u003cp\u003eMost layers use gated linear attention for O(N)-dominated mixing; every fourth is a gated-softmax \u0026quot;anchor\u0026quot; that restores full-rank interactions — a 3:1 ratio the authors arrive at through reduced-resolution proxy studies identifying 25% softmax as the best quality-efficiency trade-off. To keep the anchors' refreshed representations from decaying with depth, \u003cstrong\u003eBlock Attention Residuals\u003c/strong\u003e route completed block summaries into later linear layers, reusing anchor features and lifting deep-layer effective rank by about 12%. The result is instantiated at 5B and 14B under one unified architecture and generates up to 720p on a single GPU.\u003c/p\u003e\n\u003ch2\u003eThe numbers\u003c/h2\u003e\n\u003cp\u003eWith 40-step sampling it reports a VBench score of 84.30 in 13.2 seconds at 480p on one H100, which the authors call competitive with far larger full-softmax video DiTs. The compiled forward pass is 3.2x faster than a matched full-softmax baseline at 720p/60s, and because the saving is asymptotic rather than a constant factor, that gap expands with video duration. A further full-stack inference pass (kernel fusion, caching, sparse attention) multiplies throughput again, bringing the 5B pipeline to 13.06s for 720p/5s. Chen and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Junsong Chen",
+      "Jincheng Yu",
+      "Yitong Li",
+      "Shuchen Xue",
+      "Haozhe Liu",
+      "Jingyu Xin",
+      "Yuyang Zhao",
+      "Tian Ye",
+      "Zhangjie Wu",
+      "Zian Wang",
+      "Daquan Zhou",
+      "Ping Luo",
+      "Song Han",
+      "Enze Xie"
+    ],
+    "url": "https://arxiv.org/abs/2607.21553",
+    "published_at": "2026-07-23",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "video-audio",
+    "diffusion",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "efficiency",
+    "attention",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-27",
+  "date": "2026-07-23",
+  "related": [
+    {
+      "id": "card_80c193",
+      "slug": "seriality-gap-video-diffusion",
+      "type": "paper",
+      "title": "The Seriality Gap in Video Diffusion Models",
+      "hook": "Give a video diffusion model more denoising steps and you'd expect better predictions on chains of causal events. Instead performance keeps degrading — the steps don't add real serial computation.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-14"
+    },
+    {
+      "id": "card_7e3221",
+      "slug": "latent-diffusion-models",
+      "type": "paper",
+      "title": "High-Resolution Image Synthesis with Latent Diffusion (Stable Diffusion)",
+      "hook": "Running diffusion on raw pixels is brutally expensive. Do it in a compressed latent space instead, and high-res text-to-image becomes cheap enough to run on a consumer GPU.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-12-20"
+    },
+    {
+      "id": "card_c84948",
+      "slug": "flex-forcing-unified-video-diffusion",
+      "type": "paper",
+      "title": "Flex-Forcing: One Video Diffusion Model, Two Inference Modes",
+      "hook": "Video diffusion models used to force a choice: globally coherent but slow, or fast streaming that drifts apart. Flex-Forcing chunks time and denoising steps together so one model does both.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-03"
+    },
+    {
+      "id": "card_1ccfb1",
+      "slug": "veo-3",
+      "type": "news",
+      "title": "Veo 3",
+      "hook": "Google's Veo 3 generates video with synchronized native audio — dialogue, sound effects, and ambient noise produced together with the picture, not dubbed on after.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-05-20"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_dae8db#0",
+      "format": "flip",
+      "prompt": "What does pure linear attention lose, and how does SANA-Video 2.0 get it back?",
+      "back_html": "\u003cp\u003eIt lacks full-rank token interactions. The model interleaves periodic gated-softmax anchor layers among gated-linear ones at a 3:1 ratio to restore them without paying quadratic cost throughout.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dae8db#1",
+      "format": "quiz",
+      "prompt": "Why does SANA-Video 2.0's speed advantage over a full-softmax baseline grow with video length?",
+      "choices": [
+        {
+          "text": "Most of its mixing is linear in sequence length, so the quadratic softmax cost it avoids grows faster than its own",
+          "correct": true
+        },
+        {
+          "text": "Longer videos need fewer denoising steps, so sampling gets cheaper",
+          "correct": false
+        },
+        {
+          "text": "The model switches off attention entirely past a length threshold",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLonger videos mean longer token sequences; a mostly-O(N) backbone pulls further ahead of a quadratic one, which is why the 3.2x margin at 720p/60s expands with duration.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dae8db#2",
+      "format": "flip",
+      "prompt": "What do Block Attention Residuals do?",
+      "back_html": "\u003cp\u003eThey route completed block summaries forward into later linear layers so anchor features get reused, raising deep-layer effective rank by roughly 12%.\u003c/p\u003e"
+    }
+  ]
+}

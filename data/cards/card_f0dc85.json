@@ -1,0 +1,96 @@
+{
+  "id": "card_f0dc85",
+  "slug": "double-blind-frontier-evaluations",
+  "type": "news",
+  "title": "Piloting the World's First Double-Blind AI Evaluations",
+  "hook": "Benchmarks only mean something if the model hasn't seen the answers. DeepMind's pilot hides the test from the lab and the weights from the evaluators — enforced by cryptography, not a contract.",
+  "key_points": [
+    "DeepMind calls it the first double-blind evaluation of a proprietary frontier-class model.",
+    "Runs inside Google Cloud Confidential Computing: evaluators can't read the weights, Google can't read the prompts.",
+    "Targets benchmark contamination — 'peeking' at eval questions inflates scores and erodes trust.",
+    "Replaces contractual promises about test-set secrecy with technical enforcement.",
+    "Piloted on a Gemini Flash Lite model with the Singapore AI Safety Institute, OpenMined, AVERI, and MLCommons."
+  ],
+  "content_html": "\u003cp\u003eGoogle DeepMind says it has run the first double-blind evaluation of a proprietary, frontier-class AI model — a pilot built with the Singapore AI Safety Institute, OpenMined, AVERI, and MLCommons, tested on a Gemini Flash Lite model. The setup fixes a structural weakness in AI benchmarking: whoever holds the test set has to be trusted not to leak it, and whoever holds the model has to be trusted not to look.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe evaluation runs inside Google Cloud's Confidential Computing environment — a cryptographic \u0026quot;box\u0026quot; that both parties feed inputs into but neither can see inside. External evaluators never get access to the model weights; Google never gets to see the test prompts. Both sides get the result, and neither is in a position to game it.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eBenchmark contamination is one of the quieter credibility problems in AI evaluation. As the post frames it, if models can \u0026quot;peek\u0026quot; at the evaluation questions in advance, it \u0026quot;can artificially inflate scores and undermine this trust.\u0026quot; Until now the defense has largely been contractual — a lab promising it didn't train on the test set. Making that guarantee technical rather than legal is what's new here, and it matters most for third-party safety evaluations, where the evaluator and the developer have reasons not to simply trust each other. DeepMind published an accompanying technical report with the methodology and findings.\u003c/p\u003e",
+  "source": {
+    "name": "Google DeepMind Blog",
+    "url": "https://deepmind.google/blog/piloting-the-worlds-first-double-blind-ai-evaluations",
+    "published_at": "2026-08-27",
+    "license": "Google DeepMind (blog post)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "lab-updates"
+  ],
+  "tags": [
+    "news",
+    "benchmark",
+    "safety"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_e9167e",
+      "slug": "swe-bench-pro-audit",
+      "type": "blog",
+      "title": "Separating Signal from Noise in Coding Evaluations",
+      "hook": "OpenAI told the field to switch to SWE-Bench Pro after finding SWE-bench Verified contaminated. Now its own audit says ~30% of SWE-Bench Pro's tasks are broken too.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-08"
+    },
+    {
+      "id": "card_490028",
+      "slug": "model-evaluation-for-extreme-risks",
+      "type": "paper",
+      "title": "Model Evaluation for Extreme Risks",
+      "hook": "General-purpose AI tends to pick up dangerous capabilities alongside useful ones. So test for those capabilities directly — before you ship, not after.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_f0dc85#0",
+      "format": "flip",
+      "prompt": "What makes this evaluation 'double-blind'?",
+      "back_html": "\u003cp\u003eNeither side sees the other's secret: evaluators can't access the model's weights, and the model's developer can't see the test prompts.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f0dc85#1",
+      "format": "quiz",
+      "prompt": "What problem is double-blind evaluation primarily designed to prevent?",
+      "choices": [
+        {
+          "text": "Benchmark contamination — the model having seen the eval questions in advance",
+          "correct": true
+        },
+        {
+          "text": "Evaluators running the model on too little compute",
+          "correct": false
+        },
+        {
+          "text": "Models refusing to answer safety questions",
+          "correct": false
+        },
+        {
+          "text": "Benchmarks becoming too difficult over time",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDeepMind's framing: if models can 'peek' at evaluation questions beforehand, scores are artificially inflated and the trust the benchmark is supposed to create disappears.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f0dc85#2",
+      "format": "flip",
+      "prompt": "What replaces the contract in this setup, and how?",
+      "back_html": "\u003cp\u003eTechnical enforcement. Confidential Computing puts the evaluation in a cryptographic box, so test-set secrecy no longer depends on either party keeping a promise.\u003c/p\u003e"
+    }
+  ]
+}

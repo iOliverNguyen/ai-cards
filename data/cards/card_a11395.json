@@ -1,0 +1,115 @@
+{
+  "id": "card_a11395",
+  "slug": "tsne-and-umap",
+  "type": "concept",
+  "title": "t-SNE \u0026 UMAP: Visualizing High-Dimensional Data",
+  "hook": "t-SNE and UMAP squeeze thousands of dimensions into two so you can see whether your model's internal representations form meaningful clusters.",
+  "key_points": [
+    "Both methods preserve local neighborhoods: points close in high dimensions land close in 2-D.",
+    "t-SNE minimizes KL divergence between pairwise similarity distributions; UMAP uses a graph-based approach.",
+    "UMAP is substantially faster than t-SNE and better at preserving global structure.",
+    "Output coordinates are not interpretable on their own - only relative positions matter.",
+    "Used heavily to visualize word embeddings, image features, and single-cell RNA-seq data."
+  ],
+  "content_html": "\u003cp\u003et-SNE (t-distributed Stochastic Neighbor Embedding) and UMAP are nonlinear dimensionality reduction methods built for one purpose: making a 2-D scatter plot of data that originally lived in hundreds or thousands of dimensions, so you can see by eye whether similar things cluster together.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003et-SNE, introduced by van der Maaten and Hinton in 2008, models pairwise similarities between points in the original space and in the 2-D space, then moves the 2-D points to make those similarity distributions match - using a Student t-distribution in the low-dimensional space to avoid crowding in the center. UMAP (McInnes et al., 2018) constructs a weighted graph of nearest neighbors in high dimensions and finds a low-dimensional layout that preserves that graph structure. It is generally faster than t-SNE and captures large-scale structure more faithfully.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThese plots are how practitioners sanity-check representations: if a model has learned something meaningful, its internal embeddings should cluster by class or concept. Both t-SNE and UMAP are standard exploratory tools in NLP, computer vision, and genomics. Start with the original t-SNE paper by van der Maaten and Hinton, then read the UMAP paper for the improvements.\u003c/p\u003e",
+  "source": {
+    "name": "Journal of Machine Learning Research",
+    "authors": [
+      "Laurens van der Maaten",
+      "Geoffrey Hinton"
+    ],
+    "url": "https://www.jmlr.org/papers/v9/vandermaaten08a.html",
+    "published_at": "2008-11-01",
+    "license": "JMLR (open access)"
+  },
+  "resources": [
+    {
+      "title": "UMAP paper (McInnes et al., 2018)",
+      "url": "https://arxiv.org/abs/1802.03426"
+    }
+  ],
+  "topic_ids": [
+    "clustering-dimred"
+  ],
+  "tags": [
+    "classic-ml",
+    "vision"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2008-11-01",
+  "related": [
+    {
+      "id": "card_d3603e",
+      "slug": "principal-component-analysis",
+      "type": "concept",
+      "title": "Principal Component Analysis (PCA)",
+      "hook": "Find the directions your data varies most, then keep only the top few - you compress many correlated features into a handful while retaining most of the signal.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-03"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_d3603e",
+      "slug": "principal-component-analysis",
+      "type": "concept",
+      "title": "Principal Component Analysis (PCA)",
+      "hook": "Find the directions your data varies most, then keep only the top few - you compress many correlated features into a handful while retaining most of the signal.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-03"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_a11395#0",
+      "format": "flip",
+      "prompt": "What do both t-SNE and UMAP preserve when reducing to 2-D?",
+      "back_html": "\u003cp\u003eLocal neighborhoods: points close in high dimensions land close in the 2-D layout.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a11395#1",
+      "format": "quiz",
+      "prompt": "How does UMAP compare to t-SNE?",
+      "choices": [
+        {
+          "text": "Substantially faster and better at preserving global structure",
+          "correct": true
+        },
+        {
+          "text": "Slower but more accurate on local structure",
+          "correct": false
+        },
+        {
+          "text": "Identical in speed and output",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eUMAP is substantially faster than t-SNE and better at preserving global structure.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a11395#2",
+      "format": "quiz",
+      "prompt": "How should you interpret t-SNE/UMAP output coordinates?",
+      "choices": [
+        {
+          "text": "Only relative positions matter; the coordinates aren't interpretable alone",
+          "correct": true
+        },
+        {
+          "text": "Each axis is a meaningful labeled feature",
+          "correct": false
+        },
+        {
+          "text": "The absolute values give class probabilities",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe output coordinates are not interpretable on their own; only relative positions (whether things cluster) matter.\u003c/p\u003e"
+    }
+  ]
+}

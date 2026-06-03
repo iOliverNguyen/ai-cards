@@ -1,0 +1,109 @@
+{
+  "id": "card_c38a80",
+  "slug": "alphafold",
+  "type": "paper",
+  "title": "AlphaFold: Protein Structure Prediction",
+  "hook": "Predicting a protein's 3D shape from its sequence stumped biology for ~50 years. AlphaFold cracked it at near-experimental accuracy — and then released the structures to everyone.",
+  "key_points": [
+    "Predicts a protein's folded 3D structure directly from its amino-acid sequence.",
+    "Reaches accuracy competitive with slow, costly experimental methods for many proteins.",
+    "Uses evolutionary information from related sequences plus attention-based deep learning.",
+    "Predicted structures for a vast swath of known proteins were released in a free public database."
+  ],
+  "content_html": "\u003cp\u003eJohn Jumper, Richard Evans, and the DeepMind team built AlphaFold to predict a protein's three-dimensional shape from just its amino-acid sequence — the long-standing \u0026quot;protein folding problem.\u0026quot; The system reached accuracy rivaling experimental techniques for many proteins, a result widely seen as solving a roughly 50-year grand challenge in biology. They then released predicted structures for a huge fraction of known proteins in an open database, putting the results in the hands of researchers everywhere.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eA protein is a chain of amino acids that folds into a specific shape, and that shape largely determines what the protein does. AlphaFold draws on evolutionary signal — patterns across many related sequences hint at which parts of the chain sit near each other — and feeds this into a deep network built on attention. It reasons jointly about the sequence and the emerging geometry, iteratively refining a 3D model of where every atom goes.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eKnowing a protein's structure is central to understanding disease, designing drugs, and basic biology, but determining structures experimentally is slow and expensive. AlphaFold's accuracy meant many structures could be obtained in silico, and the open database of predictions accelerated work across the life sciences. It stands as a landmark example of deep learning delivering a genuine scientific breakthrough, not just a benchmark win.\u003c/p\u003e",
+  "source": {
+    "name": "Nature",
+    "authors": [
+      "John Jumper",
+      "Richard Evans",
+      "et al."
+    ],
+    "url": "https://www.nature.com/articles/s41586-021-03819-2",
+    "published_at": "2021-07-15",
+    "license": "© Nature (link-out)"
+  },
+  "topic_ids": [
+    "ai-for-science"
+  ],
+  "tags": [
+    "landmark",
+    "benchmark"
+  ],
+  "importance": 5,
+  "difficulty": "deep",
+  "created_at": "2026-06-02",
+  "date": "2021-07-15",
+  "related": [
+    {
+      "id": "card_0df4be",
+      "slug": "alphago",
+      "type": "paper",
+      "title": "AlphaGo: Mastering the Game of Go",
+      "hook": "Go has more board positions than atoms in the universe, and experts thought superhuman play was a decade off. AlphaGo beat a top professional in 2016.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2016-01-27"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_c38a80#0",
+      "format": "flip",
+      "prompt": "What problem does AlphaFold solve, and from what input?",
+      "back_html": "\u003cp\u003eIt predicts a protein's folded 3D structure directly from its amino-acid sequence — the ~50-year 'protein folding problem' — at accuracy rivaling experimental methods for many proteins.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c38a80#1",
+      "format": "quiz",
+      "prompt": "What signal does AlphaFold draw on to infer which parts of a chain sit near each other?",
+      "choices": [
+        {
+          "text": "Evolutionary patterns across many related sequences",
+          "correct": true
+        },
+        {
+          "text": "X-ray crystallography images supplied at inference",
+          "correct": false
+        },
+        {
+          "text": "The protein's known biological function",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAlphaFold uses evolutionary signal from related sequences, fed into an attention-based network, to reason about the geometry.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c38a80#2",
+      "format": "quiz",
+      "prompt": "Beyond the prediction model, what amplified AlphaFold's scientific impact?",
+      "choices": [
+        {
+          "text": "Releasing predicted structures for a huge fraction of known proteins in a free public database",
+          "correct": true
+        },
+        {
+          "text": "Patenting the method to fund further research",
+          "correct": false
+        },
+        {
+          "text": "Restricting access to pharmaceutical partners",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDeepMind released predictions in an open database, putting structures in researchers' hands and accelerating the life sciences.\u003c/p\u003e"
+    }
+  ]
+}

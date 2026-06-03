@@ -1,0 +1,94 @@
+{
+  "id": "card_9aa7c5",
+  "slug": "gpuhedge-serverless-cold-starts",
+  "type": "blog",
+  "title": "GPUHedge: Treating Serverless GPU Cold Starts as a Speculative-Execution Problem",
+  "hook": "Serverless GPU inference is fast — until a cold start hits and your p95 jumps past 100 seconds. One builder's fix: hedge requests across providers, like speculative execution races instructions.",
+  "key_points": [
+    "Benchmarking a 17GB model on a serverless GPU provider found requests split into two clusters: 6-8s when warm, 90-122s after a cold start.",
+    "Switching to a different provider alone didn't fix it — every provider has its own cold-start tail.",
+    "GPUHedge treats the cold-start tail as speculative execution: race a primary request against a hedged backup, take whichever wins.",
+    "Reported result: p95 latency dropped from about 117 seconds to about 30 seconds.",
+    "Open source (Apache-2.0), currently alpha."
+  ],
+  "content_html": "\u003cp\u003eServerless GPU inference promises pay-per-use convenience, but cold starts can wreck your tail latency: one builder found a 17GB model split into two clusters on a popular provider — a snappy 6-8 seconds when warm, or 90-122 seconds after spinning up a fresh GPU. GPUHedge, a new open-source tool, treats that tail as a speculative-execution problem and reportedly cuts p95 latency from 117 seconds to 30.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003ePer the author's post, switching serverless providers alone didn't help, since every provider has its own version of the same cold-start tail. GPUHedge borrows the idea behind speculative execution: it kicks off a request against a primary provider, watches for signs that it's hit a cold start, and hedges by racing a backup elsewhere — accepting whichever comes back first. The project is open source under Apache-2.0 and currently in alpha; see the original post and repo via the source link.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit r/MachineLearning",
+    "authors": [
+      "/u/Putrid_Construction3"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1uvlb6h/gpuhedge_hedging_serverless_gpu_providers",
+    "published_at": "2026-07-13",
+    "license": "Reddit post (link-out)"
+  },
+  "topic_ids": [
+    "inference",
+    "hardware"
+  ],
+  "tags": [
+    "inference",
+    "efficiency",
+    "open-source"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-13",
+  "related": [],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_9aa7c5#0",
+      "format": "flip",
+      "prompt": "What two-cluster latency pattern did the author find when benchmarking a 17GB model on a serverless GPU provider?",
+      "back_html": "\u003cp\u003eRequests either completed in about 6-8 seconds (warm GPU) or took roughly 90-122 seconds after a fresh cold start — a bimodal tail.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9aa7c5#1",
+      "format": "quiz",
+      "prompt": "Why didn't simply switching to a different serverless GPU provider fix the cold-start problem?",
+      "choices": [
+        {
+          "text": "Every provider has its own cold-start tail, so switching just swaps one tail for another",
+          "correct": true
+        },
+        {
+          "text": "Other providers don't support the model format",
+          "correct": false
+        },
+        {
+          "text": "Switching providers increased latency even further",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe author found the cold-start tail is a property of serverless GPU providers generally, not one specific vendor.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9aa7c5#2",
+      "format": "flip",
+      "prompt": "How does GPUHedge frame the cold-start problem?",
+      "back_html": "\u003cp\u003eAs a speculative-execution problem: it starts a request on a primary provider, watches for signs of a cold start, and hedges by racing a backup — taking whichever responds first.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9aa7c5#3",
+      "format": "quiz",
+      "prompt": "What p95 latency improvement did GPUHedge report?",
+      "choices": [
+        {
+          "text": "From about 117s down to about 30s",
+          "correct": true
+        },
+        {
+          "text": "From about 30s down to about 8s",
+          "correct": false
+        },
+        {
+          "text": "From about 8s down to about 2s",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe author reports cutting p95 cold-start latency from roughly 117 seconds to about 30 seconds.\u003c/p\u003e"
+    }
+  ]
+}

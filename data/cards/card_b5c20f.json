@@ -1,0 +1,100 @@
+{
+  "id": "card_b5c20f",
+  "slug": "tilde-concept-unlearning",
+  "type": "paper",
+  "title": "TILDE: Making Concept Unlearning Actually Preserve Everything Else",
+  "hook": "Erase a concept from a diffusion model and you usually damage unrelated generations too, because most methods never define what the 'after' distribution should look like. TILDE defines it explicitly.",
+  "key_points": [
+    "Concept unlearning in text-to-image diffusion models must satisfy two goals at once: forget the target concept, and keep quality/diversity on everything else.",
+    "Prior erasure objectives specify how to suppress the concept but leave retention of benign generations as an unspecified side effect.",
+    "TILDE reframes unlearning as distributional alignment: the target is the minimum-deviation distribution from the pretrained model under a 'forget this concept' constraint.",
+    "Implemented via residual GFlowNet-style training that learns the score correction induced by the forget constraint, relative to the pretrained model.",
+    "Across objects, artistic styles, and characters, TILDE forgets target concepts while better preserving benign generation quality and diversity than prior erasure baselines."
+  ],
+  "content_html": "\u003cp\u003eAsk a text-to-image model to forget a specific artist's style, a copyrighted character, or an unsafe concept, and most unlearning methods will comply — but they rarely tell you what should happen to everything else the model can generate. TILDE, from Sony AI, tries to make that an explicit design choice rather than an accident.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe paper frames concept unlearning as a distributional-alignment problem: instead of just suppressing images that express a forgotten concept, TILDE (TILt-based Distributional Erasure) targets the minimum-deviation distribution from the pretrained model that still satisfies a \u0026quot;forget this concept\u0026quot; constraint. That target is anchor-free and energy-tilted — it suppresses concept-expressing outputs while preserving as much of the original, benign probability mass per prompt as the constraint allows. The authors instantiate this with a residual GFlowNet-style training scheme that learns the score correction the forget energy induces relative to the pretrained model's own diffusion score.\u003c/p\u003e\n\u003cp\u003eTested across objects, artistic styles, and characters, TILDE forgets the target concept while showing stronger retention and distributional fidelity on benign generations than prior erasure baselines, according to the paper. The work is led by Naveen George, Naoki Murata, Yuhta Takida, Konda Reddy Mopuri, and Yuki Mitsufuji at Sony AI.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Naveen George",
+      "Naoki Murata",
+      "Yuhta Takida",
+      "Konda Reddy Mopuri",
+      "Yuki Mitsufuji"
+    ],
+    "url": "https://arxiv.org/abs/2607.06432",
+    "published_at": "2026-07-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "text-to-image",
+    "risks-policy",
+    "papers-this-week"
+  ],
+  "tags": [
+    "generative",
+    "safety",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-13",
+  "date": "2026-07-07",
+  "related": [
+    {
+      "id": "card_b85e27",
+      "slug": "mance-manifold-concept-erasure",
+      "type": "paper",
+      "title": "MANCE: Erasing Concepts Without Leaving the Data Manifold",
+      "hook": "Erase a concept from a representation and you often damage everything correlated with it. This method's fix: constrain every edit to stay on the manifold real representations actually live on.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-04"
+    },
+    {
+      "id": "card_dd86b0",
+      "slug": "sdxl",
+      "type": "paper",
+      "title": "SDXL: Improving Latent Diffusion for High-Resolution Synthesis",
+      "hook": "A larger UNet, two text encoders, and a refinement diffusion stage gave open-source Stable Diffusion a major quality leap - now the workhorse of community image generation.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-07-04"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b5c20f#0",
+      "format": "flip",
+      "prompt": "What gap in prior concept-unlearning methods does TILDE try to close?",
+      "back_html": "\u003cp\u003ePrior objectives define how to suppress the target concept but leave the retained distribution (benign generations) unspecified, so retention quality is only an implicit side effect of the update rule.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b5c20f#1",
+      "format": "quiz",
+      "prompt": "How does TILDE define the target distribution after unlearning a concept?",
+      "choices": [
+        {
+          "text": "The minimum-deviation distribution from the pretrained model that still satisfies the forgetting constraint",
+          "correct": true
+        },
+        {
+          "text": "A uniform distribution over all remaining concepts",
+          "correct": false
+        },
+        {
+          "text": "Whatever distribution a retrain-from-scratch model would produce, approximated by heuristics",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eTILDE formulates unlearning as distributional alignment: among distributions that satisfy the forget constraint, pick the one closest to the original pretrained model, minimizing unintended drift elsewhere.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b5c20f#2",
+      "format": "flip",
+      "prompt": "What training method does TILDE use to reach its target distribution?",
+      "back_html": "\u003cp\u003eA residual GFlowNet-style training scheme that learns the score correction the forget constraint induces, relative to the pretrained diffusion model's own score.\u003c/p\u003e"
+    }
+  ]
+}

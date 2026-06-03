@@ -1,0 +1,123 @@
+{
+  "id": "card_9a9bd2",
+  "slug": "world-models-meet-language-models",
+  "type": "paper",
+  "title": "World Models Meet Language Models",
+  "hook": "A world model can imagine what happens next; an LLM can reason about it. The hard part is knowing when to trust the daydream — and when the simulation is just plausible nonsense.",
+  "key_points": [
+    "World models produce concrete visual rollouts of possible futures; MLLMs reason abstractly over goals and rules.",
+    "Rollouts are stochastic — they can look plausible but be task-incorrect, so the model must judge their credibility.",
+    "The paper frames 'controlled concrete reasoning': learn to invoke, verify, and integrate simulated futures.",
+    "PF-OPSD uses ground-truth futures only as privileged teacher context; the deployed student never sees true futures."
+  ],
+  "content_html": "\u003cp\u003eTwo families of models offer complementary ways to predict the future from what you can see now. World models generate concrete visual rollouts — they literally render possible futures. Multimodal LLMs reason abstractly over questions, goals, and rules. This paper asks how to combine them, and confronts the obvious risk: a generated rollout can be visually convincing yet simply wrong for the task.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe authors formulate \u0026quot;controlled concrete reasoning,\u0026quot; where a model learns three things: when visual simulation is actually useful, whether a given rollout is credible, and how much it should influence the final answer. They build two human-verified benchmarks — VRQABench for controllable spatial lookahead and OpenWorldQA for open-domain physical prediction — and propose Privileged-Future On-Policy Self-Distillation (PF-OPSD). During training, ground-truth future videos and answers are used \u003cem\u003eonly\u003c/em\u003e on the teacher side as privileged context to score on-policy reasoning trajectories; the deployable student never observes the true future at test time.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003ePF-OPSD reportedly outperforms the baseline by about 10.6% and 10.9% on the two benchmarks while becoming more robust to noisy or conflicting rollouts. The interesting idea is the framing: rather than treating a simulator's output as ground truth, the model is trained to treat its own imagined futures as evidence to be weighed and verified — a more honest way to fuse generative simulation with abstract reasoning.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yucheng Zhou",
+      "Wei Tao",
+      "Yiwen Guo",
+      "Jianbing Shen"
+    ],
+    "url": "https://arxiv.org/abs/2606.03603",
+    "published_at": "2026-06-02",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "reasoning",
+    "agent",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-04",
+  "date": "2026-06-02",
+  "related": [
+    {
+      "id": "card_296943",
+      "slug": "dreamerv3",
+      "type": "paper",
+      "title": "DreamerV3: Mastering Domains through World Models",
+      "hook": "Instead of learning only from real experience, DreamerV3 builds a world model and practices inside its own imagination — one fixed config, 150+ tasks.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2023-01-10"
+    },
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_9a9bd2#0",
+      "format": "flip",
+      "prompt": "What complementary strengths do world models and multimodal LLMs bring?",
+      "back_html": "\u003cp\u003eWorld models generate concrete visual rollouts of possible futures; MLLMs reason abstractly over goals and rules.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9a9bd2#1",
+      "format": "quiz",
+      "prompt": "What risk motivates the paper's 'controlled concrete reasoning' framing?",
+      "choices": [
+        {
+          "text": "A generated rollout can look plausible yet be task-incorrect",
+          "correct": true
+        },
+        {
+          "text": "World models are too slow to run at test time",
+          "correct": false
+        },
+        {
+          "text": "MLLMs cannot process video at all",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRollouts are stochastic, so the model must judge a rollout's credibility rather than trust it as ground truth.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9a9bd2#2",
+      "format": "quiz",
+      "prompt": "How does PF-OPSD use ground-truth future videos?",
+      "choices": [
+        {
+          "text": "Only as privileged teacher context; the deployed student never sees true futures",
+          "correct": true
+        },
+        {
+          "text": "As direct input to the student at test time",
+          "correct": false
+        },
+        {
+          "text": "To replace the world model entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGround-truth futures are used only on the teacher side to score on-policy trajectories; the deployable student never observes them.\u003c/p\u003e"
+    }
+  ]
+}

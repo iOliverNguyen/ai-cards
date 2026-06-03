@@ -1,0 +1,98 @@
+{
+  "id": "card_780660",
+  "slug": "feature-importance-can-mislead",
+  "type": "blog",
+  "title": "When Your Top Feature Makes Predictions Worse",
+  "hook": "A feature can top your model's importance ranking and still hurt accuracy. The only way to be sure it helps: delete it, retrain, and compare on held-out data.",
+  "key_points": [
+    "Feature importance measures how much a model leaned on a feature, not whether it improves generalization.",
+    "A practitioner's fancy target-encoded feature ranked #1 by a wide margin across seeds.",
+    "A strict hold-out ablation (remove it, retrain) reversed the verdict — error got worse with it in.",
+    "Target/Bayesian encoders can leak label information, inflating in-sample importance.",
+    "Trust ablations on a held-out set over the model's built-in importance scores."
+  ],
+  "content_html": "\u003cp\u003eA team forecasting secondary-market watch prices with LightGBM built a clever\nvariant-conditioned Bayesian target encoder, and the model adored it: at the 90th-percentile\nquantile it ranked as the #1 feature by a wide margin, consistently across random seeds. By the\nusual \u0026quot;what matters most?\u0026quot; readout, it was the star of the model.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThen they ran a disciplined ablation — drop the feature, retrain, and measure error on a\nheld-out set across multiple seeds and product variants. The result inverted: the model was\nactually \u003cem\u003eworse\u003c/em\u003e with the prized feature than without it. The likely culprit is a classic\ngradient-boosting trap: target-based encoders can leak information about the label into the\ntraining features, so the model leans on them heavily (high importance) without genuinely\ngeneralizing. The lesson is durable — feature importance describes what a model used, not what\nhelps. When it matters, settle it with an ablation on data the model never saw. Reported by\nthe practitioner on r/MachineLearning.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit (r/MachineLearning)",
+    "authors": [
+      "/u/Nj-yeti"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1tu0y14/why_our_1_lightgbm_feature_by_importance_made",
+    "published_at": "2026-06-01",
+    "license": "Reddit post"
+  },
+  "topic_ids": [
+    "evaluation",
+    "generalization"
+  ],
+  "tags": [
+    "classic-ml",
+    "benchmark"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-05",
+  "date": "2026-06-01",
+  "related": [
+    {
+      "id": "card_0d296c",
+      "slug": "cross-validation",
+      "type": "concept",
+      "title": "Cross-Validation",
+      "hook": "One lucky or unlucky split can flatter or sink your model. Rotate the holdout and average — that's cross-validation.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_0a4806",
+      "slug": "train-validation-test-split",
+      "type": "concept",
+      "title": "Train / Validation / Test Splits",
+      "hook": "If you tune and grade on the same data, you'll fool yourself. Keep a test set you never touch until the very end.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_9cb2a0",
+      "slug": "bias-variance-tradeoff",
+      "type": "concept",
+      "title": "The Bias–Variance Tradeoff",
+      "hook": "Too simple and your model misses the pattern; too flexible and it chases noise. Generalization lives between the two.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_780660#0",
+      "format": "flip",
+      "prompt": "How can a feature rank #1 in importance yet make a model worse?",
+      "back_html": "\u003cp\u003eImportance measures how heavily the model relied on the feature during training, not\nwhether it helps on new data. Leakage (e.g. from target encoding) can inflate that\nreliance while hurting generalization.\u003c/p\u003e"
+    },
+    {
+      "id": "card_780660#1",
+      "format": "quiz",
+      "prompt": "What most reliably tells you whether a feature actually helps?",
+      "choices": [
+        {
+          "text": "Remove it, retrain, and compare error on a held-out set (ablation)",
+          "correct": true
+        },
+        {
+          "text": "Its rank in the model's built-in feature-importance scores",
+          "correct": false
+        },
+        {
+          "text": "How strongly it correlates with the other features",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBuilt-in importance reflects in-sample reliance and can be fooled by leakage. A hold-out\nablation measures the feature's real effect on generalization — here it flipped the verdict.\u003c/p\u003e"
+    }
+  ]
+}

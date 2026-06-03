@@ -1,0 +1,98 @@
+{
+  "id": "card_d1e470",
+  "slug": "maxproof",
+  "type": "paper",
+  "title": "MaxProof: One Model as Generator, Verifier, Refiner, and Ranker",
+  "hook": "Treat one model as proof writer, checker, fixer, and judge; search a population of candidate proofs; pick a winner by tournament — enough, the authors report, to clear math-olympiad gold.",
+  "key_points": [
+    "MaxProof trains three skills into one model: proof generation, proof verification, and critique-conditioned proof repair.",
+    "Its generative verifier is 'defense-in-depth,' engineered for a low false-positive rate so it doesn't accept wrong proofs.",
+    "At test time the same model is generator, verifier, refiner, and ranker — searching a population of candidates and returning one via tournament selection.",
+    "This is population-level test-time scaling: spend compute exploring many proofs rather than emitting a single attempt.",
+    "Reported to reach 35/42 on IMO 2025 and 36/42 on USAMO 2026, above the human gold-medal threshold on both."
+  ],
+  "content_html": "\u003cp\u003eMaxProof, from the MiniMax-M3 series, tackles competition-level mathematical proof by turning one model into a small proving system. The model is first trained for three capabilities: proof generation, proof verification, and critique-conditioned proof repair, using a \u0026quot;defense-in-depth\u0026quot; generative verifier deliberately tuned for a low false-positive rate — the verifier must not wave through incorrect proofs. These capabilities are then merged into a single released model.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eAt test time, MaxProof is \u003cem\u003epopulation-level test-time scaling\u003c/em\u003e: the model acts as generator, verifier, refiner, and ranker, searches over a population of candidate proofs, and returns one final proof through tournament selection. The authors report that this pushes the M3 model to 35/42 on IMO 2025 and 36/42 on USAMO 2026 — exceeding the human gold-medal threshold on both. The transferable idea isn't the math itself but the recipe: when you have a reliable verifier, you can spend inference compute generating, checking, repairing, and ranking many attempts, rather than betting everything on one. Treat the scores as the authors' reported results.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jiacheng Chen",
+      "Xinyu Zhang",
+      "Shunkai Zhang",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.13473",
+    "published_at": "2026-06-11",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "reasoning",
+    "agent",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-15",
+  "date": "2026-06-11",
+  "related": [
+    {
+      "id": "card_4cd8fd",
+      "slug": "deepseek-r1",
+      "type": "paper",
+      "title": "DeepSeek-R1: Incentivizing Reasoning via Reinforcement Learning",
+      "hook": "DeepSeek shows strong reasoning can emerge from RL on verifiable rewards with minimal supervised data - and those reasoning traces can be distilled into smaller models.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2025-01-22"
+    },
+    {
+      "id": "card_9edf2b",
+      "slug": "openai-o1",
+      "type": "news",
+      "title": "OpenAI o1: Learning to Reason with Reinforcement Learning",
+      "hook": "OpenAI's o1 lets a model think via a long internal chain-of-thought before answering - spending more compute at inference time visibly improves reasoning.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-09-12"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_d1e470#0",
+      "format": "flip",
+      "prompt": "What four roles does the single MaxProof model play at test time?",
+      "back_html": "\u003cp\u003eGenerator, verifier, refiner, and ranker — it produces candidate proofs, checks them, repairs the flawed ones, and ranks them to return a final proof via tournament selection.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d1e470#1",
+      "format": "quiz",
+      "prompt": "Why is MaxProof's generative verifier engineered for a low false-positive rate?",
+      "choices": [
+        {
+          "text": "So it doesn't accept incorrect proofs as valid",
+          "correct": true
+        },
+        {
+          "text": "To generate proofs faster",
+          "correct": false
+        },
+        {
+          "text": "To reduce GPU memory use at inference",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA verifier that wrongly accepts bad proofs would corrupt the search and tournament selection; a low false-positive rate keeps the selection honest.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d1e470#2",
+      "format": "flip",
+      "prompt": "What is 'population-level test-time scaling' in MaxProof?",
+      "back_html": "\u003cp\u003eSpending test-time compute to search over a whole population of candidate proofs and select a winner, instead of producing one single attempt.\u003c/p\u003e"
+    }
+  ]
+}

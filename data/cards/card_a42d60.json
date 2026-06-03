@@ -1,0 +1,104 @@
+{
+  "id": "card_a42d60",
+  "slug": "rubench-repo-level-agentic-coding",
+  "type": "paper",
+  "title": "RuBench: Benchmarking Coding Agents — and Catching a Silent Model Swap",
+  "hook": "A benchmark of real customer-style bug reports written in Russian. Its most striking result isn't the leaderboard — it's catching a deployed product quietly swapping in a different model mid-task.",
+  "key_points": [
+    "RuBench mines 25 real fix-commit tasks from five live open-source repos (aiohttp, aiogram, Laravel, NestJS, Fastify), each written natively in Russian in the style of an actual customer request — not translated.",
+    "All 25 fix commits postdate every evaluated model's training cutoff, giving a task-by-task contamination argument.",
+    "Evaluates deployed product configurations — CLI agent + model + reasoning effort — not just raw models: Claude Code (Opus 4.8, Sonnet 5, Haiku 4.5) and Codex CLI (GPT-5.5).",
+    "Best configuration resolves 78.7% of tasks; auditing a fifth configuration's full trajectories caught the product silently substituting models on 5 of 25 tasks (20%) — an official safeguard fallback re-routing routine fixes to Opus 4.8.",
+    "The direct, reproducible lesson: when you benchmark a deployed coding-agent product, you're measuring the product's routing behavior, not just the model you think you selected."
+  ],
+  "content_html": "\u003cp\u003eMost agentic coding benchmarks assume English task descriptions and a clean, controllable model to test. RuBench breaks both assumptions on purpose — and in doing so, stumbles onto a finding more important than its leaderboard.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe benchmark mines 25 tasks from recent fix commits across five live open-source repositories (aiohttp, aiogram, Laravel, NestJS, Fastify; spanning Python, PHP, TypeScript, and JavaScript), with each task specified natively in Russian — written from scratch in the style of a real customer request, not translated from English — and graded against the withheld regression tests the upstream maintainer actually used. Since all 25 fix commits postdate every evaluated model's training cutoff, the contamination argument holds task-by-task. The author evaluates deployed product configurations rather than raw models — Claude Code paired with Opus 4.8, Sonnet 5, and Haiku 4.5, and Codex CLI with GPT-5.5 — with three independent runs each. The best configuration resolves 78.7% of tasks. But the headline result comes from auditing a fifth, \u0026quot;hors-concours\u0026quot; configuration's complete trajectories: on 5 of the 25 tasks (20%), an official safeguard fallback silently re-routed routine HTTP-protocol fixes to Opus 4.8 instead of the nominally selected model — direct, reproducible evidence that a deployed coding-agent product's own routing logic, not just the model you think you picked, is the thing actually being measured. Evgeny Shilov, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Evgeny Shilov"
+    ],
+    "url": "https://arxiv.org/abs/2607.06411",
+    "published_at": "2026-07-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-07",
+  "related": [
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    },
+    {
+      "id": "card_7862c7",
+      "slug": "tracelab-coding-agent-workloads",
+      "type": "paper",
+      "title": "TraceLab: What Coding-Agent Traffic Actually Looks Like",
+      "hook": "The first real trace of day-to-day coding-agent usage — 350,000 LLM steps from Claude Code and Codex sessions — reveals serving patterns no prior benchmark captured.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-29"
+    },
+    {
+      "id": "card_5ff636",
+      "slug": "aria-code-agents-software-verification",
+      "type": "paper",
+      "title": "Aria: Letting a Code Agent Write Its Own Formal Proofs",
+      "hook": "Prior LLM provers force the model into a fixed, human-designed strategy and still prove only a fraction of their targets. A free-roaming Claude Code agent, unconstrained, proves every single one.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-07"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a42d60#0",
+      "format": "flip",
+      "prompt": "What does RuBench evaluate that most repository-level coding-agent benchmarks miss?",
+      "back_html": "\u003cp\u003eReal maintenance tasks written natively in Russian, in the style of an actual customer request rather than a curated English issue — testing whether agents handle the messier, non-English way developers actually delegate work.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a42d60#1",
+      "format": "quiz",
+      "prompt": "What did auditing full agent trajectories reveal about one deployed coding-agent configuration?",
+      "choices": [
+        {
+          "text": "The product silently substituted a different model than the one selected — an official safeguard fallback re-routed 20% of tasks to Opus 4.8",
+          "correct": true
+        },
+        {
+          "text": "The agent never actually ran any code, just guessed at answers",
+          "correct": false
+        },
+        {
+          "text": "All configurations performed identically regardless of the model selected",
+          "correct": false
+        },
+        {
+          "text": "The benchmark tasks were all contaminated in the models' training data",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOn 5 of 25 tasks (20%), a safeguard fallback silently re-routed routine HTTP-protocol fixes to Claude Opus 4.8 instead of the nominally selected model — direct evidence that a deployed product, not just the underlying model, is what actually gets measured.\u003c/p\u003e"
+    }
+  ]
+}

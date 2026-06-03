@@ -1,0 +1,90 @@
+{
+  "id": "card_c191c2",
+  "slug": "nvidia-nemotron-agent-data",
+  "type": "news",
+  "title": "NVIDIA Opens 10T Tokens of Synthetic Data for Agentic AI",
+  "hook": "Real agent behavior needs data on tool failures and recovery paths that companies rarely want to share — NVIDIA's answer is 10+ trillion tokens of synthetic data built to stand in for it.",
+  "key_points": [
+    "NVIDIA releases over 10 trillion pre-training tokens plus millions of post-training samples, designed specifically for agentic AI, through the Nemotron collection.",
+    "Core idea: synthetic data as a scalable substitute for real agent-interaction data, letting organizations share useful signal without exposing proprietary workflows.",
+    "Targets exactly the data gap that matters for agents — tool failures, multi-step reasoning, retrieval, and recovery paths — which real-world logs rarely capture cleanly or safely.",
+    "Ships with the Nemotron Post-Training v3 Prompt Atlas, an interactive tool for exploring what's actually inside the dataset, to support curation and evaluation."
+  ],
+  "content_html": "\u003cp\u003eTraining a capable agent means learning from more than clean successes — it means seeing tool failures, dead ends, and the recovery paths that follow. That's exactly the kind of data real organizations are least willing to share, since it tends to reveal how their systems actually work.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eNVIDIA's answer is scale: over 10 trillion pre-training tokens and millions of post-training samples released through the Nemotron collection, built specifically for agentic AI. The framing is synthetic data as a substitute for sensitive real-world logs — organizations can benefit from shared training signal covering multi-step reasoning, retrieval, tool failures, and recovery behavior, without exposing the proprietary workflows that real logs would reveal. Alongside the raw data, NVIDIA ships the Nemotron Post-Training v3 Prompt Atlas, an interactive tool for exploring what's actually inside the dataset — useful for anyone trying to curate a subset or sanity-check what a model trained on it would actually learn. Hugging Face Blog (NVIDIA), 2026-07-08.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face Blog (NVIDIA)",
+    "url": "https://huggingface.co/blog/nvidia/open-data-for-agents",
+    "published_at": "2026-07-08",
+    "license": "Blog post"
+  },
+  "topic_ids": [
+    "data",
+    "agents",
+    "lab-updates"
+  ],
+  "tags": [
+    "dataset",
+    "agent",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-08",
+  "related": [
+    {
+      "id": "card_e51b4a",
+      "slug": "self-instruct",
+      "type": "paper",
+      "title": "Self-Instruct: Aligning LMs with Self-Generated Instructions",
+      "hook": "Instead of paying humans to write instruction data, have the model write its own — bootstrap instructions, inputs, and outputs from its own generations, filter, and fine-tune.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-20"
+    },
+    {
+      "id": "card_ccd6d9",
+      "slug": "nemotron-3-ultra",
+      "type": "paper",
+      "title": "Nemotron 3 Ultra: Open Hybrid Mamba-Attention MoE",
+      "hook": "NVIDIA's open 550B model interleaves Mamba and attention inside a Mixture-of-Experts - hitting ~6x the inference throughput of comparable LLMs at on-par accuracy.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-12"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_c191c2#0",
+      "format": "flip",
+      "prompt": "What specific data gap does NVIDIA's Nemotron agent-data release target?",
+      "back_html": "\u003cp\u003eData covering tool failures, multi-step reasoning, retrieval, and recovery paths — the messy parts of real agent behavior that organizations rarely capture cleanly or are willing to share, since it often exposes proprietary workflows.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c191c2#1",
+      "format": "quiz",
+      "prompt": "Why does NVIDIA frame synthetic data as valuable here, rather than just collecting more real agent-interaction logs?",
+      "choices": [
+        {
+          "text": "It lets organizations share useful training signal without exposing proprietary workflows or sensitive information present in real logs",
+          "correct": true
+        },
+        {
+          "text": "Synthetic data is always higher quality than real data in every respect",
+          "correct": false
+        },
+        {
+          "text": "Real agent-interaction data no longer exists anywhere",
+          "correct": false
+        },
+        {
+          "text": "Synthetic data requires no curation or evaluation at all",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eReal-world agent logs often contain sensitive or proprietary information that companies won't share. Synthetic data lets the community get comparable training signal — including hard cases like failures and recoveries — without that exposure.\u003c/p\u003e"
+    }
+  ]
+}

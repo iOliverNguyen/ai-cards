@@ -1,0 +1,83 @@
+{
+  "id": "card_99495a",
+  "slug": "pitwall-race-strategy-briefings",
+  "type": "paper",
+  "title": "Pitwall: Faithful Live Commentary via Claim Verification",
+  "hook": "Live sports commentary has no reference text to check against — facts change every few seconds. This production F1 system verifies every sentence against a live probability model before publishing.",
+  "key_points": [
+    "Live commentary is grounded generation under a deadline: real named athletes, a grounding state that changes every few seconds, no reference text at generation time.",
+    "Every published sentence is decomposed into typed factual claims (positions, gaps, tyres, pace, overtakes) and each claim is checked against the probabilistic race state.",
+    "The same verifier gates the training data itself: of 3,045 model-written targets, only the 81.9% that are fully state-supported are kept; the rest fall back to a provably faithful template.",
+    "Grounding comes from a vectorized Monte Carlo engine (2,000 per-lap continuations), calibrated on 126 races and validated on fully held-out seasons: 90.3% winner-in-top-3 over 155 backtests.",
+    "Key finding: virtues trade off and must be gated separately — fine-tuning on richer targets buys vividness that collapses into hallucination when the grounding state is sparse."
+  ],
+  "content_html": "\u003cp\u003eMost faithfulness techniques assume a stable reference document to check claims against. Live sports commentary has no such thing — the facts are about real athletes and change every few seconds. Pitwall, a production system generating Formula 1 strategy briefings in English, Spanish, and Portuguese, treats faithfulness as an architectural property built for exactly that constraint.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eEvery sentence Pitwall publishes gets decomposed into typed factual claims — positions, gaps, tyres, pace, overtakes, race control — and each claim is checked against the probabilistic race state that prompted it. The same verifier gates the fine-tuning data itself: of 3,045 model-written training targets, only the 81.9% whose every claim is state-supported get kept, with the rest falling back to a provably faithful template, so the generator never learns from an ungrounded example in the first place. That verification is only meaningful because the underlying grounding is solid: a vectorized Monte Carlo engine running 2,000 per-lap race continuations, calibrated on 126 races from 2018-2024 and validated on fully held-out 2025-2026 seasons, hitting 90.3% winner-in-top-3 accuracy across 155 backtests. A recurring theme spans both halves of the system: virtues trade off and must be gated separately. Calibration-optimal simulation settings aren't decision-optimal ones; and fine-tuning on richer targets buys more vivid commentary that collapses into hallucination exactly when the grounding state gets sparse — a failure the authors trace to base-model instruction-following, not scale, and fix by auditing for sparse-context cases. The system ran live at two consecutive Grands Prix in 2026, and at Silverstone, a probability trace committed to disk before the race ended had already locked onto the eventual winner ten laps before the flag. Juan S. Santillana, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Juan S. Santillana"
+    ],
+    "url": "https://arxiv.org/abs/2607.06495",
+    "published_at": "2026-07-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rag",
+    "papers-this-week"
+  ],
+  "tags": [
+    "generative",
+    "rag",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-07",
+  "related": [
+    {
+      "id": "card_b43f8e",
+      "slug": "what-is-rag",
+      "type": "concept",
+      "title": "Why RAG? Grounding LLMs in Your Data",
+      "hook": "An LLM only knows what it was trained on — until it's stale, private, or just wrong. RAG bolts on a search step so the model answers from your data and can cite it.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_99495a#0",
+      "format": "flip",
+      "prompt": "Why is live sports commentary an especially hard case for grounded generation?",
+      "back_html": "\u003cp\u003eThere's no reference text to check against at generation time — the facts (positions, gaps, tyres) concern real named athletes and change every few seconds, unlike typical RAG settings with a stable document to ground against.\u003c/p\u003e"
+    },
+    {
+      "id": "card_99495a#1",
+      "format": "quiz",
+      "prompt": "How does Pitwall keep its fine-tuning data itself from teaching the model to hallucinate?",
+      "choices": [
+        {
+          "text": "The same claim-verifier gates the training targets — only the ~82% of model-written targets whose every claim is state-supported are kept, the rest fall back to a template",
+          "correct": true
+        },
+        {
+          "text": "It manually reviews every training example by hand",
+          "correct": false
+        },
+        {
+          "text": "It trains on unfiltered data and relies on scale to average out errors",
+          "correct": false
+        },
+        {
+          "text": "It avoids fine-tuning entirely and uses only prompting",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePitwall applies its claim-decomposition verifier to the fine-tuning targets before training, keeping only the 81.9% of 3,045 candidates that are fully grounded — so the generator never even sees an ungrounded example to learn from.\u003c/p\u003e"
+    }
+  ]
+}

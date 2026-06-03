@@ -1,0 +1,107 @@
+{
+  "id": "card_3dde74",
+  "slug": "rethinking-on-policy-self-distillation-thinking-models",
+  "type": "paper",
+  "title": "Rethinking On-Policy Self-Distillation for Thinking Models",
+  "hook": "Giving a model the answer as privileged context sounds like it should only help. For thinking models on long reasoning traces, it backfires — accuracy drops up to 17%, and this explains why.",
+  "key_points": [
+    "Self-distillation lets a model teach itself using privileged information (like a math solution) — appealing for thinking models, which can reason over that context at test time.",
+    "Across five Qwen3/OLMo thinking models on AIME24, AIME25, and HMMT25, privileged self-distillation causes up to a 17% relative accuracy drop, worse with more privileged context and longer rollouts.",
+    "Regular on-policy distillation (OPD) improves thinking models — it's specifically the privileged-context version that reverses the gains.",
+    "Privileged context lowers 'fork rates' (points where multiple reasoning continuations remain plausible) in thinking models but not instruction models — explaining the opposite effects on each.",
+    "Models trained with a privileged teacher produce fewer verification, backtracking, and hedging markers — the self-correction behavior that gives thinking models their edge on hard problems."
+  ],
+  "content_html": "\u003cp\u003eIt seems obvious that giving a student model the answer key should make self-distillation easier. This paper finds a sharp exception: for thinking models reasoning over long traces, privileged context actively backfires.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eAcross five Qwen3 and OLMo thinking models evaluated on AIME24, AIME25, and HMMT25, the authors show privileged self-distillation — training on a solution the model itself couldn't have produced without being told — causes up to a 17% relative drop in accuracy, worsening with more privileged context and at the longer rollout budgets where thinking models otherwise shine. Crucially, this isn't a distillation-is-bad story: regular on-policy distillation (OPD) \u003cem\u003eimproves\u003c/em\u003e thinking models, and it's specifically the privileged variant that reverses those gains. The diagnosis comes down to \u0026quot;fork rate\u0026quot; — how often a reasoning trace reaches a point where multiple continuations remain plausible. Privileged context lowers fork rates in thinking-model rollouts but not instruction-model rollouts, which explains the split: instruction models can benefit from privileged context, but thinking models lose the verification, backtracking, and hedging behavior that gives them their edge on hard problems, particularly right when the student starts a self-correction branch. The lesson for anyone distilling reasoning models: what you give the student as context isn't neutral — it can quietly reshape \u003cem\u003ehow\u003c/em\u003e it reasons, not just what it concludes. Simran Kaur and colleagues (including Sanjeev Arora), arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Simran Kaur",
+      "Narutatsu Ri",
+      "Yinghui He",
+      "Liam Fowl",
+      "Sanjeev Arora"
+    ],
+    "url": "https://arxiv.org/abs/2607.05184",
+    "published_at": "2026-07-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "distillation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-06",
+  "related": [
+    {
+      "id": "card_822dbf",
+      "slug": "geometry-of-on-policy-distillation",
+      "type": "paper",
+      "title": "On the Geometry of On-Policy Distillation",
+      "hook": "On-policy distillation isn't a midpoint between fine-tuning and RL — it carves its own narrow path through parameter space, locking into a low-dimensional subspace early in training.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-05"
+    },
+    {
+      "id": "card_2408d6",
+      "slug": "trust-region-on-policy-distillation",
+      "type": "paper",
+      "title": "Trust Region On-Policy Distillation",
+      "hook": "On-policy distillation breaks when teacher and student disagree too much. TrOPD only trusts the teacher where its supervision is reliable — and skips the rest.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-05-31"
+    },
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_3dde74#0",
+      "format": "flip",
+      "prompt": "What surprising result did this paper find about giving a thinking model privileged context (like a solution) during self-distillation?",
+      "back_html": "\u003cp\u003eIt degrades performance — up to a 17% relative accuracy drop on hard math benchmarks — rather than helping, and the drop gets worse with more privileged context and longer reasoning rollouts.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3dde74#1",
+      "format": "quiz",
+      "prompt": "Why does privileged context hurt thinking models but this paper notes it can help instruction-tuned models?",
+      "choices": [
+        {
+          "text": "Privileged context lowers 'fork rates' — points where multiple reasoning paths remain plausible — in thinking models but not instruction models, suppressing the self-correction that thinking models rely on",
+          "correct": true
+        },
+        {
+          "text": "Instruction models are simply larger, so they're more robust to any kind of context",
+          "correct": false
+        },
+        {
+          "text": "Privileged context only affects models trained on math, not general reasoning",
+          "correct": false
+        },
+        {
+          "text": "There is no real difference — the result only appears in one benchmark",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe privileged teacher context reshapes learning at high-entropy forking positions differently for each model type: it suppresses forking (and thus verification/backtracking behavior) in thinking models specifically, which is where their long-rollout advantage comes from.\u003c/p\u003e"
+    }
+  ]
+}

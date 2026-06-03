@@ -1,0 +1,109 @@
+{
+  "id": "card_b185fa",
+  "slug": "tpu",
+  "type": "paper",
+  "title": "In-Datacenter Performance Analysis of a TPU",
+  "hook": "Google built a custom chip whose heart is a 256x256 grid of 8-bit multiply-accumulate units - and in production it ran neural-net inference roughly 15-30x faster than the GPUs and CPUs of its day.",
+  "key_points": [
+    "The TPU is a custom ASIC for neural-network inference, deployed in Google datacenters since 2015.",
+    "Its core is a 65,536 (256x256) 8-bit multiply-accumulate matrix-multiply unit, peaking at 92 TeraOps/second.",
+    "Carries 28 MiB of on-chip memory to keep data close to the compute.",
+    "In production it ran inference about 15x-30x faster than contemporary GPUs/CPUs, at roughly 30x-80x better performance per watt."
+  ],
+  "content_html": "\u003cp\u003eNorman Jouppi and his coauthors at Google opened up the Tensor Processing Unit, a custom ASIC the company had quietly been running in its datacenters since 2015 to serve neural-network inference. The paper is a rare in-production look at why a purpose-built chip can leave general-purpose hardware far behind on this one job.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe TPU is built around a 65,536-cell (256x256) matrix-multiply unit of 8-bit multiply-accumulate (MAC) operators, giving a peak of 92 TeraOps/second. Rather than shuttle data back and forth to off-chip memory, it keeps 28 MiB of memory on the chip itself, close to the compute, which is what lets the big MAC array stay fed. Because it targets inference specifically, it can lean on low-precision integer math instead of the general-purpose floating-point machinery a CPU or GPU carries.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eIn Google's production workloads the TPU ran inference about 15x-30x faster than the contemporary GPUs and CPUs it was compared against, and roughly 30x-80x better on performance per watt - the metric that actually matters when you are filling a datacenter. The paper became a landmark argument that domain-specific silicon, not just faster general-purpose chips, would shape the economics of deploying deep learning at scale.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Norman P. Jouppi",
+      "Cliff Young",
+      "Nishant Patil",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/1704.04760",
+    "published_at": "2017-04-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "hardware"
+  ],
+  "tags": [
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2017-04-16",
+  "related": [
+    {
+      "id": "card_1718c4",
+      "slug": "mixed-precision-training",
+      "type": "paper",
+      "title": "Mixed Precision Training",
+      "hook": "Store weights, activations, and gradients in 16-bit floats to roughly halve memory - but keep a 32-bit master copy of the weights and scale the loss so tiny gradients don't vanish.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-10-10"
+    },
+    {
+      "id": "card_5727fe",
+      "slug": "flashattention",
+      "type": "paper",
+      "title": "FlashAttention: Fast, Memory-Efficient Exact Attention",
+      "hook": "Attention got faster not by approximating it, but by being smarter about GPU memory — never writing the giant attention matrix out to slow memory.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-05-27"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b185fa#0",
+      "format": "flip",
+      "prompt": "Why does the TPU keep 28 MiB of memory on the chip itself?",
+      "back_html": "\u003cp\u003eTo keep data close to the compute, so the large matrix-multiply unit stays fed instead of waiting on off-chip memory.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b185fa#1",
+      "format": "quiz",
+      "prompt": "Why can the TPU lean on low-precision integer math rather than general floating-point?",
+      "choices": [
+        {
+          "text": "It targets inference specifically, not general-purpose computing",
+          "correct": true
+        },
+        {
+          "text": "It runs only on CPUs internally",
+          "correct": false
+        },
+        {
+          "text": "It avoids matrix multiplication entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBecause it is purpose-built for neural-network inference, it can drop the general-purpose floating-point machinery a CPU or GPU carries.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b185fa#2",
+      "format": "quiz",
+      "prompt": "On which metric did the TPU show the largest advantage in Google's production workloads?",
+      "choices": [
+        {
+          "text": "Performance per watt (roughly 30x-80x better)",
+          "correct": true
+        },
+        {
+          "text": "Raw clock speed",
+          "correct": false
+        },
+        {
+          "text": "On-chip memory capacity",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIt ran inference about 15x-30x faster, but the bigger edge was 30x-80x better performance per watt - what matters when filling a datacenter.\u003c/p\u003e"
+    }
+  ]
+}

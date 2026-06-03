@@ -1,0 +1,98 @@
+{
+  "id": "card_c3cb4c",
+  "slug": "stereo2spatial-binaural-upmix",
+  "type": "blog",
+  "title": "Stereo2Spatial: Upmixing Stereo Music to 7.1.4 Spatial Audio with Flow-Matching Diffusion",
+  "hook": "A hobbyist project trains a flow-matching diffusion model to turn ordinary stereo music into full 7.1.4 spatial mixes — built on a dedicated VAE latent space rather than working directly on audio.",
+  "key_points": [
+    "Goal: upmix regular stereo music into 7.1.4-channel spatial mixes, since most existing music has no real spatial mix.",
+    "Core model is a flow-matching diffusion model operating in the latent space of a separately-trained VAE (EAR-VAE), not raw audio.",
+    "The stereo input is encoded into one latent, then each of the 7.1.4 output channels is encoded separately.",
+    "Design is similar in spirit to ImmersiveFlow, another stereo-to-spatial project the author cites as a reference point."
+  ],
+  "content_html": "\u003cp\u003eA solo project released on r/MachineLearning tackles a real gap in music listening: most tracks only ever get a stereo mix, so there's little content available for people who want to listen in spatial audio. The author spent about six months building Stereo2Spatial, a model that upmixes ordinary stereo tracks into full 7.1.4 spatial mixes.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eUnder the hood, it's a flow-matching diffusion model that operates in the latent space of a separately trained VAE (called EAR-VAE) rather than directly on the waveform — the stereo input gets encoded to one latent, and each channel of the 7.1.4 output is handled separately. The author points to ImmersiveFlow, another stereo-to-spatial project, as a similar-design reference point they drew on. Posted to r/MachineLearning, July 2026 — see the thread for the project link.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit r/MachineLearning",
+    "authors": [
+      "/u/kittenkrazy"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1uzevbg/stereo2spatial_convert_stereo_music_tracks_to",
+    "published_at": "2026-07-17",
+    "license": "Reddit post (link-out)"
+  },
+  "topic_ids": [
+    "video-audio",
+    "diffusion"
+  ],
+  "tags": [
+    "generative",
+    "speech",
+    "open-source"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-17",
+  "related": [
+    {
+      "id": "card_8b2939",
+      "slug": "musicgen",
+      "type": "paper",
+      "title": "MusicGen: Simple and Controllable Music Generation",
+      "hook": "Generate music from a text description or a melody reference using a single autoregressive transformer over discrete audio tokens - no cascade of specialized models required.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-06-08"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_c3cb4c#0",
+      "format": "flip",
+      "prompt": "What kind of generative model does Stereo2Spatial use to go from stereo to spatial audio?",
+      "back_html": "\u003cp\u003eA flow-matching diffusion model, operating not on raw audio but in the latent space of a separately trained VAE (EAR-VAE).\u003c/p\u003e"
+    },
+    {
+      "id": "card_c3cb4c#1",
+      "format": "quiz",
+      "prompt": "Why train a separate VAE (EAR-VAE) instead of running the diffusion model directly on raw audio?",
+      "choices": [
+        {
+          "text": "To do diffusion in a compact learned latent space rather than the raw waveform",
+          "correct": true
+        },
+        {
+          "text": "Because raw audio can't be represented as vectors at all",
+          "correct": false
+        },
+        {
+          "text": "To skip training a diffusion model entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eWorking in a VAE's latent space is a common diffusion-model pattern: it compresses the signal into a smaller, more tractable representation before the diffusion process operates on it.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c3cb4c#2",
+      "format": "quiz",
+      "prompt": "What output format does Stereo2Spatial upmix stereo tracks into?",
+      "choices": [
+        {
+          "text": "7.1.4-channel spatial audio",
+          "correct": true
+        },
+        {
+          "text": "Mono audio",
+          "correct": false
+        },
+        {
+          "text": "5.1 surround only",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe project targets 7.1.4 spatial output, encoding the stereo input to one latent and each output channel separately before decoding.\u003c/p\u003e"
+    }
+  ]
+}

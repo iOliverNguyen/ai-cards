@@ -1,0 +1,102 @@
+{
+  "id": "card_cf813a",
+  "slug": "rope-aware-kv-quantization",
+  "type": "paper",
+  "title": "Block-GTQ: RoPE-Aware Bit Allocation for KV-Cache Quantization",
+  "hook": "Most KV-cache quantizers spend bits evenly across a key. Block-GTQ shows that under RoPE some frequency blocks matter far more — and gives them more bits, hitting near-fp16 quality at 2–3 bits.",
+  "key_points": [
+    "Under RoPE, a key's contribution to a future attention score splits into a position-dependent sum over 2D frequency blocks — so not all parts of a key are equally important.",
+    "Block-GTQ reframes key-cache quantization as block-wise bit allocation: high-energy RoPE blocks get more bits.",
+    "It scores each block with a label-free energy metric and greedily assigns bit widths by marginal gain.",
+    "Cuts per-layer error 32–80% at 2–3 bits/dim and wins all 367/367 layer comparisons vs uniform quantization.",
+    "Enables ~3.24x KV-cache compression with near-fp16 quality and lower memory at long context."
+  ],
+  "content_html": "\u003cp\u003eQuantizing the KV cache is one of the biggest levers for serving long-context LLMs cheaply. Most methods treat each cached key as a flat vector and spend bits uniformly. \u003cstrong\u003eBlock-GTQ\u003c/strong\u003e points out that's wasteful once you account for how RoPE actually works.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe insight\u003c/h2\u003e\n\u003cp\u003eWith rotary position embeddings (RoPE), a key's contribution to a future attention logit isn't uniform — it decomposes into a position-dependent sum over two-dimensional frequency blocks. Some blocks carry far more energy than others, so quantization error in a high-energy block hurts much more. That reframes key-cache quantization as a \u003cstrong\u003ebit-allocation\u003c/strong\u003e problem: give sensitive blocks more bits and starve the rest.\u003c/p\u003e\n\u003ch2\u003eThe method and results\u003c/h2\u003e\n\u003cp\u003eFor each layer and KV head, Block-GTQ computes a label-free energy score per RoPE block and greedily assigns integer bit widths by marginal gain. Against uniform baselines under matched bit budgets, it cuts per-layer error by 32–80% at 2–3 bits/dim and wins all 367/367 layer comparisons. Downstream, it lifts long-context retrieval and reasoning scores sharply and supports a packed-cache serving path — the authors report roughly 3.24x KV-cache compression with near-fp16 quality, faster attention, and far lower peak memory at 128K context and beyond. Code is linked from the paper.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Fengfeng Liang",
+      "Yuechen Zhang",
+      "Jiaya Jia"
+    ],
+    "url": "https://arxiv.org/abs/2606.24033",
+    "published_at": "2026-06-23",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "quantization",
+    "context-memory",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-29",
+  "date": "2026-06-23",
+  "related": [
+    {
+      "id": "card_b52032",
+      "slug": "kvarn-kv-cache-quantization",
+      "type": "paper",
+      "title": "KVarN: Variance-Normalized KV-Cache Quantization",
+      "hook": "Long reasoning chains blow up the KV cache. Squeeze it to 2 bits and errors snowball over thousands of decode steps — unless you fix the token scales first.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_d01b1d",
+      "slug": "gptq",
+      "type": "paper",
+      "title": "GPTQ: Accurate Post-Training Quantization",
+      "hook": "Already trained a giant LLM? GPTQ squeezes its weights down to 3–4 bits afterward — no retraining — with surprisingly little quality loss.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-10-31"
+    },
+    {
+      "id": "card_9d933c",
+      "slug": "awq-quantization",
+      "type": "paper",
+      "title": "AWQ: Activation-Aware Weight Quantization",
+      "hook": "Not all weights are equal - protect the 1% that matter most (flagged by activation magnitude) and quantize the rest to 4-bit with minimal quality loss.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2023-06-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_cf813a#0",
+      "format": "flip",
+      "prompt": "Why does Block-GTQ argue that KV-cache keys shouldn't be quantized with uniform bit widths?",
+      "back_html": "\u003cp\u003eUnder RoPE, a key's contribution to attention logits decomposes into a position-dependent sum over 2D frequency blocks — high-energy blocks are more sensitive to quantization error and deserve more bits.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cf813a#1",
+      "format": "quiz",
+      "prompt": "How does Block-GTQ decide where to spend bits?",
+      "choices": [
+        {
+          "text": "Compute a label-free energy score per RoPE block, then greedily allocate bit widths by marginal gain",
+          "correct": true
+        },
+        {
+          "text": "Give every dimension the same number of bits",
+          "correct": false
+        },
+        {
+          "text": "Use a learned network trained on labeled data to pick bit widths",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eFor each layer and KV head it scores each RoPE frequency block's energy (no labels needed) and greedily allocates integer bit widths where they help most.\u003c/p\u003e"
+    }
+  ]
+}

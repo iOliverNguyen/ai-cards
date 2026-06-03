@@ -1,0 +1,89 @@
+{
+  "id": "card_3fb149",
+  "slug": "gpt-live-openai",
+  "type": "news",
+  "title": "GPT-Live: Full-Duplex Voice Models for ChatGPT",
+  "hook": "Voice assistants that wait their turn to speak have always felt a little robotic. GPT-Live listens and talks at the same time — interjecting a quiet 'mhmm' or letting you think, mid-sentence.",
+  "key_points": [
+    "GPT-Live is a new generation of voice models replacing the existing ChatGPT voice experience, rolling out as GPT-Live-1 and GPT-Live-1 mini.",
+    "Full-duplex architecture: the model can listen and speak simultaneously, backchanneling ('mhmm', 'yeah') and staying quiet when the user needs a moment.",
+    "For questions needing web search, deeper reasoning, or complex work, it delegates behind the scenes to OpenAI's frontier model (GPT-5.5 at launch) and brings the result back into the conversation.",
+    "Supports natural interruption — users can interject with a question, pause, or ask it to slow down, and it acknowledges without breaking flow."
+  ],
+  "content_html": "\u003cp\u003eVoice assistants have long had an awkward rhythm: wait for the user to finish, then respond, then wait again. GPT-Live is OpenAI's attempt to close that gap, built on a full-duplex architecture that can listen and speak at the same time.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eRolling out as two versions — GPT-Live-1 and a smaller GPT-Live-1 mini — to ChatGPT users globally, GPT-Live replaces the existing ChatGPT voice experience. The full-duplex design lets it backchannel with small acknowledgments like \u0026quot;mhmm\u0026quot; or \u0026quot;yeah,\u0026quot; stay quiet while a user gathers their thoughts, and handle interruptions without breaking conversational flow — you can interject with a question, ask it to slow down, or pause mid-sentence. OpenAI also describes it as the smartest voice model yet: for questions that need web search, deeper reasoning, or more complex work, GPT-Live delegates behind the scenes to the company's latest frontier model — GPT-5.5 at launch — and folds the result back into the conversation once it's ready, rather than making the user wait through visible \u0026quot;thinking\u0026quot; the way earlier voice modes did. OpenAI, 2026-07-08.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "url": "https://openai.com/index/introducing-gpt-live",
+    "published_at": "2026-07-08",
+    "license": "Blog post"
+  },
+  "topic_ids": [
+    "releases",
+    "lab-updates",
+    "video-audio"
+  ],
+  "tags": [
+    "speech",
+    "news"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-07-09",
+  "date": "2026-07-08",
+  "related": [
+    {
+      "id": "card_8a4426",
+      "slug": "whisper",
+      "type": "paper",
+      "title": "Whisper: Robust Speech Recognition at Scale",
+      "hook": "Train a plain encoder-decoder transformer on 680,000 hours of weakly-labeled multilingual audio and you get near-human transcription robustness without task-specific fine-tuning.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-06"
+    },
+    {
+      "id": "card_ee605b",
+      "slug": "gpt-4o",
+      "type": "news",
+      "title": "GPT-4o: One Model for Text, Audio, and Vision",
+      "hook": "GPT-4o is a single model that natively processes text, audio, and images end-to-end - no separate speech pipeline - cutting voice response latency to near human conversational speed.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2024-05-13"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_3fb149#0",
+      "format": "flip",
+      "prompt": "What is 'full-duplex' architecture in GPT-Live, and why does it matter for conversation?",
+      "back_html": "\u003cp\u003eThe model can listen and speak at the same time — backchanneling with sounds like \u0026quot;mhmm,\u0026quot; staying quiet when the user needs to think, and handling interruptions naturally — instead of the turn-taking, wait-your-turn pattern of prior voice assistants.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3fb149#1",
+      "format": "quiz",
+      "prompt": "How does GPT-Live handle questions that need deep reasoning or web search mid-conversation?",
+      "choices": [
+        {
+          "text": "It delegates behind the scenes to OpenAI's frontier model (GPT-5.5 at launch) and brings the result back into the live conversation once ready",
+          "correct": true
+        },
+        {
+          "text": "It refuses to answer and asks the user to switch to text chat",
+          "correct": false
+        },
+        {
+          "text": "It always answers immediately using only its own voice-model weights, without ever calling out to another model",
+          "correct": false
+        },
+        {
+          "text": "It ends the conversation and requires the user to start a new session",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGPT-Live is described as delegating harder queries to OpenAI's latest frontier model in the background, then folding the result back into the live voice conversation — combining natural conversational flow with deeper reasoning when needed.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "id": "card_5ea882",
+  "slug": "molecular-foundation-model-olfaction",
+  "type": "paper",
+  "title": "A General-Purpose Molecular Foundation Model Transfers Across Olfactory Tasks",
+  "hook": "Fine-tune a general molecular foundation model on one smell task and it transfers to four others untrained — including telling mirror-image molecules apart, which 2D graphs cannot.",
+  "key_points": [
+    "Uni-Mol2, a general molecular foundation model, was fine-tuned on the GS-LF multi-label odor descriptor benchmark.",
+    "The resulting model was evaluated on four downstream settings with no additional deep-learning training.",
+    "Downstream tasks: cross-dataset odor descriptor prediction, odorous vs odorless classification, enantiomer evaluation, odor mixture discriminability.",
+    "It matches or exceeds the state-of-the-art olfaction-specific baseline on the primary GS-LF benchmark.",
+    "3D molecular representations distinguish enantiomers (mirror-image molecules) in a way 2D graph models cannot.",
+    "Predicting the perceptual consequences of stereochemistry remains open — distinguishing the molecules isn't the same as predicting the smell."
+  ],
+  "content_html": "\u003cp\u003eFoundation models reshaped molecular property prediction, but machine olfaction has largely been served by olfaction-specific models. Han and colleagues ask whether a \u003cstrong\u003egeneral\u003c/strong\u003e molecular foundation model, fine-tuned on one canonical smell task, learns representations that carry across the rest of the field.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe test\u003c/h2\u003e\n\u003cp\u003eThey fine-tune Uni-Mol2 on the GS-LF benchmark for multi-label odor descriptor prediction, then evaluate the resulting model — \u003cstrong\u003ewithout additional deep-learning training\u003c/strong\u003e — on four complementary downstream settings: cross-dataset odor descriptor prediction, odorous-versus-odorless classification, enantiomer evaluation, and odor mixture discriminability. On the primary GS-LF benchmark the fine-tuned model matches or exceeds the state-of-the-art olfaction-specific baseline, and it transfers consistently across all four downstream evaluations.\u003c/p\u003e\n\u003ch2\u003eThe stereochemistry result\u003c/h2\u003e\n\u003cp\u003eThe enantiomer analysis is the most interesting piece. Enantiomers are mirror-image molecules with identical connectivity graphs — so a 2D graph model literally cannot tell them apart, however much data you give it. The three-dimensional representations here do distinguish them. But the authors are careful about what that buys: accurately predicting the \u003cem\u003eperceptual\u003c/em\u003e consequences of stereochemistry, which is what a perfumer would actually want, remains an open challenge. Taken together the results support a train-once, transfer-across-tasks paradigm for machine olfaction, with chemically pretrained molecular representations as the substrate. arXiv, 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yikun Han",
+      "Yi Wang",
+      "Neil Mankodi",
+      "Stephen Yang",
+      "Ambuj Tewari"
+    ],
+    "url": "https://arxiv.org/abs/2608.25893",
+    "published_at": "2026-08-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-science",
+    "papers-this-week"
+  ],
+  "tags": [
+    "foundational",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_c38a80",
+      "slug": "alphafold",
+      "type": "paper",
+      "title": "AlphaFold: Protein Structure Prediction",
+      "hook": "Predicting a protein's 3D shape from its sequence stumped biology for ~50 years. AlphaFold cracked it at near-experimental accuracy — and then released the structures to everyone.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2021-07-15"
+    },
+    {
+      "id": "card_33927c",
+      "slug": "closed-loop-generative-selection",
+      "type": "paper",
+      "title": "When Remembering More Slows the Search Down",
+      "hook": "Generate molecules, score them, keep the best, retrain, repeat. A convergence theory for this drug-discovery workhorse finds that training on more of the past can actually hurt.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_5ea882#0",
+      "format": "flip",
+      "prompt": "What does the 'train-once, transfer-across-tasks' claim mean here?",
+      "back_html": "\u003cp\u003eFine-tune a general molecular foundation model on one canonical olfactory task (GS-LF odor descriptors), then apply it to several other olfaction problems with no further deep-learning training.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5ea882#1",
+      "format": "quiz",
+      "prompt": "Why do 3D molecular representations matter for enantiomers?",
+      "choices": [
+        {
+          "text": "Mirror-image molecules have identical 2D graphs, so only a 3D representation can distinguish them",
+          "correct": true
+        },
+        {
+          "text": "3D representations are smaller and therefore faster to fine-tune",
+          "correct": false
+        },
+        {
+          "text": "Enantiomers always smell identical, so 3D representations confirm the null result",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEnantiomers share the same connectivity graph. The paper reports 3D representations separate them in a way 2D graph models fundamentally cannot — though predicting the perceptual consequence remains unsolved.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5ea882#2",
+      "format": "flip",
+      "prompt": "What does the paper say is still an open challenge?",
+      "back_html": "\u003cp\u003eAccurately predicting the perceptual consequences of stereochemistry. The model can tell enantiomers apart structurally; predicting how differently they smell is another matter.\u003c/p\u003e"
+    }
+  ]
+}

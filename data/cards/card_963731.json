@@ -1,0 +1,109 @@
+{
+  "id": "card_963731",
+  "slug": "vision-as-unified-multimodal-generation",
+  "type": "paper",
+  "title": "Vision as Unified Multimodal Generation",
+  "hook": "Detection, segmentation, depth, pose — each normally needs its own architecture. This model does all of them as text-and-image generation from one multimodal model, no task-specific heads.",
+  "key_points": [
+    "Reformulates heterogeneous computer-vision tasks in the native text and image generation spaces of a unified multimodal model — no task-specific architectures.",
+    "SenseNova-Vision takes natural-language instructions (plus optional visual prompts) and produces text for symbolic outputs, images for dense spatial predictions, or mixed text-and-image for compositional tasks.",
+    "Converts diverse CV annotations into instruction-response training examples compatible with these generation spaces — the SenseNova-Vision Corpus.",
+    "Trains from an off-the-shelf pretrained unified multimodal model, with no new prediction heads or architectural changes required.",
+    "Matches leading task-specialized systems across detection, OCR, keypoints, segmentation, depth, normals, point maps, and camera pose — all from a single model."
+  ],
+  "content_html": "\u003cp\u003eComputer vision has traditionally meant a zoo of specialized architectures: one design for detection, another for segmentation, another for depth. This paper asks what happens if you instead just... generate the answer, in whichever modality fits, from one general-purpose model.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eSenseNova-Vision expresses heterogeneous vision tasks in the native text and image generation spaces of a unified multimodal model: natural-language instructions (with optional visual prompts) specify the task, target region, and decoding convention, and the model responds with text for symbolic outputs, images for dense spatial predictions, or mixed text-and-image output for compositional tasks — no task-specific prediction heads, no architectural modifications. To train this at scale, the authors convert a wide range of existing computer-vision annotations into instruction-response examples matching these generation spaces, forming the SenseNova-Vision Corpus, and train from an off-the-shelf pretrained unified multimodal model with this corpus as the primary diet (plus an auxiliary capability-preserving mixture). The resulting single model covers detection, OCR, keypoint estimation, segmentation, depth estimation, surface normal prediction, point maps, and camera pose estimation — plus language-defined variants combining category, color, region, and other cues — while matching leading task-specialized systems across structured understanding, dense geometric prediction, and multi-view visual geometry. Both the model and corpus are public. Xiaoyang Han and colleagues, arXiv 2026 (30 HF community upvotes).\u003c/p\u003e",
+  "source": {
+    "name": "hf-daily",
+    "authors": [
+      "Xiaoyang Han",
+      "Jianhua Li",
+      "Kewang Deng",
+      "Zukai Chen",
+      "Xuanke Shi",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.06560",
+    "published_at": "2026-07-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "vlms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "generative",
+    "vision",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-07",
+  "related": [
+    {
+      "id": "card_92633d",
+      "slug": "rechannel-dense-prediction",
+      "type": "paper",
+      "title": "ReChannel: Repurposing Text-to-Image Diffusion for Dense Prediction",
+      "hook": "Depth maps and masks get generated as if they were images, decoded through the same interface as RGB pixels. This paper swaps that for a tiny linear head that's 2.5x faster.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-07"
+    },
+    {
+      "id": "card_3d7d44",
+      "slug": "clip",
+      "type": "paper",
+      "title": "CLIP: Learning Visual Models from Language",
+      "hook": "Skip the fixed label list. Train on image–caption pairs so pictures and text share one space, and you can classify images from plain-text labels you make up on the spot.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-02-26"
+    },
+    {
+      "id": "card_d20f82",
+      "slug": "qwen2-vl",
+      "type": "paper",
+      "title": "Qwen2-VL: Vision-Language at Any Resolution",
+      "hook": "Qwen2-VL processes images at their native resolution rather than forcing a fixed size, making it significantly better at reading small text and understanding fine-grained visual detail.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2024-09-18"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_963731#0",
+      "format": "flip",
+      "prompt": "What's the core reformulation behind SenseNova-Vision's approach to computer vision tasks?",
+      "back_html": "\u003cp\u003eIt expresses heterogeneous vision tasks (detection, segmentation, depth, pose, etc.) directly in the native text and image generation spaces of a unified multimodal model, instead of building a separate architecture and prediction head per task.\u003c/p\u003e"
+    },
+    {
+      "id": "card_963731#1",
+      "format": "quiz",
+      "prompt": "How does SenseNova-Vision decide the output format for a given vision task?",
+      "choices": [
+        {
+          "text": "It generates text for symbolic outputs, images for dense spatial predictions, or mixed text-and-image for compositional tasks — all via natural-language instructions",
+          "correct": true
+        },
+        {
+          "text": "Each task type requires swapping in a different specialized model",
+          "correct": false
+        },
+        {
+          "text": "It always outputs raw pixel coordinates regardless of task",
+          "correct": false
+        },
+        {
+          "text": "A human manually selects the output format for every input",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe model's natural-language instruction determines which generation space to use — text, image, or a mix — letting one general-purpose model cover tasks that traditionally each needed their own architecture.\u003c/p\u003e"
+    }
+  ]
+}

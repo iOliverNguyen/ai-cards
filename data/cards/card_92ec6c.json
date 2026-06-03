@@ -1,0 +1,119 @@
+{
+  "id": "card_92ec6c",
+  "slug": "deceptive-grounding-rag-entity-attribution",
+  "type": "paper",
+  "title": "Deceptive Grounding: When RAG Cites the Right Text, Wrong Entity",
+  "hook": "A RAG system can pass every faithfulness, hallucination, and citation check while quietly citing the wrong entity's evidence — real text, real citation, wrong subject.",
+  "key_points": [
+    "Deceptive grounding: every cited claim is real and retrieved, but attributed to the wrong entity (Drug Y's evidence as Drug X's).",
+    "Invisible to standard faithfulness, hallucination, and citation checks, since the citations genuinely exist and are relevant.",
+    "Across 13 models, rates hit 8-87% under adversarial conditions; medical fine-tuning made it worse, not better (up to 86.7%).",
+    "Found in 7.8% of cases from a real, deployed production RAG system — this isn't just a lab artifact.",
+    "A simple entity-attribution consistency check (cited evidence matches queried entity) catches it at 97% precision, 98.7% recall."
+  ],
+  "content_html": "\u003cp\u003eStandard RAG evaluation checks whether a model's claims are grounded in retrieved documents — not whether that evidence is about the right entity. Caruzzo, Yoo, and Kim show a RAG system can pass every faithfulness, hallucination, and citation check while quietly presenting one entity's evidence as another's. They call this deceptive grounding, and it's a lesson for any multi-entity RAG system, not just clinical ones.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eUsing clinical drug Q\u0026amp;A as the illustrating case — swap in any domain where a system fields questions about many similar, easily-confused entities and the failure mode is the same — the authors run a controlled benchmark across 13 models and find deceptive-grounding rates from 8% up to 87% under adversarial conditions. An ablation pins down the mechanism: strip entity-specific evidence from the retrieved documents and the failure shifts entirely to confabulation instead, showing both failure modes share the same root trigger. Measured on a real production system across 740 drug-disease pairs, deceptive grounding still showed up in 7.8% of cases (13.6% for recently approved drugs), confirming it isn't just a benchmark artifact. The fix the authors propose is simple: a consistency check verifying that cited evidence actually concerns the queried entity, which catches deceptive grounding at 97% precision and 98.7% recall — something no existing RAG evaluation framework currently implements. Cedric Caruzzo, Donggeun Yoo, and Tae Soo Kim, arXiv 2026 (arxiv.org/abs/2607.09349).\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Cedric Caruzzo",
+      "Donggeun Yoo",
+      "Tae Soo Kim"
+    ],
+    "url": "https://arxiv.org/abs/2607.09349",
+    "published_at": "2026-07-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rag",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "rag",
+    "safety",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-16",
+  "date": "2026-07-10",
+  "related": [
+    {
+      "id": "card_b43f8e",
+      "slug": "what-is-rag",
+      "type": "concept",
+      "title": "Why RAG? Grounding LLMs in Your Data",
+      "hook": "An LLM only knows what it was trained on — until it's stale, private, or just wrong. RAG bolts on a search step so the model answers from your data and can cite it.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_02ad74",
+      "slug": "retrieval-augmented-generation",
+      "type": "paper",
+      "title": "Retrieval-Augmented Generation (RAG)",
+      "hook": "Why force a model to memorize everything? RAG lets it look things up — fetch relevant documents, then answer from that evidence instead of frozen weights alone.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_92ec6c#0",
+      "format": "flip",
+      "prompt": "What is 'deceptive grounding' in a RAG system?",
+      "back_html": "\u003cp\u003eA failure where every cited claim is real, retrieved, and topically relevant — but attributed to the wrong entity, like presenting Drug Y's evidence as Drug X's.\u003c/p\u003e"
+    },
+    {
+      "id": "card_92ec6c#1",
+      "format": "quiz",
+      "prompt": "Why do standard faithfulness and citation checks miss deceptive grounding?",
+      "choices": [
+        {
+          "text": "Because the citations genuinely exist and are relevant text — nothing about them looks fabricated",
+          "correct": true
+        },
+        {
+          "text": "Because faithfulness checks don't look at citations at all",
+          "correct": false
+        },
+        {
+          "text": "Because the model refuses to cite anything in these cases",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eFaithfulness and hallucination checks verify claims trace back to real retrieved text — they don't verify which entity that text is actually about.\u003c/p\u003e"
+    },
+    {
+      "id": "card_92ec6c#2",
+      "format": "flip",
+      "prompt": "Did domain fine-tuning reduce deceptive grounding in the study?",
+      "back_html": "\u003cp\u003eNo — medical/biomedical fine-tuned models showed higher rates, up to 86.7%, meaning domain specialization amplified the failure rather than fixing it.\u003c/p\u003e"
+    },
+    {
+      "id": "card_92ec6c#3",
+      "format": "quiz",
+      "prompt": "What detects deceptive grounding effectively, per the paper?",
+      "choices": [
+        {
+          "text": "An entity-attribution consistency check verifying cited evidence matches the queried entity",
+          "correct": true
+        },
+        {
+          "text": "Running the existing hallucination detector twice",
+          "correct": false
+        },
+        {
+          "text": "Increasing the number of retrieved documents",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThis check — does the cited evidence actually concern the entity being asked about — caught it at 97% precision and 98.7% recall.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "id": "card_0500e9",
+  "slug": "sequence-level-distillation",
+  "type": "paper",
+  "title": "Sequence-Level Knowledge Distillation",
+  "hook": "Match the teacher's whole output sequence, not just word-by-word probabilities, and the student translation model can drop beam search while running about 10x faster.",
+  "key_points": [
+    "Extends knowledge distillation from the single-token (word) level to the sequence level for neural machine translation.",
+    "Trains the student to match the teacher's full output sequences.",
+    "Appears to eliminate the need for beam search; the student runs about 10x faster than the teacher with minimal performance loss.",
+    "Improves +4.2 BLEU (greedy) and +1.7 BLEU (beam search) over a non-distilled baseline.",
+    "With weight pruning, reaches 13x fewer parameters than the teacher with only a 0.4 BLEU decrease."
+  ],
+  "content_html": "\u003cp\u003eYoon Kim and Alexander M. Rush proposed sequence-level knowledge distillation in June 2016, extending the idea from the single-token (word) level up to whole sequences for neural machine translation. Instead of matching the teacher's per-word probabilities, the student learns to reproduce the teacher's full output sequences.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eClassic distillation matches the teacher's softened distribution one token at a time. Kim and Rush instead train the student against the teacher's complete output sequences, so the student learns the sequences the teacher tends to produce. A useful side effect: the approach appears to eliminate the need for beam search at decode time, letting the student run about 10x faster than the teacher with minimal performance loss.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe authors report gains of +4.2 BLEU with greedy decoding and +1.7 BLEU with beam search over a non-distilled baseline. Combined with weight pruning, the student reaches 13x fewer parameters than the teacher while giving up only 0.4 BLEU - a strong case that distillation can compress sequence models, not just classifiers.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yoon Kim",
+      "Alexander M. Rush"
+    ],
+    "url": "https://arxiv.org/abs/1606.07947",
+    "published_at": "2016-06-25",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "distillation"
+  ],
+  "tags": [
+    "efficiency",
+    "nlp",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2016-06-25",
+  "related": [
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    },
+    {
+      "id": "card_9cf082",
+      "slug": "distilbert",
+      "type": "paper",
+      "title": "DistilBERT: Smaller, Faster, Cheaper, Lighter",
+      "hook": "Distill during pre-training instead of after, and you get a general-purpose language model that is 40% smaller and 60% faster while keeping 97% of BERT's understanding.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2019-10-02"
+    },
+    {
+      "id": "card_9cee40",
+      "slug": "seq2seq",
+      "type": "paper",
+      "title": "Sequence to Sequence Learning",
+      "hook": "Translate a sentence by reading it into one vector, then writing a new sentence out of that vector. This encoder–decoder recipe powered early neural machine translation.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2014-09-10"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_0500e9#0",
+      "format": "quiz",
+      "prompt": "How does sequence-level distillation differ from classic token-level distillation?",
+      "choices": [
+        {
+          "text": "The student matches the teacher's full output sequences, not per-word probabilities",
+          "correct": true
+        },
+        {
+          "text": "The student is trained with no teacher at all",
+          "correct": false
+        },
+        {
+          "text": "The teacher matches the student's sequences",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIt extends distillation from the single-token level up to whole sequences, training the student to reproduce the teacher's full outputs.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0500e9#1",
+      "format": "flip",
+      "prompt": "What convenient side effect does sequence-level distillation appear to have at decode time?",
+      "back_html": "\u003cp\u003eIt appears to eliminate the need for beam search, letting the student run about 10x faster than the teacher with minimal loss.\u003c/p\u003e"
+    }
+  ]
+}

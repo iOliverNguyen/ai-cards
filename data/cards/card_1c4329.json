@@ -1,0 +1,120 @@
+{
+  "id": "card_1c4329",
+  "slug": "dynamics-of-intelligence-explosions",
+  "type": "paper",
+  "title": "The Dynamics of Intelligence Explosions",
+  "hook": "If AI accelerates AI research, how fast can that loop go? Toby Ord's answer: runaway growth is harder than the models suggest, and the neglected variable is how long one trip around the loop takes.",
+  "key_points": [
+    "AI helping with AI R\u0026D creates a feedback loop that could in principle escalate capabilities rapidly.",
+    "Ord analyses the mathematics of the most explosive cases to see what actually drives the dynamics.",
+    "Singular growth — hitting a vertical asymptote — is harder to achieve than recent economics-inspired models imply.",
+    "There's a neglected middle class: growth faster than exponential that still never reaches an asymptote.",
+    "Generation time — how long one pass around the feedback loop takes — is the pivotal parameter.",
+    "No singular growth is possible unless generation time rapidly approaches zero."
+  ],
+  "content_html": "\u003cp\u003eAI is already being used to help build AI. If that feedback loop is strong enough, capabilities could escalate rapidly — the \u0026quot;intelligence explosion.\u0026quot; Toby Ord works through the mathematics of the most explosive possibilities, not to predict one, but to identify what actually governs the dynamics.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe argument\u003c/h2\u003e\n\u003cp\u003eTwo results. First, \u003cstrong\u003esingular growth\u003c/strong\u003e — capability heading toward a vertical asymptote in finite time — is harder to achieve than recent economics-inspired modelling would suggest. Second, there's an important class of trajectories that gets neglected in the binary framing: growth that is genuinely \u003cstrong\u003efaster than exponential yet never reaches an asymptote\u003c/strong\u003e. That middle ground matters, because \u0026quot;not a singularity\u0026quot; is often treated as \u0026quot;not explosive,\u0026quot; and it isn't the same claim.\u003c/p\u003e\n\u003cp\u003eThe parameter Ord elevates is \u003cstrong\u003egeneration time\u003c/strong\u003e: how long it takes to complete one circuit of the feedback loop — AI contributes to research, that research yields a better AI, which contributes again. His conclusion is that you cannot get singular growth unless generation time rapidly approaches zero. That turns an abstract debate about returns to intelligence into a question about a concrete, arguably measurable quantity: the cycle time of AI R\u0026amp;D itself.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eExplosion arguments usually turn on how much smarter each generation is. Ord's framing shifts attention to how \u003cem\u003efast\u003c/em\u003e generations arrive — a bottleneck that involves compute procurement, experiment runtimes, and human review, none of which shrink toward zero easily.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Toby Ord"
+    ],
+    "url": "https://arxiv.org/abs/2608.14426",
+    "published_at": "2026-08-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "news",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-17",
+  "date": "2026-08-14",
+  "related": [
+    {
+      "id": "card_cf5b0e",
+      "slug": "from-agi-to-asi",
+      "type": "paper",
+      "title": "From AGI to ASI: Four Pathways to Superintelligence",
+      "hook": "A DeepMind team maps four routes from human-level AGI to superintelligence - and argues the leap may arrive as a series of transformative shifts, not one dramatic step change.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-10"
+    },
+    {
+      "id": "card_b475e8",
+      "slug": "frontier-ai-regulation",
+      "type": "paper",
+      "title": "Frontier AI Regulation",
+      "hook": "How do you regulate models too new to have rules yet? This paper sketches three building blocks: set standards, make labs report, then enforce.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-07-06"
+    },
+    {
+      "id": "card_490028",
+      "slug": "model-evaluation-for-extreme-risks",
+      "type": "paper",
+      "title": "Model Evaluation for Extreme Risks",
+      "hook": "General-purpose AI tends to pick up dangerous capabilities alongside useful ones. So test for those capabilities directly — before you ship, not after.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_1c4329#0",
+      "format": "flip",
+      "prompt": "What does Ord identify as the pivotal, neglected parameter in intelligence-explosion models?",
+      "back_html": "\u003cp\u003eGeneration time — how long it takes to go once around the AI-improves-AI feedback loop. Singular growth is impossible unless generation time rapidly approaches zero.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1c4329#1",
+      "format": "quiz",
+      "prompt": "What is the 'neglected class' of growth rates the paper highlights?",
+      "choices": [
+        {
+          "text": "Growth faster than exponential that still never reaches a vertical asymptote",
+          "correct": true
+        },
+        {
+          "text": "Growth slower than exponential but faster than linear",
+          "correct": false
+        },
+        {
+          "text": "Oscillating growth that alternates between boom and stagnation",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBetween ordinary exponential growth and singular growth sits an important class: super-exponential growth with no vertical asymptote.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1c4329#2",
+      "format": "quiz",
+      "prompt": "How does the paper's conclusion compare to recent economics-inspired modelling?",
+      "choices": [
+        {
+          "text": "Singular growth is harder to achieve than those models would lead you to expect",
+          "correct": true
+        },
+        {
+          "text": "Singular growth is essentially guaranteed once AI contributes to AI R\u0026D",
+          "correct": false
+        },
+        {
+          "text": "It confirms those models' predictions with tighter error bars",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOrd shows that reaching a vertical asymptote is harder than recent economics-inspired modelling suggests.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "id": "card_96da79",
+  "slug": "k12-kgraph-curriculum-cognition",
+  "type": "dataset",
+  "title": "Models Can Pass the Exam Without Knowing the Syllabus",
+  "hook": "Educational benchmarks test whether a model answers school questions. This one tests whether it knows which concept comes before which — and the best model scores 57%.",
+  "key_points": [
+    "The authors name the missing capability 'curriculum cognition': prerequisite chains, concept taxonomies, experiment links, pedagogical sequencing, visual grounding.",
+    "K12-KGraph is a knowledge graph extracted from official People's Education Press textbooks in maths, physics, chemistry, and biology.",
+    "K12-Bench derives 23,640 multi-select questions in five families: Ground, Prereq, Neighbor, Evidence, and Locate.",
+    "Gemini-3-Flash reaches only 57% exact match and Gemma-4-31B-IT 46%, with Prereq and Neighbor the hardest tasks.",
+    "At a matched 2,300-sample budget, its graph-guided training data beat equally sized subsets of eight mainstream instruction corpora on GaokaoBench and EduEval.",
+    "For vision-language models, combining text and visual supervision beat either alone — the two are complementary."
+  ],
+  "content_html": "\u003cp\u003eLLMs are already being used to teach children, but the benchmarks we judge them by mostly ask exam questions. Answering \u0026quot;what is the boiling point of water\u0026quot; correctly tells you nothing about whether the model knows that concept comes \u003cem\u003eafter\u003c/em\u003e states of matter and \u003cem\u003ebefore\u003c/em\u003e distillation. The authors call that missing capability \u003cstrong\u003ecurriculum cognition\u003c/strong\u003e.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eBuilding the syllabus as a graph\u003c/h2\u003e\n\u003cp\u003e\u003cstrong\u003eK12-KGraph\u003c/strong\u003e is extracted from official People's Education Press textbooks in mathematics, physics, chemistry, and biology, across primary, middle, and high school — nine node types and fourteen relation types covering prerequisite chains, concept taxonomies, experiment-concept links, pedagogical sequencing, and visual grounding in textbook figures. From the graph they derive \u003cstrong\u003eK12-Bench\u003c/strong\u003e, 23,640 multi-select questions in five task families: Ground, Prereq, Neighbor, Evidence, Locate.\u003c/p\u003e\n\u003ch2\u003eResults\u003c/h2\u003e\n\u003cp\u003eThe scores are low for a school-level benchmark: Gemini-3-Flash manages 57% exact match, Gemma-4-31B-IT 46%, and the hardest families are Prereq and Neighbor — exactly the relational ones. The training half is arguably more interesting. Under a matched 2,300-sample budget, their graph-guided text corpus consistently outperformed equally sized subsets of eight mainstream instruction-tuning corpora on GaokaoBench and EduEval, and for vision-language models the combined text-plus-visual version beat both single-modality variants despite using fewer samples than larger baselines. Structure, not volume, did the work. Graph, benchmark, training data, and construction pipeline are all released. Liang and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Hao Liang",
+      "Qihan Lin",
+      "Zhaoyang Han",
+      "Xiaochen Ma",
+      "Zhen Hao Wong",
+      "Meiyi Qiang",
+      "Linzhuang Sun",
+      "Wentao Zhang"
+    ],
+    "url": "https://arxiv.org/abs/2605.09635",
+    "published_at": "2026-07-23",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "data",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "dataset",
+    "benchmark",
+    "multimodal",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-27",
+  "date": "2026-07-23",
+  "related": [
+    {
+      "id": "card_bf9760",
+      "slug": "ai-assistants-overassist",
+      "type": "paper",
+      "title": "AI Tutors Jump In Too Soon",
+      "hook": "Put an LLM in the tutor's seat and it interrupts sooner and more often than a human would — and hands over the whole solution where a person would have offered a hint.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-23"
+    },
+    {
+      "id": "card_35a936",
+      "slug": "item-response-theory-ai-evaluation",
+      "type": "paper",
+      "title": "Can We Trust Item Response Theory for AI Evaluation?",
+      "hook": "IRT ranks models off a handful of items instead of averaging accuracy — but the math was built for human test-takers, and AI benchmarks break its assumptions in ways that quietly distort rankings.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-16"
+    },
+    {
+      "id": "card_7a5e17",
+      "slug": "the-pile",
+      "type": "dataset",
+      "title": "The Pile: 800GB of Diverse Text",
+      "hook": "Web text alone leaves gaps. The Pile stitches together 22 curated sources — academic and professional — so a language model picks up knowledge plain web crawls miss.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-12-31"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_96da79#0",
+      "format": "flip",
+      "prompt": "What is 'curriculum cognition' and why isn't it covered by exam-QA benchmarks?",
+      "back_html": "\u003cp\u003eKnowing how curriculum knowledge is structured — prerequisite chains, concept taxonomies, pedagogical sequencing, visual grounding. Answering a question correctly says nothing about knowing what must be taught before it.\u003c/p\u003e"
+    },
+    {
+      "id": "card_96da79#1",
+      "format": "quiz",
+      "prompt": "Which K12-Bench task families proved hardest for the models tested?",
+      "choices": [
+        {
+          "text": "Prereq and Neighbor — the tasks about relationships between concepts",
+          "correct": true
+        },
+        {
+          "text": "Ground and Locate — the tasks requiring visual grounding in textbook figures",
+          "correct": false
+        },
+        {
+          "text": "Evidence — linking experiments to the concepts they demonstrate",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe relational tasks are where models fall down, which fits the paper's thesis: they hold facts but not the curriculum's structure. Gemini-3-Flash managed 57% exact match overall.\u003c/p\u003e"
+    },
+    {
+      "id": "card_96da79#2",
+      "format": "flip",
+      "prompt": "What did the matched-budget training comparison show?",
+      "back_html": "\u003cp\u003eAt 2,300 samples, graph-guided curriculum data consistently beat equally sized subsets of eight mainstream instruction-tuning corpora on GaokaoBench and EduEval — structure beat volume.\u003c/p\u003e"
+    }
+  ]
+}

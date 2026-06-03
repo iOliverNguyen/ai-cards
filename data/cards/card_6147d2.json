@@ -1,0 +1,105 @@
+{
+  "id": "card_6147d2",
+  "slug": "supervised-vs-unsupervised",
+  "type": "concept",
+  "title": "Supervised vs Unsupervised Learning",
+  "hook": "Do your examples come with answer keys? That one question splits machine learning into two very different jobs.",
+  "key_points": [
+    "Supervised learning uses labeled data — each example has a known answer to learn from.",
+    "Classification predicts categories; regression predicts numbers — both are supervised tasks.",
+    "Unsupervised learning gets no labels; it finds structure, like clustering similar items together.",
+    "Reinforcement learning is a third paradigm: an agent learns by trial, reward, and feedback over time."
+  ],
+  "content_html": "\u003cp\u003eThe big divide in machine learning is whether your training data comes with labels. In supervised learning every example carries a correct answer, so the model learns to map inputs to those answers. In unsupervised learning there are no labels, so the model hunts for structure on its own. Reinforcement learning is a third path, where an agent learns from rewards as it acts.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eSupervised learning compares its predictions against the known labels and corrects itself — that's how it learns to classify (predict a category) or run regression (predict a number). Unsupervised learning has no answer key to check against, so instead it groups, compresses, or finds patterns; clustering, which bundles similar examples, is the classic example.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eKnowing which setup you're in tells you what data you need and what's even possible. Labels are expensive to collect, so a lot of practical work is about getting the most from limited supervision or leaning on unsupervised structure. Most of the famous wins — image classifiers, spam filters — are supervised, but the paradigm shapes everything from cost to evaluation.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/Supervised_learning",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "ml-basics"
+  ],
+  "tags": [
+    "foundational"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-06-02",
+  "date": "2026-06-02",
+  "related": [
+    {
+      "id": "card_ce155a",
+      "slug": "what-is-machine-learning",
+      "type": "concept",
+      "title": "What Is Machine Learning?",
+      "hook": "Instead of hand-coding rules, you show a program examples and let it find the patterns — then it handles inputs it has never seen.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_ce155a",
+      "slug": "what-is-machine-learning",
+      "type": "concept",
+      "title": "What Is Machine Learning?",
+      "hook": "Instead of hand-coding rules, you show a program examples and let it find the patterns — then it handles inputs it has never seen.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_6147d2#0",
+      "format": "quiz",
+      "prompt": "What single question separates supervised from unsupervised learning?",
+      "choices": [
+        {
+          "text": "Whether the training data comes with labels",
+          "correct": true
+        },
+        {
+          "text": "Whether the model uses a neural network",
+          "correct": false
+        },
+        {
+          "text": "Whether the output is a number or a category",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSupervised learning uses labeled examples with known answers; unsupervised learning has no labels and hunts for structure.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6147d2#1",
+      "format": "flip",
+      "prompt": "How do classification and regression differ as supervised tasks?",
+      "back_html": "\u003cp\u003eClassification predicts categories; regression predicts numbers. Both are supervised, learning from known answers.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6147d2#2",
+      "format": "quiz",
+      "prompt": "What does unsupervised learning do without an answer key?",
+      "choices": [
+        {
+          "text": "Finds structure, such as clustering similar items",
+          "correct": true
+        },
+        {
+          "text": "Maps inputs to known correct labels",
+          "correct": false
+        },
+        {
+          "text": "Learns from rewards as it acts",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eWith no labels to check against, unsupervised learning groups, compresses, or finds patterns; clustering is the classic example. Reward-based learning is reinforcement learning.\u003c/p\u003e"
+    }
+  ]
+}

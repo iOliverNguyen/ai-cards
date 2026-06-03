@@ -1,0 +1,98 @@
+{
+  "id": "card_611d9b",
+  "slug": "quest-deep-research-agent",
+  "type": "news",
+  "title": "QUEST: An Open Deep-Research Agent",
+  "hook": "A fully open Deep Research agent trained on ~32 H100s and ~8K synthetic samples — recipe, code, weights, and data all released, and reportedly competitive with frontier closed systems.",
+  "key_points": [
+    "QUEST-35B, from Ohio State University's NLP group, is an open-source Deep Research agent.",
+    "Trained with roughly 32 H100 GPUs and about 8K synthetic samples — modest by frontier standards.",
+    "The team open-sourced the full stack: training recipe, code, model weights, and datasets.",
+    "Reported as competitive with several frontier Deep Research systems on benchmarks."
+  ],
+  "content_html": "\u003cp\u003e\u0026quot;Deep Research\u0026quot; — agents that plan multi-step web investigations and write up sourced answers — has mostly lived inside closed products. Ohio State University's NLP group released QUEST-35B to change that: an open-source Deep Research agent with the entire pipeline laid bare.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat was released\u003c/h2\u003e\n\u003cp\u003ePer the announcement, QUEST-35B was trained using roughly 32 H100 GPUs and about 8,000 synthetic samples — a notably small footprint for this class of system — and the team open-sourced the training recipe, code, model weights, and datasets together. Reported benchmark results put it competitive with several frontier Deep Research systems.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eReproducibility is the point. When a capability ships only as a closed feature, the community can't study how it's actually built or where it breaks. A fully open recipe trained on modest compute lowers the barrier to entry and turns Deep Research into something researchers can dissect, fine-tune, and improve — while leaving open the real question of how far open agents still trail the best closed systems. (Details here come from the release post rather than a peer-reviewed paper.)\u003c/p\u003e",
+  "source": {
+    "name": "OSU NLP Group",
+    "authors": [
+      "OSU NLP Group"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1u9w6my/researchers_trained_a_deep_research_agent_with_32",
+    "published_at": "2026-06-19",
+    "license": "Reddit (r/LocalLLaMA)"
+  },
+  "topic_ids": [
+    "agents",
+    "releases"
+  ],
+  "tags": [
+    "agent",
+    "open-source",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-22",
+  "date": "2026-06-19",
+  "related": [
+    {
+      "id": "card_b2c4ec",
+      "slug": "harness-1-search-agents",
+      "type": "paper",
+      "title": "Harness-1: RL for Search Agents with State-Externalizing Harnesses",
+      "hook": "Stop making the policy remember everything. Harness-1 moves a search agent's bookkeeping into the environment, so RL only has to learn the decisions that matter.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-01"
+    },
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    },
+    {
+      "id": "card_4cd8fd",
+      "slug": "deepseek-r1",
+      "type": "paper",
+      "title": "DeepSeek-R1: Incentivizing Reasoning via Reinforcement Learning",
+      "hook": "DeepSeek shows strong reasoning can emerge from RL on verifiable rewards with minimal supervised data - and those reasoning traces can be distilled into smaller models.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2025-01-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_611d9b#0",
+      "format": "flip",
+      "prompt": "What made QUEST-35B notable as a Deep Research agent release?",
+      "back_html": "\u003cp\u003eIt's fully open — recipe, code, weights, and datasets — trained on modest compute (~32 H100s, ~8K synthetic samples) yet reported as competitive with several frontier closed Deep Research systems.\u003c/p\u003e"
+    },
+    {
+      "id": "card_611d9b#1",
+      "format": "quiz",
+      "prompt": "Why does a reproducible open Deep Research agent matter?",
+      "choices": [
+        {
+          "text": "It lets researchers study and rebuild a capability usually locked inside closed products",
+          "correct": true
+        },
+        {
+          "text": "It proves deep research needs no training data",
+          "correct": false
+        },
+        {
+          "text": "It replaces all search engines",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDeep Research is typically a closed feature; releasing the training recipe, weights, and synthetic data lets the community reproduce and probe how such agents are built.\u003c/p\u003e"
+    }
+  ]
+}

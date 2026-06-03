@@ -1,0 +1,146 @@
+{
+  "id": "card_833749",
+  "slug": "cosmos-3",
+  "type": "paper",
+  "title": "Cosmos 3: Omnimodal World Models for Physical AI",
+  "hook": "One model that reads and generates language, images, video, audio, and actions — NVIDIA's open Cosmos 3 folds VLMs, video generators, and robot policies into a single backbone.",
+  "key_points": [
+    "A mixture-of-transformers architecture that jointly processes and generates text, image, video, audio, and action sequences.",
+    "Subsumes vision-language models, video generators, world simulators, and world-action models in one framework.",
+    "Ranked best open Text-to-Image and Image-to-Video by Artificial Analysis, and best policy model by RoboArena at report time.",
+    "Code, checkpoints, synthetic datasets, and benchmarks released openly under the Linux Foundation's OpenMDW-1.1 license."
+  ],
+  "content_html": "\u003cp\u003eNVIDIA's Cosmos 3 is a family of \u0026quot;omnimodal world models\u0026quot; built for Physical AI — robots and embodied agents that have to perceive and act in the real world. Rather than stitching together a separate vision-language model, a video generator, and a control policy, Cosmos 3 aims to be a single model that handles all of them.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat it is\u003c/h2\u003e\n\u003cp\u003eCosmos 3 uses a unified mixture-of-transformers architecture that can jointly process and generate language, image, video, audio, and action sequences, with flexible input-output configurations. That breadth lets one model play the roles usually split across vision-language models, video generators, world simulators, and world-action (control) models. NVIDIA reports state-of-the-art results across a suite of understanding and generation tasks, with post-trained variants ranked as the best open Text-to-Image and Image-to-Video models by Artificial Analysis and the best policy model by RoboArena at the time of writing.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe bet here is that a single omnimodal backbone — one that can both \u003cem\u003eimagine\u003c/em\u003e futures (generate video) and \u003cem\u003eact\u003c/em\u003e (output control sequences) — is a more scalable foundation for embodied agents than a pipeline of specialized models. Notably, NVIDIA released code, model checkpoints, curated synthetic datasets, and the evaluation benchmark openly under the Linux Foundation's OpenMDW-1.1 license, making it a substantial open contribution to physical-AI research.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Niket Agarwal",
+      "Jim Fan",
+      "Ming-Yu Liu",
+      "Sanja Fidler",
+      "Yuke Zhu",
+      "et al. (NVIDIA)"
+    ],
+    "url": "https://arxiv.org/abs/2606.02800",
+    "published_at": "2026-06-01",
+    "license": "arXiv (open access)"
+  },
+  "resources": [
+    {
+      "title": "HF blog: Welcome NVIDIA Cosmos 3",
+      "url": "https://huggingface.co/blog/nvidia/cosmos-3-for-physical-ai"
+    },
+    {
+      "title": "Project website",
+      "url": "https://research.nvidia.com/labs/cosmos-lab/cosmos3"
+    }
+  ],
+  "topic_ids": [
+    "releases",
+    "robotics",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "generative",
+    "open-source",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-04",
+  "date": "2026-06-01",
+  "related": [
+    {
+      "id": "card_0dc810",
+      "slug": "pi-zero",
+      "type": "paper",
+      "title": "π0: A Vision-Language-Action Model",
+      "hook": "π0 is a generalist robot policy: it takes camera images, joint angles, and a plain-language instruction, and outputs smooth action sequences — folding laundry, bussing tables, bagging groceries.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-10-31"
+    },
+    {
+      "id": "card_296943",
+      "slug": "dreamerv3",
+      "type": "paper",
+      "title": "DreamerV3: Mastering Domains through World Models",
+      "hook": "Instead of learning only from real experience, DreamerV3 builds a world model and practices inside its own imagination — one fixed config, 150+ tasks.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2023-01-10"
+    },
+    {
+      "id": "card_dd8539",
+      "slug": "rt-2",
+      "type": "paper",
+      "title": "RT-2: Vision-Language-Action Models",
+      "hook": "Treat a robot's actions as just more text tokens, and a vision-language model can learn to act — carrying its web knowledge into the physical world.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-07-28"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_833749#0",
+      "format": "flip",
+      "prompt": "What does it mean for Cosmos 3 to be an 'omnimodal world model'?",
+      "back_html": "\u003cp\u003eA single mixture-of-transformers model that jointly processes and generates text, image, video, audio, and action sequences.\u003c/p\u003e"
+    },
+    {
+      "id": "card_833749#1",
+      "format": "quiz",
+      "prompt": "What is the bet behind a single omnimodal backbone for embodied agents?",
+      "choices": [
+        {
+          "text": "One model that can both imagine futures and act scales better than a pipeline of specialists",
+          "correct": true
+        },
+        {
+          "text": "Separate specialized models always outperform a unified one",
+          "correct": false
+        },
+        {
+          "text": "Embodied agents only need a video generator",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe bet is that one backbone that can both generate video and output control sequences is a more scalable foundation than stitched-together specialists.\u003c/p\u003e"
+    },
+    {
+      "id": "card_833749#2",
+      "format": "quiz",
+      "prompt": "How did NVIDIA release Cosmos 3?",
+      "choices": [
+        {
+          "text": "Code, checkpoints, datasets, and benchmarks openly under OpenMDW-1.1",
+          "correct": true
+        },
+        {
+          "text": "As a closed commercial API only",
+          "correct": false
+        },
+        {
+          "text": "Weights only, with no code or benchmarks",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eNVIDIA released code, checkpoints, curated synthetic datasets, and the benchmark openly under the Linux Foundation's OpenMDW-1.1 license.\u003c/p\u003e"
+    }
+  ]
+}

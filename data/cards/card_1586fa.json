@@ -1,0 +1,123 @@
+{
+  "id": "card_1586fa",
+  "slug": "flashprefill-v2",
+  "type": "paper",
+  "title": "FlashPrefill V2: Block-Sparse Prefill Attention for Long-Context Serving",
+  "hook": "Prefill is where long-context inference burns its compute. This turns a sparse-attention prototype into a production backend — and reports up to 47x over FlashAttention-2 at 128K.",
+  "key_points": [
+    "Attention's quadratic cost hits hardest during prefill, when the whole prompt is processed at once.",
+    "V2 adds a mean correction term that suppresses approximation error, so quality holds even at extreme sparsity.",
+    "The kernel was rebuilt with PackGQA memory access, warp specialization, and pingpong pipelining, aligned with FlashAttention-3/4 and FP8.",
+    "It natively supports paged KV cache and continuous batching, so it can drop into serving stacks like SGLang.",
+    "On NVIDIA H20 at 128K context: up to 47.26x (FP8) and 27.19x (BF16) over FlashAttention-2.",
+    "Against an FA3/4-aligned dense baseline in FP8, still 30.49x — the gain is the sparsity, not just newer kernels."
+  ],
+  "content_html": "\u003cp\u003eLong-context models keep running into the same wall: attention costs grow quadratically with sequence length, and the worst of that lands in prefill, where the whole prompt is processed in one compute-heavy pass. Fan and colleagues' earlier FlashPrefill attacked this with on-the-fly sparsity-pattern discovery and max-based dynamic thresholding, but stayed an algorithmic prototype. V2 is the work of making it a serving component.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat changed\u003c/h2\u003e\n\u003cp\u003eThree things. A mean correction term suppresses approximation error, keeping degradation manageable even at extreme sparsity. The sparse attention operator was rewritten with PackGQA memory access, warp specialization, and pingpong pipelining to match the FlashAttention-3/4 implementations, with FP8 support for quantized inference. And it natively handles paged KV cache and continuous batching, which is what lets it serve as an attention backend inside frameworks like SGLang.\u003c/p\u003e\n\u003ch2\u003eResults\u003c/h2\u003e\n\u003cp\u003eOn NVIDIA H20 GPUs at 128K context, the authors report up to 47.26x speedup over FlashAttention-2 in FP8 and 27.19x in BF16. The more informative number is the comparison against a dense baseline already aligned with FA3/4: still 30.49x in FP8, which attributes the win to block sparsity rather than to kernel modernization alone.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Qihang Fan",
+      "Huaibo Huang",
+      "Zhiying Wu",
+      "Bingning Wang",
+      "Ran He"
+    ],
+    "url": "https://arxiv.org/abs/2608.19758",
+    "published_at": "2026-08-20",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "context-memory",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "attention",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-24",
+  "date": "2026-08-20",
+  "related": [
+    {
+      "id": "card_4791e2",
+      "slug": "flash-attention-3",
+      "type": "paper",
+      "title": "FlashAttention-3",
+      "hook": "FlashAttention-3 rewrote the attention kernel for Hopper GPUs — overlapping compute with the softmax and using FP8 to push attention close to the hardware's peak.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-07-11"
+    },
+    {
+      "id": "card_ef8b5f",
+      "slug": "paged-attention-vllm",
+      "type": "paper",
+      "title": "PagedAttention / vLLM: Efficient LLM Serving",
+      "hook": "LLM serving wastes huge amounts of GPU memory on the attention cache. PagedAttention borrows an OS trick — paging — to recover it and serve many more requests at once.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-09-12"
+    },
+    {
+      "id": "card_688904",
+      "slug": "kv-cache-and-batching",
+      "type": "concept",
+      "title": "The KV Cache \u0026 Continuous Batching",
+      "hook": "Generating one token reuses every prior key and value - that growing cache is why LLM inference is memory-bound, and continuous batching is how servers fight back.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-11-09"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_4791e2",
+      "slug": "flash-attention-3",
+      "type": "paper",
+      "title": "FlashAttention-3",
+      "hook": "FlashAttention-3 rewrote the attention kernel for Hopper GPUs — overlapping compute with the softmax and using FP8 to push attention close to the hardware's peak.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-07-11"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_1586fa#0",
+      "format": "flip",
+      "prompt": "Why is the prefill phase the target for sparse attention?",
+      "back_html": "\u003cp\u003ePrefill processes the entire prompt at once, so attention's quadratic cost lands there as a single compute-intensive burst — the dominant bottleneck at long context.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1586fa#1",
+      "format": "quiz",
+      "prompt": "Why does the paper also compare against an FA3/4-aligned *dense* baseline?",
+      "choices": [
+        {
+          "text": "To show the speedup comes from sparsity, not merely from newer kernel engineering",
+          "correct": true
+        },
+        {
+          "text": "Because FlashAttention-2 does not support 128K context",
+          "correct": false
+        },
+        {
+          "text": "To measure accuracy rather than throughput",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBeating FlashAttention-2 could just reflect better kernels. The 30.49x figure against a modern dense baseline isolates the contribution of block sparsity.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1586fa#2",
+      "format": "flip",
+      "prompt": "What made V2 deployable where V1 was not?",
+      "back_html": "\u003cp\u003eError correction at high sparsity, a kernel aligned with FlashAttention-3/4 including FP8, and native paged-KV-cache plus continuous-batching support so it slots into real serving frameworks.\u003c/p\u003e"
+    }
+  ]
+}

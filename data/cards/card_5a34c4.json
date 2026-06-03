@@ -1,0 +1,130 @@
+{
+  "id": "card_5a34c4",
+  "slug": "flamingo",
+  "type": "paper",
+  "title": "Flamingo: a Visual Language Model for Few-Shot Learning",
+  "hook": "Interleave images and text in a prompt, use cross-attention to inject visual features into a frozen LLM, and get few-shot image understanding without retraining the language model.",
+  "key_points": [
+    "Cross-attention layers inserted between frozen LLM blocks let visual features condition text generation without touching LLM weights.",
+    "A Perceiver Resampler compresses variable-length image or video features into a fixed number of visual tokens.",
+    "Few-shot prompting with image-text pairs transfers to new vision tasks, mimicking GPT-3-style in-context learning.",
+    "Trained on interleaved web image-text sequences, making it natural to handle multi-image and video inputs."
+  ],
+  "content_html": "\u003cp\u003eDeepMind's Flamingo, published in April 2022, introduced a practical way to give a powerful frozen language model visual perception without retraining it. Alayrac and colleagues trained new cross-attention layers and a Perceiver Resampler on top of existing LLM and vision encoder checkpoints, preserving the LLM's text capabilities while adding image and video understanding.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eA vision encoder (similar in spirit to CLIP) processes each image or video clip into a set of features. A Perceiver Resampler then compresses those into a fixed number of visual tokens regardless of input resolution. These tokens enter the LLM via newly added cross-attention layers that sit between the frozen LLM's self-attention blocks. At inference, you can interleave multiple images and text examples in the prompt, and the model attends to the relevant visual context at each generation step.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eFlamingo showed that in-context few-shot learning works for vision-language tasks, not just pure text, and that freezing a strong LLM while training lightweight bridge modules is a cost-effective strategy. That design pattern directly influenced later open models like LLaVA. Explore the details in the full paper on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jean-Baptiste Alayrac",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2204.14198",
+    "published_at": "2022-04-29",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "vlms"
+  ],
+  "tags": [
+    "multimodal",
+    "vision",
+    "nlp",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2022-04-29",
+  "related": [
+    {
+      "id": "card_3d7d44",
+      "slug": "clip",
+      "type": "paper",
+      "title": "CLIP: Learning Visual Models from Language",
+      "hook": "Skip the fixed label list. Train on image–caption pairs so pictures and text share one space, and you can classify images from plain-text labels you make up on the spot.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-02-26"
+    },
+    {
+      "id": "card_837a7b",
+      "slug": "llava",
+      "type": "paper",
+      "title": "LLaVA: Visual Instruction Tuning",
+      "hook": "Connect a CLIP vision encoder to an LLM with just a linear projection, fine-tune on GPT-4-generated image dialogues, and get a capable open chat-with-images model for under a day of training.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-04-17"
+    },
+    {
+      "id": "card_13953d",
+      "slug": "in-context-learning",
+      "type": "concept",
+      "title": "In-Context Learning",
+      "hook": "Paste a few examples into a prompt and a large language model performs the task - no gradient updates, no fine-tuning, the prompt is the program.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-31"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_3d7d44",
+      "slug": "clip",
+      "type": "paper",
+      "title": "CLIP: Learning Visual Models from Language",
+      "hook": "Skip the fixed label list. Train on image–caption pairs so pictures and text share one space, and you can classify images from plain-text labels you make up on the spot.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-02-26"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_5a34c4#0",
+      "format": "flip",
+      "prompt": "How does Flamingo add visual perception without retraining the language model?",
+      "back_html": "\u003cp\u003eIt keeps the LLM frozen and trains new cross-attention layers (plus a Perceiver Resampler) that inject visual features between the LLM's self-attention blocks.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5a34c4#1",
+      "format": "quiz",
+      "prompt": "What does Flamingo's Perceiver Resampler do?",
+      "choices": [
+        {
+          "text": "Compresses variable-length image/video features into a fixed number of visual tokens",
+          "correct": true
+        },
+        {
+          "text": "Fine-tunes the LLM's weights on image-text pairs",
+          "correct": false
+        },
+        {
+          "text": "Translates text tokens into pixel space",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe Perceiver Resampler turns variable-length visual features into a fixed set of visual tokens, regardless of input resolution.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5a34c4#2",
+      "format": "quiz",
+      "prompt": "What capability did Flamingo show transfers from text to vision-language tasks?",
+      "choices": [
+        {
+          "text": "Few-shot in-context learning from interleaved image-text prompts",
+          "correct": true
+        },
+        {
+          "text": "Zero-shot translation between languages",
+          "correct": false
+        },
+        {
+          "text": "Gradient-free fine-tuning of the vision encoder",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eFlamingo showed GPT-3-style in-context few-shot learning works for vision-language, prompting with interleaved image-text examples.\u003c/p\u003e"
+    }
+  ]
+}

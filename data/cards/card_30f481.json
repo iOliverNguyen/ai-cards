@@ -1,0 +1,87 @@
+{
+  "id": "card_30f481",
+  "slug": "gpt-5-6-sol",
+  "type": "news",
+  "title": "GPT-5.6 Sol Preview",
+  "hook": "OpenAI previewed GPT-5.6 Sol, a next-generation model it says is stronger at coding, science, and cybersecurity — and shipped with its most advanced safety stack yet.",
+  "key_points": [
+    "OpenAI previewed GPT-5.6 Sol, billed as a next-generation frontier model.",
+    "Headline gains are in coding, science, and cybersecurity.",
+    "OpenAI pairs the capability jump with what it calls its most advanced safety stack to date.",
+    "A preview, not a full release — details and benchmarks are limited at announcement."
+  ],
+  "content_html": "\u003cp\u003eOpenAI previewed \u003cstrong\u003eGPT-5.6 Sol\u003c/strong\u003e, a next-generation model it describes as notably stronger in coding, science, and cybersecurity — and paired with its most advanced safety stack so far.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat was announced\u003c/h2\u003e\n\u003cp\u003eThis is a preview rather than a general release, so concrete benchmarks are thin at announcement. OpenAI's framing is twofold: a step up in frontier capability — singling out coding, scientific reasoning, and cybersecurity — and a parallel investment in safety, which the company calls its most advanced safety stack to date.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eCybersecurity is an unusual capability to foreground: stronger models are dual-use, useful both for defenders and attackers, which is likely why OpenAI ties the announcement so tightly to safety. As frontier labs keep raising the ceiling, the pattern of shipping capability and safeguards together is worth watching. Details are in OpenAI's announcement, linked as the source.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "authors": [
+      "OpenAI"
+    ],
+    "url": "https://openai.com/index/previewing-gpt-5-6-sol",
+    "published_at": "2026-06-26",
+    "license": "OpenAI blog (link-out)"
+  },
+  "topic_ids": [
+    "releases",
+    "lab-updates"
+  ],
+  "tags": [
+    "news",
+    "safety"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-06-29",
+  "date": "2026-06-26",
+  "related": [
+    {
+      "id": "card_5cb279",
+      "slug": "gpt-5",
+      "type": "news",
+      "title": "GPT-5",
+      "hook": "GPT-5 folds OpenAI's two lines into one: a router decides on the fly whether a prompt needs a fast answer or deep step-by-step reasoning, so you stop picking models.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2025-08-07"
+    },
+    {
+      "id": "card_c6d3e7",
+      "slug": "grok-4",
+      "type": "news",
+      "title": "Grok 4",
+      "hook": "xAI's Grok 4 leaned hard on reinforcement learning and native tool use, topping several reasoning benchmarks at its July 2025 launch.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-07-09"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_30f481#0",
+      "format": "quiz",
+      "prompt": "Which capability areas does OpenAI highlight for GPT-5.6 Sol?",
+      "choices": [
+        {
+          "text": "Coding, science, and cybersecurity",
+          "correct": true
+        },
+        {
+          "text": "Image generation and video synthesis",
+          "correct": false
+        },
+        {
+          "text": "On-device, offline inference",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOpenAI's preview frames GPT-5.6 Sol around stronger coding, science, and cybersecurity capabilities.\u003c/p\u003e"
+    },
+    {
+      "id": "card_30f481#1",
+      "format": "flip",
+      "prompt": "Besides raw capability, what did OpenAI emphasize when previewing GPT-5.6 Sol?",
+      "back_html": "\u003cp\u003eThat the model ships with OpenAI's most advanced safety stack to date — framing the capability jump alongside stronger safeguards.\u003c/p\u003e"
+    }
+  ]
+}

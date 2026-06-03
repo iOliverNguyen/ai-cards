@@ -1,0 +1,106 @@
+{
+  "id": "card_353972",
+  "slug": "llms-reward-expertise",
+  "type": "blog",
+  "title": "The Most Important Prompting Skill Is Knowing the Domain",
+  "hook": "LLMs let novices produce adequate work, which makes prompting look like it needs no skill. The argument here: the skill is domain expertise, and the human is usually the bottleneck.",
+  "key_points": [
+    "Because LLMs let a novice produce something adequate, prompting looks like a skill-free activity — the post argues that's the wrong read.",
+    "The claim: the most important skill in prompting is expertise in the domain you're prompting for.",
+    "Terence Tao's ChatGPT conversation on the Jacobian Conjecture is the worked example — terse messages, spotting when an answer 'looks weird', proposing alternatives rather than accepting suggestions.",
+    "The bottleneck principle: often the human limits the outcome, because the hard part is communicating exactly what kind of solution is wanted.",
+    "From software: knowing a specific codebase makes LLM collaboration far more effective than generic engineering knowledge does.",
+    "The implication is that human expertise stays valuable even as model capability grows."
+  ],
+  "content_html": "\u003cp\u003eThere's a common reading of LLMs as levelers: anyone can now get a passable answer in a field they know nothing about, so prompting must not require much skill. Sean Goedecke argues the opposite conclusion follows from the same premise — these tools democratize access to specialized knowledge while disproportionately rewarding people who already have it.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe example\u003c/h2\u003e\n\u003cp\u003eThe post's central exhibit is mathematician Terence Tao's published ChatGPT conversation about the Jacobian Conjecture. What's notable isn't prompt engineering craft: the messages are short and targeted. It's that Tao can tell when a response \u003cem\u003elooks weird\u003c/em\u003e, proposes alternative approaches instead of following the model's, and makes independent leaps the model didn't offer. None of that is available to someone who doesn't know the mathematics.\u003c/p\u003e\n\u003ch2\u003eWhy this generalizes\u003c/h2\u003e\n\u003cp\u003eThe underlying claim is what the post calls the bottleneck principle — in many scenarios the human is the constraint, not the model, because the hard part is communicating exactly what kind of solution is wanted. Goedecke corroborates from software: familiarity with a \u003cem\u003especific\u003c/em\u003e codebase makes collaboration with an LLM far more effective than generic engineering knowledge would. The implication, if you accept it, is that domain expertise doesn't get obsoleted by capable models; it gets leveraged by them.\u003c/p\u003e",
+  "source": {
+    "name": "Sean Goedecke",
+    "authors": [
+      "Sean Goedecke"
+    ],
+    "url": "https://seangoedecke.com/llms-reward-expertise",
+    "published_at": "2026-08-03",
+    "license": "seangoedecke.com"
+  },
+  "topic_ids": [
+    "prompting",
+    "ai-for-code"
+  ],
+  "tags": [
+    "tutorial",
+    "agent",
+    "reasoning"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-08-10",
+  "date": "2026-08-03",
+  "related": [
+    {
+      "id": "card_13953d",
+      "slug": "in-context-learning",
+      "type": "concept",
+      "title": "In-Context Learning",
+      "hook": "Paste a few examples into a prompt and a large language model performs the task - no gradient updates, no fine-tuning, the prompt is the program.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-31"
+    },
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    },
+    {
+      "id": "card_11253d",
+      "slug": "shippy-lessons-building-agents",
+      "type": "blog",
+      "title": "What Building Shippy Taught Us About Building Agents",
+      "hook": "When a wrong answer can send a patrol boat miles off course, Ai2's maritime agent Shippy leans on deterministic tools and sandboxed sessions instead of hoping the model behaves.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_353972#0",
+      "format": "flip",
+      "prompt": "What is the 'bottleneck principle' in this post?",
+      "back_html": "\u003cp\u003eIn many situations the human, not the model, limits the result — because the difficult part is communicating to the model exactly what kind of solution you want, which takes knowing the domain well enough to say it.\u003c/p\u003e"
+    },
+    {
+      "id": "card_353972#1",
+      "format": "quiz",
+      "prompt": "What does the post identify as the most important prompting skill?",
+      "choices": [
+        {
+          "text": "Expertise in the domain you're prompting about",
+          "correct": true
+        },
+        {
+          "text": "Knowing the model's system prompt and formatting quirks",
+          "correct": false
+        },
+        {
+          "text": "Writing long, highly detailed prompts with many examples",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe argument is that LLMs democratize access to specialized knowledge but reward those who already have it — an expert asks tighter questions, notices wrong-looking answers, and proposes alternatives instead of accepting the model's.\u003c/p\u003e"
+    },
+    {
+      "id": "card_353972#2",
+      "format": "flip",
+      "prompt": "What does Terence Tao's ChatGPT transcript illustrate, per the post?",
+      "back_html": "\u003cp\u003eExpert-driven use: concise targeted messages, recognizing when a response looks off, proposing alternative approaches rather than following the model's suggestions, and making independent leaps in reasoning.\u003c/p\u003e"
+    }
+  ]
+}

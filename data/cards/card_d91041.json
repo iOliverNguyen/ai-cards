@@ -1,0 +1,121 @@
+{
+  "id": "card_d91041",
+  "slug": "ideagent-quality-diversity-ideation",
+  "type": "paper",
+  "title": "IDEAgent: Quality-Diversity Search for Research Ideas",
+  "hook": "Idea generators optimize for quality or for diversity, and get either near-clones or piles of nonsense. Treating ideation as a joint search changes the objective.",
+  "key_points": [
+    "Existing systems optimize quality or diversity independently, yielding clustered ideas or trivial, unsound ones.",
+    "Reframes ideation as quality-diversity search — a multi-agent framework evolving ideas through lineages, not independent samples.",
+    "Quality comes from multi-objective feedback driving dedicated repair and refinement passes.",
+    "Diversity comes from comparing each candidate against completed ideas, their ancestors, and rejected proposals.",
+    "Introduces Yield: the largest set of mutually diverse ideas that clear a quality threshold.",
+    "Reports 3.89x the best baseline on Yield across 32 topics in 8 CS domains, with non-zero Yield on 8x more topics."
+  ],
+  "content_html": "\u003cp\u003ePoint an LLM at a research area and ask for ideas, and you get one of two disappointments: a dozen rephrasings of the same thought, or a heap of proposals that are trivial, unsound, or too vague to act on. Gumma and colleagues argue that is a direct consequence of the objective — existing systems optimize for quality \u003cem\u003eor\u003c/em\u003e diversity, independently. Their fix is to treat ideation as a quality-diversity search, a framing lifted from evolutionary computation where the goal is a set of solutions that are individually good and mutually different.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eIDEAgent is a multi-agent framework that evolves ideas through \u003cstrong\u003elineages\u003c/strong\u003e rather than drawing them independently. Quality is driven by multi-objective feedback that triggers dedicated repair and refinement of a candidate. Diversity is enforced structurally: a lightweight sequential memory lets each new idea be compared explicitly against completed ideas, their historical ancestors, and proposals that were already rejected — so the search is pushed away from ground it has covered. To measure the conjunction rather than either half, the authors define \u003cstrong\u003eYield\u003c/strong\u003e: the largest set of mutually diverse ideas that clear a preset quality bar.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eEvaluated across 32 topics spanning 8 computer science domains, IDEAgent reportedly beat the best baseline by 3.89x on Yield and achieved non-zero Yield on 8x more topics — meaning that on many topics the baselines produced \u003cem\u003eno\u003c/em\u003e set of ideas that was both good and varied. The analysis credits repair and refinement with building logical rigor and clarity while preserving non-obviousness, which is the interesting part: polishing generated ideas did not flatten them. The framework is open-sourced by the authors.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Varun Gumma",
+      "Navonil Majumder",
+      "Soumitra Sinhahajari",
+      "Soujanya Poria"
+    ],
+    "url": "https://arxiv.org/abs/2607.22375",
+    "published_at": "2026-07-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "ai-for-science",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "reasoning",
+    "open-source",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-27",
+  "date": "2026-07-24",
+  "related": [
+    {
+      "id": "card_c2fa32",
+      "slug": "human-vs-llm-research-ideas-gap",
+      "type": "paper",
+      "title": "How Far Are LLM Research Ideas From Human Ones? A Reverse-Engineering Study",
+      "hook": "Judging LLM research ideas one at a time (novel? feasible? liked?) hides a bigger question: does the whole distribution of ideas an LLM can produce look like what human researchers actually do?",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-01"
+    },
+    {
+      "id": "card_611d9b",
+      "slug": "quest-deep-research-agent",
+      "type": "news",
+      "title": "QUEST: An Open Deep-Research Agent",
+      "hook": "A fully open Deep Research agent trained on ~32 H100s and ~8K synthetic samples — recipe, code, weights, and data all released, and reportedly competitive with frontier closed systems.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-19"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_d91041#0",
+      "format": "quiz",
+      "prompt": "What failure mode does optimizing ideation for a single objective produce?",
+      "choices": [
+        {
+          "text": "Either ideas clustered close together, or a large set of trivial, unsound, unclear ones",
+          "correct": true
+        },
+        {
+          "text": "Ideas that are novel but too expensive to test experimentally",
+          "correct": false
+        },
+        {
+          "text": "Ideas that reproduce the training corpus verbatim",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eChasing quality alone converges on near-duplicates; chasing diversity alone scatters into unsound proposals. The paper argues both objectives have to be optimized in conjunction.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d91041#1",
+      "format": "flip",
+      "prompt": "What does the Yield metric measure?",
+      "back_html": "\u003cp\u003eThe largest set of mutually diverse ideas that satisfy a predetermined quality threshold — a single number capturing the quality-diversity conjunction rather than either axis alone.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d91041#2",
+      "format": "flip",
+      "prompt": "How does IDEAgent maintain diversity across generated ideas?",
+      "back_html": "\u003cp\u003eLightweight sequential memory plus explicit comparison against completed ideas, their historical ancestors, and previously rejected proposals — so new candidates must differ from what the lineage already explored.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d91041#3",
+      "format": "quiz",
+      "prompt": "What did the authors find repair and refinement contributed?",
+      "choices": [
+        {
+          "text": "Logical rigor and clarity, while preserving non-obviousness",
+          "correct": true
+        },
+        {
+          "text": "Faster generation at the cost of idea originality",
+          "correct": false
+        },
+        {
+          "text": "Broader topic coverage but weaker individual ideas",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eTheir analysis credits the repair and refinement passes with building rigor and clarity without sanding away what made the ideas non-obvious — the usual worry when you polish generated output.\u003c/p\u003e"
+    }
+  ]
+}

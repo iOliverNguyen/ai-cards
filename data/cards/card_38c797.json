@@ -1,0 +1,120 @@
+{
+  "id": "card_38c797",
+  "slug": "requential-coding-compression-generalization-bounds",
+  "type": "paper",
+  "title": "Requential Coding: Pushing the Limits of Model Compression with Self-Generated Training Data",
+  "hook": "Bigger models are supposed to be harder to bound. This compressor only pays bits where a model's predictions disagree with a teacher — and the resulting bound gets TIGHTER as scale grows.",
+  "key_points": [
+    "A teacher selects training samples from the student's own output distribution; the code pays bits only where teacher and student disagree.",
+    "Produces codes orders of magnitude shorter than prior 'prequential coding,' which encodes the full sequence regardless of what was learned.",
+    "Yields state-of-the-art PAC-Bayes bounds for billion-parameter LLMs, beating bounds from aggressive quantization even at zero quant error.",
+    "In the compute-optimal regime, the bound gets TIGHTER as scale increases — the opposite of typical expectations.",
+    "Shows lower-entropy text holds far more learnable structure than higher-entropy images; predicts gradual multi-epoch overfitting."
+  ],
+  "content_html": "\u003cp\u003eA model that can represent its training data as a short code has found real regularities in it — that's the intuition behind using compression to bound generalization. But building codes that realize how simple a large network's learned function actually is has been hard: parameter-based methods like quantization scale with model size regardless of what was learned, and prior \u0026quot;prequential coding\u0026quot; encodes the exact training sequence regardless of how much the model has actually learned.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eShikai Qiu, Marc Finzi, Yujia Zheng, Kun Zhang, and Andrew Gordon Wilson introduce requential coding: a teacher model selects training samples drawn from the student's own output distribution, and the student's code records only those selections, costing bits only where teacher and student disagree. The resulting codes run orders of magnitude shorter than prequential coding, with the advantage growing as models scale. Plugged into a PAC-Bayes bound, requential coding gives state-of-the-art generalization guarantees for billion-parameter LLMs — beating bounds built on aggressive post-training quantization even if that quantization had zero error — and in the compute-optimal regime the bound actually tightens with scale, since larger models turn out to be more compressible relative to their dataset. The same code predicts gradual overfitting under multi-epoch training, and separates learnable structure from random content, showing lower-entropy text holds far more learnable structure than higher-entropy image data. See arxiv.org/abs/2607.11883.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Shikai Qiu",
+      "Marc Finzi",
+      "Yujia Zheng",
+      "Kun Zhang",
+      "Andrew Gordon Wilson"
+    ],
+    "url": "https://arxiv.org/abs/2607.11883",
+    "published_at": "2026-07-13",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "generalization",
+    "language-models",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-16",
+  "date": "2026-07-13",
+  "related": [
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    },
+    {
+      "id": "card_0eb81a",
+      "slug": "lottery-ticket-hypothesis",
+      "type": "paper",
+      "title": "The Lottery Ticket Hypothesis",
+      "hook": "You can prune over 90% of a trained network and keep its accuracy. The catch: a tiny 'winning ticket' subnetwork was hiding inside the dense one from the start.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2018-03-09"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_38c797#0",
+      "format": "flip",
+      "prompt": "What makes 'requential coding' different from prior 'prequential coding'?",
+      "back_html": "\u003cp\u003eA teacher selects training samples from the student's own output distribution, and the code pays bits only for disagreements — not for the entire data sequence.\u003c/p\u003e"
+    },
+    {
+      "id": "card_38c797#1",
+      "format": "quiz",
+      "prompt": "What is the counter-intuitive scaling result from applying requential coding to PAC-Bayes bounds?",
+      "choices": [
+        {
+          "text": "In the compute-optimal regime, the generalization bound gets tighter as model scale increases",
+          "correct": true
+        },
+        {
+          "text": "The bound stays exactly constant no matter how much the model scales",
+          "correct": false
+        },
+        {
+          "text": "The bound rapidly loosens once models pass a billion parameters",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLarger models became more compressible relative to their dataset size in the compute-optimal regime, tightening rather than loosening the bound.\u003c/p\u003e"
+    },
+    {
+      "id": "card_38c797#2",
+      "format": "flip",
+      "prompt": "What does requential code length depend on, unlike parameter-based compression like quantization?",
+      "back_html": "\u003cp\u003eIt's independent of both parameter count and data entropy — the code costs bits only where teacher and student disagree, not per parameter stored.\u003c/p\u003e"
+    },
+    {
+      "id": "card_38c797#3",
+      "format": "quiz",
+      "prompt": "What did requential coding reveal when comparing text and image data?",
+      "choices": [
+        {
+          "text": "Text holds far more learnable, compressible structure than image data",
+          "correct": true
+        },
+        {
+          "text": "Images compress more than text because pixels are highly redundant",
+          "correct": false
+        },
+        {
+          "text": "Text and images compress to identical code lengths under this framework",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe code isolates learnable structure from random content, showing lower-entropy text carries more learnable signal than higher-entropy image data.\u003c/p\u003e"
+    }
+  ]
+}

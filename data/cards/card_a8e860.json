@@ -1,0 +1,122 @@
+{
+  "id": "card_a8e860",
+  "slug": "symtrace-repair-or-resample",
+  "type": "paper",
+  "title": "Repair or Resample? Rethinking Failure Debugging in Multi-Agent Systems",
+  "hook": "Most multi-agent repair methods just rerun the trajectory and hope. Freeze the randomness and the truth comes out: unguided reruns reproduce only 68% of failures and fix under 7% of them.",
+  "key_points": [
+    "Existing MAS debugging mostly reruns and resamples whole trajectories, so 'repair' may just be exploiting LLM sampling randomness.",
+    "SymTrace records the execution trajectory and sets intervention anchors, replaying from logs and regenerating only downstream.",
+    "That makes failures reliably reproducible — the missing precondition for measuring whether a repair actually worked.",
+    "SymFail: 536 human-annotated failure trajectories with graph-linked locations, categories, and trace evidence.",
+    "Across three mainstream MAS frameworks, unguided reruns reproduce 67.97% of failures and repair only 6.90%.",
+    "A symptom-driven intervention repairs 20.15% of failed cases — a 191.89% improvement over prior repair methods."
+  ],
+  "content_html": "\u003cp\u003eAs LLM multi-agent systems take on long-horizon tasks, reliability becomes the bottleneck. The standard debugging move is to rerun the whole execution trajectory and resample. Luan and colleagues ask the uncomfortable question: does that \u003cstrong\u003ecausally repair\u003c/strong\u003e the failure, or does it just roll the dice again until the sampling randomness happens to produce a success?\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eMaking failures reproducible\u003c/h2\u003e\n\u003cp\u003eAnswering that requires something the field lacked — the ability to hit the same failure twice. \u003cstrong\u003eSymTrace\u003c/strong\u003e records the multi-agent execution trajectory and establishes \u003cem\u003eintervention anchors\u003c/em\u003e. On replay it reconstructs everything before the anchor from the recorded logs and regenerates only the downstream trajectory, isolating the intervention from the rest of the run's stochasticity. On top of it the authors build \u003cstrong\u003eSymFail\u003c/strong\u003e, 536 human-annotated failure trajectories with graph-linked locations, categories, and trace evidence.\u003c/p\u003e\n\u003ch2\u003eWhat the numbers say\u003c/h2\u003e\n\u003cp\u003eA large-scale empirical study across three mainstream MAS frameworks finds unguided rerun methods are highly unreliable: they reproduce only 67.97% of failures and repair just 6.90% of them. A symptom-driven intervention method — targeting the observed failure signature rather than blindly resampling — repairs 20.15% of failed cases, a 191.89% relative improvement over prior state-of-the-art repair. Still a minority of failures, which is the honest headline: multi-agent debugging is genuinely hard, and the field's apparent progress was partly measurement artifact. arXiv, 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zhongwen Luan",
+      "Xiaoyu Zhang",
+      "Ming Hu",
+      "Yue Yang",
+      "Jiongchi Yu",
+      "Xiaohong Chen"
+    ],
+    "url": "https://arxiv.org/abs/2608.25920",
+    "published_at": "2026-08-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_7eeaf2",
+      "slug": "agentrewind-recoverable-execution",
+      "type": "paper",
+      "title": "AgentRewind: Give Agents an Undo Button",
+      "hook": "Most agent research tries to prevent mistakes. AgentRewind asks what happens after one — checkpoint the context and the environment together, so the agent can rewind and retry with what it learned.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-14"
+    },
+    {
+      "id": "card_6b29bc",
+      "slug": "test-time-error-localization",
+      "type": "paper",
+      "title": "Don't Resample — Rewind to the Bad Token",
+      "hook": "Resampling after a failure throws away the reasoning that was still correct. TTEL finds the token where things went wrong and branches from there — same pass@64, half the tokens.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-23"
+    },
+    {
+      "id": "card_085057",
+      "slug": "multi-agent-coordination-benchmark",
+      "type": "paper",
+      "title": "A Benchmark for Open-Ended Multi-Agent Coordination",
+      "hook": "13 LLMs try to explore, trade, craft, and build together in an open world — and most manage only ~6% of normalized return. Communication, not raw capability, turns out to be the biggest lever.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-14"
+    },
+    {
+      "id": "card_b670a8",
+      "slug": "trace-agent-credit-assignment",
+      "type": "paper",
+      "title": "TRACE: Turn-Level Reward Assignment via Credit Estimation for Long-Horizon Agents",
+      "hook": "A failed agent rollout might still contain dozens of genuinely useful actions — outcome-only RL punishes every one of them the same as the final mistake. TRACE assigns credit per tool call instead, with no extra critic.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a8e860#0",
+      "format": "flip",
+      "prompt": "What question does SymTrace exist to answer?",
+      "back_html": "\u003cp\u003eWhether multi-agent repair methods causally fix failures or merely repair stochastically by exploiting the randomness of LLM sampling. Answering it requires reliably reproducing the same failure.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a8e860#1",
+      "format": "quiz",
+      "prompt": "How does SymTrace make multi-agent failures reproducible?",
+      "choices": [
+        {
+          "text": "It records the trajectory and replays it from logs up to an intervention anchor, regenerating only the downstream portion",
+          "correct": true
+        },
+        {
+          "text": "It fixes the model's temperature to zero for the entire run",
+          "correct": false
+        },
+        {
+          "text": "It replaces every agent with a deterministic rule-based stub",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eReplaying the recorded prefix and regenerating only after the anchor isolates the intervention from the rest of the run's randomness.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a8e860#2",
+      "format": "flip",
+      "prompt": "How well do unguided rerun-and-resample repair methods actually perform?",
+      "back_html": "\u003cp\u003ePoorly. Across three mainstream MAS frameworks they reproduce only 67.97% of failures and repair just 6.90%. A symptom-driven intervention reaches 20.15%.\u003c/p\u003e"
+    }
+  ]
+}

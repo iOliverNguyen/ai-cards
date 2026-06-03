@@ -1,0 +1,96 @@
+{
+  "id": "card_7a5e17",
+  "slug": "the-pile",
+  "type": "dataset",
+  "title": "The Pile: 800GB of Diverse Text",
+  "hook": "Web text alone leaves gaps. The Pile stitches together 22 curated sources — academic and professional — so a language model picks up knowledge plain web crawls miss.",
+  "key_points": [
+    "An 800GB English corpus built from 22 diverse, high-quality subsets.",
+    "Mixes academic and professional sources to broaden cross-domain knowledge.",
+    "GPT-2 and GPT-3 struggle on some of its domains, such as academic writing.",
+    "Models trained on it improve on both in-domain and downstream evaluations.",
+    "Built by EleutherAI and widely used to train open LLMs."
+  ],
+  "content_html": "\u003cp\u003eLeo Gao, Stella Biderman, Sid Black, and colleagues at EleutherAI built the Pile, an 800GB English text corpus assembled from 22 diverse, high-quality subsets drawn from academic and professional sources. The goal is to broaden a model's cross-domain knowledge beyond what plain web text provides.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat it is\u003c/h2\u003e\n\u003cp\u003eThe corpus deliberately mixes specialized domains rather than relying on generic web crawls. When the authors evaluate GPT-2 and GPT-3 on its components, the models struggle on some domains — academic writing among them — revealing gaps in what web-trained models have seen. Models trained on the Pile improve on both in-domain and downstream evaluations.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe Pile became a go-to corpus for training open large language models, giving the community a shared, documented dataset to work from. Its emphasis on diverse, curated sources reflects a broader lesson: what you train on shapes what a model knows, and breadth of domains is part of the recipe.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Leo Gao",
+      "Stella Biderman",
+      "Sid Black",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2101.00027",
+    "published_at": "2020-12-31",
+    "license": "arXiv (CC BY 4.0)"
+  },
+  "topic_ids": [
+    "data"
+  ],
+  "tags": [
+    "dataset",
+    "nlp"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2020-12-31",
+  "related": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    },
+    {
+      "id": "card_9237d7",
+      "slug": "deduplicating-training-data",
+      "type": "paper",
+      "title": "Deduplicating Training Data Makes LMs Better",
+      "hook": "Training corpora are full of copies — one 61-word sentence shows up 60,000+ times in C4. Strip the duplicates and models memorize far less and evaluate more honestly.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2021-07-14"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_7a5e17#0",
+      "format": "flip",
+      "prompt": "Why did the authors deliberately mix academic and professional sources in the Pile?",
+      "back_html": "\u003cp\u003eTo broaden a model's cross-domain knowledge beyond what plain web crawls provide.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7a5e17#1",
+      "format": "quiz",
+      "prompt": "What did evaluating GPT-2 and GPT-3 on the Pile's components reveal?",
+      "choices": [
+        {
+          "text": "They struggle on some domains like academic writing, exposing gaps in web-trained models",
+          "correct": true
+        },
+        {
+          "text": "They already mastered every domain in it",
+          "correct": false
+        },
+        {
+          "text": "They could not process English text",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe models struggled on certain domains such as academic writing, revealing what web-trained models have not seen.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7a5e17#2",
+      "format": "flip",
+      "prompt": "What broader lesson about training data does the Pile reflect?",
+      "back_html": "\u003cp\u003eWhat you train on shapes what a model knows, and breadth of domains is part of the recipe.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "id": "card_0b5926",
+  "slug": "orarl-annotations-as-rollouts",
+  "type": "paper",
+  "title": "Annotations as Rollouts: Cheaper RL for Video Models",
+  "hook": "RL post-training wastes most of its samples on bad rollouts. OraRL drops the ground-truth annotation into the group as an oracle rollout — and has to fix the advantage math to make it work.",
+  "key_points": [
+    "Standard on-policy RL for video MLLMs samples groups where few rollouts are good enough to learn from.",
+    "OraRL injects each dataset annotation into the on-policy group as an 'oracle rollout' — a direct positive target.",
+    "Naively adding a high-reward oracle raises the group baseline and flips real positives negative; the authors call this advantage inversion.",
+    "Their fix: an oracle-free baseline from policy rollouts, plus a separate detached oracle advantage and a directional gain term.",
+    "Sign-balanced pruning keeps only the oracle and the strongest rollout of each sign — 2.2x SFT step time vs 4.9x for GRPO with chain-of-thought.",
+    "Video-ORA-9B decodes in 130 ms instead of 4,780 ms without CoT, and scores 73.1 on VSI-Bench vs 55.0 for GPT-5."
+  ],
+  "content_html": "\u003cp\u003eVideo multimodal LLMs are usually post-trained with on-policy RL, but sampling a group of rollouts is wasteful — most come back too weak to teach anything, and generating chain-of-thought for each one is expensive. Li and colleagues point out that the dataset already contains a perfect rollout: the annotation itself. OraRL feeds that annotation into the on-policy group as an oracle rollout, a direct positive target rather than just a scoring reference.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe catch, and the fix\u003c/h2\u003e\n\u003cp\u003eYou cannot simply drop a high-reward sequence into a group. Because group-relative methods compute each rollout's advantage against the group mean, an oracle with near-perfect reward pulls the baseline up and turns genuinely good policy rollouts into negatives — what the authors name \u003cem\u003eadvantage inversion\u003c/em\u003e. OraRL decouples the estimator: policy rollouts alone set the baseline, while the oracle–policy gap contributes a directional gain and a separate, detached oracle advantage.\u003c/p\u003e\n\u003ch2\u003eWhat it buys\u003c/h2\u003e\n\u003cp\u003eSign-balanced pruning keeps only the oracle and the strongest rollouts of each sign, cutting step time to about 2.2x SFT versus 4.9x for GRPO with chain-of-thought. The authors report gains that hold from 0.8B to 9B and up to 100k prompts, and their Video-ORA-9B skips CoT entirely — decoding in 130 ms instead of 4,780 ms while improving temporal, tracking, and segmentation scores over the prior best models.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yunheng Li",
+      "Guohong Mu",
+      "Hao Li",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.20492",
+    "published_at": "2026-08-20",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "multimodal",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-27",
+  "date": "2026-08-20",
+  "related": [
+    {
+      "id": "card_4cd8fd",
+      "slug": "deepseek-r1",
+      "type": "paper",
+      "title": "DeepSeek-R1: Incentivizing Reasoning via Reinforcement Learning",
+      "hook": "DeepSeek shows strong reasoning can emerge from RL on verifiable rewards with minimal supervised data - and those reasoning traces can be distilled into smaller models.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2025-01-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_0b5926#0",
+      "format": "flip",
+      "prompt": "What is 'advantage inversion' in OraRL?",
+      "back_html": "\u003cp\u003eDropping a high-reward oracle rollout into an on-policy group raises the group's baseline, which turns otherwise-positive policy advantages negative — the model gets punished for good rollouts.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0b5926#1",
+      "format": "quiz",
+      "prompt": "How does OraRL use dataset annotations differently from standard RL post-training?",
+      "choices": [
+        {
+          "text": "It puts the annotation into the on-policy group as an extra rollout to optimize toward",
+          "correct": true
+        },
+        {
+          "text": "It uses annotations only to score the sampled rollouts",
+          "correct": false
+        },
+        {
+          "text": "It replaces the reward model with an annotation classifier",
+          "correct": false
+        },
+        {
+          "text": "It filters out any prompt whose annotation is ambiguous",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper's core observation is that annotations can serve as oracle rollouts — direct positive optimization targets — not just as scoring signal.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0b5926#2",
+      "format": "flip",
+      "prompt": "Why is OraRL cheaper per step than GRPO with chain-of-thought?",
+      "back_html": "\u003cp\u003eSign-balanced pruning keeps only the oracle and the strongest rollouts of each sign, and the model skips costly CoT generation: 2.2x SFT step time versus GRPO-with-CoT's 4.9x.\u003c/p\u003e"
+    }
+  ]
+}

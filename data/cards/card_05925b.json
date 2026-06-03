@@ -1,0 +1,126 @@
+{
+  "id": "card_05925b",
+  "slug": "naturebench",
+  "type": "paper",
+  "title": "NatureBench: Can Coding Agents Match Published SOTA?",
+  "hook": "Can coding agents reproduce — even beat — published Nature results? The best one surpassed prior SOTA on just 17.8% of 90 real scientific tasks.",
+  "key_points": [
+    "90 tasks distilled from peer-reviewed Nature-family papers, each in a standardized container built by the NatureGym pipeline.",
+    "It tests whether agents can move past reproduction toward discovery on real scientific problems.",
+    "Under a web-search-disabled protocol, the strongest of ten agents beat prior SOTA on only 17.8% of tasks.",
+    "Agents mostly win by 'methodological translation' — recasting tasks as familiar supervised prediction, not new science.",
+    "Failures trace to wrong method choice and too little compute budget, not to misunderstanding the task."
+  ],
+  "content_html": "\u003cp\u003eNatureBench asks a sharp question: can AI coding agents go beyond reproducing results to actually matching or beating the published state of the art on real scientific problems? Built by Wang, Ding, Zhou, Zhang and colleagues, it comprises 90 tasks distilled from peer-reviewed Nature-family publications across disciplines.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eEach task runs in a standardized, per-task container produced by NatureGym, an automated pipeline that turns a source paper into a reproducible environment. That design directly attacks the \u0026quot;environment fragmentation\u0026quot; that undermined the credibility of earlier agent-on-research benchmarks. Agents were evaluated under a strict web-search-disabled protocol, so they couldn't just look up the original method.\u003c/p\u003e\n\u003ch2\u003eWhat they found\u003c/h2\u003e\n\u003cp\u003eAcross ten frontier agent configurations, the strongest surpassed prior SOTA on only 17.8% of tasks. Digging into how agents succeeded, the authors found they mostly used \u0026quot;methodological translation\u0026quot; — converting a scientific task into a familiar supervised-prediction problem — rather than genuine scientific invention. And the failures were telling: dominated by wrong method choice and insufficient compute budget, not by misunderstanding the task. The benchmark, pipeline, and a public leaderboard are released.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yuru Wang",
+      "Lejun Cheng",
+      "Ning Ding",
+      "Bowen Zhou",
+      "Kaiyan Zhang",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.24530",
+    "published_at": "2026-06-23",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-25",
+  "date": "2026-06-23",
+  "related": [
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    },
+    {
+      "id": "card_ac1957",
+      "slug": "multi-livecodebench",
+      "type": "paper",
+      "title": "Multi-LCB: Code Eval Beyond Python",
+      "hook": "LiveCodeBench keeps coding evals contamination-free — but only in Python. Multi-LCB extends it to twelve languages and finds models that look strong are quietly overfit to Python.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    },
+    {
+      "id": "card_a4d8b0",
+      "slug": "automedbench",
+      "type": "paper",
+      "title": "AutoMedBench: Medical AutoResearch with Agentic AI",
+      "hook": "Can an AI agent run a whole medical-imaging research project end to end? AutoMedBench scores each stage — and finds agents can build pipelines but can't tell when they're broken.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_05925b#0",
+      "format": "quiz",
+      "prompt": "How did the strongest agent mostly achieve its NatureBench wins?",
+      "choices": [
+        {
+          "text": "By 'methodological translation' — recasting scientific tasks as familiar supervised prediction problems",
+          "correct": true
+        },
+        {
+          "text": "By inventing genuinely new scientific methods",
+          "correct": false
+        },
+        {
+          "text": "By searching the web for the original paper's code",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAnalysis of method pathways showed agents succeeding by converting tasks into familiar prediction setups rather than through scientific invention — and the protocol disabled web search.\u003c/p\u003e"
+    },
+    {
+      "id": "card_05925b#1",
+      "format": "flip",
+      "prompt": "What problem with prior agent-on-research benchmarks did NatureGym solve?",
+      "back_html": "\u003cp\u003eEnvironment fragmentation — it automatically builds a standardized, per-task containerized environment from each source paper, making runs credible and reproducible.\u003c/p\u003e"
+    },
+    {
+      "id": "card_05925b#2",
+      "format": "quiz",
+      "prompt": "What dominated agent failures on NatureBench?",
+      "choices": [
+        {
+          "text": "Wrong method choice and insufficient compute budget",
+          "correct": true
+        },
+        {
+          "text": "Misunderstanding what the task was asking",
+          "correct": false
+        },
+        {
+          "text": "Bugs in the containerized environment",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eFailures were dominated by choosing the wrong method and running out of compute, not by task misunderstanding — agents understood the goal but picked poor approaches.\u003c/p\u003e"
+    }
+  ]
+}

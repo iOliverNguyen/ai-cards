@@ -1,0 +1,101 @@
+{
+  "id": "card_892cbb",
+  "slug": "vlm-condition-encoder-localization-gap",
+  "type": "paper",
+  "title": "Where VLM Localization Signal Actually Hides in Editing Pipelines",
+  "hook": "VLMs are great at pointing to objects on their own — but bolt one onto a diffusion image editor and that skill seems to vanish. It didn't leave, it just hid somewhere editing pipelines don't look.",
+  "key_points": [
+    "Standalone VLMs localize objects well, but editing pipelines that use a VLM as a condition encoder often lose that accuracy, especially in complex multi-entity scenes.",
+    "Hypothesis: as a condition encoder, the VLM gets only one forward pass, blocking the autoregressive generation its localization ability was trained for.",
+    "The authors' method, 'Analysis-by-Proxy,' trains a lightweight, interpretable probe on the VLM's intermediate representations using an auxiliary localization task, to find where spatial signal actually lives.",
+    "Finding: localization signal doesn't reliably reach the specific layers editing pipelines tap for conditioning.",
+    "Instead it stays in intermediate layers whose exact location shifts depending on the input prompt — a mismatch, not a missing capability."
+  ],
+  "content_html": "\u003cp\u003eVision-language models are surprisingly good at pointing to things in an image — until you plug one into a diffusion-based image editor as the condition encoder, where that skill seems to evaporate, especially in busy, multi-entity scenes.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eResearchers at Tel Aviv University suspected the skill wasn't gone, just hidden. As a condition encoder, a VLM only gets a single forward pass — it never runs the autoregressive generation loop its localization ability was trained under, so the pipeline never fully exposes it. To test this, they built a lightweight, interpretable proxy model (which they call \u0026quot;Analysis-by-Proxy\u0026quot;) trained on the VLM's intermediate representations using an auxiliary localization task, used to trace exactly where spatial information lives inside the frozen model.\u003c/p\u003e\n\u003cp\u003eThe result: under single-pass constraints, localization signal doesn't reliably propagate to the predefined layers that current editing pipelines tap for conditioning. It instead stays hidden in intermediate representations, at locations that shift depending on the input prompt. The mismatch is between how the VLM represents spatial knowledge and how existing pipelines try to extract it — which the authors argue should motivate more principled conditioning architectures. Daniel Cohen-Or and Or Patashnik's group, Tel Aviv University, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yoav Baron",
+      "Sara Dorfman",
+      "Roni Paiss",
+      "Daniel Cohen-Or",
+      "Or Patashnik"
+    ],
+    "url": "https://arxiv.org/abs/2607.06445",
+    "published_at": "2026-07-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "vlms",
+    "interpretability",
+    "papers-this-week"
+  ],
+  "tags": [
+    "vision",
+    "multimodal",
+    "interpretability",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-13",
+  "date": "2026-07-07",
+  "related": [
+    {
+      "id": "card_92633d",
+      "slug": "rechannel-dense-prediction",
+      "type": "paper",
+      "title": "ReChannel: Repurposing Text-to-Image Diffusion for Dense Prediction",
+      "hook": "Depth maps and masks get generated as if they were images, decoded through the same interface as RGB pixels. This paper swaps that for a tiny linear head that's 2.5x faster.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-07"
+    },
+    {
+      "id": "card_c9a4a9",
+      "slug": "controlnet",
+      "type": "paper",
+      "title": "ControlNet: Adding Conditional Control to Diffusion Models",
+      "hook": "Lock a diffusion model's weights, attach a trainable copy of its encoder fed with spatial signals like edges or pose, and gain precise compositional control without touching the original model.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-02-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_892cbb#0",
+      "format": "flip",
+      "prompt": "Why might a VLM lose its localization ability when used as a condition encoder for image editing?",
+      "back_html": "\u003cp\u003eAs a condition encoder it's restricted to a single forward pass, blocking the autoregressive generation process its localization skill was optimized for — so the capability doesn't get fully exposed.\u003c/p\u003e"
+    },
+    {
+      "id": "card_892cbb#1",
+      "format": "quiz",
+      "prompt": "What does the authors' proxy probe reveal about where localization signal lives in a single-pass VLM?",
+      "choices": [
+        {
+          "text": "It stays in intermediate layers whose location varies with the input prompt, not the fixed layers editing pipelines conditioned on",
+          "correct": true
+        },
+        {
+          "text": "It is completely absent once the VLM runs in single-pass mode",
+          "correct": false
+        },
+        {
+          "text": "It always appears at the same fixed layer regardless of the prompt",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe proxy probe found the signal is real but prompt-dependent in location — a mismatch between where spatial knowledge lives and where current editing pipelines extract it from.\u003c/p\u003e"
+    },
+    {
+      "id": "card_892cbb#2",
+      "format": "flip",
+      "prompt": "What is the core method the authors use to trace spatial information inside the VLM?",
+      "back_html": "\u003cp\u003eTrain a lightweight, interpretable proxy model on the VLM's intermediate representations with an auxiliary localization task, then read the proxy to see which representations actually encode spatial information.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "id": "card_ad93e3",
+  "slug": "dcas-cli-agent-scaffolding",
+  "type": "paper",
+  "title": "Open Coding Agents Are Overfitting to Their Harness",
+  "hook": "Almost all open agent trajectory data is collected under OpenHands. Models fine-tuned on it score well there and fall apart under any other scaffold — a gap the base models don't have.",
+  "key_points": [
+    "The open CLI-agent ecosystem trains on trajectories collected almost exclusively under a single scaffold, OpenHands.",
+    "Fine-tuned models degrade substantially when deployed under a non-training scaffold; untrained base models show no such divergence.",
+    "That asymmetry pins the gap on fine-tuning absorbing scaffold-specific conventions, not on model capability.",
+    "The paper separates explicit planning (a pre-execution plan as a first-class artifact) from implicit planning (structural conventions shaping the whole agent loop).",
+    "DCAS is an interception layer that routes API traffic between any CLI scaffold and any backend model, without modifying the scaffold.",
+    "Fine-tuning on a small set of DCAS-collected planning-aware trajectories from one scaffold improved results across non-training scaffolds."
+  ],
+  "content_html": "\u003cp\u003eOpen CLI coding agents have a monoculture problem. The trajectory datasets used to fine-tune open models are collected almost entirely under one environment, OpenHands — and models trained on that data score well under OpenHands while degrading substantially under any other scaffold. The tell is that untrained base models don't show the divergence, which pins the gap on fine-tuning absorbing the training scaffold's conventions.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThangarajah, Chen and Hassan argue the load-bearing convention is planning structure, and split it in two: \u003cem\u003eexplicit\u003c/em\u003e planning, a pre-execution plan produced as a first-class artifact, and \u003cem\u003eimplicit\u003c/em\u003e planning, the structural conventions that shape execution throughout the agent loop. If that's right, the fix isn't a better scaffold — it's moving planning out of the scaffold and into the model as a learned capability.\u003c/p\u003e\n\u003cp\u003eDCAS is the tool they build to test it: a backend-substitution interception layer that routes API traffic between any CLI scaffold and any backend model without touching the scaffold, which makes cross-scaffold evaluation and planning-aware trajectory collection possible. A controlled plan-source intervention shows planning quality is high-leverage — the gains exceed the cross-scaffold drops. And a model fine-tuned on a small set of DCAS-collected planning-aware trajectories under a single scaffold improves consistently on the scaffolds it never trained on. August 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Kishanthan Thangarajah",
+      "Boyuan Chen",
+      "Ahmed E. Hassan"
+    ],
+    "url": "https://arxiv.org/abs/2608.06113",
+    "published_at": "2026-08-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "ai-for-code",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-13",
+  "date": "2026-08-06",
+  "related": [
+    {
+      "id": "card_f32b73",
+      "slug": "cli-coding-agent-failure-anatomy",
+      "type": "paper",
+      "title": "Failure as a Process: An Anatomy of CLI Coding Agent Trajectories",
+      "hook": "A 3,843-trajectory autopsy of coding agents finds most failures aren't slips — they're wrong beliefs formed in the first few steps, invisible until it's too late to recover.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-10"
+    },
+    {
+      "id": "card_012056",
+      "slug": "catastrophic-remembering-claude-md",
+      "type": "paper",
+      "title": "Why Does CLAUDE.md Keep Growing?",
+      "hook": "Agent instruction files only ever get longer. The reason is asymmetric cost: adding a line is free, but deleting one whose rationale is lost risks a regression you can't cheaply check.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-11"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_ad93e3#0",
+      "format": "quiz",
+      "prompt": "Why do the authors blame fine-tuning rather than model capability for the cross-scaffold drop?",
+      "choices": [
+        {
+          "text": "Untrained base models don't show the divergence — only fine-tuned ones do",
+          "correct": true
+        },
+        {
+          "text": "The drop disappears when the models are quantized",
+          "correct": false
+        },
+        {
+          "text": "Larger models show a bigger drop than smaller ones",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe base-model control is the whole argument: if the gap were about capability it would appear before fine-tuning too.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ad93e3#1",
+      "format": "flip",
+      "prompt": "What's the difference between explicit and implicit planning here?",
+      "back_html": "\u003cp\u003eExplicit planning is a pre-execution plan produced as a first-class artifact. Implicit planning is the structural conventions that shape execution throughout the agent loop.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ad93e3#2",
+      "format": "flip",
+      "prompt": "What does DCAS actually do?",
+      "back_html": "\u003cp\u003eIt sits between a CLI scaffold and a backend model as a traffic-routing interception layer, letting you swap either side without modifying the scaffold — enabling cross-scaffold evaluation and planning-aware trajectory collection.\u003c/p\u003e"
+    }
+  ]
+}

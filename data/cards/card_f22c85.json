@@ -1,0 +1,127 @@
+{
+  "id": "card_f22c85",
+  "slug": "watermark-evidence-forensic-readiness",
+  "type": "paper",
+  "title": "AI Watermark Evidence Fails Forensic Readiness",
+  "hook": "Laws like the EU AI Act and California's SB 942 assume watermark detection can hold up in court. Tested against forensic and legal admissibility standards, three leading methods collapse.",
+  "key_points": [
+    "Tests KGW, Unigram, and SynthID-Text against Daubert admissibility criteria and NIST's digital forensic process — none pass more than 2 of 5 Daubert factors.",
+    "Paraphrasing removed the watermark in 100% of KGW and Unigram detections, and 98.3% of SynthID detections, across 846 runs.",
+    "Even with no attack at all, false-negative rates were already high: 70% (KGW), 83% (Unigram), 80% (SynthID).",
+    "SynthID also flagged 5.4% of paraphrased human-written text as AI-generated, with 80% of its own pristine watermarked output landing in an uncertain 'deadband'.",
+    "Proposes a 12-criterion, 60-point Forensic Readiness Score, but finds it still can't fully capture just how forensically useless these methods are."
+  ],
+  "content_html": "\u003cp\u003eRegulators are betting on watermarking to prove text came from an LLM — the EU AI Act wants markings \u0026quot;sufficiently reliable and robust,\u0026quot; California's SB 942 wants them \u0026quot;extraordinarily difficult to remove.\u0026quot; This paper asks the question those laws never tested: would the evidence actually survive a courtroom.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eSaifur Rahman Tamim and Amir Labib Khan evaluate three representative watermarking methods — KGW, Unigram, and the MarkLLM implementation of SynthID-Text — against the Daubert standard for admissible expert evidence and NIST SP 800-86's digital forensic process, structured through a new 12-criterion, 60-point Forensic Readiness Score. Their attack vector is meaning-preserving paraphrase, chosen because it's both legally realistic and hard to dismiss as evidence tampering.\u003c/p\u003e\n\u003cp\u003eThe results are stark: watermark detection failed to survive paraphrasing almost universally, false-negative rates were high even before any attack, and none of the three methods satisfied more than two of the five Daubert factors. The authors note that even their own point-based scoring framework struggles to fully capture just how forensically unusable these configurations are, as tested. Details on arXiv, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Saifur Rahman Tamim",
+      "Amir Labib Khan"
+    ],
+    "url": "https://arxiv.org/abs/2607.16010",
+    "published_at": "2026-07-17",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-17",
+  "related": [
+    {
+      "id": "card_4e9f3d",
+      "slug": "linear-ensembles-wash-watermarks",
+      "type": "paper",
+      "title": "Linear Ensembles Wash Away Watermarks",
+      "hook": "Text watermarks survive paraphrasing — but not arithmetic. Averaging the outputs of 3–5 different models cancels the signal almost entirely, and improves quality while doing it.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-05-28"
+    },
+    {
+      "id": "card_acc5ad",
+      "slug": "eu-ai-act",
+      "type": "resource",
+      "title": "The EU AI Act",
+      "hook": "The EU's answer to regulating AI: sort systems by how much risk they pose, then scale the rules to match — from outright bans to no rules at all.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-08-01"
+    },
+    {
+      "id": "card_e3235e",
+      "slug": "adversarial-attacks-for-good",
+      "type": "paper",
+      "title": "Adversarial Attacks for Good: Turning Perturbations into Owner-Side Protection",
+      "hook": "The perturbations that fool vision models can be applied by the content's owner instead — to block recognition, poison scrapers, or break unauthorized edits. Five communities invented this separately.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-05"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_f22c85#0",
+      "format": "quiz",
+      "prompt": "After a simple meaning-preserving paraphrase attack, what fraction of KGW and Unigram watermarks survived detection?",
+      "choices": [
+        {
+          "text": "None — 100% conditional removal for both",
+          "correct": true
+        },
+        {
+          "text": "About half",
+          "correct": false
+        },
+        {
+          "text": "Nearly all, since paraphrasing barely changes the token distribution",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAcross 846 valid paraphrase runs, every initially-detected KGW and Unigram watermark was removed by paraphrasing; SynthID fared only slightly better at 98.3% removal.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f22c85#1",
+      "format": "flip",
+      "prompt": "Why does this paper test watermarking against the Daubert criteria specifically?",
+      "back_html": "\u003cp\u003eDaubert sets the US legal bar for admissible expert/forensic evidence — the paper checks whether watermark detection could actually hold up as courtroom evidence, since laws assume it can.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f22c85#2",
+      "format": "flip",
+      "prompt": "What did the paper find about false negatives even without any attack?",
+      "back_html": "\u003cp\u003eFalse-negative rates were already high before any adversarial paraphrasing: 70% for KGW, 83% for Unigram, 80% for SynthID.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f22c85#3",
+      "format": "quiz",
+      "prompt": "What surprising failure mode did SynthID show on human-written text?",
+      "choices": [
+        {
+          "text": "It flagged 5.4% of paraphrased human-written controls as AI-generated",
+          "correct": true
+        },
+        {
+          "text": "It refused to process any human-written text",
+          "correct": false
+        },
+        {
+          "text": "It rewrote human text to insert its own watermark",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSynthID falsely flagged 5.4% of paraphrased human-written control text as AI-generated, alongside a high 18.6% paradox rate.\u003c/p\u003e"
+    }
+  ]
+}

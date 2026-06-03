@@ -1,0 +1,95 @@
+{
+  "id": "card_2015b0",
+  "slug": "chatgpt-work",
+  "type": "news",
+  "title": "ChatGPT Work: An Agent That Delivers Finished Work",
+  "hook": "ChatGPT Work doesn't just chat — it reaches into your actual apps and files, grinds on a project for hours, and hands back a real spreadsheet or slide deck instead of a wall of text.",
+  "key_points": [
+    "ChatGPT Work is an agent that acts across connected apps and files, staying on a task for hours by working through it independently.",
+    "It delivers finished artifacts — a working spreadsheet, slide deck, document, or small hosted web app — not markdown to copy-paste.",
+    "Plugins connect it to where work happens: Slack, Teams, Google Drive, SharePoint, email, calendars, CRMs, and project trackers.",
+    "'Computer Use' lets it operate a user's computer directly — clicking, typing, moving files — plus a built-in browser for web tools.",
+    "Rolling out first to Pro, Enterprise, and Edu accounts, expanding to Plus and Business users within days."
+  ],
+  "content_html": "\u003cp\u003eChatGPT Work is OpenAI's pitch for turning ChatGPT from an assistant you copy-paste from into an agent that finishes the job itself. Connected to a user's apps and files, it can stay on a complex project for hours, breaking it into steps and working through most of them unsupervised.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThree things separate it from a chatbot: it produces real artifacts (a working spreadsheet, a polished slide deck, a structured document, or even a small hosted web app) rather than text to hand-copy elsewhere; plugins wire it into the tools work already lives in — Slack, Microsoft Teams, Google Drive, SharePoint, email, calendars, CRMs, and project trackers; and a new built-in browser plus a \u0026quot;Computer Use\u0026quot; feature let it act on local files and click/type its way through tasks in the background.\u003c/p\u003e\n\u003cp\u003eIt's OpenAI pushing further into the \u0026quot;agent that does the work, not just describes it\u0026quot; pitch every frontier lab is chasing right now. Rollout starts with Pro, Enterprise, and Edu accounts before reaching Plus and Business users over the following days. OpenAI, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "authors": [
+      "OpenAI"
+    ],
+    "url": "https://openai.com/index/chatgpt-for-your-most-ambitious-work",
+    "published_at": "2026-07-09",
+    "license": "OpenAI (blog post)"
+  },
+  "topic_ids": [
+    "agents",
+    "releases",
+    "lab-updates"
+  ],
+  "tags": [
+    "agent",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-07-13",
+  "date": "2026-07-09",
+  "related": [
+    {
+      "id": "card_e19fbb",
+      "slug": "gpt-5-6",
+      "type": "news",
+      "title": "GPT-5.6: Frontier Intelligence That Scales With Your Ambition",
+      "hook": "GPT-5.6 ships as three tiers instead of one model — Luna, Terra, Sol — built around squeezing more capability out of every token rather than just scaling up.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-07-09"
+    },
+    {
+      "id": "card_176fda",
+      "slug": "codex",
+      "type": "paper",
+      "title": "Codex: Evaluating Large Language Models Trained on Code",
+      "hook": "Fine-tune GPT on public GitHub code and you get a model that solves programming problems and powers GitHub Copilot - plus a new benchmark, HumanEval, that tests functional correctness.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2021-07-07"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_2015b0#0",
+      "format": "flip",
+      "prompt": "What makes ChatGPT Work's output different from a typical chatbot reply?",
+      "back_html": "\u003cp\u003eIt delivers a finished artifact — a real spreadsheet with formulas, a formatted deck, a structured document, or a small hosted web app — instead of markdown text you'd have to copy and paste yourself.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2015b0#1",
+      "format": "quiz",
+      "prompt": "How does ChatGPT Work connect to tools like Slack or Google Drive?",
+      "choices": [
+        {
+          "text": "Through plugins that link ChatGPT to those apps and systems",
+          "correct": true
+        },
+        {
+          "text": "Users must manually email files to OpenAI for processing",
+          "correct": false
+        },
+        {
+          "text": "It cannot connect to any third-party app",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePlugins are the integration layer, wiring ChatGPT into chat tools, file storage, email, calendars, CRMs, and project trackers so the agent can gather context and act.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2015b0#2",
+      "format": "flip",
+      "prompt": "What is 'Computer Use' in ChatGPT Work?",
+      "back_html": "\u003cp\u003eA feature that lets ChatGPT operate a user's computer directly — clicking, typing, and moving files — to execute tasks across apps and the browser on the user's behalf.\u003c/p\u003e"
+    }
+  ]
+}

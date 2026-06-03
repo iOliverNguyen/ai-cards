@@ -1,0 +1,108 @@
+{
+  "id": "card_f3614a",
+  "slug": "trace-visual-reasoning-environment",
+  "type": "paper",
+  "title": "Trace: A Taxonomy-Guided Environment for Multidomain Visual Reasoning",
+  "hook": "Verifiable-reward training sharpened text reasoning but stalls on vision — exact-answer image tasks are hard to make at scale. Trace generates them procedurally, and it transfers to real benchmarks.",
+  "key_points": [
+    "Extends RLVR — reinforcement learning with verifiable rewards — from text reasoning to vision-language models.",
+    "Factorizes each task into a scene grammar plus an executable program, separating visual rendering from answer computation.",
+    "A shared semantic state emits the image, prompt, typed answer, and verifier together, so every task is exactly checkable and replayable.",
+    "Spans 1,000 tasks across 277 scene grammars and 11 visual domains, with controlled visual and semantic variation.",
+    "Training on 64,000 generated instances lifts a 24-benchmark macro-average by +3.51 pts (Qwen2.5-VL-3B) and +4.06 (7B).",
+    "Evidence that broad procedural training transfers beyond the tasks it was generated from."
+  ],
+  "content_html": "\u003cp\u003eReinforcement learning with verifiable rewards (RLVR) drove much of the recent jump in text-model reasoning, but it has been hard to carry over to vision-language models: you need training data that is broad, exactly verifiable, and reproducible all at once. Trace is an environment that manufactures exactly that.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eTrace factorizes task construction into two pieces — a scene grammar and an executable task program — which separates how a scene is visually realized from how its answer is computed. A single shared semantic state then drives everything downstream: the rendered image, the text prompt, the typed answer, the verifier's state, and a replayable trace of the instance. Because the answer comes from the program rather than a human label, every task is verifiable by construction. The released environment holds 1,000 tasks built from 277 scene grammars across 11 visual domains, with controlled variation in both semantics and appearance.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eRunning RLVR on 64,000 Trace instances improved the macro-average across 24 external benchmarks by 3.51 percentage points for Qwen2.5-VL-3B and 4.06 points for the 7B model. The author reads this as evidence that broad, procedurally-generated training can transfer beyond the specific task distribution it was drawn from — a promising route to scaling verifiable-reward training in the visual domain, where hand-labeled reasoning data is scarce. The full task suite and code are on the project page.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Md Tanvirul Alam"
+    ],
+    "url": "https://arxiv.org/abs/2607.19790",
+    "published_at": "2026-07-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "vlms",
+    "synthetic-data",
+    "papers-this-week"
+  ],
+  "tags": [
+    "paper",
+    "multimodal",
+    "reasoning",
+    "training"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-23",
+  "date": "2026-07-22",
+  "related": [
+    {
+      "id": "card_4cd8fd",
+      "slug": "deepseek-r1",
+      "type": "paper",
+      "title": "DeepSeek-R1: Incentivizing Reasoning via Reinforcement Learning",
+      "hook": "DeepSeek shows strong reasoning can emerge from RL on verifiable rewards with minimal supervised data - and those reasoning traces can be distilled into smaller models.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2025-01-22"
+    },
+    {
+      "id": "card_896f54",
+      "slug": "multimodal-cot-limits",
+      "type": "paper",
+      "title": "Look Light, Think Heavy: The Limits of Multimodal Chain-of-Thought",
+      "hook": "Chain-of-thought should make models think harder. For vision-language tasks this study finds it's no free lunch — it can hurt perception, and models keep talking while they stop looking.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-21"
+    },
+    {
+      "id": "card_d20f82",
+      "slug": "qwen2-vl",
+      "type": "paper",
+      "title": "Qwen2-VL: Vision-Language at Any Resolution",
+      "hook": "Qwen2-VL processes images at their native resolution rather than forcing a fixed size, making it significantly better at reading small text and understanding fine-grained visual detail.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2024-09-18"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_f3614a#0",
+      "format": "flip",
+      "prompt": "Why has RLVR been hard to carry over to vision-language models?",
+      "back_html": "\u003cp\u003eIt needs training data that is simultaneously broad, exactly verifiable, and reproducible — and such visual tasks are hard to produce at scale.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f3614a#1",
+      "format": "quiz",
+      "prompt": "In Trace, where does a task's correct answer come from?",
+      "choices": [
+        {
+          "text": "An executable task program driven by a shared semantic state, so it's verifiable by construction",
+          "correct": true
+        },
+        {
+          "text": "Human annotators labeling each rendered image",
+          "correct": false
+        },
+        {
+          "text": "A separate reward model that scores the output",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA shared semantic state drives both the rendered image and an executable program that computes the answer — no human label needed, so every task is exactly checkable.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f3614a#2",
+      "format": "flip",
+      "prompt": "What did training Qwen2.5-VL on Trace instances demonstrate?",
+      "back_html": "\u003cp\u003eRLVR on 64,000 generated instances raised the macro-average across 24 external benchmarks (+3.51 pts for the 3B model, +4.06 for 7B) — evidence that procedural training transfers beyond its own task distribution.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "id": "card_6f79d6",
+  "slug": "super-weights-selective-training-failure",
+  "type": "paper",
+  "title": "Super Weights Are Critical to Read — But Useless to Train Alone",
+  "hook": "A handful of parameters wreck accuracy if removed. You'd think training just those would be the cheapest fine-tune ever. It isn't — it collapses the model to random guessing instead.",
+  "key_points": [
+    "'Super Weights' are individual parameters whose removal degrades model performance by orders of magnitude — but this paper shows the effect doesn't hold universally across all LLMs.",
+    "Training only the Super Weight parameters in isolation (100 to 8,192 of them) drops OLMo-1B and OLMo-7B accuracy to random-guessing levels.",
+    "Expanding to local neighborhoods around Super Weights (up to 36K parameters) still gives no improvement.",
+    "Training an equal number of randomly chosen positions in the same down_proj layers instead improves over baseline — so the failure is specific to targeting Super Weight coordinates, not to sparsity itself.",
+    "Vanilla LoRA succeeds using only 0.16% of parameters, updating every position in attention weights (and down_proj) through a low-rank structure instead of hand-picking coordinates."
+  ],
+  "content_html": "\u003cp\u003eIf a handful of parameters are so important that deleting them wrecks a model, training just those parameters should be the ultimate cheap fine-tune. This paper shows that logic backfires completely.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003e\u0026quot;Super Weights\u0026quot; are individual parameters whose removal is known to degrade model performance by orders of magnitude — though the authors first note this effect doesn't hold universally across every LLM. The real test is training: isolating and training only the Super Weight parameters (ranging from 100 up to 8,192 of them) drops both OLMo-1B and OLMo-7B to random-guessing accuracy. Widening the net to local neighborhoods around those weights, up to 36K parameters, doesn't help either. The tell is a control experiment: training an \u003cem\u003eequal number of randomly chosen positions\u003c/em\u003e in the same \u003ccode\u003edown_proj\u003c/code\u003e layers actually improves over baseline — so the collapse traces specifically to targeting Super Weight coordinates, not to training a small parameter subset in general. Meanwhile, vanilla LoRA succeeds with just 0.16% of parameters, because it updates every position in the attention weight matrices (and \u003ccode\u003edown_proj\u003c/code\u003e) through a structured low-rank decomposition rather than cherry-picking individually \u0026quot;important\u0026quot; coordinates — a result the authors confirm holds up across a 10-seed ablation. The lesson: a parameter being important doesn't mean it's trainable in isolation; effective fine-tuning needs structured updates across whole layers. From arXiv, 2026-07-09.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Shreyas Subramanian",
+      "Adewale Akinfaderin",
+      "Akarsha Sehwag"
+    ],
+    "url": "https://arxiv.org/abs/2607.08733",
+    "published_at": "2026-07-09",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "finetuning",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-13",
+  "date": "2026-07-09",
+  "related": [
+    {
+      "id": "card_cae140",
+      "slug": "lora",
+      "type": "paper",
+      "title": "LoRA: Low-Rank Adaptation",
+      "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-06-17"
+    },
+    {
+      "id": "card_2e95ee",
+      "slug": "qlora",
+      "type": "paper",
+      "title": "QLoRA: Fine-tuning Quantized LLMs",
+      "hook": "Fine-tune a model with tens of billions of parameters on a single GPU. QLoRA squeezes the frozen base to 4-bit, then trains LoRA adapters on top — without losing quality.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-23"
+    },
+    {
+      "id": "card_321aee",
+      "slug": "toy-models-superposition",
+      "type": "paper",
+      "title": "Toy Models of Superposition",
+      "hook": "Why is a single neuron so hard to interpret? It may be doing several jobs at once. Networks pack more features than they have neurons by overlapping them.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2022-09-14"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_cae140",
+      "slug": "lora",
+      "type": "paper",
+      "title": "LoRA: Low-Rank Adaptation",
+      "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-06-17"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_6f79d6#0",
+      "format": "flip",
+      "prompt": "What's counterintuitive about training Super Weights in isolation?",
+      "back_html": "\u003cp\u003eSuper Weights are critical enough that removing them tanks performance by orders of magnitude, yet training only those parameters (even up to 8,192 of them) collapses OLMo-1B/7B accuracy to random guessing rather than helping.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6f79d6#1",
+      "format": "quiz",
+      "prompt": "What shows the collapse is specific to targeting Super Weight coordinates, not just training too few parameters?",
+      "choices": [
+        {
+          "text": "Training an equal number of randomly chosen positions in the same down_proj layers improves over baseline instead of collapsing",
+          "correct": true
+        },
+        {
+          "text": "Training more Super Weight neighbors always fixes the collapse",
+          "correct": false
+        },
+        {
+          "text": "The collapse also happens when training full layers",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSame parameter count, same layers, different coordinates: random positions in down_proj help, while Super Weight coordinates collapse the model — pointing at the specific coordinates, not sparsity, as the cause.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6f79d6#2",
+      "format": "flip",
+      "prompt": "Why does vanilla LoRA succeed where directly training Super Weights fails?",
+      "back_html": "\u003cp\u003eLoRA updates every position in attention weight matrices (and down_proj) through a structured low-rank decomposition, using only 0.16% of parameters — rather than hand-picking a small set of individually 'important' coordinates.\u003c/p\u003e"
+    }
+  ]
+}

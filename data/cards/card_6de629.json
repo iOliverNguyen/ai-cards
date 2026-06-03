@@ -1,0 +1,117 @@
+{
+  "id": "card_6de629",
+  "slug": "two-axes-llm-abstention",
+  "type": "paper",
+  "title": "Two Axes of LLM Abstention: Correctness and Answerability",
+  "hook": "An LLM should refuse two different things — wrong answers, and questions it shouldn't answer at all. A single confidence score can't tell these apart, but a hidden-state probe can.",
+  "key_points": [
+    "A model should refuse for two distinct reasons: it would get the answer wrong, or the question itself is unanswerable or rests on a false premise.",
+    "Across 5 instruction-tuned models (2B-14B, 3 families), ordinary answer-confidence tracks correctness but is nearly blind to whether a question is answerable — and this blind spot doesn't shrink with scale.",
+    "It's worst on naturally occurring false-premise questions: confidence, P(IK), P(True), and even asking the model outright all stay near chance, while a hidden-state probe reaches 0.69-0.77 AUROC.",
+    "Instructing a model to check premises backfires — it disputes true and false premises alike (57% false challenges); routing that instruction through the probe roughly triples challenge precision.",
+    "Combining an answerability probe with a correctness score into a calibrated policy certifies both budgets at once — reaching 0.75 coverage of correct answers vs. 0.31 for a single threshold, and is the only policy that certifies at all at 14B."
+  ],
+  "content_html": "\u003cp\u003eAsk an LLM a question it can't or shouldn't answer, and you'd hope it says so. This paper argues that \u0026quot;hope it says so\u0026quot; is really two separate problems being treated as one.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe usual approach thresholds a single confidence score to decide when to refuse — but that conflates two different judgments: \u003cem\u003ewould I get this wrong?\u003c/em\u003e and \u003cem\u003eshould this even be answered?\u003c/em\u003e (because it's unanswerable, or rests on a false premise). Testing five instruction-tuned models from three families, spanning 2B to 14B parameters, the author finds these really are separate axes: ordinary answer-confidence tracks correctness well but is nearly blind to answerability, and this gap doesn't close with scale. It's worst on naturally occurring false-premise questions (the CREPE dataset), where confidence, P(IK), P(True), and even directly asking the model whether a premise is false all hover near chance — while a linear probe on hidden states reaches 0.69 to 0.77 AUROC, meaning the model represents a problem internally that it won't report out loud. Instructing the model to check premises doesn't fix this either: it then challenges true and false premises indiscriminately (57% false challenges on sound questions), though routing that instruction through the probe's signal roughly triples challenge precision. Turning both signals into a calibrated policy — requiring an answerability score and a correctness score to each clear their own bar — certifies reliability budgets on both fronts at once, reaching 0.75 coverage of correct answers versus 0.31 for a single threshold, and at 14B it's the only policy tested that certifies at all. Benedikt J. Wagner, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Benedikt J. Wagner"
+    ],
+    "url": "https://arxiv.org/abs/2607.08456",
+    "published_at": "2026-07-09",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "interpretability",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "interpretability",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-09",
+  "related": [
+    {
+      "id": "card_45c9df",
+      "slug": "agentic-abstention",
+      "type": "paper",
+      "title": "Agentic Abstention: Do Agents Know When to Stop?",
+      "hook": "Across 28,000+ tasks, agents often can't tell when to quit — some never give up when they should, others bail out only after dozens of wasted tool calls.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-27"
+    },
+    {
+      "id": "card_6e175b",
+      "slug": "internal-state-probes-misalignment-monitoring",
+      "type": "paper",
+      "title": "Internal-State Probes Read the Situation, Not the Action",
+      "hook": "Probes that seem to detect an LLM's harmful intent before it acts mostly just detect the prompt's topic — three careful tests find they don't predict future misbehavior.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-29"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_6de629#0",
+      "format": "flip",
+      "prompt": "What are the two distinct reasons an LLM should refuse to answer, per this paper?",
+      "back_html": "\u003cp\u003eBecause it would get the answer wrong (a correctness problem), or because the question itself shouldn't be answered at all — it's unanswerable or rests on a false premise (an answerability problem).\u003c/p\u003e"
+    },
+    {
+      "id": "card_6de629#1",
+      "format": "quiz",
+      "prompt": "How does ordinary answer-confidence perform on detecting unanswerable or false-premise questions?",
+      "choices": [
+        {
+          "text": "It's nearly blind to answerability, and this blind spot persists even at larger scale",
+          "correct": true
+        },
+        {
+          "text": "It detects unanswerable questions perfectly, better than correctness",
+          "correct": false
+        },
+        {
+          "text": "It improves steadily and closes the gap by 14B parameters",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eConfidence tracks whether an answer is right, but barely tracks whether the question should be answered at all — and scaling the model up doesn't fix this.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6de629#2",
+      "format": "flip",
+      "prompt": "Why does instructing a model to 'check premises before answering' backfire?",
+      "back_html": "\u003cp\u003eThe model can't reliably tell true premises from false ones once told to look, so it disputes both — 57% of its premise challenges are false alarms on sound questions.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6de629#3",
+      "format": "quiz",
+      "prompt": "How much does combining a hidden-state answerability probe with a correctness score improve reliable coverage, vs. a single confidence threshold?",
+      "choices": [
+        {
+          "text": "0.75 coverage of correct answers vs. 0.31 for a single threshold",
+          "correct": true
+        },
+        {
+          "text": "No improvement — both reach the same coverage",
+          "correct": false
+        },
+        {
+          "text": "It only helps at the smallest model size",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe combined policy — an answerability probe plus a correctness score, each required to clear its own bar — reaches far higher coverage while still certifying both the wrong-answer and unanswerable-answer rates; at 14B it's the only policy that certifies at all.\u003c/p\u003e"
+    }
+  ]
+}

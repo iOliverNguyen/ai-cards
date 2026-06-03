@@ -1,0 +1,112 @@
+{
+  "id": "card_083c15",
+  "slug": "agentic-coding-adoption-github-projects",
+  "type": "paper",
+  "title": "Early Adoption of Agentic Coding Tools by GitHub Projects",
+  "hook": "25,264 agent-written pull requests later: most open-source projects have barely touched agentic coding tools, and the ones that have still keep exactly one human gatekeeping every PR.",
+  "key_points": [
+    "Studied 25,264 agentic PRs across 2,361 popular GitHub repositories to measure adoption, productivity, and human-agent collaboration patterns.",
+    "The median repository produced only 1-2 agentic PRs over three months — heavy adoption is concentrated in a small subset of projects.",
+    "Small projects (1-5 contributors) show higher participation and average agentic-PR activity than medium or large projects.",
+    "Most projects fall short of an industry-reported benchmark of 36 agentic PRs per participant over three months; only a few exceed it.",
+    "Human-agent collaboration is dominated by single-human oversight — one developer reviewing or editing the agent's work — with multi-human review still rare."
+  ],
+  "content_html": "\u003cp\u003eAgentic coding tools can now open and submit their own pull requests, but most research on them has looked at individual PR outcomes rather than how projects, as organizations, actually adopt and manage this workflow. This study looks at the project level instead.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eMaliha Noushin Raida and Daqing Hou analyzed 25,264 agentic PRs from 2,361 popular GitHub repositories. Adoption turns out to be lopsided: the median repository produced just one to two agentic PRs across a three-month window, and small projects (1-5 contributors) showed higher participation and average activity than medium or large ones. Productivity also varies widely — while a handful of projects exceed an industry-reported estimate of 36 agentic PRs per participant over three months, most stay well below it. Across the board, collaboration is dominated by a single-human oversight model, where one developer reviews or edits the agent's contribution; multi-human review is uncommon.\u003c/p\u003e\n\u003cp\u003eThe authors frame this as an early snapshot rather than a settled picture, and argue that successful integration of agentic contributions depends as much on the human and organizational processes projects build around them as on the underlying agent capabilities. They call for continued tracking as adoption patterns mature. Maliha Noushin Raida and Daqing Hou, arXiv, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Maliha Noushin Raida",
+      "Daqing Hou"
+    ],
+    "url": "https://arxiv.org/abs/2607.14037",
+    "published_at": "2026-07-15",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "open-source",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-15",
+  "related": [
+    {
+      "id": "card_957955",
+      "slug": "agentic-code-review-developer-feedback",
+      "type": "paper",
+      "title": "Is Agentic Code Review Helpful? Mining Developers' Feedback to CodeRabbit Reviews in the Wild",
+      "hook": "CodeRabbit leaves review comments on hundreds of thousands of real pull requests. A large-scale study of how developers actually respond finds more than half get rejected outright.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-03"
+    },
+    {
+      "id": "card_176fda",
+      "slug": "codex",
+      "type": "paper",
+      "title": "Codex: Evaluating Large Language Models Trained on Code",
+      "hook": "Fine-tune GPT on public GitHub code and you get a model that solves programming problems and powers GitHub Copilot - plus a new benchmark, HumanEval, that tests functional correctness.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2021-07-07"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_083c15#0",
+      "format": "flip",
+      "prompt": "What does the median GitHub repository's agentic-PR volume tell us about adoption?",
+      "back_html": "\u003cp\u003eThe median repo generated only 1-2 agentic PRs over three months, showing intensive adoption is still concentrated in a small subset of projects rather than widespread.\u003c/p\u003e"
+    },
+    {
+      "id": "card_083c15#1",
+      "format": "quiz",
+      "prompt": "Which project size showed the highest participation and average agentic-PR activity?",
+      "choices": [
+        {
+          "text": "Small projects with 1-5 contributors",
+          "correct": true
+        },
+        {
+          "text": "Medium-sized projects",
+          "correct": false
+        },
+        {
+          "text": "The largest, most popular repositories",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSmall projects (1-5 contributors) exhibited higher participation ratios and average agentic-PR activity than medium or large projects.\u003c/p\u003e"
+    },
+    {
+      "id": "card_083c15#2",
+      "format": "quiz",
+      "prompt": "What's the dominant human-agent collaboration pattern the study found?",
+      "choices": [
+        {
+          "text": "Single-human oversight — one developer reviews and/or modifies the agent's contribution",
+          "correct": true
+        },
+        {
+          "text": "Multiple developers jointly reviewing every agentic PR",
+          "correct": false
+        },
+        {
+          "text": "Fully autonomous merging with no human review",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eHuman-agent collaboration is dominated by a single-human oversight model; multi-human collaboration patterns remain uncommon.\u003c/p\u003e"
+    }
+  ]
+}

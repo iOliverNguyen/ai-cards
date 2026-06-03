@@ -1,0 +1,116 @@
+{
+  "id": "card_b2b72a",
+  "slug": "open-weights-american-leadership",
+  "type": "news",
+  "title": "Twenty Companies Sign for Open Weights — the Frontier Labs Don't",
+  "hook": "A Microsoft-initiated open letter urges policymakers not to restrict open-weight models prematurely. NVIDIA, Meta, Palantir and Hugging Face signed; OpenAI, Anthropic and Google were absent.",
+  "key_points": [
+    "The letter, 'Open Weights and American AI Leadership,' was initiated by Microsoft and published 24 July 2026.",
+    "More than 20 companies signed, including NVIDIA, Meta, Microsoft, Palantir, and Hugging Face.",
+    "It argues against broad or premature restrictions on open-weight models.",
+    "It asks policymakers to distinguish legitimate model distillation from misappropriation — a live fault line in the debate.",
+    "Absent from the signatory list: the major frontier-model labs, OpenAI, Anthropic, and Google.",
+    "Google subsequently signalled support for open-weight models, and reporting has alleged OpenAI and Anthropic lobbied regulators the other way."
+  ],
+  "content_html": "\u003cp\u003eOn 24 July 2026, an open letter titled \u003cstrong\u003e\u0026quot;Open Weights and American AI Leadership\u0026quot;\u003c/strong\u003e was published, initiated by Microsoft and signed by more than 20 companies including NVIDIA, Meta, Palantir, and Hugging Face. Its argument is narrow and pointed: don't impose broad or premature restrictions on open-weight models, and when writing rules, distinguish legitimate model distillation from misappropriation.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe interesting part is the signature list\u003c/h2\u003e\n\u003cp\u003eMissing from it are exactly the organizations you'd expect to have the strongest views — the major frontier-model labs. OpenAI, Anthropic, and Google did not sign. That absence turned a policy letter into a map of a widening split: the compute vendors, platform companies, and open-model distributors on one side, the labs training the frontier on the other.\u003c/p\u003e\n\u003ch2\u003eWhat followed\u003c/h2\u003e\n\u003cp\u003eWithin days the picture shifted again. Google publicly came out in favor of open-weight models, and reporting circulating in the community alleged that OpenAI and Anthropic had been quietly lobbying Washington regulators to restrict open-source models even while publicly expressing support for open source. Treat that second part as a reported claim rather than an established fact — but the underlying fault line is real and worth watching, because the open-weights question is decided by release rules rather than by any technical property of the models. Reported via r/LocalLLaMA, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit r/LocalLLaMA",
+    "authors": [
+      "/u/etherd0t"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1v5c3vt/more_than_20_companies_including_nvidia_meta",
+    "published_at": "2026-07-24",
+    "license": "Reddit post (link-out)"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "lab-updates"
+  ],
+  "tags": [
+    "news",
+    "open-source",
+    "safety"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-07-27",
+  "date": "2026-07-24",
+  "related": [
+    {
+      "id": "card_3dbe9d",
+      "slug": "dean-ball-china-open-weight-models",
+      "type": "news",
+      "title": "Dean Ball: China's Open-Weight Strategy Could Backfire — Or Provoke Friction",
+      "hook": "OpenAI's head of strategic futures argues Chinese open-weight releases like Kimi slow AI capex and risk state-run infrastructure — and predicts deliberate US regulatory friction in response.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-19"
+    },
+    {
+      "id": "card_b475e8",
+      "slug": "frontier-ai-regulation",
+      "type": "paper",
+      "title": "Frontier AI Regulation",
+      "hook": "How do you regulate models too new to have rules yet? This paper sketches three building blocks: set standards, make labs report, then enforce.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-07-06"
+    },
+    {
+      "id": "card_acc5ad",
+      "slug": "eu-ai-act",
+      "type": "resource",
+      "title": "The EU AI Act",
+      "hook": "The EU's answer to regulating AI: sort systems by how much risk they pose, then scale the rules to match — from outright bans to no rules at all.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-08-01"
+    },
+    {
+      "id": "card_066cbf",
+      "slug": "hf-ceo-agent-attack-response",
+      "type": "news",
+      "title": "Two Asks After the First Autonomous-Agent Cyberattack",
+      "hook": "Hugging Face's CEO went public with what he asked OpenAI: release the rogue agents' traces so researchers can study them, and put $100M of compute behind the defenders.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-07-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b2b72a#0",
+      "format": "flip",
+      "prompt": "What distinction does the open-weights letter ask policymakers to draw?",
+      "back_html": "\u003cp\u003eBetween legitimate model distillation and misappropriation — treating the two as one thing is what would sweep up ordinary open-weight practice in a restriction.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b2b72a#1",
+      "format": "quiz",
+      "prompt": "What was notable about who did *not* sign the letter?",
+      "choices": [
+        {
+          "text": "The major frontier-model labs — OpenAI, Anthropic, and Google — were absent from the signatory list",
+          "correct": true
+        },
+        {
+          "text": "No hardware vendors signed, leaving it a software-only coalition",
+          "correct": false
+        },
+        {
+          "text": "Hugging Face declined, despite hosting most open weights",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eNVIDIA, Meta, Microsoft, Palantir, and Hugging Face are on the list; the frontier labs are not, which is what made the split the story.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b2b72a#2",
+      "format": "flip",
+      "prompt": "Why is the open-weights question a policy fight rather than a technical one?",
+      "back_html": "\u003cp\u003eOnce weights are published they cannot be recalled, so the rules governing release — not any property of the model — decide what diffuses and to whom.\u003c/p\u003e"
+    }
+  ]
+}

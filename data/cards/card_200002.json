@@ -1,0 +1,110 @@
+{
+  "id": "card_200002",
+  "slug": "toolformer",
+  "type": "paper",
+  "title": "Toolformer: Language Models That Use Tools",
+  "hook": "Instead of hand-scripting when to call a calculator or search, Toolformer lets the model teach itself — try API calls during training, keep the ones that actually help.",
+  "key_points": [
+    "The model learns when and how to call external tools, rather than being hand-scripted.",
+    "It tries candidate API calls in training text and keeps the ones that lower prediction loss.",
+    "Tools include things like a calculator, search engine, and question-answering API.",
+    "Trained in a self-supervised way from just a few examples per tool.",
+    "Improves performance while keeping the model's general language ability."
+  ],
+  "content_html": "\u003cp\u003eToolformer, from Schick, Dwivedi-Yu, and colleagues at Meta in 2023, is a language model that learns to use external tools on its own. Rather than relying on hand-written rules for when to call a calculator, search engine, or API, it figures out useful calls during training and keeps the ones that improve its predictions. The result is learned, not scripted, tool use.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eToolformer takes plain text and inserts candidate API calls at various spots, then checks whether having the tool's result would help it predict the upcoming words. Calls that reduce its prediction loss are kept; the rest are discarded. The model is then fine-tuned on this self-annotated data, so it learns where to place calls and how to fold the returned results into its output — all from only a handful of examples per tool.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eLLMs are weak at things like exact arithmetic or current facts that tools handle trivially. Toolformer showed a model can decide for itself when reaching for a tool pays off, without humans labeling every case. Because it's self-supervised, it scales to new tools cheaply, and it keeps the model's general abilities intact. It's an influential step toward agents that use tools natively rather than through brittle prompt rules.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Timo Schick",
+      "Jane Dwivedi-Yu",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2302.04761",
+    "published_at": "2023-02-09",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents"
+  ],
+  "tags": [
+    "agent",
+    "nlp"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2023-02-09",
+  "related": [
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_200002#0",
+      "format": "flip",
+      "prompt": "How does Toolformer decide which API calls to keep during training?",
+      "back_html": "\u003cp\u003eIt inserts candidate API calls into text and keeps the ones whose results lower its prediction loss; the rest are discarded.\u003c/p\u003e"
+    },
+    {
+      "id": "card_200002#1",
+      "format": "quiz",
+      "prompt": "What makes Toolformer's tool use 'learned, not scripted'?",
+      "choices": [
+        {
+          "text": "It figures out when and how to call tools self-supervised, from a few examples per tool",
+          "correct": true
+        },
+        {
+          "text": "Engineers hand-write rules for each tool",
+          "correct": false
+        },
+        {
+          "text": "It calls every tool on every input",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eToolformer learns useful calls during training rather than relying on hand-written rules, using only a handful of examples per tool.\u003c/p\u003e"
+    },
+    {
+      "id": "card_200002#2",
+      "format": "quiz",
+      "prompt": "What does Toolformer preserve while adding tool use?",
+      "choices": [
+        {
+          "text": "The model's general language ability",
+          "correct": true
+        },
+        {
+          "text": "Only its arithmetic skills",
+          "correct": false
+        },
+        {
+          "text": "Its need for human-labeled cases",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIt improves performance while keeping the model's general language ability intact.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "id": "card_421ee9",
+  "slug": "gemini-2-5-pro",
+  "type": "news",
+  "title": "Gemini 2.5 Pro: A Thinking Model",
+  "hook": "Gemini 2.5 Pro reasons through its own thoughts before it answers - and the first experimental release of it debuted at the top of the LMArena leaderboard.",
+  "key_points": [
+    "A 'thinking' model that works through its own intermediate reasoning before producing a response.",
+    "The first release was an experimental version of 2.5 Pro, which debuted at #1 on the LMArena leaderboard.",
+    "Ships with a 1M-token context window, with 2M tokens stated as coming.",
+    "Multimodal across text, audio, images, video, and code."
+  ],
+  "content_html": "\u003cp\u003eGoogle DeepMind introduced Gemini 2.5 Pro in March 2025 as a \u0026quot;thinking\u0026quot; model - one that reasons through its own thoughts before responding rather than answering in a single pass. The first release was an experimental version, and it debuted at the top of the LMArena leaderboard.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's new\u003c/h2\u003e\n\u003cp\u003eThe defining shift is built-in reasoning: rather than emitting an answer directly, Gemini 2.5 Pro works through intermediate thoughts first, which Google credits for its strong showing. It is multimodal across text, audio, images, video, and code, and ships with a 1M-token context window, with 2M tokens stated as coming.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eFolding reasoning into the base model, instead of treating it as a separate mode or a different product, marks how the major labs are converging on \u0026quot;thinking\u0026quot; as a default capability. The #1 LMArena debut signaled that Google's frontier line was competitive at the top. See Google's announcement for details.\u003c/p\u003e",
+  "source": {
+    "name": "Google",
+    "authors": [
+      "Google DeepMind"
+    ],
+    "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/gemini-model-thinking-updates-march-2025/",
+    "published_at": "2025-03-25",
+    "license": "Google blog"
+  },
+  "topic_ids": [
+    "vlms",
+    "releases"
+  ],
+  "tags": [
+    "multimodal",
+    "reasoning",
+    "nlp"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2025-03-25",
+  "related": [
+    {
+      "id": "card_79a8d5",
+      "slug": "gemini-1-5",
+      "type": "paper",
+      "title": "Gemini 1.5: Multimodal Understanding Across Long Context",
+      "hook": "Gemini 1.5 Pro processes up to a million tokens in context - enough for entire codebases, hours of video, or book-length documents - in a single multimodal model.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2024-03-08"
+    },
+    {
+      "id": "card_9edf2b",
+      "slug": "openai-o1",
+      "type": "news",
+      "title": "OpenAI o1: Learning to Reason with Reinforcement Learning",
+      "hook": "OpenAI's o1 lets a model think via a long internal chain-of-thought before answering - spending more compute at inference time visibly improves reasoning.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-09-12"
+    },
+    {
+      "id": "card_ee605b",
+      "slug": "gpt-4o",
+      "type": "news",
+      "title": "GPT-4o: One Model for Text, Audio, and Vision",
+      "hook": "GPT-4o is a single model that natively processes text, audio, and images end-to-end - no separate speech pipeline - cutting voice response latency to near human conversational speed.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2024-05-13"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_421ee9#0",
+      "format": "flip",
+      "prompt": "What does it mean that Gemini 2.5 Pro is a 'thinking' model?",
+      "back_html": "\u003cp\u003eRather than answering in a single pass, it works through its own intermediate reasoning before producing a response.\u003c/p\u003e"
+    },
+    {
+      "id": "card_421ee9#1",
+      "format": "quiz",
+      "prompt": "What does the convergence of major labs on built-in 'thinking' represent, per the card?",
+      "choices": [
+        {
+          "text": "Reasoning becoming a default base-model capability, not a separate mode",
+          "correct": true
+        },
+        {
+          "text": "A move away from multimodal inputs",
+          "correct": false
+        },
+        {
+          "text": "Replacing pretraining with reinforcement learning alone",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eFolding reasoning into the base model rather than treating it as a separate product marks labs converging on 'thinking' as a default.\u003c/p\u003e"
+    }
+  ]
+}

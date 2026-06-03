@@ -1,0 +1,110 @@
+{
+  "id": "card_1480e5",
+  "slug": "zero",
+  "type": "paper",
+  "title": "ZeRO: Memory Optimizations for Trillion-Parameter Models",
+  "hook": "Data-parallel training wastes memory by copying optimizer states, gradients, and parameters onto every GPU. ZeRO partitions them instead — fitting 100B+ parameter models.",
+  "key_points": [
+    "Partitions optimizer states, gradients, and parameters across data-parallel GPUs instead of replicating them.",
+    "Trained 100B+ parameter models on 400 GPUs at about 15 PetaFLOPs.",
+    "An 8x increase in model size and 10x in performance over the prior state of the art.",
+    "Runs up to 13B-parameter models with no model parallelism; powers 17B-parameter Turing-NLG."
+  ],
+  "content_html": "\u003cp\u003eSamyam Rajbhandari, Jeff Rasley, Olatunji Ruwase, and Yuxiong He at Microsoft introduced the Zero Redundancy Optimizer, or ZeRO, to attack the memory waste in data-parallel training. Standard data parallelism keeps a full copy of the optimizer states, gradients, and parameters on every GPU; ZeRO partitions them across workers instead. With it they trained models over 100B parameters on 400 GPUs at about 15 PetaFLOPs.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eRather than replicating the model's training state everywhere, ZeRO splits the optimizer states, gradients, and parameters across the data-parallel workers, so each GPU holds only its share. That removes the redundancy that normally caps model size, and the workers exchange what they need during training.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe authors report an 8x increase in trainable model size and a 10x performance jump over the prior state of the art, and ZeRO can run up to 13B-parameter models without any model parallelism at all. It powered the 17B-parameter Turing-NLG and is the engine inside Microsoft's DeepSpeed, making it a widely used way to scale training.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Samyam Rajbhandari",
+      "Jeff Rasley",
+      "Olatunji Ruwase",
+      "Yuxiong He"
+    ],
+    "url": "https://arxiv.org/abs/1910.02054",
+    "published_at": "2019-10-04",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "distributed-training"
+  ],
+  "tags": [
+    "training",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2019-10-04",
+  "related": [
+    {
+      "id": "card_09b3a2",
+      "slug": "megatron-lm",
+      "type": "paper",
+      "title": "Megatron-LM: Training LLMs with Model Parallelism",
+      "hook": "Split the big matrices inside attention and MLP layers across GPUs, add a few communication ops, and you can train an 8.3B model on 512 GPUs — no custom compiler needed.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2019-09-17"
+    },
+    {
+      "id": "card_c00b8d",
+      "slug": "gpipe",
+      "type": "paper",
+      "title": "GPipe: Pipeline Parallelism for Giant Networks",
+      "hook": "Spread a network's layers across accelerators as pipeline stages, then split each batch into micro-batches so no accelerator sits idle — near-linear speedup for giant models.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2018-11-16"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_1480e5#0",
+      "format": "quiz",
+      "prompt": "How does ZeRO reduce the memory waste of data-parallel training?",
+      "choices": [
+        {
+          "text": "It partitions optimizer states, gradients, and parameters across GPUs",
+          "correct": true
+        },
+        {
+          "text": "It replicates the full training state on every GPU",
+          "correct": false
+        },
+        {
+          "text": "It splits the weight matrices inside each layer",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eStandard data parallelism replicates the full state on every GPU; ZeRO partitions optimizer states, gradients, and parameters across workers. Splitting in-layer matrices is tensor parallelism.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1480e5#1",
+      "format": "flip",
+      "prompt": "What does ZeRO's name (Zero Redundancy Optimizer) refer to?",
+      "back_html": "\u003cp\u003eRemoving the redundancy of keeping a full copy of the training state on every data-parallel GPU, which normally caps model size.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1480e5#2",
+      "format": "quiz",
+      "prompt": "What scale did the authors report ZeRO could reach without any model parallelism?",
+      "choices": [
+        {
+          "text": "Up to 13B-parameter models",
+          "correct": true
+        },
+        {
+          "text": "Up to 100B-parameter models",
+          "correct": false
+        },
+        {
+          "text": "Up to 1B-parameter models",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eZeRO can run up to 13B-parameter models with no model parallelism, and powered the 17B-parameter Turing-NLG.\u003c/p\u003e"
+    }
+  ]
+}

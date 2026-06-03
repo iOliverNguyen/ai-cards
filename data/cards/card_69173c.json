@@ -1,0 +1,87 @@
+{
+  "id": "card_69173c",
+  "slug": "llm-judges-too-generous-without-reference",
+  "type": "paper",
+  "title": "LLM Judges Can Be Too Generous When There's No Reference Answer",
+  "hook": "Grade without an answer key and an LLM judge tends to wave wrong answers through — hand it the reference, and up to 85% of those verdicts flip to incorrect.",
+  "key_points": [
+    "Reference-free LLM judges systematically over-credit incorrect answers as correct, across the three languages tested.",
+    "Adding the reference answer to the judge's prompt flips its correct/incorrect verdict by up to 85% in some settings.",
+    "Reference-driven flips generally align with human annotations — the reference-aware version is the more trustworthy one.",
+    "Two-stage pipeline: calibration tests judge task knowledge; sensitivity tests reference presence/positioning effects.",
+    "Takeaway: calibrate LLM judges with reference-aware evaluation before trusting them in reference-free setups."
+  ],
+  "content_html": "\u003cp\u003eLLM-as-a-judge is now a routine way to grade open-ended model answers, often without a ground-truth reference to check against. Kranti and Vajjala test whether that reference-free setup is actually reliable, running judge models through a two-stage pipeline across three languages. The short answer: no — judges tend to let incorrect answers slide as correct when there's nothing to compare against.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe first stage, calibration experiments, probes whether the judge model even knows enough about the task it's grading. The second, sensitivity experiments, tests how much the judge's verdict shifts when a reference answer is added to the prompt, and where it's placed. Across the languages studied, adding the reference flipped the judge's correct/incorrect call by as much as 85% in some settings — and those reference-informed verdicts lined up much better with a subset of human annotations than the original reference-free ones did. The authors frame this as a blueprint: before deploying an LLM judge in a reference-free setting, calibrate it first with reference-aware evaluation. Chalamalasetti Kranti and Sowmya Vajjala, arXiv 2026 (arxiv.org/abs/2607.12885).\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Chalamalasetti Kranti",
+      "Sowmya Vajjala"
+    ],
+    "url": "https://arxiv.org/abs/2607.12885",
+    "published_at": "2026-07-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "safety",
+    "nlp",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-16",
+  "date": "2026-07-14",
+  "related": [
+    {
+      "id": "card_2e794c",
+      "slug": "can-llms-judge-better-than-generate",
+      "type": "paper",
+      "title": "Can LLMs Judge Better Than They Generate?",
+      "hook": "LLM-as-a-Judge assumes evaluation is easier than generation — a controlled test finds the opposite on 3 of 4 benchmarks, and attention analysis shows why.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_69173c#0",
+      "format": "flip",
+      "prompt": "What happens when an LLM judge evaluates answers with no reference answer available?",
+      "back_html": "\u003cp\u003eIt tends to over-credit incorrect answers as correct — a bias the authors found consistently across the three languages they tested.\u003c/p\u003e"
+    },
+    {
+      "id": "card_69173c#1",
+      "format": "quiz",
+      "prompt": "What did adding a reference answer to the judge's prompt do to its verdicts?",
+      "choices": [
+        {
+          "text": "Flipped correct/incorrect verdicts by as much as 85% in some settings",
+          "correct": true
+        },
+        {
+          "text": "Left verdicts essentially unchanged",
+          "correct": false
+        },
+        {
+          "text": "Made the judge harsher on correct answers too",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eReference presence and position had large sensitivity effects — and those flips tracked human judgments better than the reference-free verdicts did.\u003c/p\u003e"
+    },
+    {
+      "id": "card_69173c#2",
+      "format": "flip",
+      "prompt": "What two-stage method do the authors propose for trusting an LLM judge in reference-free settings?",
+      "back_html": "\u003cp\u003eCalibration experiments check the judge's own task knowledge; sensitivity experiments check how reference presence/position shifts its verdicts.\u003c/p\u003e"
+    }
+  ]
+}

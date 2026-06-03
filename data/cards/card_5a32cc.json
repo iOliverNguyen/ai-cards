@@ -1,0 +1,121 @@
+{
+  "id": "card_5a32cc",
+  "slug": "agentopsd-turn-level-credit",
+  "type": "paper",
+  "title": "Finding the Turn That Mattered in a Long Agent Rollout",
+  "hook": "RL with verifiable rewards scores a whole trajectory pass/fail, which tells an agent nothing about which of its forty turns was the pivotal one. AgentOPSD recovers turn-level credit without a critic.",
+  "key_points": [
+    "Outcome-only rewards give one number per trajectory, so the few decisions that actually determined success get no distinct signal.",
+    "AgentOPSD aggregates token-level teacher–student log-probability gaps into turn-level evidence.",
+    "It then updates a Bayesian belief state in log-odds space, recursively, across the turns of the rollout.",
+    "Pivotal turns are identified by the marginal belief revision between consecutive states.",
+    "Critic-free: it drops into standard policy optimization with no extra value network and no extra rollouts.",
+    "On ALFWorld, WebShop, and Search-QA it beat GRPO and self-distillation baselines, hitting 89.1% success on ALFWorld with Qwen2.5-7B."
+  ],
+  "content_html": "\u003cp\u003eReinforcement learning with verifiable rewards has become the standard recipe for training agents, but it hands back a single number for an entire trajectory. In a forty-turn task, that number is spread evenly over turns that were decisive and turns that were bookkeeping. Recent work has tried privileged self-distillation to get denser supervision; what stayed unclear is how those local signals should compose into \u003cem\u003esequential\u003c/em\u003e credit.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe construction\u003c/h2\u003e\n\u003cp\u003eAgentOPSD, from Wang and colleagues, works in two steps. First it aggregates token-level log-probability gaps between a teacher and the student policy into a single piece of evidence per turn. Then it treats the rollout as a filtering problem: a Bayesian belief state, maintained in log-odds space, is updated recursively turn by turn. The reweighting that falls out converts sparse outcome supervision into per-turn credit, and the turns where the belief revises most sharply are read as the pivotal ones.\u003c/p\u003e\n\u003cp\u003eThe practical appeal is what it doesn't need — no critic network, no additional rollouts, and compatibility with standard policy optimization. On ALFWorld, WebShop, and Search-QA with Qwen2.5 at 3B and 7B, it outperformed GRPO and strong self-distillation baselines, reaching 89.1% success on ALFWorld at 7B. Ablations attribute the gains specifically to the turn-level aggregation and the history-dependent recursive update, rather than to denser supervision alone.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zi-Han Wang",
+      "Zhengxi Lu",
+      "Zhiyuan Yao",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.05987",
+    "published_at": "2026-08-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "agent",
+    "alignment",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-10",
+  "date": "2026-08-06",
+  "related": [
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    },
+    {
+      "id": "card_b670a8",
+      "slug": "trace-agent-credit-assignment",
+      "type": "paper",
+      "title": "TRACE: Turn-Level Reward Assignment via Credit Estimation for Long-Horizon Agents",
+      "hook": "A failed agent rollout might still contain dozens of genuinely useful actions — outcome-only RL punishes every one of them the same as the final mistake. TRACE assigns credit per tool call instead, with no extra critic.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-15"
+    },
+    {
+      "id": "card_15c64a",
+      "slug": "molt-agentic-rl-framework",
+      "type": "paper",
+      "title": "Molt: A PyTorch-Native Training Framework for Agentic RL",
+      "hook": "NVIDIA's bet: an agentic RL codebase small enough for a researcher — or a coding assistant — to hold in their head entirely, without giving up performance.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-22"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_5a32cc#0",
+      "format": "flip",
+      "prompt": "What is the credit-assignment problem in agentic RL with verifiable rewards?",
+      "back_html": "\u003cp\u003eThe reward arrives once, at the end of a long multi-turn trajectory. Advantage estimates are therefore trajectory-level, so the handful of pivotal decisions that actually determined the outcome receive no signal distinguishing them from the routine ones.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5a32cc#1",
+      "format": "quiz",
+      "prompt": "Where does AgentOPSD get its per-turn learning signal from?",
+      "choices": [
+        {
+          "text": "Token-level teacher–student log-probability gaps, aggregated up to the turn level",
+          "correct": true
+        },
+        {
+          "text": "A learned critic network that predicts the value of each intermediate state",
+          "correct": false
+        },
+        {
+          "text": "Extra rollouts branched from every turn to estimate its counterfactual value",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAgentOPSD is deliberately critic-free and needs no extra rollouts: it turns log-probability gaps between teacher and student into turn-level evidence, then folds that evidence into a recursive Bayesian belief update.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5a32cc#2",
+      "format": "flip",
+      "prompt": "How does AgentOPSD decide which turns were pivotal?",
+      "back_html": "\u003cp\u003eBy the size of the marginal belief revision between consecutive states — a turn that sharply moves the log-odds belief state is one that mattered.\u003c/p\u003e"
+    }
+  ]
+}

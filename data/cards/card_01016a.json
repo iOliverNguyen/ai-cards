@@ -1,0 +1,140 @@
+{
+  "id": "card_01016a",
+  "slug": "freetoken-edge-native-moe-serving",
+  "type": "paper",
+  "title": "FreeToken: Serving Frontier MoE Models on the Machine You Own",
+  "hook": "Instead of treating a laptop as a tiny datacenter GPU, FreeToken treats the whole machine as one elastic inference platform — and runs a 753B model on a single workstation card.",
+  "key_points": [
+    "Open-weight frontier models exist, but serving stacks still assume datacenter infrastructure.",
+    "FreeToken co-designs the full stack: model layout and loading, expert residency, CPU-GPU execution, agentic state reuse, memory management.",
+    "Built around two edge realities: agent workloads keep changing their execution pattern, and every machine's resource balance differs.",
+    "Rather than fixing an offloading strategy up front, it continuously remaps computation and model state onto whatever is actually free.",
+    "Supports 20+ MoE models from an 8GB laptop GPU up to a workstation GPU.",
+    "Reported reach: 35B on a laptop, 284B on a gaming desktop, and 753B GLM-5.2 on one workstation GPU."
+  ],
+  "content_html": "\u003cp\u003eFrontier-quality open weights keep landing, but the software that serves them was written for clusters. FreeToken — from a Berkeley/MIT group including Song Han, Matei Zaharia and Ion Stoica — starts from a different premise: a personal machine isn't a small GPU, it's a unified, elastic inference platform with CPU, GPU and memory you can play against each other.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe system co-designs the whole serving stack — model layout and loading, which experts stay resident, how work splits across CPU and GPU, reuse of agentic state, and runtime memory management — around two facts about local inference. First, agent workloads shift their execution pattern as they run, so a static plan goes stale. Second, no two personal machines have the same resource balance. So instead of committing to a fixed offloading strategy, FreeToken continuously maps computation and model state onto whatever resources are actually available.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe authors report support for more than 20 MoE models and real coding and tool-using agents, across hardware from an 8GB laptop GPU to a single workstation GPU. The headline is what those machines can now practically run: a 35B model on a laptop, a 284B model on a gaming desktop, and the 753B GLM-5.2 on one workstation GPU. That's the difference between open weights being downloadable and being deployable. The system is released at flashml.ai.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Shuo Yang",
+      "Xiaoze Fan",
+      "Melissa Pan",
+      "Haocheng Xi",
+      "Song Han",
+      "Matei Zaharia",
+      "Kurt Keutzer",
+      "Ion Stoica"
+    ],
+    "url": "https://arxiv.org/abs/2608.16157",
+    "published_at": "2026-08-17",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "moe",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "open-source",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-20",
+  "date": "2026-08-17",
+  "related": [
+    {
+      "id": "card_ef8b5f",
+      "slug": "paged-attention-vllm",
+      "type": "paper",
+      "title": "PagedAttention / vLLM: Efficient LLM Serving",
+      "hook": "LLM serving wastes huge amounts of GPU memory on the attention cache. PagedAttention borrows an OS trick — paging — to recover it and serve many more requests at once.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-09-12"
+    },
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    },
+    {
+      "id": "card_233637",
+      "slug": "local-llm-inference-guide",
+      "type": "resource",
+      "title": "Local LLM Inference Optimization: The Complete Guide",
+      "hook": "A year of llama.cpp experiments, distilled: how to actually fit a model in your VRAM, tune the KV cache, and stop hitting out-of-memory walls.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-21"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_01016a#0",
+      "format": "flip",
+      "prompt": "What are the two realities of local AI that FreeToken's design is built around?",
+      "back_html": "\u003cp\u003eAgent workloads continuously change their execution pattern, and edge hardware exposes heterogeneous resources whose balance differs from machine to machine.\u003c/p\u003e"
+    },
+    {
+      "id": "card_01016a#1",
+      "format": "quiz",
+      "prompt": "How does FreeToken differ from a conventional offloading approach?",
+      "choices": [
+        {
+          "text": "It continuously remaps computation and model state onto currently available resources instead of committing to a fixed strategy",
+          "correct": true
+        },
+        {
+          "text": "It quantizes experts to 4-bit so the whole model fits in VRAM",
+          "correct": false
+        },
+        {
+          "text": "It routes hard tokens to a cloud endpoint and easy ones locally",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe core idea is elasticity: no fixed offloading plan, just continuous mapping onto the resources the machine actually has free at that moment.\u003c/p\u003e"
+    },
+    {
+      "id": "card_01016a#2",
+      "format": "quiz",
+      "prompt": "Which part of the stack does FreeToken leave untouched?",
+      "choices": [
+        {
+          "text": "None of it — the paper co-designs layout, expert residency, CPU-GPU execution, state reuse, and memory management",
+          "correct": true
+        },
+        {
+          "text": "Expert residency, which it inherits from vLLM",
+          "correct": false
+        },
+        {
+          "text": "Memory management, which it delegates to the OS",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe contribution is explicitly a full-stack co-design; the pieces only pay off together because they all trade against the same scarce machine resources.\u003c/p\u003e"
+    }
+  ]
+}

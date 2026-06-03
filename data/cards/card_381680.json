@@ -1,0 +1,83 @@
+{
+  "id": "card_381680",
+  "slug": "syncity-3000-scene-scale-3d-diffusion",
+  "type": "paper",
+  "title": "SynCity 3000: Scene-Scale 3D Generation from One Prompt",
+  "hook": "3D generators are great at single objects but fall apart at scene scale. SynCity 3000 turns an image-to-3D generator into a convolution you can slide across an entire scene.",
+  "key_points": [
+    "Adapts a single-image-to-3D generator into a convolutional operator, applying it across a whole scene image instead of one object.",
+    "Fine-tuned on synthetic scene-like data from a new data engine built specifically to address the scarcity of 3D scene training data.",
+    "Applies the convolutional generator over a dimetric image of the entire scene, rendered from the user's prompt.",
+    "Produces large, geometrically coherent 3D scenes of arbitrary size and layout complexity from a single prompt.",
+    "Delivers fine-grained layout control while keeping global scene coherence, addressing gaps in prior 3D scene generation methods."
+  ],
+  "content_html": "\u003cp\u003eImage-to-3D generators have gotten good at turning a single picture into a coherent 3D object. Scaling that up to an entire scene — with many objects, consistent geometry, and controllable layout — is a different problem, and one prior methods have struggled with. SynCity 3000, from Oxford's VGG group, takes a structural shortcut.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe team adapts an existing image-to-3D generator so it can run as a convolutional operator, sliding it across a scene the way a convolution slides across an image rather than invoking it once per object. To train this at scene scale, they built a new synthetic data engine that generates scene-like training data, addressing the simple fact that real 3D scene datasets are scarce, and fine-tuned the adapted generator on it. At inference, the convolutional generator is applied over a dimetric image of the whole scene rendered from the user's prompt, producing large, geometrically coherent 3D scenes of arbitrary size and layout complexity from that single prompt. Across diverse prompts and layouts, the authors report SynCity 3000 produces scenes that are simultaneously large, coherent, and detailed — addressing shortcomings in prior approaches to 3D scene generation. Paul Engstler, Iro Laina, Christian Rupprecht, and Andrea Vedaldi, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Paul Engstler",
+      "Iro Laina",
+      "Christian Rupprecht",
+      "Andrea Vedaldi"
+    ],
+    "url": "https://arxiv.org/abs/2607.05392",
+    "published_at": "2026-07-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "text-to-image",
+    "diffusion",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "generative",
+    "dataset",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-13",
+  "date": "2026-07-06",
+  "related": [],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_381680#0",
+      "format": "flip",
+      "prompt": "What's SynCity 3000's key architectural trick for going from single objects to whole 3D scenes?",
+      "back_html": "\u003cp\u003eIt adapts an existing image-to-3D generator into a convolutional operator, then applies that operator across a whole scene image — extending object-scale 3D generation up to scene scale.\u003c/p\u003e"
+    },
+    {
+      "id": "card_381680#1",
+      "format": "quiz",
+      "prompt": "How does SynCity 3000 address the scarcity of 3D scene training data?",
+      "choices": [
+        {
+          "text": "It builds a new synthetic data engine that generates scene-like data, then fine-tunes the model on it",
+          "correct": true
+        },
+        {
+          "text": "It trains only on real-world 3D scans, avoiding synthetic data entirely",
+          "correct": false
+        },
+        {
+          "text": "It skips fine-tuning and uses the object-level generator unchanged",
+          "correct": false
+        },
+        {
+          "text": "It crowdsources manual 3D scene labels from human annotators",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eReal 3D scene data is scarce, so the authors propose a dedicated synthetic data engine to generate scene-like training data, which they use to fine-tune the adapted convolutional generator.\u003c/p\u003e"
+    },
+    {
+      "id": "card_381680#2",
+      "format": "flip",
+      "prompt": "What does treating the 3D generator as a convolutional operator buy SynCity 3000 over prior single-object approaches?",
+      "back_html": "\u003cp\u003eLarge, geometrically coherent 3D scenes of arbitrary size and layout complexity from a single prompt, with fine-grained layout control — instead of being limited to one coherent object at a time.\u003c/p\u003e"
+    }
+  ]
+}

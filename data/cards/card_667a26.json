@@ -1,0 +1,96 @@
+{
+  "id": "card_667a26",
+  "slug": "dense-passage-retrieval",
+  "type": "paper",
+  "title": "Dense Passage Retrieval (DPR)",
+  "hook": "Keyword search misses answers that use different words. DPR embeds questions and passages into one vector space and retrieves by meaning — the backbone of modern vector search.",
+  "key_points": [
+    "Embeds questions and passages into a shared vector space.",
+    "Retrieves by nearest-neighbor similarity, not keyword overlap.",
+    "Two encoders are trained so a question lands near its answer passage.",
+    "Beat strong keyword baselines like BM25 on open-domain question answering.",
+    "Learned dense retrieval became the foundation of vector search in RAG."
+  ],
+  "content_html": "\u003cp\u003eDPR, from Karpukhin, Oğuz, and colleagues at Facebook AI in 2020, learns to retrieve text by meaning rather than matching words. It encodes questions and passages into the same vector space so a question sits near the passages that answer it, and you retrieve via nearest-neighbor search. This learned dense approach beat strong keyword baselines on open-domain question answering.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eDPR uses two encoders — one for questions, one for passages — that map text to dense vectors. During training, the model pulls a question's vector close to its correct passage and pushes it away from irrelevant ones (using in-batch negatives). At query time you embed the question and find the closest passage vectors with fast nearest-neighbor search over a precomputed index.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eKeyword search fails when the answer phrases things differently from the question. By matching on learned meaning instead, DPR retrieves relevant passages that lexical search would miss, improving downstream answers. The question-and-passage encoder setup plus vector nearest-neighbor lookup is exactly the retrieval engine inside most RAG systems today.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Vladimir Karpukhin",
+      "Barlas Oğuz",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2004.04906",
+    "published_at": "2020-04-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rag"
+  ],
+  "tags": [
+    "nlp",
+    "rag"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2020-04-10",
+  "related": [
+    {
+      "id": "card_02ad74",
+      "slug": "retrieval-augmented-generation",
+      "type": "paper",
+      "title": "Retrieval-Augmented Generation (RAG)",
+      "hook": "Why force a model to memorize everything? RAG lets it look things up — fetch relevant documents, then answer from that evidence instead of frozen weights alone.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-22"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_a9720e",
+      "slug": "word2vec",
+      "type": "paper",
+      "title": "Word2Vec: Word Embeddings",
+      "hook": "Teach a model to predict a word's neighbors, and it quietly learns vectors where king minus man plus woman lands near queen.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2013-01-16"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_667a26#0",
+      "format": "flip",
+      "prompt": "Why does DPR retrieve relevant passages that keyword search would miss?",
+      "back_html": "\u003cp\u003eIt matches on learned meaning by embedding questions and passages in a shared vector space, so it finds answers even when they phrase things differently from the question.\u003c/p\u003e"
+    },
+    {
+      "id": "card_667a26#1",
+      "format": "quiz",
+      "prompt": "How is DPR's question-passage encoder pair trained?",
+      "choices": [
+        {
+          "text": "Pull a question's vector close to its correct passage, push it from irrelevant ones",
+          "correct": true
+        },
+        {
+          "text": "Reconstruct each passage from its question embedding",
+          "correct": false
+        },
+        {
+          "text": "Predict the next passage in document order",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDPR uses a contrastive setup with in-batch negatives so a question lands near its answer passage.\u003c/p\u003e"
+    },
+    {
+      "id": "card_667a26#2",
+      "format": "flip",
+      "prompt": "How does DPR find passages at query time?",
+      "back_html": "\u003cp\u003eIt embeds the question and finds the closest passage vectors via fast nearest-neighbor search over a precomputed index.\u003c/p\u003e"
+    }
+  ]
+}

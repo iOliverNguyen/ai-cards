@@ -1,0 +1,89 @@
+{
+  "id": "card_be8f64",
+  "slug": "phi-3",
+  "type": "paper",
+  "title": "Phi-3: A Capable Language Model on Your Phone",
+  "hook": "Microsoft's Phi-3 Mini matches much larger models on reasoning benchmarks by training on heavily filtered, 'textbook-quality' data - and is small enough to run on a phone.",
+  "key_points": [
+    "3.8B parameters trained on a heavily curated dataset emphasizing high-quality synthetic and filtered web data, not just raw scale.",
+    "Phi-3 Mini matches or approaches Mixtral 8x7B on reasoning and coding benchmarks despite being roughly 10x smaller in active parameters.",
+    "Designed to run on-device: the model fits comfortably within the memory budget of a smartphone with a capable NPU.",
+    "Extends the 'textbook quality' data thesis from the earlier Phi-1 and Phi-2 models to a larger, more capable series."
+  ],
+  "content_html": "\u003cp\u003eMicrosoft Research published the Phi-3 technical report in April 2024, describing a family of small language models where data quality, rather than parameter count, does most of the work. The flagship Phi-3 Mini has 3.8 billion parameters and was designed to run on a phone while matching the benchmark performance of models several times its size.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe core hypothesis — carried forward from Microsoft's earlier Phi-1 and Phi-2 work — is that training data quality matters more than sheer volume. The training set is heavily filtered and supplemented with synthetic data generated to look like high-quality educational material: textbook-style explanations, worked problems, and clean prose rather than raw web crawl. The small model size also keeps inference memory low enough for on-device deployment.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003ePhi-3 challenges the assumption that you need a large parameter count to get strong reasoning performance. If careful data curation can close much of the gap to much larger models, it opens a path to capable AI on edge devices — lower cost, lower latency, and no network dependency. Read the full paper on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Microsoft"
+    ],
+    "url": "https://arxiv.org/abs/2404.14219",
+    "published_at": "2024-04-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining",
+    "releases"
+  ],
+  "tags": [
+    "nlp",
+    "efficiency",
+    "open-source",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2024-04-22",
+  "related": [
+    {
+      "id": "card_647d0f",
+      "slug": "mistral-7b",
+      "type": "paper",
+      "title": "Mistral 7B",
+      "hook": "Mistral 7B outperforms much larger open models on most benchmarks - showing that architecture choices and data quality can stretch a 7B parameter budget a long way.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    },
+    {
+      "id": "card_46fd66",
+      "slug": "chinchilla-scaling-laws",
+      "type": "paper",
+      "title": "Chinchilla: Compute-Optimal Scaling",
+      "hook": "Most giant models were starved of data. Chinchilla showed that for a fixed compute budget you should grow parameters and tokens together — and a smaller, longer-trained model won.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2022-03-29"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_be8f64#0",
+      "format": "flip",
+      "prompt": "What is the 'textbook quality' data thesis behind Phi-3?",
+      "back_html": "\u003cp\u003eData quality matters more than sheer volume — training on heavily filtered web data plus synthetic textbook-style explanations and worked problems.\u003c/p\u003e"
+    },
+    {
+      "id": "card_be8f64#1",
+      "format": "quiz",
+      "prompt": "What assumption does Phi-3 Mini challenge by matching much larger models?",
+      "choices": [
+        {
+          "text": "That you need a large parameter count to get strong reasoning performance",
+          "correct": true
+        },
+        {
+          "text": "That synthetic data always hurts quality",
+          "correct": false
+        },
+        {
+          "text": "That on-device models can't do reasoning at all",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIf careful curation closes the gap to larger models, it opens a path to capable AI on edge devices with low cost and latency.\u003c/p\u003e"
+    }
+  ]
+}

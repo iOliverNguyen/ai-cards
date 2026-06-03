@@ -1,0 +1,111 @@
+{
+  "id": "card_d21068",
+  "slug": "granite-4-2",
+  "type": "blog",
+  "title": "Granite 4.2: IBM's Open 3B/8B/30B Family",
+  "hook": "Three Apache-2.0 dense models with 512K context, trained through a five-phase pretrain, agentic SFT, and stacked GRPO runs — with the whole recipe written down.",
+  "key_points": [
+    "Three dense decoder-only models at 3B, 8B, and 30B, all with 512K-token context, released under Apache 2.0.",
+    "Standard modern stack: grouped-query attention, RoPE, SwiGLU feed-forward, RMSNorm, bfloat16.",
+    "Pretrained on roughly 15 trillion tokens across five phases of progressively higher data quality and longer context.",
+    "Supervised fine-tuning on 7.2M samples (~100B tokens), about 31.6% of it agentic instruction data.",
+    "Multi-stage RL: warm-started GRPO runs for verifiable-reward tasks, then agentic RL in sandboxed repos, shells, and web for 8B/30B, then RLHF.",
+    "Three reasoning modes — full thinking, low-effort thinking, and non-thinking — plus OpenAI-compatible tool calling."
+  ],
+  "content_html": "\u003cp\u003eIBM released Granite 4.2 as three dense, decoder-only models — 3B, 8B, and 30B — each with a 512K-token context window and an Apache 2.0 license. The architecture is deliberately unexotic: grouped-query attention, rotary position embeddings, SwiGLU feed-forward layers, RMSNorm, bfloat16. The value is in the recipe, which IBM wrote up in detail.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe pipeline\u003c/h2\u003e\n\u003cp\u003ePretraining ran roughly 15 trillion tokens across five phases, progressively raising data quality and extending context. Supervised fine-tuning used 7.2M samples — about 100B tokens — of which roughly a third was agentic instruction data. Then a sequence of warm-started GRPO runs: foundational RL with verifiable rewards on math, coding, and STEM; an agentic RL stage where the 8B and 30B train inside real sandboxed environments doing software engineering, terminal work, and web search; and a final RLHF alignment pass.\u003c/p\u003e\n\u003ch2\u003eWhat you get\u003c/h2\u003e\n\u003cp\u003eThe models support native OpenAI-compatible tool calling, twelve languages, and three reasoning modes — full thinking, low-effort thinking, and non-thinking — so callers can trade reasoning tokens against latency. IBM reports the 30B at 33.29% on SWE Bench Pro against 19.11% for the 8B, and 89.17% on AIME25. As always with self-reported evals, the interesting part is the gap between sizes and the published methodology rather than the absolute figures.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face Blog",
+    "authors": [
+      "IBM Granite"
+    ],
+    "url": "https://huggingface.co/blog/ibm-granite/granite-4-2",
+    "published_at": "2026-08-25",
+    "license": "Hugging Face blog"
+  },
+  "topic_ids": [
+    "releases",
+    "pretraining"
+  ],
+  "tags": [
+    "open-source",
+    "training",
+    "agent",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-25",
+  "related": [
+    {
+      "id": "card_ae11d6",
+      "slug": "olmo-2",
+      "type": "news",
+      "title": "OLMo 2: A Fully Open Model",
+      "hook": "Ai2's OLMo 2 is fully open — not just weights, but the training data, code, and checkpoints — the strongest reproducible-from-scratch model for researchers.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2025-03-13"
+    },
+    {
+      "id": "card_06e761",
+      "slug": "gpt-oss",
+      "type": "news",
+      "title": "gpt-oss: OpenAI's Open-Weight Models",
+      "hook": "OpenAI's first open-weight release since GPT-2: two Apache-2.0 reasoning models, the larger running on a single 80GB GPU and the smaller on a 16GB laptop.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2025-08-05"
+    },
+    {
+      "id": "card_bc290b",
+      "slug": "state-of-open-models-summer-2026",
+      "type": "blog",
+      "title": "State of Open Models, Summer 2026: Attention Isn't Adoption",
+      "hook": "Hugging Face crunched a year of Hub data: Chinese labs shipped the biggest open models nearly every month, but models under 1B parameters took 83% of all downloads.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-08-14"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_d21068#0",
+      "format": "flip",
+      "prompt": "What are Granite 4.2's three reasoning modes?",
+      "back_html": "\u003cp\u003eFull thinking, low-effort thinking, and non-thinking — letting a caller trade reasoning tokens against latency and cost per request.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d21068#1",
+      "format": "quiz",
+      "prompt": "What distinguishes the agentic RL stage from the foundational RL stage in Granite 4.2's recipe?",
+      "choices": [
+        {
+          "text": "Agentic RL trains the 8B and 30B in real sandboxed environments — code repos, shells, web search",
+          "correct": true
+        },
+        {
+          "text": "Agentic RL uses human preference labels instead of verifiable rewards",
+          "correct": false
+        },
+        {
+          "text": "Agentic RL runs before pretraining finishes",
+          "correct": false
+        },
+        {
+          "text": "Agentic RL applies only to the 3B model",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eFoundational RL uses verifiable rewards on math, coding, and STEM; the agentic stage puts the larger models into real environments for software engineering, terminal work, and web search.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d21068#2",
+      "format": "flip",
+      "prompt": "Why does publishing a full training recipe matter for an open model release?",
+      "back_html": "\u003cp\u003eOpen weights alone are not reproducible — the phased data mix, SFT composition, and RL staging are what let others replicate or adapt the result.\u003c/p\u003e"
+    }
+  ]
+}

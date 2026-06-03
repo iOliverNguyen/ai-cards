@@ -1,0 +1,89 @@
+{
+  "id": "card_081601",
+  "slug": "daybreak-gpt-5-6-cyber",
+  "type": "news",
+  "title": "OpenAI Ships a Cyber-Specific Model — Behind a Gate",
+  "hook": "GPT-5.6-Cyber is built for vulnerability research and exploit validation. OpenAI won't sell it openly: access runs through Daybreak, a vetted-partner program, because the defense window is closing.",
+  "key_points": [
+    "GPT-5.6-Cyber is OpenAI's cybersecurity-specific model, aimed at authorized vulnerability research, exploit validation, and security testing.",
+    "It is distributed through Daybreak Red rather than the general API — capability gating by access control, not by refusal training.",
+    "A parallel expansion lets approved Daybreak partners deliver governed cybersecurity services to their own customers.",
+    "OpenAI frames the urgency as a narrowing cyber defense window: offensive capability is arriving faster than defenders can absorb it.",
+    "The pattern to watch — frontier dual-use capability released to a vetted allowlist — is becoming a standard governance move."
+  ],
+  "content_html": "\u003cp\u003eOpenAI has released GPT-5.6-Cyber, a cybersecurity-specific frontier model built for authorized vulnerability research, exploit validation, and security testing — and it isn't on the general API. Access runs through Daybreak Red, a vetted-partner channel, with a parallel announcement extending Daybreak so approved partners can deliver governed security services to their own customers.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe interesting part is the governance shape rather than the model. A model designed to find and validate exploits can't be made safe by refusal training — refusing is the failure mode, not the safeguard. So the control moves to the perimeter: who is allowed to hold the capability at all. OpenAI's stated rationale is that the cyber defense window is narrowing, meaning offensive capability is compounding faster than defenders can absorb it, and the right response is to get strong tooling into trusted hands early rather than wait.\u003c/p\u003e\n\u003cp\u003eWhether allowlists hold up as the mechanism is the open question — they depend on partner vetting staying meaningful as the program expands. OpenAI, August 2026.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "authors": [
+      "OpenAI"
+    ],
+    "url": "https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows",
+    "published_at": "2026-08-10",
+    "license": "OpenAI (blog post)"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "lab-updates"
+  ],
+  "tags": [
+    "safety",
+    "news",
+    "agent"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-08-13",
+  "date": "2026-08-10",
+  "related": [
+    {
+      "id": "card_a3d02e",
+      "slug": "ethics-offensive-security-agents",
+      "type": "paper",
+      "title": "The Ethics of Autonomous AI Agents for Offensive Security",
+      "hook": "Autonomous AI agents drop the skill floor for cyberattacks and blur who's to blame. This paper maps three kinds of 'indeterminacy' that break existing dual-use ethics frameworks.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-22"
+    },
+    {
+      "id": "card_ac3d09",
+      "slug": "openai-frontier-governance-framework",
+      "type": "news",
+      "title": "OpenAI's Frontier Governance Framework",
+      "hook": "A major lab publishes how it intends to govern its most capable models — and explicitly maps those safety, security, and risk practices onto emerging EU and California rules.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-05-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_081601#0",
+      "format": "quiz",
+      "prompt": "How does OpenAI limit misuse of GPT-5.6-Cyber?",
+      "choices": [
+        {
+          "text": "By gating access to vetted Daybreak partners rather than releasing it on the general API",
+          "correct": true
+        },
+        {
+          "text": "By training it to refuse all exploit-related requests",
+          "correct": false
+        },
+        {
+          "text": "By releasing only the weights, with no hosted inference",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe model is \u003cem\u003emeant\u003c/em\u003e to do offensive security work, so refusal training would defeat its purpose. The control is who gets access.\u003c/p\u003e"
+    },
+    {
+      "id": "card_081601#1",
+      "format": "flip",
+      "prompt": "What does OpenAI mean by the 'cyber defense window' narrowing?",
+      "back_html": "\u003cp\u003eThat AI-driven offensive capability is arriving faster than defenders can adopt it — the argument OpenAI uses to justify getting a frontier cyber model into trusted hands sooner rather than later.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "id": "card_737331",
+  "slug": "gemini-3-5-transcribe",
+  "type": "news",
+  "title": "Gemini 3.5 Transcribe",
+  "hook": "Google DeepMind ships a speech-to-text model built on Gemini — pitching transcription that understands what it is hearing, not just what sounds were made.",
+  "key_points": [
+    "Gemini 3.5 Transcribe is a speech-to-text offering from Google DeepMind.",
+    "It is positioned as 'intelligent' transcription — leaning on the underlying model's language understanding rather than acoustics alone.",
+    "It continues the move from dedicated ASR stacks toward transcription served by general multimodal models."
+  ],
+  "content_html": "\u003cp\u003eGoogle DeepMind announced Gemini 3.5 Transcribe, a speech-to-text model in the Gemini family, framed around \u0026quot;intelligent\u0026quot; transcription rather than raw word-error rate.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe announcement itself is brief, so the interesting part is positional. Automatic speech recognition used to be its own stack: acoustic model, language model, decoder. Shipping transcription as a mode of a large multimodal model folds that pipeline into a system that already understands context, speakers, and subject matter — which tends to help most exactly where classical ASR struggles, on proper nouns, domain jargon, and disfluent speech. Details and measured quality claims are on the DeepMind blog.\u003c/p\u003e",
+  "source": {
+    "name": "Google DeepMind",
+    "authors": [
+      "Google DeepMind"
+    ],
+    "url": "https://deepmind.google/blog/intelligent-transcription-with-gemini-3-5-transcribe",
+    "published_at": "2026-08-26",
+    "license": "Google DeepMind blog"
+  },
+  "topic_ids": [
+    "video-audio",
+    "releases"
+  ],
+  "tags": [
+    "speech",
+    "multimodal",
+    "news"
+  ],
+  "importance": 2,
+  "difficulty": "intro",
+  "created_at": "2026-08-27",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_8a4426",
+      "slug": "whisper",
+      "type": "paper",
+      "title": "Whisper: Robust Speech Recognition at Scale",
+      "hook": "Train a plain encoder-decoder transformer on 680,000 hours of weakly-labeled multilingual audio and you get near-human transcription robustness without task-specific fine-tuning.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_737331#0",
+      "format": "flip",
+      "prompt": "What distinguishes a model-based transcription service from a classical ASR stack?",
+      "back_html": "\u003cp\u003eIt brings the underlying model's language understanding to bear on the transcript rather than mapping acoustics to text in isolation.\u003c/p\u003e"
+    },
+    {
+      "id": "card_737331#1",
+      "format": "quiz",
+      "prompt": "What broader trend does Gemini 3.5 Transcribe fit into?",
+      "choices": [
+        {
+          "text": "Transcription being served by general multimodal models rather than dedicated ASR systems",
+          "correct": true
+        },
+        {
+          "text": "Speech recognition moving back to hand-built phoneme models",
+          "correct": false
+        },
+        {
+          "text": "Labs abandoning speech as a modality",
+          "correct": false
+        },
+        {
+          "text": "Transcription becoming a purely on-device task",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe offering is a speech-to-text product built on the Gemini family, continuing the consolidation of specialized audio pipelines into general multimodal models.\u003c/p\u003e"
+    }
+  ]
+}

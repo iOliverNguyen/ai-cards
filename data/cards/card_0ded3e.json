@@ -1,0 +1,94 @@
+{
+  "id": "card_0ded3e",
+  "slug": "knowledge-gated-agent-tasks",
+  "type": "paper",
+  "title": "Ignorance or Incompetence? Building Agent Tasks That Tell the Difference",
+  "hook": "When an agent fails a professional task, was it incapable or just missing a convention nobody published? This protocol splits the instruction from the private knowledge so you can test which.",
+  "key_points": [
+    "Real professional work depends on conventions absent from public corpora; benchmarks rarely control whether the agent has them.",
+    "The protocol separates a task instruction from a compact artefact holding private conventions, reference tables, and utility operators.",
+    "Task instructions are byte-identical in the provided- and withheld-artefact conditions, so only knowledge differs.",
+    "Provenance records, leak audits, and executable witnesses make the dependence on the artefact explicit and testable.",
+    "Across fifteen calibration tasks one frontier agent config passed 68.0% with the artefact and 0% without; a plausible-but-wrong artefact also yielded 0%.",
+    "The authors are explicit that this validates the construction protocol, not that the tasks improve post-training."
+  ],
+  "content_html": "\u003cp\u003eAn agent flubs a professional task. Two very different explanations look identical from the outside: it lacked a convention that only exists inside some firm's internal docs, or it simply couldn't do the work. Tian and colleagues point out that benchmarks almost never control for this — and propose a construction protocol that does.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eEach task splits in two: an instruction, and a compact \u003cem\u003eartefact\u003c/em\u003e containing the private conventions, reference tables, and utility operators the task depends on. The agent is then run in two conditions, with the artefact provided and withheld, using byte-identical instructions so nothing but the knowledge changes. Construction-time provenance, leak audits, and executable witnesses make the dependence explicit and checkable. Deterministic solvers and rule corpora give exact ground truth for structured tasks; named criterion-level rubrics cover outputs no single executable oracle can check.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAcross fifteen calibration tasks, the authors report one frontier agent configuration passing 68.0% with the artefact and 0% without — and on one task, a plausible but \u003cem\u003eincorrect\u003c/em\u003e artefact also yielded 0% across five trials, evidence the agent was really using the content. A configuration-relative screen retained seven tasks meeting their five-trial knowledge-gating criterion. The authors are careful about scope: these experiments validate the protocol's behavior, not a claim that the retained tasks improve post-training. Part of the suite and tooling is released publicly.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Hanlin Tian",
+      "Minhao Li",
+      "Yu Mi",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.30322",
+    "published_at": "2026-08-31",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evaluation",
+    "agents"
+  ],
+  "tags": [
+    "paper",
+    "benchmark",
+    "agent",
+    "dataset"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-09-03",
+  "date": "2026-08-31",
+  "related": [
+    {
+      "id": "card_ddce7e",
+      "slug": "agent-benchmark-protocol-validity",
+      "type": "paper",
+      "title": "Do Agent Benchmarks Measure Capability?",
+      "hook": "An agent score only means something if the task still requires the skill it claims to test. Auditing 2,385 traces, two-thirds showed the agent taking a shortcut instead.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_0ded3e#0",
+      "format": "flip",
+      "prompt": "Why must the task instruction be byte-identical across the provided- and withheld-artefact conditions?",
+      "back_html": "\u003cp\u003eSo the only difference between conditions is access to the private knowledge. Any wording change would confound ignorance with a different task.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0ded3e#1",
+      "format": "quiz",
+      "prompt": "What does a 68.0% pass rate with the artefact and 0% without it demonstrate about a task?",
+      "choices": [
+        {
+          "text": "The task genuinely depends on the private knowledge — it is knowledge-gated, not just hard",
+          "correct": true
+        },
+        {
+          "text": "The agent is incompetent at the task regardless of knowledge",
+          "correct": false
+        },
+        {
+          "text": "The artefact leaked the answers into the instruction",
+          "correct": false
+        },
+        {
+          "text": "The task is too easy to be useful",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSolvable with the artefact and unsolvable without it is exactly the signature of a knowledge gate. Leak audits and executable witnesses are what rule out the artefact simply containing answers.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0ded3e#2",
+      "format": "flip",
+      "prompt": "What did giving the agent a plausible but incorrect artefact reveal?",
+      "back_html": "\u003cp\u003eOn one task it also produced 0% across five trials — the agent was genuinely relying on the artefact's content, not just on its presence as a cue.\u003c/p\u003e"
+    }
+  ]
+}

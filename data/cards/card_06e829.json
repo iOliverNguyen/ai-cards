@@ -1,0 +1,88 @@
+{
+  "id": "card_06e829",
+  "slug": "grokipedia-vs-wikipedia-political-neutrality-audit",
+  "type": "paper",
+  "title": "Grokipedia vs Wikipedia: An LLM-Based Audit of Political Neutrality along Ideologies",
+  "hook": "Grokipedia launched as the 'unbiased' answer to Wikipedia's alleged left-lean. Audited by four LLM judges, including Grok itself, it rates less neutral — just biased the other way.",
+  "key_points": [
+    "Analyzed 1,394 matched article pairs about government figures on Grokipedia and Wikipedia, scored along 9 expert-coded ideology dimensions.",
+    "Used 4 different LLM judges (Grok, Claude, Mistral, DeepSeek) to cross-check for judge-specific bias.",
+    "Every judge, including Grok, rated Grokipedia as less neutral overall than Wikipedia.",
+    "Both encyclopedias favor politicians overall, but along different lines: Grokipedia favors economically right-wing and penalizes socially liberal figures; Wikipedia skews favorably toward socially liberal figures."
+  ],
+  "content_html": "\u003cp\u003eGrokipedia, an encyclopedia written entirely by the LLM Grok, launched in late 2025 partly as an answer to accusations that Wikipedia leans \u0026quot;left-wing.\u0026quot; This paper puts that neutrality claim to the test: does an LLM-written encyclopedia actually reduce political bias, or does it just swap in a different one?\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eFilippos Vlahos, Guillaume Bied, and Tijl De Bie compared 1,394 matched article pairs about government figures across both encyclopedias, scoring each along nine expert-coded ideology dimensions. To guard against any single judge's own leanings, they used four separate LLM judges — Grok, Claude, Mistral, and DeepSeek — and checked whether the judges agreed with each other.\u003c/p\u003e\n\u003cp\u003eThey did: every judge, Grok included, rated Grokipedia as less neutral overall than Wikipedia. Both encyclopedias tend to portray politicians favorably on net, but toward different groups — Grokipedia favors economically right-wing politicians while penalizing socially liberal ones, whereas Wikipedia's favorable tilt runs toward socially liberal figures. The authors, at Ghent University, frame this as evidence that an \u0026quot;unbiased by design\u0026quot; encyclopedia can still encode a strong ideological lean — just a different one from its predecessor. Source: arXiv, arxiv.org/abs/2607.15146.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Filippos Vlahos",
+      "Guillaume Bied",
+      "Tijl De Bie"
+    ],
+    "url": "https://arxiv.org/abs/2607.15146",
+    "published_at": "2026-07-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "benchmark",
+    "nlp",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-16",
+  "related": [
+    {
+      "id": "card_a9688e",
+      "slug": "opaque-epistemic-mediation",
+      "type": "paper",
+      "title": "A Model's Stance Is a Deployment Setting, Not a Property",
+      "hook": "The same Grok model ID rated a pseudo-scientific claim 75 via API and 5.5 via web. What a commercial LLM 'believes' turns out to be a contingent effect of how it's deployed.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_06e829#0",
+      "format": "flip",
+      "prompt": "What was Grokipedia's stated motivation, and did the audit's LLM judges agree it delivered on that?",
+      "back_html": "\u003cp\u003eGrokipedia (an encyclopedia written entirely by Grok, launched late 2025) aimed to be a more neutral alternative to Wikipedia — but all four LLM judges, including Grok itself, rated it less neutral than Wikipedia.\u003c/p\u003e"
+    },
+    {
+      "id": "card_06e829#1",
+      "format": "quiz",
+      "prompt": "Why did the authors use four different LLM judges (Grok, Claude, Mistral, DeepSeek) instead of one?",
+      "choices": [
+        {
+          "text": "Because the judges themselves could carry their own political biases, so cross-checking across models tests whether findings are judge-specific",
+          "correct": true
+        },
+        {
+          "text": "Because a single LLM cannot process encyclopedia-length articles",
+          "correct": false
+        },
+        {
+          "text": "Because only Grok was allowed to score Grokipedia articles",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eUsing multiple judges lets the authors separate the encyclopedias' bias from any single judge's own leanings — and the finding (Grokipedia less neutral) held across all four.\u003c/p\u003e"
+    },
+    {
+      "id": "card_06e829#2",
+      "format": "flip",
+      "prompt": "How do Grokipedia's and Wikipedia's biases differ, per the study?",
+      "back_html": "\u003cp\u003eBoth favor politicians overall, but in opposite directions: Grokipedia favors economically right-wing figures and penalizes socially liberal ones, while Wikipedia is rated as favoring socially liberal figures.\u003c/p\u003e"
+    }
+  ]
+}

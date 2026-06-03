@@ -1,0 +1,117 @@
+{
+  "id": "card_bf6459",
+  "slug": "code-as-worlds-executable-world-representations",
+  "type": "paper",
+  "title": "Writing the Physical World Down as Runnable Code",
+  "hook": "A VLM can describe a falling object without holding any model of what governs the fall. Code-as-World makes the model emit executable code as its world representation — then runs it to check itself.",
+  "key_points": [
+    "Vision-language models can name and narrate physical events while lacking explicit object states, physical parameters, and governing dynamics.",
+    "Code-as-World represents a scene as executable code covering composition, dynamics, and appearance — compact, quantitative, and controllable.",
+    "Representations are discovered by an agentic loop modeled on abductive reasoning: propose a hypothesis, execute it, render it, verify against the observation, refine.",
+    "Inputs can be natural-language descriptions or real-world video, so the representation is recovered rather than hand-authored.",
+    "Because the code runs, it generates scalable physical supervision for training VLMs on quantitative reasoning.",
+    "Code-as-World-VL reaches state of the art on QuantiPhy, which the authors report as surpassing leading proprietary models."
+  ],
+  "content_html": "\u003cp\u003eAsk a vision-language model what happens next in a video of a toppling stack and it will usually answer sensibly. Ask it by how much, or what changes if the block were twice as heavy, and the answers get soft. The gap is representational: the model has no explicit handle on object states, physical parameters, or the dynamics that connect them, so it cannot reason about interventions.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHypotheses you can run\u003c/h2\u003e\n\u003cp\u003eCode-as-World, from Wang and colleagues, proposes writing the world down as executable code — physical composition, how it evolves, how it looks. That representation is compact and, crucially, checkable. To recover it from a natural-language description or a real video, the authors build an agentic loop patterned on abductive reasoning: the agent proposes a candidate world, executes and renders it, compares the render against the observation, and refines. Verification is not a judgment call from another model; it is whether the code reproduces what was seen.\u003c/p\u003e\n\u003cp\u003eThe payoff is twofold. The verified worlds are useful representations in themselves, and because they run, they can be queried for quantitative ground truth at scale. The authors use that to supervise training and report Code-as-World-VL at state of the art on the QuantiPhy benchmark, ahead of leading proprietary models — which they read as a case for executable representations as a foundation for physical intelligence.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Hanyang Wang",
+      "Yimo Cai",
+      "Weiliang Chen",
+      "Ziwei Liu",
+      "Mingsheng Long",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.27549",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "vlms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "multimodal",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_006aa1",
+      "slug": "concept-guided-spatial-regularization-world-models",
+      "type": "paper",
+      "title": "Concept-Guided Spatial Regularization for World Models in Atari Pong",
+      "hook": "Five world-model RL agents can master Atari Pong on paper — but freeze their world models and watch closely: the ball vanishes, bounces wrong, or phases through the paddle.",
+      "importance": 2,
+      "difficulty": "core",
+      "date": "2026-07-16"
+    },
+    {
+      "id": "card_7a7031",
+      "slug": "program-as-weights",
+      "type": "paper",
+      "title": "Program-as-Weights: A Programming Paradigm for Fuzzy Functions",
+      "hook": "PAW compiles a natural-language function spec into a small reusable adapter instead of prompting an LLM every call — matching a 32B model's quality at a fiftieth of the memory.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-02"
+    },
+    {
+      "id": "card_a9cdbe",
+      "slug": "visual-scaffolds-vlm-spatial-reasoning",
+      "type": "paper",
+      "title": "Visual Scaffolds Reveal What VLM Benchmarks Measure",
+      "hook": "Redraw the same spatial puzzle to make its structure legible and accuracy jumps up to 34 points — so was the benchmark ever testing reasoning?",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-21"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_bf6459#0",
+      "format": "flip",
+      "prompt": "What does Code-as-World use as its representation of a physical scene, and why that choice?",
+      "back_html": "\u003cp\u003eExecutable code describing composition, dynamics, and appearance. Running it makes the representation quantitatively grounded, controllable, and checkable against the observation — properties a natural-language description doesn't have.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bf6459#1",
+      "format": "quiz",
+      "prompt": "How does the agentic discovery loop verify a proposed world representation?",
+      "choices": [
+        {
+          "text": "It executes and renders the hypothesis, compares the result to the observation, and refines the code",
+          "correct": true
+        },
+        {
+          "text": "It asks a larger reward model to score the code's plausibility",
+          "correct": false
+        },
+        {
+          "text": "It checks the code against a library of hand-authored reference simulations",
+          "correct": false
+        },
+        {
+          "text": "It measures the log-likelihood the VLM assigns to its own generated code",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe loop is abductive and closed by execution: propose, execute, render, verify against what was actually observed, then iterate. Rendering is what turns a guess into a testable hypothesis.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bf6459#2",
+      "format": "flip",
+      "prompt": "Once a world representation is verified, what second use does the paper make of it?",
+      "back_html": "\u003cp\u003eAs a source of scalable physical supervision — the executable world can be queried for quantitative ground truth, which is used to train vision-language models on physical reasoning.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "id": "card_d9c6e9",
+  "slug": "reading-between-the-dots",
+  "type": "paper",
+  "title": "Reading Between the Dots: Hidden Computation in Filler Tokens",
+  "hook": "Frontier models can solve multi-step problems while outputting nothing but dots — no visible reasoning at all. This paper shows that 'hidden' computation is still legible, just not in the output.",
+  "key_points": [
+    "DeepSeek V3 and Kimi K2 can compute correct answers while generating only content-free filler tokens (dots, counting sequences) — no visible chain-of-thought.",
+    "This defeats behavioral CoT monitoring, since the output text carries no information about the reasoning.",
+    "But attention routes the question through the filler region to the answer, and logit-lens readouts show facts retrieved early and composed in late layers.",
+    "An unsupervised decoding pipeline reads only hidden states (no labels, no training) and recovers intermediate values with 80-95% accuracy across four task families.",
+    "Conclusion: monitorability is a property of the model's full computational trace, not just its surface output tokens."
+  ],
+  "content_html": "\u003cp\u003eA model that answers correctly while outputting nothing but \u0026quot;.......\u0026quot; looks like a black box by design — no chain-of-thought to monitor, no reasoning trace to audit. This paper shows that's an illusion: hidden from the \u003cem\u003eoutput\u003c/em\u003e isn't the same as hidden from \u003cem\u003eus\u003c/em\u003e.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eAcross four task families — fact retrieval, parallel numeric composition, string manipulation, and in-context computation — the authors find that two open-weight frontier models, DeepSeek V3 and Kimi K2, compute over filler tokens in a structured, legible way. Attention routes the question through the filler region toward the answer; logit-lens readouts show retrieved facts emerging early and crystallizing into a composed result in late layers; and KV-cache transplants at filler positions can causally swap outputs between examples, confirming the computation is really happening there. Building on this, the authors introduce an unsupervised decoding pipeline that takes only hidden states as input — no ground-truth labels, no training — and recovers the model's intermediate values with 80-95% accuracy (by LLM-judge) across both models and all four tasks. The upshot for AI safety: hidden computation that defeats behavioral CoT monitoring is, on these tasks, directly readable from the residual stream. Monitorability isn't a property of a model's surface tokens — it's a property of its full computational trace. Kaley Brauer, Claudio Mayrink Verdun, and Samuel Marks, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Kaley Brauer",
+      "Claudio Mayrink Verdun",
+      "Samuel Marks"
+    ],
+    "url": "https://arxiv.org/abs/2607.03502",
+    "published_at": "2026-07-03",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "safety",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-09",
+  "date": "2026-07-03",
+  "related": [
+    {
+      "id": "card_0946f0",
+      "slug": "towards-monosemanticity",
+      "type": "paper",
+      "title": "Towards Monosemanticity: Decomposing Models with Dictionary Learning",
+      "hook": "If neurons mean several things at once, can we find cleaner units? A sparse autoencoder pulled 4,000+ single-concept features out of one tiny transformer layer.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2023-10-05"
+    },
+    {
+      "id": "card_395956",
+      "slug": "red-teaming-lms",
+      "type": "paper",
+      "title": "Red Teaming Language Models with Language Models",
+      "hook": "Finding the prompts that make a model misbehave is slow if humans do it by hand. So use another language model to generate those attacks automatically — at scale.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-02-07"
+    },
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_d9c6e9#0",
+      "format": "flip",
+      "prompt": "Why is computation over 'filler tokens' (like dots) a limit case for behavioral chain-of-thought monitoring?",
+      "back_html": "\u003cp\u003eThe surface output — the filler tokens themselves — carries no information about the reasoning happening underneath. A monitor reading only the visible text sees nothing, even though the model is genuinely computing.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d9c6e9#1",
+      "format": "quiz",
+      "prompt": "How does this paper recover the 'hidden' reasoning happening over filler tokens?",
+      "choices": [
+        {
+          "text": "An unsupervised pipeline decodes hidden states directly — no ground-truth labels or training needed",
+          "correct": true
+        },
+        {
+          "text": "By asking the model to explain itself afterward in plain English",
+          "correct": false
+        },
+        {
+          "text": "By fine-tuning the model to stop using filler tokens",
+          "correct": false
+        },
+        {
+          "text": "It cannot be recovered — the computation is truly inaccessible",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAttention routes the question through the filler region, and logit-lens readouts plus KV-cache transplants show the computation is structured and legible. An unsupervised decoder reading only hidden states recovers intermediate values at 80-95% accuracy.\u003c/p\u003e"
+    }
+  ]
+}

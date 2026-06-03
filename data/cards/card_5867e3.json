@@ -1,0 +1,107 @@
+{
+  "id": "card_5867e3",
+  "slug": "softwater-softmax-quantization",
+  "type": "paper",
+  "title": "SoftWater: The 2-Bit Model With an fp16 Head Isn't 2-Bit",
+  "hook": "In small LLMs with modern vocabularies, the output head holds 15–30% of all parameters. Leave it in fp16 and your '2-bit' model quietly stores several times as many bits per weight.",
+  "key_points": [
+    "Post-training quantization pipelines routinely skip the softmax output layer — but the head is 15–30% of parameters in small LLMs with large vocabularies.",
+    "Frames head quantization as rate-distortion under the KL divergence between original and quantized output distributions, not weight MSE.",
+    "A second-order analysis gives a class-aware geometry: error is weighted by both feature covariance and per-class softmax curvature.",
+    "SoftWater spends fine grids on frequent, low-variance classes and coarse grids on rare ones — a big win under Zipfian token distributions.",
+    "Across five models from 1B to 32B it beats the WaterSIC quantizer on 59 of 60 test points, cutting head-induced KL 6.5x–8.3x at 2 bits.",
+    "On Llama-3.2-1B-Instruct with a quantized body, a 2-bit head removes 45–60% of stored bytes for a 2.9–3.7% perplexity increase."
+  ],
+  "content_html": "\u003cp\u003eQuantization papers usually leave the softmax output layer alone. Joao V. Cavalcanti and Ashia C. Wilson (arXiv, August 2026) point out how much that costs: in small LLMs with modern vocabularies, the head holds 15–30% of all parameters, so a nominal \u0026quot;2-bit\u0026quot; model with an fp16 head stores several times as many bits per weight as advertised.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe method\u003c/h2\u003e\n\u003cp\u003eThey pose head quantization as a \u003cstrong\u003erate-distortion problem under the KL divergence\u003c/strong\u003e between the original and quantized output distributions — the right target for a layer whose job is producing a distribution. A second-order analysis reveals a class-aware geometry: quantization error is weighted jointly by feature covariance and class-specific softmax curvature. A separability approximation replaces the full Kn×Kn Cholesky with one n×n factorization rescaled per class, so the lattice can be encoded with successive interference cancellation and both statistics come from a single forward pass.\u003c/p\u003e\n\u003cp\u003eThe result, \u003cstrong\u003eSoftWater\u003c/strong\u003e, gives fine grids to frequent, low-variance classes and coarse ones to rare classes — which matters a lot under Zipfian token distributions.\u003c/p\u003e\n\u003ch2\u003eResults\u003c/h2\u003e\n\u003cp\u003eAcross five models from 1B to 32B, SoftWater beats the released WaterSIC quantizer at matched head rates on 59 of 60 test points, cutting head-induced KL by 6.5x–8.3x at 2 bits without any of that pipeline's refinements. On Llama-3.2-1B-Instruct with a quantized body, a 2-bit head removes 45–60% of stored bytes for a 2.9–3.7% perplexity increase; on a tied model, a 4-bit head is near-lossless. One practical caveat the authors flag: the class-side statistic comes from calibration data, so matching calibration to the deployment domain gives the lowest KL there.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Joao V. Cavalcanti",
+      "Ashia C. Wilson"
+    ],
+    "url": "https://arxiv.org/abs/2608.12026",
+    "published_at": "2026-08-12",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "quantization",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-13",
+  "date": "2026-08-12",
+  "related": [
+    {
+      "id": "card_d01b1d",
+      "slug": "gptq",
+      "type": "paper",
+      "title": "GPTQ: Accurate Post-Training Quantization",
+      "hook": "Already trained a giant LLM? GPTQ squeezes its weights down to 3–4 bits afterward — no retraining — with surprisingly little quality loss.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-10-31"
+    },
+    {
+      "id": "card_9d933c",
+      "slug": "awq-quantization",
+      "type": "paper",
+      "title": "AWQ: Activation-Aware Weight Quantization",
+      "hook": "Not all weights are equal - protect the 1% that matter most (flagged by activation magnitude) and quantize the rest to 4-bit with minimal quality loss.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2023-06-01"
+    },
+    {
+      "id": "card_5bd418",
+      "slug": "llm-int8",
+      "type": "paper",
+      "title": "LLM.int8(): 8-bit Inference for Transformers",
+      "hook": "Big transformers usually run in 16-bit. LLM.int8() halves that to 8-bit integers without losing accuracy — by treating a few rare 'outlier' features with care.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-08-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_5867e3#0",
+      "format": "quiz",
+      "prompt": "Why does leaving the softmax head in fp16 undercut a '2-bit' small LLM?",
+      "choices": [
+        {
+          "text": "The head can be 15–30% of all parameters, so its high-precision weights dominate the average bits per weight",
+          "correct": true
+        },
+        {
+          "text": "The head is recomputed at every decoding step, so precision costs compute not memory",
+          "correct": false
+        },
+        {
+          "text": "fp16 heads force the rest of the model back to fp16 at inference",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eWith modern large vocabularies the output head is a big share of parameters; an fp16 head plus a 2-bit body stores several times more bits per weight than the nominal rate.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5867e3#1",
+      "format": "flip",
+      "prompt": "What objective does SoftWater optimize instead of weight-space error?",
+      "back_html": "\u003cp\u003eRate-distortion under the KL divergence between the original and quantized output distributions — matching what the head is actually for.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5867e3#2",
+      "format": "flip",
+      "prompt": "What is 'class-aware rate allocation'?",
+      "back_html": "\u003cp\u003eGiving fine quantization grids to frequent, low-variance classes and coarse grids to rare ones, since second-order error is weighted by feature covariance and per-class softmax curvature.\u003c/p\u003e"
+    }
+  ]
+}

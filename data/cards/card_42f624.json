@@ -1,0 +1,68 @@
+{
+  "id": "card_42f624",
+  "slug": "agent-token-budget-overruns",
+  "type": "paper",
+  "title": "Token Budgets: When Agents Burn Money",
+  "hook": "A single retry loop can spend thousands of dollars before anyone notices. This paper catalogs 63 real budget-overrun incidents — and asks the type system to make over-spending a compile error.",
+  "key_points": [
+    "Catalogs 63 confirmed production budget-overrun incidents from 21 orchestration frameworks (2023-2026).",
+    "Each incident is backed by a quoted GitHub issue, organized into an eight-cluster failure taxonomy.",
+    "Mitigation case study: 'token-budgets', a 1,180-line Rust crate using affine ownership (no unsafe).",
+    "Cloning, double-spending, or using a budget after delegating it become compile errors, not runtime hazards."
+  ],
+  "content_html": "\u003cp\u003eLLM-agent budget overruns are a real production failure class: one retry loop can spend thousands of dollars before an operator notices, and the integrity properties that would prevent it — no aliasing, no double-spend, no use-after-delegation of a cost-bearing value — are usually enforced, if at all, by ad-hoc wrappers rather than the type system. Khan's central contribution is empirical: a catalog of 63 confirmed incidents from 21 orchestration frameworks (2023-2026), each backed by a quoted GitHub issue, organized into an eight-cluster failure taxonomy.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eAs one mitigation evaluated against that taxonomy, the paper builds token-budgets, a 1,180-line Rust crate (no unsafe) that uses affine ownership: cloning, double-spending, or using a budget after delegating it become compile errors instead of runtime hazards an operator must remember to dodge. The dollar cap itself is runtime arithmetic under an estimator assumption, but the affine layer makes that arithmetic non-bypassable. On single-agent workloads a 4-line Python counter matches the crate (0/30 overshoot), so the real value shows up in multi-agent delegation: a delegation-fanout race documented across multiple incidents is rejected by the borrow checker at compile time, while the same pattern under asyncio overshoots every time. Binary-level cap-soundness is left as open work.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Sajjad Khan"
+    ],
+    "url": "https://arxiv.org/abs/2606.04056",
+    "published_at": "2026-06-02",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "safety",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-05",
+  "date": "2026-06-02",
+  "related": [],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_42f624#0",
+      "format": "flip",
+      "prompt": "What is the paper's central contribution, and what backs each entry?",
+      "back_html": "\u003cp\u003eAn empirical catalog of 63 confirmed production budget-overrun incidents across 21 frameworks, each backed by a quoted GitHub issue and grouped into an eight-cluster taxonomy.\u003c/p\u003e"
+    },
+    {
+      "id": "card_42f624#1",
+      "format": "quiz",
+      "prompt": "Where does the Rust 'token-budgets' crate add the most value over a simple 4-line Python counter?",
+      "choices": [
+        {
+          "text": "Non-bypassability under operator error in multi-agent delegation",
+          "correct": true
+        },
+        {
+          "text": "Lower latency on single-agent workloads",
+          "correct": false
+        },
+        {
+          "text": "Eliminating the need for a dollar cap entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOn single-agent work a Python counter matches it (0/30 overshoot). The crate's edge is the delegation-fanout race, rejected at compile time by the borrow checker.\u003c/p\u003e"
+    }
+  ]
+}

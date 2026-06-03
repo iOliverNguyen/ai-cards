@@ -1,0 +1,127 @@
+{
+  "id": "card_797266",
+  "slug": "webswarm-recursive-web-agents",
+  "type": "paper",
+  "title": "WebSwarm: Recursive Multi-Agent Orchestration for Deep-and-Wide Web Search",
+  "hook": "One long search trajectory can't be both deep and wide at once. WebSwarm lets the search tree grow instead: any node that can't solve its own piece just spawns children and waits for their evidence.",
+  "key_points": [
+    "Each agentic search node holds a local objective plus a search mode describing how it should search and collaborate.",
+    "A node either solves its objective directly or delegates to child nodes, which pass evidence back up the tree.",
+    "Probes how relevant information is organized on the web first, to ground how nodes expand.",
+    "Reuses process-level experience across sibling nodes tackling similar sub-objectives instead of relearning from scratch.",
+    "Outperforms single-agent and multi-agent baselines on BrowseComp-Plus, WideSearch, DeepWideSearch, and GISA."
+  ],
+  "content_html": "\u003cp\u003eA single web-search agent has to choose between going deep on one thread or wide across many — one long trajectory can't easily do both. \u003cstrong\u003eWebSwarm\u003c/strong\u003e lets the search tree grow instead: any node that can't solve its own piece just spawns children and waits for their evidence.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eWebSwarm dynamically instantiates agentic search nodes, each holding a local objective plus a search mode describing how it should search and collaborate. A node either answers its objective directly or delegates to child nodes; once children resolve, their evidence and results flow back up so the parent can expand further, revise its approach, or aggregate everything into an answer. To make expansion smarter, WebSwarm first probes how relevant information tends to be organized on the web, and it reuses process-level experience across sibling nodes tackling similar sub-objectives instead of relearning from scratch each time.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eTested on BrowseComp-Plus, WideSearch, DeepWideSearch, and GISA — benchmarks spanning deep, wide, and mixed deep-and-wide research tasks — WebSwarm consistently beats both single-agent and existing multi-agent baselines. The authors' ablations point to the recursive delegation and sibling-experience reuse as the parts doing the real work, rather than just throwing more parallel agents at the problem. Song, Zhang, and colleagues (Renmin University, Kuaishou), arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xiaoshuai Song",
+      "Liancheng Zhang",
+      "Kangzhi Zhao",
+      "Yutao Zhu",
+      "Zhongyuan Wang",
+      "Guanting Dong",
+      "Jinghan Yang",
+      "Han Li",
+      "Kun Gai",
+      "Ji-Rong Wen",
+      "Zhicheng Dou"
+    ],
+    "url": "https://arxiv.org/abs/2607.08662",
+    "published_at": "2026-07-09",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "rag",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "rag",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-09",
+  "related": [
+    {
+      "id": "card_611d9b",
+      "slug": "quest-deep-research-agent",
+      "type": "news",
+      "title": "QUEST: An Open Deep-Research Agent",
+      "hook": "A fully open Deep Research agent trained on ~32 H100s and ~8K synthetic samples — recipe, code, weights, and data all released, and reportedly competitive with frontier closed systems.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-19"
+    },
+    {
+      "id": "card_b2c4ec",
+      "slug": "harness-1-search-agents",
+      "type": "paper",
+      "title": "Harness-1: RL for Search Agents with State-Externalizing Harnesses",
+      "hook": "Stop making the policy remember everything. Harness-1 moves a search agent's bookkeeping into the environment, so RL only has to learn the decisions that matter.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-01"
+    },
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_797266#0",
+      "format": "flip",
+      "prompt": "What structural limit does WebSwarm address in web-search agents?",
+      "back_html": "\u003cp\u003eA single ReAct-style agent is stuck with one long trajectory and limited context, making it hard to be both deep (thorough on one thread) and wide (broad coverage) at once.\u003c/p\u003e"
+    },
+    {
+      "id": "card_797266#1",
+      "format": "quiz",
+      "prompt": "What does a WebSwarm search node do when it can't resolve its own local objective?",
+      "choices": [
+        {
+          "text": "It spawns child nodes and later aggregates their returned evidence to make progress on its objective",
+          "correct": true
+        },
+        {
+          "text": "It gives up and returns an empty result to its parent",
+          "correct": false
+        },
+        {
+          "text": "It restarts the entire search from the root node",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eNodes progressively delegate: a stuck node creates children, and their evidence flows back up so the parent can expand, revise, or aggregate.\u003c/p\u003e"
+    },
+    {
+      "id": "card_797266#2",
+      "format": "flip",
+      "prompt": "How does WebSwarm avoid treating every search node as a totally independent search?",
+      "back_html": "\u003cp\u003eIt reuses process-level experience across sibling nodes facing similar sub-objectives, rather than having each node search entirely from scratch.\u003c/p\u003e"
+    }
+  ]
+}

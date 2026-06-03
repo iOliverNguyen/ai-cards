@@ -1,0 +1,105 @@
+{
+  "id": "card_ef8b5f",
+  "slug": "paged-attention-vllm",
+  "type": "paper",
+  "title": "PagedAttention / vLLM: Efficient LLM Serving",
+  "hook": "LLM serving wastes huge amounts of GPU memory on the attention cache. PagedAttention borrows an OS trick — paging — to recover it and serve many more requests at once.",
+  "key_points": [
+    "The KV cache (stored attention keys/values) dominates memory during generation and is usually fragmented and over-allocated.",
+    "PagedAttention stores the cache in small fixed-size pages, like virtual memory, instead of one contiguous block per request.",
+    "Less wasted and fragmented memory means many more requests fit on the GPU at the same time.",
+    "Pages can be shared across requests with the same prefix, and the idea powers the vLLM serving engine."
+  ],
+  "content_html": "\u003cp\u003eWoosuk Kwon, Zhuohan Li, and colleagues tackled a quiet bottleneck in LLM serving: the key-value (KV) cache that attention builds up as it generates tokens. Traditionally each request reserves one big contiguous chunk of GPU memory for its cache, which leaves a lot of it unused or fragmented. PagedAttention instead breaks the cache into small fixed-size pages, managed like an operating system's virtual memory, sharply cutting waste. This idea is the heart of the widely used vLLM serving engine.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eAs a model generates, it stores the attention keys and values for every token so it doesn't recompute them. Because you don't know the final length up front, contiguous allocation forces you to over-reserve and leaves gaps. PagedAttention keeps the cache in many small blocks (pages) that need not be contiguous, with a table mapping logical positions to physical pages. Memory is handed out page by page as the sequence grows, and identical prefixes can point at the same shared pages.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eMemory, not compute, often limits how many requests a server can run together. By nearly eliminating cache waste, PagedAttention lets a GPU hold far more concurrent sequences, which raises throughput substantially for the same hardware. That directly lowers the cost per request for anyone serving LLMs at scale. Packaged as vLLM, it became one of the most popular open-source inference engines, used widely in production.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Woosuk Kwon",
+      "Zhuohan Li",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2309.06180",
+    "published_at": "2023-09-12",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference"
+  ],
+  "tags": [
+    "efficiency",
+    "inference"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2023-09-12",
+  "related": [
+    {
+      "id": "card_5727fe",
+      "slug": "flashattention",
+      "type": "paper",
+      "title": "FlashAttention: Fast, Memory-Efficient Exact Attention",
+      "hook": "Attention got faster not by approximating it, but by being smarter about GPU memory — never writing the giant attention matrix out to slow memory.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-05-27"
+    },
+    {
+      "id": "card_951958",
+      "slug": "speculative-decoding",
+      "type": "paper",
+      "title": "Speculative Decoding",
+      "hook": "Let a small, fast model guess the next few words, then have the big model check them all in one shot. Same output, fewer slow steps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-30"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_ef8b5f#0",
+      "format": "flip",
+      "prompt": "What OS trick does PagedAttention borrow, and why?",
+      "back_html": "\u003cp\u003eVirtual-memory paging: it stores the KV cache in small fixed-size pages instead of one contiguous per-request block, sharply cutting wasted and fragmented memory.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ef8b5f#1",
+      "format": "quiz",
+      "prompt": "What is the main payoff of nearly eliminating KV cache waste?",
+      "choices": [
+        {
+          "text": "Far more concurrent requests fit on the GPU, raising throughput",
+          "correct": true
+        },
+        {
+          "text": "Each individual token is computed faster",
+          "correct": false
+        },
+        {
+          "text": "The model produces higher-quality output",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMemory, not compute, often limits how many requests run together; cutting waste lets a GPU hold far more concurrent sequences, raising throughput on the same hardware.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ef8b5f#2",
+      "format": "flip",
+      "prompt": "How can PagedAttention reuse memory across requests?",
+      "back_html": "\u003cp\u003eRequests with the same prefix can point at the same shared pages, since the cache is split into non-contiguous blocks mapped by a table.\u003c/p\u003e"
+    }
+  ]
+}

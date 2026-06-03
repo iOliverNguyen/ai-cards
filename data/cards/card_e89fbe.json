@@ -1,0 +1,104 @@
+{
+  "id": "card_e89fbe",
+  "slug": "segment-anything",
+  "type": "paper",
+  "title": "Segment Anything (SAM)",
+  "hook": "Click a point or drag a box, and it instantly masks the object — even in images it has never seen. SAM is a foundation model for segmentation.",
+  "key_points": [
+    "A promptable segmentation model: give it a point, box, or rough mask and it returns object masks.",
+    "Generalizes zero-shot to new images and objects it wasn't explicitly trained on.",
+    "Trained on a massive dataset of masks built with a model-assisted labeling loop.",
+    "Separates a heavy image encoder from a lightweight prompt-driven mask decoder for fast interaction."
+  ],
+  "content_html": "\u003cp\u003eAlexander Kirillov, Eric Mintun, and colleagues at Meta built SAM as a foundation model for image segmentation. Instead of training one model per dataset, they made it promptable: point at something or draw a box, and SAM outputs a mask for it. Trained on an enormous, model-assisted mask dataset, it segments objects in new images zero-shot.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eSAM has three parts: a heavy image encoder (a ViT) that processes the image once into an embedding, a prompt encoder that ingests points, boxes, or coarse masks, and a lightweight decoder that combines them to produce masks in real time. Because the expensive encoding happens once per image, you can fire off many prompts cheaply and interactively. To get training data at scale, the team ran a data engine where SAM itself proposed masks that annotators corrected, looping until they had a very large, diverse mask dataset.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eSegmentation usually means collecting labels and training a fresh model for each new domain. SAM reframes it as a general, promptable capability you can drop into many tasks without retraining, and its released dataset and model became widely used tools. It is a clear example of the foundation-model approach reaching beyond language into pixel-level vision.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Alexander Kirillov",
+      "Eric Mintun",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2304.02643",
+    "published_at": "2023-04-05",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "vision-transformers"
+  ],
+  "tags": [
+    "vision"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2023-04-05",
+  "related": [
+    {
+      "id": "card_4aba44",
+      "slug": "vision-transformer-vit",
+      "type": "paper",
+      "title": "An Image is Worth 16x16 Words (ViT)",
+      "hook": "Chop an image into patches, treat each like a word, and feed them to a plain Transformer. With enough pretraining data, it matches or beats convolutional networks.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-10-22"
+    },
+    {
+      "id": "card_3d7d44",
+      "slug": "clip",
+      "type": "paper",
+      "title": "CLIP: Learning Visual Models from Language",
+      "hook": "Skip the fixed label list. Train on image–caption pairs so pictures and text share one space, and you can classify images from plain-text labels you make up on the spot.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-02-26"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_4aba44",
+      "slug": "vision-transformer-vit",
+      "type": "paper",
+      "title": "An Image is Worth 16x16 Words (ViT)",
+      "hook": "Chop an image into patches, treat each like a word, and feed them to a plain Transformer. With enough pretraining data, it matches or beats convolutional networks.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-10-22"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_e89fbe#0",
+      "format": "flip",
+      "prompt": "Why does SAM split a heavy image encoder from a lightweight mask decoder?",
+      "back_html": "\u003cp\u003eThe expensive encoding runs once per image, so you can fire off many point or box prompts cheaply and get masks in real time.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e89fbe#1",
+      "format": "quiz",
+      "prompt": "How did SAM's team build its large mask dataset at scale?",
+      "choices": [
+        {
+          "text": "A data engine where SAM proposed masks that annotators corrected, looping repeatedly",
+          "correct": true
+        },
+        {
+          "text": "Scraping pre-segmented masks from existing public datasets",
+          "correct": false
+        },
+        {
+          "text": "Generating synthetic masks with a diffusion model",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThey ran a model-assisted labeling loop: SAM proposed masks, annotators fixed them, repeating until the dataset was large and diverse.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e89fbe#2",
+      "format": "flip",
+      "prompt": "What makes SAM a 'promptable' segmentation model?",
+      "back_html": "\u003cp\u003eYou give it a point, box, or rough mask as a prompt and it returns object masks — even for images and objects it wasn't explicitly trained on.\u003c/p\u003e"
+    }
+  ]
+}

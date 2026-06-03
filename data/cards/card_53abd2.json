@@ -1,0 +1,113 @@
+{
+  "id": "card_53abd2",
+  "slug": "memory-augmented-cot-compression",
+  "type": "paper",
+  "title": "Memory-Augmented Compression: Cheaper Chain-of-Thought",
+  "hook": "Compressing chain-of-thought saves tokens but breaks the logic. Move the reasoning into the prompt as reusable memory and you get the savings without the damage.",
+  "key_points": [
+    "Verbose chain-of-thought is expensive at decode time; aggressive compression shortens output but disrupts logical coherence.",
+    "The authors formalize a Context-Generation Substitution Law: explicit reasoning context can substitute for part of decode-time generation.",
+    "Memory-Augmented Compression is training-free: it distills past traces into reusable reasoning memories retrieved as prefill-side scaffolds.",
+    "Memories store reusable patterns, key constraints, and critical operations — not raw demonstrations.",
+    "Over Chain-of-Draft compression, reported gains of 21.4 / 28.0 / 29.5 / 6.61 points on GSM8K, MATH, BBH, MMLU-Sci.",
+    "Latency still improves 1.14–1.49x over standard CoT, and ablations attribute gains to relevance, not just longer context."
+  ],
+  "content_html": "\u003cp\u003eChain-of-thought buys accuracy with tokens, and every one of those tokens is decode-time latency. Compression schemes like Chain-of-Draft cut the output short, but past a point the reasoning stops holding together. Simeng Zhang and co-authors reframe the trade-off as a substitution: reasoning that lives in the prompt does not have to be generated. Their training-free Memory-Augmented Compression mines past traces for reusable patterns, constraints, and operations, then retrieves those summaries as prefill-side scaffolds to backfill what compression removed.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eLayered on top of prompt-based Chain-of-Draft, the paper reports accuracy gains of 21.4, 28.0, 29.5, and 6.61 points on GSM8K, MATH, BBH and MMLU-Sci, while still running 1.14–1.49x faster than standard CoT. The authors also show it composes with token-level, trace-level, and inference-state compression, and that ablations point to memory relevance rather than raw context length as the source of the gains. Details on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Simeng Zhang",
+      "Yilong Chen",
+      "Wenyuan Zhang",
+      "Zhenyu Zhang",
+      "Yao Chen",
+      "Junyuan Shang",
+      "Tingwen Liu"
+    ],
+    "url": "https://arxiv.org/abs/2608.21265",
+    "published_at": "2026-08-21",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "prompting",
+    "papers-this-week"
+  ],
+  "tags": [
+    "reasoning",
+    "inference",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-24",
+  "date": "2026-08-21",
+  "related": [
+    {
+      "id": "card_fd923f",
+      "slug": "hourglass-reasoning-context-isolation",
+      "type": "paper",
+      "title": "Hourglass Reasoning: Context Isolation for Rigorous Induction",
+      "hook": "Telling a model to state its inferred rule barely helps it self-refine. Forcing only a compressed rule — not the full trace — through a bottleneck nearly doubles a benchmark score.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-13"
+    },
+    {
+      "id": "card_b18855",
+      "slug": "concise-output-vs-prompt-compression",
+      "type": "blog",
+      "title": "Does Telling an LLM to Be Concise Save Money?",
+      "hook": "Two ways to spend fewer tokens: shorten what you send, or shorten what you ask for back. Measured across nine models, only one of them actually saves you money.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-08-21"
+    },
+    {
+      "id": "card_b693b7",
+      "slug": "zero-shot-cot",
+      "type": "paper",
+      "title": "Large Language Models Are Zero-Shot Reasoners",
+      "hook": "Appending 'Let's think step by step' to a prompt unlocks multi-step reasoning with zero examples - chain-of-thought without the example-writing overhead.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-05-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_53abd2#0",
+      "format": "flip",
+      "prompt": "What does the Context-Generation Substitution Law claim?",
+      "back_html": "\u003cp\u003eExplicit reasoning context placed in the prompt can substitute for part of what the model would otherwise have to generate at decode time.\u003c/p\u003e"
+    },
+    {
+      "id": "card_53abd2#1",
+      "format": "quiz",
+      "prompt": "What goes into a 'reasoning memory' in Memory-Augmented Compression?",
+      "choices": [
+        {
+          "text": "Summarized reusable reasoning patterns, key constraints, and critical operations",
+          "correct": true
+        },
+        {
+          "text": "The raw text of previous solved examples, verbatim",
+          "correct": false
+        },
+        {
+          "text": "Fine-tuned adapter weights per task family",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe method is training-free and deliberately avoids raw demonstrations — memories are summaries of reusable structure, retrieved as prefill-side scaffolds.\u003c/p\u003e"
+    },
+    {
+      "id": "card_53abd2#2",
+      "format": "flip",
+      "prompt": "Why is it notable that the gains came from relevant memories rather than longer prompts?",
+      "back_html": "\u003cp\u003eIt rules out the trivial explanation that more context alone helps — the benefit is specific to retrieving reasoning structure that matches the problem.\u003c/p\u003e"
+    }
+  ]
+}

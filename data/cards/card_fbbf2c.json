@@ -1,0 +1,117 @@
+{
+  "id": "card_fbbf2c",
+  "slug": "backpropagation",
+  "type": "paper",
+  "title": "Learning Representations by Back-Propagating Errors",
+  "hook": "The 1986 paper that made deep learning possible: run the error backward through the network with the chain rule, and you get every weight's gradient in one sweep.",
+  "key_points": [
+    "Rumelhart, Hinton \u0026 Williams popularized backprop for multi-layer networks.",
+    "The chain rule propagates error from the output back to every weight.",
+    "It computes all gradients in one backward pass — cheap enough to train deep nets.",
+    "Hidden units learn useful internal representations, not just memorized inputs."
+  ],
+  "content_html": "\u003cp\u003eIn 1986, Rumelhart, Hinton, and Williams showed that a multi-layer neural network could be trained efficiently by propagating its output error backward through the layers. Their short Nature paper popularized backpropagation as the practical learning algorithm for deep networks, and it remains the engine behind essentially every model trained today.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eA network produces an output, and a loss measures how wrong it is. Backpropagation applies the chain rule from calculus, working backward from the loss to compute the gradient of the loss with respect to every weight — how much each one nudged the error up or down. Crucially, it reuses intermediate results so the whole gradient is found in a single backward pass, no matter how many layers. Gradient descent then steps each weight in the direction that lowers the loss.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eBefore backprop, training networks with hidden layers was impractical. The paper's lasting insight was that those hidden units learn their own useful internal representations of the problem, rather than just memorizing inputs. That ability to learn features automatically is what eventually powered image recognition, speech, and large language models — which is why this is considered one of the foundational results in the field.\u003c/p\u003e",
+  "source": {
+    "name": "Nature",
+    "authors": [
+      "David Rumelhart",
+      "Geoffrey Hinton",
+      "Ronald Williams"
+    ],
+    "url": "https://www.nature.com/articles/323533a0",
+    "published_at": "1986-10-09",
+    "license": "journal (Nature)"
+  },
+  "topic_ids": [
+    "training-intuition"
+  ],
+  "tags": [
+    "foundational",
+    "training",
+    "paper",
+    "landmark"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "1986-10-09",
+  "related": [
+    {
+      "id": "card_dd14c6",
+      "slug": "how-neural-networks-learn",
+      "type": "concept",
+      "title": "How Neural Networks Learn: Backpropagation",
+      "hook": "A neural net learns by asking, for every weight, 'how much did you contribute to my mistake?' Backprop answers all of them at once.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2017-10-05"
+    },
+    {
+      "id": "card_7921e0",
+      "slug": "gradient-descent",
+      "type": "concept",
+      "title": "Gradient Descent",
+      "hook": "Lost in fog on a hillside, you'd feel for the steepest downhill step and take it, again and again. That's how models learn.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_349943",
+      "slug": "automatic-differentiation",
+      "type": "concept",
+      "title": "Automatic Differentiation",
+      "hook": "Backprop is one instance of a general trick: autodiff computes exact derivatives of any program by composing the chain rule — the engine inside every deep-learning framework.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-03"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7921e0",
+      "slug": "gradient-descent",
+      "type": "concept",
+      "title": "Gradient Descent",
+      "hook": "Lost in fog on a hillside, you'd feel for the steepest downhill step and take it, again and again. That's how models learn.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_fbbf2c#0",
+      "format": "flip",
+      "prompt": "How does backpropagation compute every weight's gradient so cheaply?",
+      "back_html": "\u003cp\u003eIt applies the chain rule working backward from the loss and reuses intermediate results, so the whole gradient is found in a single backward pass regardless of depth.\u003c/p\u003e"
+    },
+    {
+      "id": "card_fbbf2c#1",
+      "format": "quiz",
+      "prompt": "What was the paper's lasting insight beyond the algorithm itself?",
+      "choices": [
+        {
+          "text": "Hidden units learn useful internal representations, not just memorize inputs",
+          "correct": true
+        },
+        {
+          "text": "Networks need no nonlinearities to learn",
+          "correct": false
+        },
+        {
+          "text": "Gradients must be computed one weight at a time",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe lasting insight was that hidden units learn their own useful internal representations of the problem — the ability to learn features automatically.\u003c/p\u003e"
+    },
+    {
+      "id": "card_fbbf2c#2",
+      "format": "flip",
+      "prompt": "What does gradient descent do with the gradients backprop produces?",
+      "back_html": "\u003cp\u003eIt steps each weight in the direction that lowers the loss, using the per-weight gradients backprop computed.\u003c/p\u003e"
+    }
+  ]
+}

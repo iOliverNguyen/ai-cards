@@ -1,0 +1,93 @@
+{
+  "id": "card_289661",
+  "slug": "generative-compilation-compiler-feedback",
+  "type": "paper",
+  "title": "Generative Compilation: On-the-Fly Compiler Feedback as AI Generates Code",
+  "hook": "Rust rewards AI for writing strict, safe code — and punishes it for the same reason. This lets the compiler check the model's code while it's still being written, not after.",
+  "key_points": [
+    "Introduces generative compilation: compiler feedback on partial programs, checked while the model is still generating them, not only after.",
+    "Core device is a 'sealor' — a mostly syntax-guided transformation that completes a partial program just enough for a standard compiler to diagnose it.",
+    "The sealor is proven (mechanized in Lean) to never reject a program that could still be completed, while still catching genuine dead ends early.",
+    "Built into the first partial-program checker for real Rust, evaluated on repository-level Rust coding tasks across frontier and open-weight models.",
+    "Reduces non-compiling outputs and improves functional correctness versus standard post-generation compiler feedback, by catching errors near their source before they cascade.",
+    "Needs no white-box model access or constrained-decoding reimplementation, unlike token-level constrained decoding."
+  ],
+  "content_html": "\u003cp\u003eLanguages like Rust give AI-generated code stronger correctness guarantees — but their strict static semantics make correct generation harder in the first place. Running the compiler after generation catches the mistake too late; token-level constrained decoding catches it early but needs white-box model access and expensive semantic reimplementation. This paper proposes a third path.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eNiels Mündler-Sasahara, Hristo Venev, Dawn Song, Martin Vechev, and Jingxuan He introduce generative compilation: getting real compiler feedback on a program while it's still partially generated. The core piece is a \u0026quot;sealor,\u0026quot; a lightweight, mostly syntax-guided transformation that turns a partial program into a complete one an ordinary compiler can check — built so it never rejects a program that could still be finished, while still flagging genuine dead ends early. The authors mechanize the proof of these properties in Lean and extend the approach into the first partial-program checker for real Rust.\u003c/p\u003e\n\u003cp\u003eEvaluated on challenging repository-level Rust coding tasks across both frontier black-box models and open-weight models, generative compilation reduces non-compiling outputs and improves functional correctness compared with standard post-generation compiler feedback. The mechanism is catching a broad range of errors close to their source, early during generation, which cuts off error cascades and sharpens diagnostics. The authors frame it as a step toward making the compiler an active, first-class participant in AI-assisted programming rather than a separate check run after the fact. Mündler-Sasahara, Venev, Song, Vechev, and He, arXiv, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Niels Mündler-Sasahara",
+      "Hristo Venev",
+      "Dawn Song",
+      "Martin Vechev",
+      "Jingxuan He"
+    ],
+    "url": "https://arxiv.org/abs/2607.13921",
+    "published_at": "2026-07-15",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-15",
+  "related": [],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_289661#0",
+      "format": "flip",
+      "prompt": "What's the key limitation of ordinary compiler feedback that generative compilation addresses?",
+      "back_html": "\u003cp\u003eStandard compilers only diagnose complete programs, so they can't guide the intermediate steps of autoregressive generation — feedback arrives only after the model has already committed to a flawed direction.\u003c/p\u003e"
+    },
+    {
+      "id": "card_289661#1",
+      "format": "quiz",
+      "prompt": "What does the 'sealor' do?",
+      "choices": [
+        {
+          "text": "Transforms a partial program into a complete one a standard compiler can diagnose, without rejecting anything still completable",
+          "correct": true
+        },
+        {
+          "text": "Replaces the compiler with a neural network that predicts correctness",
+          "correct": false
+        },
+        {
+          "text": "Rejects any partial program that isn't already syntactically complete",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe sealor is a lightweight, mostly syntax-guided transformation, proven (mechanized in Lean) to never reject a program that could still be completed while still catching genuine dead ends.\u003c/p\u003e"
+    },
+    {
+      "id": "card_289661#2",
+      "format": "quiz",
+      "prompt": "Why don't the authors use constrained decoding instead of generative compilation?",
+      "choices": [
+        {
+          "text": "Constrained decoding needs white-box model access and costly reimplementation for semantic constraints",
+          "correct": true
+        },
+        {
+          "text": "Constrained decoding only works for Python, not Rust",
+          "correct": false
+        },
+        {
+          "text": "Constrained decoding is slower than running a full compiler on every token",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eConstrained decoding rejects invalid tokens during sampling but requires access to model internals and rebuilding semantic constraints — generative compilation instead reuses an off-the-shelf compiler on partial programs.\u003c/p\u003e"
+    }
+  ]
+}

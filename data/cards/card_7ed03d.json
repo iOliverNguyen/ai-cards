@@ -1,0 +1,128 @@
+{
+  "id": "card_7ed03d",
+  "slug": "what-is-attention",
+  "type": "concept",
+  "title": "What Is Attention?",
+  "hook": "Attention lets a model decide what to focus on: it scores how relevant each piece of input is to the current question, then blends them by those scores.",
+  "key_points": [
+    "Attention is a learned, content-based lookup — no fixed wiring, the weights depend on the inputs.",
+    "Each query is compared against a set of keys to produce relevance weights.",
+    "The output is a weighted sum of values, dominated by the best-matching keys.",
+    "Self-attention applies this within one sequence, relating every position to every other."
+  ],
+  "content_html": "\u003cp\u003eAttention is a mechanism that lets a neural network look over all its inputs and decide which ones matter for the task at hand. Lilian Weng's widely read overview frames it as a content-based weighted lookup: a query is matched against keys to get relevance scores, and the result is a weighted average of the corresponding values. Self-attention is the special case where a sequence attends to itself, letting every word relate to every other word.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eYou start with three views of the data: queries, keys, and values. For a given query, you measure how well it matches each key — typically with a dot product — and turn those match scores into weights that sum to one. The output is the sum of all values weighted by those scores, so values whose keys matched the query best contribute the most. Because the weights are computed from the data itself, the model effectively learns what to pay attention to rather than relying on fixed connections.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAttention solved a long-standing problem: older sequence models squeezed everything into one fixed-size summary and tended to forget distant context. By letting any position directly reference any other, attention captures long-range relationships and does it in parallel rather than step by step. This idea is the foundation of Transformers and nearly every modern large language model, so understanding it unlocks how today's AI actually reads and reasons over text.\u003c/p\u003e",
+  "source": {
+    "name": "Lil'Log",
+    "authors": [
+      "Lilian Weng"
+    ],
+    "url": "https://lilianweng.github.io/posts/2018-06-24-attention/",
+    "published_at": "2018-06-24",
+    "license": "free educational"
+  },
+  "topic_ids": [
+    "attention-mechanisms"
+  ],
+  "tags": [
+    "architecture",
+    "nlp",
+    "foundational"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2018-06-24",
+  "related": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    },
+    {
+      "id": "card_c23bf2",
+      "slug": "bahdanau-attention",
+      "type": "paper",
+      "title": "Neural Machine Translation by Jointly Learning to Align and Translate",
+      "hook": "Cramming a whole sentence into one vector loses information. This 2014 paper let the decoder look back at relevant source words at each step — the original attention mechanism.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2014-09-01"
+    },
+    {
+      "id": "card_4ecc14",
+      "slug": "the-illustrated-transformer",
+      "type": "resource",
+      "title": "The Illustrated Transformer",
+      "hook": "Before you tackle the Transformer paper, watch a sentence flow through one — query, key, value, and all — in clear pictures.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2018-06-27"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_dd14c6",
+      "slug": "how-neural-networks-learn",
+      "type": "concept",
+      "title": "How Neural Networks Learn: Backpropagation",
+      "hook": "A neural net learns by asking, for every weight, 'how much did you contribute to my mistake?' Backprop answers all of them at once.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2017-10-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_7ed03d#0",
+      "format": "flip",
+      "prompt": "In attention, how is the output computed from queries, keys, and values?",
+      "back_html": "\u003cp\u003eA query is matched against keys to get relevance scores summing to one, then the output is the weighted sum of values by those scores.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7ed03d#1",
+      "format": "quiz",
+      "prompt": "What makes attention a 'content-based' lookup?",
+      "choices": [
+        {
+          "text": "The weights are computed from the inputs themselves, so the model learns what to focus on",
+          "correct": true
+        },
+        {
+          "text": "It uses fixed wiring set at initialization",
+          "correct": false
+        },
+        {
+          "text": "It always attends most to the first token",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAttention weights depend on the data (query-key matches), so the model learns what to attend to rather than using fixed connections.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7ed03d#2",
+      "format": "quiz",
+      "prompt": "What is self-attention?",
+      "choices": [
+        {
+          "text": "Attention applied within one sequence, relating every position to every other",
+          "correct": true
+        },
+        {
+          "text": "Attention between two separate sequences only",
+          "correct": false
+        },
+        {
+          "text": "Attention restricted to a single fixed-size summary vector",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSelf-attention is the special case where a sequence attends to itself, letting every position relate to every other.\u003c/p\u003e"
+    }
+  ]
+}

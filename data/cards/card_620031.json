@@ -1,0 +1,102 @@
+{
+  "id": "card_620031",
+  "slug": "openai-russia-influence-campaign",
+  "type": "news",
+  "title": "Disrupting a Russian Influence Campaign",
+  "hook": "OpenAI banned Russia-origin accounts using its models to prop up a fake Israel-based think tank and a 'sovereignty' index that flattered Russia and dinged the West.",
+  "key_points": [
+    "OpenAI reports banning accounts of Russian origin conducting a covert influence operation.",
+    "The operation fabricated an Israel-based think tank as a front for its output.",
+    "It also published a 'sovereignty' index constructed to praise Russia and criticize Western countries.",
+    "The pattern is content-generation at scale wrapped in a fabricated institutional identity to borrow credibility.",
+    "Disclosure reports like this are a main public window into how state-linked actors actually use commercial models."
+  ],
+  "content_html": "\u003cp\u003eOpenAI published an account of banning a cluster of Russia-origin accounts running a covert influence operation on its platform. The campaign promoted a fabricated Israel-based think tank and circulated a \u0026quot;sovereignty\u0026quot; index engineered to praise Russia and criticize Western countries.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe shape of the misuse\u003c/h2\u003e\n\u003cp\u003eWhat stands out is not the text generation — that part is easy — but the packaging. Anonymous content persuades poorly; content attributed to a research institute, complete with an index and a methodology, borrows the credibility of a genre readers already trust. The model does the volume, the fake institution does the laundering.\u003c/p\u003e\n\u003ch2\u003eWhy the report matters\u003c/h2\u003e\n\u003cp\u003eOnly the provider can see account-level behaviour, so these disclosures are most of the public record on how state-linked actors use commercial models. They come with obvious selection bias: a lab reports the operations it caught, on its own platform, with framing it chooses. Read them as evidence of tactics rather than as a measurement of scale.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "authors": [
+      "OpenAI"
+    ],
+    "url": "https://openai.com/index/disrupting-malicious-uses-of-ai-influence-campaign-russia",
+    "published_at": "2026-08-25",
+    "license": "OpenAI blog"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "lab-updates"
+  ],
+  "tags": [
+    "safety",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-08-27",
+  "date": "2026-08-25",
+  "related": [
+    {
+      "id": "card_2d4f95",
+      "slug": "pretraining-data-poisoned-computational-propaganda",
+      "type": "paper",
+      "title": "Pretraining Data Can Be Poisoned through Computational Propaganda",
+      "hook": "Most pretraining-poisoning research injects fake Wikipedia edits — a toy case next to messy web-scale reality. This paper shows public discussion forums are a real, live vector for attacking LLM pretraining data.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-16"
+    },
+    {
+      "id": "card_06e829",
+      "slug": "grokipedia-vs-wikipedia-political-neutrality-audit",
+      "type": "paper",
+      "title": "Grokipedia vs Wikipedia: An LLM-Based Audit of Political Neutrality along Ideologies",
+      "hook": "Grokipedia launched as the 'unbiased' answer to Wikipedia's alleged left-lean. Audited by four LLM judges, including Grok itself, it rates less neutral — just biased the other way.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-16"
+    },
+    {
+      "id": "card_a9688e",
+      "slug": "opaque-epistemic-mediation",
+      "type": "paper",
+      "title": "A Model's Stance Is a Deployment Setting, Not a Property",
+      "hook": "The same Grok model ID rated a pseudo-scientific claim 75 via API and 5.5 via web. What a commercial LLM 'believes' turns out to be a contingent effect of how it's deployed.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_620031#0",
+      "format": "flip",
+      "prompt": "What role did the fake think tank play in this operation?",
+      "back_html": "\u003cp\u003eIt supplied institutional cover — model-generated content published under a fabricated Israel-based organization borrows credibility that anonymous posts would not have.\u003c/p\u003e"
+    },
+    {
+      "id": "card_620031#1",
+      "format": "quiz",
+      "prompt": "Why are lab disruption reports a useful source on AI misuse?",
+      "choices": [
+        {
+          "text": "They are one of the few public windows into how state-linked actors actually use commercial models",
+          "correct": true
+        },
+        {
+          "text": "They quantify the total volume of misuse across all providers",
+          "correct": false
+        },
+        {
+          "text": "They are independently audited before publication",
+          "correct": false
+        },
+        {
+          "text": "They prove the campaigns had no measurable effect",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOnly the provider sees the account-level activity, so its own disclosures — with all the selection bias that implies — are most of the public record.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "id": "card_a0d8fb",
+  "slug": "planbench-xl",
+  "type": "paper",
+  "title": "PlanBench-XL: Long-Horizon Planning in Large Tool Ecosystems",
+  "hook": "A benchmark of 1,665 tools shows top agents plan fine until tools start failing silently — then GPT-5.4's success crashes from 52% to 11%.",
+  "key_points": [
+    "327 interactive retail tasks over 1,665 tools; agents must retrieve relevant tools, not see them all upfront.",
+    "Tasks need iterative tool use — each call surfaces evidence the next call depends on, over long horizons.",
+    "A 'blocking' mode injects missing, failing, or distracting tools to simulate real-world unpredictability.",
+    "GPT-5.4 reaches 51.9% accuracy without blocking but collapses to 11.36% under the most severe blocking.",
+    "Agents fail most when failures give no explicit error signal or recovery needs a longer alternative path."
+  ],
+  "content_html": "\u003cp\u003eLLM agents increasingly operate inside large tool ecosystems, where a task means discovering the right tools, chaining their outputs, and adapting when things go wrong. PlanBench-XL, from Liu, Ji, Hakkani-Tür and colleagues, is an interactive benchmark of 327 retail tasks over 1,665 tools designed to test exactly that — and crucially, it doesn't hand the agent every tool upfront.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat it tests\u003c/h2\u003e\n\u003cp\u003eAgents must iteratively retrieve usable tools and invoke them to uncover the evidence later steps depend on, over long horizons. An optional \u0026quot;blocking\u0026quot; mechanism injects missing, failing, or distracting tool functions to mimic real-world unpredictability, forcing the agent to notice a broken path and adapt at runtime. This is the gap the authors target: prior benchmarks rarely evaluate planning under retrieval-limited tool visibility.\u003c/p\u003e\n\u003ch2\u003eWhat they found\u003c/h2\u003e\n\u003cp\u003eAcross ten leading models, massive-tool planning stayed hard. GPT-5.4 managed 51.90% accuracy in the block-free setting but collapsed to 11.36% under the most severe blocking. The analysis points to two failure modes: agents are especially vulnerable when failures carry no explicit error signal, and when recovery demands a longer alternative path. PlanBench-XL is offered as a testbed for diagnosing these adaptive-planning failures.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jiayu Liu",
+      "Qihan Lin",
+      "Cheng Qian",
+      "Heng Ji",
+      "Dilek Hakkani-Tür",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.22388",
+    "published_at": "2026-06-21",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-25",
+  "date": "2026-06-21",
+  "related": [
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    },
+    {
+      "id": "card_096b24",
+      "slug": "bm25-tool-selection",
+      "type": "blog",
+      "title": "Why One Engineer Dropped Embeddings for BM25 in Tool Selection",
+      "hook": "An engineer running an agent with ~140 tools dropped embedding-based tool selection for plain BM25 — cosine similarity over short tool descriptions was dangerous in production.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-08"
+    },
+    {
+      "id": "card_eb1147",
+      "slug": "agents-last-exam",
+      "type": "paper",
+      "title": "Agents' Last Exam: Benchmarking Agents on Real Economic Work",
+      "hook": "Frontier agents ace academic benchmarks but flop on real jobs — Agents' Last Exam scores them on 1,000+ economically valuable workflows, where the hardest tier sees just a 2.6% pass rate.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-03"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a0d8fb#0",
+      "format": "flip",
+      "prompt": "Why does PlanBench-XL hide tools behind retrieval instead of listing all 1,665 upfront?",
+      "back_html": "\u003cp\u003eReal agents in large ecosystems must first discover which tools are relevant; retrieval-limited visibility tests planning under partial information, which a fixed tool list doesn't.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a0d8fb#1",
+      "format": "quiz",
+      "prompt": "What did PlanBench-XL's 'blocking' condition reveal about leading LLM agents?",
+      "choices": [
+        {
+          "text": "Accuracy collapsed — GPT-5.4 fell from ~52% to ~11% — once tools could fail, go missing, or distract",
+          "correct": true
+        },
+        {
+          "text": "Agents performed about equally well with and without tool failures",
+          "correct": false
+        },
+        {
+          "text": "Adding more tools always improved accuracy",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBlock-free, GPT-5.4 scored 51.9%; under the most severe blocking it dropped to 11.36%, showing how brittle long-horizon planning is when the environment is imperfect.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a0d8fb#2",
+      "format": "flip",
+      "prompt": "When are these agents most likely to fail at long-horizon tool use?",
+      "back_html": "\u003cp\u003eWhen a failure comes with no explicit error signal, or when recovery requires finding a longer alternative tool-use path.\u003c/p\u003e"
+    }
+  ]
+}

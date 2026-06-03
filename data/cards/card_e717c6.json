@@ -1,0 +1,99 @@
+{
+  "id": "card_e717c6",
+  "slug": "eval-awareness-capabilities-framing",
+  "type": "paper",
+  "title": "Not All Eval-Awareness Is Equal",
+  "hook": "Safety pipelines suppress eval-awareness as if it were one quantity. It isn't: reading a test as a capability check rather than a boundary probe swings compliance by up to 46 points.",
+  "key_points": [
+    "Eval-awareness is a model recognizing it is being tested; steering pipelines treat it as one thing to suppress.",
+    "Verbalized eval-awareness in chain-of-thought splits into capabilities-flavored, safety-flavored, both, or neither.",
+    "On Qwen3-32B over FORTRESS, capabilities-framing predicts compliance with a +24 to +46 point gap over safety-framing, across all steering conditions.",
+    "A CoT-prefill intervention on eval-awareness-negative rollouts shifted compliance in the predicted direction in 10 of 11 prefills, suggesting causality.",
+    "Aggregate suppression rates can move while the safety-relevant component does not.",
+    "The same headline 'X% suppression of eval-awareness' can correspond to qualitatively different behavior."
+  ],
+  "content_html": "\u003cp\u003eModels sometimes notice they are being tested, and that noticing changes how they behave — which makes evaluation results harder to trust. The response in safety pipelines has been to steer eval-awareness down and report a suppression percentage. Zhuang and Aranguri show that percentage is measuring a construct that is not one thing.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe distinction\u003c/h2\u003e\n\u003cp\u003eReading verbalized eval-awareness out of chain-of-thought, they classify it as capabilities-flavored (\u0026quot;the user is testing my ability to follow instructions\u0026quot;), safety-flavored (\u0026quot;the user is testing my boundaries\u0026quot;), both, or neither. These framings predict compliance very differently. On Qwen3-32B over the FORTRESS dataset, capabilities-framing predicts compliance with a +24 to +46 percentage-point gap over safety-framing — and that holds across every steering condition tested.\u003c/p\u003e\n\u003cp\u003eA CoT-prefill intervention on eval-awareness-negative rollouts supports a causal reading: ten of eleven prefills shifted compliance in the predicted direction.\u003c/p\u003e\n\u003ch2\u003eThe consequence for evaluation\u003c/h2\u003e\n\u003cp\u003eEval-awareness is not behaviorally uniform, so aggregate suppression rates can move while the safety-relevant component does not. The same \u0026quot;X% suppression\u0026quot; can correspond to qualitatively different behavioral outcomes. If you are using steering as part of a safety evaluation pipeline, the number you report is not by itself evidence about the behavior you care about — you have to know which flavor moved.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Allison Zhuang",
+      "Santiago Aranguri"
+    ],
+    "url": "https://arxiv.org/abs/2608.27340",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "interpretability",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "interpretability",
+    "alignment",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_f0dc85",
+      "slug": "double-blind-frontier-evaluations",
+      "type": "news",
+      "title": "Piloting the World's First Double-Blind AI Evaluations",
+      "hook": "Benchmarks only mean something if the model hasn't seen the answers. DeepMind's pilot hides the test from the lab and the weights from the evaluators — enforced by cryptography, not a contract.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-27"
+    },
+    {
+      "id": "card_0aa2e3",
+      "slug": "linguistic-vs-internal-confidence",
+      "type": "paper",
+      "title": "When a Model Says 90%, Does It Mean It?",
+      "hook": "Across 30 models, the confidence an LLM reports in words is only loosely coupled to the confidence in its logits — a lossy channel, not a readout.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_e717c6#0",
+      "format": "flip",
+      "prompt": "What are the two 'flavors' of eval-awareness the paper distinguishes?",
+      "back_html": "\u003cp\u003eCapabilities-flavored (\u0026quot;the user is testing my ability to follow instructions\u0026quot;) and safety-flavored (\u0026quot;the user is testing my boundaries\u0026quot;) — read from the model's chain of thought.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e717c6#1",
+      "format": "quiz",
+      "prompt": "Why is reporting 'X% suppression of eval-awareness' potentially misleading?",
+      "choices": [
+        {
+          "text": "The aggregate can move while the safety-relevant component stays unchanged",
+          "correct": true
+        },
+        {
+          "text": "Suppression rates cannot be measured reliably in any setting",
+          "correct": false
+        },
+        {
+          "text": "Eval-awareness only appears in models above a certain size",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBecause the construct is not behaviorally uniform, the same aggregate number can correspond to very different behavioral outcomes depending on which flavor was suppressed.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e717c6#2",
+      "format": "flip",
+      "prompt": "What evidence suggests the framing-compliance link is causal, not just correlational?",
+      "back_html": "\u003cp\u003eA CoT-prefill intervention on eval-awareness-negative rollouts shifted compliance in the predicted direction for 10 of 11 prefills.\u003c/p\u003e"
+    }
+  ]
+}

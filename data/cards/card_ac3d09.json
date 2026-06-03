@@ -1,0 +1,97 @@
+{
+  "id": "card_ac3d09",
+  "slug": "openai-frontier-governance-framework",
+  "type": "news",
+  "title": "OpenAI's Frontier Governance Framework",
+  "hook": "A major lab publishes how it intends to govern its most capable models — and explicitly maps those safety, security, and risk practices onto emerging EU and California rules.",
+  "key_points": [
+    "OpenAI's published framework for governing frontier (most-capable) AI models.",
+    "Covers its safety, security, and risk-management practices for high-capability systems.",
+    "Explicitly aligns those practices with emerging EU and California AI regulation.",
+    "Part of a broader industry move toward formalized, published frontier-safety commitments."
+  ],
+  "content_html": "\u003cp\u003eOpenAI published its Frontier Governance Framework, laying out how the company says it manages the risks of its most capable models. The framework describes its safety, security, and risk practices and, notably, frames them in relation to emerging regulation — explicitly aligning with rules taking shape in the EU and in California.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eFrontier labs increasingly publish their own safety and governance commitments — preparedness frameworks, responsible-scaling policies, and the like — partly to demonstrate self-governance and partly to get ahead of incoming law. OpenAI's framework is one such document, and its explicit alignment with EU and California regulation is a sign of how lab policy and government policy are starting to converge. For anyone tracking AI governance, these published frameworks are useful primary sources for what the labs are actually committing to. Refer to OpenAI's announcement for the specifics.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "authors": [
+      "OpenAI"
+    ],
+    "url": "https://openai.com/index/openai-frontier-governance-framework",
+    "published_at": "2026-05-28",
+    "license": "OpenAI (web)"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "lab-updates"
+  ],
+  "tags": [
+    "safety",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-06-04",
+  "date": "2026-05-28",
+  "related": [
+    {
+      "id": "card_b475e8",
+      "slug": "frontier-ai-regulation",
+      "type": "paper",
+      "title": "Frontier AI Regulation",
+      "hook": "How do you regulate models too new to have rules yet? This paper sketches three building blocks: set standards, make labs report, then enforce.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-07-06"
+    },
+    {
+      "id": "card_acc5ad",
+      "slug": "eu-ai-act",
+      "type": "resource",
+      "title": "The EU AI Act",
+      "hook": "The EU's answer to regulating AI: sort systems by how much risk they pose, then scale the rules to match — from outright bans to no rules at all.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-08-01"
+    },
+    {
+      "id": "card_490028",
+      "slug": "model-evaluation-for-extreme-risks",
+      "type": "paper",
+      "title": "Model Evaluation for Extreme Risks",
+      "hook": "General-purpose AI tends to pick up dangerous capabilities alongside useful ones. So test for those capabilities directly — before you ship, not after.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_ac3d09#0",
+      "format": "flip",
+      "prompt": "What is notable about how OpenAI's Frontier Governance Framework relates to regulation?",
+      "back_html": "\u003cp\u003eIt explicitly aligns its safety, security, and risk practices with emerging EU and California AI regulation.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ac3d09#1",
+      "format": "quiz",
+      "prompt": "Why do frontier labs publish their own governance frameworks?",
+      "choices": [
+        {
+          "text": "To demonstrate self-governance and get ahead of incoming law",
+          "correct": true
+        },
+        {
+          "text": "Because regulators legally require the exact document",
+          "correct": false
+        },
+        {
+          "text": "To open-source their model weights",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLabs publish these partly to demonstrate self-governance and partly to get ahead of incoming law; they are useful primary sources for what labs commit to.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "id": "card_419bc4",
+  "slug": "propensity-aware-memorization",
+  "type": "paper",
+  "title": "Can vs. Will: Propensity-Aware Memorization in LLMs",
+  "hook": "Most memorization tests ask whether you can force a model to spit out training data. This one asks a sharper question: does it leak under ordinary use? The two answers are very different.",
+  "key_points": [
+    "Standard memorization audits measure worst-case extractability — whether a prefix attack can elicit training data.",
+    "PropMe instead measures propensity: how much a model leaks under generic, non-adversarial prompts.",
+    "Across two fully-open models, prefix attacks elicited strong memorization while propensity scores stayed low.",
+    "Continued pre-training on different data lowered both memorization capability and propensity for the original corpus."
+  ],
+  "content_html": "\u003cp\u003eLarge language models can reproduce chunks of their training data — but how worried should we be? Barmina and colleagues argue that most memorization evaluations answer the wrong question. They measure whether a model \u003cem\u003ecan\u003c/em\u003e be forced to regurgitate data (typically by feeding it a prefix of a known passage), not whether it actually \u003cem\u003edoes\u003c/em\u003e under ordinary, non-adversarial use.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTheir framework, PropMe, separates the two. It contrasts prefix-based capability attacks with generic and dataset-specific prompts, and proposes a metric transformation that turns existing memorization functions into propensity metrics. A companion tracing pipeline, SimpleTrace (built on infini-gram), deterministically attributes a model's generations back to large training corpora and computes verbatim, near-verbatim, and propensity-transformed scores. Evaluating two fully-open models (Comma and DFM Decoder) on the Common Pile and Dynaword datasets, they find a consistent gap: prefix attacks elicit strong leakage, but propensity stays low — models \u003cem\u003ecan\u003c/em\u003e reveal training data when directly elicited, yet rarely do in common settings. They also show that continued pre-training on partly different data reduces both capability and propensity. The recommendation: memorization audits should report both worst-case extractability and ordinary-use leakage propensity.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Gianluca Barmina",
+      "Peter Schneider-Kamp",
+      "Lukas Galke Poech"
+    ],
+    "url": "https://arxiv.org/abs/2606.06286",
+    "published_at": "2026-06-04",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "dataset",
+    "interpretability",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-08",
+  "date": "2026-06-04",
+  "related": [
+    {
+      "id": "card_9237d7",
+      "slug": "deduplicating-training-data",
+      "type": "paper",
+      "title": "Deduplicating Training Data Makes LMs Better",
+      "hook": "Training corpora are full of copies — one 61-word sentence shows up 60,000+ times in C4. Strip the duplicates and models memorize far less and evaluate more honestly.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2021-07-14"
+    },
+    {
+      "id": "card_395956",
+      "slug": "red-teaming-lms",
+      "type": "paper",
+      "title": "Red Teaming Language Models with Language Models",
+      "hook": "Finding the prompts that make a model misbehave is slow if humans do it by hand. So use another language model to generate those attacks automatically — at scale.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-02-07"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_419bc4#0",
+      "format": "quiz",
+      "prompt": "What distinction does the PropMe framework draw that older memorization metrics miss?",
+      "choices": [
+        {
+          "text": "Capability (can it be forced to leak) vs. propensity (does it leak under ordinary use)",
+          "correct": true
+        },
+        {
+          "text": "Training-set size vs. model parameter count",
+          "correct": false
+        },
+        {
+          "text": "Verbatim copying vs. paraphrasing, with no behavioral angle",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePropMe contrasts prefix-based capability attacks against non-adversarial evaluations — separating whether a model \u003cem\u003ecan\u003c/em\u003e leak from whether it \u003cem\u003edoes\u003c/em\u003e in normal use.\u003c/p\u003e"
+    },
+    {
+      "id": "card_419bc4#1",
+      "format": "flip",
+      "prompt": "What gap did the authors consistently find between capability and propensity?",
+      "back_html": "\u003cp\u003ePrefix attacks elicited substantially stronger memorization signals than generic prompts, while propensity scores stayed low overall — models can reveal training data when pushed but rarely do so otherwise.\u003c/p\u003e"
+    },
+    {
+      "id": "card_419bc4#2",
+      "format": "flip",
+      "prompt": "How did continued pre-training on partly different data affect memorization?",
+      "back_html": "\u003cp\u003eA model continually pre-trained from another (DFM Decoder from Comma) showed reduced memorization and propensity for the original corpus — memorization can decrease when later training emphasizes different data.\u003c/p\u003e"
+    }
+  ]
+}

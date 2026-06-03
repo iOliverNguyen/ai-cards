@@ -1,0 +1,111 @@
+{
+  "id": "card_bf9760",
+  "slug": "ai-assistants-overassist",
+  "type": "paper",
+  "title": "AI Tutors Jump In Too Soon",
+  "hook": "Put an LLM in the tutor's seat and it interrupts sooner and more often than a human would — and hands over the whole solution where a person would have offered a hint.",
+  "key_points": [
+    "Int-Bench simulates a 'student' working a problem while an LLM 'teacher' watches the reasoning and decides whether, when, and how to intervene.",
+    "Three domains: code debugging, mathematics, and brain teasers, scored on intervention frequency and timing.",
+    "Scoring covers both immediate task success and generalization to new problems the student solves alone afterwards.",
+    "Compared with humans, LLM teachers intervene more frequently and earlier in the student's reasoning.",
+    "Unlike humans, they tend to supply complete solutions rather than targeted hints.",
+    "The authors read this as optimizing for short-term task success over the reasoning practice that produces durable learning."
+  ],
+  "content_html": "\u003cp\u003eLLMs are increasingly used as tutors and thought partners, and the assumption is that more help is better help. This paper questions the \u003cem\u003eshape\u003c/em\u003e of that help. Guidance only scaffolds learning if it arrives at the right moment and in the right form; intervene too early or too often and you do the thinking for the learner.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eA benchmark for when to butt in\u003c/h2\u003e\n\u003cp\u003e\u003cstrong\u003eInt-Bench\u003c/strong\u003e is a simulation: a \u0026quot;student\u0026quot; works through a problem while a \u0026quot;teacher\u0026quot; model watches the reasoning unfold and decides whether, when, and how to step in. The authors run it across code debugging, mathematics, and brain teasers, and score teachers not only on whether the student finished the problem but on whether the student then generalizes to new ones — the measure that separates real learning from a handed-over answer.\u003c/p\u003e\n\u003ch2\u003eWhat the models do\u003c/h2\u003e\n\u003cp\u003eAgainst human teachers on the same setup, LLMs intervene more frequently and earlier. They also intervene \u003cem\u003edifferently\u003c/em\u003e: where a human offers a targeted hint, the model tends to supply the complete solution. Both habits push immediate task success up while cutting into the reasoning the student would otherwise have done, which is why the authors describe current assistants as optimizing for short-term success rather than the long-term capability their users presumably want. Teo and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Verona Teo",
+      "Raghav Jain",
+      "Tobias Gerstenberg",
+      "Max Kleiman-Weiner"
+    ],
+    "url": "https://arxiv.org/abs/2607.21306",
+    "published_at": "2026-07-23",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evaluation",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "agent",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-27",
+  "date": "2026-07-23",
+  "related": [
+    {
+      "id": "card_96da79",
+      "slug": "k12-kgraph-curriculum-cognition",
+      "type": "dataset",
+      "title": "Models Can Pass the Exam Without Knowing the Syllabus",
+      "hook": "Educational benchmarks test whether a model answers school questions. This one tests whether it knows which concept comes before which — and the best model scores 57%.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-23"
+    },
+    {
+      "id": "card_043751",
+      "slug": "llms-lost-in-evolving-intent",
+      "type": "paper",
+      "title": "LLMs Get Lost When Intent Keeps Moving",
+      "hook": "Real users don't state what they want up front — they reveal, revise, and redirect it mid-conversation. Rewrite existing benchmarks that way and scores drop across every model family.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-22"
+    },
+    {
+      "id": "card_17d07c",
+      "slug": "predictive-validity-agent-evals",
+      "type": "paper",
+      "title": "Beyond Static Leaderboards for Agents",
+      "hook": "Topping an agent leaderboard doesn't mean it'll work when deployed: aggregate-score rankings don't transfer out-of-distribution. Rank by predictive validity instead.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_bf9760#0",
+      "format": "flip",
+      "prompt": "What decision does Int-Bench actually measure?",
+      "back_html": "\u003cp\u003eWhether, when, and how a teacher intervenes while a simulated student reasons through a problem — across code debugging, mathematics, and brain teasers.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bf9760#1",
+      "format": "quiz",
+      "prompt": "How did LLM teachers differ from human teachers in the study?",
+      "choices": [
+        {
+          "text": "They intervened more frequently and earlier, and gave complete solutions rather than targeted hints",
+          "correct": true
+        },
+        {
+          "text": "They waited longer than humans before intervening, letting students struggle too much",
+          "correct": false
+        },
+        {
+          "text": "They intervened at the same rate but gave worse explanations",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBoth the timing and the shape of help differed: earlier and more frequent interruptions, and full solutions where humans offered hints.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bf9760#2",
+      "format": "flip",
+      "prompt": "Why does Int-Bench score generalization to new problems, not just whether the student finished this one?",
+      "back_html": "\u003cp\u003eBecause handing over the answer maximizes immediate success while removing the reasoning practice that transfers — the two measures can point in opposite directions.\u003c/p\u003e"
+    }
+  ]
+}

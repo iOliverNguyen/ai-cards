@@ -1,0 +1,113 @@
+{
+  "id": "card_382a02",
+  "slug": "latent-memory-palace-control",
+  "type": "paper",
+  "title": "Latent Memory Palace: Reasoning for Control as Autoregressive Variational Inference",
+  "hook": "LLMs can choose to think longer on hard questions. This paper gets robot control policies to do the same — allocating adaptive test-time compute in a latent 'memory palace' instead of language.",
+  "key_points": [
+    "Language-space reasoning doesn't transfer well to continuous control: it lacks the spatial granularity needed for precise motions.",
+    "Latent Memory Palace (LMP) reframes control-time reasoning as variational inference over an autoregressive latent space, with iterative, adaptive retrieval — not language tokens.",
+    "Derives a latent-space RL technique to directly optimize the resulting variational lower bound.",
+    "The resulting policy, LMP-π, performs strongly in both simulation and real-world robot tasks.",
+    "Test-time compute allocation is interpretable and adaptive — the policy 'deliberates' more on harder decisions.",
+    "The same framework also yields a variable-length action tokenizer (LMP-tok) that improves other downstream autoregressive policies."
+  ],
+  "content_html": "\u003cp\u003eLanguage models can choose to reason longer on hard questions and answer quickly on easy ones. Robot control policies mostly can't — reasoning in language space doesn't have the spatial precision continuous control needs. Latent Memory Palace, from a University of Washington robotics/RL group, builds that adaptive deliberation directly into a control policy's latent space instead.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eLMP treats control-time reasoning as variational inference over an autoregressive latent space — organizing information the way a \u0026quot;memory palace\u0026quot; does, with retrieval that's iterative and adapts to the situation rather than fixed. The authors derive a latent-space reinforcement learning technique to tractably optimize the resulting variational lower bound, producing a policy called LMP-π that performs strongly across both simulated and real-world control tasks while allocating test-time compute in an interpretable, adaptive way — more \u0026quot;deliberation\u0026quot; on harder decisions, less on easy ones.\u003c/p\u003e\n\u003cp\u003eThe same underlying framework also produces a variable-length action tokenizer, LMP-tok, which the authors show improves other downstream autoregressive policies that use it. The paper's broader claim is a new way to think about latent reasoning for control: not as a language-space add-on, but as variational inference native to the control problem itself. Chuning Zhu, Abhishek Gupta, and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Chuning Zhu",
+      "Eva Xu",
+      "Jose Barreiros",
+      "Krishnan Srinivasan",
+      "Paarth Shah",
+      "Abhishek Gupta"
+    ],
+    "url": "https://arxiv.org/abs/2607.08724",
+    "published_at": "2026-07-09",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "reasoning",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-13",
+  "date": "2026-07-09",
+  "related": [
+    {
+      "id": "card_296943",
+      "slug": "dreamerv3",
+      "type": "paper",
+      "title": "DreamerV3: Mastering Domains through World Models",
+      "hook": "Instead of learning only from real experience, DreamerV3 builds a world model and practices inside its own imagination — one fixed config, 150+ tasks.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2023-01-10"
+    },
+    {
+      "id": "card_0dc810",
+      "slug": "pi-zero",
+      "type": "paper",
+      "title": "π0: A Vision-Language-Action Model",
+      "hook": "π0 is a generalist robot policy: it takes camera images, joint angles, and a plain-language instruction, and outputs smooth action sequences — folding laundry, bussing tables, bagging groceries.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-10-31"
+    },
+    {
+      "id": "card_9a9bd2",
+      "slug": "world-models-meet-language-models",
+      "type": "paper",
+      "title": "World Models Meet Language Models",
+      "hook": "A world model can imagine what happens next; an LLM can reason about it. The hard part is knowing when to trust the daydream — and when the simulation is just plausible nonsense.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_382a02#0",
+      "format": "flip",
+      "prompt": "Why doesn't language-space reasoning transfer well to continuous control policies?",
+      "back_html": "\u003cp\u003eIt lacks the spatial granularity needed for precise, fine-grained motions — control needs more than what discrete language tokens can represent.\u003c/p\u003e"
+    },
+    {
+      "id": "card_382a02#1",
+      "format": "quiz",
+      "prompt": "How does Latent Memory Palace (LMP) formulate control-time reasoning?",
+      "choices": [
+        {
+          "text": "As variational inference over an autoregressive latent space, with iterative adaptive retrieval",
+          "correct": true
+        },
+        {
+          "text": "As a chain-of-thought reasoning trace written in natural language",
+          "correct": false
+        },
+        {
+          "text": "As a fixed lookup table of precomputed actions",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLMP treats reasoning as variational inference with an autoregressive latent distribution, optimized via a derived latent-space RL technique — not language-based chain-of-thought.\u003c/p\u003e"
+    },
+    {
+      "id": "card_382a02#2",
+      "format": "flip",
+      "prompt": "Besides the LMP-π policy, what other reusable output does the framework produce?",
+      "back_html": "\u003cp\u003eA variable-length action tokenizer, LMP-tok, which the authors show improves downstream autoregressive control policies that adopt it.\u003c/p\u003e"
+    }
+  ]
+}

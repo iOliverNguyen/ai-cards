@@ -1,0 +1,101 @@
+{
+  "id": "card_7f483b",
+  "slug": "dataclaw0",
+  "type": "paper",
+  "title": "DataClaw0: Data Refinement as a Learnable Skill",
+  "hook": "Instead of scrubbing data with fixed rules, what if an agent learned to tailor it? DataClaw0 turns data refinement into a trainable skill judged by how well models train on its output.",
+  "key_points": [
+    "Reframes data processing as a learnable capability — 'agentic data tailoring' — not fixed heuristics or generic VLM annotation.",
+    "A two-stage pipeline grounds generative synthesis in deterministic 'Factual Anchors' to build training data across five domains.",
+    "The DataClaw_0-9B model combines supervised fine-tuning with GRPO to align to complex refinement intents.",
+    "DataClaw_0-val is introduced as the first benchmark dedicated to data refinement.",
+    "Validation is downstream post-training: tailored data improved video generation, real-world VQA, and GUI navigation under limited data."
+  ],
+  "content_html": "\u003cp\u003eRaw multimodal streams are high-entropy: noisy, unstructured, and hard to turn into good training data. The usual fixes — heuristic rules or general vision-language models doing passive annotation — are costly and miss the deeper procedural logic in the data. Wan, Ma, Gong and colleagues propose elevating data processing itself to a learnable capability they call agentic data tailoring.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe idea is to actively refine and structure data to align with diverse user and downstream intents, rather than apply one fixed cleaning recipe. To get training data for such a high-order skill, the authors design a two-stage pipeline that grounds generative semantic synthesis in deterministic \u0026quot;Factual Anchors,\u0026quot; yielding a large dataset across five physical and digital domains. The DataClaw_0-9B model is then trained with supervised fine-tuning plus Group Relative Policy Optimization (GRPO) to align with complex tailoring intents, and DataClaw_0-val is introduced as the first benchmark dedicated to data refinement.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eCrucially, the work judges tailored data by the only test that matters in practice: downstream post-training. Models trained on DataClaw0's output improved on video generation, real-world VQA, and GUI navigation under limited-data regimes — evidence that treating data curation as a learnable, intent-aware skill can beat static heuristics.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Cong Wan",
+      "Zeyu Guo",
+      "Zhiheng Ma",
+      "Yihong Gong",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.21337",
+    "published_at": "2026-06-19",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "data",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "dataset",
+    "agent",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-25",
+  "date": "2026-06-19",
+  "related": [
+    {
+      "id": "card_9237d7",
+      "slug": "deduplicating-training-data",
+      "type": "paper",
+      "title": "Deduplicating Training Data Makes LMs Better",
+      "hook": "Training corpora are full of copies — one 61-word sentence shows up 60,000+ times in C4. Strip the duplicates and models memorize far less and evaluate more honestly.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2021-07-14"
+    },
+    {
+      "id": "card_7a5e17",
+      "slug": "the-pile",
+      "type": "dataset",
+      "title": "The Pile: 800GB of Diverse Text",
+      "hook": "Web text alone leaves gaps. The Pile stitches together 22 curated sources — academic and professional — so a language model picks up knowledge plain web crawls miss.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-12-31"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_7f483b#0",
+      "format": "flip",
+      "prompt": "What does 'agentic data tailoring' replace, and how?",
+      "back_html": "\u003cp\u003eIt replaces fixed heuristic rules and generic VLM annotation with a learnable agent that actively refines and structures raw data to fit specific downstream intents.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7f483b#1",
+      "format": "quiz",
+      "prompt": "How does DataClaw0 ultimately validate the data it produces?",
+      "choices": [
+        {
+          "text": "By downstream post-training — checking whether models trained on the tailored data improve on tasks like VQA and GUI navigation",
+          "correct": true
+        },
+        {
+          "text": "By human ratings of data cleanliness alone",
+          "correct": false
+        },
+        {
+          "text": "By counting how many examples it removes",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors adopt downstream post-training as the 'ultimate validation touchstone', measuring the tailored data by the performance of models trained on it.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7f483b#2",
+      "format": "flip",
+      "prompt": "What role do 'Factual Anchors' play in DataClaw0's pipeline?",
+      "back_html": "\u003cp\u003eThey are deterministic grounding points for the generative semantic synthesis, keeping the synthesized dataset tied to facts rather than free-floating hallucination.\u003c/p\u003e"
+    }
+  ]
+}

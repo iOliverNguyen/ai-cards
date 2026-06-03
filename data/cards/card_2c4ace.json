@@ -1,0 +1,122 @@
+{
+  "id": "card_2c4ace",
+  "slug": "attention-amnesia-hybrid-llms",
+  "type": "paper",
+  "title": "Attention Amnesia: When Chain-of-Thought Tuning Breaks Long-Range Recall",
+  "hook": "Fine-tuning a hybrid LLM on chain-of-thought makes it reason better but quietly forget how to find a needle in a long haystack — and the fix is to just copy back two weight matrices.",
+  "key_points": [
+    "Chain-of-thought supervised fine-tuning (CoT-SFT) systematically degrades long-context recall in hybrid linear-attention models like HypeNet and Jet-Nemotron.",
+    "On a 256K needle-in-a-haystack test, HypeNet-9B retrieval collapsed from 67.2% to 9.4% after CoT-SFT; the drop worsens with longer context.",
+    "Cause: CoT-SFT biases attention gradients toward short-range patterns, disrupting the W_Q/W_K projections that route long-range lookups.",
+    "QK-Restore is training-free: copy W_Q and W_K back from the pre-SFT checkpoint, keep everything else post-SFT — recovering recall while preserving reasoning."
+  ],
+  "content_html": "\u003cp\u003eChain-of-thought (CoT) supervised fine-tuning is a standard way to boost reasoning. But the authors find it has a hidden cost in \u003cstrong\u003ehybrid linear-attention models\u003c/strong\u003e: it systematically degrades their long-context recall. Across architectures like HypeNet and Jet-Nemotron, needle-in-a-haystack (NIAH) retrieval deteriorates sharply after CoT-SFT, and the damage grows with harder retrieval settings and longer contexts — HypeNet-9B drops from 67.2% to 9.4% on a 256K test.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eDiagnosis and fix\u003c/h2\u003e\n\u003cp\u003eThe authors trace the problem to gradients: CoT-SFT biases attention gradients toward short-range patterns, disrupting the query and key projections (W_Q, W_K) that are responsible for long-range routing. Their fix, \u003cstrong\u003eQK-Restore\u003c/strong\u003e, is training-free — restore only W_Q and W_K from the pre-SFT checkpoint while keeping every other post-SFT parameter. A Procrustes variant balances routing preservation against reasoning adaptation.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eQK-Restore consistently recovers long-context capability at zero training cost while preserving reasoning gains — on HypeNet-5B it lifts S3@256K from 65.4% to 76.4%. The broader lesson: in hybrid architectures, reasoning and long-range retrieval can live in different parts of the weights, so a fine-tuning recipe that helps one can silently break the other.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xinyu Zhou",
+      "Boyu Zhu",
+      "Yi Xu",
+      "Zhiwei Li",
+      "Yingfa Chen",
+      "Huiming Wang",
+      "Zhijiang Guo"
+    ],
+    "url": "https://arxiv.org/abs/2606.11052",
+    "published_at": "2026-06-09",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "context-memory",
+    "ssm-mamba",
+    "papers-this-week"
+  ],
+  "tags": [
+    "attention",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-11",
+  "date": "2026-06-09",
+  "related": [
+    {
+      "id": "card_5dd64e",
+      "slug": "mamba",
+      "type": "paper",
+      "title": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+      "hook": "Make the state-space transitions depend on the input itself, add a hardware-aware scan, and you get a linear-time sequence model that matches Transformers on language - with no KV cache.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2023-12-01"
+    },
+    {
+      "id": "card_8c7d52",
+      "slug": "gated-delta-networks",
+      "type": "paper",
+      "title": "Feature Learning in Gated Delta Networks at Scale",
+      "hook": "muP lets you tune hyperparameters on a small model and transfer them to a huge one. This paper derives the equivalent rules for gated delta networks, so sub-quadratic models scale without re-tuning.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_958844",
+      "slug": "ring-attention",
+      "type": "paper",
+      "title": "Ring Attention for Near-Infinite Context",
+      "hook": "Spread one long sequence across many devices and compute attention blockwise - the context length you can handle grows with the number of devices, all with exact attention and no extra overhead.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2023-10-03"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_f58fe4",
+      "slug": "what-are-state-space-models",
+      "type": "concept",
+      "title": "What Are State-Space Models?",
+      "hook": "A compact hidden state summarizes everything seen so far - update it with each new input and you get sequence modeling that scales linearly, not quadratically.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-03"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_2c4ace#0",
+      "format": "flip",
+      "prompt": "What does chain-of-thought fine-tuning do to long-context recall in hybrid linear-attention LLMs?",
+      "back_html": "\u003cp\u003eIt systematically degrades it — needle-in-a-haystack retrieval can collapse (e.g. 67% to 9% at 256K context) because the fine-tuning biases attention gradients toward short-range patterns.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2c4ace#1",
+      "format": "quiz",
+      "prompt": "How does QK-Restore recover long-context ability?",
+      "choices": [
+        {
+          "text": "It restores only the W_Q and W_K projections from the pre-SFT checkpoint, keeping other post-SFT weights, at zero training cost",
+          "correct": true
+        },
+        {
+          "text": "It re-runs chain-of-thought fine-tuning with a smaller learning rate",
+          "correct": false
+        },
+        {
+          "text": "It doubles the context window and retrains from scratch",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe query/key projections carry long-range routing, so restoring just W_Q and W_K from before fine-tuning brings recall back without losing the reasoning gains.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2c4ace#2",
+      "format": "flip",
+      "prompt": "Why blame the query and key projections specifically?",
+      "back_html": "\u003cp\u003eCoT-SFT biases attention gradients toward short-range patterns, which disrupts the W_Q and W_K projections responsible for long-range routing — so those are what QK-Restore repairs.\u003c/p\u003e"
+    }
+  ]
+}

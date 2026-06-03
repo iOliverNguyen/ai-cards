@@ -1,0 +1,118 @@
+{
+  "id": "card_d1cba9",
+  "slug": "eu-transparency-code-of-practice",
+  "type": "news",
+  "title": "Six Major Labs Sign the EU Code of Practice on Transparency of AI-Generated Content",
+  "hook": "Anthropic, OpenAI, Google, Meta, Microsoft and Mistral all put their names to Europe's code for marking AI-generated content — the practical layer under the AI Act's transparency rules.",
+  "key_points": [
+    "Signatories reported: Anthropic, OpenAI, Google, Meta, Microsoft and Mistral — most of the frontier lab landscape in one document.",
+    "The code covers transparency of AI-generated content: marking and disclosing synthetic text, images, audio and video.",
+    "It sits under the EU AI Act's transparency obligations, giving providers a concrete way to show compliance.",
+    "Codes of practice in the EU are voluntary instruments — signing is a compliance route, not itself the law.",
+    "Commenters expect the commitments to reach these labs' open-weight releases, not just their hosted APIs."
+  ],
+  "content_html": "\u003cp\u003eAnthropic, OpenAI, Google, Meta, Microsoft and Mistral have all signed the EU's Code of Practice on Transparency of AI-Generated Content — effectively the whole frontier-lab field agreeing on one set of commitments about labelling synthetic media.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhy this matters\u003c/h2\u003e\n\u003cp\u003eThe EU AI Act sets transparency obligations for AI-generated content, but the regulation says \u003cem\u003ewhat\u003c/em\u003e must happen, not \u003cem\u003ehow\u003c/em\u003e. Codes of practice fill that gap: they are voluntary instruments drawn up with industry, and signing one is a recognised way for a provider to show it is meeting the underlying legal duty. Getting six of the largest model providers onto the same code is the interesting part — it turns marking AI output from a per-company policy choice into something closer to an industry baseline.\u003c/p\u003e\n\u003cp\u003eThe open question is technical rather than legal. Related cards in this deck cover research showing that current text-watermarking schemes are easy to strip with paraphrasing and produce high false-negative rates even unattacked. A transparency regime that leans on marking is only as strong as the marks, and that gap is where the next round of argument will happen.\u003c/p\u003e\n\u003cp\u003eReported via r/LocalLLaMA; see the linked discussion, and the European Commission's AI Act pages for the authoritative text.\u003c/p\u003e",
+  "source": {
+    "name": "r/LocalLLaMA",
+    "authors": [
+      "/u/Bestlife73"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1vlyzi6/anthropic_openai_google_meta_microsoft_and",
+    "published_at": "2026-08-12",
+    "license": "Reddit (user submission)"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "lab-updates"
+  ],
+  "tags": [
+    "safety",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-08-13",
+  "date": "2026-08-12",
+  "related": [
+    {
+      "id": "card_acc5ad",
+      "slug": "eu-ai-act",
+      "type": "resource",
+      "title": "The EU AI Act",
+      "hook": "The EU's answer to regulating AI: sort systems by how much risk they pose, then scale the rules to match — from outright bans to no rules at all.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-08-01"
+    },
+    {
+      "id": "card_f22c85",
+      "slug": "watermark-evidence-forensic-readiness",
+      "type": "paper",
+      "title": "AI Watermark Evidence Fails Forensic Readiness",
+      "hook": "Laws like the EU AI Act and California's SB 942 assume watermark detection can hold up in court. Tested against forensic and legal admissibility standards, three leading methods collapse.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-17"
+    },
+    {
+      "id": "card_4e9f3d",
+      "slug": "linear-ensembles-wash-watermarks",
+      "type": "paper",
+      "title": "Linear Ensembles Wash Away Watermarks",
+      "hook": "Text watermarks survive paraphrasing — but not arithmetic. Averaging the outputs of 3–5 different models cancels the signal almost entirely, and improves quality while doing it.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-05-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_d1cba9#0",
+      "format": "quiz",
+      "prompt": "What is the legal status of an EU code of practice like this one?",
+      "choices": [
+        {
+          "text": "Voluntary — signing is one route to demonstrating compliance",
+          "correct": true
+        },
+        {
+          "text": "Binding legislation that replaces the AI Act's transparency articles",
+          "correct": false
+        },
+        {
+          "text": "A court ruling that applies retroactively to past model releases",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eCodes of practice are voluntary instruments. The AI Act sets the obligations; the\ncode gives providers a concrete, agreed way to show they are meeting them.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d1cba9#1",
+      "format": "flip",
+      "prompt": "Why does this code matter for open-weight models and not just hosted APIs?",
+      "back_html": "\u003cp\u003eThe signing labs also ship open-weight releases. Transparency commitments about\nmarking AI-generated content follow the content those models produce, wherever\nthe weights end up running.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d1cba9#2",
+      "format": "quiz",
+      "prompt": "What problem does existing research raise about relying on watermarks to satisfy such transparency rules?",
+      "choices": [
+        {
+          "text": "Watermarks are fragile — paraphrasing removes them at very high rates",
+          "correct": true
+        },
+        {
+          "text": "Watermarks are impossible to embed in text at all",
+          "correct": false
+        },
+        {
+          "text": "Watermarks only work on video, never on images",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eWork on watermark forensics found simple paraphrase attacks stripped detection in\nnearly every run, so a policy layer built on marking has a shaky technical floor.\u003c/p\u003e"
+    }
+  ]
+}

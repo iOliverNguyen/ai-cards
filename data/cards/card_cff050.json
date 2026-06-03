@@ -1,0 +1,107 @@
+{
+  "id": "card_cff050",
+  "slug": "asymmetric-capacity-self-refinement",
+  "type": "paper",
+  "title": "Where to Spend Model Size in Self-Refinement",
+  "hook": "Generate, critique, revise — three stages, and most systems use the same big model for all three. The critic barely needs to be big; the reviser absolutely does.",
+  "key_points": [
+    "Self-refinement pipelines (generate → critique → revise) underpin many LLM agents, but stage-wise model size is rarely studied.",
+    "First systematic sweep: 5 benchmarks across domains, 6 Qwen3 sizes and 4 Gemma 3 sizes.",
+    "Larger generators and larger refiners generally improve the pipeline.",
+    "An undersized refiner can actively hurt performance versus not refining at all.",
+    "Performance is highly insensitive to critic size — but including even a small critic beats omitting critique.",
+    "Practical takeaway: allocate capacity asymmetrically across stages instead of uniformly."
+  ],
+  "content_html": "\u003cp\u003eSelf-refinement — have the model generate, then critique its own output, then revise — is a workhorse pattern in LLM agents, and almost everyone runs the same model at every stage. Zhuoyi Yang and colleagues treat model size as the object of study instead of an implementation detail, sweeping six Qwen3 sizes and four Gemma 3 sizes across five benchmarks from different domains.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTwo findings stand out. Larger generators and larger refiners generally help, and an undersized refiner can actively degrade the pipeline — it is worse than not refining. Meanwhile the critique stage is remarkably insensitive to capacity: a small critic does nearly as well as a large one, though having some critic consistently beats having none. The authors read this as evidence that the three stages make genuinely different cognitive demands, and that uniform capacity allocation across a multi-stage LLM system wastes compute. Full sweep on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zhuoyi Yang",
+      "Ian G. Harris",
+      "Salar Hashemitaheri",
+      "Cassie Huang",
+      "Yuangang Li",
+      "Hyunwoo Oh",
+      "Paul Dourish",
+      "Tony Givargis",
+      "Mohsen Imani",
+      "Li Zhang"
+    ],
+    "url": "https://arxiv.org/abs/2608.21345",
+    "published_at": "2026-08-21",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "inference",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "efficiency",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-24",
+  "date": "2026-08-21",
+  "related": [
+    {
+      "id": "card_fd923f",
+      "slug": "hourglass-reasoning-context-isolation",
+      "type": "paper",
+      "title": "Hourglass Reasoning: Context Isolation for Rigorous Induction",
+      "hook": "Telling a model to state its inferred rule barely helps it self-refine. Forcing only a compressed rule — not the full trace — through a bottleneck nearly doubles a benchmark score.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-13"
+    },
+    {
+      "id": "card_812537",
+      "slug": "self-consistency",
+      "type": "paper",
+      "title": "Self-Consistency Improves Chain-of-Thought Reasoning",
+      "hook": "Sample the model many times, let each run reason its own way, then take the majority answer - diverse reasoning paths vote out individual errors.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-03-21"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_cff050#0",
+      "format": "quiz",
+      "prompt": "Which stage of a self-refinement pipeline was performance LEAST sensitive to the model size of?",
+      "choices": [
+        {
+          "text": "The critic",
+          "correct": true
+        },
+        {
+          "text": "The generator",
+          "correct": false
+        },
+        {
+          "text": "The reviser",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eCritic size barely moved results — though including even a small critic consistently beat skipping critique entirely.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cff050#1",
+      "format": "flip",
+      "prompt": "What is the risk of using a small model as the reviser?",
+      "back_html": "\u003cp\u003eAn undersized refiner can make the pipeline worse than not refining at all — unlike the critic, this stage genuinely needs capacity.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cff050#2",
+      "format": "flip",
+      "prompt": "What is the practical design lesson from this study?",
+      "back_html": "\u003cp\u003eDon't allocate model capacity uniformly across pipeline stages. Different stages have distinct size-scaling curves, so spend on generation and revision and economize on critique.\u003c/p\u003e"
+    }
+  ]
+}

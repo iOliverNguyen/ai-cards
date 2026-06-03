@@ -1,0 +1,106 @@
+{
+  "id": "card_1052aa",
+  "slug": "hindcast-prediction-market-backtesting",
+  "type": "paper",
+  "title": "Hindcast: Replaying Prediction Markets to Evaluate LLM Forecasters",
+  "hook": "Backtesting an LLM forecaster on past events mostly measures its memory, not its foresight — because it can retrieve after-the-fact reports or was simply trained on data closer to the event.",
+  "key_points": [
+    "Standard forecasting backtests leak the answer two ways: retrieval can surface post-event reports, and each new model is trained on data closer to the event.",
+    "Hindcast grades a model as if it stood at a chosen past date t0, before the outcome existed in either channel.",
+    "It replays resolved Polymarket questions against a frozen Reddit snapshot, letting the model read only posts written before t0.",
+    "Each forecast is scored against both the real outcome and the market's own price at t0 — itself a forecast made from the same past information.",
+    "Because cutoffs are set per-market and the snapshot is frozen, the benchmark stays usable on new markets as models improve, without going stale.",
+    "Once the leaks are closed, retrieval still helps — but only where Reddit discussed the event beforehand; where the archive was pure speculation, retrieval hurts."
+  ],
+  "content_html": "\u003cp\u003eBacktesting is the standard way to grade an LLM forecaster: replay a resolved question and check the probability it would have assigned before the outcome was known. The problem is that two channels quietly leak the answer into that test — a model with retrieval can pull up reports written after the event, and every new model's training data sits closer to the event than the last one's. Either way, the test ends up grading recall, not foresight.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eXiao Ye, Jacob Dineen, and colleagues introduce Hindcast, which grades a model as if it stood at a chosen past date t0, before the outcome existed in either leaking channel. It replays resolved Polymarket prediction-market questions against a frozen snapshot of public Reddit, restricting the model to posts written before t0, and scores each forecast against both what actually happened and the market's own price at t0 — itself a human forecast drawn from the same past information. Because the cutoff is set per market and the archive never changes, the benchmark keeps working on new markets as models improve, rather than going stale the way ordinary backtests do.\u003c/p\u003e\n\u003cp\u003eOnce both leaks are closed, the authors find retrieval still helps most models — but only in cases where Reddit had already discussed the event before the cutoff. Where the frozen archive held nothing but speculation, giving the model retrieval actually hurt its forecasts. Xiao Ye, Jacob Dineen, and colleagues, arXiv, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xiao Ye",
+      "Jacob Dineen",
+      "Evan Zhu",
+      "Shijie Lu",
+      "Kevin Song",
+      "Ben Zhou"
+    ],
+    "url": "https://arxiv.org/abs/2607.14051",
+    "published_at": "2026-07-15",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evaluation",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "agent",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-15",
+  "related": [
+    {
+      "id": "card_73f262",
+      "slug": "llm-forecasters-internal-probes-calibration",
+      "type": "paper",
+      "title": "What LLM Forecasters Know but Don't Say",
+      "hook": "A forecasting model's chain-of-thought can look untouched by evidence that actually flipped its answer — but its hidden activations give the real story away.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-09"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_1052aa#0",
+      "format": "flip",
+      "prompt": "What are the two ways a normal forecasting backtest leaks the answer to an LLM?",
+      "back_html": "\u003cp\u003eA model with retrieval can surface reports written after the event; and each new model's training data sits closer to the event than the last, so the future for old models is often in a new model's training set.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1052aa#1",
+      "format": "quiz",
+      "prompt": "How does Hindcast close both leaks?",
+      "choices": [
+        {
+          "text": "It grades the model as if standing at a past cutoff date, letting it read only a frozen archive of posts written before that date",
+          "correct": true
+        },
+        {
+          "text": "It retrains every model from scratch on data up to the cutoff date",
+          "correct": false
+        },
+        {
+          "text": "It only tests questions that have never been discussed publicly",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eHindcast replays resolved Polymarket questions against a frozen Reddit snapshot, restricting the model to posts written before the chosen cutoff t0.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1052aa#2",
+      "format": "quiz",
+      "prompt": "After Hindcast closes the leaks, when does giving the model retrieval still help?",
+      "choices": [
+        {
+          "text": "Only where the frozen archive already discussed the event before the cutoff",
+          "correct": true
+        },
+        {
+          "text": "Retrieval always helps, regardless of what the archive contains",
+          "correct": false
+        },
+        {
+          "text": "Retrieval never helps once leaks are closed",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRetrieval helps most models when Reddit discussed the event beforehand; where the archive held only speculation, retrieval actually hurts performance.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "id": "card_f399a5",
+  "slug": "muon-optimizer",
+  "type": "blog",
+  "title": "Muon: An Optimizer for Hidden Layers",
+  "hook": "Muon orthogonalizes each gradient update before applying it — and trained networks faster than AdamW, the first serious challenger to Adam's reign in years.",
+  "key_points": [
+    "Optimizes 2D hidden-layer weight matrices by orthogonalizing the momentum update.",
+    "Uses a cheap Newton–Schulz iteration to approximate the nearest orthogonal matrix.",
+    "Set speed records on nanoGPT and CIFAR training 'speedruns' over tuned AdamW.",
+    "Pairs with a standard optimizer (e.g. AdamW) for embeddings and 1D parameters."
+  ],
+  "content_html": "\u003cp\u003eMuon is an optimizer introduced by Keller Jordan in late 2024 that targets the weight matrices of a network's hidden layers. Where Adam and AdamW rescale each parameter independently, Muon treats a layer's update as a matrix and replaces it with the nearest orthogonal matrix before applying it — and in practice this trains networks measurably faster.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eMuon takes the momentum update that ordinary SGD-with-momentum would apply, then \u0026quot;orthogonalizes\u0026quot; it using a few steps of the Newton–Schulz iteration — a cheap way to approximate the nearest orthogonal matrix without a full singular value decomposition. Intuitively this prevents the update from collapsing into a few dominant directions, spreading learning more evenly across the layer. Muon is applied only to 2D hidden weights; embeddings, the final layer, and 1D parameters are left to a conventional optimizer like AdamW.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAdam and AdamW have been the default for so long that a genuinely faster optimizer is news. Muon first proved itself on community training \u0026quot;speedruns\u0026quot; — reaching a target loss in fewer steps than heavily tuned AdamW — and the idea has since drawn serious attention for scaling up. It is a reminder that the optimizer, not just the architecture, is still fertile ground for efficiency gains.\u003c/p\u003e",
+  "source": {
+    "name": "Keller Jordan blog",
+    "authors": [
+      "Keller Jordan"
+    ],
+    "url": "https://kellerjordan.github.io/posts/muon/",
+    "published_at": "2024-12-08",
+    "license": "free educational"
+  },
+  "topic_ids": [
+    "optimization"
+  ],
+  "tags": [
+    "training",
+    "efficiency"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2024-12-08",
+  "related": [
+    {
+      "id": "card_203675",
+      "slug": "adamw",
+      "type": "paper",
+      "title": "AdamW: Decoupled Weight Decay",
+      "hook": "L2 regularization and weight decay are the same thing for plain SGD - but not for Adam. Decoupling them fixes Adam's generalization and makes the best decay value independent of the learning rate.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-11-14"
+    },
+    {
+      "id": "card_e41b8a",
+      "slug": "adam-optimizer",
+      "type": "paper",
+      "title": "Adam: The Default Optimizer",
+      "hook": "Adam gives every parameter its own adaptive step size by tracking the gradient's recent average and spread — and it mostly just works.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2014-12-22"
+    },
+    {
+      "id": "card_be0137",
+      "slug": "learning-rate-and-schedules",
+      "type": "concept",
+      "title": "Learning Rate \u0026 Schedules",
+      "hook": "The single most important hyperparameter: set it too high and training diverges, too low and it crawls — so we warm it up, then decay it.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-03"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_203675",
+      "slug": "adamw",
+      "type": "paper",
+      "title": "AdamW: Decoupled Weight Decay",
+      "hook": "L2 regularization and weight decay are the same thing for plain SGD - but not for Adam. Decoupling them fixes Adam's generalization and makes the best decay value independent of the learning rate.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-11-14"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_f399a5#0",
+      "format": "flip",
+      "prompt": "What does Muon do differently from Adam/AdamW to a layer's update?",
+      "back_html": "\u003cp\u003eIt treats the momentum update as a matrix and replaces it with the nearest orthogonal matrix (via a cheap Newton–Schulz iteration), rather than rescaling each parameter independently.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f399a5#1",
+      "format": "quiz",
+      "prompt": "Why orthogonalize the update, intuitively?",
+      "choices": [
+        {
+          "text": "To stop the update collapsing into a few dominant directions, spreading learning across the layer",
+          "correct": true
+        },
+        {
+          "text": "To shrink the weights for regularization",
+          "correct": false
+        },
+        {
+          "text": "To compress the gradient for lower memory",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOrthogonalizing spreads learning more evenly across the layer instead of letting a few directions dominate.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f399a5#2",
+      "format": "quiz",
+      "prompt": "Which parameters does Muon NOT handle itself?",
+      "choices": [
+        {
+          "text": "Embeddings, the final layer, and 1D parameters — left to a conventional optimizer like AdamW",
+          "correct": true
+        },
+        {
+          "text": "The 2D hidden-layer weight matrices",
+          "correct": false
+        },
+        {
+          "text": "All bias terms in every layer except the first",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMuon applies only to 2D hidden weights; embeddings, the final layer, and 1D parameters use a standard optimizer like AdamW.\u003c/p\u003e"
+    }
+  ]
+}

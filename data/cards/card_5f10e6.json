@@ -1,0 +1,131 @@
+{
+  "id": "card_5f10e6",
+  "slug": "adapter-capacity-in-bits",
+  "type": "paper",
+  "title": "How Many Bits Can a LoRA Adapter Write?",
+  "hook": "Everyone treats a LoRA adapter as a skill, not a record of its training data. Weighed in bits, it stores a couple per trainable parameter — and where you put them matters more than how many.",
+  "key_points": [
+    "Compression-based memorization analysis, extended to the frozen-base setting, measures directly in bits what a low-rank adapter writes.",
+    "Adapters store roughly a couple of bits per trainable parameter — well short of a full model's budget.",
+    "Placement beats count: move the same parameter budget from attention into the MLP and it holds nearly twice as much.",
+    "Strip the frozen base of its structure and adapter capacity all but disappears — the base does much of the work.",
+    "On Qwen2.5 fine-tunes, privacy leakage tracks the bits an adapter actually writes, not its nominal parameter count.",
+    "Supervised fine-tuning copies secrets down verbatim; an adapter trained on verifiable rewards never records them."
+  ],
+  "content_html": "\u003cp\u003eA LoRA adapter is a few megabytes that almost everyone treats as a \u003cem\u003eskill\u003c/em\u003e: a small bundle of behavior, not a record of the data behind it. This paper puts that assumption on a scale, extending compression-based memorization analysis to the frozen-base setting so you can measure, in bits, how much a low-rank adapter writes into a model whose weights it never changes.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eLess than you'd fear, and less lawful than you'd guess\u003c/h2\u003e\n\u003cp\u003eThe headline number is small — a couple of bits per trainable parameter, well short of what a fully fine-tuned model can absorb. The more useful finding is that the figure doesn't follow parameter counting. Move the same budget out of attention and into the MLP and the adapter holds nearly twice as much; strip the frozen base of its structure and capacity all but disappears, which says the base model is doing a lot of the storing. Capacity is a property of \u003cem\u003ewhere\u003c/em\u003e you attach, not just how much you attach.\u003c/p\u003e\n\u003ch2\u003eWhy it matters for privacy\u003c/h2\u003e\n\u003cp\u003eApplied to realistic fine-tunes of Qwen2.5, the same instrument shows privacy leakage rising with the bits an adapter writes rather than with its nominal parameter count — so two adapters of identical size can leak very differently. It also separates training signals cleanly: the secrets that supervised fine-tuning copies down verbatim are ones an adapter trained on verifiable rewards never records. Measuring what fine-tuning writes, instead of attacking it afterwards, turns a piece of folklore into a quantity you can design against. Tan, Du, and Feng, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Kaizhen Tan",
+      "Heqing Du",
+      "Yang Feng"
+    ],
+    "url": "https://arxiv.org/abs/2607.21351",
+    "published_at": "2026-07-23",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "finetuning",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "training",
+    "safety",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-27",
+  "date": "2026-07-23",
+  "related": [
+    {
+      "id": "card_cae140",
+      "slug": "lora",
+      "type": "paper",
+      "title": "LoRA: Low-Rank Adaptation",
+      "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-06-17"
+    },
+    {
+      "id": "card_2e95ee",
+      "slug": "qlora",
+      "type": "paper",
+      "title": "QLoRA: Fine-tuning Quantized LLMs",
+      "hook": "Fine-tune a model with tens of billions of parameters on a single GPU. QLoRA squeezes the frozen base to 4-bit, then trains LoRA adapters on top — without losing quality.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-23"
+    },
+    {
+      "id": "card_75c088",
+      "slug": "adapters",
+      "type": "paper",
+      "title": "Parameter-Efficient Transfer Learning (Adapters)",
+      "hook": "Don't fine-tune the whole model for every new task — slip in a few tiny trainable modules and freeze the rest. This 2019 idea seeded parameter-efficient fine-tuning.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2019-02-02"
+    },
+    {
+      "id": "card_419bc4",
+      "slug": "propensity-aware-memorization",
+      "type": "paper",
+      "title": "Can vs. Will: Propensity-Aware Memorization in LLMs",
+      "hook": "Most memorization tests ask whether you can force a model to spit out training data. This one asks a sharper question: does it leak under ordinary use? The two answers are very different.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-04"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_cae140",
+      "slug": "lora",
+      "type": "paper",
+      "title": "LoRA: Low-Rank Adaptation",
+      "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-06-17"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_5f10e6#0",
+      "format": "flip",
+      "prompt": "What determines a LoRA adapter's memorization capacity more than its parameter count?",
+      "back_html": "\u003cp\u003eWhere the parameters sit. The same budget moved from attention into the MLP holds nearly twice as much, and stripping the frozen base of its structure makes capacity all but vanish.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5f10e6#1",
+      "format": "quiz",
+      "prompt": "What difference did the authors find between supervised fine-tuning and verifiable-reward RL on the same adapter?",
+      "choices": [
+        {
+          "text": "SFT copies secrets down verbatim, while an adapter trained on verifiable rewards never records them",
+          "correct": true
+        },
+        {
+          "text": "RL memorizes far more than SFT because it sees each example many times",
+          "correct": false
+        },
+        {
+          "text": "Both memorize identically once you control for parameter count",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMeasuring bits written draws a clean line between the two training signals: verbatim secrets show up under supervised fine-tuning and not under verifiable rewards.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5f10e6#2",
+      "format": "flip",
+      "prompt": "Why is measuring bits written more useful than testing an adapter for leakage after the fact?",
+      "back_html": "\u003cp\u003eBecause privacy leakage rises with the bits an adapter actually writes rather than the parameters it nominally has — so bits are a quantity you can design against up front.\u003c/p\u003e"
+    }
+  ]
+}

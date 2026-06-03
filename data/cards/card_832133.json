@@ -1,0 +1,116 @@
+{
+  "id": "card_832133",
+  "slug": "rotary-position-embedding",
+  "type": "paper",
+  "title": "RoPE: Rotary Position Embedding",
+  "hook": "Encode position by rotating query/key vectors - relative distances then fall out of the dot product for free, no extra tokens or additive embeddings needed.",
+  "key_points": [
+    "Rotates query and key vectors by an angle proportional to their absolute position before the dot product.",
+    "Relative position between two tokens emerges naturally from the inner product, without explicit relative-position tables.",
+    "Extrapolates better to longer sequences than learned absolute embeddings.",
+    "Now standard in most modern LLMs including LLaMA, Mistral, and Gemma."
+  ],
+  "content_html": "\u003cp\u003eSu et al. proposed Rotary Position Embedding (RoPE) as a new way to inject position information into Transformer attention. Rather than adding a position vector to token embeddings, RoPE multiplies query and key vectors by a rotation matrix whose angle scales with token position. The result: relative distance between any two positions falls out of the standard dot-product attention score automatically.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eEach query and key vector is split into pairs of dimensions, then each pair is rotated by an angle that is a fixed function of the token's position and the dimension index. When you take the dot product of a rotated query at position m and a rotated key at position n, the rotation angles partially cancel, leaving a term that depends only on the relative offset m - n. No learned position parameters are required.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAbsolute position embeddings treat position 1 and position 1001 as unrelated; RoPE bakes relative distance into the geometry of the attention kernel itself, which improves both task performance and length generalization. Its efficiency and simplicity made it the de facto standard for open-weight LLMs. Read the full derivation on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jianlin Su",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2104.09864",
+    "published_at": "2021-04-20",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "attention-mechanisms",
+    "context-memory"
+  ],
+  "tags": [
+    "attention",
+    "architecture",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2021-04-20",
+  "related": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    },
+    {
+      "id": "card_7ed03d",
+      "slug": "what-is-attention",
+      "type": "concept",
+      "title": "What Is Attention?",
+      "hook": "Attention lets a model decide what to focus on: it scores how relevant each piece of input is to the current question, then blends them by those scores.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2018-06-24"
+    },
+    {
+      "id": "card_eb40d3",
+      "slug": "multi-head-attention",
+      "type": "resource",
+      "title": "The Annotated Transformer",
+      "hook": "Want to truly get multi-head attention? Read the Transformer paper line by line — next to runnable PyTorch that implements every equation.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2018-04-03"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7ed03d",
+      "slug": "what-is-attention",
+      "type": "concept",
+      "title": "What Is Attention?",
+      "hook": "Attention lets a model decide what to focus on: it scores how relevant each piece of input is to the current question, then blends them by those scores.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2018-06-24"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_832133#0",
+      "format": "flip",
+      "prompt": "How does RoPE inject position information into attention?",
+      "back_html": "\u003cp\u003eIt multiplies query and key vectors by a rotation matrix whose angle scales with the token's position, rather than adding a position vector.\u003c/p\u003e"
+    },
+    {
+      "id": "card_832133#1",
+      "format": "quiz",
+      "prompt": "Why does RoPE capture relative position for free?",
+      "choices": [
+        {
+          "text": "When rotated query and key are dotted, the angles partially cancel, leaving a term depending only on the offset m - n",
+          "correct": true
+        },
+        {
+          "text": "It stores a learned table of relative-position embeddings",
+          "correct": false
+        },
+        {
+          "text": "It adds the position index directly to the attention score",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe dot product of a rotated query at m and key at n leaves a term that depends only on the relative offset m - n, with no learned position parameters.\u003c/p\u003e"
+    },
+    {
+      "id": "card_832133#2",
+      "format": "flip",
+      "prompt": "What advantage does RoPE have over learned absolute position embeddings?",
+      "back_html": "\u003cp\u003eIt extrapolates better to longer sequences, because relative distance is baked into the geometry of the attention kernel.\u003c/p\u003e"
+    }
+  ]
+}

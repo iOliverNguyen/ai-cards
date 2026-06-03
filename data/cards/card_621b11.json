@@ -1,0 +1,105 @@
+{
+  "id": "card_621b11",
+  "slug": "laion-5b",
+  "type": "dataset",
+  "title": "LAION-5B: Open Image-Text at Scale",
+  "hook": "CLIP and DALL-E showed huge, noisy image-text data is gold. LAION-5B made that public — billions of CLIP-filtered pairs anyone can train open models on.",
+  "key_points": [
+    "Releases 5.85 billion CLIP-filtered image-text pairs, 2.32 billion of them English.",
+    "Motivated by CLIP and DALL-E showing the value of large, noisy image-text data.",
+    "Used to replicate models including CLIP, GLIDE, and Stable Diffusion.",
+    "Ships tools to detect watermarks, NSFW, and toxic content."
+  ],
+  "content_html": "\u003cp\u003eChristoph Schuhmann, Romain Beaumont, Richard Vencu, and colleagues released LAION-5B, a set of 5.85 billion CLIP-filtered image-text pairs, of which 2.32 billion are English-language. The effort was motivated by CLIP and DALL-E, which had shown how valuable it is to train on large, noisy image-text data.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat it is\u003c/h2\u003e\n\u003cp\u003eThe dataset is large enough to reproduce serious systems: the authors report it was used to successfully replicate models including CLIP, GLIDE, and Stable Diffusion. It also ships filtering and detection tools for watermark, NSFW, and toxic content, acknowledging that web-scraped data needs scrutiny.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eBefore LAION-5B, image-text data at this scale lived mostly inside the labs that could afford to scrape it. Making it open let the wider community train and study text-to-image and multimodal models. Note that the dataset's own availability and terms have changed over time, so this card links to the paper rather than the data.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Christoph Schuhmann",
+      "Romain Beaumont",
+      "Richard Vencu",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2210.08402",
+    "published_at": "2022-10-16",
+    "license": "arXiv (CC BY 4.0)"
+  },
+  "topic_ids": [
+    "data"
+  ],
+  "tags": [
+    "dataset",
+    "multimodal"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2022-10-16",
+  "related": [
+    {
+      "id": "card_3d7d44",
+      "slug": "clip",
+      "type": "paper",
+      "title": "CLIP: Learning Visual Models from Language",
+      "hook": "Skip the fixed label list. Train on image–caption pairs so pictures and text share one space, and you can classify images from plain-text labels you make up on the spot.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-02-26"
+    },
+    {
+      "id": "card_7e3221",
+      "slug": "latent-diffusion-models",
+      "type": "paper",
+      "title": "High-Resolution Image Synthesis with Latent Diffusion (Stable Diffusion)",
+      "hook": "Running diffusion on raw pixels is brutally expensive. Do it in a compressed latent space instead, and high-res text-to-image becomes cheap enough to run on a consumer GPU.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-12-20"
+    },
+    {
+      "id": "card_7a5e17",
+      "slug": "the-pile",
+      "type": "dataset",
+      "title": "The Pile: 800GB of Diverse Text",
+      "hook": "Web text alone leaves gaps. The Pile stitches together 22 curated sources — academic and professional — so a language model picks up knowledge plain web crawls miss.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-12-31"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_621b11#0",
+      "format": "flip",
+      "prompt": "Why does LAION-5B matter for the open research community?",
+      "back_html": "\u003cp\u003eIt made billions of CLIP-filtered image-text pairs public, letting anyone train and study text-to-image and multimodal models.\u003c/p\u003e"
+    },
+    {
+      "id": "card_621b11#1",
+      "format": "quiz",
+      "prompt": "Which models does the paper report were replicated using LAION-5B?",
+      "choices": [
+        {
+          "text": "CLIP, GLIDE, and Stable Diffusion",
+          "correct": true
+        },
+        {
+          "text": "GPT-3, BERT, and T5",
+          "correct": false
+        },
+        {
+          "text": "AlexNet, ResNet, and VGG",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors report the dataset was large enough to successfully replicate CLIP, GLIDE, and Stable Diffusion.\u003c/p\u003e"
+    },
+    {
+      "id": "card_621b11#2",
+      "format": "flip",
+      "prompt": "What does LAION-5B ship alongside the data to address web-scrape concerns?",
+      "back_html": "\u003cp\u003eTools to detect watermarks, NSFW, and toxic content.\u003c/p\u003e"
+    }
+  ]
+}

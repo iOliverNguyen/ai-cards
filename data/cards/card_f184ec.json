@@ -1,0 +1,119 @@
+{
+  "id": "card_f184ec",
+  "slug": "learning-when-to-think",
+  "type": "paper",
+  "title": "Learning When to Think: Adaptive Test-Time Compute",
+  "hook": "Let the model pick its own thinking budget with its very first token. On MATH500 that cut response length 41% while accuracy barely moved.",
+  "key_points": [
+    "Fixed reasoning budgets over-compute on easy problems and under-compute on hard ones.",
+    "The model emits one of three modes as its first token: NoThink, Short, or Long — no separate router model.",
+    "Mode choice is learned inside GRPO via a shaped reward that makes each mode pay off at a different response length, plus hard per-mode token caps.",
+    "On a 1.5B distilled model trained on MATH, all three modes survive rather than collapsing to one.",
+    "MATH500 over three seeds: 0.782 vs 0.796 baseline accuracy, mean length 2,811 vs 4,796 tokens (41% less).",
+    "It transfers without retraining — 76% token reduction on the easier GSM8K, at higher accuracy than baselines of similar length."
+  ],
+  "content_html": "\u003cp\u003eReasoning models trained with RL usually think for a fixed token budget, which is wrong in both directions: wasted compute on easy problems, not enough on hard ones. Kassenaar, Yang, and François-Lavet ask whether a model can learn to allocate its own effort, and give it a very direct interface — the first token of the response selects a mode: NoThink (answer immediately), Short (brief reasoning), or Long (extended reasoning).\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it's trained\u003c/h2\u003e\n\u003cp\u003eThe choice is learned inside Group Relative Policy Optimization, with no separate router. Two ingredients keep it from degenerating: a shaped reward that makes each mode the best option at a different response length, and hard per-mode token caps that stop the modes blurring together. Trained on MATH with a 1.5B distilled model, all three modes persist. The authors read a useful signal out of this — the brief modes end up \u003cem\u003emore accurate\u003c/em\u003e than Long, which means the policy is sorting problems by difficulty rather than choosing at random.\u003c/p\u003e\n\u003ch2\u003eResults\u003c/h2\u003e\n\u003cp\u003eAveraged over three seeds on held-out MATH500, accuracy stays close to the base model (0.782 vs 0.796) while mean response length drops from 4,796 to 2,811 tokens, a 41% reduction. The policy also transfers to other benchmarks without retraining, saving most where problems are easiest: 76% fewer tokens on GSM8K, at higher accuracy than baselines constrained to similar lengths.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Gijs Kassenaar",
+      "Zhao Yang",
+      "Vincent François-Lavet"
+    ],
+    "url": "https://arxiv.org/abs/2608.20256",
+    "published_at": "2026-08-20",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "prompting",
+    "papers-this-week"
+  ],
+  "tags": [
+    "reasoning",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-24",
+  "date": "2026-08-20",
+  "related": [
+    {
+      "id": "card_1f00c3",
+      "slug": "test-time-compute-scaling",
+      "type": "paper",
+      "title": "Scaling LLM Test-Time Compute",
+      "hook": "A new scaling axis: instead of a bigger model, let a model think longer at inference — often a better use of compute, and the principle behind o1 and R1.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-08-06"
+    },
+    {
+      "id": "card_9f80ef",
+      "slug": "modal-ceiling-test-time-scaling",
+      "type": "paper",
+      "title": "When More Sampling Hurts: The Modal Ceiling and Correlation Ceiling of Test-Time Scaling",
+      "hook": "Sample a reasoning model dozens of times and coverage keeps climbing — but picking the right answer from the pile plateaus fast, and extra samples past that point can backfire.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-27"
+    },
+    {
+      "id": "card_4cd8fd",
+      "slug": "deepseek-r1",
+      "type": "paper",
+      "title": "DeepSeek-R1: Incentivizing Reasoning via Reinforcement Learning",
+      "hook": "DeepSeek shows strong reasoning can emerge from RL on verifiable rewards with minimal supervised data - and those reasoning traces can be distilled into smaller models.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2025-01-22"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_1f00c3",
+      "slug": "test-time-compute-scaling",
+      "type": "paper",
+      "title": "Scaling LLM Test-Time Compute",
+      "hook": "A new scaling axis: instead of a bigger model, let a model think longer at inference — often a better use of compute, and the principle behind o1 and R1.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-08-06"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_f184ec#0",
+      "format": "flip",
+      "prompt": "How does the model express its reasoning-budget decision?",
+      "back_html": "\u003cp\u003eAs the first token of its response — NoThink, Short, or Long — so the routing decision is part of the policy itself rather than a separate router.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f184ec#1",
+      "format": "quiz",
+      "prompt": "What evidence shows the learned mode choice tracks difficulty rather than firing at random?",
+      "choices": [
+        {
+          "text": "The brief modes end up more accurate than Long, meaning easy problems were sorted into them",
+          "correct": true
+        },
+        {
+          "text": "All three modes are chosen with equal frequency",
+          "correct": false
+        },
+        {
+          "text": "Long mode achieves the highest accuracy of the three",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIf routing were random, per-mode accuracy would be similar. Short/NoThink scoring higher than Long implies the policy is sending genuinely easier problems to the cheap modes.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f184ec#2",
+      "format": "flip",
+      "prompt": "What keeps the three modes from collapsing into one during GRPO training?",
+      "back_html": "\u003cp\u003eA shaped reward that makes each mode worthwhile at a different response length, combined with hard per-mode token caps that keep them behaviorally distinct.\u003c/p\u003e"
+    }
+  ]
+}

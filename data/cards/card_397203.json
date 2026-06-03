@@ -1,0 +1,106 @@
+{
+  "id": "card_397203",
+  "slug": "llama",
+  "type": "paper",
+  "title": "LLaMA: Open \u0026 Efficient Foundation Models",
+  "hook": "You don't need a 175B-parameter model to compete. LLaMA trained smaller models on lots of public data — and lit a fire under the open-weights community.",
+  "key_points": [
+    "A family of comparatively small LLMs (7B to 65B parameters).",
+    "Trained only on publicly available data, no proprietary corpora.",
+    "Smaller LLaMA models rivaled or beat much larger ones on many benchmarks.",
+    "Following Chinchilla, it trained longer on more tokens for efficiency.",
+    "Its release energized open-weights, on-device, and fine-tuned model work."
+  ],
+  "content_html": "\u003cp\u003eLLaMA, from Touvron, Lavril, and colleagues at Meta in 2023, is a family of foundation language models ranging from 7B to 65B parameters, trained entirely on publicly available data. The key result: these comparatively small models matched or beat much larger ones on many benchmarks, proving that careful training beats raw size. Their release became a catalyst for the open-weights ecosystem.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eTaking the Chinchilla lesson to heart, the team trained relatively small models on a large number of tokens — spending more compute during training so the finished model is cheaper to run. They used only public datasets and a standard decoder-only Transformer with some efficiency tweaks. The payoff is a model that fits on accessible hardware while staying competitive in quality.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eBig, capable models had largely been locked behind APIs. LLaMA showed strong models could be small enough to run, study, and fine-tune more widely, and its weights spread fast through the research community. That sparked a wave of open fine-tuned variants, on-device experiments, and tooling. It helped shift the conversation from \u0026quot;scale at any cost\u0026quot; toward accessible, efficient models.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Hugo Touvron",
+      "Thibaut Lavril",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2302.13971",
+    "published_at": "2023-02-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining"
+  ],
+  "tags": [
+    "nlp",
+    "open-source"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2023-02-27",
+  "related": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    },
+    {
+      "id": "card_46fd66",
+      "slug": "chinchilla-scaling-laws",
+      "type": "paper",
+      "title": "Chinchilla: Compute-Optimal Scaling",
+      "hook": "Most giant models were starved of data. Chinchilla showed that for a fixed compute budget you should grow parameters and tokens together — and a smaller, longer-trained model won.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2022-03-29"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_397203#0",
+      "format": "flip",
+      "prompt": "What was LLaMA's key result about model size versus training?",
+      "back_html": "\u003cp\u003eComparatively small models (7B–65B) trained on lots of public data matched or beat much larger ones — careful training beats raw size.\u003c/p\u003e"
+    },
+    {
+      "id": "card_397203#1",
+      "format": "quiz",
+      "prompt": "Following Chinchilla, what tradeoff did LLaMA make?",
+      "choices": [
+        {
+          "text": "Spend more compute training small models on more tokens, so they're cheaper to run",
+          "correct": true
+        },
+        {
+          "text": "Use proprietary data to maximize quality",
+          "correct": false
+        },
+        {
+          "text": "Scale parameters as high as possible regardless of data",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLLaMA trained relatively small models on many tokens using only public data, making the finished model cheaper to run.\u003c/p\u003e"
+    },
+    {
+      "id": "card_397203#2",
+      "format": "flip",
+      "prompt": "Why did LLaMA's release energize the open-weights community?",
+      "back_html": "\u003cp\u003eIt showed strong models could be small enough to run, study, and fine-tune widely; its weights spread fast, sparking variants and on-device work.\u003c/p\u003e"
+    }
+  ]
+}

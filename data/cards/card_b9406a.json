@@ -1,0 +1,112 @@
+{
+  "id": "card_b9406a",
+  "slug": "jalapeno-first-results",
+  "type": "news",
+  "title": "Jalapeño's First Results",
+  "hook": "OpenAI's custom inference chip, co-designed with Broadcom, now has numbers attached — the lab claims industry-leading speed and efficiency on modern models.",
+  "key_points": [
+    "Jalapeño is OpenAI's custom chip built specifically for inference rather than training.",
+    "This post reports its first results: faster and more power-efficient inference than the alternatives OpenAI compares against.",
+    "The claimed wins are higher throughput and lower latency on modern models.",
+    "It continues the pattern of frontier labs designing their own silicon rather than buying general-purpose GPUs."
+  ],
+  "content_html": "\u003cp\u003eOpenAI has published the first performance results for Jalapeño, the inference chip it co-designed with Broadcom. The lab describes faster and more power-efficient inference than its comparison points, with higher throughput and lower latency on current models.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eReading the claim\u003c/h2\u003e\n\u003cp\u003eThese are first-party numbers from a company with an obvious interest in the outcome, and the post is a launch update rather than an independent benchmark — so the headline framing deserves the usual discount until third parties measure it. What is not in doubt is the strategic direction. Specializing a chip to inference lets you drop everything a training accelerator needs and spend the area and power on serving tokens instead, which is where the recurring cost of a deployed model actually lives. Google went this way with the TPU and Microsoft with Maia; Jalapeño is OpenAI taking the same step for its own workload.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "authors": [
+      "OpenAI"
+    ],
+    "url": "https://openai.com/index/jalapeno-first-results",
+    "published_at": "2026-08-25",
+    "license": "OpenAI blog"
+  },
+  "topic_ids": [
+    "hardware",
+    "lab-updates"
+  ],
+  "tags": [
+    "inference",
+    "efficiency",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-08-27",
+  "date": "2026-08-25",
+  "related": [
+    {
+      "id": "card_855db0",
+      "slug": "openai-broadcom-jalapeno",
+      "type": "news",
+      "title": "Jalapeño: OpenAI and Broadcom's Inference Chip",
+      "hook": "OpenAI co-designed a custom chip — Jalapeño — built only for running LLMs, betting that inference-specific silicon beats general GPUs on cost and scale.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-24"
+    },
+    {
+      "id": "card_242035",
+      "slug": "blackwell-gpu",
+      "type": "news",
+      "title": "NVIDIA Blackwell (B200 / GB200)",
+      "hook": "Blackwell is the chip the 2025 frontier ran on: a two-die GPU with an FP4 transformer engine, built to train and serve trillion-parameter models.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2024-03-18"
+    },
+    {
+      "id": "card_16ae7a",
+      "slug": "maia-200",
+      "type": "paper",
+      "title": "Maia 200: Dataflow Instead of Threads",
+      "hook": "Microsoft's AI accelerator bets that the bottleneck is moving data, not doing math — so the compiler programs the data movement explicitly instead of scheduling threads.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-08-25"
+    },
+    {
+      "id": "card_b185fa",
+      "slug": "tpu",
+      "type": "paper",
+      "title": "In-Datacenter Performance Analysis of a TPU",
+      "hook": "Google built a custom chip whose heart is a 256x256 grid of 8-bit multiply-accumulate units - and in production it ran neural-net inference roughly 15-30x faster than the GPUs and CPUs of its day.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2017-04-16"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b9406a#0",
+      "format": "flip",
+      "prompt": "What workload is Jalapeño specialized for?",
+      "back_html": "\u003cp\u003eInference — serving already-trained models — rather than training, which is what lets it target better throughput, latency, and power than a general-purpose GPU.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b9406a#1",
+      "format": "quiz",
+      "prompt": "What trend does Jalapeño exemplify?",
+      "choices": [
+        {
+          "text": "Frontier labs co-designing custom silicon instead of relying only on general-purpose GPUs",
+          "correct": true
+        },
+        {
+          "text": "A shift back from accelerators to commodity CPUs",
+          "correct": false
+        },
+        {
+          "text": "Training moving entirely on-device",
+          "correct": false
+        },
+        {
+          "text": "Labs standardizing on a single open hardware spec",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eJalapeño was co-designed with Broadcom for OpenAI's own inference workload — the same custom-accelerator path Google took with TPUs and Microsoft with Maia.\u003c/p\u003e"
+    }
+  ]
+}

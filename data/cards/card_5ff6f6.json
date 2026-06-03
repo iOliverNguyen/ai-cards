@@ -1,0 +1,102 @@
+{
+  "id": "card_5ff6f6",
+  "slug": "agent-permission-systems-survey",
+  "type": "paper",
+  "title": "How Agents Ask for Permission: User Permissions for AI Agents",
+  "hook": "Most agent-security work assumes one policy fits every user. This survey of 21 proposals plus five commercial agents finds user-level permission handling is still full of gaps.",
+  "key_points": [
+    "Surveys 21 proposals for AI agent permission systems, building a taxonomy of how each specifies, derives, and enforces user-level policy.",
+    "Distinguishes three layers: how policy is specified at the interface, how it's derived internally from user input, and how it's enforced at run-time.",
+    "Compares five prominent commercial agents against the literature's proposals, finding gaps between research designs and shipped products.",
+    "Frames the core problem as product-level security policies applying the same rules to every user, when different users need different permissions.",
+    "Cites prompt injection and hallucination as failure modes that can leak private information or trigger unauthorized sensitive actions like bank transactions.",
+    "Identifies several high-level gaps across both research and commercial systems where the authors say future work is needed."
+  ],
+  "content_html": "\u003cp\u003eAs AI agents take on more autonomous tasks, users are exposed to more of their failure modes — prompt injection and hallucination can leak private information, and an agent acting without real authorization can trigger sensitive actions like bank transactions. Most of the agentic-security work responding to this has focused on product-level policies: one security rule set, applied to every user alike.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eAlexandra E. Michael and Franziska Roesner argue that different users need different permissions, and survey 21 proposals for agent permission systems to see how the field currently handles that. From this, they build a taxonomy spanning how systems let users specify permission policy at the interface, how that input gets translated into internal policy, and how the policy is enforced at run-time. They then compare five prominent commercial agents against these research proposals, checking how permission handling in shipped products lines up with what the literature has proposed.\u003c/p\u003e\n\u003cp\u003eThe comparison surfaces several high-level themes shared across both research and commercial systems, along with multiple gaps the authors say future work still needs to close — evidence that user-level permission handling in agentic AI remains an unsettled design space rather than a solved problem. Alexandra E. Michael and Franziska Roesner, University of Washington, arXiv, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Alexandra E. Michael",
+      "Franziska Roesner"
+    ],
+    "url": "https://arxiv.org/abs/2607.13718",
+    "published_at": "2026-07-15",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "safety",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-15",
+  "related": [
+    {
+      "id": "card_adc58b",
+      "slug": "untrusted-content-masking-web-agents",
+      "type": "paper",
+      "title": "Untrusted Content Masking: A Trust Boundary for Web Agents",
+      "hook": "Provable prompt-injection defenses rely on never letting an agent read untrusted content directly. Web agents break that just by looking at the page — this restores it via the page's own structure.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_5ff6f6#0",
+      "format": "flip",
+      "prompt": "What gap does this survey say most agentic security work overlooks?",
+      "back_html": "\u003cp\u003eMost proposals are product-level: developers set one security policy and permission set applied identically to every user, rather than supporting per-user permission preferences.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5ff6f6#1",
+      "format": "quiz",
+      "prompt": "What three layers does the authors' taxonomy organize agent permission systems around?",
+      "choices": [
+        {
+          "text": "How policy is specified at the interface, derived internally from user input, and enforced at run-time",
+          "correct": true
+        },
+        {
+          "text": "Model size, training data, and inference cost",
+          "correct": false
+        },
+        {
+          "text": "Cloud provider, GPU type, and latency budget",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe taxonomy covers UI-level policy specification, internal derivation of policy from user input, and run-time enforcement of that policy.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5ff6f6#2",
+      "format": "quiz",
+      "prompt": "What two failure modes does the paper cite as motivating agent permission systems?",
+      "choices": [
+        {
+          "text": "Prompt injection and hallucination, which can leak private data or trigger unauthorized sensitive actions",
+          "correct": true
+        },
+        {
+          "text": "Slow inference and high GPU cost",
+          "correct": false
+        },
+        {
+          "text": "Poor benchmark scores on coding tasks",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper points to prompt injection and hallucination as risks that can cause agents to leak private information or act on sensitive tasks, like bank transactions, without real user authorization.\u003c/p\u003e"
+    }
+  ]
+}

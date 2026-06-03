@@ -1,0 +1,127 @@
+{
+  "id": "card_5af88a",
+  "slug": "spark-to-paper-composable-research-skills",
+  "type": "paper",
+  "title": "Spark-to-Paper: Research Paper Generation as Composable Skills",
+  "hook": "Not a new agent platform — thirteen skills bolted into an existing coding assistant, with integrity checks deciding which claims survive contact with the experiments.",
+  "key_points": [
+    "Implements end-to-end paper generation as thirteen composable skills inside an existing coding assistant, no separate orchestration service.",
+    "Separates model-based judgment from deterministic operations that can be executed and checked mechanically.",
+    "Separates experiment planning from reporting: required evidence is specified before results are seen, so claims are revised to match outcomes.",
+    "Names and bounds the Self-Refutation Loop — repeated experiments that keep rejecting the original research objective.",
+    "Reports 99.5% citation validity and 96.4% figure editability across eight controlled research topics.",
+    "Ablation: fabrication detection rises from 14% single-pass to 92% with the full integrity stack; ~$8.1 and 3.2 hours per manuscript."
+  ],
+  "content_html": "\u003cp\u003eSystems that write research papers usually arrive as new agent platforms. Spark-to-Paper takes the opposite bet: implement the whole pipeline — literature retrieval, experiment design and execution, claim revision, publication-ready figures — as thirteen composable skills living inside a coding assistant that already exists.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTwo separations do most of the work. First, model-based judgment is split from deterministic operations that can simply be run and checked, so the parts that can be verified mechanically are. Second, experiment \u003cem\u003eplanning\u003c/em\u003e is split from \u003cem\u003ereporting\u003c/em\u003e: the evidence a claim would require is specified before any results are observed, so the manuscript's assertions get revised to match measured outcomes instead of being fitted to them after the fact. Over long trajectories the authors combine deterministic integrity checks with self-critique, and name a failure mode they bound — the \u003cstrong\u003eSelf-Refutation Loop\u003c/strong\u003e, where repeated experiments keep rejecting the original objective. Figures are produced as editable vectors via programmatic plotting and code-based reconstruction.\u003c/p\u003e\n\u003cp\u003eAcross eight controlled research topics, Zhuoyang Qian and colleagues report 99.5% citation validity, 96.4% figure editability, and 74% precision for adversarial review; an ablation raises fabrication detection from 14% for a single-pass draft to 92% with the full integrity stack. A manuscript costs about 11.9M tokens, $8.1, and 3.2 hours. arXiv, August 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zhuoyang Qian",
+      "Biao Wu",
+      "Yiran Wang",
+      "Chris D Yan",
+      "Desan Dai",
+      "Liangwei Zheng",
+      "Jin Jiang",
+      "Junsheng Zhang",
+      "Wenhao Wang"
+    ],
+    "url": "https://arxiv.org/abs/2608.11924",
+    "published_at": "2026-08-12",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-science",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-13",
+  "date": "2026-08-12",
+  "related": [
+    {
+      "id": "card_d91041",
+      "slug": "ideagent-quality-diversity-ideation",
+      "type": "paper",
+      "title": "IDEAgent: Quality-Diversity Search for Research Ideas",
+      "hook": "Idea generators optimize for quality or for diversity, and get either near-clones or piles of nonsense. Treating ideation as a joint search changes the objective.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    },
+    {
+      "id": "card_2e50ab",
+      "slug": "claude-agent-skills",
+      "type": "news",
+      "title": "Claude Agent Skills",
+      "hook": "Agent Skills package instructions, scripts, and resources into folders an agent loads on demand — composable, portable expertise, later opened as a standard like MCP.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2025-10-16"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_5af88a#0",
+      "format": "flip",
+      "prompt": "Why does Spark-to-Paper specify required evidence before experiments are run?",
+      "back_html": "\u003cp\u003eSo claims are revised according to measured outcomes rather than written to fit whatever the results happened to show. Separating planning from reporting keeps evidence, not narrative, in control of what the manuscript asserts.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5af88a#1",
+      "format": "quiz",
+      "prompt": "What is the Self-Refutation Loop the paper identifies and bounds?",
+      "choices": [
+        {
+          "text": "A failure mode where repeated experiments keep rejecting the original research objective",
+          "correct": true
+        },
+        {
+          "text": "A reviewer agent that always disagrees with the author agent",
+          "correct": false
+        },
+        {
+          "text": "A citation cycle where two generated papers cite each other",
+          "correct": false
+        },
+        {
+          "text": "A prompt that causes the model to contradict its own last sentence",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOver long research trajectories the system can keep running experiments that refute its own premise. Spark-to-Paper combines deterministic integrity checks with self-critique to bound that loop.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5af88a#2",
+      "format": "quiz",
+      "prompt": "What did the ablation report about the full integrity and review stack?",
+      "choices": [
+        {
+          "text": "Fabrication detection rose from 14% for a single-pass draft to 92%",
+          "correct": true
+        },
+        {
+          "text": "Citation validity fell but figure quality improved",
+          "correct": false
+        },
+        {
+          "text": "Token cost dropped by an order of magnitude",
+          "correct": false
+        },
+        {
+          "text": "It made no measurable difference to fabrication",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper reports 92% fabrication detection with the full stack versus 14% single-pass, alongside 99.5% citation validity and 74% adversarial-review precision.\u003c/p\u003e"
+    }
+  ]
+}

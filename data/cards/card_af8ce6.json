@@ -1,0 +1,89 @@
+{
+  "id": "card_af8ce6",
+  "slug": "magpie-generative-game-renderer",
+  "type": "paper",
+  "title": "Magpie: Let the Engine Run the Game, Let the Model Render It",
+  "hook": "Games need reproducible rules, which generative video cannot promise. Magpie splits the difference: the engine resolves gameplay on white-box frames, a render server paints them in real time.",
+  "key_points": [
+    "Game visual quality normally requires modeling, materials, animation, lighting, effects, and runtime optimization — expensive and slow to produce.",
+    "Video foundation models are changing linear media, but games also need stable, reproducible rules, object states, and interaction outcomes.",
+    "Magpie separates gameplay execution from visual generation.",
+    "Designers define scenes and rules in a conventional game engine, which resolves player actions and maintains world state.",
+    "An independent Render Server generates the visual output from white-box frames produced by the engine.",
+    "The split preserves gameplay designability and reproducibility while removing the dependence on finished art assets for early prototypes."
+  ],
+  "content_html": "\u003cp\u003eVideo foundation models are reshaping film and video production, and the obvious next thought is games. Zhan and colleagues explain why the transfer is not direct: linear media only needs to look continuous and realistic, while games also need stable and reproducible gameplay rules, object states, and interaction outcomes. A generative model that improvises the world is a worse game engine than a game engine.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe architecture\u003c/h2\u003e\n\u003cp\u003eMagpie separates gameplay execution from visual generation. Designers define scenes and rules in a conventional game engine. At runtime the engine resolves player actions and maintains world state, emitting \u003cem\u003ewhite-box\u003c/em\u003e frames — untextured geometry that encodes exactly what is where. An independent Render Server then generates the finished visual output from those frames, in real time.\u003c/p\u003e\n\u003ch2\u003eWhy the split is the point\u003c/h2\u003e\n\u003cp\u003eAuthority stays with the engine, so gameplay remains designable, debuggable, and reproducible: the same action produces the same state transition regardless of what the renderer draws. What the generative model removes is the art pipeline — modeling, material authoring, lighting, effects — which is where most of the cost and calendar time of a prototype goes.\u003c/p\u003e\n\u003cp\u003eThe paper presents this as a system-level implementation path rather than a benchmark result, and its contribution is largely architectural: a clean seam between the parts of a game that must be deterministic and the parts that only have to look right.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xiaoyu Zhan",
+      "Xinyu Wang",
+      "Xiaohong Zhang",
+      "Huanjie Zhu",
+      "Tengjiao Sun",
+      "Pengcheng Fang",
+      "Jiaxing Yu",
+      "Yanwen Guo",
+      "Dongjie Fu"
+    ],
+    "url": "https://arxiv.org/abs/2608.27168",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "video-audio",
+    "papers-this-week"
+  ],
+  "tags": [
+    "generative",
+    "vision",
+    "inference",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_4f9539",
+      "slug": "vgi-bench",
+      "type": "paper",
+      "title": "VGI-Bench: Can Video Models Reason by Generating?",
+      "hook": "Video generators appear to do zero-shot visual reasoning in their frames. Held to a benchmark that demands a valid evolving process, the best model — Seedance 2.0 — scores 51%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_af8ce6#0",
+      "format": "flip",
+      "prompt": "Why can't a generative world model simply replace a game engine?",
+      "back_html": "\u003cp\u003eGames need stable and reproducible rules, object states, and interaction outcomes. A generative model gives you continuous plausible imagery, not a guarantee that the same action produces the same result.\u003c/p\u003e"
+    },
+    {
+      "id": "card_af8ce6#1",
+      "format": "quiz",
+      "prompt": "What does Magpie's Render Server receive as input?",
+      "choices": [
+        {
+          "text": "White-box frames produced by the game engine after it resolves world state",
+          "correct": true
+        },
+        {
+          "text": "The player's raw controller input, bypassing the engine",
+          "correct": false
+        },
+        {
+          "text": "A text description of the current scene",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe engine stays authoritative over gameplay and emits untextured geometry; the model's job is purely to turn that into finished imagery.\u003c/p\u003e"
+    }
+  ]
+}

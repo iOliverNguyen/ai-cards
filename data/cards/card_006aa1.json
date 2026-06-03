@@ -1,0 +1,124 @@
+{
+  "id": "card_006aa1",
+  "slug": "concept-guided-spatial-regularization-world-models",
+  "type": "paper",
+  "title": "Concept-Guided Spatial Regularization for World Models in Atari Pong",
+  "hook": "Five world-model RL agents can master Atari Pong on paper — but freeze their world models and watch closely: the ball vanishes, bounces wrong, or phases through the paddle.",
+  "key_points": [
+    "Audited 5 world-model RL agents (DreamerV3, DIAMOND, TWISTER, Simulus, STORM) on Atari Pong by freezing the learned world model and inspecting its rollouts directly.",
+    "All five show clear rollout failures: ball disappearance, wrong ball motion, invalid ball-paddle interactions.",
+    "Training a fresh policy entirely inside a frozen world model badly underperforms the original agent — DreamerV3's return drops from -5.5 to -20.9, near the worst possible score.",
+    "Proposes Concept-Guided Spatial Regularization (CGSReg): an auxiliary reconstruction loss on segmented concept regions (like the ball) that improves rollouts and zero-shot policy transfer for 3 of the 5 models."
+  ],
+  "content_html": "\u003cp\u003eWorld models are usually judged indirectly, by how well the reinforcement-learning agent built on top of them plays the game. This paper instead freezes five well-known world-model agents — DreamerV3, DIAMOND, TWISTER, Simulus, and STORM — after reproducing their reported Atari Pong performance, and studies the world models on their own.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eYukuan Lu and colleagues run two tests. First, a policy trained separately from each agent's own training pipeline is dropped into the frozen world model, and the resulting imagined video is inspected frame by frame: every single model shows failures like the ball vanishing, moving incorrectly, or passing through the paddle. Second, a harsher test — training a brand-new policy entirely inside the frozen world model, then evaluating it back in the real game — reveals how costly those glitches are: DreamerV3's return falls from -5.5 to -20.9, barely above the worst possible score in Pong.\u003c/p\u003e\n\u003cp\u003eThe authors' hypothesis is that these models simply don't represent task-critical objects, like the ball, precisely enough. Their fix, Concept-Guided Spatial Regularization (CGSReg), adds a reconstruction loss focused on segmented concept regions during training. It measurably improves rollout quality and zero-shot policy transfer for three of the five models (DreamerV3, DIAMOND, TWISTER), but its effect is inconsistent on the rest — evidence that concept modeling is one bottleneck among several. Source: arXiv, arxiv.org/abs/2607.15142.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yukuan Lu",
+      "Zaishuo Xia",
+      "Weyl Lu",
+      "Yubei Chen"
+    ],
+    "url": "https://arxiv.org/abs/2607.15142",
+    "published_at": "2026-07-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "interpretability",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "interpretability",
+    "paper"
+  ],
+  "importance": 2,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-16",
+  "related": [
+    {
+      "id": "card_296943",
+      "slug": "dreamerv3",
+      "type": "paper",
+      "title": "DreamerV3: Mastering Domains through World Models",
+      "hook": "Instead of learning only from real experience, DreamerV3 builds a world model and practices inside its own imagination — one fixed config, 150+ tasks.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2023-01-10"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_296943",
+      "slug": "dreamerv3",
+      "type": "paper",
+      "title": "DreamerV3: Mastering Domains through World Models",
+      "hook": "Instead of learning only from real experience, DreamerV3 builds a world model and practices inside its own imagination — one fixed config, 150+ tasks.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2023-01-10"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_006aa1#0",
+      "format": "flip",
+      "prompt": "How did the authors evaluate world models in isolation, rather than as part of a full RL agent?",
+      "back_html": "\u003cp\u003eThey froze each trained world model and ran a separately-trained policy inside it (closed-loop rollouts), then inspected the generated video for visual and dynamical errors.\u003c/p\u003e"
+    },
+    {
+      "id": "card_006aa1#1",
+      "format": "quiz",
+      "prompt": "What happened when a new policy was trained entirely inside DreamerV3's frozen world model, then tested in the real Pong environment?",
+      "choices": [
+        {
+          "text": "Mean return collapsed from -5.5 to -20.9, near the worst possible Pong score",
+          "correct": true
+        },
+        {
+          "text": "It matched the performance of the original DreamerV3 agent",
+          "correct": false
+        },
+        {
+          "text": "It outperformed the original agent by a wide margin",
+          "correct": false
+        },
+        {
+          "text": "The world model refused to produce any rollout",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThis zero-shot pixel-space MBRL test exposed how much the world model's own imagined dynamics diverge from reality once a policy has to rely on them alone.\u003c/p\u003e"
+    },
+    {
+      "id": "card_006aa1#2",
+      "format": "flip",
+      "prompt": "What is Concept-Guided Spatial Regularization (CGSReg)?",
+      "back_html": "\u003cp\u003eAn auxiliary pixel-reconstruction loss applied specifically to segmented task-critical regions (like the ball in Pong), meant to force the world model to represent them more reliably.\u003c/p\u003e"
+    },
+    {
+      "id": "card_006aa1#3",
+      "format": "quiz",
+      "prompt": "Did CGSReg fix the world-model failures across all five agents tested?",
+      "choices": [
+        {
+          "text": "No — it improved rollouts and zero-shot MBRL for DreamerV3, DIAMOND, and TWISTER, but effects varied on the rest",
+          "correct": true
+        },
+        {
+          "text": "Yes, it fully eliminated rollout errors in all five agents",
+          "correct": false
+        },
+        {
+          "text": "No, it made every model's rollouts worse",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors are explicit that CGSReg helps but doesn't fix everything, showing insufficient concept modeling is only part of what limits these world models.\u003c/p\u003e"
+    }
+  ]
+}

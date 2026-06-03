@@ -1,0 +1,104 @@
+{
+  "id": "card_a9cdbe",
+  "slug": "visual-scaffolds-vlm-spatial-reasoning",
+  "type": "paper",
+  "title": "Visual Scaffolds Reveal What VLM Benchmarks Measure",
+  "hook": "Redraw the same spatial puzzle to make its structure legible and accuracy jumps up to 34 points — so was the benchmark ever testing reasoning?",
+  "key_points": [
+    "VLM failures often mix two things: grounding the image, and reasoning over what was grounded.",
+    "The study varies only visual presentation on SPaRC, a grid-based visual spatial planning benchmark.",
+    "Lightweight input-side scaffolds keep the task in the visual modality but make spatial structure more accessible.",
+    "Scaffolds improved accuracy by up to 34.0 percentage points across multiple VLMs.",
+    "They also complement GRPO training: up to 4.6 extra points, versus near-zero gains on the original visual input.",
+    "Error analysis ties the gains to fewer grounding errors; rule reasoning stays hard either way."
+  ],
+  "content_html": "\u003cp\u003eWhen a vision-language model flubs a spatial puzzle, it is rarely clear whether it misread the picture or reasoned badly about what it read. Lars Benedikt Kaesberg and colleagues isolate the first factor on SPaRC, a grid-based visual spatial planning benchmark, by adding lightweight input-side scaffolds — changes to how the task is drawn that leave the reasoning problem identical and keep everything in the visual modality.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eAcross several VLMs, the scaffolds lift accuracy by as much as 34.0 percentage points, and they stack with GRPO-based training in a way the original inputs do not: up to 4.6 further points, where the unscaffolded setting yields near zero. Analyses of both end-to-end solving and object detection tie the improvement to fewer grounding errors, while rule reasoning stays comparatively stubborn. The authors' conclusion is a methodological one — visual presentation decides whether a multimodal benchmark is measuring grounded perception, downstream reasoning, or an untangled mixture. Paper on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Lars Benedikt Kaesberg",
+      "Tianyu Yang",
+      "Florian Valentin Wunderlich",
+      "Terry Ruas",
+      "Jan Philip Wahle",
+      "Daniel Kurzawe",
+      "Bela Gipp"
+    ],
+    "url": "https://arxiv.org/abs/2608.21170",
+    "published_at": "2026-08-21",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "vlms",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "benchmark",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-24",
+  "date": "2026-08-21",
+  "related": [
+    {
+      "id": "card_676044",
+      "slug": "mentalthink-svg-scratchpad",
+      "type": "paper",
+      "title": "MentalThink: Reasoning Through Rendered SVG Sketches",
+      "hook": "Instead of imagining a scene in words, this model sketches it — generating SVG code, rendering it, and looking at the result to check its own spatial reasoning.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-03"
+    },
+    {
+      "id": "card_07dccf",
+      "slug": "color-bias-vision-language-models",
+      "type": "paper",
+      "title": "Seeing Red, Thinking Bad: Color Bias in VLMs",
+      "hook": "Render the same sentence with the positive words in green and a vision-language model reads it more positively. The text didn't change — only its styling did.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-14"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a9cdbe#0",
+      "format": "flip",
+      "prompt": "What is a 'visual scaffold' in this paper?",
+      "back_html": "\u003cp\u003eA lightweight change to the input image that keeps the task visual but makes its spatial structure more accessible — the underlying reasoning problem is unchanged.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a9cdbe#1",
+      "format": "quiz",
+      "prompt": "What do the scaffolding results imply about VLM spatial-reasoning benchmarks?",
+      "choices": [
+        {
+          "text": "Scores partly measure visual grounding, so a benchmark's presentation determines what it actually tests",
+          "correct": true
+        },
+        {
+          "text": "VLMs cannot do spatial reasoning at all",
+          "correct": false
+        },
+        {
+          "text": "Grid-based benchmarks are equivalent to text-based ones",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSince presentation alone moved accuracy by up to 34 points and the gains trace to fewer grounding errors, the benchmark was scoring perception and reasoning together.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a9cdbe#2",
+      "format": "flip",
+      "prompt": "How did scaffolds interact with GRPO-based training?",
+      "back_html": "\u003cp\u003eThey complemented it: up to 4.6 additional accuracy points on scaffolded input, versus near-zero gains from the same training on the original visual input.\u003c/p\u003e"
+    }
+  ]
+}

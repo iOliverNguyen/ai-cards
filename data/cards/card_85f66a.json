@@ -1,0 +1,106 @@
+{
+  "id": "card_85f66a",
+  "slug": "scaling-laws",
+  "type": "paper",
+  "title": "Scaling Laws for Neural Language Models",
+  "hook": "Loss doesn't drop randomly as models grow — it follows a smooth power law in size, data, and compute. That predictability is what made betting on bigger models rational.",
+  "key_points": [
+    "Test loss falls as a power law in model size, dataset size, and compute.",
+    "The trends are smooth and span many orders of magnitude.",
+    "Larger models are more sample-efficient — they learn more per token of data.",
+    "Predictable curves let you forecast performance before training the full model.",
+    "Motivated the push toward ever-larger language models."
+  ],
+  "content_html": "\u003cp\u003eKaplan, McCandlish, and colleagues at OpenAI in 2020 measured how language model loss changes as you scale three things: parameters, training data, and compute. They found loss falls as a clean power law in each, holding across many orders of magnitude. The upshot is that performance becomes surprisingly predictable, which made investing in larger models a reasoned bet rather than a gamble.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe authors trained many models of varying sizes on varying amounts of data and compute, then plotted the resulting loss. On log-log axes the points fall along straight lines — the signature of a power law. They also found larger models reach a given loss using fewer training tokens, so scaling up the model is an efficient way to spend a compute budget.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eSmooth, predictable curves let labs forecast how a big training run will turn out from cheaper small-scale experiments, de-risking expensive projects. This paper provided much of the intellectual justification for the race to scale that followed. It also set the stage for later refinements — notably Chinchilla — which revisited exactly how to balance model size against data.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jared Kaplan",
+      "Sam McCandlish",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2001.08361",
+    "published_at": "2020-01-23",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining"
+  ],
+  "tags": [
+    "nlp",
+    "efficiency"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-02",
+  "date": "2020-01-23",
+  "related": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    },
+    {
+      "id": "card_46fd66",
+      "slug": "chinchilla-scaling-laws",
+      "type": "paper",
+      "title": "Chinchilla: Compute-Optimal Scaling",
+      "hook": "Most giant models were starved of data. Chinchilla showed that for a fixed compute budget you should grow parameters and tokens together — and a smaller, longer-trained model won.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2022-03-29"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_85f66a#0",
+      "format": "flip",
+      "prompt": "What relationship did the scaling laws find between loss and model size, data, and compute?",
+      "back_html": "\u003cp\u003eTest loss falls as a smooth power law in each, holding across many orders of magnitude — straight lines on log-log axes.\u003c/p\u003e"
+    },
+    {
+      "id": "card_85f66a#1",
+      "format": "quiz",
+      "prompt": "Why did predictable scaling curves make large training runs less of a gamble?",
+      "choices": [
+        {
+          "text": "Labs can forecast a big run's outcome from cheaper small-scale experiments",
+          "correct": true
+        },
+        {
+          "text": "They guarantee loss reaches zero",
+          "correct": false
+        },
+        {
+          "text": "They remove the need for any training data",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSmooth, predictable curves de-risk expensive projects, providing the justification for the race to scale.\u003c/p\u003e"
+    },
+    {
+      "id": "card_85f66a#2",
+      "format": "flip",
+      "prompt": "What does it mean that larger models are more sample-efficient?",
+      "back_html": "\u003cp\u003eThey reach a given loss using fewer training tokens, so scaling up the model is an efficient way to spend a compute budget.\u003c/p\u003e"
+    }
+  ]
+}

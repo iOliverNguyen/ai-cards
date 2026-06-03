@@ -1,0 +1,102 @@
+{
+  "id": "card_ae7479",
+  "slug": "long-context-benchmark-prefill-kv-heads",
+  "type": "blog",
+  "title": "Why Long-Context Speed Comes Down to Prefill and KV Heads",
+  "hook": "Everyone benchmarks token-generation speed. A community test of 13 models at 65K-128K context found that's the wrong number — prefill dominates, and KV head count beats parameter count.",
+  "key_points": [
+    "Benchmarked 13 local models at 65K-128K context specifically for agentic workloads (tool use, coding agents, RAG), not chat.",
+    "Prefill (processing the long input context before generating anything) dominates total latency far more than token-generation speed (tg128), the metric most people fixate on.",
+    "KV head count predicts long-context speed better than raw parameter count — architecture choices around attention matter more than model size at long context.",
+    "Ran on consumer/prosumer hardware (RX 7900 XT, llama.cpp/llama-bench), making the findings directly actionable for people running local models."
+  ],
+  "content_html": "\u003cp\u003eMost local-LLM benchmarks lead with token-generation speed — tokens per second once the model is already talking. For agentic workloads like tool use, coding agents, and RAG, where the context window fills up before the model says a word, that number turns out to be measuring the wrong thing.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThis community benchmark tested 13 models at 65K-128K context specifically for agentic use cases, running on consumer/prosumer hardware (an RX 7900 XT via llama.cpp/llama-bench). The headline finding: prefill time — processing the long input context before any generation starts — dominates total latency far more than generation speed does, once the context window is actually full, which flips the usual \u0026quot;tg128 as headline metric\u0026quot; framing on its head. The second finding is architectural: KV head count predicted long-context speed better than raw parameter count did, meaning attention-design choices matter more than sheer model size once you're operating at long context. For anyone choosing a model to run locally for agentic work, the practical upshot is to check prefill throughput and KV-head design, not just the parameter count on the model card. Posted to r/LocalLLaMA, 2026-07-05.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit (r/LocalLLaMA)",
+    "authors": [
+      "/u/linuxid10t"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1unrse9/i_benchmarked_13_models_at_65k128k_context_to",
+    "published_at": "2026-07-05",
+    "license": "Community post"
+  },
+  "topic_ids": [
+    "context-memory",
+    "inference"
+  ],
+  "tags": [
+    "inference",
+    "benchmark",
+    "efficiency"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-05",
+  "related": [
+    {
+      "id": "card_688904",
+      "slug": "kv-cache-and-batching",
+      "type": "concept",
+      "title": "The KV Cache \u0026 Continuous Batching",
+      "hook": "Generating one token reuses every prior key and value - that growing cache is why LLM inference is memory-bound, and continuous batching is how servers fight back.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-11-09"
+    },
+    {
+      "id": "card_a114e8",
+      "slug": "grouped-query-attention",
+      "type": "paper",
+      "title": "Grouped-Query Attention (GQA)",
+      "hook": "Split the difference between multi-head and multi-query attention: share KV heads across groups of query heads and get most of the memory savings with little quality loss.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2023-05-22"
+    },
+    {
+      "id": "card_5e9c4b",
+      "slug": "multi-query-attention",
+      "type": "paper",
+      "title": "Multi-Query Attention: Faster Decoding",
+      "hook": "Share one key/value head across all query heads - the KV cache shrinks by a factor of H and decoding gets dramatically faster with barely any quality cost.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2019-11-05"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_ae7479#0",
+      "format": "flip",
+      "prompt": "According to this benchmark, why is 'tg128' (token generation speed) a misleading headline metric for agentic long-context workloads?",
+      "back_html": "\u003cp\u003eBecause prefill — processing the long input context before generating anything — dominates total latency far more than generation speed does, once the context window is actually full.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ae7479#1",
+      "format": "quiz",
+      "prompt": "What architectural factor did this benchmark find predicts long-context speed better than parameter count?",
+      "choices": [
+        {
+          "text": "KV head count",
+          "correct": true
+        },
+        {
+          "text": "Vocabulary size",
+          "correct": false
+        },
+        {
+          "text": "Number of attention layers alone",
+          "correct": false
+        },
+        {
+          "text": "Training dataset size",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAcross 13 models at 65K-128K context, the benchmark found KV head count — an architectural choice affecting attention memory and compute — correlated with long-context speed more strongly than raw parameter count did.\u003c/p\u003e"
+    }
+  ]
+}

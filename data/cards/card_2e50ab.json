@@ -1,0 +1,127 @@
+{
+  "id": "card_2e50ab",
+  "slug": "claude-agent-skills",
+  "type": "news",
+  "title": "Claude Agent Skills",
+  "hook": "Agent Skills package instructions, scripts, and resources into folders an agent loads on demand — composable, portable expertise, later opened as a standard like MCP.",
+  "key_points": [
+    "Anthropic feature (launched October 2025) for teaching Claude repeatable, specialized workflows.",
+    "A skill is a folder of instructions, scripts, and resources the agent discovers and loads when relevant.",
+    "Loaded on demand, so skills add capability without bloating the context window.",
+    "Released as an open standard in December 2025, echoing how MCP became an industry norm."
+  ],
+  "content_html": "\u003cp\u003eAgent Skills, introduced by Anthropic in October 2025, are a way to give an agent reusable, specialized expertise. A skill is simply a folder containing instructions, optional scripts, and supporting resources; the agent discovers available skills and loads the relevant one only when a task calls for it, rather than carrying all that knowledge in its prompt at all times.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's new\u003c/h2\u003e\n\u003cp\u003eThe design's key move is loading on demand. Instead of stuffing every possible instruction into the context window, an agent reads a short description of each skill and pulls in the full contents only when needed — keeping the working context lean while making a large library of capabilities available. Anthropic shipped built-in skills (for documents like PPTX, XLSX, DOCX, PDF) plus support for custom skills across Claude.ai, Claude Code, and the API, and in December 2025 published the Skills format as an open standard.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eSkills are a clean abstraction for the perennial problem of giving agents domain knowledge without overwhelming them. Making the format an open standard — the same playbook that turned the Model Context Protocol into a de facto norm for tool use — is a bid to define how the industry packages and shares agent capabilities, not just how one vendor does it.\u003c/p\u003e",
+  "source": {
+    "name": "Anthropic",
+    "authors": [
+      "Anthropic"
+    ],
+    "url": "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills",
+    "published_at": "2025-10-16",
+    "license": "Anthropic engineering"
+  },
+  "topic_ids": [
+    "agents",
+    "lab-updates"
+  ],
+  "tags": [
+    "agent",
+    "nlp"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2025-10-16",
+  "related": [
+    {
+      "id": "card_e283b9",
+      "slug": "model-context-protocol",
+      "type": "news",
+      "title": "Model Context Protocol (MCP): A Standard for Connecting LLMs to Tools",
+      "hook": "MCP is an open protocol that standardizes how AI applications expose tools, data, and resources to models - think USB-C for AI tool integrations.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-11-25"
+    },
+    {
+      "id": "card_b8af81",
+      "slug": "claude-opus-4-7",
+      "type": "news",
+      "title": "Claude Opus 4.7: Frontier Coding (2026)",
+      "hook": "Claude Opus 4.7's gains land hardest on the hardest software-engineering tasks, and it now checks its own work - better self-verification of its outputs alongside the coding boost.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-04-16"
+    },
+    {
+      "id": "card_8aab1f",
+      "slug": "resource2skill",
+      "type": "paper",
+      "title": "RESOURCE2SKILL: Distilling Executable Agent Skills from Human-Created Multimodal Resources",
+      "hook": "Most agent skill libraries are hand-written text. This framework mines skills straight out of the tutorial videos, repos, and articles humans already made for each other.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-16"
+    },
+    {
+      "id": "card_99ec55",
+      "slug": "agent-skill-regression-tax",
+      "type": "paper",
+      "title": "The Regression Tax on Agent Skills",
+      "hook": "Handing an agent a procedural skill doesn't only add wins — it also breaks tasks it used to solve. The best skills win by regressing less, not by gaining more.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_2e50ab#0",
+      "format": "flip",
+      "prompt": "What is an Agent Skill, concretely?",
+      "back_html": "\u003cp\u003eA folder of instructions, optional scripts, and supporting resources that the agent discovers and loads only when a task calls for it.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2e50ab#1",
+      "format": "quiz",
+      "prompt": "Why does loading skills on demand help an agent?",
+      "choices": [
+        {
+          "text": "It adds capability without bloating the context window",
+          "correct": true
+        },
+        {
+          "text": "It permanently fine-tunes the model on each skill",
+          "correct": false
+        },
+        {
+          "text": "It removes the need for any prompt instructions",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe agent reads a short description and pulls in full contents only when needed, keeping working context lean while a large library stays available.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2e50ab#2",
+      "format": "quiz",
+      "prompt": "What does releasing the Skills format as an open standard echo?",
+      "choices": [
+        {
+          "text": "How MCP became a de facto industry norm for tool use",
+          "correct": true
+        },
+        {
+          "text": "How GPQA standardized benchmarks",
+          "correct": false
+        },
+        {
+          "text": "How RLHF standardized alignment training",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMaking the format open follows the same playbook that turned MCP into a de facto norm, defining how the industry packages capabilities.\u003c/p\u003e"
+    }
+  ]
+}

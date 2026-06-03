@@ -1,0 +1,104 @@
+{
+  "id": "card_d622c0",
+  "slug": "classifier-free-guidance",
+  "type": "paper",
+  "title": "Classifier-Free Guidance",
+  "hook": "Want a diffusion model to follow your prompt more closely? Blend its prompt-aware and prompt-blind predictions — no extra classifier required. That's the guidance-scale slider.",
+  "key_points": [
+    "Steers diffusion samples toward a condition (like a text prompt) without a separate classifier.",
+    "Trains one model both with and without the condition, by randomly dropping it during training.",
+    "At sampling, extrapolates from the unconditional toward the conditional prediction.",
+    "A guidance scale trades off prompt fidelity against sample diversity.",
+    "The guidance knob exposed by most modern image generators."
+  ],
+  "content_html": "\u003cp\u003eHo and Salimans found a clean way to make diffusion models follow a condition — say, a text prompt — more strongly, without training a separate classifier to push samples around. The trick is to combine the model's conditional and unconditional predictions, and it's the mechanism behind the guidance-scale control most image generators expose.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eDuring training, the same model occasionally has its conditioning input dropped, so it learns to denoise both with the prompt and without it. At sampling time, you compute both predictions and then extrapolate: push away from the unconditional guess and toward the conditional one. A guidance scale controls how hard you push — higher values make outputs hew tighter to the prompt but can reduce variety and introduce artifacts, while lower values give more diverse but looser results.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eEarlier guidance methods relied on a separately trained classifier, which was extra work and could be brittle. Classifier-free guidance folds that capability into the generative model itself with a tiny change to training, and it works well enough that it became standard. When you nudge a \u0026quot;CFG scale\u0026quot; or \u0026quot;guidance\u0026quot; setting in a text-to-image tool, this is what you're adjusting.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jonathan Ho",
+      "Tim Salimans"
+    ],
+    "url": "https://arxiv.org/abs/2207.12598",
+    "published_at": "2022-07-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "diffusion"
+  ],
+  "tags": [
+    "vision"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2022-07-26",
+  "related": [
+    {
+      "id": "card_2b95b6",
+      "slug": "denoising-diffusion-probabilistic-models",
+      "type": "paper",
+      "title": "Denoising Diffusion Probabilistic Models (DDPM)",
+      "hook": "Wreck an image into pure static one tiny step at a time, then train a network to undo it. Run the undo from random noise and you get a brand-new image.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2020-06-19"
+    },
+    {
+      "id": "card_7e3221",
+      "slug": "latent-diffusion-models",
+      "type": "paper",
+      "title": "High-Resolution Image Synthesis with Latent Diffusion (Stable Diffusion)",
+      "hook": "Running diffusion on raw pixels is brutally expensive. Do it in a compressed latent space instead, and high-res text-to-image becomes cheap enough to run on a consumer GPU.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-12-20"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_2b95b6",
+      "slug": "denoising-diffusion-probabilistic-models",
+      "type": "paper",
+      "title": "Denoising Diffusion Probabilistic Models (DDPM)",
+      "hook": "Wreck an image into pure static one tiny step at a time, then train a network to undo it. Run the undo from random noise and you get a brand-new image.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2020-06-19"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_d622c0#0",
+      "format": "flip",
+      "prompt": "How is a single model trained to support classifier-free guidance?",
+      "back_html": "\u003cp\u003eDuring training its conditioning input is occasionally dropped, so it learns to denoise both with the prompt and without it.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d622c0#1",
+      "format": "quiz",
+      "prompt": "At sampling time, how does classifier-free guidance combine its two predictions?",
+      "choices": [
+        {
+          "text": "Extrapolates away from the unconditional toward the conditional prediction",
+          "correct": true
+        },
+        {
+          "text": "Averages the conditional and unconditional predictions equally",
+          "correct": false
+        },
+        {
+          "text": "Uses a separately trained classifier to score samples",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIt pushes away from the unconditional guess and toward the conditional one; the guidance scale controls how hard you push.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d622c0#2",
+      "format": "flip",
+      "prompt": "What does raising the guidance scale trade off?",
+      "back_html": "\u003cp\u003eHigher values make outputs hew tighter to the prompt but can reduce variety and add artifacts; lower values give more diverse but looser results.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "id": "card_4fbe16",
+  "slug": "sara-tool-outputs-as-commands",
+  "type": "paper",
+  "title": "When Tool Outputs Become Commands",
+  "hook": "Prompt injection into agents is really one confusion: the thing that suggests an action and the thing that authorizes it are treated as the same thing.",
+  "key_points": [
+    "The paper's diagnosis: the risk comes from conflating action induction with execution authorization.",
+    "SARA separates them as distinct runtime roles — action provenance on one side, execution authority on the other.",
+    "A context-isolated Action Probe exposes action-inducing semantics in observations and records action-origin provenance across steps.",
+    "Tool calls are authorized only against the user objective plus audited evidence from prior authorized successes.",
+    "No-History-Promotion stops repeated appearances in history from laundering an action's origin into authority.",
+    "On AgentDojo and AgentDyn, attack success stays at or below 0.63% across four settings with competitive task utility."
+  ],
+  "content_html": "\u003cp\u003eAn agent that browses, reads files, and calls APIs has to consume untrusted text. The danger arrives when a tool output stops being data and starts specifying an action — \u0026quot;now email this to that address\u0026quot; — because the agent has no principled way to say that a suggestion from a web page is not an instruction from its user. Guo and colleagues name this precisely: the risk comes from conflating \u003cstrong\u003eaction induction\u003c/strong\u003e with \u003cstrong\u003eexecution authorization\u003c/strong\u003e.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe design\u003c/h2\u003e\n\u003cp\u003eSARA keeps the two as distinct runtime roles. On the observation side, a context-isolated \u003cem\u003eAction Probe\u003c/em\u003e inspects tool output for action-inducing semantics and records action-origin provenance persistently across steps, as a review signal. On the execution side, an actual tool call is authorized only against the user's stated objective and audited evidence from previously authorized successful executions — checked for goal support, execution-chain support, and argument-level support.\u003c/p\u003e\n\u003cp\u003eThe subtle piece is \u003cem\u003eNo-History-Promotion\u003c/em\u003e. Over a multi-step run, an injected suggestion that keeps reappearing starts to look like ordinary established context; the rule blocks that recurrence from converting an untrusted origin into execution authority.\u003c/p\u003e\n\u003ch2\u003eResults\u003c/h2\u003e\n\u003cp\u003eAcross AgentDojo and AgentDyn, the authors report attack success rate held to at most 0.63% in four primary evaluation settings while maintaining competitive task utility, with consistent reductions across other agent backbones.\u003c/p\u003e\n\u003cp\u003eThe conceptual takeaway outlives the specific system: agent security is largely a provenance and authority problem, of the kind operating systems have long solved by refusing to let data confer privilege.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xiaokun Guo",
+      "Zhen Xu",
+      "Dongdong Huo",
+      "Yanqiu Zhang",
+      "Wei Wang",
+      "Qinfu Yang",
+      "Dongjin Yu",
+      "Yu Wang"
+    ],
+    "url": "https://arxiv.org/abs/2608.27146",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "agent",
+    "alignment",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_04a0f9",
+      "slug": "longpibench-long-context-prompt-injection",
+      "type": "paper",
+      "title": "Prompt Injection Defenses Fall Apart in Long Context",
+      "hook": "Injection benchmarks are all short-context, which has been flattering the defenses. Stretch the input to tens of thousands of tokens and even naive attacks walk through state-of-the-art protections.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-28"
+    },
+    {
+      "id": "card_7318fe",
+      "slug": "camodocs-rag-poisoning",
+      "type": "paper",
+      "title": "CamoDocs: Poisoning RAG Without Leaving Fingerprints",
+      "hook": "Existing RAG poisoning attacks paste the target query into the malicious document, which is exactly what makes them easy to filter. CamoDocs hides the payload inside plausible benign text instead.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_4fbe16#0",
+      "format": "flip",
+      "prompt": "What distinction does SARA argue agent frameworks collapse?",
+      "back_html": "\u003cp\u003eAction induction (something suggests an action) versus execution authorization (something grants permission to perform it). Treating them as one lets untrusted tool output drive real side effects.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4fbe16#1",
+      "format": "quiz",
+      "prompt": "What is the purpose of SARA's No-History-Promotion rule?",
+      "choices": [
+        {
+          "text": "To stop an action's untrusted origin being laundered into authority by recurring in history",
+          "correct": true
+        },
+        {
+          "text": "To prevent the agent from reading its own earlier reasoning",
+          "correct": false
+        },
+        {
+          "text": "To cap conversation length so injected text falls out of context",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eWithout it, an injected suggestion that appears repeatedly across steps starts to look like established context, and provenance is lost. The rule keeps origin attached to the action.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4fbe16#2",
+      "format": "flip",
+      "prompt": "Why can't agents just refuse to read untrusted tool output?",
+      "back_html": "\u003cp\u003eUntrusted observations are the point — web pages, files, API responses are what the agent needs to complete open-ended tasks. The fix has to be about authority, not about avoiding the data.\u003c/p\u003e"
+    }
+  ]
+}

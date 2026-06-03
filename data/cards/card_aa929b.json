@@ -1,0 +1,113 @@
+{
+  "id": "card_aa929b",
+  "slug": "sigmoid-attention-kv-eviction",
+  "type": "paper",
+  "title": "Sigmoid Attention Makes KV Eviction Stick",
+  "hook": "Learned cache-eviction gates train softly but must delete hard at inference. Swap softmax for sigmoid attention and that jump stops hurting — even though sigmoid is the worse LM.",
+  "key_points": [
+    "Learned KV eviction has a soft-to-hard mismatch: training attenuates token contributions, but memory is only saved when entries are physically deleted.",
+    "The study runs a controlled 2x2x2 sweep over attention type, learned gating, and positional encoding on GPT-2-scale models trained on OpenWebText.",
+    "Sigmoid attention is worse as a dense language model than softmax — but that is not the operating point that matters here.",
+    "Sigmoid-gated models delete KV entries with negligible perplexity change relative to their own no-eviction reference.",
+    "Under a matched live-cache protocol, learned sigmoid gates beat the authors' H2O and KeyDiff implementations; softmax gates did not uniformly do so.",
+    "Takeaway: attention normalization decides whether a training-time soft gate transfers cleanly to hard deletion."
+  ],
+  "content_html": "\u003cp\u003eLong-context serving lives or dies on the KV cache, and one popular way to shrink it is to \u003cem\u003elearn\u003c/em\u003e which entries to drop. That approach carries a quiet inconsistency: during training the gate is differentiable, so it can only turn a token's contribution down; at inference you save memory only by physically removing the entry. The authors ask whether the attention substrate itself affects how badly that soft-to-hard transition hurts.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eA controlled sweep\u003c/h2\u003e\n\u003cp\u003eThey train GPT-2-scale transformers on OpenWebText in a 2x2x2 design over attention type (softmax or sigmoid), learned gating, and positional encoding. Sigmoid attention comes out worse as a dense language model — the expected result. But the useful operating point is different: sigmoid-gated models delete KV entries with negligible perplexity change relative to their own no-eviction reference, while softmax-gated ones degrade.\u003c/p\u003e\n\u003ch2\u003eAgainst post-hoc baselines\u003c/h2\u003e\n\u003cp\u003eUnder a matched live-cache protocol on the same dense backbones, learned sigmoid gates achieved lower perplexity than the authors' implementations of H2O and KeyDiff, whereas softmax gates did not uniformly beat those post-hoc methods. The scale is small and the baselines are reimplementations, so treat the numbers as directional. The idea is the interesting part: normalization choices that look like a pure quality trade-off in dense training can determine whether a compression scheme works at all.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Isaac",
+      "Li"
+    ],
+    "url": "https://arxiv.org/abs/2608.23296",
+    "published_at": "2026-08-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "context-memory",
+    "attention-mechanisms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "attention",
+    "inference",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-27",
+  "date": "2026-08-24",
+  "related": [
+    {
+      "id": "card_688904",
+      "slug": "kv-cache-and-batching",
+      "type": "concept",
+      "title": "The KV Cache \u0026 Continuous Batching",
+      "hook": "Generating one token reuses every prior key and value - that growing cache is why LLM inference is memory-bound, and continuous batching is how servers fight back.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-11-09"
+    },
+    {
+      "id": "card_202003",
+      "slug": "refreekv-threshold-free-kv-cache",
+      "type": "paper",
+      "title": "ReFreeKV: Threshold-Free KV Cache Compression",
+      "hook": "Most KV-cache pruning needs a hand-tuned budget threshold per input — pick wrong and performance craters. ReFreeKV adapts the budget on the fly instead.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-26"
+    },
+    {
+      "id": "card_b8385a",
+      "slug": "kv-eviction-error-certificates",
+      "type": "paper",
+      "title": "Top-k KV Eviction Can't Know What It Threw Away",
+      "hook": "Deterministic cache eviction is blind by construction: nothing you kept reveals how much error the deletions caused. Sample randomly instead and the leftovers become a statistical certificate.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-23"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_aa929b#0",
+      "format": "flip",
+      "prompt": "What is the soft-to-hard mismatch in learned KV-cache eviction?",
+      "back_html": "\u003cp\u003eTraining uses differentiable gates that merely attenuate a token's contribution, but inference only saves memory if the KV entry is actually removed — so the trained behaviour and the deployed behaviour differ.\u003c/p\u003e"
+    },
+    {
+      "id": "card_aa929b#1",
+      "format": "quiz",
+      "prompt": "What is the counterintuitive finding about sigmoid attention here?",
+      "choices": [
+        {
+          "text": "It is worse as a dense language model, yet tolerates hard KV deletion far better",
+          "correct": true
+        },
+        {
+          "text": "It matches softmax on perplexity and also evicts better",
+          "correct": false
+        },
+        {
+          "text": "It removes the need for positional encodings entirely",
+          "correct": false
+        },
+        {
+          "text": "It makes the KV cache unnecessary",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper separates the two operating points: dense quality favours softmax, but the transfer from soft gate to hard deletion favours sigmoid.\u003c/p\u003e"
+    },
+    {
+      "id": "card_aa929b#2",
+      "format": "flip",
+      "prompt": "What broader design lesson do the authors draw?",
+      "back_html": "\u003cp\u003eAttention normalization is not neutral with respect to compression — the choice of substrate can decide whether a training-time gate survives being made hard at inference.\u003c/p\u003e"
+    }
+  ]
+}

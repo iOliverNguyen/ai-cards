@@ -1,0 +1,117 @@
+{
+  "id": "card_46d88c",
+  "slug": "cosmos-3-edge",
+  "type": "news",
+  "title": "Cosmos 3 Edge: A 4B World Model for Real-Time Robots",
+  "hook": "NVIDIA shrinks its Cosmos world model down to 4B parameters and real-time speed — bringing robot perception, prediction, and action generation to edge hardware like Jetson Thor.",
+  "key_points": [
+    "4B-parameter open world model for robotics, sized to run on memory-constrained edge devices instead of a data center.",
+    "Two transformer towers share multimodal attention: an autoregressive tower for vision+text reasoning, a diffusion tower for vision/audio/action generation.",
+    "Actions are compact geometric vectors (translation, rotation, manipulation state) — one action format across different robot embodiments.",
+    "On NVIDIA Jetson Thor: 32 actions per inference at 640x360, running at 15 Hz real-time control.",
+    "Ranks #1 among 4B-parameter models on VANTAGE-Bench for vision analytics."
+  ],
+  "content_html": "\u003cp\u003eNVIDIA released Cosmos 3 Edge, a 4-billion-parameter open-source world model built for robotics and vision AI on edge devices — where memory and compute are tight but real-time response isn't optional.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe model pairs two transformer towers that share multimodal attention layers: an autoregressive tower handles vision-and-text reasoning, while a diffusion tower handles vision, audio, and action generation, with separate normalization and MLPs per tower. Actions are represented as compact geometric vectors — translation, rotation, and manipulation state — giving the model one action format across different robot embodiments, so it can double as both a visual predictor and a policy generator. On NVIDIA Jetson Thor it generates 32 actions per inference at 640x360 resolution, hitting 15 Hz real-time control, and it ranks #1 among 4B-parameter models on VANTAGE-Bench for vision analytics. Published by Pranjali Joshi and Saeed Babamohamadi on the Hugging Face blog, July 20, 2026.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face Blog (NVIDIA)",
+    "authors": [
+      "Pranjali Joshi",
+      "Saeed Babamohamadi"
+    ],
+    "url": "https://huggingface.co/blog/nvidia/cosmos3edge",
+    "published_at": "2026-07-20",
+    "license": "Hugging Face blog"
+  },
+  "topic_ids": [
+    "robotics",
+    "releases"
+  ],
+  "tags": [
+    "multimodal",
+    "generative",
+    "efficiency",
+    "vision"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-20",
+  "related": [
+    {
+      "id": "card_833749",
+      "slug": "cosmos-3",
+      "type": "paper",
+      "title": "Cosmos 3: Omnimodal World Models for Physical AI",
+      "hook": "One model that reads and generates language, images, video, audio, and actions — NVIDIA's open Cosmos 3 folds VLMs, video generators, and robot policies into a single backbone.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-01"
+    },
+    {
+      "id": "card_96537f",
+      "slug": "cosmos-h-dreams",
+      "type": "news",
+      "title": "Cosmos-H-Dreams: A Real-Time Generative Simulator for Surgical Robots",
+      "hook": "Rehearsing robot surgery on real hardware is slow, costly, and bends instruments. NVIDIA distilled its surgical world model into a two-step student that dreams the operating field at ~160 FPS.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-27"
+    },
+    {
+      "id": "card_5b91a4",
+      "slug": "geometric-action-model",
+      "type": "paper",
+      "title": "Geometric Action Model: One Backbone for Geometry and Action",
+      "hook": "GAM turns a pretrained 3D-geometry model into a robot's brain - a single backbone that forecasts both future geometry and the actions to get there, beating heavier VLA baselines.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-15"
+    },
+    {
+      "id": "card_3d3b4b",
+      "slug": "xiaomi-robotics-u0-world-foundation-model",
+      "type": "paper",
+      "title": "Xiaomi-Robotics-U0: A World Foundation Model for Embodied Synthesis",
+      "hook": "Instead of training a robot on real footage, generate the footage: a 38B image/video model that beats GPT-Image-2.0 at imagining robot scenes — and nearly doubles a real policy's success rate.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-13"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_46d88c#0",
+      "format": "flip",
+      "prompt": "What lets Cosmos 3 Edge act as both a visual predictor and a policy generator?",
+      "back_html": "\u003cp\u003eTwo transformer towers sharing multimodal attention layers — an autoregressive tower for vision/text reasoning, and a diffusion tower for vision, audio, and action generation.\u003c/p\u003e"
+    },
+    {
+      "id": "card_46d88c#1",
+      "format": "quiz",
+      "prompt": "Why does Cosmos 3 Edge represent robot actions as geometric vectors (translation, rotation, manipulation state)?",
+      "choices": [
+        {
+          "text": "To give one unified action format that works across different robot embodiments",
+          "correct": true
+        },
+        {
+          "text": "To cut the model's total parameter count",
+          "correct": false
+        },
+        {
+          "text": "To avoid needing a diffusion tower",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA shared geometric action representation lets the same model drive robots with different bodies and joints, without an embodiment-specific action head for each.\u003c/p\u003e"
+    },
+    {
+      "id": "card_46d88c#2",
+      "format": "flip",
+      "prompt": "What real-time performance does Cosmos 3 Edge hit on NVIDIA Jetson Thor?",
+      "back_html": "\u003cp\u003e32 actions per inference at 640x360 resolution, running at 15 Hz — real-time control speed on edge hardware.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "id": "card_5b9c71",
+  "slug": "one-word-census-llm-conformity",
+  "type": "paper",
+  "title": "The One-Word Census: Answer-Choice Conformity Across 44 Language Models",
+  "hook": "Ask 44 different LLMs to name any word, no multiple choice — and 41% of them say 'serendipity.' A minimal new instrument measures just how herd-like models really are.",
+  "key_points": [
+    "44 models asked to freely name a word (no multiple choice); 'serendipity' won 41% of all answers in one category.",
+    "In 7 of 31 categories tested, a single answer captured over 80% of every model's responses.",
+    "Conformity varies over 4x across model families; persona- and community-tuned models diverge most, mainline flagships converge most.",
+    "Within the Claude, GPT, Qwen, and Grok lineages, conformity rises each generation — then reverses for the newest flagship Claude and GPT.",
+    "Compared to human category-production norms, the field is more concentrated than people in 18 of 20 shared categories."
+  ],
+  "content_html": "\u003cp\u003eAsk a language model to \u0026quot;pick a word — any word\u0026quot; and you'd expect near-infinite variety. Instead, across 44 models answering 31 open-ended category prompts four times each, the same handful of answers keep winning by huge margins — one category alone drew \u0026quot;serendipity\u0026quot; 41% of the time. The One-Word Census is a deliberately minimal instrument built to measure exactly this: not whether models converge (that's well documented) but how the convergence is structured.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTapan Parikh scores each model by answer-choice surprisal — how surprising its answers are against the pooled answers of every other model, leave-one-out — using plain exact-match on normalized tokens, no embeddings or judge model needed, at about a dollar per model tested. The headline pattern: conformity varies more than fourfold across model families, and it's not random. Persona- and community-tuned models diverge most, while mainline flagships converge most, and within the Claude, GPT, Qwen, and Grok lineages conformity climbs with each new generation — until it reverses for the latest flagship Claude and GPT models, which the author flags as a possible early signal of repositioning at the top tier. The rankings hold up even when whole model families are dropped from the comparison (leave-one-family-out rho = 0.985). Against human norms on shared categories, the field of models turns out to be more concentrated than people are in 18 of 20 cases. Full prompts, transcripts, and code are public. See arxiv.org/abs/2607.12796.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Tapan Parikh"
+    ],
+    "url": "https://arxiv.org/abs/2607.12796",
+    "published_at": "2026-07-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "language-models",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "nlp",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-07-16",
+  "date": "2026-07-14",
+  "related": [],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_5b9c71#0",
+      "format": "flip",
+      "prompt": "What did the One-Word Census find when 44 LLMs were freely asked to name a word or category?",
+      "back_html": "\u003cp\u003eExtreme convergence: one category alone drew \u0026quot;serendipity\u0026quot; 41% of the time, and in 7 of 31 categories a single answer took over 80% share.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5b9c71#1",
+      "format": "quiz",
+      "prompt": "Which models were the LEAST conformist in the One-Word Census?",
+      "choices": [
+        {
+          "text": "Persona- and community-tuned models",
+          "correct": true
+        },
+        {
+          "text": "The newest mainline flagship models",
+          "correct": false
+        },
+        {
+          "text": "Models with the largest parameter counts",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePersona/community-tuned models diverged most from the pack; the newest mainline flagships were generally the most conformist.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5b9c71#2",
+      "format": "flip",
+      "prompt": "What reversal did the study find within the Claude and GPT model lineages?",
+      "back_html": "\u003cp\u003eConformity rose with each successive generation, but then dropped again for the very newest flagship Claude and GPT models.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5b9c71#3",
+      "format": "quiz",
+      "prompt": "How does the One-Word Census measure a model's conformity, methodologically?",
+      "choices": [
+        {
+          "text": "Exact-match surprisal: average -log2 probability of its answers under all other models' pooled answers",
+          "correct": true
+        },
+        {
+          "text": "Semantic similarity scored via text embeddings",
+          "correct": false
+        },
+        {
+          "text": "A separate LLM judges how similar each answer is",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe instrument is deliberately minimal — exact match on normalized tokens, no embeddings or LLM-as-judge.\u003c/p\u003e"
+    }
+  ]
+}

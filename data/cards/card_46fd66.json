@@ -1,0 +1,107 @@
+{
+  "id": "card_46fd66",
+  "slug": "chinchilla-scaling-laws",
+  "type": "paper",
+  "title": "Chinchilla: Compute-Optimal Scaling",
+  "hook": "Most giant models were starved of data. Chinchilla showed that for a fixed compute budget you should grow parameters and tokens together — and a smaller, longer-trained model won.",
+  "key_points": [
+    "For a fixed compute budget, scale parameters and training tokens together, roughly in proportion.",
+    "Many earlier large models were undertrained — too big for the data they saw.",
+    "Chinchilla (70B) was trained on far more tokens than comparably-compute models.",
+    "It outperformed much larger models like Gopher on downstream tasks.",
+    "Reframed how labs allocate compute between model size and data."
+  ],
+  "content_html": "\u003cp\u003eHoffmann, Borgeaud, and colleagues at DeepMind in 2022 asked a sharper question than earlier scaling work: given a fixed compute budget, what mix of model size and training data is best? Their answer was that the two should grow together, roughly equally — and that most prior large models were undertrained. They proved it by training Chinchilla, a 70B model fed far more tokens, which beat much larger models.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe team trained a large set of models across different sizes and token counts, then fit the relationship between compute, model size, and loss. The fit said that as you get more compute, parameters and training tokens should scale up at similar rates. Earlier models like Gopher and GPT-3 had spent their budget on size while seeing comparatively little data, leaving performance on the table.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eChinchilla changed the recipe: bigger isn't automatically better if you don't also train on enough data. A 70B model trained the compute-optimal way outperformed models several times its size, and it's cheaper to run at inference too. The result steered the field toward training smaller models on much larger datasets — a default assumption behind many of today's efficient open models.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jordan Hoffmann",
+      "Sebastian Borgeaud",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2203.15556",
+    "published_at": "2022-03-29",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining"
+  ],
+  "tags": [
+    "nlp",
+    "efficiency",
+    "landmark"
+  ],
+  "importance": 5,
+  "difficulty": "deep",
+  "created_at": "2026-06-02",
+  "date": "2022-03-29",
+  "related": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    },
+    {
+      "id": "card_85f66a",
+      "slug": "scaling-laws",
+      "type": "paper",
+      "title": "Scaling Laws for Neural Language Models",
+      "hook": "Loss doesn't drop randomly as models grow — it follows a smooth power law in size, data, and compute. That predictability is what made betting on bigger models rational.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2020-01-23"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_85f66a",
+      "slug": "scaling-laws",
+      "type": "paper",
+      "title": "Scaling Laws for Neural Language Models",
+      "hook": "Loss doesn't drop randomly as models grow — it follows a smooth power law in size, data, and compute. That predictability is what made betting on bigger models rational.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2020-01-23"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_46fd66#0",
+      "format": "flip",
+      "prompt": "For a fixed compute budget, how should you scale parameters and training tokens, per Chinchilla?",
+      "back_html": "\u003cp\u003eGrow them together, roughly in proportion — not just the parameter count. Many earlier large models were undertrained for the data they saw.\u003c/p\u003e"
+    },
+    {
+      "id": "card_46fd66#1",
+      "format": "quiz",
+      "prompt": "How did a 70B Chinchilla beat much larger models like Gopher?",
+      "choices": [
+        {
+          "text": "It was trained on far more tokens, the compute-optimal way",
+          "correct": true
+        },
+        {
+          "text": "It used a fundamentally new architecture",
+          "correct": false
+        },
+        {
+          "text": "It had more parameters than Gopher",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEarlier models spent their budget on size while seeing little data; Chinchilla allocated compute toward more tokens and won despite being smaller.\u003c/p\u003e"
+    },
+    {
+      "id": "card_46fd66#2",
+      "format": "flip",
+      "prompt": "Besides better benchmarks, what inference advantage does a compute-optimal smaller model have?",
+      "back_html": "\u003cp\u003eIt is cheaper to run at inference, since it has fewer parameters than the larger models it outperforms.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "id": "card_012056",
+  "slug": "catastrophic-remembering-claude-md",
+  "type": "paper",
+  "title": "Why Does CLAUDE.md Keep Growing?",
+  "hook": "Agent instruction files only ever get longer. The reason is asymmetric cost: adding a line is free, but deleting one whose rationale is lost risks a regression you can't cheaply check.",
+  "key_points": [
+    "Study of 247,694 instruction lifetimes across 1,867 repositories: agentic prompt files grow without bound, tripling over their lifetime (+226%).",
+    "They gain about +4.9 net instructions per commit, and older instructions get less likely to be deleted over time (log-hazard -0.032/commit).",
+    "The author names this catastrophic remembering — the mirror image of the catastrophic forgetting continual learning is built around.",
+    "Cause: appending is cheap, but safely deleting one of |D| instructions costs O(2^|D|) once its rationale is gone.",
+    "Fix: prompt comments. In verifiable worlds built by inverting IFEval, comments encoding latent reasoning removed 99.3% of excess instructions (+211.3% down to +1.4%).",
+    "Applied to WildIFEval, the same trick improved real-world agentic instruction-following by up to 23.1%."
+  ],
+  "content_html": "\u003cp\u003eEvery long-lived agentic coding repo has the same artifact: a CLAUDE.md that only ever gets longer, until someone finally throws it out and starts over. Kushal Chakrabarti traced 247,694 instruction lifetimes across 1,867 repositories and found the pattern is real and remarkably regular — these files more than triple over their lifetime (+226%), gaining about 4.9 net instructions per commit, and the older an instruction is, the \u003cem\u003eless\u003c/em\u003e likely it is to ever be removed.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe proposed mechanism is an asymmetry in cost. Appending an instruction is always cheap. Deleting one is not: once nobody remembers \u003cem\u003ewhy\u003c/em\u003e it's there, checking that removal won't cause a correctness regression costs O(2^|D|) in a prompt of |D| instructions. So nothing is ever deleted, and the file ratchets upward. Chakrabarti calls this catastrophic remembering — the exact inverse of the catastrophic forgetting that continual learning is organized around.\u003c/p\u003e\n\u003cp\u003eThe fix he proposes is one programmers have had for sixty years: comments. By inverting IFEval to build verifiable worlds where the optimal prompt is known, he shows that comments encoding an instruction's latent reasoning strip 99.3% of the excess — from +211.3% bloat down to +1.4%. The same inversion applied to WildIFEval improves real-world agentic instruction-following by up to 23.1%. The paper's closing question is the memorable part: if English is the new code, why don't we have comments yet?\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Kushal Chakrabarti"
+    ],
+    "url": "https://arxiv.org/abs/2608.11095",
+    "published_at": "2026-08-11",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "paper",
+    "nlp"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-13",
+  "date": "2026-08-11",
+  "related": [
+    {
+      "id": "card_2e50ab",
+      "slug": "claude-agent-skills",
+      "type": "news",
+      "title": "Claude Agent Skills",
+      "hook": "Agent Skills package instructions, scripts, and resources into folders an agent loads on demand — composable, portable expertise, later opened as a standard like MCP.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2025-10-16"
+    },
+    {
+      "id": "card_99ec55",
+      "slug": "agent-skill-regression-tax",
+      "type": "paper",
+      "title": "The Regression Tax on Agent Skills",
+      "hook": "Handing an agent a procedural skill doesn't only add wins — it also breaks tasks it used to solve. The best skills win by regressing less, not by gaining more.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_012056#0",
+      "format": "flip",
+      "prompt": "What is 'catastrophic remembering'?",
+      "back_html": "\u003cp\u003eThe unbounded accumulation of instructions in an agentic prompt file — the inverse of catastrophic forgetting. Nothing gets dropped because dropping anything is risky.\u003c/p\u003e"
+    },
+    {
+      "id": "card_012056#1",
+      "format": "quiz",
+      "prompt": "Why is deleting an instruction so much more expensive than adding one?",
+      "choices": [
+        {
+          "text": "Once its rationale is lost, verifying deletion is safe costs O(2^|D|) in a prompt of |D| instructions",
+          "correct": true
+        },
+        {
+          "text": "Deleting requires retraining the underlying model",
+          "correct": false
+        },
+        {
+          "text": "Version control makes reverting deletions harder than reverting additions",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe instruction's purpose isn't recorded anywhere, so proving removal won't regress behavior means checking it against the combinatorial space of other instructions.\u003c/p\u003e"
+    },
+    {
+      "id": "card_012056#2",
+      "format": "flip",
+      "prompt": "What remedy does the paper propose, and how well does it work?",
+      "back_html": "\u003cp\u003ePrompt comments that record an instruction's latent reasoning. In inverted-IFEval worlds they cut excess instructions from +211.3% to +1.4%, and lifted real-world instruction-following on WildIFEval by up to 23.1%.\u003c/p\u003e"
+    }
+  ]
+}

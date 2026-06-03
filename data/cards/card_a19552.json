@@ -1,0 +1,89 @@
+{
+  "id": "card_a19552",
+  "slug": "warp-recovering-training-data-portfolios",
+  "type": "paper",
+  "title": "WARP: Weight-Space Analysis for Recovering Training Data Portfolios",
+  "hook": "Labs rarely disclose their data mixture recipes — but WARP shows you can recover a fine-tuned model's training-domain proportions just from its released weights, no training data required.",
+  "key_points": [
+    "Training data mixtures (how much of each domain a model was fed) are rarely disclosed, leaving researchers unable to see the distribution that produced a released model.",
+    "Prior methods like membership inference only detect individual samples, not the corpus's overall composition.",
+    "WARP interpolates between a base and fine-tuned model via model merging, generating pseudo-checkpoints that approximate the missing training trajectory and expose a 'geometric footprint' of the training data in weight space.",
+    "Geometric features from those footprints map to domain proportions via a simple softmax readout or a trained MLP.",
+    "On BERT and GPT-2, WARP recovers domain mixtures with mean absolute error as low as 0.046 and 0.104 — beating membership inference and even a variant with access to the true training trajectory."
+  ],
+  "content_html": "\u003cp\u003eFoundation models get released to the public all the time; the data recipes behind them almost never do. Domain mixture weights — how much of each data source a model actually saw — stay hidden, leaving researchers able to study a model's behavior but not the distribution that produced it. WARP asks whether the weights alone give that away.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eReading a footprint out of merged weights\u003c/h2\u003e\n\u003cp\u003ePrior tools like membership inference only tell you whether one sample was in the training set, not the corpus's overall shape. WARP instead interpolates between a model's base and fine-tuned checkpoints using model merging, generating pseudo-checkpoints that approximate the missing training trajectory. That approximated path exposes a geometric footprint of the training data in weight space, from which WARP extracts features and maps them to domain proportions — either with a parameter-free softmax readout or an MLP trained on synthetic mixtures.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eIn controlled experiments on BERT and GPT-2, WARP recovers domain mixtures with mean absolute error as low as 0.046 and 0.104, respectively — outperforming membership inference and, notably, even a variant of itself given access to the true training trajectory. That's a meaningful result for model transparency and provenance: it suggests released weights leak more about how a model was built than labs might assume, with implications for auditing undisclosed training recipes.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Tzu-Heng Huang",
+      "Aditya Goyal",
+      "John Cooper",
+      "Frederic Sala"
+    ],
+    "url": "https://arxiv.org/abs/2607.01686",
+    "published_at": "2026-07-02",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "pretraining",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "training",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-06",
+  "date": "2026-07-02",
+  "related": [
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a19552#0",
+      "format": "flip",
+      "prompt": "What access asymmetry does WARP address?",
+      "back_html": "\u003cp\u003eLabs release model weights but rarely disclose the training data mixture that produced them, so researchers can study the model but not see the distribution it was actually trained on.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a19552#1",
+      "format": "quiz",
+      "prompt": "How does WARP recover a training data mixture without access to the original training data?",
+      "choices": [
+        {
+          "text": "It interpolates between base and fine-tuned weights via model merging to approximate the missing trajectory, then reads a geometric footprint off that path",
+          "correct": true
+        },
+        {
+          "text": "It performs membership inference on every individual training sample",
+          "correct": false
+        },
+        {
+          "text": "It requires the lab to voluntarily disclose the mixture weights first",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eModel merging generates pseudo-checkpoints that stand in for the actual training trajectory, and geometric features of that path are mapped to domain proportions.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a19552#2",
+      "format": "flip",
+      "prompt": "Why couldn't membership inference alone reveal a model's training data mixture?",
+      "back_html": "\u003cp\u003eMembership inference detects whether individual samples were in the training set, but that's a per-sample signal — it doesn't characterize the overall domain composition of the corpus.\u003c/p\u003e"
+    }
+  ]
+}

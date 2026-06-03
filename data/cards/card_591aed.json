@@ -1,0 +1,117 @@
+{
+  "id": "card_591aed",
+  "slug": "lmsm-llm-security-modules",
+  "type": "paper",
+  "title": "Giving Interpretability Probes a Socket to Plug Into",
+  "hook": "Probes and SAEs can see a jailbreak forming inside the model, but each ships its own calibration and glue code. LMSM borrows Linux Security Modules' shape: pluggable backends, one enforcement path.",
+  "key_points": [
+    "Interpretability tools expose model-internal signals along the generation path, but a signal is not a security control.",
+    "Today each new artifact arrives with its own calibration, policy logic, and intervention code — integration work instead of a shared defense.",
+    "LMSM splits the problem three ways: a security backend supplies calibrated evidence, a versioned policy evaluates rules over trusted per-request context, and a separate gate authorizes release of buffered output.",
+    "That separation distinguishes mediation correctness from policy effectiveness, so rules or backends can change without touching request handling.",
+    "The prototype runs on Hugging Face Transformers and continuously batched vLLM, hosting SAE, transcoder, and dense-probe backends on one substrate.",
+    "On Qwen3-4B, LMSM-Checkpoint cut HarmBench attack success from 39.20% to 3.32%; XSTest false refusals rose from 2.40% to 4.40% and throughput held at 98.14% of an unmonitored path at 32 active sequences."
+  ],
+  "content_html": "\u003cp\u003eLayered defenses around a deployed LLM still get talked past. Interpretability research offers a tempting complement: sparse autoencoders, transcoders, and linear probes can read internal signals as the model generates, sometimes catching a harmful trajectory before the tokens are out. But a signal is not a control. In practice each such artifact arrives with its own thresholding, its own policy code, and its own way of intervening — so the tenth probe is as much work as the first, and none of them reinforce each other.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eBorrowing a kernel's separation of concerns\u003c/h2\u003e\n\u003cp\u003eZhang and colleagues take the structure of Linux Security Modules and apply it to LLM serving. In Language Model Security Modules, a selected backend's only job is to expose calibrated evidence; a versioned policy evaluates active rules against trusted per-request context; and a distinct gate decides whether buffered output may be released. The point of the split is that mediation correctness — did every request actually get checked, under scheduler churn and continuous batching — becomes a separate question from whether the rules are any good.\u003c/p\u003e\n\u003cp\u003eThe prototype covers both Hugging Face Transformers and continuously batched vLLM, and hosts SAE, transcoder, and task-fitted dense-probe backends on the same substrate, composing multiple rules per request. On Qwen3-4B, the authors report HarmBench attack success dropping from 39.20% to 3.32% with false refusals on XSTest rising from 2.40% to 4.40%, and 98.14% of the throughput of a matched no-monitoring path at 32 active sequences. The contribution is less a new detector than a place to put the detectors interpretability keeps producing.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "XiuYu Zhang",
+      "Bonan Ruan",
+      "Junfeng Fang",
+      "An Zhang",
+      "Tat-Seng Chua",
+      "Zhenkai Liang"
+    ],
+    "url": "https://arxiv.org/abs/2608.25697",
+    "published_at": "2026-08-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "safety",
+    "inference",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_6e175b",
+      "slug": "internal-state-probes-misalignment-monitoring",
+      "type": "paper",
+      "title": "Internal-State Probes Read the Situation, Not the Action",
+      "hook": "Probes that seem to detect an LLM's harmful intent before it acts mostly just detect the prompt's topic — three careful tests find they don't predict future misbehavior.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-29"
+    },
+    {
+      "id": "card_e2857d",
+      "slug": "sae-interventions-unreliable",
+      "type": "paper",
+      "title": "SAE Interventions Are Unreliable",
+      "hook": "Clamping a 'harmful' sparse-autoencoder feature looks like it stops bad behavior — but this paper recovers it 95.8% of the time, exposing the gap between feature-level and real control.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-16"
+    },
+    {
+      "id": "card_704af4",
+      "slug": "scaling-evaluating-sparse-autoencoders",
+      "type": "paper",
+      "title": "Scaling and Evaluating Sparse Autoencoders",
+      "hook": "Tuning the sparsity penalty on an autoencoder is fiddly. Use a top-k constraint instead and you can dial sparsity directly — and scale SAEs to GPT-4.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-06-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_591aed#0",
+      "format": "flip",
+      "prompt": "What problem in deploying interpretability artifacts does LMSM target?",
+      "back_html": "\u003cp\u003eEvery new probe, SAE, or transcoder is wired in with its own calibration, policy logic, and intervention code. Each addition is integration work rather than a contribution to one shared, reusable defense.\u003c/p\u003e"
+    },
+    {
+      "id": "card_591aed#1",
+      "format": "quiz",
+      "prompt": "What are the three separated components in LMSM's design?",
+      "choices": [
+        {
+          "text": "A backend producing calibrated evidence, a versioned policy over trusted per-request context, and a gate authorizing output release",
+          "correct": true
+        },
+        {
+          "text": "A prompt classifier, a fine-tuned refusal head, and an output-rewriting model",
+          "correct": false
+        },
+        {
+          "text": "A red-team generator, a reward model, and a preference-optimization loop",
+          "correct": false
+        },
+        {
+          "text": "A per-request sandbox, a rate limiter, and an audit log",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe split mirrors Linux Security Modules: evidence, policy, and enforcement are distinct, which is what lets a backend or rule change without rebuilding request handling.\u003c/p\u003e"
+    },
+    {
+      "id": "card_591aed#2",
+      "format": "flip",
+      "prompt": "What was the safety-vs-cost tradeoff reported on Qwen3-4B?",
+      "back_html": "\u003cp\u003eHarmBench attack success fell from 39.20% to 3.32%, while XSTest false refusals rose from 2.40% to 4.40% and throughput stayed at 98.14% of a matched unmonitored serving path at 32 active sequences.\u003c/p\u003e"
+    }
+  ]
+}

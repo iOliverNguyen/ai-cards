@@ -1,0 +1,116 @@
+{
+  "id": "card_b693b7",
+  "slug": "zero-shot-cot",
+  "type": "paper",
+  "title": "Large Language Models Are Zero-Shot Reasoners",
+  "hook": "Appending 'Let's think step by step' to a prompt unlocks multi-step reasoning with zero examples - chain-of-thought without the example-writing overhead.",
+  "key_points": [
+    "A single instruction phrase triggers step-by-step reasoning across arithmetic, logic, and symbolic tasks.",
+    "Works zero-shot: no labeled reasoning chains needed in the prompt, unlike original chain-of-thought prompting.",
+    "Performance gains are largest on complex multi-step problems; simpler tasks see little benefit.",
+    "Suggests that reasoning ability is latent in large models and needs only a cue to surface."
+  ],
+  "content_html": "\u003cp\u003eKojima and colleagues (2022) showed that you do not need hand-crafted reasoning examples to get chain-of-thought behavior from large language models. Adding the phrase \u0026quot;Let's think step by step\u0026quot; before the model's answer space was enough to dramatically improve performance on multi-step reasoning benchmarks - at zero additional prompt-engineering cost.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe method runs in two stages. First, the model is prompted with the question plus the trigger phrase and generates a reasoning chain. Second, a follow-up prompt extracts the final answer from that chain. The trigger phrase acts as a soft instruction that shifts the model from direct answer-generation to deliberate step-by-step reasoning, a behavior that apparently emerges as a side effect of pre-training on text that reasons through problems.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eZero-shot chain-of-thought is now a standard baseline in reasoning research because it is trivially cheap to apply. It also raised a conceptual question the field is still exploring: if a generic phrase unlocks reasoning, what does that say about where the capability lives and how robust it really is? Kojima et al.'s paper on arXiv covers ablations across models and task types.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Takeshi Kojima",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2205.11916",
+    "published_at": "2022-05-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "prompting",
+    "agents"
+  ],
+  "tags": [
+    "reasoning",
+    "nlp",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2022-05-24",
+  "related": [
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    },
+    {
+      "id": "card_812537",
+      "slug": "self-consistency",
+      "type": "paper",
+      "title": "Self-Consistency Improves Chain-of-Thought Reasoning",
+      "hook": "Sample the model many times, let each run reason its own way, then take the majority answer - diverse reasoning paths vote out individual errors.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-03-21"
+    },
+    {
+      "id": "card_13953d",
+      "slug": "in-context-learning",
+      "type": "concept",
+      "title": "In-Context Learning",
+      "hook": "Paste a few examples into a prompt and a large language model performs the task - no gradient updates, no fine-tuning, the prompt is the program.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-31"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_b693b7#0",
+      "format": "flip",
+      "prompt": "What makes zero-shot chain-of-thought different from original chain-of-thought prompting?",
+      "back_html": "\u003cp\u003eIt needs no hand-crafted reasoning examples in the prompt — a single trigger phrase like 'Let's think step by step' unlocks step-by-step reasoning.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b693b7#1",
+      "format": "quiz",
+      "prompt": "On which problems does the zero-shot CoT trigger phrase help most?",
+      "choices": [
+        {
+          "text": "Complex multi-step problems; simpler tasks see little benefit",
+          "correct": true
+        },
+        {
+          "text": "Simple lookup tasks, where it adds the most accuracy",
+          "correct": false
+        },
+        {
+          "text": "All tasks equally, regardless of complexity",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGains are largest on complex multi-step reasoning; simple tasks barely improve.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b693b7#2",
+      "format": "flip",
+      "prompt": "How does the two-stage zero-shot CoT method extract a final answer?",
+      "back_html": "\u003cp\u003eFirst the model generates a reasoning chain from the question plus trigger phrase; a follow-up prompt then extracts the final answer from that chain.\u003c/p\u003e"
+    }
+  ]
+}

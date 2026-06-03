@@ -1,0 +1,123 @@
+{
+  "id": "card_ac2918",
+  "slug": "flux-1",
+  "type": "news",
+  "title": "FLUX.1",
+  "hook": "FLUX.1 became the leading open-weight image model — from the Black Forest Labs team that built Stable Diffusion, now shipping a frontier-quality model you can run yourself.",
+  "key_points": [
+    "Text-to-image model from Black Forest Labs, founded by former Stable Diffusion authors (2024).",
+    "FLUX.1 [schnell] is Apache 2.0; [dev] is open-weight under a non-commercial license.",
+    "Set a high bar for open-weight image quality and prompt-following.",
+    "[schnell] uses adversarial distillation to generate images in just 1–4 steps."
+  ],
+  "content_html": "\u003cp\u003eFLUX.1 is a family of text-to-image models from Black Forest Labs, the German lab founded in 2024 by Robin Rombach, Andreas Blattmann, and Patrick Esser — the researchers behind Stable Diffusion. Released open-weight, FLUX.1 quickly became the strongest openly available image model, combining high visual quality with notably better prompt-following than earlier open diffusion models.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's new\u003c/h2\u003e\n\u003cp\u003eThe release came in tiers: FLUX.1 [schnell] under the permissive Apache 2.0 license, FLUX.1 [dev] as open weights under a non-commercial license, and a hosted [pro] tier. [schnell] is trained with latent adversarial diffusion distillation so it can generate high-quality images in just one to four sampling steps, making it fast and cheap to run locally. The lab later added control tools and editing-focused variants like FLUX.1 Kontext.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eWith Stability AI's momentum fading, FLUX.1 inherited the open-image crown and kept a competitive open ecosystem alive against closed leaders like Midjourney and the big labs' image models. For builders, an Apache-licensed model that runs in a few steps on consumer hardware is the foundation countless image apps and fine-tunes are built on.\u003c/p\u003e",
+  "source": {
+    "name": "Black Forest Labs",
+    "authors": [
+      "Black Forest Labs"
+    ],
+    "url": "https://github.com/black-forest-labs/flux",
+    "published_at": "2024-08-01",
+    "license": "Apache 2.0 / FLUX.1 non-commercial"
+  },
+  "topic_ids": [
+    "text-to-image",
+    "releases"
+  ],
+  "tags": [
+    "generative",
+    "open-source"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2024-08-01",
+  "related": [
+    {
+      "id": "card_dd86b0",
+      "slug": "sdxl",
+      "type": "paper",
+      "title": "SDXL: Improving Latent Diffusion for High-Resolution Synthesis",
+      "hook": "A larger UNet, two text encoders, and a refinement diffusion stage gave open-source Stable Diffusion a major quality leap - now the workhorse of community image generation.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-07-04"
+    },
+    {
+      "id": "card_7e3221",
+      "slug": "latent-diffusion-models",
+      "type": "paper",
+      "title": "High-Resolution Image Synthesis with Latent Diffusion (Stable Diffusion)",
+      "hook": "Running diffusion on raw pixels is brutally expensive. Do it in a compressed latent space instead, and high-res text-to-image becomes cheap enough to run on a consumer GPU.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-12-20"
+    },
+    {
+      "id": "card_7ca1ea",
+      "slug": "imagen",
+      "type": "paper",
+      "title": "Imagen: Photorealistic Text-to-Image Diffusion",
+      "hook": "Google found that a large frozen T5 text encoder matters more than a bigger image diffusion model - scaling language understanding is the key lever for photorealistic generation.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-05-23"
+    },
+    {
+      "id": "card_afec8d",
+      "slug": "moebius-lightweight-inpainting",
+      "type": "paper",
+      "title": "Moebius: 0.2B Inpainting Rivaling 10B",
+      "hook": "A 0.22B image-inpainting model that matches an 11.9B generalist (FLUX.1-Fill-Dev) — under 2% of the parameters and 15x faster — by pairing a linear-interaction backbone with latent-space distillation.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-17"
+    },
+    {
+      "id": "card_96f5dc",
+      "slug": "nunchaku-4bit-diffusion",
+      "type": "blog",
+      "title": "Nunchaku: 4-bit Diffusion Inference in Diffusers",
+      "hook": "Diffusion models hate 4-bit — activation outliers wreck image quality. SVDQuant peels the hardest weights into a tiny 16-bit low-rank branch, and Nunchaku now runs it inside Diffusers.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-23"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_ac2918#0",
+      "format": "flip",
+      "prompt": "How does FLUX.1 [schnell] generate images in just 1–4 steps?",
+      "back_html": "\u003cp\u003eIt is trained with latent adversarial diffusion distillation, making it fast and cheap to run locally.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ac2918#1",
+      "format": "quiz",
+      "prompt": "What is the licensing difference between FLUX.1's tiers?",
+      "choices": [
+        {
+          "text": "[schnell] is Apache 2.0; [dev] is open-weight but non-commercial",
+          "correct": true
+        },
+        {
+          "text": "Both [schnell] and [dev] are fully Apache 2.0",
+          "correct": false
+        },
+        {
+          "text": "Both are closed weights with API-only access",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003e[schnell] uses the permissive Apache 2.0 license; [dev] is open-weight under a non-commercial license.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ac2918#2",
+      "format": "flip",
+      "prompt": "Why did FLUX.1 matter for the open image ecosystem?",
+      "back_html": "\u003cp\u003eAs Stability AI's momentum faded, it inherited the open-image crown, keeping a competitive open alternative to closed leaders alive.\u003c/p\u003e"
+    }
+  ]
+}

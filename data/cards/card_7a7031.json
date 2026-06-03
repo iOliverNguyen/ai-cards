@@ -1,0 +1,112 @@
+{
+  "id": "card_7a7031",
+  "slug": "program-as-weights",
+  "type": "paper",
+  "title": "Program-as-Weights: A Programming Paradigm for Fuzzy Functions",
+  "hook": "PAW compiles a natural-language function spec into a small reusable adapter instead of prompting an LLM every call — matching a 32B model's quality at a fiftieth of the memory.",
+  "key_points": [
+    "Many everyday functions (flag important log lines, repair malformed JSON, rank results by intent) resist clean rules and get outsourced to LLM APIs per call, costing locality, reproducibility, and price.",
+    "'Fuzzy-function programming': compile a natural-language function spec once into a compact, locally-executable neural artifact, instead of prompting an LLM every time it's called.",
+    "Program-as-Weights (PAW): a 4B compiler trained on the 10M-example FuzzyBench dataset emits parameter-efficient adapters for a frozen, lightweight interpreter.",
+    "A 0.6B interpreter running PAW programs matches direct prompting of a 32B model, using roughly 1/50th the inference memory, at 30 tokens/s on a MacBook M3.",
+    "Reframes the foundation model's role: a tool-builder invoked once per function definition, not a per-input solver — later calls are cheap and offline."
+  ],
+  "content_html": "\u003cp\u003ePlenty of everyday programming tasks — flag the important log lines, repair a malformed JSON blob, rank search results by intent — resist clean rule-based code and end up outsourced to an LLM API call on every single input, at the cost of locality, reproducibility, and price. This paper proposes compiling the fuzzy spec once instead of prompting forever.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eCompiling a spec into an adapter\u003c/h2\u003e\n\u003cp\u003eThe authors call this \u0026quot;fuzzy-function programming\u0026quot;: take a natural-language function specification and compile it into a compact, locally-executable neural artifact rather than a prompt. Their instantiation, Program-as-Weights (PAW), uses a 4B compiler model trained on FuzzyBench — a 10-million-example dataset the authors release — to emit parameter-efficient adapters for a frozen, lightweight interpreter. In their tests, a 0.6B Qwen3 interpreter running a PAW-compiled program matches the performance of directly prompting a 32B model, while using roughly one-fiftieth of the inference memory and running at 30 tokens per second on a MacBook M3.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe reframing is the interesting part: the foundation model stops being a per-input solver and becomes a tool-builder, invoked once per function definition to produce a small, reusable artifact. Every call after that is cheap, offline, and doesn't touch the big model again — a genuinely different cost structure from the now-default pattern of hitting an LLM API on every input.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Wentao Zhang",
+      "Liliana Hotsko",
+      "Woojeong Kim",
+      "Pengyu Nie",
+      "Stuart Shieber",
+      "Yuntian Deng"
+    ],
+    "url": "https://arxiv.org/abs/2607.02512",
+    "published_at": "2026-07-02",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "ai-for-code",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-06",
+  "date": "2026-07-02",
+  "related": [
+    {
+      "id": "card_cae140",
+      "slug": "lora",
+      "type": "paper",
+      "title": "LoRA: Low-Rank Adaptation",
+      "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-06-17"
+    },
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_cae140",
+      "slug": "lora",
+      "type": "paper",
+      "title": "LoRA: Low-Rank Adaptation",
+      "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-06-17"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_7a7031#0",
+      "format": "flip",
+      "prompt": "What is 'fuzzy-function programming' in this paper's sense?",
+      "back_html": "\u003cp\u003eCompiling a natural-language function spec — for a task too fuzzy for clean rules, like flagging important log lines — once into a compact, locally-executable neural artifact, instead of prompting an LLM on every call.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7a7031#1",
+      "format": "quiz",
+      "prompt": "How does Program-as-Weights (PAW) let a small 0.6B interpreter match a 32B model's performance?",
+      "choices": [
+        {
+          "text": "A 4B compiler emits a parameter-efficient adapter per function once, and the small frozen interpreter executes it cheaply on every call after that",
+          "correct": true
+        },
+        {
+          "text": "It distills the 32B model's full weights down into the 0.6B model",
+          "correct": false
+        },
+        {
+          "text": "It caches every past input-output pair and looks up answers at runtime",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe compiler is invoked once per function definition to emit a small adapter; each subsequent call to that function runs cheaply and offline through the frozen interpreter.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7a7031#2",
+      "format": "flip",
+      "prompt": "How does PAW reframe the role of the foundation model?",
+      "back_html": "\u003cp\u003eFrom a per-input problem solver called on every request, to a tool-builder invoked once per function definition — producing a small, reusable, offline artifact.\u003c/p\u003e"
+    }
+  ]
+}

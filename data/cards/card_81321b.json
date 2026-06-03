@@ -1,0 +1,128 @@
+{
+  "id": "card_81321b",
+  "slug": "torchwright-compiled-transformers",
+  "type": "blog",
+  "title": "Compile a Transformer Instead of Training One",
+  "hook": "Write a computation graph in ordinary Python and get back the weights of a vanilla transformer that executes it — a real Phi-3 checkpoint, with zero gradient steps anywhere in the pipeline.",
+  "key_points": [
+    "Torchwright is a compiler: a Python-defined computation graph goes in, transformer weights that run it come out.",
+    "Output is a standard Phi-3-architecture checkpoint that plain HuggingFace loads with no custom code and no trust_remote_code.",
+    "There is no training in the pipeline at all — the weights are constructed, not learned.",
+    "The motivating question separates two things usually conflated: what a transformer can express versus what it can learn.",
+    "The repo ships twelve runnable examples alongside a write-up of how the constructions work."
+  ],
+  "content_html": "\u003cp\u003eAlmost everything we know about what transformers can do, we learned by training them — which quietly blends two separate questions: what the architecture can \u003cem\u003eexpress\u003c/em\u003e, and what gradient descent can \u003cem\u003efind\u003c/em\u003e. This project pulls them apart by skipping training entirely.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eYou define a computation graph in ordinary Python, and \u003cstrong\u003eTorchwright\u003c/strong\u003e compiles it into the weights of a transformer that executes that graph. The output isn't a research artifact needing a bespoke runtime: it's a standard Phi-3-architecture checkpoint that vanilla HuggingFace loads with no custom code and no \u003ccode\u003etrust_remote_code\u003c/code\u003e. Nothing in the pipeline trains, so anything the checkpoint does is a statement about what the architecture can represent, not about what an optimizer happened to discover.\u003c/p\u003e\n\u003ch2\u003eWhy it's worth a look\u003c/h2\u003e\n\u003cp\u003eHand-constructed transformers are an old thread in interpretability — the value is that a construction is a proof by existence, and a much better object to study than a learned model whose circuits you have to reverse-engineer. The author's write-up covers the origin story and the constructions themselves, and the repo ships twelve runnable examples, which makes it unusually easy to poke at rather than just read about. Shared by the author on r/MachineLearning, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit r/MachineLearning",
+    "authors": [
+      "/u/notforrob"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1v5fxbe/i_built_a_compiler_that_turns_computation_graphs",
+    "published_at": "2026-07-24",
+    "license": "Reddit post (link-out)"
+  },
+  "topic_ids": [
+    "transformers",
+    "interpretability",
+    "releases"
+  ],
+  "tags": [
+    "architecture",
+    "interpretability",
+    "open-source",
+    "tutorial"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-27",
+  "date": "2026-07-24",
+  "related": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    },
+    {
+      "id": "card_321aee",
+      "slug": "toy-models-superposition",
+      "type": "paper",
+      "title": "Toy Models of Superposition",
+      "hook": "Why is a single neuron so hard to interpret? It may be doing several jobs at once. Networks pack more features than they have neurons by overlapping them.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2022-09-14"
+    },
+    {
+      "id": "card_4ecc14",
+      "slug": "the-illustrated-transformer",
+      "type": "resource",
+      "title": "The Illustrated Transformer",
+      "hook": "Before you tackle the Transformer paper, watch a sentence flow through one — query, key, value, and all — in clear pictures.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2018-06-27"
+    },
+    {
+      "id": "card_058e15",
+      "slug": "loopie",
+      "type": "paper",
+      "title": "Loop the Loopies!",
+      "hook": "Looping a Transformer instead of growing it usually loses to just adding more parameters — Loopie is the looped MoE model that finally breaks that pattern, with IMO/IPhO gold-level reasoning.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-17"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_81321b#0",
+      "format": "flip",
+      "prompt": "What question motivated building a transformer compiler?",
+      "back_html": "\u003cp\u003eWhat algorithms a transformer can \u003cem\u003eexpress\u003c/em\u003e, separately from what it can \u003cem\u003elearn\u003c/em\u003e — training normally entangles the two, so hand-constructing weights isolates expressivity.\u003c/p\u003e"
+    },
+    {
+      "id": "card_81321b#1",
+      "format": "quiz",
+      "prompt": "What does Torchwright produce from a Python computation graph?",
+      "choices": [
+        {
+          "text": "The weights of a standard Phi-3-architecture transformer that executes the graph, loadable by vanilla HuggingFace",
+          "correct": true
+        },
+        {
+          "text": "A fine-tuning dataset that teaches a model to imitate the graph",
+          "correct": false
+        },
+        {
+          "text": "A custom runtime that interprets the graph outside the model",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe point is that the artifact is an ordinary checkpoint — no custom code and no trust_remote_code — so the graph is genuinely running inside a vanilla transformer.\u003c/p\u003e"
+    },
+    {
+      "id": "card_81321b#2",
+      "format": "flip",
+      "prompt": "Why does 'zero training in the pipeline' matter for this project's argument?",
+      "back_html": "\u003cp\u003eIf a behavior appears in constructed weights, it is a fact about the architecture's expressive power rather than about optimization, data, or luck during training.\u003c/p\u003e"
+    }
+  ]
+}

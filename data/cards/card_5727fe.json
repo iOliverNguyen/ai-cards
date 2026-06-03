@@ -1,0 +1,110 @@
+{
+  "id": "card_5727fe",
+  "slug": "flashattention",
+  "type": "paper",
+  "title": "FlashAttention: Fast, Memory-Efficient Exact Attention",
+  "hook": "Attention got faster not by approximating it, but by being smarter about GPU memory — never writing the giant attention matrix out to slow memory.",
+  "key_points": [
+    "An IO-aware algorithm: it minimizes reads and writes to slow GPU high-bandwidth memory.",
+    "Computes attention in tiles within fast on-chip memory, avoiding the full attention matrix.",
+    "Results are exact — not an approximation — yet it runs faster and uses less memory.",
+    "Now standard in modern Transformer training and inference."
+  ],
+  "content_html": "\u003cp\u003eDao and colleagues introduced FlashAttention, an IO-aware algorithm that computes attention without ever writing the large intermediate attention matrix to slow GPU memory. By being careful about memory movement, it delivers substantial speedups and memory savings while producing exact results — not an approximation. It has become standard in modern Transformer training and inference.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe slow part of attention often isn't the math but moving data between a GPU's small, fast on-chip memory and its larger, slower high-bandwidth memory. FlashAttention restructures the computation into tiles, processing chunks of the sequence within fast memory and using a running, incremental softmax so it never needs to materialize the entire attention matrix. Because it computes the same quantity as standard attention, just with a smarter memory schedule, the output is mathematically identical.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eMemory and bandwidth, not raw compute, are frequently the real bottleneck on GPUs. By cutting unnecessary memory traffic, FlashAttention lets models train and run faster and handle longer sequences within the same hardware budget. That efficiency gain is why it was quickly adopted across major frameworks and underpins much of today's large-model training and serving.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Tri Dao",
+      "Daniel Y. Fu",
+      "Stefano Ermon",
+      "Atri Rudra",
+      "Christopher Ré"
+    ],
+    "url": "https://arxiv.org/abs/2205.14135",
+    "published_at": "2022-05-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "transformers",
+    "inference",
+    "context-memory",
+    "hardware"
+  ],
+  "tags": [
+    "efficiency",
+    "architecture"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2022-05-27",
+  "related": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    },
+    {
+      "id": "card_ef8b5f",
+      "slug": "paged-attention-vllm",
+      "type": "paper",
+      "title": "PagedAttention / vLLM: Efficient LLM Serving",
+      "hook": "LLM serving wastes huge amounts of GPU memory on the attention cache. PagedAttention borrows an OS trick — paging — to recover it and serve many more requests at once.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-09-12"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_5727fe#0",
+      "format": "flip",
+      "prompt": "How does FlashAttention speed up attention without approximating it?",
+      "back_html": "\u003cp\u003eIt restructures the computation into tiles in fast on-chip memory with a running softmax, so it never writes the full attention matrix to slow memory — the result is exact.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5727fe#1",
+      "format": "quiz",
+      "prompt": "What does FlashAttention identify as the real bottleneck it targets?",
+      "choices": [
+        {
+          "text": "Memory movement between fast on-chip and slow high-bandwidth GPU memory",
+          "correct": true
+        },
+        {
+          "text": "The raw number of floating-point multiplications",
+          "correct": false
+        },
+        {
+          "text": "The depth of the Transformer's layer stack",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIt is IO-aware: the slow part is often moving data, not the math, so it minimizes reads and writes to slow memory.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5727fe#2",
+      "format": "flip",
+      "prompt": "Why is FlashAttention's output mathematically identical to standard attention?",
+      "back_html": "\u003cp\u003eIt computes the same quantity, just with a smarter memory schedule — it isn't an approximation.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "id": "card_acc5ad",
+  "slug": "eu-ai-act",
+  "type": "resource",
+  "title": "The EU AI Act",
+  "hook": "The EU's answer to regulating AI: sort systems by how much risk they pose, then scale the rules to match — from outright bans to no rules at all.",
+  "key_points": [
+    "Regulation (EU) 2024/1689 — described as the first comprehensive legal framework on AI worldwide.",
+    "Takes a risk-based approach with four tiers: unacceptable (banned), high-risk, limited risk, and minimal risk.",
+    "Entered into force on 1 August 2024, with provisions phased in over time.",
+    "Bans on prohibited practices apply from February 2025; most rules from August 2026."
+  ],
+  "content_html": "\u003cp\u003eThe EU AI Act — officially Regulation (EU) 2024/1689 — is described by the European Commission as the first-ever comprehensive legal framework on AI worldwide. It sorts AI systems by how much risk they pose and scales obligations to match. This is a reference card; for the authoritative text and updates, follow the link out to the Commission's official page.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat it covers\u003c/h2\u003e\n\u003cp\u003eThe Act uses a risk-based approach with four tiers. Systems posing unacceptable risk are prohibited outright. High-risk systems carry strict obligations. Systems of transparency or limited risk face disclosure duties — users should know when they're dealing with AI. Systems of minimal or no risk get no specific rules. The framework entered into force on 1 August 2024 and phases in over time: bans on prohibited practices apply from February 2025, and most remaining rules from August 2026.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAs the first comprehensive AI law, the EU AI Act sets a template other jurisdictions look to. Its tiered design means the heaviest requirements land on the riskiest uses while light-touch applications stay largely unburdened — a structure that shapes how companies building or deploying AI in Europe plan their compliance.\u003c/p\u003e",
+  "source": {
+    "name": "European Commission",
+    "authors": [
+      "European Commission"
+    ],
+    "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+    "published_at": "2024-08-01",
+    "license": "EU (official)"
+  },
+  "topic_ids": [
+    "risks-policy"
+  ],
+  "tags": [
+    "safety"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-06-03",
+  "date": "2024-08-01",
+  "related": [
+    {
+      "id": "card_b475e8",
+      "slug": "frontier-ai-regulation",
+      "type": "paper",
+      "title": "Frontier AI Regulation",
+      "hook": "How do you regulate models too new to have rules yet? This paper sketches three building blocks: set standards, make labs report, then enforce.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-07-06"
+    },
+    {
+      "id": "card_490028",
+      "slug": "model-evaluation-for-extreme-risks",
+      "type": "paper",
+      "title": "Model Evaluation for Extreme Risks",
+      "hook": "General-purpose AI tends to pick up dangerous capabilities alongside useful ones. So test for those capabilities directly — before you ship, not after.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-24"
+    }
+  ],
+  "prereqs": []
+}

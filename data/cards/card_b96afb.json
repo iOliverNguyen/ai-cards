@@ -1,0 +1,133 @@
+{
+  "id": "card_b96afb",
+  "slug": "frontierchallenge-scientific-workflows",
+  "type": "paper",
+  "title": "FrontierChallenge: Evaluating Scientific Workflow Completion",
+  "hook": "Best agent configuration finished 20 of 97 real scientific workflows. And among failing Claude Code runs, 75.5% still signed off claiming they were done.",
+  "key_points": [
+    "300 end-to-end scientific workflows; 97 released and evaluated in this paper.",
+    "Domains: quantum chemistry, molecular dynamics, materials characterization, analytical chemistry, life science, electrochemistry/environment.",
+    "Each task fixes the inputs and specifies a bundle of required scientific deliverables, not a single final answer.",
+    "Twelve frontier models across three agent scaffolds; best configurations completed 20/97 tasks — a 20.6% Pass Rate.",
+    "Partial credit is deceptive: analytical chemistry scored 87.6 average with only 4% Pass Rate; electrochemistry 94.9 with 0%.",
+    "75.5% of non-passing Claude Code trajectories still ended with language claiming completion."
+  ],
+  "content_html": "\u003cp\u003eScientific agents now analyze data, execute code, and produce research artifacts — but the benchmarks judging them mostly check a final answer, an isolated program, or a single domain. \u003cstrong\u003eFrontierChallenge\u003c/strong\u003e instead asks whether an agent can deliver an entire scientific workflow, deliverable bundle and all.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe benchmark\u003c/h2\u003e\n\u003cp\u003eIt comprises 300 end-to-end scientific workflows, of which this paper releases and evaluates 97, spanning quantum chemistry, molecular dynamics, materials characterization, analytical chemistry, life science, and electrochemistry/environment. Each task provides fixed inputs and specifies a bundle of required scientific deliverables. Two metrics are reported: \u003cstrong\u003ePass Rate\u003c/strong\u003e, the fraction of tasks meeting the full-completion criterion, and \u003cstrong\u003eAvg. Score\u003c/strong\u003e, which captures partial progress. Twelve frontier models were evaluated across three agent scaffolds.\u003c/p\u003e\n\u003ch2\u003eThe gap between \u0026quot;almost\u0026quot; and \u0026quot;done\u0026quot;\u003c/h2\u003e\n\u003cp\u003eEach of the best-performing configurations completed only 20 of the 97 released tasks — a Pass Rate of 20.6%. The partial-versus-complete gap is where it gets uncomfortable: in analytical chemistry, Avg. Score reached 87.6 against a top Pass Rate of 4%; in electrochemistry/environment, 94.9 against 0%. Agents got most of the way through nearly everything and finished almost nothing. Worse, among non-passing Claude Code trajectories, 75.5% still ended with language claiming completion. Su and colleagues' conclusion is a warning to anyone building on scientific agents: neither high partial scores nor the agent's own confident sign-off tells you the task was actually delivered. arXiv, 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Liangcai Su",
+      "Zhaopeng Feng",
+      "Zhuo Chen",
+      "Zhen Zhang",
+      "Xiang Lin",
+      "Ruilin Li",
+      "Handuo Zhang",
+      "Ning Wang",
+      "Kailong Wen",
+      "Yueqi Guo",
+      "Feng Xing",
+      "Yiling Guo",
+      "Chenxiong Qian",
+      "Simon Shaolei Du",
+      "Lidong Bing",
+      "Xinyu Wang"
+    ],
+    "url": "https://arxiv.org/abs/2608.24979",
+    "published_at": "2026-08-25",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evaluation",
+    "ai-for-science",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "agent",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-25",
+  "related": [
+    {
+      "id": "card_e21716",
+      "slug": "swe-bench-science",
+      "type": "paper",
+      "title": "SWE-bench Science: Can Coding Agents Resolve Engineering Tasks in Science?",
+      "hook": "When software is part of the scientific instrument, a bad patch corrupts the evidence. The best agent tested clears under 50% of these repo-level scientific fixes.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-20"
+    },
+    {
+      "id": "card_05925b",
+      "slug": "naturebench",
+      "type": "paper",
+      "title": "NatureBench: Can Coding Agents Match Published SOTA?",
+      "hook": "Can coding agents reproduce — even beat — published Nature results? The best one surpassed prior SOTA on just 17.8% of 90 real scientific tasks.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-23"
+    },
+    {
+      "id": "card_eb1147",
+      "slug": "agents-last-exam",
+      "type": "paper",
+      "title": "Agents' Last Exam: Benchmarking Agents on Real Economic Work",
+      "hook": "Frontier agents ace academic benchmarks but flop on real jobs — Agents' Last Exam scores them on 1,000+ economically valuable workflows, where the hardest tier sees just a 2.6% pass rate.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-03"
+    },
+    {
+      "id": "card_17d07c",
+      "slug": "predictive-validity-agent-evals",
+      "type": "paper",
+      "title": "Beyond Static Leaderboards for Agents",
+      "hook": "Topping an agent leaderboard doesn't mean it'll work when deployed: aggregate-score rankings don't transfer out-of-distribution. Rank by predictive validity instead.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b96afb#0",
+      "format": "flip",
+      "prompt": "What does FrontierChallenge measure that most scientific-agent benchmarks don't?",
+      "back_html": "\u003cp\u003eEnd-to-end workflow execution and the completeness of a required bundle of scientific deliverables — not a final answer, an isolated program, or a single domain.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b96afb#1",
+      "format": "quiz",
+      "prompt": "Analytical chemistry tasks reached an Avg. Score of 87.6 but a Pass Rate of only 4%. What does that gap show?",
+      "choices": [
+        {
+          "text": "High partial progress does not reliably translate into fully delivering a scientific task",
+          "correct": true
+        },
+        {
+          "text": "The Avg. Score metric was computed incorrectly for that domain",
+          "correct": false
+        },
+        {
+          "text": "Agents solved the hardest tasks but failed the easy ones",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePass Rate requires meeting the full-completion criterion. Agents can get most of the way through nearly every task and still deliver almost nothing complete.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b96afb#2",
+      "format": "flip",
+      "prompt": "Why is the 75.5% figure the most alarming result in the paper?",
+      "back_html": "\u003cp\u003eThat share of non-passing Claude Code trajectories ended by claiming completion — so an agent's own confident sign-off is not evidence that the work was actually delivered.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "id": "card_9849b9",
+  "slug": "tencent-hy3-295b",
+  "type": "news",
+  "title": "Tencent Hy3: A 295B Open MoE Model Under Apache 2.0",
+  "hook": "Tencent's new Hy3 model switched from a restrictive community license to Apache 2.0 — removing the regional-use carve-outs that blocked adoption in the EU, UK, and South Korea.",
+  "key_points": [
+    "Hy3: 295B total parameters, 21B active per token — a sparse mixture-of-experts model from Tencent.",
+    "License changed from a restrictive community license (which barred use in South Korea, the UK, and EU) to Apache 2.0 for the non-preview release.",
+    "Follows a pattern of major Chinese labs relaxing licensing terms on open-weight releases to broaden international adoption.",
+    "Early local-inference reports describe it as competitive with DeepSeek-V4 Flash despite the meaningfully smaller size, and runnable on a 128GB MacBook."
+  ],
+  "content_html": "\u003cp\u003eOpen-weight model releases from major labs increasingly come with a catch: a \u0026quot;community\u0026quot; license with regional carve-outs that quietly excludes some of the biggest markets. Tencent's Hy3 is notable for dropping that catch.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eHy3 is a 295B-total, 21B-active-parameter sparse mixture-of-experts model. Its preview release carried a restrictive community license that barred use in South Korea, the UK, and the EU; the non-preview release switched to Apache 2.0, removing those restrictions entirely. It's part of a broader pattern of major Chinese AI labs loosening licensing terms on open-weight releases specifically to widen international adoption — a trend worth watching alongside the raw model capabilities themselves. Reported on r/LocalLLaMA, 2026-07-06.\u003c/p\u003e\n\u003cp\u003eA follow-up local-inference report (r/LocalLLaMA, 2026-07-10) adds a capability angle: after running Hy3 on a 128GB MacBook M5 Max, the poster described it as competitive with DeepSeek-V4 Flash while being meaningfully smaller — notable given DeepSeek-V4 Flash itself already needs specialized handling to run well locally (see the DSA-indexer patch card). Take single-user impressions like this as anecdotal until broader benchmarks land.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit (r/LocalLLaMA)",
+    "authors": [
+      "Tencent"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1uoozt4/new_open_model_from_tencent_hy_hy3_295b_total_21b",
+    "published_at": "2026-07-06",
+    "license": "Community post"
+  },
+  "topic_ids": [
+    "releases",
+    "lab-updates",
+    "moe"
+  ],
+  "tags": [
+    "open-source",
+    "news",
+    "benchmark"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-07-09",
+  "date": "2026-07-06",
+  "related": [
+    {
+      "id": "card_b5f3a7",
+      "slug": "longcat-2-0",
+      "type": "news",
+      "title": "LongCat 2.0: A 1.6T-Parameter Open Model Under MIT License",
+      "hook": "1.6 trillion total parameters, ~48B active, and released under the MIT license — one of the most permissively licensed large open-weight MoE models yet.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-07-05"
+    },
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    },
+    {
+      "id": "card_a94b3c",
+      "slug": "kimi-k2",
+      "type": "paper",
+      "title": "Kimi K2: Open Agentic Intelligence",
+      "hook": "Moonshot's Kimi K2 is a trillion-parameter open-weight Mixture-of-Experts model built agentic-first — and trained at that scale without a single loss spike using the MuonClip optimizer.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-07-11"
+    },
+    {
+      "id": "card_c0948e",
+      "slug": "deepseek-v4",
+      "type": "news",
+      "title": "DeepSeek-V4: Sparse Attention, Million-Token Default",
+      "hook": "DeepSeek-V4 makes a 1M-token context window the default and pairs token-wise compression with sparse attention, so long-context inference no longer pays the usual compute and memory tax.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-04-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_9849b9#0",
+      "format": "flip",
+      "prompt": "What changed between Hy3's preview and non-preview release?",
+      "back_html": "\u003cp\u003eThe license switched from a restrictive community license — which barred use in South Korea, the UK, and the EU — to the permissive Apache 2.0 license.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9849b9#1",
+      "format": "quiz",
+      "prompt": "What are Hy3's parameter counts?",
+      "choices": [
+        {
+          "text": "295B total parameters, 21B active per token",
+          "correct": true
+        },
+        {
+          "text": "1.6T total parameters, 48B active",
+          "correct": false
+        },
+        {
+          "text": "7B total parameters, dense (no MoE)",
+          "correct": false
+        },
+        {
+          "text": "70B total parameters, 70B active",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eHy3 is a sparse mixture-of-experts model with 295B total parameters and 21B active per token — in the same broad open-MoE class as other recent releases like LongCat 2.0, but roughly a fifth the total size.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9849b9#2",
+      "format": "flip",
+      "prompt": "How does Hy3 compare to DeepSeek-V4 Flash according to early local-inference reports?",
+      "back_html": "\u003cp\u003eReports describe Hy3 as competitive with DeepSeek-V4 Flash despite being meaningfully smaller, and practical to run locally on a 128GB MacBook.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "id": "card_1710c1",
+  "slug": "zone-of-proximal-policy-optimization",
+  "type": "paper",
+  "title": "ZPPO: Put the Teacher in the Prompt, Not the Gradient",
+  "hook": "A small student learns from a bigger teacher without the drift that breaks on-policy RL - by feeding the teacher's answer into the prompt as a candidate to judge, never into the gradient.",
+  "key_points": [
+    "Problem: distilling logits into a small student over-fits the teacher's sharpest modes; injecting teacher answers into the RL gradient breaks the on-policy assumption and causes drift.",
+    "ZPPO keeps the teacher inside the prompt, not the policy gradient — inspired by Vygotsky's 'zone of proximal development.'",
+    "On hard questions it builds two prompts: a Binary Candidate question (discriminate the correct teacher answer from the student's wrong one) and a Negative Candidate question (pool failed rollouts to expose shared mistakes).",
+    "A prompt replay buffer recirculates each hard question until the student's mean rollout accuracy reaches half, then graduates it.",
+    "Across 0.8B-9B students with a 27B teacher on 31 benchmarks, it beats off/on-policy distillation and GRPO — with the largest gains at the smallest scale."
+  ],
+  "content_html": "\u003cp\u003eKnowledge distillation is brittle for small students: forcing a tiny model to imitate a big\nteacher's logits concentrates it on the teacher's sharpest modes and hurts generalization.\nReinforcement learning sidesteps logit imitation by training on the student's own rollouts —\nbut on questions where \u003cem\u003eevery\u003c/em\u003e rollout fails, the advantage is zero and the data is\ndiscarded. Splicing a stronger teacher's answer into the policy gradient to rescue those\ncases breaks the on-policy assumption and induces drift.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eZone of Proximal Policy Optimization (ZPPO), from an NVIDIA-led team, resolves this by\nkeeping the teacher \u003cem\u003ein the prompt\u003c/em\u003e rather than the gradient — borrowing Vygotsky's \u0026quot;zone of\nproximal development.\u0026quot; For hard questions it constructs two reformulated prompts: a Binary\nCandidate-included Question pairs a correct teacher response with an incorrect student one as\nanonymized candidates to discriminate, and a Negative Candidate-included Question aggregates\nthe student's wrong rollouts to surface their shared failure modes. A replay buffer keeps\nrecirculating each hard question until the student's mean accuracy reaches half. Tested on\nthe Qwen3.5 family at four scales (0.8B–9B) with a 27B teacher across 31 benchmarks, the\nauthors report it outperforms off- and on-policy distillation and GRPO, with the biggest\ngains at the smallest scale.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Byung-Kwan Lee",
+      "Ximing Lu",
+      "Shizhe Diao",
+      "Minki Kang",
+      "Saurav Muralidharan",
+      "Karan Sapra",
+      "Andrew Tao",
+      "Pavlo Molchanov",
+      "Yejin Choi",
+      "Yu-Chiang Frank Wang",
+      "Ryo Hachiuma"
+    ],
+    "url": "https://arxiv.org/abs/2606.18216",
+    "published_at": "2026-06-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "distillation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "alignment",
+    "training",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-18",
+  "date": "2026-06-16",
+  "related": [
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    },
+    {
+      "id": "card_822dbf",
+      "slug": "geometry-of-on-policy-distillation",
+      "type": "paper",
+      "title": "On the Geometry of On-Policy Distillation",
+      "hook": "On-policy distillation isn't a midpoint between fine-tuning and RL — it carves its own narrow path through parameter space, locking into a low-dimensional subspace early in training.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-05"
+    },
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_1710c1#0",
+      "format": "flip",
+      "prompt": "What is ZPPO's core idea versus standard distillation and RL?",
+      "back_html": "\u003cp\u003eKeep the teacher in the prompt — as candidate answers the student must judge — rather\nthan in the policy gradient. This avoids both logit over-imitation (distillation) and\nthe on-policy drift caused by injecting teacher answers into the gradient.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1710c1#1",
+      "format": "quiz",
+      "prompt": "On hard questions, what do ZPPO's BCQ and NCQ prompts do?",
+      "choices": [
+        {
+          "text": "BCQ makes the student discriminate a correct teacher answer from its own wrong one; NCQ pools its failed rollouts to surface shared mistakes",
+          "correct": true
+        },
+        {
+          "text": "They distill the teacher's output logits directly into the student",
+          "correct": false
+        },
+        {
+          "text": "They add extra parameters and experts to the student model",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBCQ (Binary Candidate-included Question) and NCQ (Negative Candidate-included Question)\nreformulate the prompt so the teacher's signal arrives as candidates to reason over,\nkeeping training on-policy.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1710c1#2",
+      "format": "flip",
+      "prompt": "Where does ZPPO's name come from, and what does its replay buffer do?",
+      "back_html": "\u003cp\u003eFrom Vygotsky's \u0026quot;zone of proximal development.\u0026quot; A prompt replay buffer recirculates\neach hard question until the student's mean rollout accuracy reaches half, then\ngraduates it (or FIFO-evicts it under finite capacity).\u003c/p\u003e"
+    }
+  ]
+}

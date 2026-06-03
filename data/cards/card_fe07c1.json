@@ -1,0 +1,108 @@
+{
+  "id": "card_fe07c1",
+  "slug": "searchgen-knowledge-boundary-visual-generation",
+  "type": "paper",
+  "title": "Search Beyond What Can Be Taught: Evolving the Knowledge Boundary in Agentic Visual Generation",
+  "hook": "Ask an image generator for a real but obscure or brand-new entity, and it'll confidently draw the wrong thing. A new benchmark shows how bad that gets — and how to teach it to search instead.",
+  "key_points": [
+    "Frontier visual generators fabricate confidently when asked about things outside their training data — new characters, trending entities, events after their cutoff.",
+    "New benchmark SearchGen-Bench (20,839 prompts, 12 failure categories, 22 domains) shows frontier open generators score only 21-28/100 — a gap invisible to existing benchmarks.",
+    "Naive fix (bolt on retrieval) backfires: it retrieves indiscriminately and injects noise into prompts the generator already handles fine on its own.",
+    "The real issue is a generator-specific 'knowledge boundary' — what it already knows vs. what needs external context — that's hard to specify up front.",
+    "A teach-then-search co-training recipe lets the generator discover that boundary itself, giving monotonic improvement even in a minimal version.",
+    "Authors release the benchmark, prompts, and a pre-executed search corpus (SearchGen-Corpus-1M) as a reproducible, replayable harness."
+  ],
+  "content_html": "\u003cp\u003eAsk a state-of-the-art image generator to draw a specific, real but obscure entity — a new character, a trending person, something that happened after its training cutoff — and it won't say \u0026quot;I don't know.\u0026quot; It will confidently draw something plausible and wrong. This paper, led by Wenhu Chen's group, measures exactly how bad that gets and proposes a fix.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe authors built SearchGen-Bench, a benchmark of 20,839 prompts spanning twelve failure categories and twenty-two domains specifically targeting this \u0026quot;world-knowledge bottleneck.\u0026quot; Frontier open visual generators score only 21 to 28 out of 100 on it — a roughly 40-point collapse that existing benchmarks don't surface at all, since they don't test knowledge the generator was never trained on.\u003c/p\u003e\n\u003cp\u003eThe obvious fix — bolt on a search tool — doesn't just work out of the box: naive retrieval grabs results indiscriminately, injecting noise into prompts the generator could already handle unaided. The real problem is that every generator has its own, evolving \u0026quot;knowledge boundary\u0026quot; between what it has internalized and what it needs external context for, and that boundary is hard to specify in advance. The authors show it's learnable instead, via a teach-then-search co-training recipe: even a minimal version produces monotonic improvement, which they frame as a first step toward visual generators that keep improving by learning when to trust themselves and when to search. The full benchmark, prompt set, and a pre-executed SearchGen-Corpus-1M are released as a reproducible harness.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Haozhe Wang",
+      "Weijia Feng",
+      "Jinpeng Yu",
+      "Che Liu",
+      "Ping Nie",
+      "Fangzhen Lin",
+      "Jiaming Liu",
+      "Ruihua Huang",
+      "Jimmy Lin",
+      "Wenhu Chen",
+      "Cong Wei"
+    ],
+    "url": "https://arxiv.org/abs/2607.05382",
+    "published_at": "2026-07-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "text-to-image",
+    "rag",
+    "papers-this-week"
+  ],
+  "tags": [
+    "generative",
+    "rag",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-06",
+  "related": [
+    {
+      "id": "card_02ad74",
+      "slug": "retrieval-augmented-generation",
+      "type": "paper",
+      "title": "Retrieval-Augmented Generation (RAG)",
+      "hook": "Why force a model to memorize everything? RAG lets it look things up — fetch relevant documents, then answer from that evidence instead of frozen weights alone.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-22"
+    },
+    {
+      "id": "card_cdf4c8",
+      "slug": "qwen-image-2-rl",
+      "type": "paper",
+      "title": "Qwen-Image-2.0-RL: RLHF for a Diffusion Model",
+      "hook": "Qwen's team applied RLHF and on-policy distillation to a text-to-image diffusion model — the same post-training playbook that shaped chat models, now tuning image generation and editing.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-25"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_fe07c1#0",
+      "format": "flip",
+      "prompt": "What is the 'world-knowledge bottleneck' this paper identifies in visual generators?",
+      "back_html": "\u003cp\u003eGenerators are trained on fixed corpora, but the visual world is open-ended — so they confidently fabricate images for new entities, trending characters, or post-cutoff events instead of admitting they don't know.\u003c/p\u003e"
+    },
+    {
+      "id": "card_fe07c1#1",
+      "format": "quiz",
+      "prompt": "Why does naive retrieval-augmented generation fail for visual generators, per this paper?",
+      "choices": [
+        {
+          "text": "It retrieves indiscriminately, injecting noise into prompts the generator could already handle on its own",
+          "correct": true
+        },
+        {
+          "text": "Search tools are too slow to ever use at inference time",
+          "correct": false
+        },
+        {
+          "text": "Retrieved images are always lower resolution than generated ones",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eNaive search doesn't discriminate between prompts that need external context and ones the generator already knows how to handle, so it adds noise rather than help.\u003c/p\u003e"
+    },
+    {
+      "id": "card_fe07c1#2",
+      "format": "flip",
+      "prompt": "How does the teach-then-search co-training recipe address the knowledge boundary problem?",
+      "back_html": "\u003cp\u003eInstead of specifying the boundary between internal knowledge and needed external context by hand, it lets the generator learn that boundary through co-training, producing monotonic improvement even in a minimal version.\u003c/p\u003e"
+    }
+  ]
+}

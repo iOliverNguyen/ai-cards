@@ -1,0 +1,85 @@
+{
+  "id": "card_8481bb",
+  "slug": "minimax-m3-pro",
+  "type": "news",
+  "title": "MiniMax Reportedly Plans a 2.7-Trillion-Parameter M3 Pro",
+  "hook": "MiniMax's current flagship already runs 428B parameters — sources now say the next one, codenamed M3 Pro, could jump to 2.7 trillion and still ship open-source as soon as Q3.",
+  "key_points": [
+    "The Information reports MiniMax is planning a new flagship LLM with 2.7 trillion parameters, internally codenamed M3 Pro.",
+    "That would be roughly 6x the size of MiniMax's current flagship, M3, at 428 billion parameters.",
+    "Sources say it could be released and open-sourced as early as Q3 2026.",
+    "The reported goal is a significant step up on complex reasoning and multi-step tasks.",
+    "Still a secondhand report — MiniMax hasn't officially confirmed the model or detailed its architecture."
+  ],
+  "content_html": "\u003cp\u003eMiniMax's current flagship model, M3, runs 428 billion parameters. According to The Information, the company's next one — internally codenamed M3 Pro — could be roughly 6x bigger: 2.7 trillion parameters.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe report, relayed via a Reddit r/LocalLLaMA thread, says M3 Pro is aimed at real gains on complex reasoning and multi-step tasks, and that MiniMax could release and open-source it as early as Q3 2026. None of this is officially confirmed by MiniMax, and the report doesn't detail the model's architecture or how many parameters would actually be active per token.\u003c/p\u003e\n\u003cp\u003eIf it lands anywhere close to that scale and stays open-weight, M3 Pro would be among the largest openly released models yet — continuing MiniMax's pattern of shipping frontier-scale open models (see MiniMax-M1) rather than keeping them closed.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit (r/LocalLLaMA)",
+    "authors": [
+      "/u/External_Mood4719"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1uqnqsc/chinas_minimax_plans_to_launch_27trillion",
+    "published_at": "2026-07-08",
+    "license": "Community post"
+  },
+  "topic_ids": [
+    "pretraining",
+    "lab-updates"
+  ],
+  "tags": [
+    "open-source",
+    "news",
+    "reasoning"
+  ],
+  "importance": 2,
+  "difficulty": "intro",
+  "created_at": "2026-07-13",
+  "date": "2026-07-08",
+  "related": [
+    {
+      "id": "card_56ac6c",
+      "slug": "minimax-m1",
+      "type": "paper",
+      "title": "MiniMax-M1",
+      "hook": "MiniMax-M1 is an open-weight reasoning model with a million-token context and 'lightning attention' — and a hybrid design that made full RL training cost about $0.5M.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2025-06-16"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_8481bb#0",
+      "format": "flip",
+      "prompt": "How big would MiniMax's reported M3 Pro model be compared to its current flagship?",
+      "back_html": "\u003cp\u003eAbout 6x larger — 2.7 trillion parameters versus the current M3 flagship's 428 billion.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8481bb#1",
+      "format": "quiz",
+      "prompt": "According to the report, when and how might M3 Pro ship?",
+      "choices": [
+        {
+          "text": "As early as Q3 2026, released open-source",
+          "correct": true
+        },
+        {
+          "text": "Q3 2026, but API-only and closed-weight",
+          "correct": false
+        },
+        {
+          "text": "No timeline has been suggested",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSources told The Information it could be released and open-sourced as soon as Q3 2026.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8481bb#2",
+      "format": "flip",
+      "prompt": "How solid is this information, and what should a reader keep in mind?",
+      "back_html": "\u003cp\u003eIt's a secondhand report via The Information citing unnamed sources — MiniMax hasn't officially confirmed the model or detailed its architecture.\u003c/p\u003e"
+    }
+  ]
+}

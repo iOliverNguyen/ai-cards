@@ -1,0 +1,91 @@
+{
+  "id": "card_764d0e",
+  "slug": "nemotron-twotower-diffusion-lm",
+  "type": "news",
+  "title": "NVIDIA Nemotron-TwoTower: A Diffusion-Based Language Model",
+  "hook": "NVIDIA's open Nemotron-TwoTower bolts a diffusion 'denoiser' tower onto a frozen autoregressive model to fill token blocks in parallel — reportedly 2.42x faster at ~98.7% of baseline quality.",
+  "key_points": [
+    "NVIDIA released Nemotron-TwoTower-30B-A3B, a diffusion-based language model built on the Nemotron 3 Nano 30B-A3B backbone.",
+    "Two towers: a frozen autoregressive context tower plus a diffusion denoiser tower that iteratively fills blocks of tokens in parallel.",
+    "NVIDIA reports it retains ~98.7% of the autoregressive baseline's aggregate benchmark quality.",
+    "It reaches about 2.42x the wall-clock generation throughput of that baseline.",
+    "Another sign that block-parallel diffusion decoding is moving toward practical LLM serving."
+  ],
+  "content_html": "\u003cp\u003eNVIDIA released \u003cstrong\u003eNemotron-TwoTower-30B-A3B\u003c/strong\u003e, an unusual diffusion-based language model built on its Nemotron 3 Nano 30B-A3B backbone — and it's a clean illustration of how to bolt parallel generation onto an existing autoregressive model.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe two-tower idea\u003c/h2\u003e\n\u003cp\u003eInstead of generating strictly one token at a time, Nemotron-TwoTower splits the work. A \u003cstrong\u003efrozen autoregressive context tower\u003c/strong\u003e provides the conditioning, while a \u003cstrong\u003ediffusion denoiser tower\u003c/strong\u003e iteratively fills in blocks of tokens in parallel. Because the denoiser reuses the existing autoregressive model rather than retraining a diffusion LM from scratch, it's a relatively cheap way to add block-parallel decoding to a known-good base.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eNVIDIA reports the default mask-diffusion configuration keeps about \u003cstrong\u003e98.7%\u003c/strong\u003e of the autoregressive baseline's aggregate benchmark quality while reaching roughly \u003cstrong\u003e2.42x\u003c/strong\u003e its wall-clock generation throughput. Alongside research models trained as diffusion LMs from scratch, this is another signal that block-parallel diffusion decoding is moving from curiosity toward practical, faster LLM serving. Details are in NVIDIA's release, linked via the source.\u003c/p\u003e",
+  "source": {
+    "name": "r/LocalLLaMA",
+    "authors": [
+      "NVIDIA"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1uf4azy/nvidia_has_released",
+    "published_at": "2026-06-25",
+    "license": "Reddit (r/LocalLLaMA)"
+  },
+  "topic_ids": [
+    "diffusion",
+    "releases",
+    "lab-updates"
+  ],
+  "tags": [
+    "generative",
+    "efficiency",
+    "open-source",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-29",
+  "date": "2026-06-25",
+  "related": [
+    {
+      "id": "card_cf3048",
+      "slug": "illada-diffusion-language-model",
+      "type": "paper",
+      "title": "iLLaDA: Improved Large Language Diffusion Models",
+      "hook": "An 8B language model trained from scratch with full bidirectional attention and a masked-diffusion objective — no autoregression — that holds its own against same-size autoregressive LLMs.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-24"
+    },
+    {
+      "id": "card_7f11ff",
+      "slug": "diffusion-gemma",
+      "type": "news",
+      "title": "DiffusionGemma: Generating Text by Denoising, Not Decoding",
+      "hook": "DeepMind's DiffusionGemma generates text by refining a whole sequence in parallel instead of one token at a time — which the team reports is about 4x faster than standard autoregressive decoding.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-06-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_764d0e#0",
+      "format": "flip",
+      "prompt": "What are the two 'towers' in NVIDIA's Nemotron-TwoTower?",
+      "back_html": "\u003cp\u003eA frozen autoregressive context tower that supplies context, plus a diffusion denoiser tower that iteratively fills blocks of tokens in parallel.\u003c/p\u003e"
+    },
+    {
+      "id": "card_764d0e#1",
+      "format": "quiz",
+      "prompt": "What trade-off does NVIDIA report for Nemotron-TwoTower vs its autoregressive baseline?",
+      "choices": [
+        {
+          "text": "~2.42x faster generation while keeping ~98.7% of aggregate benchmark quality",
+          "correct": true
+        },
+        {
+          "text": "2.42x more parameters for a small quality gain",
+          "correct": false
+        },
+        {
+          "text": "Higher quality but much slower generation",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eNVIDIA says the default mask-diffusion setup retains about 98.7% of the autoregressive baseline's aggregate quality while reaching roughly 2.42x its wall-clock throughput.\u003c/p\u003e"
+    }
+  ]
+}

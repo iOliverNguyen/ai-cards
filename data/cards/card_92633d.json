@@ -1,0 +1,100 @@
+{
+  "id": "card_92633d",
+  "slug": "rechannel-dense-prediction",
+  "type": "paper",
+  "title": "ReChannel: Repurposing Text-to-Image Diffusion for Dense Prediction",
+  "hook": "Depth maps and masks get generated as if they were images, decoded through the same interface as RGB pixels. This paper swaps that for a tiny linear head that's 2.5x faster.",
+  "key_points": [
+    "Prior approaches reuse a pretrained text-to-image model's priors by encoding annotations (depth, normals, masks) into the RGB-trained VAE latent space, decoding them back out as image-like targets.",
+    "That inherits more of the generative output interface than dense prediction actually needs — dense prediction wants pixel-correct, task-native fields, not new RGB content.",
+    "ReChannel keeps the frozen DiT's patch-to-token-to-patch lattice, but maps each token to its output patch through a shared, token-local linear head — about 33K parameters, no spatial mixing, and drops the target-side decoder entirely.",
+    "Sets new state-of-the-art on trimap-free matting, KITTI depth, and referring segmentation; competitive on normals, saliency, and pose.",
+    "In a matched 4B setting, more accurate and 2.48x faster than an edit-plus-latent-decode counterpart."
+  ],
+  "content_html": "\u003cp\u003eDepth maps, alpha mattes, segmentation masks — none of these are pictures, exactly, but a common trick treats them like ones anyway: encode them into a text-to-image model's RGB-trained latent space and decode them back out through the same interface used for generating pictures. ReChannel argues that's borrowing more machinery than the job needs.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe authors' key observation is that a pretrained diffusion transformer already organizes its RGB inputs through a patch-to-token-to-patch lattice on the image plane — so each token already indexes a fixed output patch, and that patch's channels could just as easily carry task-native quantities as RGB appearance. ReChannel keeps the frozen DiT and its VAE encoder for input, but drops the target-side decoder entirely, adapts the model with a task-specific LoRA, and maps each token straight to its pixel-space patch through a shared, token-local linear head — about 33,000 parameters, with no spatial mixing at all. Tested on FLUX-Klein across six dense-prediction tasks and over a dozen benchmarks, this minimal interface sets new state-of-the-art on trimap-free matting, KITTI depth, and referring segmentation, and stays competitive on normals, saliency, and pose — while being more accurate and 2.48x faster than an edit-plus-latent-decode counterpart at matched 4B scale. The lesson: dense perception can benefit from generative pretraining's priors without inheriting its generative output interface. Zanyi Wang and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zanyi Wang",
+      "Xin Lin",
+      "Haodong Li",
+      "Dengyang Jiang",
+      "Yijiang Li",
+      "Pengtao Xie"
+    ],
+    "url": "https://arxiv.org/abs/2607.06553",
+    "published_at": "2026-07-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "text-to-image",
+    "vision-transformers",
+    "papers-this-week"
+  ],
+  "tags": [
+    "vision",
+    "generative",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-07",
+  "related": [
+    {
+      "id": "card_3d7d44",
+      "slug": "clip",
+      "type": "paper",
+      "title": "CLIP: Learning Visual Models from Language",
+      "hook": "Skip the fixed label list. Train on image–caption pairs so pictures and text share one space, and you can classify images from plain-text labels you make up on the spot.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-02-26"
+    },
+    {
+      "id": "card_7e3221",
+      "slug": "latent-diffusion-models",
+      "type": "paper",
+      "title": "High-Resolution Image Synthesis with Latent Diffusion (Stable Diffusion)",
+      "hook": "Running diffusion on raw pixels is brutally expensive. Do it in a compressed latent space instead, and high-res text-to-image becomes cheap enough to run on a consumer GPU.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-12-20"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_92633d#0",
+      "format": "flip",
+      "prompt": "What's the core critique ReChannel makes of prior methods that reuse text-to-image priors for dense prediction (depth, segmentation, etc.)?",
+      "back_html": "\u003cp\u003eThey encode task annotations into the RGB-trained VAE latent space and decode them back as image-like targets — inheriting the generative model's output interface (rendering new RGB content) when dense prediction actually just needs pixel-correct, task-native fields on the same image plane.\u003c/p\u003e"
+    },
+    {
+      "id": "card_92633d#1",
+      "format": "quiz",
+      "prompt": "How does ReChannel read out task-native values from a pretrained diffusion transformer (DiT)?",
+      "choices": [
+        {
+          "text": "A shared, token-local linear head (~33K params) maps each token directly to its output patch's channels, with no spatial mixing and no VAE decoder",
+          "correct": true
+        },
+        {
+          "text": "It fully retrains the DiT from scratch on annotated data",
+          "correct": false
+        },
+        {
+          "text": "It still decodes through the RGB-trained VAE, just with a different loss",
+          "correct": false
+        },
+        {
+          "text": "It replaces the DiT entirely with a CNN",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSince a pretrained DiT already organizes RGB inputs through a patch-to-token-to-patch lattice, ReChannel keeps that structure but swaps the target-side interface: a tiny, token-local linear head reads task-native quantities straight off each token, skipping the RGB-decoding step entirely.\u003c/p\u003e"
+    }
+  ]
+}

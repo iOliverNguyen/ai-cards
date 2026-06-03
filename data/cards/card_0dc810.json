@@ -1,0 +1,102 @@
+{
+  "id": "card_0dc810",
+  "slug": "pi-zero",
+  "type": "paper",
+  "title": "π0: A Vision-Language-Action Model",
+  "hook": "π0 is a generalist robot policy: it takes camera images, joint angles, and a plain-language instruction, and outputs smooth action sequences — folding laundry, bussing tables, bagging groceries.",
+  "key_points": [
+    "Physical Intelligence's first generalist robot foundation model (π0, 'pi-zero'), late 2024.",
+    "A Vision-Language-Action model: vision + language in, continuous robot actions out.",
+    "Built on a pretrained vision-language model (PaliGemma) plus a flow-matching action head.",
+    "Trained on 10,000+ hours across 7 robot types and 68 tasks, transferring to new ones."
+  ],
+  "content_html": "\u003cp\u003eπ0 (\u0026quot;pi-zero\u0026quot;), from the startup Physical Intelligence, is a vision-language-action (VLA) model meant to be a generalist policy for robot control: a single model that looks at the world, reads a natural-language instruction, and produces the low-level actions to carry it out across many different robots and tasks.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eπ0 builds on a pretrained vision-language model — PaliGemma, ~3B parameters — so it inherits broad visual and language understanding, then adds an action-generation mechanism based on flow matching to output continuous, high-frequency motor commands rather than discrete tokens. Its inputs are camera images, the robot's joint angles, and a language command; its output is a sequence of action chunks. It was pretrained on over 10,000 hours of data spanning seven robot configurations and 68 tasks, then shown folding laundry, bussing tables, bagging groceries, and assembling boxes.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eπ0 brought the \u0026quot;foundation model\u0026quot; recipe — pretrain broadly, then adapt — to robotics, building on Google's RT-1/RT-2 line. Reusing a vision-language model as the backbone lets the policy benefit from internet-scale semantic knowledge, and flow-matching actions give the smooth, dexterous control that earlier token-based policies struggled with. It is a notable step toward general-purpose robots that follow plain-language instructions.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Physical Intelligence"
+    ],
+    "url": "https://arxiv.org/abs/2410.24164",
+    "published_at": "2024-10-31",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics"
+  ],
+  "tags": [
+    "agent",
+    "multimodal"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2024-10-31",
+  "related": [
+    {
+      "id": "card_dd8539",
+      "slug": "rt-2",
+      "type": "paper",
+      "title": "RT-2: Vision-Language-Action Models",
+      "hook": "Treat a robot's actions as just more text tokens, and a vision-language model can learn to act — carrying its web knowledge into the physical world.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-07-28"
+    },
+    {
+      "id": "card_30356a",
+      "slug": "rt-1",
+      "type": "paper",
+      "title": "RT-1: Robotics Transformer at Scale",
+      "hook": "What if a robot's controller was trained like a language model — on huge, diverse, task-agnostic data? Performance starts scaling with model size and data.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-12-13"
+    },
+    {
+      "id": "card_296943",
+      "slug": "dreamerv3",
+      "type": "paper",
+      "title": "DreamerV3: Mastering Domains through World Models",
+      "hook": "Instead of learning only from real experience, DreamerV3 builds a world model and practices inside its own imagination — one fixed config, 150+ tasks.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2023-01-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_0dc810#0",
+      "format": "quiz",
+      "prompt": "How does π0 output robot actions, unlike earlier token-based policies?",
+      "choices": [
+        {
+          "text": "A flow-matching action head producing continuous motor commands",
+          "correct": true
+        },
+        {
+          "text": "Discrete action tokens decoded autoregressively",
+          "correct": false
+        },
+        {
+          "text": "A separate hand-coded controller per task",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eπ0 adds a flow-matching action head for continuous, high-frequency commands, giving smoother, more dexterous control.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0dc810#1",
+      "format": "flip",
+      "prompt": "Why does π0 build on a pretrained vision-language model (PaliGemma)?",
+      "back_html": "\u003cp\u003eSo the policy inherits broad visual and language understanding — internet-scale semantic knowledge — rather than learning it from scratch.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0dc810#2",
+      "format": "flip",
+      "prompt": "What are π0's inputs and what does it output?",
+      "back_html": "\u003cp\u003eInputs: camera images, the robot's joint angles, and a language instruction. Output: a sequence of continuous action chunks.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "id": "card_2e9343",
+  "slug": "sora",
+  "type": "news",
+  "title": "Sora: Video Generation as World Simulation",
+  "hook": "OpenAI's Sora generates minute-long high-fidelity video from text by treating video as space-time patches - and frames the whole task as learning a world simulator.",
+  "key_points": [
+    "Combines a diffusion model with a Transformer to denoise sequences of space-time patches.",
+    "Handles variable durations, resolutions, and aspect ratios in a single unified model.",
+    "Can maintain consistent objects, lighting, and camera motion across long clips.",
+    "OpenAI frames Sora as an implicit world model, not just a video synthesizer."
+  ],
+  "content_html": "\u003cp\u003eOpenAI announced Sora in February 2024, a model capable of generating video clips up to a minute long from text prompts. It operates on compressed space-time patches of video, applying a diffusion process guided by a Transformer backbone.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eSora encodes video into a compact latent space, then represents it as a sequence of space-time patches - analogous to how Vision Transformers treat images as patch tokens. A diffusion Transformer learns to denoise these patch sequences, conditioned on text. Because patches are resolution- and duration-agnostic, the same model can produce video at many sizes and lengths without retraining.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eBeyond visual quality, OpenAI's framing is notable: they argue that predicting consistent video requires learning something like a model of the physical world - physics, occlusion, object permanence. Whether or not that claim holds up scientifically, Sora raised the bar for what generative video models can produce. See the full technical report on OpenAI's site for example outputs and architectural details.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "authors": [
+      "OpenAI"
+    ],
+    "url": "https://openai.com/index/video-generation-models-as-world-simulators/",
+    "published_at": "2024-02-15",
+    "license": "OpenAI blog"
+  },
+  "topic_ids": [
+    "video-audio",
+    "releases"
+  ],
+  "tags": [
+    "generative",
+    "multimodal",
+    "vision",
+    "news"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2024-02-15",
+  "related": [
+    {
+      "id": "card_7e3221",
+      "slug": "latent-diffusion-models",
+      "type": "paper",
+      "title": "High-Resolution Image Synthesis with Latent Diffusion (Stable Diffusion)",
+      "hook": "Running diffusion on raw pixels is brutally expensive. Do it in a compressed latent space instead, and high-res text-to-image becomes cheap enough to run on a consumer GPU.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-12-20"
+    },
+    {
+      "id": "card_4aba44",
+      "slug": "vision-transformer-vit",
+      "type": "paper",
+      "title": "An Image is Worth 16x16 Words (ViT)",
+      "hook": "Chop an image into patches, treat each like a word, and feed them to a plain Transformer. With enough pretraining data, it matches or beats convolutional networks.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-10-22"
+    },
+    {
+      "id": "card_d622c0",
+      "slug": "classifier-free-guidance",
+      "type": "paper",
+      "title": "Classifier-Free Guidance",
+      "hook": "Want a diffusion model to follow your prompt more closely? Blend its prompt-aware and prompt-blind predictions — no extra classifier required. That's the guidance-scale slider.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-07-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_2e9343#0",
+      "format": "flip",
+      "prompt": "How does Sora represent video for generation?",
+      "back_html": "\u003cp\u003eIt encodes video into a compact latent space as a sequence of space-time patches, then a diffusion Transformer denoises those patches conditioned on text.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2e9343#1",
+      "format": "quiz",
+      "prompt": "Why can one Sora model produce video at many durations and resolutions?",
+      "choices": [
+        {
+          "text": "Space-time patches are resolution- and duration-agnostic",
+          "correct": true
+        },
+        {
+          "text": "A separate model is trained for each resolution",
+          "correct": false
+        },
+        {
+          "text": "It always upscales from a single fixed size",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBecause patches are resolution- and duration-agnostic, the same model can produce video at many sizes and lengths without retraining.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2e9343#2",
+      "format": "flip",
+      "prompt": "What is OpenAI's framing of what Sora is learning?",
+      "back_html": "\u003cp\u003eAn implicit world model — they argue predicting consistent video requires learning something like physics, occlusion, and object permanence, not just video synthesis.\u003c/p\u003e"
+    }
+  ]
+}

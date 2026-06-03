@@ -1,0 +1,117 @@
+{
+  "id": "card_49afeb",
+  "slug": "opid-skill-distillation",
+  "type": "paper",
+  "title": "OPID: On-Policy Skill Distillation for Agentic RL",
+  "hook": "Outcome-only RL tells an agent it failed but not which move was the mistake. OPID mines that lesson from the agent's own finished trajectories — turning hindsight into dense, per-token supervision.",
+  "key_points": [
+    "Outcome-based RL gives sparse trajectory-level rewards — little signal about which intermediate decisions to reinforce or suppress.",
+    "OPID extracts skill supervision directly from completed on-policy trajectories, avoiding external skill memories or retrieved privileged context.",
+    "It represents hindsight as hierarchical skills: episode-level (global workflows, failure-avoidance) and step-level (critical local decisions).",
+    "A critical-first router uses step-level skills at key timesteps and falls back to episode-level guidance otherwise.",
+    "Re-scoring a response with vs. without the injected skill yields a token-level self-distillation advantage, combined with the outcome advantage.",
+    "Improves performance, sample efficiency, and robustness on ALFWorld, WebShop, and search-based QA."
+  ],
+  "content_html": "\u003cp\u003eReinforcement learning is a stable way to train language agents, but a sparse end-of-episode reward is a blunt teacher: it says the run failed without saying which of dozens of moves was the mistake. \u003cstrong\u003eOPID\u003c/strong\u003e (On-Policy Skill Distillation) recovers that fine-grained lesson from the agent's own behavior.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe idea\u003c/h2\u003e\n\u003cp\u003eRather than reaching for external skill libraries or retrieved expert context — costly to maintain and often mismatched to what the current policy actually does — OPID reads hindsight straight off completed on-policy trajectories. It represents that hindsight as \u003cstrong\u003ehierarchical skills\u003c/strong\u003e: episode-level skills capture global workflows or failure-avoidance rules, while step-level skills capture local decision knowledge at critical timesteps. A \u003cem\u003ecritical-first\u003c/em\u003e router applies step-level skills when a decision looks pivotal and otherwise defaults to episode-level guidance.\u003c/p\u003e\n\u003ch2\u003eHow the signal is built\u003c/h2\u003e\n\u003cp\u003eThe selected skill is injected into the interaction history, and the old policy re-scores the \u003cem\u003esame\u003c/em\u003e sampled response both with and without it. The log-probability shift between those two scorings becomes a token-level self-distillation advantage, which is added to the usual outcome advantage. RL stays the primary objective; the distillation term just supplies dense, distribution-matched supervision. On ALFWorld, WebShop, and search-based QA, the authors report gains in performance, sample efficiency, and robustness over outcome-only RL and prior skill-distillation baselines. Code is linked from the paper.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Shuo Yang",
+      "Jinyang Wu",
+      "Zhengxi Lu",
+      "Yuhao Shen",
+      "Fan Zhang",
+      "Lang Feng",
+      "Shuai Zhang",
+      "Haoran Luo",
+      "Zheng Lian",
+      "Zhengqi Wen",
+      "Jianhua Tao"
+    ],
+    "url": "https://arxiv.org/abs/2606.26790",
+    "published_at": "2026-06-25",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "distillation",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-29",
+  "date": "2026-06-25",
+  "related": [
+    {
+      "id": "card_822dbf",
+      "slug": "geometry-of-on-policy-distillation",
+      "type": "paper",
+      "title": "On the Geometry of On-Policy Distillation",
+      "hook": "On-policy distillation isn't a midpoint between fine-tuning and RL — it carves its own narrow path through parameter space, locking into a low-dimensional subspace early in training.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-05"
+    },
+    {
+      "id": "card_2408d6",
+      "slug": "trust-region-on-policy-distillation",
+      "type": "paper",
+      "title": "Trust Region On-Policy Distillation",
+      "hook": "On-policy distillation breaks when teacher and student disagree too much. TrOPD only trusts the teacher where its supervision is reliable — and skips the rest.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-05-31"
+    },
+    {
+      "id": "card_4cd8fd",
+      "slug": "deepseek-r1",
+      "type": "paper",
+      "title": "DeepSeek-R1: Incentivizing Reasoning via Reinforcement Learning",
+      "hook": "DeepSeek shows strong reasoning can emerge from RL on verifiable rewards with minimal supervised data - and those reasoning traces can be distilled into smaller models.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2025-01-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_49afeb#0",
+      "format": "flip",
+      "prompt": "What problem with outcome-based RL for agents does OPID address?",
+      "back_html": "\u003cp\u003eSparse trajectory-level rewards give little guidance about which intermediate decisions should be reinforced or suppressed. OPID adds dense, token-level supervision derived from the agent's own trajectories.\u003c/p\u003e"
+    },
+    {
+      "id": "card_49afeb#1",
+      "format": "quiz",
+      "prompt": "Where does OPID get its dense supervision signal?",
+      "choices": [
+        {
+          "text": "From the agent's own completed on-policy trajectories, re-scored with and without an injected hindsight skill",
+          "correct": true
+        },
+        {
+          "text": "From a large external database of expert demonstrations",
+          "correct": false
+        },
+        {
+          "text": "From human annotators labeling each step",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOPID mines hierarchical 'skills' from completed trajectories, injects the relevant one into the history, and uses the resulting log-probability shift as a token-level self-distillation advantage — no external memory needed.\u003c/p\u003e"
+    },
+    {
+      "id": "card_49afeb#2",
+      "format": "flip",
+      "prompt": "What are the two levels of 'skill' OPID extracts, and how does it choose between them?",
+      "back_html": "\u003cp\u003eEpisode-level skills (global workflows, failure-avoidance) and step-level skills (local decisions at critical timesteps). A critical-first router uses step-level skills at key decisions, else falls back to episode-level.\u003c/p\u003e"
+    }
+  ]
+}

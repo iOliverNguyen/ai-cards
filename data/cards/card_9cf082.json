@@ -1,0 +1,107 @@
+{
+  "id": "card_9cf082",
+  "slug": "distilbert",
+  "type": "paper",
+  "title": "DistilBERT: Smaller, Faster, Cheaper, Lighter",
+  "hook": "Distill during pre-training instead of after, and you get a general-purpose language model that is 40% smaller and 60% faster while keeping 97% of BERT's understanding.",
+  "key_points": [
+    "Applies knowledge distillation during pre-training to produce a general-purpose distilled language model.",
+    "40% smaller than BERT and runs 60% faster.",
+    "Retains 97% of BERT's language understanding.",
+    "Trained with a triple loss: a language-modeling term, a distillation term, and a cosine-distance term."
+  ],
+  "content_html": "\u003cp\u003eVictor Sanh, Lysandre Debut, Julien Chaumond, and Thomas Wolf released DistilBERT in October 2019, showing that knowledge distillation can be applied during pre-training rather than only on a downstream task. The result is a general-purpose distilled language model that stays close to BERT's quality while being much lighter to run.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eDistilBERT is trained against BERT during pre-training using a triple loss: a language-modeling term, a distillation term that pulls the student toward the teacher's outputs, and a cosine-distance term that aligns their hidden representations. Distilling at the pre-training stage means the resulting model is general-purpose, ready to fine-tune like BERT rather than tied to a single task.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe authors report that DistilBERT is 40% smaller than BERT and runs 60% faster, while retaining 97% of BERT's language understanding. That combination made it a popular default when teams needed BERT-like quality under tight latency or memory budgets, and a concrete demonstration of distillation applied to large language models.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Victor Sanh",
+      "Lysandre Debut",
+      "Julien Chaumond",
+      "Thomas Wolf"
+    ],
+    "url": "https://arxiv.org/abs/1910.01108",
+    "published_at": "2019-10-02",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "distillation"
+  ],
+  "tags": [
+    "efficiency",
+    "nlp",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2019-10-02",
+  "related": [
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    },
+    {
+      "id": "card_32f3c7",
+      "slug": "bert",
+      "type": "paper",
+      "title": "BERT: Pretraining Deep Bidirectional Transformers",
+      "hook": "What if a model read a sentence both directions at once? BERT did, by masking words and predicting them — and made pretrain-then-fine-tune the default recipe in NLP.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2018-10-11"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_9cf082#0",
+      "format": "flip",
+      "prompt": "What makes DistilBERT a general-purpose model rather than task-specific?",
+      "back_html": "\u003cp\u003eDistillation is applied during pre-training rather than on a downstream task, so the result is ready to fine-tune like BERT.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9cf082#1",
+      "format": "quiz",
+      "prompt": "What are the three terms in DistilBERT's training loss?",
+      "choices": [
+        {
+          "text": "A language-modeling, a distillation, and a cosine-distance term",
+          "correct": true
+        },
+        {
+          "text": "A reconstruction, a GAN, and a reward term",
+          "correct": false
+        },
+        {
+          "text": "A masking, a pruning, and a quantization term",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe triple loss combines a language-modeling term, a distillation term, and a cosine-distance term aligning hidden representations.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9cf082#2",
+      "format": "flip",
+      "prompt": "What size, speed, and quality tradeoff does DistilBERT report versus BERT?",
+      "back_html": "\u003cp\u003e40% smaller and 60% faster while retaining 97% of BERT's language understanding.\u003c/p\u003e"
+    }
+  ]
+}

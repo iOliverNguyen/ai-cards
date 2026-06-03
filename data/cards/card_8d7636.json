@@ -1,0 +1,157 @@
+{
+  "id": "card_8d7636",
+  "slug": "fast-weight-attention-continual-learning",
+  "type": "paper",
+  "title": "Fast Weight Attention: Which Pair Is the Memory Learning From?",
+  "hook": "If a recurrent state is really an online learner, then what it trains on matters. This paper argues most fast-weight rules quietly use the wrong (key, value) pair.",
+  "key_points": [
+    "Fast-weight memories and selective state-space models both compress growing context into a fixed state, making the state transition an online learning rule.",
+    "Under read-after-write autoregressive semantics, the correct local training example at step t is the prefix-aligned pair (phi(k_{t-1}), v_t).",
+    "The common same-step association (phi(k_t), v_t) is still causal — but it optimizes a different internal objective.",
+    "The authors derive normalized first-order updates for two objectives: squared-error regression and negative inner product.",
+    "That yields the Falcon family: a scalar NLMS update, a per-column extension, and a sliding-window mini-batch variant, each with an inner-product twin.",
+    "Reported outcome: competitive language modeling, improved length extrapolation on variable-digit addition."
+  ],
+  "content_html": "\u003cp\u003eLinear attention, fast-weight memories, and selective state-space models all do the same trick: squeeze an ever-growing context into a fixed-size state. Look closely and each state update is a step of online learning — the state is a little model, and every token hands it a training example. Yifan Zhang, Mengdi Wang, Quanquan Gu, Andrew Chi-Chih Yao and colleagues (arXiv, August 2026) ask a question that follows immediately from that view and is usually skipped: which example, exactly?\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTheir answer is that under read-after-write autoregressive semantics — the state is read before it absorbs the current write — the local example revealed at step t is the prefix-aligned pair (phi(k_{t-1}), v_t), not the same-step (phi(k_t), v_t) that most formulations use. The same-step version isn't acausal; it just optimizes a different internal objective than the prefix-prediction one the model is actually trained for. From there the authors derive normalized first-order updates for a squared-error regression objective and a negative inner-product objective, producing the Falcon family: a scalar NLMS update, a per-column extension, and a sliding-window mini-batch update, each with an inner-product twin. Every variant is given in recurrent, masked-parallel, and chunk-parallel form with a numerically stable positive-decay renormalization, so they stay trainable at scale. Empirically the authors report the variants stay competitive at language modeling and improve length extrapolation on variable-digit addition. The paper's more durable contribution is the framing: it separates temporal alignment, plasticity, forgetting, and bounded rehearsal into four knobs you can reason about independently.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yifan Zhang",
+      "Steve Ta",
+      "Jasper Zhang",
+      "Jichen Feng",
+      "Shuzhen Li",
+      "Yongxin Zhang",
+      "Yifeng Liu",
+      "Huizhuo Yuan",
+      "Mengdi Wang",
+      "Quanquan Gu",
+      "Andrew Chi-Chih Yao"
+    ],
+    "url": "https://arxiv.org/abs/2608.27763",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ssm-mamba",
+    "attention-mechanisms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "attention",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_457488",
+      "slug": "e2-ttt-expressive-efficient-test-time-training",
+      "type": "paper",
+      "title": "E²-TTT: Expressivity and Efficiency in Test-Time Training",
+      "hook": "Test-time training updates weights while it reads, but chunking for speed throws away the update's temporal structure. A closed-form state transition gets both.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-08-21"
+    },
+    {
+      "id": "card_8c7d52",
+      "slug": "gated-delta-networks",
+      "type": "paper",
+      "title": "Feature Learning in Gated Delta Networks at Scale",
+      "hook": "muP lets you tune hyperparameters on a small model and transfer them to a huge one. This paper derives the equivalent rules for gated delta networks, so sub-quadratic models scale without re-tuning.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_811596",
+      "slug": "subquadratic-architectures",
+      "type": "paper",
+      "title": "Subquadratic Architectures: xLSTM vs. Mamba-2 vs. Gated DeltaNet",
+      "hook": "Transformers pay a quadratic tax on sequence length. Pitting xLSTM, Mamba-2, and Gated DeltaNet head-to-head on hard tasks, xLSTM comes out ahead — and the paper explains why.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-10"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_f58fe4",
+      "slug": "what-are-state-space-models",
+      "type": "concept",
+      "title": "What Are State-Space Models?",
+      "hook": "A compact hidden state summarizes everything seen so far - update it with each new input and you get sequence modeling that scales linearly, not quadratically.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-03"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_8d7636#0",
+      "format": "flip",
+      "prompt": "What does it mean to read a recurrent state transition as an online learning rule?",
+      "back_html": "\u003cp\u003eFast-weight memories and selective state-space models compress an expanding context into a fixed-size state, so each state update is effectively one step of online learning on a local example.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8d7636#1",
+      "format": "quiz",
+      "prompt": "Under read-after-write autoregressive semantics, which local example does the paper say the fast memory should be trained on at step t?",
+      "choices": [
+        {
+          "text": "The prefix-aligned pair (phi(k_{t-1}), v_t)",
+          "correct": true
+        },
+        {
+          "text": "The same-step pair (phi(k_t), v_t)",
+          "correct": false
+        },
+        {
+          "text": "The future pair (phi(k_{t+1}), v_t)",
+          "correct": false
+        },
+        {
+          "text": "The value pair (v_{t-1}, v_t), with keys unused",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRead-after-write means the state is read before it absorbs step t's write, so the prefix-aligned pair is the right target. The same-step association is still causal, but it optimizes a different internal objective.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8d7636#2",
+      "format": "flip",
+      "prompt": "What are the two objectives the Falcon update rules are derived from?",
+      "back_html": "\u003cp\u003eSquared-error regression (giving Falcon-1, a scalar NLMS update; Falcon-2, its per-column extension; Falcon-3, a sliding-window mini-batch update) and a negative inner-product objective (the matching 1A/2A/3A variants).\u003c/p\u003e"
+    },
+    {
+      "id": "card_8d7636#3",
+      "format": "quiz",
+      "prompt": "Where do the authors report the clearest empirical gain from the realigned update?",
+      "choices": [
+        {
+          "text": "Length extrapolation on variable-digit addition, with language modeling merely competitive",
+          "correct": true
+        },
+        {
+          "text": "A large drop in language-modeling perplexity across all scales",
+          "correct": false
+        },
+        {
+          "text": "Faster wall-clock inference than softmax attention at short context",
+          "correct": false
+        },
+        {
+          "text": "Higher accuracy on image classification benchmarks",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper describes representative variants as remaining competitive at language modeling while improving length extrapolation on variable-digit addition — the framing is analytical, not a benchmark sweep.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "id": "card_b570de",
+  "slug": "domino-speculative-decoding",
+  "type": "paper",
+  "title": "Domino: Decoupling Causal Modeling from Autoregressive Drafting",
+  "hook": "Speculative decoding is stuck between fast-but-sloppy parallel drafters and accurate-but-slow autoregressive ones. Domino splits the difference and hits up to 5.8× throughput.",
+  "key_points": [
+    "A parallel backbone drafts a whole block of tokens at once — cheap, but weak at intra-block dependencies.",
+    "A lightweight 'Domino head' then refines that draft with prefix-dependent causal information.",
+    "A base-anchored curriculum first trains the parallel backbone, then shifts toward the causally corrected output.",
+    "On Qwen3 models: up to 5.49× end-to-end speedup, and 5.8× throughput under SGLang serving."
+  ],
+  "content_html": "\u003cp\u003eSpeculative decoding speeds up LLM generation by drafting several tokens cheaply and verifying them in one pass of the big model. But there's a tension in how you draft: an autoregressive drafter models the dependencies between draft tokens well, yet pays a sequential cost per token; a parallel drafter is fast but produces a weaker draft because it ignores those dependencies. Domino proposes a way to get both.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eDomino decouples causal modeling from the expensive autoregressive execution. A parallel \u0026quot;backbone\u0026quot; first emits preliminary distributions for an entire block of draft tokens in one shot. A small, lightweight \u0026quot;Domino head\u0026quot; then refines those distributions using prefix-dependent causal information — recovering the intra-block dependencies the parallel draft missed, without re-running a full autoregressive pass. To keep training stable, the authors use a base-anchored curriculum: first strengthen the parallel backbone, then gradually shift optimization toward the causally corrected final distribution.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eDrafting quality versus drafting cost is the central trade-off that bounds how much speculative decoding can actually accelerate serving. By moving the causal correction into a cheap refinement head, Domino reports up to 5.49× end-to-end speedup on Qwen3 under the Transformers backend and up to 5.8× throughput under SGLang — meaningful gains for production inference where latency and cost dominate.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jianuo Huang",
+      "Yaojie Zhang",
+      "Qituan Zhang",
+      "Hao Lin",
+      "Hanlin Xu",
+      "Linfeng Zhang"
+    ],
+    "url": "https://arxiv.org/abs/2605.29707",
+    "published_at": "2026-05-28",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-04",
+  "date": "2026-05-28",
+  "related": [
+    {
+      "id": "card_951958",
+      "slug": "speculative-decoding",
+      "type": "paper",
+      "title": "Speculative Decoding",
+      "hook": "Let a small, fast model guess the next few words, then have the big model check them all in one shot. Same output, fewer slow steps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-30"
+    },
+    {
+      "id": "card_ef8b5f",
+      "slug": "paged-attention-vllm",
+      "type": "paper",
+      "title": "PagedAttention / vLLM: Efficient LLM Serving",
+      "hook": "LLM serving wastes huge amounts of GPU memory on the attention cache. PagedAttention borrows an OS trick — paging — to recover it and serve many more requests at once.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-09-12"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_951958",
+      "slug": "speculative-decoding",
+      "type": "paper",
+      "title": "Speculative Decoding",
+      "hook": "Let a small, fast model guess the next few words, then have the big model check them all in one shot. Same output, fewer slow steps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-30"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_b570de#0",
+      "format": "flip",
+      "prompt": "What drafting trade-off does Domino try to escape?",
+      "back_html": "\u003cp\u003eAutoregressive drafters model intra-token dependencies well but pay a sequential per-token cost; parallel drafters are fast but produce weaker drafts. Domino aims for both.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b570de#1",
+      "format": "quiz",
+      "prompt": "What is the role of Domino's lightweight 'Domino head'?",
+      "choices": [
+        {
+          "text": "Refine the parallel draft with prefix-dependent causal information",
+          "correct": true
+        },
+        {
+          "text": "Verify the draft tokens against the base model",
+          "correct": false
+        },
+        {
+          "text": "Emit the entire block of preliminary distributions in one shot",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA parallel backbone emits the block; the Domino head then refines those distributions with prefix-dependent causal info, recovering dependencies without a full autoregressive pass.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b570de#2",
+      "format": "flip",
+      "prompt": "Why use a base-anchored curriculum during training?",
+      "back_html": "\u003cp\u003eTo keep training stable: first strengthen the parallel backbone, then gradually shift optimization toward the causally corrected final distribution.\u003c/p\u003e"
+    }
+  ]
+}

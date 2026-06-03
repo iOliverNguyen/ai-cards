@@ -1,0 +1,101 @@
+{
+  "id": "card_e2857d",
+  "slug": "sae-interventions-unreliable",
+  "type": "paper",
+  "title": "SAE Interventions Are Unreliable",
+  "hook": "Clamping a 'harmful' sparse-autoencoder feature looks like it stops bad behavior — but this paper recovers it 95.8% of the time, exposing the gap between feature-level and real control.",
+  "key_points": [
+    "Sparse autoencoders (SAEs) split a model's activations into interpretable features used as safety 'handles' to clamp.",
+    "Clamping a feature blocks one visible route to a behavior without removing the behavior itself.",
+    "An optimization over residual perturbations recovers suppressed behavior while keeping the clamped feature pinned.",
+    "Recovery hit 95.8% on refusal-steering and traced to the SAE reconstruction residual — the part the SAE leaves unexplained."
+  ],
+  "content_html": "\u003cp\u003eSparse autoencoders (SAEs) decompose a model's internal activations into a long list of interpretable \u0026quot;features,\u0026quot; and a growing line of safety work treats those features as control handles: find the feature for a harmful behavior, clamp it, and the model should stop misbehaving. This paper argues that confidence is misplaced.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat they found\u003c/h2\u003e\n\u003cp\u003eThe authors frame the weakness as \u003cem\u003epost-intervention recovery\u003c/em\u003e: starting from the clamped state, they optimize small perturbations to the residual stream that restore the original behavior while keeping the targeted SAE feature held at its intervened value. Even under a strong threat model — the clamp stays active throughout generation — recovery succeeds, reaching 95.8% on safety-critical refusal steering. A recovery-path analysis localizes the leak to the \u003cem\u003eSAE reconstruction residual\u003c/em\u003e: the component of the activations the SAE never explains.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe result exposes a gap between feature-level control and behavioral control. SAE features can be causally real handles, yet clamping them does not guarantee the behavior is actually gone — it may just be rerouted through what the SAE leaves out. For interpretability-based defenses (unlearning, refusal steering, monitoring), that means a \u0026quot;successful\u0026quot; intervention can hide a recoverable failure, and robustness needs to be stress-tested against the residual, not just the named features.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Mingyue Cui",
+      "Linghui Shen",
+      "Xingyi Yang"
+    ],
+    "url": "https://arxiv.org/abs/2606.18322",
+    "published_at": "2026-06-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "safety",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-22",
+  "date": "2026-06-16",
+  "related": [
+    {
+      "id": "card_704af4",
+      "slug": "scaling-evaluating-sparse-autoencoders",
+      "type": "paper",
+      "title": "Scaling and Evaluating Sparse Autoencoders",
+      "hook": "Tuning the sparsity penalty on an autoencoder is fiddly. Use a top-k constraint instead and you can dial sparsity directly — and scale SAEs to GPT-4.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-06-06"
+    },
+    {
+      "id": "card_0946f0",
+      "slug": "towards-monosemanticity",
+      "type": "paper",
+      "title": "Towards Monosemanticity: Decomposing Models with Dictionary Learning",
+      "hook": "If neurons mean several things at once, can we find cleaner units? A sparse autoencoder pulled 4,000+ single-concept features out of one tiny transformer layer.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2023-10-05"
+    },
+    {
+      "id": "card_426fcd",
+      "slug": "scaling-monosemanticity",
+      "type": "paper",
+      "title": "Scaling Monosemanticity: Features from Claude 3 Sonnet",
+      "hook": "Does dictionary learning survive at production scale? Anthropic found millions of features in Claude 3 Sonnet — and could steer the model by turning one up.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2024-05-21"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_e2857d#0",
+      "format": "flip",
+      "prompt": "Why does clamping an 'unsafe' SAE feature fail to reliably stop the behavior?",
+      "back_html": "\u003cp\u003eClamping blocks one visible route, but the behavior can be recovered through the SAE reconstruction residual — the slice of activations the SAE doesn't explain — while the clamped feature stays pinned.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e2857d#1",
+      "format": "quiz",
+      "prompt": "What does the paper's 'post-intervention recovery' result imply for SAE-based defenses?",
+      "choices": [
+        {
+          "text": "Controlling a feature does not guarantee control over the underlying behavior",
+          "correct": true
+        },
+        {
+          "text": "SAE features are never causally related to behavior",
+          "correct": false
+        },
+        {
+          "text": "Larger SAEs make recovery impossible",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSAE features can support causal intervention, but the work shows feature-level control is not the same as behavioral completeness — suppressed behavior re-emerges via the reconstruction residual.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "id": "card_c0cf9e",
+  "slug": "ring-zero-trillion-parameter-zero-rl",
+  "type": "paper",
+  "title": "Ring-Zero: Scaling Zero RL to a Trillion Parameters for Emergent Reasoning",
+  "hook": "Zero RL — reasoning trained on verifiable rewards, no human labels — had only been tried small-scale. At a trillion parameters, the model starts inventing reasoning habits nobody hand-coded.",
+  "key_points": [
+    "Zero RL (reinforcement learning with verifiable rewards, no human-annotated data) had mostly been studied on small models; this scales it to 1 trillion parameters.",
+    "A stable training pipeline — clipped importance sampling, training-inference ratio correction, mixed-precision control — was needed to avoid poor readability, token redundancy, and rigid reasoning depth at scale.",
+    "Scaling to 1T parameters significantly improves both sample efficiency and the model's performance ceiling.",
+    "Training progresses through a discovery phase followed by a sharpening phase, and the model spontaneously develops behaviors like self-verification, parallel reasoning, and structured formatting — no hand-crafted heuristics needed.",
+    "The resulting Ring-2.5-1T-Zero is competitive across seven math benchmarks and scores well on a new comprehensibility/reproducibility/efficiency framework for judging reasoning-trace quality, not just final-answer correctness."
+  ],
+  "content_html": "\u003cp\u003eZero RL — training a model to reason using only verifiable rewards (did the math check out? did the code run?) and no human-written demonstrations — has looked promising at small scale. Nobody had pushed it to frontier size, because the compute and stability challenges compound fast. This paper does, scaling zero RL all the way to a trillion parameters.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eXinyu Tang and colleagues built a training pipeline with clipped importance sampling, training-inference ratio correction, and mixed-precision control to keep 1T-parameter zero RL stable — without these, naive scaling produces reasoning that's hard to read, padded with redundant tokens, and inflexible in how deeply it thinks. With the fix in place, they report three findings that echo the \u0026quot;bitter lesson\u0026quot; of scaling: bigger models get more sample-efficient and reach a higher performance ceiling; training moves through a discovery phase and then a sharpening phase; and the model spontaneously picks up behaviors like self-verification, parallel reasoning, structured formatting, and even anthropomorphic self-talk, without anyone engineering those habits in.\u003c/p\u003e\n\u003cp\u003eThe resulting model, Ring-2.5-1T-Zero, performs competitively across seven math benchmarks. To judge reasoning quality beyond just whether the final answer is right, the authors also propose evaluating traces on comprehensibility, reproducibility, and efficiency — dimensions where they report their model has a clear edge, producing reasoning that's structured and concise rather than sprawling. Tang and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xinyu Tang",
+      "Gangqiang Cao",
+      "Yurou Liu",
+      "Yuliang Zhan",
+      "Xiaochong Lan",
+      "Yifan Li",
+      "Yuchen Yan",
+      "Han Peng",
+      "Zican Dong",
+      "Zhenduo Zhang",
+      "Tianshu Wang",
+      "Xinyu Kong",
+      "Zujie Wen",
+      "Wayne Xin Zhao",
+      "Zhiqiang Zhang",
+      "Jun Zhou"
+    ],
+    "url": "https://arxiv.org/abs/2607.12395",
+    "published_at": "2026-07-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "pretraining",
+    "papers-this-week"
+  ],
+  "tags": [
+    "reasoning",
+    "training",
+    "alignment",
+    "paper"
+  ],
+  "importance": 5,
+  "difficulty": "deep",
+  "created_at": "2026-07-20",
+  "date": "2026-07-14",
+  "related": [
+    {
+      "id": "card_4cd8fd",
+      "slug": "deepseek-r1",
+      "type": "paper",
+      "title": "DeepSeek-R1: Incentivizing Reasoning via Reinforcement Learning",
+      "hook": "DeepSeek shows strong reasoning can emerge from RL on verifiable rewards with minimal supervised data - and those reasoning traces can be distilled into smaller models.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2025-01-22"
+    },
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_c0cf9e#0",
+      "format": "flip",
+      "prompt": "What is 'zero RL', and what had limited its study before this paper?",
+      "back_html": "\u003cp\u003eReinforcement learning with verifiable rewards and no human-annotated data, used to elicit chain-of-thought reasoning. It had mostly been explored only at small model scale due to compute constraints.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c0cf9e#1",
+      "format": "quiz",
+      "prompt": "What training problems did naive scaling of zero RL run into, that this paper's pipeline addresses?",
+      "choices": [
+        {
+          "text": "Poor readability, token redundancy, and a lack of adaptive reasoning depth",
+          "correct": true
+        },
+        {
+          "text": "The model refused to produce any reasoning traces at all",
+          "correct": false
+        },
+        {
+          "text": "Training cost dropped to zero, causing instability",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper's stable pipeline (clipped importance sampling, training-inference ratio correction, mixed precision) was built specifically to fix these scaling failure modes.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c0cf9e#2",
+      "format": "flip",
+      "prompt": "What two phases does training progress through at 1T-parameter scale, per the paper's findings?",
+      "back_html": "\u003cp\u003eAn initial discovery phase, followed by a sharpening phase.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c0cf9e#3",
+      "format": "quiz",
+      "prompt": "Why does the paper say hand-crafted reasoning heuristics become redundant at this scale?",
+      "choices": [
+        {
+          "text": "The model spontaneously develops advanced behaviors itself — like self-verification, parallel reasoning, and structured formatting",
+          "correct": true
+        },
+        {
+          "text": "Because the model stops reasoning entirely and just memorizes answers",
+          "correct": false
+        },
+        {
+          "text": "Because heuristics were never used in zero RL to begin with",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper frames this as validating the 'bitter lesson': at large enough scale, the model discovers these reasoning behaviors on its own rather than needing them engineered in.\u003c/p\u003e"
+    }
+  ]
+}

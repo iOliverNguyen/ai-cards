@@ -1,0 +1,114 @@
+{
+  "id": "card_eb3f2c",
+  "slug": "skills-language-invariant-llms",
+  "type": "paper",
+  "title": "Skill Issue: Are Skills Language-Invariant in LLMs?",
+  "hook": "Have a model play a game against itself, one copy in English and one in another language. Same model, same rules, same board — and markedly different playing strength.",
+  "key_points": [
+    "Multilingual self-play isolates language from knowledge: two instances of one model compete through different language interfaces.",
+    "Model, opponent, rules, state space, and available actions are all held fixed, so only the interface language varies.",
+    "Built on a multilingual extension of TextArena; three open-weight models, eight languages, six games.",
+    "Games cover spatial reasoning, imperfect information, resource allocation, and repeated interaction.",
+    "Systematic variation appears in win-loss margins, invalid actions, and strategic tendencies.",
+    "Changing only the intermediate reasoning language recovers much of the lost performance in some settings."
+  ],
+  "content_html": "\u003cp\u003eWe know LLMs access \u003cem\u003eknowledge\u003c/em\u003e unevenly across languages. Cheng and colleagues ask a sharper question: do their \u003cstrong\u003eskills\u003c/strong\u003e differ too — and how would you tell, given that knowledge and skill are tangled together in every translated benchmark?\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe design\u003c/h2\u003e\n\u003cp\u003eTheir answer is \u003cstrong\u003emultilingual self-play\u003c/strong\u003e. Two instances of the same model compete in a text-based game, each interacting through a different language interface. Because the model, the opponent, the rules, the state space, and the available actions are all held fixed, any difference in outcome isolates the effect of language on realized behavior — no test-item translation artifacts, no differing world knowledge. The authors build a multilingual extension to TextArena and evaluate three open-weight models across eight languages and six games spanning spatial reasoning, imperfect information, resource allocation, and repeated interaction.\u003c/p\u003e\n\u003ch2\u003eWhat they find\u003c/h2\u003e\n\u003cp\u003eThe same model exhibits markedly different playing strength across languages, with systematic variation in win-loss margins, invalid actions, and strategic tendencies. Detailed analyses surface language-specific failures in spatial reasoning, card-conditioned decisions, and optimal move selection. One finding points at a mechanism: in some settings, changing \u003cem\u003eonly the intermediate reasoning language\u003c/em\u003e — leaving the interface alone — recovers much of the lost performance, suggesting language affects different stages of the decision process independently. The authors treat these skill discrepancies as a measurable roadblock for genuinely multilingual models rather than a curiosity, and the self-play protocol is reusable for anyone who wants to measure it on their own model. arXiv, 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Bobby Cheng",
+      "Adam Gaber",
+      "Zhengyuan Liu",
+      "Catherine Arnett",
+      "Omer Goldman",
+      "Cheston Tan",
+      "Leshem Choshen"
+    ],
+    "url": "https://arxiv.org/abs/2608.25832",
+    "published_at": "2026-08-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evaluation",
+    "prompting",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "nlp",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_35a936",
+      "slug": "item-response-theory-ai-evaluation",
+      "type": "paper",
+      "title": "Can We Trust Item Response Theory for AI Evaluation?",
+      "hook": "IRT ranks models off a handful of items instead of averaging accuracy — but the math was built for human test-takers, and AI benchmarks break its assumptions in ways that quietly distort rankings.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-16"
+    },
+    {
+      "id": "card_ddce7e",
+      "slug": "agent-benchmark-protocol-validity",
+      "type": "paper",
+      "title": "Do Agent Benchmarks Measure Capability?",
+      "hook": "An agent score only means something if the task still requires the skill it claims to test. Auditing 2,385 traces, two-thirds showed the agent taking a shortcut instead.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    },
+    {
+      "id": "card_9328c5",
+      "slug": "chatbot-arena",
+      "type": "paper",
+      "title": "Chatbot Arena: Ranking LLMs by Human Preference",
+      "hook": "How do you rank chatbots when there's no single right answer? Let people pick the better of two anonymous replies, then aggregate the votes into a leaderboard.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-03-07"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_eb3f2c#0",
+      "format": "flip",
+      "prompt": "Why does multilingual self-play isolate skill from knowledge better than a translated benchmark?",
+      "back_html": "\u003cp\u003eBecause model, opponent, rules, state space, and available actions are all identical across the two instances. The only thing that differs is the language interface, so any performance gap can't be blamed on differing facts or test items.\u003c/p\u003e"
+    },
+    {
+      "id": "card_eb3f2c#1",
+      "format": "quiz",
+      "prompt": "What partially recovered lost performance in some of the tested settings?",
+      "choices": [
+        {
+          "text": "Changing only the intermediate reasoning language, while keeping the interface language fixed",
+          "correct": true
+        },
+        {
+          "text": "Increasing the number of games played in the weaker language",
+          "correct": false
+        },
+        {
+          "text": "Translating the game rules more literally",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThat recovery suggests language affects distinct stages of the decision process — the reasoning stage can be repaired somewhat independently of the interface.\u003c/p\u003e"
+    },
+    {
+      "id": "card_eb3f2c#2",
+      "format": "flip",
+      "prompt": "What kinds of failures showed up specifically in the weaker languages?",
+      "back_html": "\u003cp\u003eLanguage-specific failures in spatial reasoning, card-conditioned decisions, and optimal move selection — plus more invalid actions and different strategic tendencies overall.\u003c/p\u003e"
+    }
+  ]
+}

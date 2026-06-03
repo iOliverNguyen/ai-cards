@@ -1,0 +1,115 @@
+{
+  "id": "card_c0948e",
+  "slug": "deepseek-v4",
+  "type": "news",
+  "title": "DeepSeek-V4: Sparse Attention, Million-Token Default",
+  "hook": "DeepSeek-V4 makes a 1M-token context window the default and pairs token-wise compression with sparse attention, so long-context inference no longer pays the usual compute and memory tax.",
+  "key_points": [
+    "Two MoE variants: DeepSeek-V4-Pro (1.6T total / 49B active) and DeepSeek-V4-Flash (284B total / 13B active).",
+    "A 1M-token context window is now the default across DeepSeek's services.",
+    "Introduces token-wise compression plus DSA (DeepSeek Sparse Attention) for long-context efficiency.",
+    "Claims drastically reduced compute and memory costs at long context.",
+    "API available day-one in OpenAI- and Anthropic-compatible formats; weights on Hugging Face. Labeled a preview release."
+  ],
+  "content_html": "\u003cp\u003eDeepSeek released DeepSeek-V4 as a preview in April 2026, a pair of mixture-of-experts models built around long-context efficiency. The headline change: a 1M-token context window is now the default across DeepSeek's services, made affordable by new compression and sparse-attention techniques.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's new\u003c/h2\u003e\n\u003cp\u003eV4 ships in two MoE variants - DeepSeek-V4-Pro at 1.6T total parameters with 49B active, and DeepSeek-V4-Flash at 284B total with 13B active. To make million-token context the default rather than a premium option, V4 introduces token-wise compression alongside DSA, DeepSeek Sparse Attention, with claims of drastically reduced compute and memory costs at long context.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAttention cost normally grows sharply with context length, which is why huge windows tend to be slow and expensive; compressing tokens and attending sparsely is how DeepSeek argues it can offer a 1M-token default. The API is available day-one in OpenAI- and Anthropic-compatible formats and the weights are on Hugging Face, though this is labeled a preview. See DeepSeek's release notes for details.\u003c/p\u003e",
+  "source": {
+    "name": "DeepSeek",
+    "authors": [
+      "DeepSeek"
+    ],
+    "url": "https://api-docs.deepseek.com/news/news260424",
+    "published_at": "2026-04-24",
+    "license": "open weights (preview)"
+  },
+  "topic_ids": [
+    "pretraining",
+    "releases"
+  ],
+  "tags": [
+    "open-source",
+    "efficiency",
+    "nlp"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2026-04-24",
+  "related": [
+    {
+      "id": "card_de5399",
+      "slug": "deepseek-v3",
+      "type": "paper",
+      "title": "DeepSeek-V3 Technical Report",
+      "hook": "DeepSeek-V3 trained a frontier-class MoE model for a fraction of the cost of comparable closed models, using FP8 training and a novel load-balancing scheme to make efficiency the headline result.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-12-27"
+    },
+    {
+      "id": "card_4cd8fd",
+      "slug": "deepseek-r1",
+      "type": "paper",
+      "title": "DeepSeek-R1: Incentivizing Reasoning via Reinforcement Learning",
+      "hook": "DeepSeek shows strong reasoning can emerge from RL on verifiable rewards with minimal supervised data - and those reasoning traces can be distilled into smaller models.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2025-01-22"
+    },
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    },
+    {
+      "id": "card_505d45",
+      "slug": "slai-t-rex-ascend-post-training",
+      "type": "paper",
+      "title": "SLAI T-Rex: Post-training a Trillion-Param MoE on Ascend Chips",
+      "hook": "Full-parameter post-training of the DeepSeek-V4 family on Huawei's Ascend NPUs — not NVIDIA GPUs — hitting a 2.93x efficiency jump over the open-source baseline.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_c0948e#0",
+      "format": "flip",
+      "prompt": "What makes DeepSeek-V4's 1M-token context affordable as a default?",
+      "back_html": "\u003cp\u003eToken-wise compression plus DSA (DeepSeek Sparse Attention), which claim drastically reduced compute and memory costs at long context.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c0948e#1",
+      "format": "quiz",
+      "prompt": "Why does normal attention make huge context windows slow and expensive?",
+      "choices": [
+        {
+          "text": "Attention cost grows sharply with context length",
+          "correct": true
+        },
+        {
+          "text": "Longer contexts require more experts to be added",
+          "correct": false
+        },
+        {
+          "text": "Compression always increases compute cost",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe card notes attention cost normally grows sharply with length, which is why V4 compresses tokens and attends sparsely.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c0948e#2",
+      "format": "flip",
+      "prompt": "How do DeepSeek-V4-Pro and V4-Flash differ in scale?",
+      "back_html": "\u003cp\u003ePro is 1.6T total / 49B active; Flash is 284B total / 13B active. Both are MoE variants.\u003c/p\u003e"
+    }
+  ]
+}

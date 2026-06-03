@@ -1,0 +1,116 @@
+{
+  "id": "card_176fda",
+  "slug": "codex",
+  "type": "paper",
+  "title": "Codex: Evaluating Large Language Models Trained on Code",
+  "hook": "Fine-tune GPT on public GitHub code and you get a model that solves programming problems and powers GitHub Copilot - plus a new benchmark, HumanEval, that tests functional correctness.",
+  "key_points": [
+    "GPT fine-tuned on hundreds of millions of lines of public GitHub code; code pretraining transfers to problem-solving.",
+    "Introduced HumanEval: 164 hand-written Python problems evaluated by running tests, not string matching.",
+    "The pass@k metric - generate k samples, pass if any one solves the problem - rewards sampling diverse solutions.",
+    "Formed the technical basis for GitHub Copilot, the first widely deployed AI coding assistant."
+  ],
+  "content_html": "\u003cp\u003eChen and colleagues at OpenAI published Codex in July 2021, describing how fine-tuning a GPT-style model on public code produced a system capable of translating natural-language docstrings into working Python functions. The model became the engine behind GitHub Copilot and established HumanEval as the standard benchmark for measuring functional code generation.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eStarting from a GPT language model pretrained on text, the authors continued training on a large corpus of Python code scraped from public GitHub repositories. At evaluation time, the model takes a function signature and docstring as a prompt and generates a completion. The HumanEval benchmark measures correctness by executing the generated code against a hidden test suite, not by comparing tokens - a meaningful shift from BLEU-based code evaluation. The pass@k metric counts a problem as solved if at least one of k generated samples passes all tests.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eCodex reframed code generation from a research curiosity into a practical tool deployed at scale through GitHub Copilot. HumanEval and the pass@k metric became the standard yardstick that later models like AlphaCode and GPT-4 are measured against, anchoring a whole line of subsequent research. Read the full evaluation methodology in the paper on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Mark Chen",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2107.03374",
+    "published_at": "2021-07-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "evals-safety"
+  ],
+  "tags": [
+    "nlp",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2021-07-07",
+  "related": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    },
+    {
+      "id": "card_2137ea",
+      "slug": "alphacode",
+      "type": "paper",
+      "title": "AlphaCode: Competition-Level Code Generation",
+      "hook": "Generate a massive pool of candidate programs for competitive-programming problems, filter by test-case behavior, cluster by output, and reach roughly the level of a median human competitor.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-02-08"
+    },
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_176fda#0",
+      "format": "quiz",
+      "prompt": "How does the HumanEval benchmark measure code correctness?",
+      "choices": [
+        {
+          "text": "By executing the generated code against a hidden test suite",
+          "correct": true
+        },
+        {
+          "text": "By comparing tokens to a reference solution (e.g. BLEU)",
+          "correct": false
+        },
+        {
+          "text": "By human reviewers grading readability",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eHumanEval runs the code against tests rather than string-matching — a meaningful shift from BLEU-based code evaluation.\u003c/p\u003e"
+    },
+    {
+      "id": "card_176fda#1",
+      "format": "flip",
+      "prompt": "What does the pass@k metric count as a solved problem?",
+      "back_html": "\u003cp\u003eA problem is solved if at least one of k generated samples passes all tests — rewarding sampling diverse solutions.\u003c/p\u003e"
+    },
+    {
+      "id": "card_176fda#2",
+      "format": "flip",
+      "prompt": "How was Codex produced from a base GPT model?",
+      "back_html": "\u003cp\u003eBy continuing training a GPT language model on a large corpus of public Python code scraped from GitHub.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "id": "card_0f7e49",
+  "slug": "artificial-epanorthosis",
+  "type": "paper",
+  "title": "\"This Is Not a Course. It Is a Journey.\"",
+  "hook": "That tic has a name Cicero knew: epanorthosis. This essay argues LLMs overuse it because their training text is full of promotional prose and RLHF rewards emphatic phrasing.",
+  "key_points": [
+    "Epanorthosis is a classical figure of self-correction — deny a plain description, then substitute a grander one.",
+    "The essay's claim: overuse is a trained disposition, from promotional-heavy training text plus preference tuning that rewards confident, emphatic phrasing.",
+    "It proposes an Epanorthosis Index: the figure's density measured relative to genre-specific human baselines; left-to-right generation is only an amplifier.",
+    "First measurements on one instruction-tuned family find mis-calibration in both directions — overshooting in oratory, undershooting in informal Q\u0026A.",
+    "A one-line instruction cut the figure by half to nearly three-quarters in Italian; an SFT adapter removed it almost entirely.",
+    "The stated target is calibration to the human rate per genre, not elimination."
+  ],
+  "content_html": "\u003cp\u003eYou have read this sentence a thousand times: \u0026quot;This is not a course. It is a journey of transformation.\u0026quot; The construction is old enough that Cicero and Quintilian catalogued it — \u003cstrong\u003eepanorthosis\u003c/strong\u003e, a figure of thought in which a speaker rejects a plain description and substitutes a grander one. This essay asks why language models reach for it so compulsively.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhere the habit comes from\u003c/h2\u003e\n\u003cp\u003eThe author's argument is that overuse is a \u003cem\u003etrained disposition\u003c/em\u003e rather than an artifact of decoding. Two causes carry most of the weight: a training distribution thick with promotional prose, and preference tuning that rewards confident, emphatic phrasing. The left-to-right nature of generation gets demoted to an amplifier — it makes the pattern easy to continue, but it isn't why the model wanted it.\u003c/p\u003e\n\u003ch2\u003eMeasuring it, then dialing it back\u003c/h2\u003e\n\u003cp\u003eTo make the claim testable, the essay proposes an \u003cstrong\u003eEpanorthosis Index\u003c/strong\u003e: the figure's density scored against genre-specific human baselines rather than against zero. A first measurement across three sizes of one instruction-tuned family finds mis-calibration in \u003cem\u003eboth\u003c/em\u003e directions — the models overshoot in oratory (roughly twofold, nearly threefold in Italian, concentrated in the larger tiers) and undershoot in informal question-and-answer writing, while matching humans in argument, journalism, and encyclopedic prose. Mitigation turns out to be cheap: in Italian, a one-line instruction cuts the figure by half to nearly three-quarters, and a supervised-fine-tuning adapter removes it almost entirely, with a scaling coefficient that can dial the reduction back onto the human rate. That last point is the author's actual target — calibration per genre, not elimination — and the closing worry is the reverse direction of influence: that we start writing like the machines. Boggia, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Federico Boggia"
+    ],
+    "url": "https://arxiv.org/abs/2607.21498",
+    "published_at": "2026-07-23",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "papers-this-week"
+  ],
+  "tags": [
+    "alignment",
+    "nlp",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-27",
+  "date": "2026-07-23",
+  "related": [
+    {
+      "id": "card_1098fc",
+      "slug": "instructgpt",
+      "type": "paper",
+      "title": "InstructGPT: Aligning LMs with Human Feedback (RLHF)",
+      "hook": "A smaller model people actually like beats a bigger one they don't. InstructGPT used human preferences to make a model follow instructions — the recipe behind ChatGPT.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-03-04"
+    },
+    {
+      "id": "card_d5a521",
+      "slug": "direct-preference-optimization",
+      "type": "paper",
+      "title": "Direct Preference Optimization (DPO)",
+      "hook": "RLHF works but is fiddly: a separate reward model and a finicky RL loop. DPO reaches the same goal with one simple loss — and became a popular default.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2023-05-29"
+    },
+    {
+      "id": "card_183a50",
+      "slug": "sycophancy-modes",
+      "type": "paper",
+      "title": "Gotta Catch Them All: The Modes of Sycophancy",
+      "hook": "Sycophancy looks like one behavior on the surface — but inside the model it splits into three distinct modes, perfectly separable from layer 14 on, each with its own circuitry.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-22"
+    },
+    {
+      "id": "card_dff496",
+      "slug": "post-training-confidence-calibration",
+      "type": "paper",
+      "title": "Post-Training Shifts Confidence: SFT, RL, and OPD Shape Calibration Differently",
+      "hook": "SFT, RL, and on-policy distillation all boost reasoning accuracy — but they leave completely different fingerprints on when a model's confidence signal can actually be trusted.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_0f7e49#0",
+      "format": "flip",
+      "prompt": "What is epanorthosis, and what does it look like in LLM output?",
+      "back_html": "\u003cp\u003eA classical figure of self-correction: reject a plain description, then substitute a grander one. The specimen the essay uses is \u0026quot;This is not a course. It is a journey of transformation.\u0026quot;\u003c/p\u003e"
+    },
+    {
+      "id": "card_0f7e49#1",
+      "format": "quiz",
+      "prompt": "What does the essay identify as the main driver of the habit?",
+      "choices": [
+        {
+          "text": "A training distribution rich in promotional prose plus preference tuning that rewards confident, emphatic phrasing",
+          "correct": true
+        },
+        {
+          "text": "Left-to-right generation, which forces the model to patch up sentences after committing to them",
+          "correct": false
+        },
+        {
+          "text": "Tokenizer artifacts that make the construction unusually cheap to emit",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe author treats autoregressive generation as an amplifier rather than the root cause; the data distribution and RLHF's taste for emphasis do the real work.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0f7e49#2",
+      "format": "flip",
+      "prompt": "Why does the essay argue for calibration rather than eliminating the figure?",
+      "back_html": "\u003cp\u003eHumans use epanorthosis too, at genre-specific rates — measurements found models overshooting in oratory but \u003cem\u003eundershooting\u003c/em\u003e in informal Q\u0026amp;A. The target is the human rate per genre.\u003c/p\u003e"
+    }
+  ]
+}

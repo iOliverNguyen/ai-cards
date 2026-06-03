@@ -1,0 +1,111 @@
+{
+  "id": "card_b84fb1",
+  "slug": "anchored-self-play-code-repair",
+  "type": "paper",
+  "title": "Anchored Self-Play for Code Repair",
+  "hook": "Let a model train itself by writing bugs and fixing them, and you get a free difficulty curriculum — until it invents bugs no real codebase would produce. Anchored Self-Play keeps it honest.",
+  "key_points": [
+    "Generator-fixer self-play: one model RL-trained to both generate bugs and fix them, an automatic difficulty curriculum.",
+    "BugSourceBench tests bugs from three sources: human-written code, LM-generated code, human-edited LM-generated code.",
+    "Plain self-play drifts toward difficult but unrealistic bugs, improving on synthetic bugs while hurting real-bug fix rates.",
+    "Anchored Self-Play (ASP) adds a code-embedding similarity reward for generation and mixes reference bugs into fixer training.",
+    "ASP improves average fix rate +24% relative (+7.0pp absolute) over standard self-play, gaining on both LM and human bugs."
+  ],
+  "content_html": "\u003cp\u003eLet one model train itself by writing bugs and then fixing them, and you get a free difficulty curriculum — until the model starts inventing bugs no real codebase would ever produce. \u003cstrong\u003eAnchored Self-Play\u003c/strong\u003e keeps that curriculum honest.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe problem with plain self-play\u003c/h2\u003e\n\u003cp\u003eGenerator-fixer self-play trains a single model with RL to both generate bugs and fix them: as the fixer gets better, the generator is pushed to invent harder bugs, automatically raising the difficulty. To test whether this actually helps on real code, the authors built BugSourceBench, spanning bugs in human-written code, LM-generated code, and human-edited LM-generated code. Plain self-play drifts: it gets better at fixing the increasingly weird synthetic bugs it invents, but performance on real, human-authored bugs gets worse.\u003c/p\u003e\n\u003ch2\u003eThe fix\u003c/h2\u003e\n\u003cp\u003eAnchored Self-Play (ASP) reins in the drift with two changes: a code-embedding similarity reward that keeps generated bugs close to a small reference set, and mixing real reference bugs into fixer training alongside the synthetic ones. Across bug sources on BugSourceBench, ASP lifts the average fix rate by +24% relative (+7.0 percentage points) over standard self-play, with gains on bugs from both LMs and humans, not just a shift from one to the other. Choi, Kaya, and colleagues (with Tengyu Ma, Tatsunori Hashimoto, Ludwig Schmidt), arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Caroline Choi",
+      "Zeyneb Kaya",
+      "Shirley Wu",
+      "Tengyu Ma",
+      "Tatsunori Hashimoto",
+      "Ludwig Schmidt"
+    ],
+    "url": "https://arxiv.org/abs/2607.03523",
+    "published_at": "2026-07-03",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "synthetic-data",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-03",
+  "related": [
+    {
+      "id": "card_f14fdc",
+      "slug": "alphazero",
+      "type": "paper",
+      "title": "AlphaZero: Mastering Games from Scratch",
+      "hook": "AlphaGo learned from human games. AlphaZero threw those away — one algorithm reached superhuman chess, shogi, and Go knowing only the rules and playing itself.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2017-12-05"
+    },
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    },
+    {
+      "id": "card_957955",
+      "slug": "agentic-code-review-developer-feedback",
+      "type": "paper",
+      "title": "Is Agentic Code Review Helpful? Mining Developers' Feedback to CodeRabbit Reviews in the Wild",
+      "hook": "CodeRabbit leaves review comments on hundreds of thousands of real pull requests. A large-scale study of how developers actually respond finds more than half get rejected outright.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-03"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b84fb1#0",
+      "format": "flip",
+      "prompt": "What failure mode does plain generator-fixer self-play run into?",
+      "back_html": "\u003cp\u003eThe bug generator drifts toward difficult but unrealistic bugs. The fixer improves on these synthetic bugs, but its performance on real, human-authored bugs actually degrades.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b84fb1#1",
+      "format": "quiz",
+      "prompt": "What two changes define Anchored Self-Play (ASP)?",
+      "choices": [
+        {
+          "text": "A code-embedding similarity reward anchoring generated bugs to a reference set, plus mixing real reference bugs into fixer training",
+          "correct": true
+        },
+        {
+          "text": "Training the generator and fixer as two separate, independently-trained models",
+          "correct": false
+        },
+        {
+          "text": "Removing RL entirely and using supervised fine-tuning on human bugs only",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eASP keeps self-play's automatic curriculum but anchors it: a similarity reward for generation, and real bugs mixed into the fixer's training data.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b84fb1#2",
+      "format": "flip",
+      "prompt": "What does BugSourceBench measure that a single-source repair benchmark wouldn't?",
+      "back_html": "\u003cp\u003eIt spans three realistic bug sources — human-written code, LM-generated code, and human-edited LM-generated code — revealing whether gains on synthetic bugs generalize to real ones.\u003c/p\u003e"
+    }
+  ]
+}

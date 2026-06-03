@@ -1,0 +1,98 @@
+{
+  "id": "card_ea6afd",
+  "slug": "llama-3",
+  "type": "paper",
+  "title": "The Llama 3 Herd of Models",
+  "hook": "Meta's Llama 3 family, trained on roughly 15 trillion tokens with a 405B-parameter flagship, narrowed the gap to closed frontier models while staying open-weights.",
+  "key_points": [
+    "Models from 8B to 405B parameters, all trained on a significantly larger token budget than Llama 2 per the Chinchilla scaling prescription.",
+    "Multimodal extensions (vision, speech, code) built on top of the dense language model backbone.",
+    "The 405B model matched or approached GPT-4-class performance on several standard benchmarks.",
+    "Continued the open-weights release approach with a custom license allowing broad but not unlimited commercial use."
+  ],
+  "content_html": "\u003cp\u003eMeta's Llama team published the Llama 3 technical paper in July 2024, describing a family of dense transformer models spanning 8B to 405B parameters. The models were trained on a far larger and more carefully curated dataset than Llama 2, with filtering and quality-scoring pipelines applied at scale to produce roughly 15 trillion training tokens.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eLlama 3 uses a standard dense transformer architecture with grouped-query attention for efficiency. Training followed the insight from Chinchilla scaling laws that smaller models benefit significantly from more training tokens; even the 8B model was trained well beyond what earlier norms suggested. Multimodal capabilities were added by training specialized adapters on top of the pretrained language model backbone.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eWith the 405B model approaching closed-frontier performance on key benchmarks, Llama 3 made the open-weights ecosystem genuinely competitive with the best proprietary offerings at the time, lowering the barrier for research and deployment. Read the full technical paper on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Llama Team, Meta AI"
+    ],
+    "url": "https://arxiv.org/abs/2407.21783",
+    "published_at": "2024-07-23",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining",
+    "releases"
+  ],
+  "tags": [
+    "nlp",
+    "open-source",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2024-07-23",
+  "related": [
+    {
+      "id": "card_397203",
+      "slug": "llama",
+      "type": "paper",
+      "title": "LLaMA: Open \u0026 Efficient Foundation Models",
+      "hook": "You don't need a 175B-parameter model to compete. LLaMA trained smaller models on lots of public data — and lit a fire under the open-weights community.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-02-27"
+    },
+    {
+      "id": "card_bd51be",
+      "slug": "llama-2",
+      "type": "paper",
+      "title": "Llama 2: Open Foundation and Fine-Tuned Chat Models",
+      "hook": "Meta released Llama 2 with open weights and a commercial-use license, giving anyone a strong RLHF-tuned chat model to build on - and kicked off a wave of open-LLM development.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-07-18"
+    },
+    {
+      "id": "card_46fd66",
+      "slug": "chinchilla-scaling-laws",
+      "type": "paper",
+      "title": "Chinchilla: Compute-Optimal Scaling",
+      "hook": "Most giant models were starved of data. Chinchilla showed that for a fixed compute budget you should grow parameters and tokens together — and a smaller, longer-trained model won.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2022-03-29"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_ea6afd#0",
+      "format": "flip",
+      "prompt": "How were Llama 3's multimodal capabilities added?",
+      "back_html": "\u003cp\u003eBy training specialized adapters (vision, speech, code) on top of the pretrained dense language model backbone.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ea6afd#1",
+      "format": "quiz",
+      "prompt": "Why was even Llama 3's 8B model trained on far more tokens than earlier norms suggested?",
+      "choices": [
+        {
+          "text": "Per Chinchilla scaling, smaller models benefit significantly from more training tokens",
+          "correct": true
+        },
+        {
+          "text": "Because larger token budgets reduce parameter count",
+          "correct": false
+        },
+        {
+          "text": "To make the model multimodal",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eTraining followed the Chinchilla insight that smaller models gain a lot from more tokens; the family used roughly 15T tokens.\u003c/p\u003e"
+    }
+  ]
+}

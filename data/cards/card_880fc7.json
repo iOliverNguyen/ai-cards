@@ -1,0 +1,114 @@
+{
+  "id": "card_880fc7",
+  "slug": "convergent-detour-hijacking",
+  "type": "paper",
+  "title": "Convergent Detour Hijacking: The Attack That Lets Your Agent Succeed",
+  "hook": "A malicious third-party skill doesn't have to break your agent's task. It can just take the scenic route — burning 67% more tokens and 92% more wall-clock while the final answer still looks correct.",
+  "key_points": [
+    "Skill-based agents expose two control points to untrusted publishers: the skill description (used for selection) and the instruction body (used for planning).",
+    "Convergent Detour Hijacking (CDH) is a text-only, runtime-independent attack that chains both stages under shared semantic cover.",
+    "The description wins selection; the aligned body then fabricates plausible dependencies that recruit extra benign skills into a bounded detour.",
+    "The detour re-enters the original route, so the task still completes — hiding the attack from outcome-based checks.",
+    "On DeepSeek-V4-Pro across 491 held-out tasks, the attacker's coordinator was selected in 80.02% of tasks.",
+    "Coordinator-hit runs that completed used 66.91% more tokens and 92.45% more end-to-end time, with comparable task completion."
+  ],
+  "content_html": "\u003cp\u003eAgents increasingly install third-party \u0026quot;skills\u0026quot;: a natural-language description tells the agent when the skill is relevant, and an instruction body tells it what to do. Junliang Liu and co-authors (arXiv, August 2026) point out that this progressive-disclosure design hands an untrusted publisher two sequential control points — selection and planning — and show what happens when you attack both at once.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe attack\u003c/h2\u003e\n\u003cp\u003e\u003cstrong\u003eConvergent Detour Hijacking (CDH)\u003c/strong\u003e is text-only and runtime-independent: no exploit, no privileged access, just carefully written skill text. Under shared semantic cover, the description establishes relevance so the attacker's \u003cem\u003ecoordinator\u003c/em\u003e skill gets picked alongside legitimate ones; the body then reuses that same rationale to fabricate plausible dependencies, pulling extra benign skills into a bounded detour before rejoining the original route.\u003c/p\u003e\n\u003cp\u003eAcross 491 held-out tasks and multiple LLM backends, in single-task and multi-turn settings: on DeepSeek-V4-Pro the matched coordinator was selected in 80.02% of tasks, and among coordinator-hit runs that completed, token consumption rose 66.91% and end-to-end time 92.45% — while aggregate task completion stayed comparable.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eMost agent evaluation asks \u0026quot;did it get the right answer?\u0026quot; This paper is a clean demonstration that the answer can be right while the \u003cem\u003etrajectory\u003c/em\u003e is compromised. If your only guardrail is outcome quality, an attacker can quietly bill you for the difference.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Junliang Liu",
+      "Ruoyu Li",
+      "Wenxin Tang",
+      "Jingyu Xiao",
+      "Zhenyu Liu",
+      "Jingheng Xu",
+      "Laizhong Cui"
+    ],
+    "url": "https://arxiv.org/abs/2608.12273",
+    "published_at": "2026-08-12",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "safety",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-13",
+  "date": "2026-08-12",
+  "related": [
+    {
+      "id": "card_42f624",
+      "slug": "agent-token-budget-overruns",
+      "type": "paper",
+      "title": "Token Budgets: When Agents Burn Money",
+      "hook": "A single retry loop can spend thousands of dollars before anyone notices. This paper catalogs 63 real budget-overrun incidents — and asks the type system to make over-spending a compile error.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_2e50ab",
+      "slug": "claude-agent-skills",
+      "type": "news",
+      "title": "Claude Agent Skills",
+      "hook": "Agent Skills package instructions, scripts, and resources into folders an agent loads on demand — composable, portable expertise, later opened as a standard like MCP.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2025-10-16"
+    },
+    {
+      "id": "card_99ec55",
+      "slug": "agent-skill-regression-tax",
+      "type": "paper",
+      "title": "The Regression Tax on Agent Skills",
+      "hook": "Handing an agent a procedural skill doesn't only add wins — it also breaks tasks it used to solve. The best skills win by regressing less, not by gaining more.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_880fc7#0",
+      "format": "quiz",
+      "prompt": "What makes Convergent Detour Hijacking hard to catch?",
+      "choices": [
+        {
+          "text": "The detour returns to the original route, so the task still completes correctly",
+          "correct": true
+        },
+        {
+          "text": "It requires privileged access to the agent runtime",
+          "correct": false
+        },
+        {
+          "text": "It only triggers on inputs the defender cannot observe",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eCDH preserves the outcome — aggregate task completion stays comparable — so anything checking only final answers sees nothing wrong. The damage is in cost and trajectory.\u003c/p\u003e"
+    },
+    {
+      "id": "card_880fc7#1",
+      "format": "flip",
+      "prompt": "Which two control points does a third-party skill expose to its publisher?",
+      "back_html": "\u003cp\u003eThe natural-language description, which decides whether the skill gets selected, and the instruction body, which shapes the agent's plan once selected.\u003c/p\u003e"
+    },
+    {
+      "id": "card_880fc7#2",
+      "format": "flip",
+      "prompt": "What does the paper conclude about outcome-based evaluation of agents?",
+      "back_html": "\u003cp\u003eCorrect outcomes do not guarantee trajectory integrity or cost safety — an agent can be steered onto an expensive detour and still finish the job.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "id": "card_32a436",
+  "slug": "openai-biodefense",
+  "type": "news",
+  "title": "OpenAI's Biodefense Action Plan",
+  "hook": "The same frontier AI that could lower the bar for engineering a pathogen could also help defend against one. OpenAI's plan leans hard into the second half of that dual-use coin.",
+  "key_points": [
+    "OpenAI frames advanced AI in biology as dual-use: a risk that lowers barriers to threats, and a tool to strengthen defense.",
+    "The plan centers on giving trusted defenders access to frontier AI for biosecurity work.",
+    "It builds on GPT-Rosalind, a reasoning model for biology, and the Rosalind Biodefense effort for pandemic preparedness.",
+    "Goals include earlier outbreak warning, faster medical countermeasures, better diagnostics, and a stronger evaluations ecosystem."
+  ],
+  "content_html": "\u003cp\u003eAs AI models get better at reasoning over biology, they sharpen a double-edged problem: the same capability that could help a bad actor design a pathogen could also help society detect and stop one. OpenAI's \u0026quot;Biodefense in the Intelligence Age\u0026quot; lays out an action plan that bets on the defensive side — building, in its framing, toward \u0026quot;AI-powered biological resilience.\u0026quot;\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe core move is to equip trusted defenders. The plan builds on GPT-Rosalind, a frontier reasoning model OpenAI introduced for biology, drug discovery, and translational medicine, and on Rosalind Biodefense, an effort to help vetted developers build pandemic-preparedness capabilities. OpenAI says it is extending trusted access to select U.S. government and allied partners with approved public-health missions, aimed at high-impact workflows: early-warning systems, outbreak-response planning, diagnostics, and medical-countermeasure development. The broader strategy pairs that access with safeguards and a stronger evaluations ecosystem, and OpenAI planned a biodefense summit to deepen government and NGO partnerships. It lands amid a wider policy moment — frontier labs have publicly warned that AI is making it easier to design biological threats, putting biosecurity squarely on the governance agenda. See the OpenAI post for the full plan.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "url": "https://openai.com/index/biodefense-in-the-intelligence-age",
+    "published_at": "2026-06-04",
+    "license": "OpenAI blog (link-out)"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "lab-updates"
+  ],
+  "tags": [
+    "safety",
+    "alignment",
+    "news"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-06-08",
+  "date": "2026-06-04",
+  "related": [
+    {
+      "id": "card_490028",
+      "slug": "model-evaluation-for-extreme-risks",
+      "type": "paper",
+      "title": "Model Evaluation for Extreme Risks",
+      "hook": "General-purpose AI tends to pick up dangerous capabilities alongside useful ones. So test for those capabilities directly — before you ship, not after.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-24"
+    },
+    {
+      "id": "card_b475e8",
+      "slug": "frontier-ai-regulation",
+      "type": "paper",
+      "title": "Frontier AI Regulation",
+      "hook": "How do you regulate models too new to have rules yet? This paper sketches three building blocks: set standards, make labs report, then enforce.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-07-06"
+    },
+    {
+      "id": "card_ac3d09",
+      "slug": "openai-frontier-governance-framework",
+      "type": "news",
+      "title": "OpenAI's Frontier Governance Framework",
+      "hook": "A major lab publishes how it intends to govern its most capable models — and explicitly maps those safety, security, and risk practices onto emerging EU and California rules.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-05-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_32a436#0",
+      "format": "quiz",
+      "prompt": "How does OpenAI's plan frame advanced AI's role in biology?",
+      "choices": [
+        {
+          "text": "As dual-use — a risk that could aid bio-threats, and a tool to strengthen biodefense",
+          "correct": true
+        },
+        {
+          "text": "As purely beneficial, with no biosecurity downside",
+          "correct": false
+        },
+        {
+          "text": "As too dangerous to apply to biology at all",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe action plan acknowledges that frontier AI can lower barriers to biological threats while arguing the same capabilities can equip defenders — so the strategy is to advance defense alongside safeguards.\u003c/p\u003e"
+    },
+    {
+      "id": "card_32a436#1",
+      "format": "flip",
+      "prompt": "What concrete capabilities does the biodefense plan aim to improve?",
+      "back_html": "\u003cp\u003eEarlier outbreak warning, faster development of medical countermeasures, stronger diagnostics and preparedness, and a more robust evaluations ecosystem — by giving trusted defenders access to frontier AI.\u003c/p\u003e"
+    },
+    {
+      "id": "card_32a436#2",
+      "format": "flip",
+      "prompt": "What is the strategic idea behind giving only *trusted* partners frontier access for biodefense?",
+      "back_html": "\u003cp\u003eIt tries to capture AI's defensive upside (detection, countermeasures, response) while limiting the dual-use risk of broad access to capabilities that could also aid bad actors.\u003c/p\u003e"
+    }
+  ]
+}

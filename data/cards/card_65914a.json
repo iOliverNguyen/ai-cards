@@ -1,0 +1,119 @@
+{
+  "id": "card_65914a",
+  "slug": "v-rubrics-visual-faithfulness",
+  "type": "paper",
+  "title": "V-Rubrics: Grading a VLM's Answer Fact by Fact",
+  "hook": "A single ungrounded object or misread chart value can sink an otherwise good answer — and a pass/fail reward can't tell you which part broke. V-Rubrics hands out partial credit per visual claim.",
+  "key_points": [
+    "The authors frame ungrounded VLM answers as a credit-assignment failure: a scalar outcome reward says acceptable or not, never which visual fact was wrong.",
+    "Reference responses are decomposed into atomic propositions, turned into rubric items scored on three axes.",
+    "The axes: Visual Faithfulness, Reasoning Consistency, and Instruction Following.",
+    "Rubric credit is localized to the prefix where the supporting evidence span appears, so the reward points at the failing step.",
+    "V-Rubrics 50K holds 50,248 examples drawn from 17 visually grounded sources, difficulty-rated by rejection sampling and annotated with Gemini-3-Pro.",
+    "Rubric-based GRPO beat both the shared SFT baseline and answer-only GRPO, with the largest gains on knowledge-oriented and visually grounded reasoning."
+  ],
+  "content_html": "\u003cp\u003eVision-language models write fluent answers that quietly aren't grounded in the image: one invented object, one misread chart value, one unsupported intermediate inference. Tian et al. argue this is not a capability gap so much as a credit-assignment failure in multimodal post-training. A scalar outcome reward tells the policy whether its whole answer passed; it says nothing about which visual claims were actually supported, which reasoning steps were valid, or which instruction constraints got dropped — so there is nothing for the policy to localize and fix.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eVisual Rubrics-Based Reinforcement Learning decomposes each reference response into atomic propositions and turns them into rubric items scored along Visual Faithfulness, Reasoning Consistency, and Instruction Following. That yields structured partial credit, and where a supporting evidence span exists, the credit is localized to the prefix containing it. The setup: an SFT checkpoint from fine-tuning Qwen3-VL-8B-Instruct on the public OpenMMReasoner-SFT-874K corpus, then V-Rubrics 50K — 50,248 examples from 17 visually grounded sources, rule-filtered, difficulty-rated from rejection-sampling scores, and annotated with Gemini-3-Pro under one structured protocol. Training the same checkpoint with component-wise, prefix-localized rubric credit, their rubric-based GRPO improves over both the shared SFT baseline and answer-only GRPO, with the largest gains on knowledge-oriented and visually grounded reasoning benchmarks. The takeaway the authors push: rubrics are a useful \u003cem\u003ereward abstraction\u003c/em\u003e for visual post-training, not just an evaluation format.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Shulin Tian",
+      "Minglun Li",
+      "Yuhao Dong",
+      "Hao Ding",
+      "Jiarui Yao",
+      "Haiwen Diao",
+      "Jingkang Yang",
+      "Hongyuan Zhu",
+      "Ziwei Liu"
+    ],
+    "url": "https://arxiv.org/abs/2608.25580",
+    "published_at": "2026-08-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "vlms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "alignment",
+    "multimodal",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_e86eea",
+      "slug": "multimodal-reward-hacking-in-rl",
+      "type": "paper",
+      "title": "Multimodal Reward Hacking: RL Creates It, Doesn't Just Inherit It",
+      "hook": "Train a multimodal model with outcome-only RL rewards and it doesn't just exploit shortcuts it already had — the training itself manufactures new ones, up to 48% of the time.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-10"
+    },
+    {
+      "id": "card_55a59d",
+      "slug": "dynamicrubric-co-evolving-evaluators",
+      "type": "paper",
+      "title": "DynamicRubric: Co-Evolving LLM Evaluators and Policies",
+      "hook": "As a model improves, its candidate answers get so close in quality that the reward model can't tell them apart. DynamicRubric fixes the bottleneck by evolving the evaluator alongside the policy.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-22"
+    },
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_65914a#0",
+      "format": "flip",
+      "prompt": "Why do the authors call ungrounded VLM answers a credit-assignment problem?",
+      "back_html": "\u003cp\u003eA scalar outcome reward only says whether the whole answer was acceptable. It never identifies which visual facts were grounded, which reasoning steps held, or which instructions were missed.\u003c/p\u003e"
+    },
+    {
+      "id": "card_65914a#1",
+      "format": "quiz",
+      "prompt": "Along which three axes does V-Rubrics score a generated answer?",
+      "choices": [
+        {
+          "text": "Visual Faithfulness, Reasoning Consistency, Instruction Following",
+          "correct": true
+        },
+        {
+          "text": "Helpfulness, Harmlessness, Honesty",
+          "correct": false
+        },
+        {
+          "text": "Precision, Recall, Calibration",
+          "correct": false
+        },
+        {
+          "text": "Fluency, Coherence, Style",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eReference responses are broken into atomic propositions and the resulting rubric items score visual grounding, reasoning validity, and constraint adherence separately.\u003c/p\u003e"
+    },
+    {
+      "id": "card_65914a#2",
+      "format": "flip",
+      "prompt": "What does 'prefix-localized' rubric credit buy you over a single answer-level score?",
+      "back_html": "\u003cp\u003eWhen an evidence span is available, credit attaches to the prefix that contains it — so the reward signal points at the specific step that failed instead of grading only the final answer.\u003c/p\u003e"
+    }
+  ]
+}

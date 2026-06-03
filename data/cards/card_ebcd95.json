@@ -1,0 +1,135 @@
+{
+  "id": "card_ebcd95",
+  "slug": "rhetoric-reward-hacks-ai-reviewers",
+  "type": "paper",
+  "title": "How Rhetoric Reward-Hacks an AI Reviewer",
+  "hook": "Rewrite a paper's framing without changing a single result, and LLM reviewers move their scores. The effect is structured: evidence framing and novelty stance move them most.",
+  "key_points": [
+    "4,200 manuscripts were built from 120 anonymized ICLR 2026 submissions, with two LLM rewriters pushing six rhetorical dimensions in opposing directions.",
+    "Scientific content is held constant — only presentation varies — so any score movement is content-preserving reward hacking.",
+    "Sensitivity is structured, not uniform: evidence framing and novelty stance produce the largest contrasts, scope framing a weaker second tier.",
+    "Direction depends on the reviewer's original score: low scores tend to rise, high scores tend to fall, with the clearest effects in the middle ranges.",
+    "Roles separate cleanly — the rewriter determines how far apart the variants land, the reviewer determines the magnitude and sign of the score effect.",
+    "Strict review protocols lower mean overall assessment by 1.36 points without consistently reducing rhetorical sensitivity."
+  ],
+  "content_html": "\u003cp\u003eIf LLMs are going to review science, the question is whether they're grading the work or the writing. Li and colleagues built a controlled test: 120 anonymized ICLR 2026 submissions, expanded into 4,200 full-paper variants by two LLM rewriters that push six rhetorical dimensions in opposite directions while leaving the reported scientific content intact. Five LLM reviewers then scored the results under standard and strict protocols.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe sensitivity is real and it has shape. Evidence framing and novelty stance produce the largest positive-versus-negative contrasts in overall assessment; scope framing forms a weaker second tier; the rest are smaller or unstable. The hierarchy holds across human-assessed quality levels, which rules out the comfortable explanation that only bad papers are manipulable. Score movement also depends on where the reviewer started — low scores drift up, high scores drift down, and the contrast is sharpest in the middle ranges, which is precisely the band where accept/reject is decided.\u003c/p\u003e\n\u003cp\u003eTwo findings temper the \u0026quot;just prompt harder\u0026quot; reflex. More elaborate attack workflows don't reliably pay: joint rewriting is strongly rewriter-dependent, reviewer guidance doesn't consistently beat an unguided second pass, and repeated rewriting yields diminishing, configuration-dependent returns. And strict review protocols simply shift the whole distribution down by 1.36 points without consistently reducing rhetorical sensitivity. The authors' conclusion is that robustness to content-preserving variation has to be designed into the evaluation system, not prompted into the reviewer.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ming Li",
+      "Chenguang Wang",
+      "Xirui Li",
+      "Xinyue Zeng",
+      "Dianqi Li",
+      "Peng Shi",
+      "Dawei Zhou",
+      "Tianyi Zhou"
+    ],
+    "url": "https://arxiv.org/abs/2608.08975",
+    "published_at": "2026-08-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "papers-this-week",
+    "evaluation"
+  ],
+  "tags": [
+    "paper",
+    "benchmark",
+    "safety",
+    "alignment"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-17",
+  "date": "2026-08-10",
+  "related": [
+    {
+      "id": "card_f3fb1d",
+      "slug": "inside-the-unfair-judge-bias-subspace",
+      "type": "paper",
+      "title": "Inside the Unfair Judge: A Mechanistic Account of LLM-as-Judge Bias",
+      "hook": "LLM judge bias isn't just noisy scoring — it has a geometric signature in hidden states you can find, steer, and use to predict failures on benchmarks you've never tested.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-13"
+    },
+    {
+      "id": "card_55a59d",
+      "slug": "dynamicrubric-co-evolving-evaluators",
+      "type": "paper",
+      "title": "DynamicRubric: Co-Evolving LLM Evaluators and Policies",
+      "hook": "As a model improves, its candidate answers get so close in quality that the reward model can't tell them apart. DynamicRubric fixes the bottleneck by evolving the evaluator alongside the policy.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-22"
+    },
+    {
+      "id": "card_57f8b7",
+      "slug": "reproducing-2200-icml-papers",
+      "type": "blog",
+      "title": "What 2,226 Reproduced ICML Papers Revealed",
+      "hook": "A community hackathon re-ran a third of ICML 2026. Half the papers had a claim verified — and 23% had a claim falsified or contested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-13"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_ebcd95#0",
+      "format": "quiz",
+      "prompt": "Which rhetorical dimensions moved AI reviewer scores the most?",
+      "choices": [
+        {
+          "text": "Evidence framing and novelty stance",
+          "correct": true
+        },
+        {
+          "text": "Sentence length and readability",
+          "correct": false
+        },
+        {
+          "text": "Citation count and reference formatting",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThose two produced the largest positive-negative contrasts in overall assessment, with scope framing a weaker second tier and the remaining dimensions smaller or less stable.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ebcd95#1",
+      "format": "quiz",
+      "prompt": "How did a paper's original AI-assigned score affect how much rhetoric moved it?",
+      "choices": [
+        {
+          "text": "Low scores tended to rise and high scores tended to fall, with the clearest effects mid-range",
+          "correct": true
+        },
+        {
+          "text": "High-scoring papers gained the most, amplifying existing rankings",
+          "correct": false
+        },
+        {
+          "text": "The starting score made no measurable difference",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe effect regresses toward the middle, which means rhetoric is most decisive exactly where accept/reject decisions are actually contested.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ebcd95#2",
+      "format": "flip",
+      "prompt": "In this setup, what does the rewriter control versus what the reviewer controls?",
+      "back_html": "\u003cp\u003eThe rewriter primarily determines the separation between opposing variants; the reviewer determines the magnitude and sign of their score effects. Two different failure surfaces.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ebcd95#3",
+      "format": "flip",
+      "prompt": "Did strict review protocols fix the problem?",
+      "back_html": "\u003cp\u003eNo. Strict review lowered mean overall assessment by 1.36 points — it made reviewers harsher across the board without consistently reducing sensitivity to content-preserving rewrites.\u003c/p\u003e"
+    }
+  ]
+}

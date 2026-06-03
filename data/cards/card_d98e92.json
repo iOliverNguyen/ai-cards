@@ -1,0 +1,115 @@
+{
+  "id": "card_d98e92",
+  "slug": "in-place-tokenizer-expansion",
+  "type": "paper",
+  "title": "In-Place Tokenizer Expansion for Pre-trained LLMs",
+  "hook": "On-device models ship small vocabularies to save memory, so languages added later get shredded into extra tokens. This recipe grows the tokenizer after the fact — no retraining from scratch.",
+  "key_points": [
+    "Tokenizers are fixed at pretraining time and sized to the corpus of that era; languages prioritized later get split into far more tokens per word, raising latency and energy cost.",
+    "Recipe: continue the existing tokenizer's BPE merges on a multilingual corpus so old tokens carry over unchanged, and initialize new token embeddings as the mean of their source sub-token embeddings.",
+    "Two-stage adaptation (embedding-only training, then full-model continued pretraining) recovers the original checkpoint's quality.",
+    "Applied to LFM2-8B-A1B (an 8B MoE model) to produce LFM2.5-8B-A1B with a 128K tokenizer: Hindi and Vietnamese now use ~2.4-2.6x fewer tokens (up to 4x for Thai), for an estimated 2.2-3.7x per-character decode speedup."
+  ],
+  "content_html": "\u003cp\u003eVocabulary choices made at pretraining time stick around for the life of a model. If a language gets added to the priority list later, it still gets chopped into many more tokens per word than languages the original tokenizer was built for — which costs latency, compute, and energy every time someone uses the model in that language. This paper proposes a way to fix that after the fact, without retraining the tokenizer or the model from zero.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eJimmy T. H. Smith and a team spanning Liquid AI and MIT continue the existing tokenizer's byte-pair-encoding merges on a multilingual corpus, so nearly all the original tokens survive unchanged and every new token decomposes exactly into old sub-tokens. New embedding rows start as the mean of their source sub-token embeddings rather than random noise, and a two-stage process — embedding-only tuning, then a round of full-model continued pretraining — recovers the source checkpoint's quality.\u003c/p\u003e\n\u003cp\u003eApplied to LFM2-8B-A1B, an 8B-parameter mixture-of-experts model, the recipe produces LFM2.5-8B-A1B with a 128K-token vocabulary. Hindi and Vietnamese text now takes roughly 2.4x and 2.6x fewer tokens to encode (up to 4x for Thai), which the authors translate into an estimated 2.2-3.7x per-character decode speedup on their reference devices. They release both the model weights and the expanded tokenizer, along with notes on approaches that didn't work. Source: arXiv, arxiv.org/abs/2607.15232.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jimmy T. H. Smith",
+      "Tarek Dakhran",
+      "Alberto Cabrera",
+      "Simon S. Lee",
+      "Paul Pak",
+      "Aditya Tadimeti",
+      "Tim Seyde",
+      "Maxime Labonne",
+      "Alexander Amini",
+      "Mathias Lechner"
+    ],
+    "url": "https://arxiv.org/abs/2607.15232",
+    "published_at": "2026-07-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "tokenization",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "nlp",
+    "paper",
+    "open-source"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-16",
+  "related": [
+    {
+      "id": "card_a2690e",
+      "slug": "byte-pair-encoding",
+      "type": "paper",
+      "title": "Subword Tokenization with Byte-Pair Encoding",
+      "hook": "Whole words make a giant vocabulary; single characters make long sequences. Subwords split the difference — and let models read words they've never seen.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2015-08-31"
+    },
+    {
+      "id": "card_9ff16f",
+      "slug": "sentencepiece",
+      "type": "paper",
+      "title": "SentencePiece: Language-Independent Tokenization",
+      "hook": "Most tokenizers assume you can split on spaces first. SentencePiece drops that assumption and tokenizes raw text directly — in any language.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2018-08-19"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_a2690e",
+      "slug": "byte-pair-encoding",
+      "type": "paper",
+      "title": "Subword Tokenization with Byte-Pair Encoding",
+      "hook": "Whole words make a giant vocabulary; single characters make long sequences. Subwords split the difference — and let models read words they've never seen.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2015-08-31"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_d98e92#0",
+      "format": "flip",
+      "prompt": "Why do on-device models suffer more than cloud models from a small, fixed tokenizer vocabulary?",
+      "back_html": "\u003cp\u003eEmbedding and LM-head matrices are a small fraction of a huge cloud model's parameters, but a material share of a compact model's per-token decode cost — so on-device models ship small vocabularies and accept fragmentation for languages outside them.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d98e92#1",
+      "format": "quiz",
+      "prompt": "How does this recipe expand a tokenizer's vocabulary without retraining the tokenizer from scratch?",
+      "choices": [
+        {
+          "text": "It continues the existing tokenizer's BPE merges on new multilingual data, keeping old tokens unchanged and initializing new embeddings as the mean of their source sub-tokens",
+          "correct": true
+        },
+        {
+          "text": "It discards the old tokenizer entirely and trains a brand-new one on the multilingual corpus",
+          "correct": false
+        },
+        {
+          "text": "It randomly initializes all new token embeddings and retrains the full model from random init",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBecause new tokens have an exact decomposition into old source tokens, their embeddings can be seeded sensibly rather than from scratch, which is what makes the two-stage recovery cheap.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d98e92#2",
+      "format": "flip",
+      "prompt": "What efficiency gain did the expanded 128K tokenizer produce for LFM2.5-8B-A1B on Hindi and Vietnamese?",
+      "back_html": "\u003cp\u003eRoughly 2.4x and 2.6x fewer tokens per input respectively (up to 4x for Thai), translating into an estimated 2.2-3.7x per-character decode speedup on the reference devices.\u003c/p\u003e"
+    }
+  ]
+}

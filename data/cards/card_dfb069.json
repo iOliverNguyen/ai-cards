@@ -1,0 +1,125 @@
+{
+  "id": "card_dfb069",
+  "slug": "asymspec-asymmetric-speculative-decoding",
+  "type": "paper",
+  "title": "AsymSpec: Context-Asymmetric Speculative Decoding for Agentic LLMs",
+  "hook": "Speculative decoding assumes drafter and verifier read the same context. Let the small drafter see everything while the big model reads a compressed view, and compression stops costing accuracy.",
+  "key_points": [
+    "Agentic pipelines compress inputs to control latency as context piles up from retrieval, tools, and turns — and lose accuracy doing it.",
+    "Standard speculative decoding is lossless but requires identical drafter and verifier context, so it can't fix that trade-off.",
+    "AsymSpec breaks the symmetry: a lightweight drafter reads the full input, the large verifier operates on the compressed view.",
+    "The drafter steers the verifier through a contrastive delta-fusion of logits.",
+    "A divergence-aware acceptance gate preserves verification stability and keeps draft acceptance high.",
+    "Reaches roughly 90% of full-context accuracy with 1.3-1.7x throughput at 0.2-0.3x the compute on isolated text capabilities."
+  ],
+  "content_html": "\u003cp\u003eAgentic LLM pipelines accumulate context relentlessly — retrieval results, tool outputs, multi-turn history — and inference cost climbs with it. The standard fix is to compress the input, which controls latency but degrades task accuracy. \u003cstrong\u003eSpeculative decoding\u003c/strong\u003e would seem like the right tool, since it accelerates generation losslessly, but it assumes drafter and verifier see identical context, so it has nothing to say about the compression trade-off.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eBreaking the symmetry\u003c/h2\u003e\n\u003cp\u003eLiang and colleagues make the two models read \u003cem\u003edifferent\u003c/em\u003e things. A lightweight drafter reads the \u003cstrong\u003efull\u003c/strong\u003e input; the large verifier operates on the \u003cstrong\u003ecompressed\u003c/strong\u003e view. The drafter — which still holds the details compression threw away — steers the verifier via a contrastive delta-fusion of logits, modulated by a divergence-aware acceptance gate that keeps verification stable and draft acceptance rates high. The cheap model supplies the missing context; the expensive model supplies the quality.\u003c/p\u003e\n\u003ch2\u003eResults\u003c/h2\u003e\n\u003cp\u003eEvaluated across four agentic capabilities and two end-to-end agent benchmarks, AsymSpec reaches approximately 90% of full-context accuracy on average while delivering 1.3-1.7x throughput speedups at 0.2-0.3x the compute cost on isolated text capabilities. The authors' framing is worth keeping: asymmetric context access pays off precisely when compression discards critical reasoning signal — which is exactly the regime where naive compression hurts most. Note this is no longer lossless in the strict speculative-decoding sense; the verifier's distribution is being steered, and the ~90% figure is the price. arXiv, 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Sheng Liang",
+      "Yongyue Zhang",
+      "Nathanael Brian",
+      "Hang Lv",
+      "Hao Wang",
+      "Chen Zhang",
+      "Yong Liu"
+    ],
+    "url": "https://arxiv.org/abs/2608.26004",
+    "published_at": "2026-08-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "inference",
+    "efficiency",
+    "agent",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_951958",
+      "slug": "speculative-decoding",
+      "type": "paper",
+      "title": "Speculative Decoding",
+      "hook": "Let a small, fast model guess the next few words, then have the big model check them all in one shot. Same output, fewer slow steps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-30"
+    },
+    {
+      "id": "card_8cbdb3",
+      "slug": "spork-self-speculative-forking",
+      "type": "paper",
+      "title": "SPORK: Self-Speculative Forking to Accelerate Agentic LLM Inference",
+      "hook": "An agent's tool-call loop idles the GPU 16-37% of the time waiting on results. SPORK has the model predict its own next tool call early enough to start it before reasoning even finishes.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-03"
+    },
+    {
+      "id": "card_1bff26",
+      "slug": "jetspec-speculative-decoding",
+      "type": "paper",
+      "title": "JetSpec: Breaking the Scaling Ceiling of Speculative Decoding",
+      "hook": "Speculative decoding stalls when bigger draft trees stop paying off. JetSpec trains a causal parallel draft head that drafts in one pass yet stays branch-consistent — hitting up to 9.64x speedup.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-25"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_951958",
+      "slug": "speculative-decoding",
+      "type": "paper",
+      "title": "Speculative Decoding",
+      "hook": "Let a small, fast model guess the next few words, then have the big model check them all in one shot. Same output, fewer slow steps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-30"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_dfb069#0",
+      "format": "flip",
+      "prompt": "What symmetry does AsymSpec deliberately break, and why?",
+      "back_html": "\u003cp\u003eThe assumption that drafter and verifier share identical context. Letting the cheap drafter read the full input while the expensive verifier reads a compressed view recovers the reasoning signal compression would have thrown away.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dfb069#1",
+      "format": "quiz",
+      "prompt": "How does AsymSpec's drafter influence the verifier's output?",
+      "choices": [
+        {
+          "text": "Through a contrastive delta-fusion of logits, gated by a divergence-aware acceptance rule",
+          "correct": true
+        },
+        {
+          "text": "By rewriting the compressed prompt before the verifier sees it",
+          "correct": false
+        },
+        {
+          "text": "By fine-tuning the verifier's weights online during decoding",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe drafter steers via contrastive delta-fusion of logits; the divergence-aware acceptance gate keeps verification stable and draft acceptance rates high.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dfb069#2",
+      "format": "flip",
+      "prompt": "When do the authors say asymmetric context access pays off most?",
+      "back_html": "\u003cp\u003ePrecisely when compression discards critical reasoning signal — the drafter still has that signal and can steer the verifier back toward the full-context answer.\u003c/p\u003e"
+    }
+  ]
+}

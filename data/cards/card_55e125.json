@@ -1,0 +1,142 @@
+{
+  "id": "card_55e125",
+  "slug": "latent-on-policy-self-distillation",
+  "type": "paper",
+  "title": "Latent On-Policy Self-Distillation",
+  "hook": "Every on-policy self-distillation method hand-picks what the teacher gets to see. LOPD makes that privileged context a learned vector instead of a design choice.",
+  "key_points": [
+    "On-policy self-distillation gives a student dense supervision by letting a 'privileged' self-teacher see something extra — answers, feedback, skills, or reference trajectories.",
+    "Those privileged artifacts are hand-specified, which caps how far the loop can keep improving on its own.",
+    "LOPD retrieves relevant past experiences and compresses them into continuous latent tokens that condition the teacher, learned end-to-end.",
+    "The student generates trajectories from the task plus interaction history and gets token-level supervision at every visited prefix.",
+    "A privileged-margin objective keeps the learned latent context from collapsing or drifting during training.",
+    "Reported to beat RLVR, OPSD, SDPO and Skill-SD on agentic tool use and code generation, using under 30% of GRPO's rollout budget."
+  ],
+  "content_html": "\u003cp\u003eOn-policy self-distillation is one of the cleaner recipes for letting an agent learn from its own experience: the model runs its own trajectories, and a \u0026quot;privileged\u0026quot; copy of itself — one that gets to see something the student doesn't — hands back dense, per-token supervision instead of a single sparse reward. The catch is that a human always decides what the privileged copy sees. Zhang et al. propose making that decision learnable.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTheir method, LOPD, retrieves relevant past experiences and composes them into continuous latent tokens that condition the self-teacher. Nothing about the privileged signal is prescribed in advance — it's trained end-to-end alongside the policy, with a privileged-margin objective added to keep that learning stable. The student meanwhile generates trajectories from the task and its interaction history, and is supervised at every visited prefix.\u003c/p\u003e\n\u003cp\u003eThe authors report gains over RLVR and over representative OPSD variants (OPSD, SDPO, Skill-SD) on both agentic tool use and code generation, and claim they pass GRPO and Skill-SD with under 30% of their rollout budget. Ablations are their main evidence that the learnable part is doing the work rather than the retrieval. August 2026, arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Guibin Zhang",
+      "Jiayang Lyu",
+      "Ran Sun",
+      "Xinlei Yu",
+      "Haoyu Zhao",
+      "Qibing Ren",
+      "Shuicheng Yan"
+    ],
+    "url": "https://arxiv.org/abs/2608.13040",
+    "published_at": "2026-08-13",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "distillation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "paper",
+    "training",
+    "agent"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-17",
+  "date": "2026-08-13",
+  "related": [
+    {
+      "id": "card_faa6a6",
+      "slug": "unsupervised-on-policy-self-distillation",
+      "type": "paper",
+      "title": "On-Policy Self-Distillation without Any Supervision",
+      "hook": "Self-distillation that finally deserves the name: no ground truth, no bigger teacher — just a model voting against itself and fixing where it was confidently wrong.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-09"
+    },
+    {
+      "id": "card_3dde74",
+      "slug": "rethinking-on-policy-self-distillation-thinking-models",
+      "type": "paper",
+      "title": "Rethinking On-Policy Self-Distillation for Thinking Models",
+      "hook": "Giving a model the answer as privileged context sounds like it should only help. For thinking models on long reasoning traces, it backfires — accuracy drops up to 17%, and this explains why.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_63a204",
+      "slug": "direct-on-policy-distillation",
+      "type": "paper",
+      "title": "Weak-to-Strong Generalization via Direct On-Policy Distillation",
+      "hook": "RL post-training gets pricier as models scale, since it needs the strong model's own rollouts. Direct-OPD reuses a cheap RL run on a small model instead, transferring the direction RL moved it.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_b11089",
+      "slug": "self-supervised-visual-on-policy-distillation",
+      "type": "paper",
+      "title": "Self-Supervised Visual On-Policy Distillation",
+      "hook": "Distillation needs a teacher who knows more than the student. This paper gets that gap for free — not by informing the teacher, but by blinding the student.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-14"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_55e125#0",
+      "format": "flip",
+      "prompt": "What is the 'privileged context' in on-policy self-distillation, and what does LOPD change about it?",
+      "back_html": "\u003cp\u003eIt's the extra information the self-teacher sees that the student doesn't — normally hand-specified (answers, feedback, skills, trajectories). LOPD replaces it with continuous latent tokens learned end-to-end from retrieved experience.\u003c/p\u003e"
+    },
+    {
+      "id": "card_55e125#1",
+      "format": "quiz",
+      "prompt": "Why do the authors argue hand-crafted privileged artifacts limit self-evolving agents?",
+      "choices": [
+        {
+          "text": "A designer has to prescribe the form of the privileged signal, so the loop can't keep learning what supervision it needs",
+          "correct": true
+        },
+        {
+          "text": "They make the teacher larger than the student, which is too expensive to train",
+          "correct": false
+        },
+        {
+          "text": "They force the student to train on off-policy data from other models",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLOPD's pitch is end-to-end learnability: if the privileged context is fixed by hand, scalability of continual self-improvement is capped by the designer's choice.\u003c/p\u003e"
+    },
+    {
+      "id": "card_55e125#2",
+      "format": "flip",
+      "prompt": "Where does the student receive its training signal in LOPD?",
+      "back_html": "\u003cp\u003eDense token-level supervision from the privileged self-teacher at every visited prefix of the student's own trajectory — not just a single outcome reward at the end.\u003c/p\u003e"
+    },
+    {
+      "id": "card_55e125#3",
+      "format": "quiz",
+      "prompt": "What does LOPD's privileged-margin objective do?",
+      "choices": [
+        {
+          "text": "Stabilizes and regulates learning of the latent privileged context",
+          "correct": true
+        },
+        {
+          "text": "Caps the number of experiences that can be retrieved per task",
+          "correct": false
+        },
+        {
+          "text": "Penalizes the student for diverging from a frozen reference policy",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOnce the privileged context is learned rather than given, it needs a constraint to stay useful — the margin objective is what keeps that learning well-behaved.\u003c/p\u003e"
+    }
+  ]
+}

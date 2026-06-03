@@ -1,0 +1,101 @@
+{
+  "id": "card_faf5cb",
+  "slug": "trace-router-task-level-routing",
+  "type": "paper",
+  "title": "Route the Task, Not the Call",
+  "hook": "Agent quality only reveals itself at the end of a long workflow — so a router deciding per LLM call can never tell which decision earned the reward. Decide once, at admission.",
+  "key_points": [
+    "Cost-quality model routing is now a standard deployment feature, but most routers decide independently for each LLM call.",
+    "Agentic applications are long-horizon workflows whose quality shows up only as a delayed, task-level outcome.",
+    "That mismatch stops per-call routers from attributing the eventual feedback to any individual routing decision.",
+    "TRACE-Router aligns routing with the unit of supervision: a contextual bandit picks a model once at task admission, then pins every subsequent call to that backend.",
+    "It updates from the task's terminal reward, jointly accounting for accuracy and latency — no explicit task-complexity estimation needed.",
+    "On tau2-Bench it beats latency-matched interpolation between individual models by 7-8 accuracy points; on Terminal-Bench, 7.1 points above the strongest single model with 36% lower latency."
+  ],
+  "content_html": "\u003cp\u003eChoosing among LLMs with different cost–quality trade-offs has become a basic piece of enterprise deployment plumbing. Raj and colleagues observe that nearly all existing routers make the decision independently for each LLM call, and that this is structurally mismatched to how agents actually run: an agentic application is a long-horizon workflow whose quality is determined only by a delayed, task-level outcome. The router receives one verdict at the end and has no way to attribute it to any particular per-call choice — a credit-assignment problem, not a modelling one.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eAligning routing with supervision\u003c/h2\u003e\n\u003cp\u003e\u003cstrong\u003eTRACE-Router\u003c/strong\u003e makes the routing decision at the same granularity as the feedback. A contextual bandit assigns each task to a model once, at admission, and every subsequent LLM call in that task is pinned to the selected backend. The policy then updates from the task's terminal reward, jointly accounting for accuracy and latency. Because the bandit learns directly from delayed task feedback, it adapts to the workload without anyone having to build an explicit task-complexity estimator.\u003c/p\u003e\n\u003ch2\u003eResults\u003c/h2\u003e\n\u003cp\u003eAcross three agentic benchmarks the authors report improvements to the accuracy–latency trade-off, reaching non-dominated points on the Pareto frontier. On tau2-Bench, TRACE-Router outperforms latency-matched interpolation between the individual models by 7–8 accuracy points; on Terminal-Bench it achieves 7.1 more accuracy points than the strongest single-model baseline while running 36% lower latency. The transferable lesson is broader than routing: when supervision arrives at the task level, decisions made at the call level cannot be credited, so move the decision to where the signal lives.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ritik Raj",
+      "Souvik Kundu",
+      "Sarbartha Banerjee",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.22465",
+    "published_at": "2026-07-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "inference",
+    "agent",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-27",
+  "date": "2026-07-24",
+  "related": [
+    {
+      "id": "card_969cdf",
+      "slug": "model-routing-systems-optimization",
+      "type": "blog",
+      "title": "Model Routing Is Simple. Until It Isn't.",
+      "hook": "Picking the 'right' model per query looks like classification. IBM Research argues it's really a systems-optimization problem — and treating it as less costs money and speed.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-15"
+    },
+    {
+      "id": "card_b670a8",
+      "slug": "trace-agent-credit-assignment",
+      "type": "paper",
+      "title": "TRACE: Turn-Level Reward Assignment via Credit Estimation for Long-Horizon Agents",
+      "hook": "A failed agent rollout might still contain dozens of genuinely useful actions — outcome-only RL punishes every one of them the same as the final mistake. TRACE assigns credit per tool call instead, with no extra critic.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_faf5cb#0",
+      "format": "flip",
+      "prompt": "Why is per-call model routing a poor fit for agentic workflows?",
+      "back_html": "\u003cp\u003eQuality is only revealed by a delayed, task-level outcome at the end of a long-horizon workflow. A per-call router gets one lump of feedback and no way to attribute it to any individual routing decision.\u003c/p\u003e"
+    },
+    {
+      "id": "card_faf5cb#1",
+      "format": "quiz",
+      "prompt": "What does TRACE-Router do differently from a conventional per-call router?",
+      "choices": [
+        {
+          "text": "Picks a model once at task admission with a contextual bandit and pins all later calls to that backend",
+          "correct": true
+        },
+        {
+          "text": "Re-scores every call against a distilled task-complexity estimator before dispatching it",
+          "correct": false
+        },
+        {
+          "text": "Runs all candidate models in parallel and keeps whichever finishes first",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDeciding once per task makes the routing decision match the unit of supervision — the task's terminal reward — so the bandit can actually learn from the feedback it receives.\u003c/p\u003e"
+    },
+    {
+      "id": "card_faf5cb#2",
+      "format": "flip",
+      "prompt": "What does TRACE-Router learn from, and what does it avoid having to estimate?",
+      "back_html": "\u003cp\u003eIt updates its policy from the task's terminal reward, jointly accounting for accuracy and latency — which lets it adapt to the workload without explicitly estimating task complexity up front.\u003c/p\u003e"
+    }
+  ]
+}

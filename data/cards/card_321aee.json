@@ -1,0 +1,84 @@
+{
+  "id": "card_321aee",
+  "slug": "toy-models-superposition",
+  "type": "paper",
+  "title": "Toy Models of Superposition",
+  "hook": "Why is a single neuron so hard to interpret? It may be doing several jobs at once. Networks pack more features than they have neurons by overlapping them.",
+  "key_points": [
+    "Networks can represent more features than they have dimensions by storing them in overlapping 'superposition.'",
+    "This happens when features are sparse — rarely active at the same time — so collisions are tolerable.",
+    "Superposition explains 'polysemantic' neurons that respond to several unrelated concepts.",
+    "Studied in tiny, controllable toy models where the phenomenon can be observed cleanly."
+  ],
+  "content_html": "\u003cp\u003eNelson Elhage, Tristan Hume, and colleagues at Anthropic studied a puzzle in interpretability: why individual neurons so often seem to mean several things at once. Their answer is superposition — a network squeezing more features into a layer than it has neurons by storing them in overlapping combinations. Using deliberately tiny \u0026quot;toy\u0026quot; models they can fully analyze, they show exactly when and how this packing happens, giving a clean account of an effect that complicates reading real networks.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eIf a layer has, say, 5 neurons, you might expect it to track only 5 things. But if features are sparse — each one active only occasionally — the model can afford to overlap them, assigning each feature a direction even when directions outnumber neurons. Most of the time only a few are active, so the overlaps rarely interfere. The toy models reveal structure in how features get arranged and when the network chooses to superpose versus give a feature its own dedicated direction.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eSuperposition helps explain why staring at one neuron rarely yields a clean story: a single neuron can participate in many overlapping features at once. That has direct consequences for interpretability and safety, because understanding a model means untangling these overlaps rather than reading neurons one by one. The work motivated later efforts to find the \u0026quot;true\u0026quot; features hidden in superposition, and it remains a key conceptual tool for anyone trying to make sense of model internals.\u003c/p\u003e",
+  "source": {
+    "name": "Anthropic (Transformer Circuits)",
+    "authors": [
+      "Nelson Elhage",
+      "Tristan Hume",
+      "et al."
+    ],
+    "url": "https://transformer-circuits.pub/2022/toy_model/index.html",
+    "published_at": "2022-09-14",
+    "license": "Anthropic (open access)"
+  },
+  "topic_ids": [
+    "interpretability"
+  ],
+  "tags": [
+    "interpretability",
+    "safety"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-02",
+  "date": "2022-09-14",
+  "related": [
+    {
+      "id": "card_346b15",
+      "slug": "circuits-zoom-in",
+      "type": "resource",
+      "title": "Zoom In: An Introduction to Circuits",
+      "hook": "What if neural networks aren't black boxes but circuits you can read? This piece argues their features and weights form algorithms we can reverse-engineer.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2020-03-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_321aee#0",
+      "format": "flip",
+      "prompt": "What is superposition in a neural network?",
+      "back_html": "\u003cp\u003eA network representing more features than it has neurons by storing them in overlapping combinations, giving each feature a direction even when directions outnumber neurons.\u003c/p\u003e"
+    },
+    {
+      "id": "card_321aee#1",
+      "format": "quiz",
+      "prompt": "What condition lets a network tolerate packing features in superposition?",
+      "choices": [
+        {
+          "text": "Features are sparse — rarely active at the same time, so collisions are rare",
+          "correct": true
+        },
+        {
+          "text": "Features are always active together, averaging out noise",
+          "correct": false
+        },
+        {
+          "text": "The network has more neurons than features",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eWhen features are sparse, only a few are active at once, so the overlaps rarely interfere — making the packing tolerable.\u003c/p\u003e"
+    },
+    {
+      "id": "card_321aee#2",
+      "format": "flip",
+      "prompt": "How does superposition explain polysemantic neurons?",
+      "back_html": "\u003cp\u003eA single neuron can participate in many overlapping features at once, so it appears to respond to several unrelated concepts.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "id": "card_1ba4b7",
+  "slug": "grouped-query-experts",
+  "type": "paper",
+  "title": "Grouped Query Experts: MoE Inside Attention",
+  "hook": "Mixture-of-experts usually routes whole feed-forward layers. Grouped Query Experts routes attention query heads instead — matching a dense baseline while firing half of them per token.",
+  "key_points": [
+    "GQE puts a mixture-of-experts router inside grouped-query attention, picking k query-head experts per token.",
+    "Key-value heads stay dense, so the KV-cache savings of GQA are preserved.",
+    "Only active query-head computation drops — attention gets sparser without losing its cache benefit.",
+    "At 250M params on a fixed 30B-token budget, GQE matched the all-active GQA baseline while activating half the query heads per token."
+  ],
+  "content_html": "\u003cp\u003eMixture-of-experts (MoE) normally sparsifies the feed-forward layers of a Transformer — a router sends each token to a few expert MLPs. Grouped Query Experts (GQE), from Tripathi and Kumar, applies the same idea somewhere new: inside the attention mechanism, on top of grouped-query attention (GQA).\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eSelf-attention is often the most expensive part of a Transformer at long context, and standard dense attention applies the same heads to every token regardless of difficulty. GQE adds a router within each GQA group that selects k query-head \u0026quot;experts\u0026quot; per token. Crucially, the key-value (KV) heads stay dense and unchanged, so the model keeps GQA's reduced KV cache; only the active query-head computation goes down.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eOn a fixed 30B-token budget at the 250M-parameter scale, GQE matched the all-active GQA baseline in downstream accuracy while activating only half the query heads per token. That's the appeal of conditional computation moved into attention: spend attention compute where a token needs it, without sacrificing the cache efficiency that made GQA popular in the first place.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Vishesh Tripathi",
+      "Abhay Kumar"
+    ],
+    "url": "https://arxiv.org/abs/2606.20945",
+    "published_at": "2026-06-18",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "moe",
+    "attention-mechanisms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "attention",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-25",
+  "date": "2026-06-18",
+  "related": [
+    {
+      "id": "card_a114e8",
+      "slug": "grouped-query-attention",
+      "type": "paper",
+      "title": "Grouped-Query Attention (GQA)",
+      "hook": "Split the difference between multi-head and multi-query attention: share KV heads across groups of query heads and get most of the memory savings with little quality loss.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2023-05-22"
+    },
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    },
+    {
+      "id": "card_5e9c4b",
+      "slug": "multi-query-attention",
+      "type": "paper",
+      "title": "Multi-Query Attention: Faster Decoding",
+      "hook": "Share one key/value head across all query heads - the KV cache shrinks by a factor of H and decoding gets dramatically faster with barely any quality cost.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2019-11-05"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_1ba4b7#0",
+      "format": "flip",
+      "prompt": "What does Grouped Query Experts make sparse, and what does it keep dense?",
+      "back_html": "\u003cp\u003eIt routes (makes sparse) the query-head computation with a per-token expert router, while keeping the key-value heads dense — so GQA's KV-cache savings remain.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1ba4b7#1",
+      "format": "quiz",
+      "prompt": "Why does GQE keep the key-value heads dense rather than routing them too?",
+      "choices": [
+        {
+          "text": "To preserve grouped-query attention's reduced KV cache, so only query-head compute is cut",
+          "correct": true
+        },
+        {
+          "text": "Because routing key-value heads is mathematically impossible",
+          "correct": false
+        },
+        {
+          "text": "To make the KV cache larger for longer context",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGQA's whole benefit is a smaller KV cache from sharing key-value heads; GQE leaves that intact and only sparsifies the query-side work.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1ba4b7#2",
+      "format": "flip",
+      "prompt": "What was GQE's headline result at the 250M-parameter scale?",
+      "back_html": "\u003cp\u003eIt matched the all-active GQA baseline's downstream accuracy while activating only half the query heads per token, on a fixed 30B-token budget.\u003c/p\u003e"
+    }
+  ]
+}

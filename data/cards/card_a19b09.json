@@ -1,0 +1,96 @@
+{
+  "id": "card_a19b09",
+  "slug": "circuit-condensation",
+  "type": "paper",
+  "title": "Circuit Condensation: Train the Circuit Smaller",
+  "hook": "Circuit discovery on a frozen model returns hundreds of edges nobody can check. Post-train the model to route the behavior through fewer, and circuits shrink 8x on average — up to 316x.",
+  "key_points": [
+    "Circuit Condensation post-trains models to concentrate behaviors into smaller causal graphs.",
+    "Each round prunes low-attribution edges and trains a low-rank adapter to match the original through what remains.",
+    "A cut is kept only if task performance and general capability survive.",
+    "Across four behaviors and eight models, condensed circuits are smaller than the strongest frozen baseline in 30 of 32 settings — 8.1x on average, up to 316x.",
+    "Repeating the search without weight updates gives larger circuits in 29 of 32 settings, so weight updates drive the reduction, not search.",
+    "On indirect object identification, condensation isolates 24 heads (17 with documented roles) vs 61 heads (36 undocumented) for the matched frozen circuit."
+  ],
+  "content_html": "\u003cp\u003eMechanistic interpretability explains behavior through circuits: the components and connections that carry it. The practical problem is size. Discovery on a frozen model routinely returns hundreds of edges — too many to inspect by hand, compare across models, or verify exhaustively. Senthil Kumar proposes changing the model instead of the search.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe method\u003c/h2\u003e\n\u003cp\u003eCircuit Condensation post-trains a model to concentrate a behavior into a smaller causal graph. Each round prunes low-attribution edges and trains a low-rank adapter to match the original model's behavior through whatever remains. A cut is retained only if both task performance and general capability survive, so the model is not being lobotomized into a narrow specialist.\u003c/p\u003e\n\u003ch2\u003eResults\u003c/h2\u003e\n\u003cp\u003eAcross four behaviors and eight models, condensed circuits beat the strongest frozen baseline in 30 of 32 settings — 8.1x smaller on average, up to 316x. The control matters: rerunning the same search \u003cem\u003ewithout\u003c/em\u003e weight updates gives larger circuits in 29 of 32 settings, so the reduction comes from reshaping the model, not from a better search.\u003c/p\u003e\n\u003cp\u003eOn indirect object identification, the classic interpretability testbed, condensation isolates 24 heads, 17 of them with documented roles, versus 61 heads and 36 undocumented ones for the matched frozen circuit. Testing every subset of 19 circuits finds 11 that cannot be reduced further and reveals removable edges in the rest.\u003c/p\u003e\n\u003ch2\u003eThe caveats worth keeping\u003c/h2\u003e\n\u003cp\u003eA condensed circuit is a \u003cem\u003esufficient sub-circuit\u003c/em\u003e of the published mechanism, not a reconstruction of it — you have made the model simpler, not discovered that it was simple. And pair ablations expose dependencies between edges, confirming that their effects cannot be understood independently.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Sai Adith Senthil Kumar"
+    ],
+    "url": "https://arxiv.org/abs/2608.27254",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "training",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_00e1b0",
+      "slug": "visual-retrieval-heads",
+      "type": "paper",
+      "title": "Visual Retrieval Heads: 2% of Attention Does the Grounding",
+      "hook": "VLMs point at the right part of an image through a tiny set of attention heads — mask the top 20 and grounding accuracy drops by up to 80 points.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-08-27"
+    },
+    {
+      "id": "card_f16914",
+      "slug": "moral-foundations-geometry",
+      "type": "paper",
+      "title": "How Language Models Organize Moral Knowledge",
+      "hook": "Six moral foundations, six linear probes: the directions neither collapse into one 'morality detector' nor sit independently — they span near-maximal dimensions while sharing a common component.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-08-27"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a19b09#0",
+      "format": "flip",
+      "prompt": "What does Circuit Condensation change that ordinary circuit discovery does not?",
+      "back_html": "\u003cp\u003eThe weights. Discovery searches a frozen model for the edges carrying a behavior; condensation post-trains the model so the behavior runs through fewer edges in the first place.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a19b09#1",
+      "format": "quiz",
+      "prompt": "How do the authors show that weight updates, not better search, drive the size reduction?",
+      "choices": [
+        {
+          "text": "Repeating the same search without weight updates produced larger circuits in 29 of 32 settings",
+          "correct": true
+        },
+        {
+          "text": "They prove a bound on the minimum circuit size of a frozen model",
+          "correct": false
+        },
+        {
+          "text": "They compare against random edge pruning only",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe control isolates the variable: same search procedure, no training, bigger circuits. So the shrinkage comes from reshaping the model.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a19b09#2",
+      "format": "flip",
+      "prompt": "What is the important caveat about a condensed circuit?",
+      "back_html": "\u003cp\u003eIt is a sufficient sub-circuit of the published mechanism, not a reconstruction of it — and pair ablations show edges depend on each other, so effects cannot be read off individually.\u003c/p\u003e"
+    }
+  ]
+}

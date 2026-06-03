@@ -1,0 +1,98 @@
+{
+  "id": "card_fc42c9",
+  "slug": "nvidia-acquires-hugging-face",
+  "type": "news",
+  "title": "Nvidia Buys Hugging Face",
+  "hook": "The default public home for open-weight models is being bought by the company that sells the chips to run them — reported at roughly $13 billion.",
+  "key_points": [
+    "Business Insider reported Nvidia in talks to acquire Hugging Face for more than $13 billion in late August 2026.",
+    "The Information subsequently reported the deal agreed at $12.9 billion.",
+    "Hugging Face hosts the model weights, datasets, and libraries most of the open ecosystem depends on daily.",
+    "The buyer is the dominant supplier of AI accelerators — vertical integration from silicon to model distribution.",
+    "Community reaction on r/LocalLLaMA was sharply split between relief at deep pockets and worry about neutrality."
+  ],
+  "content_html": "\u003cp\u003eIn late August 2026, Business Insider reported that Nvidia was in talks to buy Hugging Face for more than $13 billion; The Information followed with a report that the deal was agreed at $12.9 billion. If it closes, the company that supplies most of the world's AI accelerators will also own the default public home for open-weight models.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eHugging Face is not just a website — it is where weights, datasets, tokenizers, and the \u003ccode\u003etransformers\u003c/code\u003e library live, and where most open releases are published first. That makes it the closest thing the open ecosystem has to shared infrastructure. Handing it to a hardware vendor is textbook vertical integration: Nvidia would own the layer that decides how models are distributed and the layer they run on.\u003c/p\u003e\n\u003cp\u003eReaction in the local-model community was mixed. Some argued that deep pockets secure the hosting bill for a service that has always been expensive and free. Others pointed to Nvidia's incentive to steer the stack toward its own hardware, and to its uneven record as an open-source steward. Details here come from press reports rather than an official joint announcement, so treat the figures as reported rather than confirmed.\u003c/p\u003e",
+  "source": {
+    "name": "r/LocalLLaMA",
+    "authors": [
+      "/u/Nunki08"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1vzfwnd/nvidia_has_been_in_talks_to_acquire_hugging_face",
+    "published_at": "2026-08-27",
+    "license": "Reddit (community post)"
+  },
+  "topic_ids": [
+    "lab-updates",
+    "risks-policy"
+  ],
+  "tags": [
+    "news",
+    "open-source"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_af692b",
+      "slug": "nvidia-hf-llama-cpp-stewardship",
+      "type": "news",
+      "title": "The llama.cpp Question in the Nvidia–Hugging Face Deal",
+      "hook": "Buying Hugging Face means also acquiring the employer of the llama.cpp and ggml team — the software almost all local LLM inference runs on.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-08-27"
+    },
+    {
+      "id": "card_bc290b",
+      "slug": "state-of-open-models-summer-2026",
+      "type": "blog",
+      "title": "State of Open Models, Summer 2026: Attention Isn't Adoption",
+      "hook": "Hugging Face crunched a year of Hub data: Chinese labs shipped the biggest open models nearly every month, but models under 1B parameters took 83% of all downloads.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-08-14"
+    },
+    {
+      "id": "card_f443de",
+      "slug": "huggingface-security-incident-july-2026",
+      "type": "news",
+      "title": "Hugging Face Discloses a Security Incident Driven End-to-End by an AI Agent",
+      "hook": "Hugging Face says it caught and contained a production intrusion carried out entirely by an autonomous AI agent — detected largely by its own AI-based anomaly triage, not a human tip.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2026-07-16"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_fc42c9#0",
+      "format": "flip",
+      "prompt": "Why does Nvidia owning Hugging Face raise neutrality concerns?",
+      "back_html": "\u003cp\u003eHugging Face is the shared distribution layer for open-weight models, and Nvidia is the dominant seller of the hardware those models run on — one company would control both the storefront and the silicon.\u003c/p\u003e"
+    },
+    {
+      "id": "card_fc42c9#1",
+      "format": "quiz",
+      "prompt": "What role does Hugging Face play in the open-model ecosystem?",
+      "choices": [
+        {
+          "text": "The main public host for model weights, datasets, and supporting libraries",
+          "correct": true
+        },
+        {
+          "text": "A cloud provider that trains most open-weight models itself",
+          "correct": false
+        },
+        {
+          "text": "A benchmark authority that certifies model performance claims",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eHugging Face is infrastructure — hosting and tooling that nearly every open release passes through — which is exactly why ownership of it matters.\u003c/p\u003e"
+    }
+  ]
+}

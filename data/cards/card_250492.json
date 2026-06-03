@@ -1,0 +1,100 @@
+{
+  "id": "card_250492",
+  "slug": "robot-factored-world-models",
+  "type": "paper",
+  "title": "Draw the Robot Instead of Describing It",
+  "hook": "Condition a world model on raw action commands and it must learn your robot's controller. Condition on logged future states and you leak the answer. Render the robot instead.",
+  "key_points": [
+    "In robotics an action affects the future twice: the robot body and controller turn it into motion, then the scene responds through contact and object motion.",
+    "Conditioning on action commands forces the world model to learn action realization itself; conditioning on logged future states leaks the interaction outcome it should be predicting.",
+    "Fix one: roll each command through the robot's own controller and kinematics into a nominal trajectory — a middle signal available at deployment.",
+    "Fix two: render that trajectory through the robot's URDF, moving geometry, kinematics, and appearance out of the model and into explicit rendered pixels.",
+    "Pairing end-effector depth with scene depth resolves depth ambiguity, giving contact and occlusion cues beyond image-plane overlap.",
+    "The rendered interface beats vector-conditioned baselines and generalizes to robot embodiments never seen during training."
+  ],
+  "content_html": "\u003cp\u003eAction-conditioned video world models predict future observations from an initial observation plus an action signal. Kim and colleagues note that in robotics the action reaches the future through two quite different processes: first the robot's body and controller \u003cem\u003erealize\u003c/em\u003e the command as motion, and only then does the scene respond through contact and object motion. That distinction creates a dilemma. Condition directly on action commands and you're asking the world model to learn the realization process — your specific controller and kinematics — on top of the physics. Condition on logged future states and you leak the very interaction outcomes the model is meant to predict.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eTwo factors moved outside the model\u003c/h2\u003e\n\u003cp\u003eTheir \u003cstrong\u003erobot-factored world model\u003c/strong\u003e pulls both robot-specific pieces out. For \u003cem\u003eaction realization\u003c/em\u003e, each command is rolled through the robot's own controller and kinematics into a nominal trajectory — a middle signal that is available at deployment, and that avoids both learning realization and leaking outcomes. For \u003cem\u003erobot rendering\u003c/em\u003e, that nominal trajectory is rendered through the robot's URDF, so the robot's geometry, kinematics, and appearance live in explicit rendered pixels rather than in learned weights. To resolve depth ambiguity, they pair end-effector depth with scene depth, which supplies contact and occlusion cues that image-plane overlap alone can't give.\u003c/p\u003e\n\u003ch2\u003eWhy the interface is the point\u003c/h2\u003e\n\u003cp\u003eCamera-aware static RGB/depth context plus rendered robot geometry forms a shared visual interface that stays consistent across viewpoints and across robot embodiments. The model sees the action only as visible robot geometry, and learns how objects respond to it. The authors report that this rendered interface outperforms vector-conditioned baselines and generalizes to unseen embodiments at inference time. They also show it generating robot manipulation videos from \u003cem\u003ehuman\u003c/em\u003e demonstrations, by retargeting the hand motion and rendering it as robot geometry.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Byungjun Kim",
+      "Taeksoo Kim",
+      "Hyunsoo Cha",
+      "Hanbyul Joo"
+    ],
+    "url": "https://arxiv.org/abs/2607.22535",
+    "published_at": "2026-07-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "vision",
+    "generative",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-27",
+  "date": "2026-07-24",
+  "related": [
+    {
+      "id": "card_b9d1db",
+      "slug": "world-action-models-survey",
+      "type": "paper",
+      "title": "World Action Models: A Survey",
+      "hook": "Robots are learning to imagine the future before acting. This survey untangles 'world action models' from video generators and VLA policies — and finds them converging on one idea.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    },
+    {
+      "id": "card_9a9bd2",
+      "slug": "world-models-meet-language-models",
+      "type": "paper",
+      "title": "World Models Meet Language Models",
+      "hook": "A world model can imagine what happens next; an LLM can reason about it. The hard part is knowing when to trust the daydream — and when the simulation is just plausible nonsense.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_250492#0",
+      "format": "flip",
+      "prompt": "What are the two distinct processes by which a robot's action influences future observations?",
+      "back_html": "\u003cp\u003eFirst \u003cem\u003eaction realization\u003c/em\u003e — the robot's body and controller turn the command into actual motion. Then the scene responds, through contact and object motion. Factoring the first one out is the paper's core move.\u003c/p\u003e"
+    },
+    {
+      "id": "card_250492#1",
+      "format": "quiz",
+      "prompt": "Why not just condition the world model on logged future robot states?",
+      "choices": [
+        {
+          "text": "Those states leak the interaction outcomes the model is supposed to predict",
+          "correct": true
+        },
+        {
+          "text": "They are too high-dimensional to encode efficiently alongside image context",
+          "correct": false
+        },
+        {
+          "text": "They are unavailable during training, only at deployment time",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLogged future states already encode how the interaction turned out, so training on them is a form of cheating. The nominal trajectory from the robot's own controller is a middle signal that avoids both this leakage and the burden of learning realization.\u003c/p\u003e"
+    },
+    {
+      "id": "card_250492#2",
+      "format": "flip",
+      "prompt": "How does rendering the robot help the model generalize across embodiments?",
+      "back_html": "\u003cp\u003eRendered robot geometry is a shared visual interface that stays consistent across viewpoints and robot bodies. The model only ever sees the action as visible geometry, so a new embodiment is just new pixels rather than a new action space.\u003c/p\u003e"
+    }
+  ]
+}

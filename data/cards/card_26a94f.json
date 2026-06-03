@@ -1,0 +1,155 @@
+{
+  "id": "card_26a94f",
+  "slug": "agents-a1-scaling-the-horizon",
+  "type": "paper",
+  "title": "Scaling the Horizon, Not the Parameters",
+  "hook": "A 35B mixture-of-experts agent matches trillion-parameter models on long-horizon tasks — by scaling how long its trajectories run, not how big its weights are.",
+  "key_points": [
+    "Agents-A1 is a 35B MoE model trained on trajectories averaging 45,000 tokens — scaling the agent horizon instead of parameter count.",
+    "Three-stage recipe: broad supervised fine-tuning, per-domain teacher models, then multi-teacher on-policy distillation into one student.",
+    "Matches or beats 1T-parameter models like Kimi-K2.6 and DeepSeek-V4-pro on long-horizon benchmarks (SEAL-0, IFBench, HiPhO).",
+    "Vocabulary-aligned distillation unifies six specialized domain teachers into a single deployable model."
+  ],
+  "content_html": "\u003cp\u003eBigger models usually mean better agents — but Agents-A1 makes its case a different way: a 35-billion-parameter mixture-of-experts model that reaches trillion-parameter-class performance on long-horizon tasks by training on much longer trajectories instead of growing its weights.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe team builds a knowledge-action infrastructure connecting external knowledge, actions, observations, and verifier outcomes, producing agentic trajectories averaging 45,000 tokens. Training runs in three stages: full-domain supervised fine-tuning for broad agentic behavior, per-domain teacher models that capture specialized expertise, and finally multi-teacher domain-routed on-policy distillation with vocabulary alignment to merge six heterogeneous domains into one deployable student. The payoff: Agents-A1 leads or stays competitive with 1T-parameter models such as Kimi-K2.6 and DeepSeek-V4-pro on benchmarks like SEAL-0, IFBench, and HiPhO — evidence that lengthening and diversifying an agent's operating horizon is a viable alternative axis to raw parameter scaling. Lei Bai and 49 co-authors, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Lei Bai",
+      "Zongsheng Cao",
+      "Yang Chen",
+      "Zhiyao Cui",
+      "Shangheng Du",
+      "Yue Fan",
+      "Shiyang Feng",
+      "Zijie Guo",
+      "Haonan He",
+      "Liang He",
+      "Xiaohan He",
+      "Shuyue Hu",
+      "Yusong Hu",
+      "Songtao Huang",
+      "Yichen Jiang",
+      "Hao Li",
+      "Xin Li",
+      "Dahua Lin",
+      "Weihao Lin",
+      "Fenghua Ling",
+      "Dongrui Liu",
+      "Zhuo Liu",
+      "Runmin Ma",
+      "Chunjiang Mu",
+      "Haoyang Peng",
+      "Tianshuo Peng",
+      "Jinxin Shi",
+      "Luohe Shi",
+      "Boyuan Sun",
+      "Zelin Tan",
+      "Shengji Tang",
+      "Qianyi Wang",
+      "Yiming Wu",
+      "Yi Xie",
+      "Xiangchao Yan",
+      "Jingqi Ye",
+      "Peng Ye",
+      "Fangchen Yu",
+      "Jiakang Yuan",
+      "Bihao Zhan",
+      "Bo Zhang",
+      "Chen Zhang",
+      "Shufei Zhang",
+      "Shuaiyu Zhang",
+      "Wenlong Zhang",
+      "Yiqun Zhang",
+      "Junpeng Zhao",
+      "Zhijie Zhong",
+      "Bowen Zhou",
+      "Yuhao Zhou"
+    ],
+    "url": "https://arxiv.org/abs/2606.30616",
+    "published_at": "2026-06-29",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "moe",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "training",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-02",
+  "date": "2026-06-29",
+  "related": [
+    {
+      "id": "card_2408d6",
+      "slug": "trust-region-on-policy-distillation",
+      "type": "paper",
+      "title": "Trust Region On-Policy Distillation",
+      "hook": "On-policy distillation breaks when teacher and student disagree too much. TrOPD only trusts the teacher where its supervision is reliable — and skips the rest.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-05-31"
+    },
+    {
+      "id": "card_822dbf",
+      "slug": "geometry-of-on-policy-distillation",
+      "type": "paper",
+      "title": "On the Geometry of On-Policy Distillation",
+      "hook": "On-policy distillation isn't a midpoint between fine-tuning and RL — it carves its own narrow path through parameter space, locking into a low-dimensional subspace early in training.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-05"
+    },
+    {
+      "id": "card_bf9cd2",
+      "slug": "switch-transformer",
+      "type": "paper",
+      "title": "Switch Transformer: Scaling to Trillion-Parameter Models",
+      "hook": "Route every token to exactly one expert instead of many - this single simplification made trillion-parameter MoE models stable enough to train at scale.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2021-01-11"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_26a94f#0",
+      "format": "flip",
+      "prompt": "What does 'scaling the horizon' mean here, as opposed to scaling parameters?",
+      "back_html": "\u003cp\u003eTraining on much longer agent trajectories (~45K tokens on average) and broader task diversity, rather than growing the model's weight count.\u003c/p\u003e"
+    },
+    {
+      "id": "card_26a94f#1",
+      "format": "quiz",
+      "prompt": "How does Agents-A1 unify six different domain specialists into one deployable model?",
+      "choices": [
+        {
+          "text": "Multi-teacher on-policy distillation with vocabulary alignment across domain teachers",
+          "correct": true
+        },
+        {
+          "text": "Simple weight averaging of the teacher models",
+          "correct": false
+        },
+        {
+          "text": "Training a single model from scratch on all data at once",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA dedicated distillation stage transfers each domain teacher's skills into one student model, using vocabulary alignment to make knowledge transfer efficient.\u003c/p\u003e"
+    },
+    {
+      "id": "card_26a94f#2",
+      "format": "flip",
+      "prompt": "What's the headline result for Agents-A1?",
+      "back_html": "\u003cp\u003eA 35B MoE agent reaches performance competitive with 1T-parameter models like Kimi-K2.6 and DeepSeek-V4-pro on several long-horizon benchmarks.\u003c/p\u003e"
+    }
+  ]
+}

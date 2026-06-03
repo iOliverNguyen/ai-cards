@@ -1,0 +1,117 @@
+{
+  "id": "card_1f00c3",
+  "slug": "test-time-compute-scaling",
+  "type": "paper",
+  "title": "Scaling LLM Test-Time Compute",
+  "hook": "A new scaling axis: instead of a bigger model, let a model think longer at inference — often a better use of compute, and the principle behind o1 and R1.",
+  "key_points": [
+    "Spending more compute at inference (sampling, search, revision) can beat training a bigger model.",
+    "The optimal strategy depends on how hard the prompt is — easy questions need little extra thought.",
+    "Reframes 'how good is this model?' as 'how good given a compute budget at test time?'",
+    "Foundational intuition behind reasoning models that 'think' before answering."
+  ],
+  "content_html": "\u003cp\u003eThis work asks a question that reshaped how labs spend compute: given a fixed budget, are you better off training a larger model, or keeping the model fixed and letting it do more work at inference time? The authors show that for many problems, extra test-time compute — sampling multiple answers, searching, or revising — is the more effective lever.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe paper studies strategies like generating many candidate answers and selecting among them, or having the model iteratively revise its own output. The key finding is that the best allocation of test-time compute depends on the difficulty of the problem: easy questions barely benefit from extra thinking, while hard ones improve a lot. Matching effort to difficulty makes a fixed budget go much further than spreading it uniformly.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThis reframes model quality as a function of an inference budget, not just parameter count. It is the conceptual backbone of the reasoning-model wave — systems like OpenAI's o1 and DeepSeek-R1 that deliberately \u0026quot;think\u0026quot; with long chains of reasoning before answering. Understanding test-time scaling explains why those models trade latency for accuracy, and why a smaller model that thinks longer can rival a larger one that answers instantly.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Charlie Snell",
+      "Jaehoon Lee",
+      "Kelvin Xu",
+      "Aviral Kumar"
+    ],
+    "url": "https://arxiv.org/abs/2408.03314",
+    "published_at": "2024-08-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "prompting"
+  ],
+  "tags": [
+    "reasoning",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2024-08-06",
+  "related": [
+    {
+      "id": "card_9edf2b",
+      "slug": "openai-o1",
+      "type": "news",
+      "title": "OpenAI o1: Learning to Reason with Reinforcement Learning",
+      "hook": "OpenAI's o1 lets a model think via a long internal chain-of-thought before answering - spending more compute at inference time visibly improves reasoning.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-09-12"
+    },
+    {
+      "id": "card_4cd8fd",
+      "slug": "deepseek-r1",
+      "type": "paper",
+      "title": "DeepSeek-R1: Incentivizing Reasoning via Reinforcement Learning",
+      "hook": "DeepSeek shows strong reasoning can emerge from RL on verifiable rewards with minimal supervised data - and those reasoning traces can be distilled into smaller models.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2025-01-22"
+    },
+    {
+      "id": "card_812537",
+      "slug": "self-consistency",
+      "type": "paper",
+      "title": "Self-Consistency Improves Chain-of-Thought Reasoning",
+      "hook": "Sample the model many times, let each run reason its own way, then take the majority answer - diverse reasoning paths vote out individual errors.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-03-21"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_13953d",
+      "slug": "in-context-learning",
+      "type": "concept",
+      "title": "In-Context Learning",
+      "hook": "Paste a few examples into a prompt and a large language model performs the task - no gradient updates, no fine-tuning, the prompt is the program.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-31"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_1f00c3#0",
+      "format": "flip",
+      "prompt": "What new scaling axis does test-time compute introduce?",
+      "back_html": "\u003cp\u003eInstead of training a bigger model, let a fixed model do more work at inference — sampling, searching, or revising — which for many problems is the better use of compute.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1f00c3#1",
+      "format": "quiz",
+      "prompt": "What does the optimal test-time compute strategy depend on?",
+      "choices": [
+        {
+          "text": "The difficulty of the prompt — easy questions need little extra thought",
+          "correct": true
+        },
+        {
+          "text": "The total number of parameters in the model",
+          "correct": false
+        },
+        {
+          "text": "The size of the pretraining dataset",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMatching effort to difficulty makes a fixed budget go further; hard questions improve a lot, easy ones barely benefit.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1f00c3#2",
+      "format": "flip",
+      "prompt": "Why can a smaller model that thinks longer rival a larger one?",
+      "back_html": "\u003cp\u003eModel quality becomes a function of an inference budget, not just parameter count — extra test-time compute trades latency for accuracy.\u003c/p\u003e"
+    }
+  ]
+}

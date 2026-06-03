@@ -1,0 +1,112 @@
+{
+  "id": "card_401ea9",
+  "slug": "echowm-omnimodal-world-model",
+  "type": "paper",
+  "title": "EchoWM: A World Model You Can Walk Into and Hear",
+  "hook": "Most world models generate silent video. EchoWM generates 720p video plus environmental sound, music, and speech, and lets you navigate it continuously.",
+  "key_points": [
+    "An omnimodal world model that jointly generates 720p video, environmental sound, music, and speech while responding to continuous navigation.",
+    "Interaction is organized around camera intent: observer motion in first-person scenes, learned camera-character dynamics in third-person ones.",
+    "Discrete commands and continuous poses both map to one shared metric-scale relative 6-DoF trajectory.",
+    "Dataset-level calibration preserves motion magnitude across heterogeneous training sources.",
+    "Progressive training followed by autoregressive post-training gives long-horizon generation with audio staying synchronized."
+  ],
+  "content_html": "\u003cp\u003eInteractive world models — generative systems you can move through rather than merely watch — have mostly been silent. Zhang and colleagues present EchoWM, which generates 720p video together with environmental sound, music, and speech while responding to continuous navigation input.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eControlling it\u003c/h2\u003e\n\u003cp\u003eThe interaction abstraction is camera intent. In first-person scenes the camera is the observer, so intent is straightforwardly where you move. In third-person scenes the relationship between the camera and the character is learned from data instead of being handled by a view-specific controller. Both discrete commands and continuous poses are projected onto a shared metric-scale relative 6-DoF trajectory, and dataset-level calibration keeps motion magnitude consistent when training data comes from very different sources.\u003c/p\u003e\n\u003ch2\u003eMaking it last\u003c/h2\u003e\n\u003cp\u003eJoint audio-visual generation under trajectory control is trained with a complementary data engine, progressive training, and then autoregressive post-training aimed at long horizons. The authors report strong trajectory following and visual quality on public world-model benchmarks across first- and third-person interaction, with sound and speech staying synchronized as generation extends — the part that usually drifts first.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Songchun Zhang",
+      "Yaowei Li",
+      "Junhao Zhuang",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.23189",
+    "published_at": "2026-08-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "video-audio",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "generative",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-24",
+  "related": [
+    {
+      "id": "card_6519a8",
+      "slug": "alayaworld-playable-video-world-generation",
+      "type": "paper",
+      "title": "AlayaWorld: An Open-Source Framework for Playable Video Worlds",
+      "hook": "Building a game world the old way means authoring every asset by hand. AlayaWorld generates it live instead — combat, spell-casting, monster summoning — and open-sources the whole pipeline.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-07"
+    },
+    {
+      "id": "card_a71af8",
+      "slug": "multiplayer-interactive-world-models",
+      "type": "paper",
+      "title": "MIRA: A Multiplayer World Model for Rocket League",
+      "hook": "Single-player world models treat other agents as scenery. This one, trained on 10,000 hours of Rocket League, tracks four players' independent actions at once — and stays coherent for hours.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_7e087b",
+      "slug": "world-models-persistent-state",
+      "type": "paper",
+      "title": "World Models Lack a Persistent State",
+      "hook": "Today's video world models render great frames but treat the world like a tracking shot: look away and back, and off-screen events freeze instead of running on — the moon keeps orbiting unwatched.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_401ea9#0",
+      "format": "flip",
+      "prompt": "What does organizing interaction around 'camera intent' let EchoWM avoid?",
+      "back_html": "\u003cp\u003eSeparate view-specific controllers — first-person camera intent means observer motion, and third-person camera-character dynamics are learned from data instead of hand-built.\u003c/p\u003e"
+    },
+    {
+      "id": "card_401ea9#1",
+      "format": "quiz",
+      "prompt": "Why map both discrete commands and continuous poses to a shared metric-scale 6-DoF trajectory?",
+      "choices": [
+        {
+          "text": "So heterogeneous control inputs and datasets share one consistent motion representation",
+          "correct": true
+        },
+        {
+          "text": "To reduce the video resolution needed for training",
+          "correct": false
+        },
+        {
+          "text": "Because 6-DoF poses cannot be generated directly",
+          "correct": false
+        },
+        {
+          "text": "To let the model skip audio generation when navigating",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA single relative trajectory space, plus dataset-level calibration that preserves motion magnitude, lets varied control schemes and data sources train one controller.\u003c/p\u003e"
+    },
+    {
+      "id": "card_401ea9#2",
+      "format": "flip",
+      "prompt": "What makes EchoWM 'omnimodal' rather than just a video world model?",
+      "back_html": "\u003cp\u003eIt generates environmental sound, music, and speech jointly with the video, and keeps them synchronized over long-horizon autoregressive rollouts.\u003c/p\u003e"
+    }
+  ]
+}

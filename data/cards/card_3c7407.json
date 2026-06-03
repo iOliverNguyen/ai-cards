@@ -1,0 +1,138 @@
+{
+  "id": "card_3c7407",
+  "slug": "dion3-orthogonal-updates",
+  "type": "paper",
+  "title": "Dion3: Making Muon's Orthogonalization Cheap",
+  "hook": "Muon trains faster than AdamW but pays for it in a cubic-time orthogonalization step. Dion3 attacks that overhead at every layer of the stack — up to 6x faster optimizer steps at matching loss.",
+  "key_points": [
+    "Muon's Newton–Schulz orthogonalization is cubic-time, and sharded weights add communication cost on top.",
+    "A Gram-based Newton–Schulz variant cuts the FLOPs; custom CuteDSL kernels exploit symmetry for more speed.",
+    "Megabatching reduces the communication overhead when the optimizer state is sharded across devices.",
+    "The update rule orthogonalizes only a fraction of the momentum matrix's rows each step.",
+    "Authors report matching or beating Muon's loss with up to 6x lower optimizer step time.",
+    "Shipped in Microsoft's `dion` package as a drop-in Muon replacement."
+  ],
+  "content_html": "\u003cp\u003eThe Muon optimizer beats AdamW on wall-clock training, but its central trick — orthogonalizing each layer's momentum update via a Newton–Schulz iteration — is cubic-time, and when weights are sharded across GPUs the communication cost compounds it. In many real setups that overhead eats the win. Dion3 is a revision of Muon that attacks the cost at every level of the stack.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat changed\u003c/h2\u003e\n\u003cp\u003eThree engineering layers plus one algorithmic one. A \u003cstrong\u003eGram Newton–Schulz\u003c/strong\u003e algorithm reduces the FLOP cost of the orthogonalization itself. \u003cstrong\u003eCuteDSL kernels\u003c/strong\u003e accelerate it further by exploiting the symmetry of the matrices involved. A \u003cstrong\u003emegabatching\u003c/strong\u003e strategy cuts the communication overhead in the sharded case. On top of those, the authors change the update rule: rather than orthogonalizing the whole momentum matrix, select only a fraction of its rows each step. They report this improves on Dion — an earlier \u0026quot;compressed\u0026quot; Muon variant — in both speed and quality.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eOptimizer overhead is the kind of thing that decides whether a research result becomes production practice. Muon's advantage is real but was partly theoretical once you accounted for the step cost at scale; the authors report Dion3 matches or improves Muon's loss with optimizer step time reduced by up to 6x. It ships in Microsoft's \u003ccode\u003edion\u003c/code\u003e package as a drop-in replacement, which is what turns a paper into something people actually run.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Noah Amsel",
+      "Jack Zhang",
+      "Kwangjun Ahn",
+      "Ali Naeimi",
+      "Austin Feng",
+      "Berlin Chen",
+      "Tri Dao",
+      "John Langford"
+    ],
+    "url": "https://arxiv.org/abs/2608.11612",
+    "published_at": "2026-08-12",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "optimization",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-17",
+  "date": "2026-08-12",
+  "related": [
+    {
+      "id": "card_f399a5",
+      "slug": "muon-optimizer",
+      "type": "blog",
+      "title": "Muon: An Optimizer for Hidden Layers",
+      "hook": "Muon orthogonalizes each gradient update before applying it — and trained networks faster than AdamW, the first serious challenger to Adam's reign in years.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-12-08"
+    },
+    {
+      "id": "card_8e09e5",
+      "slug": "muon-saddle-to-saddle-dynamics",
+      "type": "paper",
+      "title": "Why Muon Skips Gradient Descent's Slow Start",
+      "hook": "Small-init gradient descent crawls through a 'saddle-to-saddle' bottleneck — Muon skips it, learning every mode at once and staying stable past where gradient descent blows up.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-29"
+    },
+    {
+      "id": "card_1480e5",
+      "slug": "zero",
+      "type": "paper",
+      "title": "ZeRO: Memory Optimizations for Trillion-Parameter Models",
+      "hook": "Data-parallel training wastes memory by copying optimizer states, gradients, and parameters onto every GPU. ZeRO partitions them instead — fitting 100B+ parameter models.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2019-10-04"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_f399a5",
+      "slug": "muon-optimizer",
+      "type": "blog",
+      "title": "Muon: An Optimizer for Hidden Layers",
+      "hook": "Muon orthogonalizes each gradient update before applying it — and trained networks faster than AdamW, the first serious challenger to Adam's reign in years.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-12-08"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_3c7407#0",
+      "format": "flip",
+      "prompt": "What is the main cost Dion3 is trying to remove from Muon?",
+      "back_html": "\u003cp\u003eThe cubic-time Newton–Schulz orthogonalization step — plus the communication overhead that compounds it when weights are sharded across devices.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3c7407#1",
+      "format": "quiz",
+      "prompt": "Which change to the update rule does Dion3 make to cut cost further?",
+      "choices": [
+        {
+          "text": "Orthogonalize only a fraction of the momentum matrix's rows each step",
+          "correct": true
+        },
+        {
+          "text": "Skip orthogonalization entirely on every other step",
+          "correct": false
+        },
+        {
+          "text": "Replace the momentum matrix with its diagonal",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDion3 selects a subset of the momentum matrix's rows to orthogonalize per step, which the authors report improves on Dion in both speed and performance.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3c7407#2",
+      "format": "quiz",
+      "prompt": "What does Dion3 claim about final model quality relative to Muon?",
+      "choices": [
+        {
+          "text": "It matches or improves Muon's loss while cutting step time up to 6x",
+          "correct": true
+        },
+        {
+          "text": "It trades a small loss penalty for the speedup",
+          "correct": false
+        },
+        {
+          "text": "It only matches Muon on small models",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper reports matching or improved loss versus Muon with optimizer step time reduced by up to 6x.\u003c/p\u003e"
+    }
+  ]
+}

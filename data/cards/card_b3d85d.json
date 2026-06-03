@@ -1,0 +1,114 @@
+{
+  "id": "card_b3d85d",
+  "slug": "gemma-4",
+  "type": "news",
+  "title": "Gemma 4: Google DeepMind's Open Multimodal Models",
+  "hook": "An open-weight multimodal family (2.3B-31B) that now thinks before answering and, at 12B, skips separate vision/audio encoders entirely — still small enough for a 16GB laptop.",
+  "key_points": [
+    "Open-weight, natively multimodal models from Google DeepMind, spanning 2.3B to 31B parameters in dense and Mixture-of-Experts (MoE) variants.",
+    "Takes text, image, and (on most sizes) audio input; the 12B variant is encoder-free, ingesting raw audio and image patches directly.",
+    "Adds a 'thinking mode': models can generate a reasoning trace before answering, on top of the usual instruction-tuned mode.",
+    "Context window up to 256K tokens, 140+ languages; design choices specifically target long-context inference efficiency.",
+    "Google's technical report claims a leap across STEM, multimodal, and long-context benchmarks vs. larger frontier open models."
+  ],
+  "content_html": "\u003cp\u003eGemma is Google DeepMind's family of open models, and the Gemma 4 release pushes it firmly into multimodal territory. The models take text and image input — with audio supported on the E2B, E4B, and 12B variants — and generate text output. Open weights ship in both pre-trained and instruction-tuned forms, so you can fine-tune or run them as-is.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eGemma 4 carries a context window of up to 256K tokens and keeps the line's broad multilingual reach, covering more than 140 languages. The lineup spans five sizes from 2.3B to 31B parameters, mixing Dense and Mixture-of-Experts (MoE) architectures, and is pitched at everyday work like text generation, coding, and reasoning. The practical hook in the community discussion: the 12B model is meant to fit comfortably on a 16GB-RAM laptop, putting a capable multimodal model within reach of local setups.\u003c/p\u003e\n\u003cp\u003eGoogle DeepMind's July 2026 technical report fills in the architecture: the 12B model uses a unified, encoder-free design that ingests raw audio and image patches directly rather than routing them through separate vision and audio encoders. The whole family also adds a \u0026quot;thinking mode,\u0026quot; letting models generate a reasoning trace before producing a final answer, and the team specifically targeted inference speed, memory, and compute efficiency alongside long-context ability. Google reports a resulting leap in performance across STEM, multimodal, and long-context benchmarks, claiming Gemma 4 rivals larger frontier open models on human-rated tasks. See the Hugging Face listing or the arXiv technical report (linked from related coverage) for exact size and modality details per variant.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit r/LocalLLaMA",
+    "authors": [
+      "/u/jacek2023"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1tvtn6m/googlegemma412b_hugging_face",
+    "published_at": "2026-06-03",
+    "license": "Reddit post (link-out)"
+  },
+  "topic_ids": [
+    "language-models",
+    "releases",
+    "multimodal-vision",
+    "vlms"
+  ],
+  "tags": [
+    "open-source",
+    "multimodal",
+    "foundational",
+    "news"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-05",
+  "date": "2026-06-03",
+  "related": [
+    {
+      "id": "card_ea6afd",
+      "slug": "llama-3",
+      "type": "paper",
+      "title": "The Llama 3 Herd of Models",
+      "hook": "Meta's Llama 3 family, trained on roughly 15 trillion tokens with a 405B-parameter flagship, narrowed the gap to closed frontier models while staying open-weights.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2024-07-23"
+    },
+    {
+      "id": "card_56ac6c",
+      "slug": "minimax-m1",
+      "type": "paper",
+      "title": "MiniMax-M1",
+      "hook": "MiniMax-M1 is an open-weight reasoning model with a million-token context and 'lightning attention' — and a hybrid design that made full RL training cost about $0.5M.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2025-06-16"
+    },
+    {
+      "id": "card_ec7996",
+      "slug": "gemma-4-qat",
+      "type": "news",
+      "title": "Gemma 4 QAT: 4-Bit Weights That Keep Their Quality",
+      "hook": "Squeezing a model to 4 bits after training loses quality. Quantization-aware training bakes the rounding into training instead — and Google shipped Gemma 4 checkpoints that do exactly that.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-06-05"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b3d85d#0",
+      "format": "flip",
+      "prompt": "What's new architecturally in Gemma 4's 12B variant?",
+      "back_html": "\u003cp\u003eIt uses a unified, encoder-free design that ingests raw audio and image patches directly, instead of routing them through separate vision and audio encoders.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b3d85d#1",
+      "format": "quiz",
+      "prompt": "What did Gemma 4 add on top of its instruction-tuned mode?",
+      "choices": [
+        {
+          "text": "A 'thinking mode' that generates a reasoning trace before answering",
+          "correct": true
+        },
+        {
+          "text": "A separate coding-only model variant",
+          "correct": false
+        },
+        {
+          "text": "Real-time voice-to-voice conversation",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGemma 4 introduces a thinking mode: models can produce a reasoning trace before giving their final answer.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b3d85d#2",
+      "format": "flip",
+      "prompt": "What size range does the Gemma 4 suite cover, and what architectures does it use?",
+      "back_html": "\u003cp\u003e2.3B to 31B parameters, spanning both dense and Mixture-of-Experts (MoE) variants.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b3d85d#3",
+      "format": "flip",
+      "prompt": "Beyond raw parameter count, what did Google specifically optimize in Gemma 4?",
+      "back_html": "\u003cp\u003eInference speed, memory, and compute efficiency, plus long-context ability — alongside the added thinking-mode reasoning traces.\u003c/p\u003e"
+    }
+  ]
+}

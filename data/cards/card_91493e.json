@@ -1,0 +1,101 @@
+{
+  "id": "card_91493e",
+  "slug": "correlated-verifier-cascades",
+  "type": "paper",
+  "title": "Partially Correlated Verifier Cascades: Concave Log-Odds and Blind-Spot Ceilings",
+  "hook": "Chain enough independent verifier checks and failure should vanish exponentially. In practice, treating correlated verifiers as independent underestimates failure by 20x at 5 checks — and 3000x at 10.",
+  "key_points": [
+    "Studies serial verification gates — an answer passes only if k verifier calls all accept it — under realistic, correlated (not independent) failure rates.",
+    "Models the per-instance false-accept rate as a latent variable; the exact posterior shows log-odds are concave in k, with the prior 'Odds Law' (independent case) as just its tangent upper bound.",
+    "For Beta-distributed latents, failure decays polynomially in k rather than exponentially, with a correlation parameter identifiable from just two repeated verdicts per instance.",
+    "A 'blind-spot' mass of instances that always false-accept caps how much reliability any number of gates can buy — failure saturates above zero no matter how many checks you add.",
+    "Whether adding more gates helps, plateaus, or actively hurts depends on the tails of the underlying latent distributions, with a closed-form crossover point.",
+    "In synthetic tests, assuming independence underestimates real failure by about 20x at 5 gates and about 3000x at 10 gates; the practical fix is decorrelating verifiers (different model family, modality, or evidence source), not stacking more of them."
+  ],
+  "content_html": "\u003cp\u003eChaining independent verifier checks is a common reliability trick in LLM harnesses: only accept an answer if k separate verifier calls all agree. Under conditional independence, a recent result (the \u0026quot;Odds Law\u0026quot;) showed failure decays exponentially in k — but real verifier gates are rarely independent, and the theory explicitly left \u0026quot;a tight theory of partially correlated verifier cascades\u0026quot; as an open problem.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eJiangang Han supplies that theory. Modeling each instance's false-accept rate as a latent variable drawn from a distribution G, the exact cascade posterior turns out to be concave in k — the Odds Law is just its tangent line at the first gate, and an upper bound rather than the truth. For Beta-distributed latents, failure decays only polynomially in k, with a correlation parameter that two repeated verdicts per instance are enough to identify. A further \u0026quot;blind-spot\u0026quot; mass of instances that always false-accept caps how much reliability any number of gates can buy, so failure saturates above zero rather than vanishing. Letting the true-accept rate vary too produces a trichotomy: depending on the tails of the underlying distributions, adding more gates can help forever, plateau, or actively make things worse, with a closed-form crossover point marking which regime you're in.\u003c/p\u003e\n\u003cp\u003eThe gap between the tidy independent theory and reality is large: in synthetic tests, assuming independence underestimates real failure by about 20x at 5 gates and roughly 3000x at 10 gates, while a correlated fit using repeated verdicts tracks held-out results accurately. The practical takeaway is that piling on more correlated gates has diminishing (or negative) returns — the real lever is decorrelation, changing the model family, modality, or evidence source behind each check. Jiangang Han, arXiv, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jiangang Han"
+    ],
+    "url": "https://arxiv.org/abs/2607.13918",
+    "published_at": "2026-07-15",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-20",
+  "date": "2026-07-15",
+  "related": [
+    {
+      "id": "card_f4c73d",
+      "slug": "llm-as-a-verifier",
+      "type": "paper",
+      "title": "LLM-as-a-Verifier: Verification as a New Scaling Axis",
+      "hook": "Everyone scales pretraining, post-training, and test-time compute. This paper argues verification — checking if a solution is correct — is its own scaling axis, and hits SOTA on four agentic benchmarks.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_91493e#0",
+      "format": "flip",
+      "prompt": "What assumption does the earlier 'Odds Law' make about verifier gates, and why does it break down in practice?",
+      "back_html": "\u003cp\u003eIt assumes verifier gates are conditionally independent, so log-odds of success grow linearly in the number of gates k. Real gates are correlated — errors that survive one gate tend to be the kind that survive others too.\u003c/p\u003e"
+    },
+    {
+      "id": "card_91493e#1",
+      "format": "quiz",
+      "prompt": "How badly does assuming independence underestimate real cascade failure, per the paper's synthetic tests?",
+      "choices": [
+        {
+          "text": "About 20x at 5 gates, and about 3000x at 10 gates",
+          "correct": true
+        },
+        {
+          "text": "About 2x at any number of gates",
+          "correct": false
+        },
+        {
+          "text": "It doesn't underestimate — independence is a safe approximation",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe gap grows fast with more gates: roughly 20x underestimation at k=5 and roughly 3000x at k=10, because correlated failures don't keep shrinking exponentially the way independent ones would.\u003c/p\u003e"
+    },
+    {
+      "id": "card_91493e#2",
+      "format": "quiz",
+      "prompt": "What is the paper's recommended fix for verifier cascades that stop improving with more gates?",
+      "choices": [
+        {
+          "text": "Decorrelate the verifiers — e.g. use a different model family, modality, or evidence source — rather than just adding more gates",
+          "correct": true
+        },
+        {
+          "text": "Add as many additional identical gates as computationally possible",
+          "correct": false
+        },
+        {
+          "text": "Switch to a single, very large verifier model instead of a cascade",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA 'blind-spot' of instances that always false-accept caps how much reliability more identical gates can buy; the practical lever is decorrelation, not gate count.\u003c/p\u003e"
+    }
+  ]
+}

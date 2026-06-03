@@ -1,0 +1,133 @@
+{
+  "id": "card_6b29bc",
+  "slug": "test-time-error-localization",
+  "type": "paper",
+  "title": "Don't Resample — Rewind to the Bad Token",
+  "hook": "Resampling after a failure throws away the reasoning that was still correct. TTEL finds the token where things went wrong and branches from there — same pass@64, half the tokens.",
+  "key_points": [
+    "Independent sampling and multi-turn refinement both lack token-level credit assignment, so valid reasoning prefixes get discarded.",
+    "TTEL compares conditional probabilities under informed feedback against a null-context baseline to isolate the step where the error occurred.",
+    "It then truncates the trajectory at that point and branches a new generation, reusing the maximal valid prefix.",
+    "On LiveCodeBench with Qwen3-8B it hits pass@64 of 71.0% using 360.4k tokens against 735.0k for independent sampling.",
+    "The authors report strictly dominating Pareto frontiers on pass@k versus generated-token cost.",
+    "Gains carry over to AIME-2025 and HMMT-2025 on both Qwen3-8B and Qwen3-4B-Thinking-2507."
+  ],
+  "content_html": "\u003cp\u003eSpending more compute at inference time reliably improves reasoning and coding performance. The two standard ways of spending it — sample n independent attempts, or refine sequentially over several turns — share a blind spot: neither knows \u003cem\u003ewhich token\u003c/em\u003e went wrong, so a failed attempt is thrown away in its entirety, valid prefix included.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eLocalize, truncate, branch\u003c/h2\u003e\n\u003cp\u003e\u003cstrong\u003eTest-Time Scaling via Error Localization (TTEL)\u003c/strong\u003e uses fixed or environment feedback to do token-level error localization. The trick is a contrast: run the trajectory's conditional probabilities under the informed feedback and again against a null-context baseline, and the step where the two diverge is the step where the error was introduced. TTEL then truncates the trajectory right there and branches a fresh generation, keeping the maximal valid prefix instead of paying to regenerate it.\u003c/p\u003e\n\u003ch2\u003eWhat it buys\u003c/h2\u003e\n\u003cp\u003eThe authors report strictly dominating Pareto frontiers on pass@k versus generated-token cost across sequential reasoning domains. Concretely, Qwen3-8B on LiveCodeBench reaches pass@64 of 71.0% while generating roughly half the tokens of independent sampling (360.4k against 735.0k). The result generalizes to the math benchmarks AIME-2025 and HMMT-2025 on both Qwen3-8B and Qwen3-4B-Thinking-2507, outperforming competing test-time baselines. The broader lesson is that token-level credit assignment is available at inference time, not just during training. Chitale and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Rajiv Shailesh Chitale",
+      "Rahul Madhavan",
+      "Taneesh Gupta",
+      "Deepanway Ghosal",
+      "Aravindan Raghuveer"
+    ],
+    "url": "https://arxiv.org/abs/2607.21453",
+    "published_at": "2026-07-23",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "inference",
+    "papers-this-week"
+  ],
+  "tags": [
+    "reasoning",
+    "inference",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-27",
+  "date": "2026-07-23",
+  "related": [
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    },
+    {
+      "id": "card_b457fa",
+      "slug": "interaction-scaling-third-axis-test-time-compute",
+      "type": "paper",
+      "title": "Interaction Scaling: Grounding the Third Axis of Test-Time Compute",
+      "hook": "Reasoning longer and sampling more both mine the same frozen weights — they can't tell a model anything new. Let it poke a real tool instead, and a coding loop hits 100% pass rate with zero variance.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-13"
+    },
+    {
+      "id": "card_f4c73d",
+      "slug": "llm-as-a-verifier",
+      "type": "paper",
+      "title": "LLM-as-a-Verifier: Verification as a New Scaling Axis",
+      "hook": "Everyone scales pretraining, post-training, and test-time compute. This paper argues verification — checking if a solution is correct — is its own scaling axis, and hits SOTA on four agentic benchmarks.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_4fbed7",
+      "slug": "shadow-price-of-reasoning",
+      "type": "paper",
+      "title": "The Shadow Price of Reasoning",
+      "hook": "When you can't afford to let every query think as long as it wants, who gets the compute? Treat reasoning tokens like a scarce resource and economics gives a clean answer.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_6b29bc#0",
+      "format": "flip",
+      "prompt": "What waste does TTEL target in ordinary best-of-n sampling?",
+      "back_html": "\u003cp\u003eWithout token-level credit assignment, a failed trajectory is discarded whole — including the prefix that was perfectly valid up to the point of the actual mistake.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6b29bc#1",
+      "format": "quiz",
+      "prompt": "How does TTEL find the token where reasoning went wrong?",
+      "choices": [
+        {
+          "text": "It compares conditional probabilities under informed feedback against a null-context baseline",
+          "correct": true
+        },
+        {
+          "text": "It asks a separate critic model to annotate each step as correct or incorrect",
+          "correct": false
+        },
+        {
+          "text": "It re-runs the trajectory with a higher temperature and looks for divergence",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe signal comes from how much the feedback shifts token probabilities relative to a no-feedback baseline, which localizes the error without needing per-step labels.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6b29bc#2",
+      "format": "flip",
+      "prompt": "What does 'strictly dominating Pareto frontier' mean in this paper's results?",
+      "back_html": "\u003cp\u003eAt any token budget TTEL reaches a higher pass@k than the baselines — e.g. pass@64 of 71.0% on LiveCodeBench with about half the tokens of independent sampling.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "id": "card_0946f0",
+  "slug": "towards-monosemanticity",
+  "type": "paper",
+  "title": "Towards Monosemanticity: Decomposing Models with Dictionary Learning",
+  "hook": "If neurons mean several things at once, can we find cleaner units? A sparse autoencoder pulled 4,000+ single-concept features out of one tiny transformer layer.",
+  "key_points": [
+    "Trains a sparse autoencoder (dictionary learning) to extract features from a one-layer transformer.",
+    "Decomposed a single 512-neuron MLP layer into more than 4,000 interpretable features.",
+    "The features are far more monosemantic than neurons — each tracks one concept.",
+    "Example features fire on DNA sequences, legal language, HTTP requests, and Hebrew text."
+  ],
+  "content_html": "\u003cp\u003eTrenton Bricken, Adly Templeton, Joshua Batson, and colleagues at Anthropic tackle a practical version of the superposition problem: if individual neurons are polysemantic, what are the right units to read? Their answer is dictionary learning. They train a sparse autoencoder on the activations of a one-layer transformer and pull out features that are far more monosemantic than the underlying neurons — a single 512-neuron MLP layer decomposes into more than 4,000 interpretable features, each tracking one concept.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eA sparse autoencoder learns to reconstruct a layer's activations using a much larger set of features, only a few of which are active at any moment. That sparsity pressure encourages each learned feature to correspond to a single, recognizable thing rather than a tangled mix. Applied to one 512-neuron MLP layer, the method recovers over 4,000 features, and inspecting them shows clean concepts — features that respond to DNA sequences, legal language, HTTP requests, or Hebrew text.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThis turns the superposition idea into a concrete recipe: instead of squinting at neurons that each do several jobs, you can decompose a layer into a dictionary of features that each do one. Getting cleaner, single-concept units is a big step for mechanistic interpretability, because it makes the model's internal vocabulary something you can actually name and study. It set up the obvious next question — whether the same approach holds up on a real production model.\u003c/p\u003e",
+  "source": {
+    "name": "Anthropic (Transformer Circuits)",
+    "authors": [
+      "Trenton Bricken",
+      "Adly Templeton",
+      "Joshua Batson",
+      "et al."
+    ],
+    "url": "https://transformer-circuits.pub/2023/monosemantic-features/index.html",
+    "published_at": "2023-10-05",
+    "license": "Anthropic (open access)"
+  },
+  "topic_ids": [
+    "interpretability"
+  ],
+  "tags": [
+    "interpretability",
+    "safety",
+    "paper"
+  ],
+  "importance": 5,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2023-10-05",
+  "related": [
+    {
+      "id": "card_321aee",
+      "slug": "toy-models-superposition",
+      "type": "paper",
+      "title": "Toy Models of Superposition",
+      "hook": "Why is a single neuron so hard to interpret? It may be doing several jobs at once. Networks pack more features than they have neurons by overlapping them.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2022-09-14"
+    },
+    {
+      "id": "card_346b15",
+      "slug": "circuits-zoom-in",
+      "type": "resource",
+      "title": "Zoom In: An Introduction to Circuits",
+      "hook": "What if neural networks aren't black boxes but circuits you can read? This piece argues their features and weights form algorithms we can reverse-engineer.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2020-03-10"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_321aee",
+      "slug": "toy-models-superposition",
+      "type": "paper",
+      "title": "Toy Models of Superposition",
+      "hook": "Why is a single neuron so hard to interpret? It may be doing several jobs at once. Networks pack more features than they have neurons by overlapping them.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2022-09-14"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_0946f0#0",
+      "format": "flip",
+      "prompt": "How does a sparse autoencoder pull cleaner units out of a transformer layer?",
+      "back_html": "\u003cp\u003eIt reconstructs a layer's activations using a much larger set of features, only a few active at once; that sparsity pressure pushes each feature to track one concept.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0946f0#1",
+      "format": "quiz",
+      "prompt": "Why are the extracted features more useful than the underlying neurons?",
+      "choices": [
+        {
+          "text": "They are far more monosemantic — each tracks a single concept",
+          "correct": true
+        },
+        {
+          "text": "They are fewer in number, making the layer smaller",
+          "correct": false
+        },
+        {
+          "text": "They run faster at inference time",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA 512-neuron MLP layer decomposed into 4,000+ interpretable features, each tracking one concept — far more monosemantic than the polysemantic neurons.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0946f0#2",
+      "format": "flip",
+      "prompt": "What does this work turn the superposition idea into?",
+      "back_html": "\u003cp\u003eA concrete recipe: instead of squinting at polysemantic neurons, you decompose a layer into a dictionary of features that each do one job.\u003c/p\u003e"
+    }
+  ]
+}

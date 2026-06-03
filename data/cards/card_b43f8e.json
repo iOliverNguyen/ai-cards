@@ -1,0 +1,102 @@
+{
+  "id": "card_b43f8e",
+  "slug": "what-is-rag",
+  "type": "concept",
+  "title": "Why RAG? Grounding LLMs in Your Data",
+  "hook": "An LLM only knows what it was trained on — until it's stale, private, or just wrong. RAG bolts on a search step so the model answers from your data and can cite it.",
+  "key_points": [
+    "Retrieve relevant documents first, then generate an answer grounded in them.",
+    "Reduces hallucination by anchoring responses to real, retrieved text.",
+    "Adds fresh or private knowledge without retraining the model.",
+    "Lets the system cite its sources, so answers are checkable.",
+    "Typically powered by a vector database for fast similarity search."
+  ],
+  "content_html": "\u003cp\u003eRetrieval-augmented generation, or RAG, is the practical pattern of giving a language model a search step before it answers. The model retrieves relevant documents from a knowledge source, then writes its response using that material. Teams reach for RAG to cut down on made-up answers, add knowledge the model never saw, and show where each claim came from.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe loop is retrieve-then-generate. Your documents get chunked and embedded into vectors stored in a vector database. When a question comes in, the system embeds it, finds the most similar chunks, and pastes those into the prompt as context. The model then answers using the supplied passages, and can point back to them as citations.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eA plain LLM is frozen at training time: it can't know your internal docs and goes out of date as the world changes. Retraining to fix that is slow and costly. RAG sidesteps both problems — update the index, not the model — while grounding answers in retrievable text so they're more trustworthy and easier to verify. It's become the default way to build assistants over private or fast-moving knowledge.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/Retrieval-augmented_generation",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "rag"
+  ],
+  "tags": [
+    "rag",
+    "nlp"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-06-02",
+  "date": "2026-06-02",
+  "related": [
+    {
+      "id": "card_02ad74",
+      "slug": "retrieval-augmented-generation",
+      "type": "paper",
+      "title": "Retrieval-Augmented Generation (RAG)",
+      "hook": "Why force a model to memorize everything? RAG lets it look things up — fetch relevant documents, then answer from that evidence instead of frozen weights alone.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-22"
+    },
+    {
+      "id": "card_667a26",
+      "slug": "dense-passage-retrieval",
+      "type": "paper",
+      "title": "Dense Passage Retrieval (DPR)",
+      "hook": "Keyword search misses answers that use different words. DPR embeds questions and passages into one vector space and retrieves by meaning — the backbone of modern vector search.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-04-10"
+    },
+    {
+      "id": "card_a51449",
+      "slug": "autoindex-representation-programs",
+      "type": "paper",
+      "title": "AutoIndex: Learning Representation Programs for Retrieval",
+      "hook": "Stop tuning the retriever — tune the documents. AutoIndex searches for executable programs that rewrite and reorganize docs before indexing, lifting recall on every task with BM25 left untouched.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-21"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b43f8e#0",
+      "format": "flip",
+      "prompt": "Why does grounding answers in retrieved text reduce hallucination?",
+      "back_html": "\u003cp\u003eThe model writes its response from real, retrieved passages rather than only its frozen weights, anchoring claims to checkable sources it can cite.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b43f8e#1",
+      "format": "quiz",
+      "prompt": "What is the basic RAG loop when a question comes in?",
+      "choices": [
+        {
+          "text": "Embed the question, find the most similar chunks, paste them into the prompt as context",
+          "correct": true
+        },
+        {
+          "text": "Fine-tune the model on the question before answering",
+          "correct": false
+        },
+        {
+          "text": "Search the model's weights for matching facts",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDocuments are chunked and embedded into a vector database; the query is embedded, nearest chunks retrieved, then the model answers from them.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b43f8e#2",
+      "format": "flip",
+      "prompt": "Why is RAG preferred over retraining to add fresh or private knowledge?",
+      "back_html": "\u003cp\u003eA plain LLM is frozen at training time; retraining is slow and costly. RAG just updates the index instead of the model.\u003c/p\u003e"
+    }
+  ]
+}

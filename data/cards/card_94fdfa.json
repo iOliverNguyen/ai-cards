@@ -1,0 +1,121 @@
+{
+  "id": "card_94fdfa",
+  "slug": "edge-vlm-energy-bottleneck",
+  "type": "paper",
+  "title": "Seeing Is Free, Speaking Is Not: The Real Energy Bottleneck in Edge VLM Inference",
+  "hook": "Prune every visual token an edge VLM sees and you save at most 10% of its energy. Shorten what it says instead and save up to 97% — vision was never the bottleneck.",
+  "key_points": [
+    "First systematic energy-profiling study of on-device VLM inference: 5 models, 3 architecture families, 2 hardware platforms.",
+    "Inference power draw is essentially a fixed, model-intrinsic constant — under 5% variation across resolutions, prompts, and image complexity.",
+    "Each output token costs 11-39x more wall-clock time than each input token, from the compute-bound prefill vs. memory-bound decode asymmetry.",
+    "Pruning ALL visual input tokens saves at most 10% of total energy for fixed-token models; controlling output length saves up to 97% instead.",
+    "Image complexity (object count) can swing energy up to 4.1x at identical resolution — but that's from longer outputs, not heavier vision cost."
+  ],
+  "content_html": "\u003cp\u003eEfficiency work on vision-language models has mostly targeted visual tokens, on the assumption that seeing is the expensive part. Junfei Zhan and colleagues run the first systematic energy-profiling study of on-device VLM inference — five models across three architecture families, tested at four resolutions on two hardware platforms — and find that assumption backwards.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eInference power draw turns out to be a near-constant property of the model itself, varying less than 5% across resolutions, prompts, and image complexity. That means all the energy variation across inputs comes from how long inference runs, not from how hard the chip works per token. And output tokens dominate that runtime: each one costs 11 to 39x more wall-clock time than an input token, because generating text is memory-bound while processing the image is compute-bound. The practical upshot is stark — pruning every visual token saves at most 10% of total energy, while simply controlling output length saves up to 97%. Full details are on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Junfei Zhan",
+      "Haoxun Shen",
+      "Mingang Guo",
+      "Zixuan Huang",
+      "Tengjiao He"
+    ],
+    "url": "https://arxiv.org/abs/2607.09520",
+    "published_at": "2026-07-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "systems-efficiency",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "multimodal",
+    "benchmark"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-16",
+  "date": "2026-07-10",
+  "related": [
+    {
+      "id": "card_fda922",
+      "slug": "llms-encode-remaining-output-length",
+      "type": "paper",
+      "title": "How Much Is Left? LLMs Linearly Encode Their Remaining Output Length",
+      "hook": "Before an LLM writes a single token of its answer, its hidden state already seems to know roughly how long the answer will be — and the estimate jumps when it restarts a draft.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_4fbed7",
+      "slug": "shadow-price-of-reasoning",
+      "type": "paper",
+      "title": "The Shadow Price of Reasoning",
+      "hook": "When you can't afford to let every query think as long as it wants, who gets the compute? Treat reasoning tokens like a scarce resource and economics gives a clean answer.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_94fdfa#0",
+      "format": "flip",
+      "prompt": "What did this study find about VLM inference power draw across different inputs?",
+      "back_html": "\u003cp\u003eIt's essentially a fixed, model-intrinsic constant — under 5% variation across resolutions, prompts, and image complexity.\u003c/p\u003e"
+    },
+    {
+      "id": "card_94fdfa#1",
+      "format": "quiz",
+      "prompt": "For an edge VLM, which saves more total energy: pruning all visual tokens, or shortening the output?",
+      "choices": [
+        {
+          "text": "Shortening the output — up to 97% savings, versus at most 10% from pruning all visual tokens",
+          "correct": true
+        },
+        {
+          "text": "Pruning all visual tokens — vision dominates the energy cost",
+          "correct": false
+        },
+        {
+          "text": "Both save roughly the same amount of energy",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBecause power draw is near-constant and output tokens dominate wall-clock time, cutting output length saves far more energy than cutting visual input.\u003c/p\u003e"
+    },
+    {
+      "id": "card_94fdfa#2",
+      "format": "flip",
+      "prompt": "Why does each output token cost so much more energy than each input token?",
+      "back_html": "\u003cp\u003ePrefill (processing input) is compute-bound while decode (generating output) is memory-bound; that asymmetry makes each output token 11-39x costlier.\u003c/p\u003e"
+    },
+    {
+      "id": "card_94fdfa#3",
+      "format": "quiz",
+      "prompt": "A harder image (more objects) raised energy use 4.1x at the same resolution. What actually caused that?",
+      "choices": [
+        {
+          "text": "The model produced a longer output for it, not heavier visual processing",
+          "correct": true
+        },
+        {
+          "text": "The vision encoder ran extra passes over the image",
+          "correct": false
+        },
+        {
+          "text": "The system silently switched to a higher resolution",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eImage complexity didn't add visual-processing cost directly — it drove longer responses, and output length is what actually burns the energy.\u003c/p\u003e"
+    }
+  ]
+}

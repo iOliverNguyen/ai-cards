@@ -1,0 +1,109 @@
+{
+  "id": "card_a2cf0d",
+  "slug": "claude-3",
+  "type": "news",
+  "title": "The Claude 3 Model Family",
+  "hook": "Anthropic's Claude 3 family offers a three-tier speed-capability tradeoff - Haiku, Sonnet, Opus - with multimodal input and alignment built on Constitutional AI methods.",
+  "key_points": [
+    "Three models (Haiku, Sonnet, Opus) trade off inference speed against raw capability, letting users pick the right point on the cost curve.",
+    "All three accept image inputs alongside text, making the full family multimodal.",
+    "Opus set a new benchmark high for Anthropic at release, exceeding GPT-4 on several academic evals.",
+    "Alignment approach draws on Constitutional AI: models are trained with a set of principles rather than purely on human preference labels."
+  ],
+  "content_html": "\u003cp\u003eAnthropic released the Claude 3 model family in March 2024, comprising three models — Haiku, Sonnet, and Opus — designed to cover different points on the speed-versus-capability spectrum. All three accept image and text inputs. Opus, the largest and most capable, outperformed competing frontier models on a range of academic benchmarks at launch.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe Claude 3 models are large transformer-based language models trained with Anthropic's Constitutional AI approach: rather than relying solely on human preference comparisons, the models are guided during training by a written set of principles, helping the model reason about what a helpful and harmless response looks like. Multimodal input is handled through a vision encoder that processes images alongside the text context.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe tiered family design makes it practical to choose the right model for a task — cheap and fast for high-volume or latency-sensitive work, more capable for complex reasoning — without switching providers. Constitutional AI as the alignment backbone also represents a different philosophy to RLHF-only approaches. See Anthropic's announcement for benchmark details and availability.\u003c/p\u003e",
+  "source": {
+    "name": "Anthropic",
+    "authors": [
+      "Anthropic"
+    ],
+    "url": "https://www.anthropic.com/news/claude-3-family",
+    "published_at": "2024-03-04",
+    "license": "Anthropic"
+  },
+  "topic_ids": [
+    "releases",
+    "lab-updates"
+  ],
+  "tags": [
+    "nlp",
+    "multimodal",
+    "alignment",
+    "news"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-06-03",
+  "date": "2024-03-04",
+  "related": [
+    {
+      "id": "card_683aef",
+      "slug": "constitutional-ai",
+      "type": "paper",
+      "title": "Constitutional AI",
+      "hook": "What if a model could critique and improve its own answers against a written set of principles, instead of relying on humans to label every harmful case?",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-15"
+    },
+    {
+      "id": "card_29a088",
+      "slug": "gpt-4",
+      "type": "paper",
+      "title": "GPT-4 Technical Report",
+      "hook": "GPT-4 clears the bar on a wide range of professional and academic benchmarks - passing the bar exam near the top of the score range, for instance - while accepting both text and images as input.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2023-03-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a2cf0d#0",
+      "format": "flip",
+      "prompt": "What tradeoff do the three Claude 3 models (Haiku, Sonnet, Opus) span?",
+      "back_html": "\u003cp\u003eInference speed versus raw capability, letting users pick the right point on the cost curve.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a2cf0d#1",
+      "format": "quiz",
+      "prompt": "How does Constitutional AI differ from a purely preference-based approach?",
+      "choices": [
+        {
+          "text": "Models are guided by a written set of principles, not solely human preference labels",
+          "correct": true
+        },
+        {
+          "text": "Models are trained without any alignment step",
+          "correct": false
+        },
+        {
+          "text": "Models learn only from reward signals during deployment",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eConstitutional AI guides the model during training with a written set of principles rather than relying solely on human preference comparisons.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a2cf0d#2",
+      "format": "quiz",
+      "prompt": "What input modality, beyond text, do all three Claude 3 models accept?",
+      "choices": [
+        {
+          "text": "Images",
+          "correct": true
+        },
+        {
+          "text": "Audio",
+          "correct": false
+        },
+        {
+          "text": "Video",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAll three models accept image inputs alongside text, making the full family multimodal.\u003c/p\u003e"
+    }
+  ]
+}

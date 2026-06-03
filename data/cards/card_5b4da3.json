@@ -1,0 +1,125 @@
+{
+  "id": "card_5b4da3",
+  "slug": "antrap-gui-agent-runtime-anomalies",
+  "type": "paper",
+  "title": "AnTrap: Are Android GUI Agents Robust Against Runtime Anomalies?",
+  "hook": "Real phones throw pop-ups, misfired taps, and dead-end screens at you. Inject those into GUI agent runs and all 16 leading models degrade — some in ways adversarial training can't fix.",
+  "key_points": [
+    "Existing GUI benchmarks test clean trajectories; AnTrap injects dynamic perturbations into agent execution instead.",
+    "A four-layer anomaly taxonomy — State, Thinking, Action, Round — with ten fine-grained subcategories.",
+    "The construction pipeline preserves task solvability so failures reflect robustness, not impossible tasks.",
+    "All 16 evaluated GUI models are universally vulnerable; even the strongest degrade significantly.",
+    "GRPO training in original vs adversarial environments separates environment-learnable traps from reasoning-bottlenecked ones.",
+    "Single-step state and action traps are largely fixable by adversarial RL; deep contextual traps like state deadlock are not."
+  ],
+  "content_html": "\u003cp\u003eGUI agents deployed on real Android devices run into things benchmarks never show them: unexpected pop-ups, misfired actions, screens that won't advance. \u003cstrong\u003eAnTrap\u003c/strong\u003e injects those anomalies into agent execution trajectories on purpose and measures what survives.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe benchmark\u003c/h2\u003e\n\u003cp\u003eGan and colleagues propose a taxonomy organizing real-world anomalies into four layers — \u003cstrong\u003eState, Thinking, Action, and Round\u003c/strong\u003e — with ten fine-grained subcategories, and build a construction pipeline that introduces realistic adversarial conditions while \u003cem\u003epreserving task solvability\u003c/em\u003e. That last constraint is what makes the results interpretable: an agent that fails did so because it couldn't handle the disturbance, not because the goal became unreachable. Evaluating 16 leading GUI models reveals universal vulnerability, with even the strongest suffering significant performance degradation.\u003c/p\u003e\n\u003ch2\u003eWhich failures are trainable\u003c/h2\u003e\n\u003cp\u003eThe more useful contribution is the split the paper draws. The authors run GRPO training in both original and adversarial environments to validate the benchmark and separate \u003cstrong\u003eenvironment-learnable\u003c/strong\u003e anomalies from \u003cstrong\u003ereasoning-bottlenecked\u003c/strong\u003e ones. Single-step traps at the state and action layers turn out to be largely addressable through adversarial reinforcement learning — expose the agent to pop-ups and it learns to dismiss them. Deep contextual traps such as state deadlock don't yield: they expose intrinsic limitations that training in trap-filled environments alone cannot resolve. If you're hardening a GUI agent, that boundary tells you where more adversarial data helps and where you need a different fix. arXiv, 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Guo Gan",
+      "Yilun Zhao",
+      "Cong Chen",
+      "Jinbiao Wei",
+      "Tingyu Song",
+      "Zheyuan Yang",
+      "Lin Fu",
+      "Hong Zhou"
+    ],
+    "url": "https://arxiv.org/abs/2608.24099",
+    "published_at": "2026-08-25",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "safety",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-25",
+  "related": [
+    {
+      "id": "card_63374b",
+      "slug": "osworld-2-computer-use-agents",
+      "type": "paper",
+      "title": "OSWorld 2.0: Long-Horizon Computer Use, Stress-Tested",
+      "hook": "108 realistic computer-use workflows averaging 1.6 human-hours each expose how far agents are from professional-grade computer use — the best model completes only 20.6%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-28"
+    },
+    {
+      "id": "card_ab099d",
+      "slug": "knowact-guiclaw",
+      "type": "paper",
+      "title": "KnowAct-GUIClaw: Know Deeply, Act Perfectly, Personal GUI Assistant with Self-Evolving Memory and Skill",
+      "hook": "A GUI agent framework that treats every finished task as a lesson: it banks the experience into memory and skills, then reuses them across Android, iOS, HarmonyOS, and Windows.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-15"
+    },
+    {
+      "id": "card_d4400d",
+      "slug": "toolhazard-adversarial-agent-environments",
+      "type": "paper",
+      "title": "ToolHazard: Synthesizing Adversarial Environments for Agent Security",
+      "hook": "Prompt-injection benchmarks are hand-built, so they cover the domains someone had time to write. ToolHazard generates the environments — and the attacks inside them — instead.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-12"
+    },
+    {
+      "id": "card_4f0144",
+      "slug": "mobilepa-bench",
+      "type": "paper",
+      "title": "MobilePA-Bench: Phone Agents in a Live Sandbox",
+      "hook": "GUI benchmarks test tapping; function-call benchmarks test string matching. This one runs a real phone sandbox with live app databases — and frontier models get brittle fast.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_5b4da3#0",
+      "format": "flip",
+      "prompt": "Why does AnTrap's pipeline deliberately preserve task solvability?",
+      "back_html": "\u003cp\u003eSo a failure measures the agent's robustness to the injected anomaly rather than the task having been made impossible. The perturbation is adversarial but the goal stays reachable.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5b4da3#1",
+      "format": "quiz",
+      "prompt": "Which anomalies did adversarial RL training largely fail to fix?",
+      "choices": [
+        {
+          "text": "Deep contextual traps such as state deadlock",
+          "correct": true
+        },
+        {
+          "text": "Single-step pop-ups at the state layer",
+          "correct": false
+        },
+        {
+          "text": "Single-step action misuse",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGRPO training in adversarial environments handled single-step state and action traps well, but deep contextual traps exposed intrinsic limitations training in trap-laden environments alone couldn't resolve.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5b4da3#2",
+      "format": "flip",
+      "prompt": "What are the four layers in AnTrap's anomaly taxonomy?",
+      "back_html": "\u003cp\u003eState, Thinking, Action, and Round — organizing ten fine-grained subcategories of real-world runtime anomaly, from unexpected pop-ups to action misuse.\u003c/p\u003e"
+    }
+  ]
+}

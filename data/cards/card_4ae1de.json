@@ -1,0 +1,117 @@
+{
+  "id": "card_4ae1de",
+  "slug": "eu-ai-act-openrag-corpus",
+  "type": "blog",
+  "title": "EU AI Act OpenRAG: Chunking a Law by Its Legal Structure, Not Sliding Windows",
+  "hook": "Most RAG corpora chunk text with sliding character windows. This one chunks the EU AI Act by its actual legal structure and ships it as a single SQLite file.",
+  "key_points": [
+    "Chunks Regulation (EU) 2024/1689 by legal structure, not sliding windows: one chunk per article paragraph, recital, Article 3 definition, or annex point.",
+    "Chapter, section, and provision metadata are stored separately from the chunk text.",
+    "933 total chunks, each paired with a normalized 1024-dimensional BGE-M3 embedding.",
+    "Ships as a single downloadable SQLite database, with exact EUR-Lex links and Article 113 application-date metadata attached."
+  ],
+  "content_html": "\u003cp\u003eA Reddit poster released \u0026quot;EU AI Act OpenRAG,\u0026quot; a ready-to-use corpus of Regulation (EU) 2024/1689 built specifically for RAG and legal-NLP experimentation. The interesting design choice: instead of the usual sliding character-window chunking, the corpus is segmented by the law's own structure — one chunk per article paragraph, one per recital, one per definition in Article 3, one per annex point.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe result is a single SQLite file holding 933 structurally-aware chunks, each with a normalized 1024-dimensional BGE-M3 embedding, plus separately-stored chapter/section/provision metadata, exact EUR-Lex links, and Article 113 application-date info. For anyone building a legal-RAG demo or benchmarking retrieval on regulatory text, it's a drop-in dataset that sidesteps the usual chunk-boundary mess of splitting legal documents by character count. Posted to r/MachineLearning, July 2026 — see the thread for the download.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit r/MachineLearning",
+    "authors": [
+      "/u/Automatic-Forever-63"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1uytlac/eu_ai_act_openrag_933_legally_structured_chunks",
+    "published_at": "2026-07-17",
+    "license": "Reddit post (link-out)"
+  },
+  "topic_ids": [
+    "rag"
+  ],
+  "tags": [
+    "rag",
+    "dataset",
+    "open-source"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-17",
+  "related": [
+    {
+      "id": "card_02ad74",
+      "slug": "retrieval-augmented-generation",
+      "type": "paper",
+      "title": "Retrieval-Augmented Generation (RAG)",
+      "hook": "Why force a model to memorize everything? RAG lets it look things up — fetch relevant documents, then answer from that evidence instead of frozen weights alone.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-22"
+    },
+    {
+      "id": "card_acc5ad",
+      "slug": "eu-ai-act",
+      "type": "resource",
+      "title": "The EU AI Act",
+      "hook": "The EU's answer to regulating AI: sort systems by how much risk they pose, then scale the rules to match — from outright bans to no rules at all.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-08-01"
+    },
+    {
+      "id": "card_667a26",
+      "slug": "dense-passage-retrieval",
+      "type": "paper",
+      "title": "Dense Passage Retrieval (DPR)",
+      "hook": "Keyword search misses answers that use different words. DPR embeds questions and passages into one vector space and retrieves by meaning — the backbone of modern vector search.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-04-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_4ae1de#0",
+      "format": "flip",
+      "prompt": "How does OpenRAG's chunking strategy differ from typical sliding-window RAG chunking?",
+      "back_html": "\u003cp\u003eIt chunks along the Regulation's actual legal structure — one chunk per article paragraph, recital, Article 3 definition, or annex point — instead of fixed-size character windows.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4ae1de#1",
+      "format": "quiz",
+      "prompt": "What embedding does each of the 933 chunks carry?",
+      "choices": [
+        {
+          "text": "A normalized 1024-dimensional BGE-M3 embedding",
+          "correct": true
+        },
+        {
+          "text": "A raw TF-IDF sparse vector",
+          "correct": false
+        },
+        {
+          "text": "No embedding — only the EUR-Lex link",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEvery chunk in the SQLite database is paired with a normalized 1024-dimensional BGE-M3 embedding, ready for dense retrieval.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4ae1de#2",
+      "format": "quiz",
+      "prompt": "Where is chapter/section/provision metadata stored relative to the chunk text?",
+      "choices": [
+        {
+          "text": "Separately, alongside the chunk rather than embedded in it",
+          "correct": true
+        },
+        {
+          "text": "Concatenated directly into the chunk text before embedding",
+          "correct": false
+        },
+        {
+          "text": "It isn't tracked at all",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe project keeps structural metadata (chapter, section, provision, Article 113 application dates, EUR-Lex links) in separate fields rather than mixing it into the text that gets embedded.\u003c/p\u003e"
+    }
+  ]
+}

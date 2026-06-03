@@ -1,0 +1,126 @@
+{
+  "id": "card_1098fc",
+  "slug": "instructgpt",
+  "type": "paper",
+  "title": "InstructGPT: Aligning LMs with Human Feedback (RLHF)",
+  "hook": "A smaller model people actually like beats a bigger one they don't. InstructGPT used human preferences to make a model follow instructions — the recipe behind ChatGPT.",
+  "key_points": [
+    "Collects human rankings of model outputs, trains a reward model, then fine-tunes the LM with RL.",
+    "Human raters preferred its answers over a much larger base model's outputs.",
+    "Improves instruction-following, truthfulness, and reduces toxic output versus the base model.",
+    "The RLHF pipeline that made conversational assistants like ChatGPT usable."
+  ],
+  "content_html": "\u003cp\u003eLong Ouyang, Jeff Wu, and colleagues at OpenAI tackled a gap: big language models are knowledgeable but don't reliably do what you ask. InstructGPT closes it with reinforcement learning from human feedback (RLHF) — gather human preferences on outputs, distill them into a reward model, and fine-tune the language model to score well on it. Raters preferred its answers over those of a far larger base model.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe pipeline has three stages. First, supervised fine-tuning on human-written demonstrations of good responses. Second, humans rank several model outputs for a prompt, and those rankings train a reward model that predicts which response people prefer. Third, the language model is fine-tuned with reinforcement learning (using PPO) to maximize that reward, with a penalty that keeps it from drifting too far from the supervised starting point.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eScale alone doesn't make a model helpful or safe; it needs to be aligned with what people actually want. InstructGPT showed that a relatively modest amount of human feedback can outweigh a large increase in model size for perceived quality, while cutting toxic and untruthful outputs. This RLHF recipe became the template for turning raw language models into the assistants we use today.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Long Ouyang",
+      "Jeff Wu",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2203.02155",
+    "published_at": "2022-03-04",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf"
+  ],
+  "tags": [
+    "alignment",
+    "nlp",
+    "landmark"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2022-03-04",
+  "related": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    },
+    {
+      "id": "card_d5a521",
+      "slug": "direct-preference-optimization",
+      "type": "paper",
+      "title": "Direct Preference Optimization (DPO)",
+      "hook": "RLHF works but is fiddly: a separate reward model and a finicky RL loop. DPO reaches the same goal with one simple loss — and became a popular default.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2023-05-29"
+    },
+    {
+      "id": "card_40de42",
+      "slug": "ppo",
+      "type": "paper",
+      "title": "PPO: Proximal Policy Optimization",
+      "hook": "Reinforcement learning is notoriously unstable. PPO's fix is simple: never let a single update move the policy too far. That restraint made it the field's workhorse.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2017-07-20"
+    },
+    {
+      "id": "card_683aef",
+      "slug": "constitutional-ai",
+      "type": "paper",
+      "title": "Constitutional AI",
+      "hook": "What if a model could critique and improve its own answers against a written set of principles, instead of relying on humans to label every harmful case?",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-15"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_1098fc#0",
+      "format": "quiz",
+      "prompt": "What are the three stages of the InstructGPT RLHF pipeline?",
+      "choices": [
+        {
+          "text": "Supervised fine-tuning, train a reward model on rankings, RL fine-tune against it",
+          "correct": true
+        },
+        {
+          "text": "Pretrain, prune, then quantize the model",
+          "correct": false
+        },
+        {
+          "text": "Collect data, train a classifier, then distill it",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSFT on demonstrations, a reward model trained on human rankings, then PPO RL to maximize that reward.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1098fc#1",
+      "format": "flip",
+      "prompt": "What surprising result did InstructGPT show about model size vs. feedback?",
+      "back_html": "\u003cp\u003eRaters preferred its answers over a far larger base model's — modest human feedback can outweigh a large increase in size for perceived quality.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1098fc#2",
+      "format": "flip",
+      "prompt": "Why is a penalty applied during InstructGPT's RL stage?",
+      "back_html": "\u003cp\u003eTo keep the model from drifting too far from its supervised starting point while it maximizes the reward.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "id": "card_a5fdd1",
+  "slug": "warpsac-regime-aware-off-policy-rl",
+  "type": "paper",
+  "title": "WarpSAC: Off-Policy RL Stabilizers Depend on the Data Regime",
+  "hook": "Massively parallel simulation broke the assumptions behind a decade of RL stabilizers. WarpSAC's finding: tricks that rescue data-starved training actively hold you back when data is abundant.",
+  "key_points": [
+    "Off-policy RL stabilizers were designed for data-limited replay; parallel simulation changes the regime they operate in.",
+    "Across eight benchmark families, parameter normalization helps with narrow replay coverage but restricts value fitting when data is plentiful.",
+    "Clipped double-Q — a standard overestimation guard — can be relaxed in high-throughput manipulation.",
+    "Age-biased replay weighting helps in every regime tested, especially with limited network capacity.",
+    "WarpSAC ships two variants: -L (norm on, clipped double-Q) for CPU-scale training, -A (norm off, single-Q) for GPU-parallel training.",
+    "Reported gains over FlashSAC: +4.5% score-step AUC on nine CPU-scale envs, +23.1% on fourteen GPU-parallel envs, and 19.8% → 96.4% success on UnitreeG1TransportBox-v1."
+  ],
+  "content_html": "\u003cp\u003eMassively parallel simulators changed how much experience an off-policy RL agent can collect, and Wu et al. argue the field's stabilizers never caught up. Techniques like parameter normalization and clipped double-Q were built to keep learning from collapsing on a small, narrow replay buffer. Run controlled experiments across eight benchmark families and their value flips: normalization that rescues narrow replay coverage becomes a constraint on value fitting once data is abundant, and the clipped double-Q overestimation guard can be safely relaxed in high-throughput manipulation.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe proposal, WarpSAC, is a regime-aware family rather than a single algorithm. It adds Sample Weight Decay for efficient exploitation and picks its stabilizers from the regime you are in: WarpSAC-L (normalization on, clipped double-Q) for data-limited CPU-scale training, WarpSAC-A (normalization off, single Q) for data-abundant GPU-parallel training. Against FlashSAC the authors report a 4.5% improvement in normalized score–step AUC across nine CPU-scale environments and 23.1% across fourteen GPU-parallel ones, a jump from 19.8% to 96.4% success on UnitreeG1TransportBox-v1, 19.1% better mean normalized wall-time AUC on MuJoCo Playground, and 36.4% faster sim-to-real deployment on a Unitree G1. The transferable lesson is broader than the algorithm: a stabilizer is a bet about your data regime, and it is worth re-auditing that bet whenever the regime shifts.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zihao Wu",
+      "Hongyao Tang",
+      "Yi Ma",
+      "Huizhong Song",
+      "Pengyi Li",
+      "Yifu Yuan",
+      "Fei Ni",
+      "Jinyi Liu",
+      "Wei Wei",
+      "Jianrong Wang",
+      "Yan Zheng",
+      "Jianye Hao"
+    ],
+    "url": "https://arxiv.org/abs/2608.24479",
+    "published_at": "2026-08-25",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "optimization",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-27",
+  "date": "2026-08-25",
+  "related": [
+    {
+      "id": "card_296943",
+      "slug": "dreamerv3",
+      "type": "paper",
+      "title": "DreamerV3: Mastering Domains through World Models",
+      "hook": "Instead of learning only from real experience, DreamerV3 builds a world model and practices inside its own imagination — one fixed config, 150+ tasks.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2023-01-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a5fdd1#0",
+      "format": "flip",
+      "prompt": "What does WarpSAC mean by calling RL stabilizers 'data-regime-dependent'?",
+      "back_html": "\u003cp\u003eWhether a stabilizer helps depends on how much data the learner sees. Parameter normalization aids narrow replay coverage but restricts value fitting when data is abundant, so the right recipe changes with throughput.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a5fdd1#1",
+      "format": "quiz",
+      "prompt": "Which stabilizer did the authors find helpful across every data regime they tested?",
+      "choices": [
+        {
+          "text": "Age-biased replay weighting",
+          "correct": true
+        },
+        {
+          "text": "Parameter normalization",
+          "correct": false
+        },
+        {
+          "text": "Clipped double-Q",
+          "correct": false
+        },
+        {
+          "text": "Larger discount factors",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAge-biased replay weighting improved learning efficiency across regimes, especially under limited network capacity — unlike normalization and clipped double-Q, which were regime-specific.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a5fdd1#2",
+      "format": "flip",
+      "prompt": "How do the WarpSAC-L and WarpSAC-A variants differ, and why two of them?",
+      "back_html": "\u003cp\u003eWarpSAC-L keeps normalization on with clipped double-Q for data-limited CPU-scale training; WarpSAC-A turns normalization off and uses a single Q for data-abundant GPU-parallel training. Two regimes, two recipes.\u003c/p\u003e"
+    }
+  ]
+}

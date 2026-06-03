@@ -1,0 +1,100 @@
+{
+  "id": "card_647d0f",
+  "slug": "mistral-7b",
+  "type": "paper",
+  "title": "Mistral 7B",
+  "hook": "Mistral 7B outperforms much larger open models on most benchmarks - showing that architecture choices and data quality can stretch a 7B parameter budget a long way.",
+  "key_points": [
+    "Uses grouped-query attention (GQA) for faster inference and sliding-window attention (SWA) to handle long sequences efficiently.",
+    "Outperformed Llama 2 13B and matched or beat Llama 2 34B on several reasoning and coding benchmarks despite being smaller.",
+    "Released under Apache 2.0, one of the most permissive open-source licenses available.",
+    "Demonstrated that targeted architectural improvements can compensate for a smaller parameter count."
+  ],
+  "content_html": "\u003cp\u003eJiang and colleagues at Mistral AI released Mistral 7B in October 2023, a 7-billion-parameter model that outperformed larger open-weight models on a range of reasoning, math, and code benchmarks. Its strong showing for its size drew attention to how much architectural efficiency choices matter at the 7B scale.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eMistral 7B uses two key attention modifications: grouped-query attention, which reduces the memory needed for the key-value cache and speeds up inference, and sliding-window attention, which lets the model process longer sequences without the quadratic cost of full self-attention. The combination makes the model fast and memory-efficient relative to its competitors at launch.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eMistral 7B showed the open community that an aggressively optimized smaller model could beat naive scaling to a larger parameter count. It also became a popular base for fine-tuning due to its Apache 2.0 license. Read the paper on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Albert Q. Jiang",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2310.06825",
+    "published_at": "2023-10-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining",
+    "releases"
+  ],
+  "tags": [
+    "nlp",
+    "open-source",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2023-10-10",
+  "related": [
+    {
+      "id": "card_bd51be",
+      "slug": "llama-2",
+      "type": "paper",
+      "title": "Llama 2: Open Foundation and Fine-Tuned Chat Models",
+      "hook": "Meta released Llama 2 with open weights and a commercial-use license, giving anyone a strong RLHF-tuned chat model to build on - and kicked off a wave of open-LLM development.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-07-18"
+    },
+    {
+      "id": "card_31ff4e",
+      "slug": "mixtral",
+      "type": "paper",
+      "title": "Mixtral of Experts",
+      "hook": "Mixtral packs 8 experts per layer but routes each token through only 2, so you get the capacity of a ~47B model at the compute cost of a ~13B one - open weights included.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-01-08"
+    },
+    {
+      "id": "card_a114e8",
+      "slug": "grouped-query-attention",
+      "type": "paper",
+      "title": "Grouped-Query Attention (GQA)",
+      "hook": "Split the difference between multi-head and multi-query attention: share KV heads across groups of query heads and get most of the memory savings with little quality loss.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2023-05-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_647d0f#0",
+      "format": "flip",
+      "prompt": "What do grouped-query and sliding-window attention each contribute in Mistral 7B?",
+      "back_html": "\u003cp\u003eGQA shrinks the key-value cache and speeds inference; sliding-window attention handles long sequences without full self-attention's quadratic cost.\u003c/p\u003e"
+    },
+    {
+      "id": "card_647d0f#1",
+      "format": "quiz",
+      "prompt": "What did Mistral 7B demonstrate to the open community?",
+      "choices": [
+        {
+          "text": "Targeted architectural efficiency can let a smaller model beat naive scaling to more parameters",
+          "correct": true
+        },
+        {
+          "text": "Only models above 30B parameters are usable",
+          "correct": false
+        },
+        {
+          "text": "Architecture matters less than parameter count",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIt outperformed Llama 2 13B and matched or beat 34B on several benchmarks despite being 7B, thanks to efficiency choices.\u003c/p\u003e"
+    }
+  ]
+}

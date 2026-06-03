@@ -1,0 +1,97 @@
+{
+  "id": "card_ae11d6",
+  "slug": "olmo-2",
+  "type": "news",
+  "title": "OLMo 2: A Fully Open Model",
+  "hook": "Ai2's OLMo 2 is fully open — not just weights, but the training data, code, and checkpoints — the strongest reproducible-from-scratch model for researchers.",
+  "key_points": [
+    "From the Allen Institute for AI (Ai2): 7B and 13B in late 2024, a 32B in March 2025.",
+    "'Fully open' — weights, training data, code, recipes, and intermediate checkpoints all released.",
+    "The 32B was the first fully open model to rival GPT-3.5-Turbo / GPT-4o-mini on academic benchmarks.",
+    "Lets researchers audit, replicate, and build on the entire training pipeline."
+  ],
+  "content_html": "\u003cp\u003eOLMo 2, from the Allen Institute for AI (Ai2), pushes a stricter notion of \u0026quot;open\u0026quot; than most so-called open models. Where releases like Llama publish weights but keep the training data and recipe private, OLMo 2 releases everything — weights, the full training data, the training and fine-tuning code, and intermediate checkpoints — so the entire model can be reproduced and audited from scratch.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's new\u003c/h2\u003e\n\u003cp\u003eThe family launched with 7B and 13B models in late 2024 and added a 32B model in March 2025. Trained on trillions of tokens with a focus on training stability and data quality, the 32B was notable for being the first fully open model to match or beat strong commercial baselines like GPT-3.5-Turbo and GPT-4o-mini on a suite of academic benchmarks — closing much of the gap while keeping the whole pipeline transparent.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003e\u0026quot;Open weights\u0026quot; and \u0026quot;open source\u0026quot; are not the same thing. OLMo 2 is genuinely the latter: the data and code that produced it are public, which makes it a uniquely valuable artifact for science — you can study exactly how capabilities emerge, not just the finished model. That transparency is the point, and it is rare at this scale.\u003c/p\u003e",
+  "source": {
+    "name": "Allen Institute for AI",
+    "authors": [
+      "Ai2"
+    ],
+    "url": "https://allenai.org/blog/olmo2",
+    "published_at": "2025-03-13",
+    "license": "Ai2 blog"
+  },
+  "topic_ids": [
+    "pretraining",
+    "releases"
+  ],
+  "tags": [
+    "open-source",
+    "nlp"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2025-03-13",
+  "related": [
+    {
+      "id": "card_7a5e17",
+      "slug": "the-pile",
+      "type": "dataset",
+      "title": "The Pile: 800GB of Diverse Text",
+      "hook": "Web text alone leaves gaps. The Pile stitches together 22 curated sources — academic and professional — so a language model picks up knowledge plain web crawls miss.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-12-31"
+    },
+    {
+      "id": "card_ea6afd",
+      "slug": "llama-3",
+      "type": "paper",
+      "title": "The Llama 3 Herd of Models",
+      "hook": "Meta's Llama 3 family, trained on roughly 15 trillion tokens with a 405B-parameter flagship, narrowed the gap to closed frontier models while staying open-weights.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2024-07-23"
+    },
+    {
+      "id": "card_9237d7",
+      "slug": "deduplicating-training-data",
+      "type": "paper",
+      "title": "Deduplicating Training Data Makes LMs Better",
+      "hook": "Training corpora are full of copies — one 61-word sentence shows up 60,000+ times in C4. Strip the duplicates and models memorize far less and evaluate more honestly.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2021-07-14"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_ae11d6#0",
+      "format": "quiz",
+      "prompt": "How does OLMo 2's 'fully open' differ from open-weights releases like Llama?",
+      "choices": [
+        {
+          "text": "It releases weights plus training data, code, recipes, and checkpoints — the whole pipeline",
+          "correct": true
+        },
+        {
+          "text": "It releases only the weights, like Llama",
+          "correct": false
+        },
+        {
+          "text": "It keeps the weights private but publishes the data",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLlama publishes weights but keeps data and recipe private; OLMo 2 releases everything so the model can be reproduced and audited.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ae11d6#1",
+      "format": "flip",
+      "prompt": "Why is OLMo 2 described as uniquely valuable for science?",
+      "back_html": "\u003cp\u003eBecause its data and code are public, you can study exactly how capabilities emerge, not just the finished model — rare at this scale.\u003c/p\u003e"
+    }
+  ]
+}

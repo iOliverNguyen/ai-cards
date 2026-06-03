@@ -1,0 +1,138 @@
+{
+  "id": "card_fda922",
+  "slug": "llms-encode-remaining-output-length",
+  "type": "paper",
+  "title": "How Much Is Left? LLMs Linearly Encode Their Remaining Output Length",
+  "hook": "Before an LLM writes a single token of its answer, its hidden state already seems to know roughly how long the answer will be — and the estimate jumps when it restarts a draft.",
+  "key_points": [
+    "Linear probes on frozen hidden states of three open-weight 7-8B models, across seven completion-style datasets, decode total response length.",
+    "Total response length is linearly decodable from the prompt's last hidden state alone, before any output token is generated.",
+    "Probe directions trained on natural-language datasets transfer broadly, including to synthetic completions never seen in training — beating a statistical baseline; the reverse direction generally fails.",
+    "On high-loss completions, the probe's per-position estimate shifts upward exactly when the model retracts and restarts a partial solution.",
+    "Framed as approximate length estimation, distinct from known exact-counting impossibility results for transformers; the signal is decodable, not proven to be causally used."
+  ],
+  "content_html": "\u003cp\u003eLLMs generate one token at a time with no explicit plan — yet their responses show oddly consistent length patterns: step-by-step solutions converge in predictable token counts, retrievals wrap up after a few sentences. This paper asks whether the model is quietly tracking how much is left to say.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe authors train minimal-capacity linear probes on frozen hidden states of three open-weight 7-8B models across seven completion-style datasets, and find three converging pieces of evidence. First, total response length is linearly decodable from the prompt's very last hidden state, before a single output token exists. Second, probe directions trained on natural-language data transfer broadly — including to synthetic completions the probe never saw — beating a statistical baseline, though the reverse transfer direction generally fails, which is itself informative. Third, on curated high-loss completions, the probe's per-position estimate shifts upward at the exact moment the model retracts and restarts a partial solution, a directional behavior no simple position-based predictor could reproduce.\u003c/p\u003e\n\u003cp\u003eThe authors are careful to frame this as \u003cem\u003edecodable\u003c/em\u003e, approximate estimation of remaining generation length — distinct from proven impossibility results about transformers counting exactly — and interpret it as evidence that LLMs maintain something like a plan-like internal representation of their own output length, whether or not the model causally relies on it. Mohamed Amine Merzouk, Dmitri Carpov, Mirko Bronzi, Damiano Fornasiere, and Adam Oberman, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Mohamed Amine Merzouk",
+      "Dmitri Carpov",
+      "Mirko Bronzi",
+      "Damiano Fornasiere",
+      "Adam Oberman"
+    ],
+    "url": "https://arxiv.org/abs/2607.05316",
+    "published_at": "2026-07-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-13",
+  "date": "2026-07-06",
+  "related": [
+    {
+      "id": "card_296b02",
+      "slug": "latent-programming-horizons-coding-agents",
+      "type": "paper",
+      "title": "Latent Programming Horizons in Coding Agents",
+      "hook": "A coding agent's hidden states seem to know where an edit is heading up to 25 steps before it's made — long before the agent has written the code.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_6e175b",
+      "slug": "internal-state-probes-misalignment-monitoring",
+      "type": "paper",
+      "title": "Internal-State Probes Read the Situation, Not the Action",
+      "hook": "Probes that seem to detect an LLM's harmful intent before it acts mostly just detect the prompt's topic — three careful tests find they don't predict future misbehavior.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-29"
+    },
+    {
+      "id": "card_d9c6e9",
+      "slug": "reading-between-the-dots",
+      "type": "paper",
+      "title": "Reading Between the Dots: Hidden Computation in Filler Tokens",
+      "hook": "Frontier models can solve multi-step problems while outputting nothing but dots — no visible reasoning at all. This paper shows that 'hidden' computation is still legible, just not in the output.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-03"
+    },
+    {
+      "id": "card_8e2734",
+      "slug": "subliminal-clocks-diffusion-time",
+      "type": "paper",
+      "title": "Subliminal Clocks: Latent Time Modelling in Diffusion Language Models",
+      "hook": "Standard diffusion models are told which denoising step they're on; diffusion language models aren't — yet they track it anyway, a hidden clock you can read off their activations and even steer.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-20"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_fda922#0",
+      "format": "flip",
+      "prompt": "What can a linear probe decode from an LLM's hidden state before it generates any output?",
+      "back_html": "\u003cp\u003eAn estimate of the total length of the response it's about to produce — decoded from the prompt's last hidden state, before any output token is emitted.\u003c/p\u003e"
+    },
+    {
+      "id": "card_fda922#1",
+      "format": "flip",
+      "prompt": "What happens to the probe's length estimate when a model retracts and restarts a partial solution mid-generation?",
+      "back_html": "\u003cp\u003eIt shifts upward at that exact moment — a directional change no position-only predictor (one that just counts tokens so far) could reproduce.\u003c/p\u003e"
+    },
+    {
+      "id": "card_fda922#2",
+      "format": "quiz",
+      "prompt": "Why do the authors call this 'approximate' length estimation rather than exact counting?",
+      "choices": [
+        {
+          "text": "Because it's a decodable statistical estimate, distinct from known impossibility results for transformers counting exactly, and not proven to be causally used",
+          "correct": true
+        },
+        {
+          "text": "Because the probe can count the exact remaining tokens with 100% accuracy",
+          "correct": false
+        },
+        {
+          "text": "Because the model outputs the token count directly in its response",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper is careful to frame this as evidence of a decodable, plan-like internal signal — not proof that the model exactly counts or causally relies on it to generate.\u003c/p\u003e"
+    },
+    {
+      "id": "card_fda922#3",
+      "format": "quiz",
+      "prompt": "How well do probe directions trained on natural-language datasets transfer to unseen synthetic completions?",
+      "choices": [
+        {
+          "text": "They transfer broadly and outperform a statistical baseline",
+          "correct": true
+        },
+        {
+          "text": "They fail completely on any data outside their training set",
+          "correct": false
+        },
+        {
+          "text": "They only work on the exact dataset they were trained on",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eCross-dataset transfer — including to controlled synthetic completions never seen in training — is one of the three pieces of evidence for a general length signal; the reverse transfer direction is notably weaker.\u003c/p\u003e"
+    }
+  ]
+}

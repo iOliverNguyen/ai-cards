@@ -1,0 +1,104 @@
+{
+  "id": "card_fec91a",
+  "slug": "levjepa-video-pretraining",
+  "type": "paper",
+  "title": "LeVJEPA: Video Pretraining Without the Asymmetry",
+  "hook": "Drop the EMA target encoder, the stop-gradient, and the crippled predictor — a single encoder with a provably collapse-free loss matches V-JEPA 2 at up to 20x less compute.",
+  "key_points": [
+    "Self-supervised video methods avoid collapse either by architectural asymmetries (EMA target encoder + stop-gradient + limited predictor) or by pixel reconstruction.",
+    "LeVJEPA is the first video encoder trained under LeJEPA's collapse-free objective, which needs neither.",
+    "One encoder, one projector: an invariance loss over global and local views of a clip, regularized by SIGReg with a provable no-collapse guarantee, and a single hyperparameter.",
+    "Pretraining cost is governed by tokens seen, so uniform random token dropping cuts cost while improving downstream accuracy.",
+    "At matched epochs on identical data it matches or surpasses V-JEPA 2 across ViT-S/B/L at 5.6-20.8x less compute.",
+    "Against a compute-matched DINOv2 on frames of the same videos, it nearly doubles motion-centric accuracy while approaching it on appearance tasks."
+  ],
+  "content_html": "\u003cp\u003eVideo should be a great substrate for visual pretraining — it carries the temporal structure of the physical world for free. It has mostly not been, because it is expensive. Prevailing self-supervised methods either prevent representation collapse with a stack of architectural asymmetries (an EMA target encoder, a stop-gradient, a deliberately weak predictor) or sidestep it by reconstructing masked pixels.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe method\u003c/h2\u003e\n\u003cp\u003eLeVJEPA is the first video encoder trained under LeJEPA's collapse-free objective, which needs neither. A single encoder is trained with an invariance loss over global and local views of a clip, regularized by SIGReg, which excludes collapse with a provable guarantee. The architecture reduces to an encoder plus a projector; the objective reduces to a single hyperparameter.\u003c/p\u003e\n\u003cp\u003eTwo consequences follow. First, cost is governed by how many tokens the encoder observes, so uniform random token dropping makes pretraining much cheaper — and in their experiments simultaneously improves downstream accuracy. Second, with no asymmetry between branches to maintain, the encoder can be trained with block-causal attention at no measurable accuracy cost, so temporal ordering becomes a property of the encoder itself.\u003c/p\u003e\n\u003ch2\u003eResults\u003c/h2\u003e\n\u003cp\u003eAt matched epochs on identical data, LeVJEPA matches or surpasses V-JEPA 2 across ViT-S/B/L at 5.6 to 20.8x less pretraining compute. At matched total FLOPs it exceeds the strongest video baseline by 7.6 points on ImageNet-1K while staying competitive on motion-centric benchmarks. Against a compute-matched DINOv2 trained on frames from the same videos, it approaches the image-pretrained encoder on appearance-centric evaluation while nearly \u003cem\u003edoubling\u003c/em\u003e its motion-centric accuracy.\u003c/p\u003e\n\u003cp\u003eThe authors' conclusion: once the computational overhead is removed, video becomes a viable — and in several respects preferable — substrate for general-purpose visual pretraining.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Lukas Kuhn",
+      "Lucas Maes",
+      "Giuseppe Serra",
+      "Quentin Le Lidec",
+      "Yann LeCun",
+      "Randall Balestriero",
+      "Florian Buettner"
+    ],
+    "url": "https://arxiv.org/abs/2608.27395",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "vision-transformers",
+    "video-audio",
+    "papers-this-week"
+  ],
+  "tags": [
+    "vision",
+    "training",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_4aba44",
+      "slug": "vision-transformer-vit",
+      "type": "paper",
+      "title": "An Image is Worth 16x16 Words (ViT)",
+      "hook": "Chop an image into patches, treat each like a word, and feed them to a plain Transformer. With enough pretraining data, it matches or beats convolutional networks.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-10-22"
+    },
+    {
+      "id": "card_9f7fa7",
+      "slug": "dino",
+      "type": "paper",
+      "title": "DINO: Self-Supervised Vision Transformers",
+      "hook": "Train a Vision Transformer with no labels at all, and something surprising happens: its attention maps trace out object boundaries on their own.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2021-04-29"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_fec91a#0",
+      "format": "flip",
+      "prompt": "What is representation collapse, and how do JEPA-style methods usually prevent it?",
+      "back_html": "\u003cp\u003eCollapse is when the encoder maps everything to the same vector, trivially satisfying an invariance loss. Standard fixes use architectural asymmetry — an EMA target encoder, a stop-gradient, and a capacity-limited predictor.\u003c/p\u003e"
+    },
+    {
+      "id": "card_fec91a#1",
+      "format": "quiz",
+      "prompt": "Why does removing branch asymmetry let LeVJEPA use block-causal attention?",
+      "choices": [
+        {
+          "text": "With no target/student split to keep consistent, temporal ordering can be baked into the single encoder",
+          "correct": true
+        },
+        {
+          "text": "Block-causal attention is required by the SIGReg regularizer",
+          "correct": false
+        },
+        {
+          "text": "Causal attention is the only way to avoid collapse without an EMA target",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper reports block-causal attention at no measurable accuracy cost once the architecture reduces to one encoder plus a projector — temporal order becomes a property of the encoder itself.\u003c/p\u003e"
+    },
+    {
+      "id": "card_fec91a#2",
+      "format": "flip",
+      "prompt": "What makes uniform random token dropping so effective here?",
+      "back_html": "\u003cp\u003ePretraining cost is governed by how many tokens the encoder sees. Dropping tokens makes that number small while, in their experiments, simultaneously improving downstream accuracy.\u003c/p\u003e"
+    }
+  ]
+}

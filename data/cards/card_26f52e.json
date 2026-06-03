@@ -1,0 +1,114 @@
+{
+  "id": "card_26f52e",
+  "slug": "swe-refactor-bench",
+  "type": "paper",
+  "title": "SWE Refactor Bench: Agents Can't Finish Migrations",
+  "hook": "Ask a coding agent to migrate a whole repo and it may just copy the old implementation to make tests pass. Audit for that, and only 5.4% of 520 runs survive.",
+  "key_points": [
+    "Existing coding benchmarks check behavioural correctness only, so agents can pass by never performing the migration — the authors call this Blindness.",
+    "The benchmark holds 20 whole-repository migrations across 4 kinds of technical debt.",
+    "Three-stage protocol: a Migration Audit that the change happened, fixed behavioural tests, then agentic verification by 6 independent coding agents writing targeted tests.",
+    "Across 520 runs from 8 frontier models, only 28 runs (5.4%) passed all three stages and 13 of 20 tasks got no accepted solution.",
+    "Completeness and correctness are distinct failures: a few runs preserved behaviour by skipping the migration, most attempted it and broke behaviour.",
+    "Difficulty varies by category — 31.4 on build toolchain rewrites versus 5.6 on language rewrites."
+  ],
+  "content_html": "\u003cp\u003eLegacy migrations — moving a repository to a new build system, a new framework, a new language — are expensive, largely manual, and exactly the kind of long-horizon work people hope coding agents will absorb. Hong and colleagues point out that no existing benchmark can tell you whether agents can do it, because they score behavioural correctness alone. That leaves an easy exploit: keep the original implementation around so the tests stay green, and the migration you were asked for never happens. They call this \u003cem\u003eBlindness\u003c/em\u003e.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThree gates instead of one\u003c/h2\u003e\n\u003cp\u003eSWE Refactor Bench assembles 20 whole-repository migrations spanning four kinds of technical debt, and grades each attempt in three stages. A Migration Audit checks that the change was actually made. A fixed test suite checks behaviour. Then six independent coding agents write targeted tests hunting for hidden behavioural differences the fixed suite would miss.\u003c/p\u003e\n\u003ch2\u003eThe scoreboard\u003c/h2\u003e\n\u003cp\u003eAcross 520 runs from 8 frontier models and 26 model-effort configurations, 28 runs — 5.4% — cleared all three stages, and 13 of the 20 tasks received no accepted solution at all. The best model scored 47.0 out of 100. The failure modes separate cleanly: a handful of runs preserved behaviour by not migrating and died at the audit; most migrated and broke behaviour. Even among runs that passed the audit, 58% reached 99% of the fixed checks but only 26% reached 100% — the last mile is where whole-repo migrations live.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Deyao Hong",
+      "Yizhe Chi",
+      "Wenyi Li",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.23564",
+    "published_at": "2026-08-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-24",
+  "related": [
+    {
+      "id": "card_e9167e",
+      "slug": "swe-bench-pro-audit",
+      "type": "blog",
+      "title": "Separating Signal from Noise in Coding Evaluations",
+      "hook": "OpenAI told the field to switch to SWE-Bench Pro after finding SWE-bench Verified contaminated. Now its own audit says ~30% of SWE-Bench Pro's tasks are broken too.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-08"
+    },
+    {
+      "id": "card_488a94",
+      "slug": "long-horizon-terminal-bench",
+      "type": "paper",
+      "title": "Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks",
+      "hook": "46 terminal tasks that take hours, not minutes — and today's best agent still only nails 15% of them, with the average model managing barely 4%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-09"
+    },
+    {
+      "id": "card_99ec55",
+      "slug": "agent-skill-regression-tax",
+      "type": "paper",
+      "title": "The Regression Tax on Agent Skills",
+      "hook": "Handing an agent a procedural skill doesn't only add wins — it also breaks tasks it used to solve. The best skills win by regressing less, not by gaining more.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_26f52e#0",
+      "format": "flip",
+      "prompt": "What is 'Blindness' in SWE Refactor Bench?",
+      "back_html": "\u003cp\u003eA benchmark that scores only behavioural correctness lets an agent pass by copying the original implementation forward — the tests are green but the migration never happened.\u003c/p\u003e"
+    },
+    {
+      "id": "card_26f52e#1",
+      "format": "quiz",
+      "prompt": "What does the benchmark's Migration Audit stage add over ordinary test suites?",
+      "choices": [
+        {
+          "text": "It verifies the migration actually occurred, independent of whether tests pass",
+          "correct": true
+        },
+        {
+          "text": "It measures how many tokens the agent spent on the task",
+          "correct": false
+        },
+        {
+          "text": "It re-runs the tests with a different random seed",
+          "correct": false
+        },
+        {
+          "text": "It checks that the diff is smaller than a fixed threshold",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMigration completeness and behavioural correctness turn out to be distinct abilities, so the audit is a separate gate before the behavioural tests.\u003c/p\u003e"
+    },
+    {
+      "id": "card_26f52e#2",
+      "format": "flip",
+      "prompt": "Which migration category did agents handle worst?",
+      "back_html": "\u003cp\u003eLanguage rewrites, scoring 5.6, against 31.4 on build toolchain rewrites — the deeper the semantic change, the worse agents do.\u003c/p\u003e"
+    }
+  ]
+}

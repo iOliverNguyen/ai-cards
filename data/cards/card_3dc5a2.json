@@ -1,0 +1,112 @@
+{
+  "id": "card_3dc5a2",
+  "slug": "forgotten-language-traces-speech-models",
+  "type": "paper",
+  "title": "Lost but Not Erased: Traces of a Forgotten Language in Neural Speech Models",
+  "hook": "International adoptees keep traces of a birth language they can't speak. Train an ASR model on one language, switch it abruptly to another, and the same thing happens — no biology needed.",
+  "key_points": [
+    "The study simulates the adoptee experience in ASR models: train on language A, abruptly switch to language B.",
+    "Traces of the first language persisted throughout second-language training, mainly in the lowest, pre-phonemic layers.",
+    "The traces are functional: early-exposure models re-learned their lost first language 14% faster than naive models.",
+    "The advantage held even against models 'adopted' early from a related language.",
+    "It disappeared when the earliest layers were swapped in from a non-adopted model — localizing the effect.",
+    "Authors argue critical periods reflect entrenchment of foundational representations, not maturational loss of plasticity."
+  ],
+  "content_html": "\u003cp\u003eInternational adoptees retain phonological traces of a birth language they can no longer speak or understand. The standard explanation is a biologically-timed critical period. Plantinga and colleagues test whether ordinary learning dynamics suffice — using automatic speech recognition models, which have no biology to appeal to.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe simulation\u003c/h2\u003e\n\u003cp\u003eModels were trained on one language and then \u003cstrong\u003eabruptly switched\u003c/strong\u003e to a second, mimicking the adoptee experience without maturational confounds. Traces of the first language persisted throughout second-language training, concentrated mainly in the lowest, \u003cstrong\u003epre-phonemic\u003c/strong\u003e layers — the parts of the network closest to raw acoustics.\u003c/p\u003e\n\u003ch2\u003eThe traces do work\u003c/h2\u003e\n\u003cp\u003ePersistence alone would be a curiosity; the authors show the traces are functional. Models with early exposure re-learned their lost first language \u003cstrong\u003e14% faster\u003c/strong\u003e than naive models. The advantage held even against models adopted early from a \u003cem\u003erelated\u003c/em\u003e language, ruling out generic linguistic similarity as the explanation. And it disappeared when the earliest layers were substituted from a non-adopted model — pinning the effect to exactly the layers where the traces were found. On that basis the authors argue critical-period effects reflect \u003cstrong\u003eentrenchment of foundational representations\u003c/strong\u003e rather than a maturational loss of plasticity, giving experience a central role in language acquisition's critical periods. A nice example of a neural network used as a controlled model organism for a cognitive-science question. arXiv, 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Peter Plantinga",
+      "Charlotte Moore",
+      "Peter W. Donhauser",
+      "Krista Byers-Heinlein",
+      "Denise Klein"
+    ],
+    "url": "https://arxiv.org/abs/2608.25976",
+    "published_at": "2026-08-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "video-audio",
+    "interpretability",
+    "papers-this-week"
+  ],
+  "tags": [
+    "speech",
+    "interpretability",
+    "training",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_8a4426",
+      "slug": "whisper",
+      "type": "paper",
+      "title": "Whisper: Robust Speech Recognition at Scale",
+      "hook": "Train a plain encoder-decoder transformer on 680,000 hours of weakly-labeled multilingual audio and you get near-human transcription robustness without task-specific fine-tuning.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-06"
+    },
+    {
+      "id": "card_87aaac",
+      "slug": "grpo-synthetic-speech-asr",
+      "type": "paper",
+      "title": "When Real Speech Is Off-Limits, RL Beats Fine-Tuning on Synthetic Audio",
+      "hook": "Banks can't just collect real customer speech to adapt voice AI. Trained only on synthetic TTS audio, GRPO cuts word-error rate 40% more than supervised fine-tuning alone.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-09"
+    },
+    {
+      "id": "card_99225b",
+      "slug": "small-foundation-models-human-cognition",
+      "type": "paper",
+      "title": "Small Models Are Enough to Imitate Human Choice Behaviour",
+      "hook": "Fourteen models from 135M to 14B were fine-tuned on 10.7 million human decisions. In-distribution, 0.6B matched a 70B baseline — scale only started paying off on unfamiliar tasks.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-05"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_3dc5a2#0",
+      "format": "flip",
+      "prompt": "Why is an ASR model a useful stand-in for studying critical periods in language?",
+      "back_html": "\u003cp\u003eIt simulates the international-adoptee experience — abrupt switch from one language to another — without any maturational confound. Whatever persists can't be explained by a biological clock.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3dc5a2#1",
+      "format": "quiz",
+      "prompt": "Where in the network did traces of the abandoned first language persist?",
+      "choices": [
+        {
+          "text": "Mainly in the lowest, pre-phonemic layers",
+          "correct": true
+        },
+        {
+          "text": "Mainly in the topmost output layers",
+          "correct": false
+        },
+        {
+          "text": "Spread uniformly across all layers",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe localization is what makes the result testable: substituting the earliest layers from a non-adopted model made the re-learning advantage disappear.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3dc5a2#2",
+      "format": "flip",
+      "prompt": "What alternative explanation for critical periods do the authors propose?",
+      "back_html": "\u003cp\u003eEntrenchment of foundational representations formed by early experience — rather than a maturational loss of plasticity. Experience, not a biological clock, does much of the work.\u003c/p\u003e"
+    }
+  ]
+}

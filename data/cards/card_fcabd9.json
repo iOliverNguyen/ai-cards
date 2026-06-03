@@ -1,0 +1,96 @@
+{
+  "id": "card_fcabd9",
+  "slug": "xiaomi-mimo-v2-5-dflash",
+  "type": "news",
+  "title": "Xiaomi Quietly Ships MiMo-V2.5-DFlash",
+  "hook": "Xiaomi quietly uploaded a speculative-decoding-style variant of its 300B+ MiMo-V2.5 model that could roughly double consumer-hardware throughput - once software catches up.",
+  "key_points": [
+    "Xiaomi uploaded MiMo-V2.5-DFlash to Hugging Face with no announcement - a dedicated variant of its 300B+ parameter MiMo-V2.5 model.",
+    "The base MiMo-V2.5 already runs at roughly 8-10 tokens/sec on consumer hardware: two 24GB GPUs plus VRAM offload to 96-128GB of system RAM.",
+    "DFlash centers on a shared 'MTP' (multi-token-prediction) head, a speculative-decoding-style mechanism predicting several tokens per step.",
+    "Community estimates DFlash could roughly double throughput on the same hardware, but it wasn't yet working in llama.cpp at time of posting.",
+    "The mechanism and exact speedup are community speculation from a Reddit report, not confirmed benchmarks from Xiaomi."
+  ],
+  "content_html": "\u003cp\u003eXiaomi, better known for phones than frontier LLMs, has quietly been building a serious open-weight model line - and just as quietly uploaded MiMo-V2.5-DFlash to Hugging Face with no announcement. It's a dedicated variant of MiMo-V2.5, a 300B+ parameter model that a LocalLLaMA user reports already runs at roughly 8-10 tokens/sec on consumer hardware (two 24GB GPUs plus VRAM offload to 96-128GB of system RAM).\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eDFlash is built around a shared multi-token-prediction (MTP) head - a speculative-decoding-style mechanism that predicts several tokens per forward pass instead of one - and the poster speculates it could roughly double throughput on the same consumer setup. As of the report, though, DFlash support wasn't yet working in llama.cpp, and Xiaomi hasn't published official benchmarks or documentation, so the exact mechanism and expected speedup remain community speculation. See the original report and model card via the source link.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit (r/LocalLLaMA)",
+    "authors": [
+      "u/nasone32"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1uu8d1v/xiaomi_quietly_uploaded_mimov25dflash_official",
+    "published_at": "2026-07-12",
+    "license": "Community post"
+  },
+  "topic_ids": [
+    "language-models",
+    "releases"
+  ],
+  "tags": [
+    "open-source",
+    "efficiency",
+    "inference",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-16",
+  "date": "2026-07-12",
+  "related": [
+    {
+      "id": "card_951958",
+      "slug": "speculative-decoding",
+      "type": "paper",
+      "title": "Speculative Decoding",
+      "hook": "Let a small, fast model guess the next few words, then have the big model check them all in one shot. Same output, fewer slow steps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-30"
+    },
+    {
+      "id": "card_ccd6d9",
+      "slug": "nemotron-3-ultra",
+      "type": "paper",
+      "title": "Nemotron 3 Ultra: Open Hybrid Mamba-Attention MoE",
+      "hook": "NVIDIA's open 550B model interleaves Mamba and attention inside a Mixture-of-Experts - hitting ~6x the inference throughput of comparable LLMs at on-par accuracy.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-12"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_fcabd9#0",
+      "format": "flip",
+      "prompt": "What is Xiaomi's MiMo-V2.5-DFlash, and how was it released?",
+      "back_html": "\u003cp\u003eA dedicated variant of Xiaomi's 300B+ parameter MiMo-V2.5 model, uploaded to Hugging\nFace quietly with no official announcement or benchmarks.\u003c/p\u003e"
+    },
+    {
+      "id": "card_fcabd9#1",
+      "format": "quiz",
+      "prompt": "What mechanism does DFlash reportedly center on?",
+      "choices": [
+        {
+          "text": "A shared multi-token-prediction (MTP) head, a speculative-decoding-style trick",
+          "correct": true
+        },
+        {
+          "text": "A distilled 10B student model",
+          "correct": false
+        },
+        {
+          "text": "A new tokenizer that halves sequence length",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eCommunity reports point to a shared MTP head - predicting multiple tokens per step,\nsimilar to speculative decoding - as DFlash's core mechanism.\u003c/p\u003e"
+    },
+    {
+      "id": "card_fcabd9#2",
+      "format": "flip",
+      "prompt": "Why hasn't DFlash's claimed speedup been confirmed yet?",
+      "back_html": "\u003cp\u003eAt time of the report, DFlash wasn't working in llama.cpp and Xiaomi published no\nofficial benchmarks - the roughly 2x estimate is community speculation.\u003c/p\u003e"
+    }
+  ]
+}

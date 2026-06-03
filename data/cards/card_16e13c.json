@@ -1,0 +1,96 @@
+{
+  "id": "card_16e13c",
+  "slug": "deepmind-isomorphic-bioresilience",
+  "type": "news",
+  "title": "Google DeepMind and Isomorphic Labs' Approach to Bioresilience",
+  "hook": "The same AI capabilities that could help design a dangerous pathogen can also help stop one. DeepMind and Isomorphic Labs lean on watermarking and biology models for the defensive side.",
+  "key_points": [
+    "A joint approach from Google DeepMind and Isomorphic Labs to AI and bioresilience — treating advanced biology models as dual-use.",
+    "Adapts SynthID, DeepMind's watermarking technology, to help DNA-synthesis screening spot AI-designed sequences.",
+    "Applies AlphaEvolve and AlphaGenome to pathogen-detection work, extending tools built for scientific discovery into biosecurity.",
+    "Part of a broader industry moment where frontier labs are publishing explicit plans for AI's role in biological risk and defense."
+  ],
+  "content_html": "\u003cp\u003eGoogle DeepMind and Isomorphic Labs published a joint approach to \u0026quot;bioresilience\u0026quot; — their term for using AI to strengthen defenses against biological risks that AI itself could help create. It's part of a growing pattern among frontier labs of publishing explicit dual-use biosecurity plans rather than treating the topic as an afterthought.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe concrete moves described include adapting SynthID — DeepMind's watermarking technology, originally built for flagging AI-generated text and media — to help DNA-synthesis screening systems detect AI-designed genetic sequences. The plan also brings AlphaEvolve and AlphaGenome, tools built for scientific discovery, to bear on pathogen-detection work. Together it positions existing DeepMind and Isomorphic Labs technology as infrastructure for biosecurity rather than building defense tools from scratch. Published on the DeepMind blog, July 2026 — see the source for the full write-up.\u003c/p\u003e",
+  "source": {
+    "name": "Google DeepMind",
+    "authors": [
+      "Google DeepMind",
+      "Isomorphic Labs"
+    ],
+    "url": "https://deepmind.google/blog/our-approach-to-bioresilience",
+    "published_at": "2026-07-16",
+    "license": "DeepMind blog"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "ai-for-science",
+    "lab-updates"
+  ],
+  "tags": [
+    "safety",
+    "news",
+    "generative"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-07-20",
+  "date": "2026-07-16",
+  "related": [
+    {
+      "id": "card_32a436",
+      "slug": "openai-biodefense",
+      "type": "news",
+      "title": "OpenAI's Biodefense Action Plan",
+      "hook": "The same frontier AI that could lower the bar for engineering a pathogen could also help defend against one. OpenAI's plan leans hard into the second half of that dual-use coin.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-04"
+    },
+    {
+      "id": "card_f22c85",
+      "slug": "watermark-evidence-forensic-readiness",
+      "type": "paper",
+      "title": "AI Watermark Evidence Fails Forensic Readiness",
+      "hook": "Laws like the EU AI Act and California's SB 942 assume watermark detection can hold up in court. Tested against forensic and legal admissibility standards, three leading methods collapse.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-17"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_16e13c#0",
+      "format": "flip",
+      "prompt": "Which existing DeepMind technology gets repurposed for DNA-synthesis screening in this bioresilience plan?",
+      "back_html": "\u003cp\u003eSynthID, DeepMind's watermarking technology — adapted to help DNA-synthesis screening systems flag AI-designed sequences.\u003c/p\u003e"
+    },
+    {
+      "id": "card_16e13c#1",
+      "format": "quiz",
+      "prompt": "Which DeepMind science models does the bioresilience plan apply to pathogen detection?",
+      "choices": [
+        {
+          "text": "AlphaEvolve and AlphaGenome",
+          "correct": true
+        },
+        {
+          "text": "AlphaFold and AlphaZero",
+          "correct": false
+        },
+        {
+          "text": "Gemini and Veo",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe plan extends AlphaEvolve and AlphaGenome — tools originally built for scientific discovery — into pathogen-detection work.\u003c/p\u003e"
+    },
+    {
+      "id": "card_16e13c#2",
+      "format": "flip",
+      "prompt": "Why frame this as a joint DeepMind + Isomorphic Labs effort rather than a pure biosecurity policy statement?",
+      "back_html": "\u003cp\u003eIt pairs a frontier AI lab (DeepMind) with a biology-focused drug-design company (Isomorphic Labs), combining AI capability with domain-specific biology tooling for the defensive application.\u003c/p\u003e"
+    }
+  ]
+}

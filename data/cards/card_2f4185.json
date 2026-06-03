@@ -1,0 +1,95 @@
+{
+  "id": "card_2f4185",
+  "slug": "longformer",
+  "type": "paper",
+  "title": "Longformer: The Long-Document Transformer",
+  "hook": "Most tokens only need to look at their neighbors, so swap full attention for a sliding window plus a few global tokens and the cost goes from quadratic to linear in sequence length.",
+  "key_points": [
+    "Replaces full self-attention (quadratic in length) with an attention pattern that scales linearly.",
+    "Combines local sliding-window attention with a small amount of task-motivated global attention.",
+    "Outperformed RoBERTa on long-document tasks, with state-of-the-art results on WikiHop and TriviaQA at the time.",
+    "Introduces LED, a Longformer encoder-decoder for long-document sequence-to-sequence tasks."
+  ],
+  "content_html": "\u003cp\u003eIz Beltagy, Matthew E. Peters, and Arman Cohan introduced Longformer in April 2020 to attack the central bottleneck of applying Transformers to long documents: standard self-attention costs scale quadratically with sequence length. Longformer's attention pattern scales linearly instead, making thousands-of-token documents practical.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eRather than letting every token attend to every other token, Longformer mostly uses local windowed (sliding-window) attention, where each token attends only to a fixed window of neighbors. On top of that it adds a small amount of global attention on a handful of task-motivated tokens, so the model can still route information across the whole document where it matters. The authors also describe LED, a Longformer-Encoder-Decoder variant for long-document sequence-to-sequence tasks.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe linear-scaling attention let Longformer handle inputs far longer than a vanilla Transformer could fit. Beltagy and colleagues report that it outperformed RoBERTa on long-document tasks and set state-of-the-art results on WikiHop and TriviaQA at the time, showing that you can keep most of the modeling power of attention while dropping its quadratic cost.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Iz Beltagy",
+      "Matthew E. Peters",
+      "Arman Cohan"
+    ],
+    "url": "https://arxiv.org/abs/2004.05150",
+    "published_at": "2020-04-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "context-memory"
+  ],
+  "tags": [
+    "architecture",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2020-04-10",
+  "related": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    },
+    {
+      "id": "card_5727fe",
+      "slug": "flashattention",
+      "type": "paper",
+      "title": "FlashAttention: Fast, Memory-Efficient Exact Attention",
+      "hook": "Attention got faster not by approximating it, but by being smarter about GPU memory — never writing the giant attention matrix out to slow memory.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-05-27"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_2f4185#0",
+      "format": "flip",
+      "prompt": "How does Longformer get attention cost down from quadratic to linear in sequence length?",
+      "back_html": "\u003cp\u003eIt mostly uses local sliding-window attention plus a small amount of global attention on a few task-motivated tokens.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2f4185#1",
+      "format": "quiz",
+      "prompt": "Why does Longformer add global attention on a handful of tokens?",
+      "choices": [
+        {
+          "text": "So the model can still route information across the whole document where it matters",
+          "correct": true
+        },
+        {
+          "text": "To make attention quadratic again for accuracy",
+          "correct": false
+        },
+        {
+          "text": "To replace the sliding window entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA small amount of global attention lets information flow across the full document while local windowing keeps cost linear.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2f4185#2",
+      "format": "flip",
+      "prompt": "What is LED in the Longformer paper?",
+      "back_html": "\u003cp\u003eA Longformer encoder-decoder variant for long-document sequence-to-sequence tasks.\u003c/p\u003e"
+    }
+  ]
+}

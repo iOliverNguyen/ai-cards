@@ -1,0 +1,104 @@
+{
+  "id": "card_b9d1db",
+  "slug": "world-action-models-survey",
+  "type": "paper",
+  "title": "World Action Models: A Survey",
+  "hook": "Robots are learning to imagine the future before acting. This survey untangles 'world action models' from video generators and VLA policies — and finds them converging on one idea.",
+  "key_points": [
+    "World Action Models (WAMs) are embodied models that predict the future specifically to inform action.",
+    "The survey draws lines between world models, video generators, action-grounded video world models, VLA policies, and WAMs.",
+    "It organizes methods by what they must generate: rendered futures, latent futures, or video-generation-free action reasoning.",
+    "It also decomposes each by predictive substrate, backbone, action coupling, and deployment regime.",
+    "Emerging pattern: generate less of the future while keeping exactly what control needs — trading richness against compute, latency, and label cost."
+  ],
+  "content_html": "\u003cp\u003e\u0026quot;World Action Models\u0026quot; (WAMs) are embodied predictive-action models: they forecast the future and make that forecast available to action. The space has exploded — some WAMs repurpose large video generation models, others lean on language or vision-language backbones — and the boundaries with world models, video generators, and Vision-Language-Action policies have blurred. Shen, Liao, Yan, Wang and colleagues offer a common account.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat it organizes\u003c/h2\u003e\n\u003cp\u003eThe survey first clarifies the boundaries, then uses two complementary views. One asks what each method must generate — rendered futures, latent futures, or video-generation-free action reasoning. The other decomposes each method by predictive substrate, backbone, action coupling, and deployment regime. Together these support a unified discussion of interactability, causality, persistence, physical plausibility, and generalization.\u003c/p\u003e\n\u003ch2\u003eThe pattern it finds\u003c/h2\u003e\n\u003cp\u003eAcross these axes a consistent design principle emerges: WAMs are not simply video generators with an action head bolted on. They are predictive-action methods whose choices trade representational richness against compute, memory, latency, and the cost of action labels. The field is moving toward generating \u003cem\u003eless\u003c/em\u003e of the future while preserving exactly what control requires — a useful lens for anyone tracking embodied AI.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Qiuhong Shen",
+      "Yue Liao",
+      "Shuicheng Yan",
+      "Xinchao Wang",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.20781",
+    "published_at": "2026-06-18",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "vision",
+    "generative",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-25",
+  "date": "2026-06-18",
+  "related": [
+    {
+      "id": "card_7e087b",
+      "slug": "world-models-persistent-state",
+      "type": "paper",
+      "title": "World Models Lack a Persistent State",
+      "hook": "Today's video world models render great frames but treat the world like a tracking shot: look away and back, and off-screen events freeze instead of running on — the moon keeps orbiting unwatched.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    },
+    {
+      "id": "card_9a9bd2",
+      "slug": "world-models-meet-language-models",
+      "type": "paper",
+      "title": "World Models Meet Language Models",
+      "hook": "A world model can imagine what happens next; an LLM can reason about it. The hard part is knowing when to trust the daydream — and when the simulation is just plausible nonsense.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_5b91a4",
+      "slug": "geometric-action-model",
+      "type": "paper",
+      "title": "Geometric Action Model: One Backbone for Geometry and Action",
+      "hook": "GAM turns a pretrained 3D-geometry model into a robot's brain - a single backbone that forecasts both future geometry and the actions to get there, beating heavier VLA baselines.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b9d1db#0",
+      "format": "flip",
+      "prompt": "What distinguishes a World Action Model from a plain video generation model?",
+      "back_html": "\u003cp\u003eA WAM predicts the future specifically to make it available to action — its design is driven by what control requires, not just by producing realistic video.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b9d1db#1",
+      "format": "quiz",
+      "prompt": "What design trend does the survey identify across World Action Models?",
+      "choices": [
+        {
+          "text": "Generate less of the future while preserving what control requires, trading richness against compute, latency, and label cost",
+          "correct": true
+        },
+        {
+          "text": "Always render full photorealistic video before taking any action",
+          "correct": false
+        },
+        {
+          "text": "Abandon prediction entirely in favor of purely reactive policies",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe survey finds WAMs aren't just video generators with action heads; the field is moving toward generating only what control needs, balancing representational richness against cost.\u003c/p\u003e"
+    }
+  ]
+}

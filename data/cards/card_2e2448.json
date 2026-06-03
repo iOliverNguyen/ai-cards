@@ -1,0 +1,120 @@
+{
+  "id": "card_2e2448",
+  "slug": "kappa-lora-condition-numbers",
+  "type": "paper",
+  "title": "Not Every LoRA Matrix Is Worth Updating",
+  "hook": "LoRA trains every matrix equally hard. A matrix's condition number reveals which ones actually drive adaptation — tune the top half and you keep the accuracy for half the parameters.",
+  "key_points": [
+    "Standard LoRA updates all matrices uniformly, regardless of how much each contributes to adaptation.",
+    "The condition number — largest over smallest singular value — turns out to predict which matrices matter.",
+    "Low condition number means already well-balanced across directions, and those matrices contribute only marginally.",
+    "High condition number means underdeveloped directions spanning richer subspaces, and those drive most of the gains.",
+    "Updating only the top 50% of matrices by condition number halves trainable parameters, cuts fine-tuning time 16.2%, and trims memory 4.5% while matching LoRA's accuracy.",
+    "Selected matrices' condition numbers fall steadily during training, suggesting the win comes from targeted spectral rebalancing rather than mere parameter selection."
+  ],
+  "content_html": "\u003cp\u003eLoRA has become the default way to fine-tune a large model cheaply, but it still spends effort uniformly: every low-rank matrix gets updated regardless of how much it actually contributes. That uniformity is what keeps LoRA costly for billion-parameter models and awkward for edge or on-device fine-tuning. Wang and colleagues report that not all LoRA matrices are equally worth tuning, and that a simple spectral quantity tells you which are.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe observation\u003c/h2\u003e\n\u003cp\u003eThe signal is the \u003cstrong\u003econdition number\u003c/strong\u003e — the ratio of a matrix's largest singular value to its smallest. Matrices with small condition numbers are already well-balanced across directions and contribute only marginally to adaptation. Matrices with large condition numbers contain underdeveloped directions that span richer subspaces, and those drive most of the performance gains. The authors treat this observation as a headline contribution in its own right, independent of the method it motivates.\u003c/p\u003e\n\u003ch2\u003eThe method, and what it costs\u003c/h2\u003e\n\u003cp\u003eκ-LoRA simply restricts updates to the top 50% of weight matrices ranked by condition number, halving the trainable parameter count. Across their benchmarks that cuts fine-tuning time by 16.2% on average and memory by 4.5% while matching standard LoRA's accuracy. One further detail is the interesting part: the condition numbers of the selected matrices decrease consistently over training, which the authors read as evidence that the method's effectiveness comes from targeted spectral rebalancing rather than from parameter selection alone.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jianghui Wang",
+      "Silong Yong",
+      "Francesco Orabona",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.22489",
+    "published_at": "2026-07-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "finetuning",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-27",
+  "date": "2026-07-24",
+  "related": [
+    {
+      "id": "card_cae140",
+      "slug": "lora",
+      "type": "paper",
+      "title": "LoRA: Low-Rank Adaptation",
+      "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-06-17"
+    },
+    {
+      "id": "card_2e95ee",
+      "slug": "qlora",
+      "type": "paper",
+      "title": "QLoRA: Fine-tuning Quantized LLMs",
+      "hook": "Fine-tune a model with tens of billions of parameters on a single GPU. QLoRA squeezes the frozen base to 4-bit, then trains LoRA adapters on top — without losing quality.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-23"
+    },
+    {
+      "id": "card_75c088",
+      "slug": "adapters",
+      "type": "paper",
+      "title": "Parameter-Efficient Transfer Learning (Adapters)",
+      "hook": "Don't fine-tune the whole model for every new task — slip in a few tiny trainable modules and freeze the rest. This 2019 idea seeded parameter-efficient fine-tuning.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2019-02-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_cae140",
+      "slug": "lora",
+      "type": "paper",
+      "title": "LoRA: Low-Rank Adaptation",
+      "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-06-17"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_2e2448#0",
+      "format": "flip",
+      "prompt": "What is a matrix's condition number, and what does it signal about LoRA adaptation?",
+      "back_html": "\u003cp\u003eThe ratio of its largest to smallest singular value. A small ratio means the matrix is already well-balanced across directions and contributes little to adaptation; a large ratio means underdeveloped directions spanning richer subspaces, which drive most of the performance gain.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2e2448#1",
+      "format": "quiz",
+      "prompt": "Which LoRA matrices does kappa-LoRA choose to update?",
+      "choices": [
+        {
+          "text": "The top 50% ranked by condition number — the worst-conditioned ones",
+          "correct": true
+        },
+        {
+          "text": "The best-conditioned matrices, since they are the most numerically stable to train",
+          "correct": false
+        },
+        {
+          "text": "The matrices in the deepest layers, where representations are most task-specific",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLarge condition numbers mark matrices with underdeveloped directions, which is where adaptation has room to act. Restricting updates to that half halves the trainable parameter count while matching standard LoRA's accuracy.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2e2448#2",
+      "format": "flip",
+      "prompt": "What evidence suggests kappa-LoRA works by 'spectral rebalancing' rather than just training fewer parameters?",
+      "back_html": "\u003cp\u003eThe condition numbers of the selected matrices decrease consistently over the course of training — the method is actively flattening their spectra, not merely picking a smaller parameter subset.\u003c/p\u003e"
+    }
+  ]
+}

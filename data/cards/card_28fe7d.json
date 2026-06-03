@@ -1,0 +1,97 @@
+{
+  "id": "card_28fe7d",
+  "slug": "robotvalues-benchmark",
+  "type": "paper",
+  "title": "RobotValues: When a Household Robot Must Choose Between Values",
+  "hook": "A robot tidying your room may trade your privacy for helpfulness. RobotValues tests whether robot planners pick the right value — and finds they mostly can't be talked out of their defaults.",
+  "key_points": [
+    "Household robots are usually graded on task success — but real homes pose value-conflict situations.",
+    "RobotValues offers 10K scenarios where plausible actions prioritize different values: autonomy, efficiency, privacy, safety.",
+    "Tested VLM planners show default preferences for safety and accommodation, while underselecting privacy.",
+    "Instructed to prioritize a value that conflicts with their default, models picked the wrong action 80% of the time."
+  ],
+  "content_html": "\u003cp\u003eMost evaluations of household robots ask one thing: did it finish the task? But a robot loose in a real home constantly faces situations where finishing the task isn't the point — where the right move prioritizes a person's autonomy, privacy, or social comfort over raw efficiency. Han, Kim, and Jo built RobotValues to measure exactly this overlooked dimension.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eRobotValues is a benchmark of 10K value-conflict scenarios. Each pairs a realistic household image with several plausible robot actions, each prioritizing a different human value — built through LLM-assisted scenario generation, stakeholder-grounded value extraction, image generation, and automatic quality control. Running vision-language-model planners through it, the authors find the models carry \u003cstrong\u003edefault value preferences\u003c/strong\u003e: they lean toward safety and accommodation while underselecting privacy-protecting actions. Worse, the defaults are sticky — when explicitly instructed to prioritize a value that conflicts with their preference, the models failed to override, choosing the wrong action about 80% of the time. The conclusion: robot evaluation should measure not just task completion or safety compliance, but whether a robot can choose well when human values genuinely conflict. See the arXiv link for the dataset.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jongwook Han",
+      "Hyeongjin Kim",
+      "Yohan Jo"
+    ],
+    "url": "https://arxiv.org/abs/2606.03312",
+    "published_at": "2026-06-02",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "safety",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-08",
+  "date": "2026-06-02",
+  "related": [
+    {
+      "id": "card_0dc810",
+      "slug": "pi-zero",
+      "type": "paper",
+      "title": "π0: A Vision-Language-Action Model",
+      "hook": "π0 is a generalist robot policy: it takes camera images, joint angles, and a plain-language instruction, and outputs smooth action sequences — folding laundry, bussing tables, bagging groceries.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-10-31"
+    },
+    {
+      "id": "card_dd8539",
+      "slug": "rt-2",
+      "type": "paper",
+      "title": "RT-2: Vision-Language-Action Models",
+      "hook": "Treat a robot's actions as just more text tokens, and a vision-language model can learn to act — carrying its web knowledge into the physical world.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-07-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_28fe7d#0",
+      "format": "flip",
+      "prompt": "What gap in household-robot evaluation does RobotValues target?",
+      "back_html": "\u003cp\u003eBenchmarks grade task completion, but everyday homes involve value-conflict situations where the right action prioritizes something other than task success — human autonomy, privacy, efficiency, or social appropriateness.\u003c/p\u003e"
+    },
+    {
+      "id": "card_28fe7d#1",
+      "format": "quiz",
+      "prompt": "What happened when models were instructed to prioritize a value that conflicted with their default preference?",
+      "choices": [
+        {
+          "text": "They failed to override their default, choosing the wrong action ~80% of the time",
+          "correct": true
+        },
+        {
+          "text": "They reliably switched to the instructed value",
+          "correct": false
+        },
+        {
+          "text": "They refused to act entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe models exhibited sticky default value preferences (e.g. safety, accommodation) and couldn't be steered toward a conflicting value, picking incorrect actions about 80% of the time.\u003c/p\u003e"
+    },
+    {
+      "id": "card_28fe7d#2",
+      "format": "flip",
+      "prompt": "Which value did the tested VLM planners tend to under-select?",
+      "back_html": "\u003cp\u003ePrivacy — models defaulted toward safety and accommodation while underselecting privacy-prioritizing actions.\u003c/p\u003e"
+    }
+  ]
+}

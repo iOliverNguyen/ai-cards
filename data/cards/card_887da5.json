@@ -1,0 +1,104 @@
+{
+  "id": "card_887da5",
+  "slug": "t5-text-to-text",
+  "type": "paper",
+  "title": "T5: Text-to-Text Transfer Transformer",
+  "hook": "What if translation, classification, and summarization were all just text-in, text-out? T5 makes one model and one recipe handle them all.",
+  "key_points": [
+    "Reframes every NLP task as text-to-text: the input is text and the output is text.",
+    "One encoder-decoder model and one training recipe cover many tasks at once.",
+    "Systematically studied transfer learning choices — objectives, data, and scale.",
+    "Pretrained on a large cleaned web corpus, then fine-tuned per task."
+  ],
+  "content_html": "\u003cp\u003eRaffel and colleagues proposed T5, which frames every NLP task — translation, classification, summarization, and more — as taking in text and producing text. That single formulation lets one encoder-decoder Transformer and one training recipe handle them all. The paper also ran a broad, systematic study of transfer learning, comparing pretraining objectives, datasets, and model sizes.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eInstead of bolting a different output head onto the model for each task, T5 turns every task into a text generation problem. A prompt prefix tells the model what to do — for example, asking it to translate or to summarize — and the model writes the answer as text. It's pretrained on a large, cleaned web corpus with a fill-in-the-blank style objective, then fine-tuned on specific tasks while keeping the same text-to-text interface throughout.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eUnifying tasks under one interface simplifies how you build and reuse models, and it foreshadowed the prompt-driven approach that later large language models adopted. Just as valuable, the paper's careful experiments gave the field a clearer, evidence-based picture of what actually drives transfer learning, rather than relying on folklore.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Colin Raffel",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/1910.10683",
+    "published_at": "2019-10-23",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "transformers",
+    "pretraining"
+  ],
+  "tags": [
+    "nlp"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2019-10-23",
+  "related": [
+    {
+      "id": "card_32f3c7",
+      "slug": "bert",
+      "type": "paper",
+      "title": "BERT: Pretraining Deep Bidirectional Transformers",
+      "hook": "What if a model read a sentence both directions at once? BERT did, by masking words and predicting them — and made pretrain-then-fine-tune the default recipe in NLP.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2018-10-11"
+    },
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_887da5#0",
+      "format": "flip",
+      "prompt": "How does T5 let one model handle translation, classification, and summarization?",
+      "back_html": "\u003cp\u003eIt reframes every task as text-to-text — a prompt prefix says what to do and the model writes the answer as text, so one model and recipe cover them all.\u003c/p\u003e"
+    },
+    {
+      "id": "card_887da5#1",
+      "format": "quiz",
+      "prompt": "How does T5 specify which task it should perform on a given input?",
+      "choices": [
+        {
+          "text": "A prompt prefix in the input text tells the model what to do",
+          "correct": true
+        },
+        {
+          "text": "A different task-specific output head is bolted onto the model",
+          "correct": false
+        },
+        {
+          "text": "A separate model is fine-tuned and loaded per task",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eInstead of per-task output heads, T5 turns every task into text generation steered by a prompt prefix.\u003c/p\u003e"
+    },
+    {
+      "id": "card_887da5#2",
+      "format": "flip",
+      "prompt": "Beyond the text-to-text idea, what did the T5 paper contribute?",
+      "back_html": "\u003cp\u003eA broad, systematic study of transfer learning — comparing pretraining objectives, datasets, and model sizes with evidence rather than folklore.\u003c/p\u003e"
+    }
+  ]
+}

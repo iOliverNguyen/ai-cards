@@ -1,0 +1,125 @@
+{
+  "id": "card_c3b325",
+  "slug": "zetta-closed-loop-embodied-harness",
+  "type": "paper",
+  "title": "Zetta: A Closed-Loop Embodied Harness for Self-Evolving Physical Intelligence",
+  "hook": "Most robot agents reflect only after the episode ends — too late to save it. Zetta writes and revises its own runtime critics mid-rollout, while the base policy stays frozen.",
+  "key_points": [
+    "Existing embodied harnesses are open-loop: fixed skills during rollout, post-hoc reflection after it.",
+    "Physical interaction changes faster than a large agentic model can think, so governance has to happen at action frequency.",
+    "Zetta runs three timescale-separated loops: action-frequency governance, rollout-level critic/recovery proposals, validation-gated skill updates.",
+    "Critics and recovery skills are code the system evolves online; the base policy is never retrained.",
+    "Reports 90.8% on LIBERO-Pro and 93.6% on RoboCasa with an 11.1x inference speedup, and skills that transfer zero-shot."
+  ],
+  "content_html": "\u003cp\u003eEnd-to-end robot policies still leave a reliability gap, so people wrap them in agentic scaffolds. But those scaffolds are almost all open-loop: the agent picks from a fixed skill set during a rollout and only reflects once the episode is over. Zetta, from a team at Tsinghua and collaborators, argues that's the wrong shape — physical interaction demands decisions that track a fast-changing robot-environment state, at a frequency no large agentic model can hit directly.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eZetta keeps the base policy frozen and instead evolves \u003cem\u003ecode\u003c/em\u003e: runtime critics that watch execution and recovery skills that intervene. Three loops run at separated timescales — an action-frequency governance loop that can act inside a motion, a rollout-level loop that proposes new critics and recovery skills, and a slower loop that only commits a skill once validation confirms it. A companion infrastructure layer, Z-Infra, decouples the agent logic from whatever heterogeneous execution resources are actually available.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe authors report state-of-the-art success under their rollout budget — 90.8% on LIBERO-Pro and 93.6% on RoboCasa — alongside an 11.1x inference speedup, with performance that keeps climbing as the system accumulates self-exploration experience and learned skills that transfer zero-shot. The broader claim is a scaling axis: instead of scaling the policy, scale the harness's ability to improve itself.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xin Ding",
+      "Liang Mi",
+      "Mingzhe Huang",
+      "Zixuan Wang",
+      "Chao Zhang",
+      "Yunxin Liu",
+      "Ting Cao"
+    ],
+    "url": "https://arxiv.org/abs/2608.16590",
+    "published_at": "2026-08-17",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "paper",
+    "efficiency"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-20",
+  "date": "2026-08-17",
+  "related": [
+    {
+      "id": "card_6cb117",
+      "slug": "shaper-skill-harness-evolution",
+      "type": "paper",
+      "title": "SHAPER: Adapting Embodied Agents by Evolving Skills and Harness, Not Weights",
+      "hook": "When a robot agent fails in a new environment, the reflex is to fine-tune. SHAPER freezes the model and instead evolves the skills and harness wrapped around it — no data, no rewards, no training run.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-11"
+    },
+    {
+      "id": "card_0dc810",
+      "slug": "pi-zero",
+      "type": "paper",
+      "title": "π0: A Vision-Language-Action Model",
+      "hook": "π0 is a generalist robot policy: it takes camera images, joint angles, and a plain-language instruction, and outputs smooth action sequences — folding laundry, bussing tables, bagging groceries.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-10-31"
+    },
+    {
+      "id": "card_c24f1d",
+      "slug": "harness-handbook",
+      "type": "paper",
+      "title": "Harness Handbook: Making Evolving Agent Harnesses Readable, Navigable, and Editable",
+      "hook": "An agent is only as good as its harness — the code that builds prompts, manages state, calls tools. The real bottleneck isn't editing that code, it's finding where a behavior lives in a huge codebase.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-14"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_c3b325#0",
+      "format": "flip",
+      "prompt": "Why can't post-episode reflection govern a robot's physical execution?",
+      "back_html": "\u003cp\u003eRobot–environment state changes faster than a large agentic model can react. By the time the episode ends and reflection runs, the decisions that mattered have already been made.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c3b325#1",
+      "format": "quiz",
+      "prompt": "What does Zetta actually update online?",
+      "choices": [
+        {
+          "text": "Code-based runtime critics and recovery skills, while the base policy stays frozen",
+          "correct": true
+        },
+        {
+          "text": "The weights of the base manipulation policy",
+          "correct": false
+        },
+        {
+          "text": "The reward model used for offline fine-tuning",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eZetta evolves code — critics and recovery skills — and gates the updates on validation. The underlying policy is never retrained.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c3b325#2",
+      "format": "quiz",
+      "prompt": "Why does Zetta separate its three loops by timescale?",
+      "choices": [
+        {
+          "text": "Different decisions need different frequencies: per-action governance, per-rollout proposals, validated skill updates",
+          "correct": true
+        },
+        {
+          "text": "To let three separate models be trained in parallel on different GPUs",
+          "correct": false
+        },
+        {
+          "text": "Because the simulator only exposes state at three fixed rates",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eFast governance must run at action frequency; proposing new critics needs a whole rollout to judge; committing a skill needs validation. Splitting them lets each run at its natural rate.\u003c/p\u003e"
+    }
+  ]
+}

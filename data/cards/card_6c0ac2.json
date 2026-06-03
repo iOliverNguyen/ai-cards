@@ -1,0 +1,125 @@
+{
+  "id": "card_6c0ac2",
+  "slug": "offline-top-k-logits-chunked-kl",
+  "type": "paper",
+  "title": "Making Distillation Cheap: Offline Top-K Logits and a Fused Chunked KL Loss",
+  "hook": "You don't need the teacher in memory. Cache its top-K logits once, then train the student against the cache — same loss, ~29% faster per step, and 4x the context on one GPU.",
+  "key_points": [
+    "Small models are usually compressed then 'healed' via knowledge distillation, and that recovery step largely decides final quality.",
+    "Offline KD caches the teacher's top-K logits once, so the teacher never occupies GPU memory during student training.",
+    "The authors report offline KD matching online distillation at near-identical training loss.",
+    "Offline KD runs about 29% faster per iteration and reaches up to 41% higher throughput on a single H200.",
+    "A fused, chunked KL loss never materializes the full vocabulary-sized logit tensor, making peak memory linear in sequence length.",
+    "That removes the memory spike capping context, enabling 32,768-token training on one GPU; the chunked-loss code is released."
+  ],
+  "content_html": "\u003cp\u003eIf you need a language model that fits tight latency, cost, or on-premises constraints, you probably won't train it from scratch — you'll compress a bigger one and then \u003cem\u003eheal\u003c/em\u003e it with knowledge distillation. That healing step is where most of the final quality comes from, and it is expensive. A practitioner's study from the CompactifAI team asks a plain engineering question: how do you make it cheap?\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eDrop the teacher\u003c/h2\u003e\n\u003cp\u003eThe first move is to stop running the teacher at all during training. Instead, the teacher's \u003cstrong\u003etop-K logits are computed once and cached\u003c/strong\u003e, and the student trains against that cache. The authors report this offline setup matching online distillation at near-identical training loss, while freeing the teacher's memory: about \u003cstrong\u003e29% faster per iteration\u003c/strong\u003e and up to \u003cstrong\u003e41% higher throughput\u003c/strong\u003e on a single H200 GPU.\u003c/p\u003e\n\u003ch2\u003eStop materializing the logit tensor\u003c/h2\u003e\n\u003cp\u003eThe second move targets the loss itself. A standard KL objective builds a full vocabulary-sized logit tensor, and that spike is what caps how long a sequence you can train on. Their \u003cstrong\u003efused, chunked KL loss\u003c/strong\u003e never materializes it, so peak memory becomes linear in sequence length — enough to train at four times the context (\u003cstrong\u003e32,768 tokens\u003c/strong\u003e) on one GPU. A separate output-head-only benchmark isolates the kernel and confirms the scaling from 4K to 256K tokens. Together, the two changes make large-scale healing runs and hundreds of ablations affordable; the chunked-loss implementation is released on GitHub. See the paper for the supporting ablations on loss design and sequence packing.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Bakbergen Ryskulov",
+      "Iker García-Ferrero",
+      "David Montero",
+      "David Jansen",
+      "Ali Hashemi",
+      "Jezabel R. Garcia",
+      "Antonio Tiene",
+      "Román Orús"
+    ],
+    "url": "https://arxiv.org/abs/2608.03796",
+    "published_at": "2026-08-04",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "distillation",
+    "inference",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-10",
+  "date": "2026-08-04",
+  "related": [
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    },
+    {
+      "id": "card_9cf082",
+      "slug": "distilbert",
+      "type": "paper",
+      "title": "DistilBERT: Smaller, Faster, Cheaper, Lighter",
+      "hook": "Distill during pre-training instead of after, and you get a general-purpose language model that is 40% smaller and 60% faster while keeping 97% of BERT's understanding.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2019-10-02"
+    },
+    {
+      "id": "card_948b0a",
+      "slug": "denser-is-not-better-self-distillation-limits",
+      "type": "paper",
+      "title": "Denser ≠ Better: Limits of On-Policy Self-Distillation for Continual Post-Training",
+      "hook": "On-policy self-distillation was supposed to fight forgetting in continual post-training — instead, denser self-distillation can drift further off course and collapse outright.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_6c0ac2#0",
+      "format": "flip",
+      "prompt": "What does 'offline' knowledge distillation mean here, and why does it save resources?",
+      "back_html": "\u003cp\u003eThe teacher's top-K logits are computed once and cached, then the student trains against that cache. The teacher never sits in GPU memory during training, which the authors report as ~29% faster per iteration at near-identical loss.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6c0ac2#1",
+      "format": "quiz",
+      "prompt": "Why does a fused, chunked KL loss let you train at much longer context on one GPU?",
+      "choices": [
+        {
+          "text": "It never materializes the full vocabulary-sized logit tensor, so peak memory grows linearly with sequence length",
+          "correct": true
+        },
+        {
+          "text": "It reduces the vocabulary size by pruning rare tokens before training",
+          "correct": false
+        },
+        {
+          "text": "It offloads the loss computation to CPU memory between steps",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe usual memory spike comes from holding a [sequence x vocabulary] logit tensor. Chunking the loss and fusing the kernel avoids that materialization, letting the authors train at 32,768 tokens on a single GPU.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6c0ac2#2",
+      "format": "flip",
+      "prompt": "Why is the distillation step so important when building a small deployable model?",
+      "back_html": "\u003cp\u003eSmall models are rarely trained from scratch — they're compressed from a larger one and then 'healed' by distillation. That recovery step largely determines the final quality, so its cost limits how many ablations you can afford.\u003c/p\u003e"
+    }
+  ]
+}

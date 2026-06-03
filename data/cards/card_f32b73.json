@@ -1,0 +1,124 @@
+{
+  "id": "card_f32b73",
+  "slug": "cli-coding-agent-failure-anatomy",
+  "type": "paper",
+  "title": "Failure as a Process: An Anatomy of CLI Coding Agent Trajectories",
+  "hook": "A 3,843-trajectory autopsy of coding agents finds most failures aren't slips — they're wrong beliefs formed in the first few steps, invisible until it's too late to recover.",
+  "key_points": [
+    "Studied 3,843 CLI coding-agent trajectories from 7 frontier models on 3 scaffolds (OpenHands, MiniSWE, Terminus2) via Terminal-Bench.",
+    "Hand-annotated 63,000+ execution steps across 1,794 valid trajectories to trace failure as a process, not just a final verdict.",
+    "Most failures are epistemic — wrong beliefs or reasoning about the task/environment — not simple execution mistakes.",
+    "Failure onset is early: problems typically take root within the first few execution steps.",
+    "Failures stay hidden until recovery is no longer possible — outcome-only checks catch them far too late.",
+    "Argues agents need earlier validation and self-checking mid-run, not evaluation that only grades the final outcome."
+  ],
+  "content_html": "\u003cp\u003eWhen a CLI coding agent fails a task, the failure usually isn't a late stumble — it's a wrong belief the agent forms almost immediately and never corrects. This large-scale study treats failure as a process rather than a single end verdict, and finds the rot sets in early and stays invisible until recovery is no longer an option.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eXiangxin Zhao, He Ye, and colleagues collected 3,843 trajectories from seven frontier models running on three agent scaffolds — OpenHands, MiniSWE, and Terminus2 — on Terminal-Bench, then hand-annotated 1,794 complete, valid runs (over 63,000 execution steps) to classify how failures emerge, evolve, and become unrecoverable. Across 14 findings, epistemic errors — wrong beliefs about the code, task, or environment — dominate over pure execution mistakes, and onset is consistently early. The authors argue this makes final-outcome-only evaluation a weak lever for reliability: catching bad beliefs while they're still cheap to fix matters more than grading the finished trajectory. Xiangxin Zhao and colleagues, arXiv, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xiangxin Zhao",
+      "Han Li",
+      "Shuaiting Li",
+      "Tianyi Zhao",
+      "Earl T. Barr",
+      "Federica Sarro",
+      "He Ye"
+    ],
+    "url": "https://arxiv.org/abs/2607.09510",
+    "published_at": "2026-07-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "paper",
+    "reasoning"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-16",
+  "date": "2026-07-10",
+  "related": [
+    {
+      "id": "card_d3efb7",
+      "slug": "doomed-from-the-start-early-abort",
+      "type": "paper",
+      "title": "Doomed from the Start: Predicting Agent Failure Before It Happens",
+      "hook": "An agent that's going to fail often shows it in its hidden activations from round one — long before its actual behavior looks any different. Reading that signal saves nearly half the compute.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-07"
+    },
+    {
+      "id": "card_48a3f2",
+      "slug": "tua-bench-terminal-agents",
+      "type": "paper",
+      "title": "TUA-Bench: Benchmarking General-Purpose Terminal Agents",
+      "hook": "120 real terminal tasks — from email triage to PhD-level scientific workflows — show even Claude Opus 4.8 tops out around 66%, far from reliable general computer use.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_f32b73#0",
+      "format": "flip",
+      "prompt": "What actually drives most CLI coding-agent failures, according to this large trajectory study?",
+      "back_html": "\u003cp\u003eEpistemic errors — wrong beliefs about the code, task, or environment — dominate over simple execution mistakes.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f32b73#1",
+      "format": "quiz",
+      "prompt": "When do most coding-agent failures actually take root, per the study's step-by-step annotation?",
+      "choices": [
+        {
+          "text": "Within the first few execution steps of the trajectory",
+          "correct": true
+        },
+        {
+          "text": "Only in the final step, right before the deadline",
+          "correct": false
+        },
+        {
+          "text": "Evenly spread across the whole trajectory with no pattern",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe study finds failure onset is early — problems typically begin within the first few steps, long before they become visible.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f32b73#2",
+      "format": "flip",
+      "prompt": "Why do the authors say final-outcome-only evaluation is insufficient for coding agents?",
+      "back_html": "\u003cp\u003eFailures form early and stay hidden until recovery is no longer possible — by the time an outcome check runs, it's already too late to fix.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f32b73#3",
+      "format": "quiz",
+      "prompt": "What's the scale of evidence behind this study of CLI coding-agent trajectories?",
+      "choices": [
+        {
+          "text": "3,843 trajectories across 7 models/3 scaffolds, with 1,794 hand-annotated (63k+ steps)",
+          "correct": true
+        },
+        {
+          "text": "A few dozen manually reviewed transcripts from a single model",
+          "correct": false
+        },
+        {
+          "text": "Purely synthetic trajectories with no real agent runs",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors collected 3,843 execution trajectories, then filtered and hand-annotated 1,794 complete, valid ones spanning over 63,000 steps.\u003c/p\u003e"
+    }
+  ]
+}

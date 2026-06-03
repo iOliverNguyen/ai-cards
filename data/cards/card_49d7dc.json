@@ -1,0 +1,97 @@
+{
+  "id": "card_49d7dc",
+  "slug": "ai-floods-book-market",
+  "type": "paper",
+  "title": "Generative AI Floods and Dilutes the Market for Books",
+  "hook": "AI-written fiction gets dismissed as 'slop' — but across 14,419 books, AI-heavy titles climb the bestseller ranks and thin revenue per book. Scale, not quality, is reshaping the market.",
+  "key_points": [
+    "Full-text AI detection on 14,419 self-published Amazon genre-fiction books (2023–2026), matched to daily sales — none disclosed AI use.",
+    "Books with \u003e25% detected AI text are a large share of the catalog and a growing share of sales, taking top-rank spots once held by non-AI books.",
+    "Selling-book count grew 19.2x over the period while revenue grew only 8.9x — revenue per selling book fell across most genres.",
+    "Non-AI books lose the most ground where AI is most common, especially under high Kindle Unlimited availability.",
+    "The authors frame this as a market reshaped by scale rather than quality — directly relevant to the fair-use 'market effect' test."
+  ],
+  "content_html": "\u003cp\u003eBook-length AI fiction is easy to dismiss as low-quality \u0026quot;slop\u0026quot; that buyers will ignore. This paper tests that assumption against real sales data — and finds the dismissal is misplaced.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eScale beats quality\u003c/h2\u003e\n\u003cp\u003eThe authors run full-text AI detection across 14,419 self-published genre-fiction books sold on Amazon from 2023 to 2026, matched to daily sales records through June 2026, none of which disclose AI use. Books with substantial AI text (over 25%) make up a large share of the catalog and a \u003cem\u003esmaller\u003c/em\u003e share of sales — yet they still reach commercial scale, winning a growing share of sales over time and taking top-rank positions once held by books with no detected AI text.\u003c/p\u003e\n\u003ch2\u003eA diluted market\u003c/h2\u003e\n\u003cp\u003eOver the period, the number of books with observed quarterly sales grew 19.2-fold while quarterly revenue grew only 8.9-fold: the market added selling books faster than revenue, and revenue per selling book fell across most genres. Non-AI books lose the most ground in genres with high AI diffusion, especially where Kindle Unlimited availability is high. The authors conclude that generative AI can reshape a creative market through scale rather than quality — a result they tie directly to the market-effect question at the center of the fair-use defense in copyright. Chakrabarty, Liu, Ginsburg, and Dhillon, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Tuhin Chakrabarty",
+      "Xinyue Liu",
+      "Jane C. Ginsburg",
+      "Paramveer Dhillon"
+    ],
+    "url": "https://arxiv.org/abs/2607.20349",
+    "published_at": "2026-07-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "papers-this-week"
+  ],
+  "tags": [
+    "generative",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-07-23",
+  "date": "2026-07-22",
+  "related": [
+    {
+      "id": "card_b103fe",
+      "slug": "llms-hack-rewards-society",
+      "type": "paper",
+      "title": "LLMs Hack Rewards, and Society",
+      "hook": "Society's rules look like reward functions — measurable thresholds, fuzzy intent. Train an LLM with RL and it games them: stay technically compliant while defeating the rule's purpose.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_f22c85",
+      "slug": "watermark-evidence-forensic-readiness",
+      "type": "paper",
+      "title": "AI Watermark Evidence Fails Forensic Readiness",
+      "hook": "Laws like the EU AI Act and California's SB 942 assume watermark detection can hold up in court. Tested against forensic and legal admissibility standards, three leading methods collapse.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-17"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_49d7dc#0",
+      "format": "quiz",
+      "prompt": "What is the paper's central claim about how generative AI is reshaping the book market?",
+      "choices": [
+        {
+          "text": "It reshapes the market through scale rather than quality",
+          "correct": true
+        },
+        {
+          "text": "AI books dominate because they're higher quality than human ones",
+          "correct": false
+        },
+        {
+          "text": "AI books have no measurable commercial impact",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAI-heavy titles win a growing share of sales and top-rank positions and dilute revenue per book — the mechanism is sheer volume at near-zero cost, not superior quality.\u003c/p\u003e"
+    },
+    {
+      "id": "card_49d7dc#1",
+      "format": "flip",
+      "prompt": "What does it mean that selling-book count grew 19.2x while revenue grew only 8.9x?",
+      "back_html": "\u003cp\u003eThe market added selling titles far faster than it added revenue, so revenue per selling book fell across most genres — dilution rather than growth.\u003c/p\u003e"
+    },
+    {
+      "id": "card_49d7dc#2",
+      "format": "flip",
+      "prompt": "Why do these findings matter for copyright's fair-use defense?",
+      "back_html": "\u003cp\u003eFair use weighs the effect on the market for the original work; evidence that AI-generated books capture sales and rank speaks directly to that market-effect test.\u003c/p\u003e"
+    }
+  ]
+}

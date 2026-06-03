@@ -1,0 +1,109 @@
+{
+  "id": "card_a139f8",
+  "slug": "grpo-structured-outputs-350m",
+  "type": "blog",
+  "title": "100 GRPO Steps to Make a 350M Model Respect Your Schema",
+  "hook": "Small models are cheap but sloppy about output format. Three simple programmatic rewards and about 500 samples nearly doubled a 350M model's JSON pass rate.",
+  "key_points": [
+    "Target: structured output compliance — does the model actually return the JSON or YAML shape you asked for?",
+    "Model is LiquidAI's LFM2.5-350M, trained with GRPO in TRL for 100 steps on roughly 500 samples.",
+    "Three reward functions: JSON format validity, field count accuracy, and schema validation — all programmatic, no reward model.",
+    "Overall IFStruct score went 22.6% to 29.7% (+7.1 points); JSON format pass rate 18.0% to 31.9% (+13.9 points).",
+    "Bare list structure improved 16.6% to 29.7%, while YAML barely moved (27.2% to 27.5%)."
+  ],
+  "content_html": "\u003cp\u003eAsk a small model for JSON matching a schema and you'll often get \u003cem\u003enearly\u003c/em\u003e JSON. Monigatti and collaborators from Hugging Face and Liquid AI walk through fixing that with reinforcement learning on Liquid AI's LFM2.5-350M — a run small enough to reproduce, using GRPO in the TRL library over roughly 500 samples and 100 steps.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe appeal here is that the reward needs no reward model. Structured output is programmatically checkable, so the post details three reward functions: is the output valid JSON, does it have the right number of fields, and does it validate against the requested schema. GRPO then optimizes against that composite signal.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe reported gains on the IFStruct benchmark are concentrated exactly where the rewards pointed: overall score from 22.6% to 29.7% (+7.1 points), JSON format pass rate from 18.0% to 31.9% (+13.9 points), and bare-list structure from 16.6% to 29.7% (+13.1 points). YAML, which the rewards didn't target, barely budged at 27.2% to 27.5%. That asymmetry is the real lesson: verifiable rewards work, and they improve precisely what you chose to verify.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face Blog",
+    "authors": [
+      "Leonie Monigatti",
+      "Ben Burtenshaw",
+      "Sergio Paniego"
+    ],
+    "url": "https://huggingface.co/blog/grpo-with-trl-ifstruct",
+    "published_at": "2026-09-03",
+    "license": "Hugging Face Blog"
+  },
+  "topic_ids": [
+    "rlhf",
+    "finetuning"
+  ],
+  "tags": [
+    "tutorial",
+    "training",
+    "alignment",
+    "nlp"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-09-03",
+  "date": "2026-09-03",
+  "related": [
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    },
+    {
+      "id": "card_d5a521",
+      "slug": "direct-preference-optimization",
+      "type": "paper",
+      "title": "Direct Preference Optimization (DPO)",
+      "hook": "RLHF works but is fiddly: a separate reward model and a finicky RL loop. DPO reaches the same goal with one simple loss — and became a popular default.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2023-05-29"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_a139f8#0",
+      "format": "flip",
+      "prompt": "Why is structured-output compliance a good fit for GRPO rather than a learned reward model?",
+      "back_html": "\u003cp\u003eThe reward is programmatically checkable — you can parse the JSON, count fields, and validate against the schema — so you get exact, cheap signals with no reward model to train.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a139f8#1",
+      "format": "quiz",
+      "prompt": "Which format saw almost no improvement in this run?",
+      "choices": [
+        {
+          "text": "YAML, which went 27.2% to 27.5%",
+          "correct": true
+        },
+        {
+          "text": "JSON, which stayed flat around 18%",
+          "correct": false
+        },
+        {
+          "text": "Bare lists, which regressed",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eJSON format pass rate jumped +13.9 points and bare lists +13.1, but YAML moved only 0.3 points — the rewards were JSON-shaped, and that's what improved.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a139f8#2",
+      "format": "flip",
+      "prompt": "How much training did this take?",
+      "back_html": "\u003cp\u003eAbout 500 samples over 100 GRPO steps on a 350M-parameter model — small enough to be a realistic afternoon experiment.\u003c/p\u003e"
+    }
+  ]
+}

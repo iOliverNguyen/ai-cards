@@ -1,0 +1,110 @@
+{
+  "id": "card_9bc413",
+  "slug": "sft-conflicts-rl-coexists",
+  "type": "paper",
+  "title": "Why Multi-Task SFT Fights Itself and Multi-Task RL Doesn't",
+  "hook": "Train a model on several tasks with SFT and they interfere; with RL they coexist. The difference is a bound: SFT interference scales with gradient magnitude, RL's only with variance.",
+  "key_points": [
+    "Under multi-stage training, SFT shows severe task conflict while RL keeps diverse tasks stable side by side.",
+    "At the parameter level, RL's updates across tasks are sparse and approximately orthogonal.",
+    "The theory: SFT interference is norm-limited, scaling with absolute gradient magnitude.",
+    "RL interference is variance-limited, bounded by the gradient variance that advantage normalization and on-policy sampling induce.",
+    "That small variance bound is what yields near-orthogonal optimization directions across tasks.",
+    "The authors use the insight to propose Parallel-RL, which decouples multi-task training for better efficiency and flexibility."
+  ],
+  "content_html": "\u003cp\u003eAnyone who has fine-tuned a model on several capabilities in sequence knows the pain: teach it the second task and it quietly forgets some of the first. Zhu and colleagues start from a sharper version of that observation — under multi-stage training, SFT suffers severe task conflict, while RL lets diverse tasks coexist — and go looking for why.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe parameter-level clue\u003c/h2\u003e\n\u003cp\u003eInspecting the updates, they find RL produces sparse, approximately orthogonal changes across tasks. Different tasks are moving largely different parameters, so there is little to collide over.\u003c/p\u003e\n\u003ch2\u003eThe bound that explains it\u003c/h2\u003e\n\u003cp\u003eTheir analysis of multi-task gradient interference gives the mechanism. SFT's interference is \u003cem\u003enorm-limited\u003c/em\u003e: it scales with the absolute magnitude of the gradients, which in supervised training can be large. RL's interference is \u003cem\u003evariance-limited\u003c/em\u003e: it is bounded by the gradient variance induced by advantage normalization and on-policy optimization, which is comparatively small. A small variance bound is exactly the condition under which optimization directions come out near-orthogonal — the geometric fact observed at the parameter level. From there the authors propose Parallel-RL, which decouples multi-task training rather than staging it, and report gains in training efficiency and flexibility.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Kejian Zhu",
+      "Zhuoran Jin",
+      "Shangqing Tu",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.03573",
+    "published_at": "2026-08-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "alignment",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-10",
+  "date": "2026-08-06",
+  "related": [
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    },
+    {
+      "id": "card_40de42",
+      "slug": "ppo",
+      "type": "paper",
+      "title": "PPO: Proximal Policy Optimization",
+      "hook": "Reinforcement learning is notoriously unstable. PPO's fix is simple: never let a single update move the policy too far. That restraint made it the field's workhorse.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2017-07-20"
+    },
+    {
+      "id": "card_9887c8",
+      "slug": "flan-instruction-tuning",
+      "type": "paper",
+      "title": "FLAN: Instruction Tuning",
+      "hook": "Teach a model to follow many tasks phrased as plain instructions, and it learns to follow instructions for tasks it never saw — zero-shot.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2021-09-03"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_9bc413#0",
+      "format": "quiz",
+      "prompt": "What distinguishes multi-task interference under RL from interference under SFT, per this analysis?",
+      "choices": [
+        {
+          "text": "SFT's interference is bounded by gradient magnitude; RL's is bounded by gradient variance, which is much smaller",
+          "correct": true
+        },
+        {
+          "text": "RL simply uses a smaller learning rate, so its updates overlap less",
+          "correct": false
+        },
+        {
+          "text": "SFT trains all tasks simultaneously while RL always trains them one at a time",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper calls SFT interference norm-limited (it scales with absolute gradient magnitude) and RL interference variance-limited (bounded by the gradient variance that advantage normalization and on-policy optimization induce). The tighter variance bound is what makes RL's per-task directions near-orthogonal.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9bc413#1",
+      "format": "flip",
+      "prompt": "What do RL's parameter updates across different tasks look like empirically?",
+      "back_html": "\u003cp\u003eSparse and approximately orthogonal — each task moves a largely different set of parameters, so tasks can coexist instead of overwriting each other the way multi-stage SFT does.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9bc413#2",
+      "format": "flip",
+      "prompt": "What practical method did the authors derive from this observation?",
+      "back_html": "\u003cp\u003eParallel-RL — a paradigm that decouples multi-task training, since near-orthogonal per-task updates mean the tasks don't need to be trained in a single coupled stage.\u003c/p\u003e"
+    }
+  ]
+}

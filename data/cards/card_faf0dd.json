@@ -1,0 +1,139 @@
+{
+  "id": "card_faf0dd",
+  "slug": "abot-n1-visual-language-navigation",
+  "type": "paper",
+  "title": "ABot-N1: Toward a General Visual Language Navigation Model",
+  "hook": "Most navigation policies map pixels straight to actions and drift or guess blindly. ABot-N1 splits the job — reason slowly, point at a pixel, act fast — and posts new SOTA.",
+  "key_points": [
+    "Slow-fast architecture: a slow vision-language reasoner does chain-of-thought reasoning and outputs a 'pixel goal' — a compact image-space anchor.",
+    "The pixel goal is a universal interface reused across point-goal, object-goal, poi-goal, instruction-following, and person-following tasks.",
+    "A fast action expert turns that pixel guidance plus text cues into continuous waypoints at native control frequency.",
+    "Boosts POI arrival by 35.0 points to 77.3%; hits 95.4%/92.9% success in complex indoor/outdoor scenes — new SOTA, especially at urban scale.",
+    "Releases new Point-Goal and POI-Goal benchmarks open source to push urban-scale navigation research."
+  ],
+  "content_html": "\u003cp\u003ePoint a robot at a monolithic policy that maps camera pixels directly to motor commands, and you get drift on long trajectories, brittle handling of anything outside the training distribution, and zero insight into why it picked a given action. ABot-N1 is a step toward a general Visual Language Navigation foundation model that avoids this by splitting cognition from control.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eA \u0026quot;slow\u0026quot; vision-language reasoner does explicit chain-of-thought reasoning over the scene and produces a pixel goal — a compact anchor point in image space — while a \u0026quot;fast\u0026quot; action expert consumes that pixel guidance plus text cues to generate continuous waypoints at the robot's native control frequency. The pixel goal works as a shared interface across very different task types: point-goal, object-goal, poi-goal, instruction-following, and person-following all funnel through the same representation. The payoff shows up most in urban-scale navigation, where ABot-N1 posts new state-of-the-art numbers: POI arrival jumps 35.0 percentage points to 77.3%, with 95.4%/92.9% success in complex indoor and outdoor scenes. The team also open-sources new Point-Goal and POI-Goal benchmarks. ABot-N1 appears to be one piece of a broader \u0026quot;ABot\u0026quot; foundation-model effort from the same team, which is also reported to be building out agent memory/OS and 3D world-modeling components — though this paper itself documents only the navigation piece. Ruiyan Gong and a large multi-author team, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ruiyan Gong",
+      "Yingnan Guo",
+      "Junjun Hu",
+      "Jintao Kong",
+      "Xiaoxu Leng",
+      "Tianlun Li",
+      "Weize Li",
+      "Fei Liu",
+      "Zhicheng Liu",
+      "Jia Lu",
+      "Minghua Luo",
+      "Chenlin Ming",
+      "Yanfen Shen",
+      "Jiyue Tao",
+      "Zhengbo Wang",
+      "Mingyang Yin",
+      "Minqi Gu",
+      "Zihao Guan",
+      "Wei Guo",
+      "Guoqing Liu",
+      "Huachong Pang",
+      "Menglin Yang",
+      "Zeqian Ye",
+      "Xiaoxiao Geng",
+      "Zhining Gu",
+      "Honglin Han",
+      "Di Jing",
+      "Hongyu Pan",
+      "Mingchao Sun",
+      "Kuan Yang",
+      "Jianfang Zhang",
+      "Yanghong Chen",
+      "Ye He",
+      "Wei Mei",
+      "Jiahao Shi",
+      "Xiangpo Yang",
+      "Yanqing Zhu",
+      "Zedong Chu",
+      "Xiaolong Wu",
+      "Mu Xu"
+    ],
+    "url": "https://arxiv.org/abs/2607.10383",
+    "published_at": "2026-07-11",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "releases"
+  ],
+  "tags": [
+    "vision",
+    "multimodal",
+    "agent",
+    "benchmark"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-16",
+  "date": "2026-07-11",
+  "related": [
+    {
+      "id": "card_dd8539",
+      "slug": "rt-2",
+      "type": "paper",
+      "title": "RT-2: Vision-Language-Action Models",
+      "hook": "Treat a robot's actions as just more text tokens, and a vision-language model can learn to act — carrying its web knowledge into the physical world.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-07-28"
+    },
+    {
+      "id": "card_0dc810",
+      "slug": "pi-zero",
+      "type": "paper",
+      "title": "π0: A Vision-Language-Action Model",
+      "hook": "π0 is a generalist robot policy: it takes camera images, joint angles, and a plain-language instruction, and outputs smooth action sequences — folding laundry, bussing tables, bagging groceries.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-10-31"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_faf0dd#0",
+      "format": "flip",
+      "prompt": "What problem do monolithic observation-to-action navigation policies suffer from, that ABot-N1 is designed to fix?",
+      "back_html": "\u003cp\u003eCoordinate drift and poor handling of long-tail semantics, plus black-box mappings that give no interpretability into why the robot chose an action.\u003c/p\u003e"
+    },
+    {
+      "id": "card_faf0dd#1",
+      "format": "quiz",
+      "prompt": "What is a 'pixel goal' in ABot-N1's slow-fast architecture?",
+      "choices": [
+        {
+          "text": "A compact image-space anchor point produced by the slow reasoner, used across many navigation task types",
+          "correct": true
+        },
+        {
+          "text": "A discrete action token decoded by the fast expert",
+          "correct": false
+        },
+        {
+          "text": "A GPS coordinate fed in from an external map",
+          "correct": false
+        },
+        {
+          "text": "A reward signal used only during training",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe slow vision-language reasoner does explicit chain-of-thought and outputs this pixel goal, which the fast action expert then converts into continuous waypoints.\u003c/p\u003e"
+    },
+    {
+      "id": "card_faf0dd#2",
+      "format": "flip",
+      "prompt": "What concrete gain did ABot-N1 post on point-of-interest (POI) navigation?",
+      "back_html": "\u003cp\u003eIt boosted POI arrival by 35.0 percentage points, to 77.3%, and reached 95.4%/92.9% success rate in complex indoor/outdoor scenes — new SOTA, especially at urban scale.\u003c/p\u003e"
+    }
+  ]
+}

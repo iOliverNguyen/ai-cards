@@ -1,0 +1,111 @@
+{
+  "id": "card_866c39",
+  "slug": "when-claws-remember-stealthy-memory-injection",
+  "type": "paper",
+  "title": "When Claws Remember but Do Not Tell: Stealthy Memory Injection",
+  "hook": "One poisoned email is enough: this attack tricks a persistent personal agent into silently writing false memories, hiding the evidence from the user, and acting on the lie later.",
+  "key_points": [
+    "Persistent personal agents combine long-term memory with access to a user's external environment — creating a new attack surface: untrusted content that gets silently written into memory and later trusted.",
+    "WhisperBench: a 108-case benchmark across five risk categories (fact and preference poisoning) built on a real IMAP/SMTP email-agent workflow.",
+    "MemGhost generates a one-shot attack payload — a single email — using an environment proxy and reward-shaped SFT+RL training, with no runtime feedback needed at attack time.",
+    "87.5% end-to-end success against OpenClaw (GPT-5.4) and 71.4% against Claude Code SDK (Sonnet 4.6) across 56 held-out cases.",
+    "Transfers across different agent architectures and memory backends (filesystem and vector-based Mem0), and remains effective against input-, model-, and system-level defenses tested."
+  ],
+  "content_html": "\u003cp\u003eGive an AI agent long-term memory and access to your inbox, and you've created a new kind of attack surface: a single malicious email that gets read once but remembered forever. This paper shows just how effective that attack already is.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe authors formalize the threat as stealth memory injection: a remote, black-box attacker delivers one email payload that must induce the agent to write poisoned memory, stay invisible in the agent's response to the user, and still shape future behavior. To study it rigorously, they built WhisperBench, a 108-case benchmark spanning five risk categories and both fact- and preference-poisoning, running on a real IMAP/SMTP email workflow with an authentic agent skill. Crafting an effective one-shot payload without any runtime feedback is itself hard, so they built MemGhost — a generation framework that emulates persistent-agent execution with an environment proxy, converts memory adoption and conversational stealth into dense rubric-based rewards via an objective proxy, and trains the attacker policy with supervised fine-tuning plus reinforcement learning. Across 56 held-out cases, MemGhost hits 87.5% end-to-end success against OpenClaw running GPT-5.4, and 71.4% against the Claude Code SDK running Sonnet 4.6 — and the attack transfers across different agent architectures and memory backends (filesystem-based and vector-based Mem0), remaining effective even against the input-, model-, and system-level defenses the authors tested. Yechao Zhang and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yechao Zhang",
+      "Shiqian Zhao",
+      "Jiawen Zhang",
+      "Jie Zhang",
+      "Gelei Deng",
+      "Xiaogeng Liu",
+      "Chaowei Xiao",
+      "Tianwei Zhang"
+    ],
+    "url": "https://arxiv.org/abs/2607.05189",
+    "published_at": "2026-07-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "context-memory",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "safety",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-06",
+  "related": [
+    {
+      "id": "card_ca8eef",
+      "slug": "forensic-trajectory-signatures-memory-poisoning",
+      "type": "paper",
+      "title": "Catching Agent Memory Poisoning from Tool-Call Logs Alone",
+      "hook": "A memory-poisoning attack on an LLM agent leaves a near-perfect fingerprint in its tool-call order — a simple rule catches it at AUC 0.956, a small classifier pushes that to 0.99.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-29"
+    },
+    {
+      "id": "card_adc58b",
+      "slug": "untrusted-content-masking-web-agents",
+      "type": "paper",
+      "title": "Untrusted Content Masking: A Trust Boundary for Web Agents",
+      "hook": "Provable prompt-injection defenses rely on never letting an agent read untrusted content directly. Web agents break that just by looking at the page — this restores it via the page's own structure.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_9c1f76",
+      "slug": "plans-dont-persist-context",
+      "type": "paper",
+      "title": "Plans Don't Persist: Context Management Is Load-Bearing for Agents",
+      "hook": "An agent writes a plan, then context compression evicts it. This paper shows the plan never became internal state — once it leaves the window, the agent forgets it and task success craters.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_866c39#0",
+      "format": "flip",
+      "prompt": "What new attack surface do persistent personal agents (long-term memory + external access) create?",
+      "back_html": "\u003cp\u003eUntrusted external content — like an email — can be silently written into the agent's persistent memory and later reused as trusted state, giving an attacker a path to long-term compromise from a single message.\u003c/p\u003e"
+    },
+    {
+      "id": "card_866c39#1",
+      "format": "quiz",
+      "prompt": "What must a successful stealth memory injection attack (per WhisperBench's threat model) accomplish, beyond just corrupting memory?",
+      "choices": [
+        {
+          "text": "It must also stay hidden from the user's view of the agent's response, and still affect future behavior",
+          "correct": true
+        },
+        {
+          "text": "It must be delivered through the agent's source code, not through content",
+          "correct": false
+        },
+        {
+          "text": "It must require multiple rounds of interactive feedback from the attacker",
+          "correct": false
+        },
+        {
+          "text": "It only needs to corrupt memory once — visibility doesn't matter",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe threat model requires all three: induce the agent to write poisoned memory, stay hidden in what the user sees, and actually influence later behavior — which is what makes it \u0026quot;stealthy\u0026quot; rather than an obvious injection.\u003c/p\u003e"
+    }
+  ]
+}

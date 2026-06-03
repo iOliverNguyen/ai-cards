@@ -1,0 +1,113 @@
+{
+  "id": "card_d58b92",
+  "slug": "second-thought-parallel-reasoning",
+  "type": "paper",
+  "title": "Second Thought: Reasoning in Parallel While an Agent Acts",
+  "hook": "Every time a ReAct agent calls a tool and waits, its reasoning sits idle. Second Thought fills that gap with side branches that think ahead — no retraining, fewer turns.",
+  "key_points": [
+    "In ReAct, thinking only happens in the Thought phase; during Action and Observation the model just waits — a reasoning idle window.",
+    "Second Thought forks four auxiliary reasoning branches the moment a Thought ends, decodes them alongside the main loop, and merges them when the observation lands.",
+    "Training-free: it changes inference orchestration only, moving extra reasoning off the main thread's sequential decoding path.",
+    "Across three agentic benchmarks and three reasoning LLMs, average turn count dropped in all nine model-benchmark pairs.",
+    "Main-thread decoding fell in six of nine pairs, by up to 43%, while Pass@1 was statistically unchanged in seven of nine.",
+    "Against a compute-matched control that spends the same budget on the main thread, it wins on Pass@1 with 1.3-3.2x less sequential decoding."
+  ],
+  "content_html": "\u003cp\u003eLLM agents in the ReAct loop alternate thinking, acting, and observing — but they only \u003cem\u003ethink\u003c/em\u003e in one of those phases. While an action is out with the environment, the model is idle. This paper asks what you could do with that dead air, and answers: reason ahead, in parallel, for free.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eZhensu Sun and colleagues call the Action-and-Observation stretch a reasoning idle window, and propose Second Thought, a training-free inference framework that fills it. The instant a Thought phase concludes, it forks four auxiliary reasoning branches, decodes them concurrently with the main loop, and merges what they produced back in when the environment's observation arrives. The extra reasoning is thus relocated off the main thread's sequential decoding path — the thing that actually determines latency.\u003c/p\u003e\n\u003cp\u003eAcross three agentic benchmarks and three reasoning LLMs, average turn count fell in all nine model-benchmark pairs, and main-thread decoding fell in six of them by up to 43% (roughly 20% on average among those), while staying essentially flat in a seventh. Pass@1 showed no significant change in seven of nine pairs; the two significant differences were both improvements, +12.4 and +10.2 points. The sharper comparison is against a compute-matched control that forces an equivalent token budget onto the main thread's own reasoning: Second Thought beat it on Pass@1 in all four applicable settings while using 1.3 to 3.2 times less sequential decoding. arXiv, August 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zhensu Sun",
+      "Chengran Yang",
+      "Yunbo Lyu",
+      "Jieke Shi",
+      "David Lo"
+    ],
+    "url": "https://arxiv.org/abs/2608.13667",
+    "published_at": "2026-08-13",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "inference",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "inference",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-17",
+  "date": "2026-08-13",
+  "related": [
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    },
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_d58b92#0",
+      "format": "flip",
+      "prompt": "What is the 'reasoning idle window' this paper identifies?",
+      "back_html": "\u003cp\u003eThe stretch during a ReAct agent's Action and Observation phases: the agent has serialized its action and is waiting on the environment, so its reasoning is frozen and doing nothing.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d58b92#1",
+      "format": "quiz",
+      "prompt": "What does Second Thought do at the moment a Thought phase concludes?",
+      "choices": [
+        {
+          "text": "Forks auxiliary reasoning branches that decode in parallel with the main loop",
+          "correct": true
+        },
+        {
+          "text": "Fine-tunes the agent on the observations it has collected so far",
+          "correct": false
+        },
+        {
+          "text": "Discards the current trajectory and restarts the episode",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIt forks four auxiliary branches, decodes them concurrently while the environment works, then merges the generated thoughts back once the observation arrives.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d58b92#2",
+      "format": "flip",
+      "prompt": "Why is beating a compute-matched control the important result here?",
+      "back_html": "\u003cp\u003eIt shows the gain comes from \u003cem\u003ewhere\u003c/em\u003e the reasoning happens, not just from spending more tokens: the same budget forced onto the main thread yields lower Pass@1 and 1.3-3.2x more sequential decoding.\u003c/p\u003e"
+    }
+  ]
+}

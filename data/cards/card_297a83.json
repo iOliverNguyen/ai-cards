@@ -1,0 +1,139 @@
+{
+  "id": "card_297a83",
+  "slug": "domain-data-repetition-scaling",
+  "type": "paper",
+  "title": "How Many Times Should You Repeat Your Best Data?",
+  "hook": "Good domain data doesn't scale like web crawl, so it gets diluted as models grow. How often can you repeat it before overfitting? The answer tracks the domain's loss, not its size.",
+  "key_points": [
+    "As models scale, token budgets grow, so a fixed pool of domain data shrinks as a fraction of the mixture.",
+    "Repeating that data counteracts the dilution, but too much repetition causes overfitting.",
+    "At fixed tokens-per-parameter, the optimal repetition count mildly increases with model size.",
+    "Optimal repetition correlates strongly and negatively with a domain's final validation loss.",
+    "The amount of unique domain data is only weakly related to the optimal repetition count.",
+    "Implication: tune repetition on a small proxy model at the same TPP, then transfer the setting."
+  ],
+  "content_html": "\u003cp\u003eScaling a language model means scaling its training-token budget too, to keep the tokens-per-parameter ratio in a sensible range. But the good stuff — curated code, textbooks, domain corpora — doesn't scale the way web crawl does. So as models get bigger, the high-quality slice of the mixture keeps shrinking. Repeating that data is the obvious fix, and the obvious risk is overfitting. This paper studies where the line sits.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe findings\u003c/h2\u003e\n\u003cp\u003eTwo results stand out. First, at a \u003cstrong\u003efixed tokens-per-parameter ratio\u003c/strong\u003e, the optimal number of repetitions only mildly increases with model size — which is good news, because it means the setting is roughly stable as you scale. Second, across domains the optimal repetition count is \u003cstrong\u003estrongly negatively correlated with the domain's final validation loss\u003c/strong\u003e: domains a model already fits well can take more repetition before it hurts. Notably, the sheer \u003cem\u003eamount\u003c/em\u003e of unique data in a domain turns out to be only weakly related to how many times you should repeat it.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eData mixture decisions are usually made by intuition and expensive ablations at full scale. If repetition counts tuned on a small proxy model at the same TPP transfer upward, that's a cheap knob for a decision that normally costs a full training run to get wrong. It also reframes the question: don't ask \u0026quot;how much of this data do I have?\u0026quot; — ask \u0026quot;how easily does the model already model it?\u0026quot;\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jingwei Li",
+      "Xinran Gu",
+      "Rui Dai",
+      "Xintong Hao",
+      "Chengyin Xu",
+      "Yan Wu",
+      "Shuran Zheng",
+      "Jingzhao Zhang"
+    ],
+    "url": "https://arxiv.org/abs/2608.14071",
+    "published_at": "2026-08-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining",
+    "data",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "dataset",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-17",
+  "date": "2026-08-14",
+  "related": [
+    {
+      "id": "card_46fd66",
+      "slug": "chinchilla-scaling-laws",
+      "type": "paper",
+      "title": "Chinchilla: Compute-Optimal Scaling",
+      "hook": "Most giant models were starved of data. Chinchilla showed that for a fixed compute budget you should grow parameters and tokens together — and a smaller, longer-trained model won.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2022-03-29"
+    },
+    {
+      "id": "card_85f66a",
+      "slug": "scaling-laws",
+      "type": "paper",
+      "title": "Scaling Laws for Neural Language Models",
+      "hook": "Loss doesn't drop randomly as models grow — it follows a smooth power law in size, data, and compute. That predictability is what made betting on bigger models rational.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2020-01-23"
+    },
+    {
+      "id": "card_9237d7",
+      "slug": "deduplicating-training-data",
+      "type": "paper",
+      "title": "Deduplicating Training Data Makes LMs Better",
+      "hook": "Training corpora are full of copies — one 61-word sentence shows up 60,000+ times in C4. Strip the duplicates and models memorize far less and evaluate more honestly.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2021-07-14"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_46fd66",
+      "slug": "chinchilla-scaling-laws",
+      "type": "paper",
+      "title": "Chinchilla: Compute-Optimal Scaling",
+      "hook": "Most giant models were starved of data. Chinchilla showed that for a fixed compute budget you should grow parameters and tokens together — and a smaller, longer-trained model won.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2022-03-29"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_297a83#0",
+      "format": "flip",
+      "prompt": "Why does high-quality domain data get diluted as models scale?",
+      "back_html": "\u003cp\u003eToken budgets grow with model size to keep the tokens-per-parameter ratio right, but scarce domain data can't grow with them — so its share of the mixture falls.\u003c/p\u003e"
+    },
+    {
+      "id": "card_297a83#1",
+      "format": "quiz",
+      "prompt": "What best predicts a domain's optimal repetition count, per this study?",
+      "choices": [
+        {
+          "text": "Its final validation loss — lower-loss domains tolerate more repetition",
+          "correct": true
+        },
+        {
+          "text": "The amount of unique data available in that domain",
+          "correct": false
+        },
+        {
+          "text": "The number of distinct sources the domain was scraped from",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOptimal repetition is strongly negatively correlated with a domain's final validation loss, while the quantity of unique domain data is only weakly related.\u003c/p\u003e"
+    },
+    {
+      "id": "card_297a83#2",
+      "format": "quiz",
+      "prompt": "What practical shortcut do the findings suggest?",
+      "choices": [
+        {
+          "text": "Tune repetition counts on a smaller proxy model at the same TPP and reuse them at scale",
+          "correct": true
+        },
+        {
+          "text": "Always repeat domain data exactly four times regardless of scale",
+          "correct": false
+        },
+        {
+          "text": "Stop repeating once the model exceeds a few billion parameters",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBecause the optimal count only mildly increases with model size at fixed TPP, a same-TPP proxy model gives a practical estimate for the large run.\u003c/p\u003e"
+    }
+  ]
+}

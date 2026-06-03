@@ -1,0 +1,133 @@
+{
+  "id": "card_f56fb1",
+  "slug": "quantization-aware-distillation-lfm25",
+  "type": "blog",
+  "title": "Quantization-Aware Distillation: Train the 4-bit Model, Don't Squash It",
+  "hook": "Liquid AI distilled BF16 teachers straight into Q4_0 students and recovered 97% of the accuracy that post-training quantization was throwing away.",
+  "key_points": [
+    "QAD distills a high-precision teacher into a quantized student, so the small model is trained rather than compressed after the fact.",
+    "Contrasts with post-training quantization (PTQ), the usual route for released GGUFs, which quantizes finished weights.",
+    "It differs from plain QAT by adding a teacher signal on top of quantization awareness.",
+    "Across four LFM2.5 sizes, 97% of the BF16 average accuracy lost to quantization is recovered.",
+    "Per-model retention: 97.1%, 96.5%, 97.4% and 96.6% of the BF16 baseline for 230M, 350M, 1.2B and 2.6B.",
+    "The Q4_0 checkpoints also decode 4–33% faster than higher-precision quantization at equivalent quality."
+  ],
+  "content_html": "\u003cp\u003eSmall models get shipped as GGUFs, and GGUFs are usually made by post-training quantization: finish training in high precision, then squash the weights. It works, and it always costs something. Liquid AI's post makes the case for the other order — train the quantized model in the first place, with a high-precision teacher supervising.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eQuantization-aware distillation distills a BF16 teacher into a quantized student, combining a teacher signal with quantization awareness during training. That's the difference from PTQ, which applies quantization after the fact, and the added ingredient over plain QAT, which is quantization-aware but has no teacher. The released artifacts are Q4_0 checkpoints for four LFM2.5 sizes.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe reported numbers are the argument: across the four models, 97% of the BF16 average accuracy that quantization would have cost is recovered, with per-model retention of 97.1%, 96.5%, 97.4% and 96.6% for the 230M, 350M, 1.2B and 2.6B variants. And because Q4_0 now holds quality that used to require more bits, the checkpoints decode 4–33% faster than higher-precision quantization at equivalent quality. For on-device deployment that's the whole ballgame — the cheapest format stops being the compromise format.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face Blog (Liquid AI)",
+    "authors": [
+      "Liquid AI"
+    ],
+    "url": "https://huggingface.co/blog/LiquidAI/qad",
+    "published_at": "2026-08-19",
+    "license": "Hugging Face blog"
+  },
+  "topic_ids": [
+    "quantization",
+    "distillation",
+    "releases"
+  ],
+  "tags": [
+    "efficiency",
+    "open-source",
+    "training",
+    "news"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-20",
+  "date": "2026-08-19",
+  "related": [
+    {
+      "id": "card_ec7996",
+      "slug": "gemma-4-qat",
+      "type": "news",
+      "title": "Gemma 4 QAT: 4-Bit Weights That Keep Their Quality",
+      "hook": "Squeezing a model to 4 bits after training loses quality. Quantization-aware training bakes the rounding into training instead — and Google shipped Gemma 4 checkpoints that do exactly that.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-06-05"
+    },
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    },
+    {
+      "id": "card_b52032",
+      "slug": "kvarn-kv-cache-quantization",
+      "type": "paper",
+      "title": "KVarN: Variance-Normalized KV-Cache Quantization",
+      "hook": "Long reasoning chains blow up the KV cache. Squeeze it to 2 bits and errors snowball over thousands of decode steps — unless you fix the token scales first.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_f56fb1#0",
+      "format": "flip",
+      "prompt": "How does quantization-aware distillation differ from post-training quantization?",
+      "back_html": "\u003cp\u003ePTQ quantizes weights after training is finished. QAD trains the quantized student during distillation from a high-precision teacher, so the low-precision model is learned rather than approximated.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f56fb1#1",
+      "format": "quiz",
+      "prompt": "What does '97% of accuracy lost to quantization is recovered' mean here?",
+      "choices": [
+        {
+          "text": "QAD closes 97% of the gap between the PTQ checkpoint and the BF16 baseline",
+          "correct": true
+        },
+        {
+          "text": "The QAD model reaches 97% absolute accuracy on the benchmarks",
+          "correct": false
+        },
+        {
+          "text": "The QAD model loses 97% less throughput than BF16",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe figure is about the \u003cem\u003egap\u003c/em\u003e: per-model retention against the BF16 baseline was 97.1%, 96.5%, 97.4% and 96.6% across the four LFM2.5 sizes.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f56fb1#2",
+      "format": "quiz",
+      "prompt": "Besides accuracy, what does the post claim for the Q4_0 QAD checkpoints?",
+      "choices": [
+        {
+          "text": "4–33% higher decode throughput than higher-precision quantization at equivalent quality",
+          "correct": true
+        },
+        {
+          "text": "Half the training compute of the BF16 teacher",
+          "correct": false
+        },
+        {
+          "text": "Support for arbitrary bit widths at inference time",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBecause quality at Q4_0 now matches what previously required more bits, you get the speed of the lower precision without the usual quality tax.\u003c/p\u003e"
+    }
+  ]
+}

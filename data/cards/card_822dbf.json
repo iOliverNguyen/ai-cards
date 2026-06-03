@@ -1,0 +1,133 @@
+{
+  "id": "card_822dbf",
+  "slug": "geometry-of-on-policy-distillation",
+  "type": "paper",
+  "title": "On the Geometry of On-Policy Distillation",
+  "hook": "On-policy distillation isn't a midpoint between fine-tuning and RL — it carves its own narrow path through parameter space, locking into a low-dimensional subspace early in training.",
+  "key_points": [
+    "On-policy distillation (OPD) trains a student on its own generations, scored by a teacher — but its training dynamics were poorly understood.",
+    "In parameter space, OPD sits in a 'relaxed off-principal regime': it changes fewer weights than SFT, yet stays less tightly constrained than RL with verifiable rewards.",
+    "'Subspace locking': OPD's cumulative updates rapidly collapse into a narrow, low-dimensional channel — and that early subspace alone is enough to preserve its performance.",
+    "Mixing in verifiable-reward RL changes the geometry; going off-policy or sparsifying update tokens does not."
+  ],
+  "content_html": "\u003cp\u003eOn-policy distillation (OPD) — where a student generates its own tokens and a teacher scores them — is increasingly used to sharpen LLM reasoning, but its training dynamics were poorly understood. This paper maps where OPD actually moves a model's weights and compares it against supervised fine-tuning (SFT) and reinforcement learning with verifiable rewards (RLVR).\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat they found\u003c/h2\u003e\n\u003cp\u003eUsing a suite of parameter-space diagnostics, the authors place OPD in a \u0026quot;relaxed off-principal regime\u0026quot;: compared with SFT, its updates touch fewer weights and avoid the principal directions more strongly; compared with RLVR, they stay less tightly constrained. Beyond that static picture, OPD shows \u003cstrong\u003esubspace locking\u003c/strong\u003e — its cumulative updates quickly enter a narrow, low-dimensional channel. Restricting training to the subspace formed early on preserves OPD's performance but badly degrades SFT, suggesting that locked subspace is functionally sufficient for OPD specifically.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eControl experiments sharpen the story: sparsifying the update tokens or shifting generation off-policy preserves the rank dynamics, while mixing OPD with RLVR changes them. The takeaway is that OPD is not merely an interpolation between SFT and RL — it induces its own update geometry. That reframes how we think about cheap post-training: the method you choose shapes \u003cem\u003ewhere\u003c/em\u003e in parameter space learning happens, not just how well the model ends up doing.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zhennan Shen",
+      "Yanshu Li",
+      "Qingyu Yin",
+      "Chak Tou Leong",
+      "Zhilin Wang",
+      "Yanxu Chen",
+      "Rongduo Han",
+      "Sunbowen Lee",
+      "Yi R. Fung"
+    ],
+    "url": "https://arxiv.org/abs/2606.07082",
+    "published_at": "2026-06-05",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "distillation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-11",
+  "date": "2026-06-05",
+  "related": [
+    {
+      "id": "card_2408d6",
+      "slug": "trust-region-on-policy-distillation",
+      "type": "paper",
+      "title": "Trust Region On-Policy Distillation",
+      "hook": "On-policy distillation breaks when teacher and student disagree too much. TrOPD only trusts the teacher where its supervision is reliable — and skips the rest.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-05-31"
+    },
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    },
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    },
+    {
+      "id": "card_49afeb",
+      "slug": "opid-skill-distillation",
+      "type": "paper",
+      "title": "OPID: On-Policy Skill Distillation for Agentic RL",
+      "hook": "Outcome-only RL tells an agent it failed but not which move was the mistake. OPID mines that lesson from the agent's own finished trajectories — turning hindsight into dense, per-token supervision.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-25"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_822dbf#0",
+      "format": "flip",
+      "prompt": "What is 'subspace locking' in on-policy distillation?",
+      "back_html": "\u003cp\u003eOPD's cumulative weight updates rapidly collapse into a narrow, low-dimensional subspace early in training — and constraining training to that early subspace alone is enough to preserve OPD's performance.\u003c/p\u003e"
+    },
+    {
+      "id": "card_822dbf#1",
+      "format": "quiz",
+      "prompt": "How does OPD's update geometry compare to supervised fine-tuning (SFT) and RL with verifiable rewards (RLVR)?",
+      "choices": [
+        {
+          "text": "It changes fewer weights than SFT but stays less tightly constrained than RLVR — a 'relaxed off-principal regime'",
+          "correct": true
+        },
+        {
+          "text": "It is an exact average of the SFT and RLVR update directions",
+          "correct": false
+        },
+        {
+          "text": "It changes more weights than both SFT and RLVR",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eParameter-space diagnostics place OPD in its own regime: fewer affected weights and more avoidance of principal directions than SFT, yet looser constraints than RLVR.\u003c/p\u003e"
+    },
+    {
+      "id": "card_822dbf#2",
+      "format": "flip",
+      "prompt": "Which intervention changed OPD's rank dynamics, and which left them intact?",
+      "back_html": "\u003cp\u003eMixing the OPD objective with verifiable-reward RL changed the geometry; sparsifying update tokens or shifting rollouts off-policy preserved the rank dynamics.\u003c/p\u003e"
+    }
+  ]
+}

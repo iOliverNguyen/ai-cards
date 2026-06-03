@@ -1,0 +1,88 @@
+{
+  "id": "card_0982b4",
+  "slug": "llms-design-near-optimal-or-algorithms",
+  "type": "paper",
+  "title": "LLMs Can Design Near-Optimal OR Algorithms",
+  "hook": "Given only a problem class description and a Python sandbox, a frontier model writes an algorithm that matches or beats the best known method — before ever seeing an evaluation instance.",
+  "key_points": [
+    "Tests whether LLMs can design algorithms for well-specified operations research problems: inventory control, queueing network control, assortment optimization.",
+    "Level 1: the model gets one instance and returns a solution. Level 2: it gets only the problem class and parameter ranges, and returns an algorithm.",
+    "The strongest model tested, gpt-5.6-sol, matches or outperforms the best existing method on almost all evaluated instances.",
+    "This holds even at level 2, where the returned algorithm is fixed before any evaluation instance is seen.",
+    "Performance improves sharply across models released less than eight months apart.",
+    "Conclusion: frontier LLMs are now a serious empirical baseline for algorithm design in well-specified OR problems."
+  ],
+  "content_html": "\u003cp\u003eBaek asks a sharp question with a sharp setup: can an LLM design a good algorithm for a well-specified operations research problem? The domains are classics with decades of specialized literature — inventory control, queueing network control, assortment optimization.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe two levels\u003c/h2\u003e\n\u003cp\u003eAt \u003cstrong\u003elevel 1\u003c/strong\u003e the model receives one problem instance and returns a solution for that instance. At \u003cstrong\u003elevel 2\u003c/strong\u003e it receives only a description of the problem class and broad parameter ranges, and must return an \u003cem\u003ealgorithm\u003c/em\u003e mapping instance parameters to solutions — fixed before any evaluation instance is seen. Human input is deliberately minimal: one untuned prompt describing the problem, plus a Python sandbox with a fixed compute budget.\u003c/p\u003e\n\u003ch2\u003eThe result\u003c/h2\u003e\n\u003cp\u003eThe strongest model tested, gpt-5.6-sol, matches or outperforms the best existing method on almost all evaluated instances — including at level 2. That is the claim that matters: level 1 could in principle be brute-force search over a single instance, but level 2 requires committing to a general procedure in advance.\u003c/p\u003e\n\u003cp\u003ePerformance also improves sharply across models released less than eight months apart, which suggests the capability is moving fast rather than sitting at a ceiling.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe authors' framing is modest and useful: for well-specified operations problems, a single untuned LLM query is now a serious empirical baseline. That changes the bar for publishing a new method in these areas, and it is a concrete instance of a pattern worth watching — frontier models as a default comparison point in fields where the problem statement is crisp and a verifier is cheap.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jackie Baek"
+    ],
+    "url": "https://arxiv.org/abs/2608.27296",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "ai-for-science",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "reasoning",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_30f481",
+      "slug": "gpt-5-6-sol",
+      "type": "news",
+      "title": "GPT-5.6 Sol Preview",
+      "hook": "OpenAI previewed GPT-5.6 Sol, a next-generation model it says is stronger at coding, science, and cybersecurity — and shipped with its most advanced safety stack yet.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_0982b4#0",
+      "format": "flip",
+      "prompt": "What is the difference between the paper's level 1 and level 2 evaluations?",
+      "back_html": "\u003cp\u003eLevel 1: the model sees one problem instance and returns a solution for it. Level 2: it sees only the problem class and parameter ranges and must return an algorithm, fixed before any evaluation instance appears.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0982b4#1",
+      "format": "quiz",
+      "prompt": "Why is the level-2 result the stronger claim?",
+      "choices": [
+        {
+          "text": "The algorithm is committed before seeing evaluation instances, so it cannot be tuned to them",
+          "correct": true
+        },
+        {
+          "text": "Level 2 uses a larger compute budget than level 1",
+          "correct": false
+        },
+        {
+          "text": "Level 2 allows human experts to refine the prompt",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLevel 1 could be solving instances by search. Level 2 requires generalizing to a mapping from parameters to solutions — genuine algorithm design rather than instance solving.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0982b4#2",
+      "format": "flip",
+      "prompt": "What does the paper suggest OR researchers should now do?",
+      "back_html": "\u003cp\u003eTreat a single untuned frontier-LLM query as a serious empirical baseline for well-specified problems — a method that cannot beat it may not be worth publishing as an improvement.\u003c/p\u003e"
+    }
+  ]
+}

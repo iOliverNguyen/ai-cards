@@ -1,0 +1,125 @@
+{
+  "id": "card_5b91a4",
+  "slug": "geometric-action-model",
+  "type": "paper",
+  "title": "Geometric Action Model: One Backbone for Geometry and Action",
+  "hook": "GAM turns a pretrained 3D-geometry model into a robot's brain - a single backbone that forecasts both future geometry and the actions to get there, beating heavier VLA baselines.",
+  "key_points": [
+    "Most vision-language-action models reason over 2D frames or 2D-derived latents, leaving the explicit 3D geometry needed for contact-rich manipulation implicit.",
+    "GAM repurposes a pretrained geometric foundation model (GFM) as one shared substrate for perception, temporal prediction, and action decoding.",
+    "It splits the GFM mid-stack: early layers encode observations; a causal future predictor forecasts future latent tokens from language, proprioception, and action history.",
+    "Predicted tokens flow through the remaining GFM blocks to output both future geometry and actions — one backbone, minimal architectural change.",
+    "Across simulation and real-robot manipulation, GAM is reported more accurate, robust, faster, and lighter than foundation-model-scale baselines."
+  ],
+  "content_html": "\u003cp\u003eGeneralist robot policies have to follow instructions while reasoning about how objects,\ncameras, and their own actions interact in 3D space. Recent vision-language-action models\n(VLAs) and video world-action models inherit strong semantic and temporal priors from\nfoundation models — but they mostly work on 2D image frames or 2D-derived latents, leaving\nthe 3D geometry that contact-rich manipulation needs only implicit.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe Geometric Action Model (GAM) takes a different substrate: a pretrained \u003cem\u003egeometric\u003c/em\u003e\nfoundation model (GFM), repurposed as a single backbone for perception, temporal prediction,\nand action decoding. GAM splits the GFM at an intermediate layer — the shallow layers act as\nan observation encoder, and a causal future predictor inserted at the split forecasts future\nlatent tokens conditioned on language, proprioception, and action history. Those predicted\ntokens are routed through the remaining GFM blocks, so one network produces both future\ngeometry and the actions to reach it, with minimal architectural change and the GFM's\ngeometric priors preserved. Across a broad suite of simulation and real-robot manipulation\nbenchmarks, the authors report GAM is more accurate, robust, faster, and lighter than\ncurrent foundation-model-scale baselines.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jisang Han",
+      "Seonghu Jeon",
+      "Jaewoo Jung",
+      "René Zurbrügg",
+      "Honggyu An",
+      "Tifanny Portela",
+      "Marco Hutter",
+      "Marc Pollefeys",
+      "Seungryong Kim",
+      "Sunghwan Hong"
+    ],
+    "url": "https://arxiv.org/abs/2606.17046",
+    "published_at": "2026-06-15",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "multimodal",
+    "vision",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-18",
+  "date": "2026-06-15",
+  "related": [
+    {
+      "id": "card_0dc810",
+      "slug": "pi-zero",
+      "type": "paper",
+      "title": "π0: A Vision-Language-Action Model",
+      "hook": "π0 is a generalist robot policy: it takes camera images, joint angles, and a plain-language instruction, and outputs smooth action sequences — folding laundry, bussing tables, bagging groceries.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-10-31"
+    },
+    {
+      "id": "card_dd8539",
+      "slug": "rt-2",
+      "type": "paper",
+      "title": "RT-2: Vision-Language-Action Models",
+      "hook": "Treat a robot's actions as just more text tokens, and a vision-language model can learn to act — carrying its web knowledge into the physical world.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-07-28"
+    },
+    {
+      "id": "card_296943",
+      "slug": "dreamerv3",
+      "type": "paper",
+      "title": "DreamerV3: Mastering Domains through World Models",
+      "hook": "Instead of learning only from real experience, DreamerV3 builds a world model and practices inside its own imagination — one fixed config, 150+ tasks.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2023-01-10"
+    },
+    {
+      "id": "card_f6fb90",
+      "slug": "seededgrasp",
+      "type": "paper",
+      "title": "SeededGrasp: Language-Guided Grasping in Complex Scenes with Multiple Embodiments",
+      "hook": "Instead of one giant end-to-end model, let the VLM just point — predict a seed point, then hand off to a lightweight grasp generator. Data-efficient, and it transfers across robot hands.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_5b91a4#0",
+      "format": "flip",
+      "prompt": "What gap in typical vision-language-action robot policies does GAM target?",
+      "back_html": "\u003cp\u003eThey operate on 2D image frames or 2D-derived latents, leaving the explicit 3D\ngeometry needed for contact-rich manipulation implicit.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5b91a4#1",
+      "format": "quiz",
+      "prompt": "How does GAM reuse a pretrained geometric foundation model (GFM)?",
+      "choices": [
+        {
+          "text": "It splits the GFM mid-stack: early layers encode observations, a causal predictor forecasts future latent tokens, later layers decode geometry and actions",
+          "correct": true
+        },
+        {
+          "text": "It fine-tunes a separate vision encoder and action head from scratch",
+          "correct": false
+        },
+        {
+          "text": "It distills the GFM into a small 2D convolutional network",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGAM keeps the GFM's geometric priors by inserting a causal future predictor at an\nintermediate split, so one backbone serves perception, temporal prediction, and action.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5b91a4#2",
+      "format": "flip",
+      "prompt": "What does GAM's single backbone output, and how does it compare to baselines?",
+      "back_html": "\u003cp\u003eBoth future geometry and robot actions. Across simulation and real-robot benchmarks\nit's reported more accurate, robust, faster, and lighter than foundation-model-scale\nbaselines.\u003c/p\u003e"
+    }
+  ]
+}

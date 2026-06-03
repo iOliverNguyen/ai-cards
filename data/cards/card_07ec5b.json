@@ -1,0 +1,77 @@
+{
+  "id": "card_07ec5b",
+  "slug": "openpangu-2-flash",
+  "type": "news",
+  "title": "Huawei Open-Sources OpenPangu-2.0-Flash",
+  "hook": "Huawei open-sourced OpenPangu 2.0's Flash tier — a 92B-parameter, 6B-active MoE model with 512K context, weights, inference code, and training ops all released — with a 505B flagship still to come.",
+  "key_points": [
+    "OpenPangu-2.0-Flash: 92B total parameters, 6B active (mixture-of-experts), 512K-token context window.",
+    "Released openly: model weights, inference code, and training operations — not just weights.",
+    "A larger flagship, OpenPangu-2.0-Pro (505B total, 18B active), was announced as coming later in July.",
+    "Huawei says more open-source components will follow later in the year."
+  ],
+  "content_html": "\u003cp\u003eHuawei added another entry to the wave of large open-weight releases from Chinese labs, open-sourcing the Flash tier of its OpenPangu 2.0 model family.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat shipped\u003c/h2\u003e\n\u003cp\u003eOpenPangu-2.0-Flash is a mixture-of-experts model with 92B total parameters and 6B active per token, plus a 512K-token context window — and Huawei released the weights, inference code, and training operations, not just a checkpoint. A larger flagship, OpenPangu-2.0-Pro (505B total, 18B active), is coming later in July, with more open-source components promised through the rest of the year.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eLarge, long-context MoE models with full training-op releases — not just inference-ready weights — lower the barrier for others to reproduce or build on the recipe, not merely run the model. It's part of a broader pattern this year of major labs, especially Chinese labs, treating open-weight releases as a competitive front rather than an afterthought.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit r/LocalLLaMA",
+    "authors": [
+      "/u/soteko"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1ujn5u3/huawei_opensources_openpangu20flash_92b_total6b",
+    "published_at": "2026-06-30",
+    "license": "Reddit post (link-out)"
+  },
+  "topic_ids": [
+    "releases"
+  ],
+  "tags": [
+    "open-source",
+    "architecture",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-07-06",
+  "date": "2026-06-30",
+  "related": [
+    {
+      "id": "card_281868",
+      "slug": "muse-glimmer-local-agent-model",
+      "type": "news",
+      "title": "Muse Glimmer: a 30B Open-Weight Model Built for Always-On Local Agents",
+      "hook": "Meta released a 30B dense multimodal model under Apache 2.0, tuned for agents that run all day on your own machine — quantized to ~4-bit it fits under 20 GB.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-08-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_07ec5b#0",
+      "format": "flip",
+      "prompt": "What are the two OpenPangu 2.0 tiers Huawei announced, and their sizes?",
+      "back_html": "\u003cp\u003eFlash: 92B total parameters, 6B active. Pro: 505B total parameters, 18B active — a flagship coming later in July.\u003c/p\u003e"
+    },
+    {
+      "id": "card_07ec5b#1",
+      "format": "quiz",
+      "prompt": "What did Huawei release for OpenPangu-2.0-Flash, beyond just the model weights?",
+      "choices": [
+        {
+          "text": "Inference code and training operations, alongside the weights",
+          "correct": true
+        },
+        {
+          "text": "Only a hosted API with no downloadable weights",
+          "correct": false
+        },
+        {
+          "text": "Weights only, with all code kept closed",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe release included weights, inference code, and training ops — enough for others to reproduce or build on the training recipe, not just run the model.\u003c/p\u003e"
+    }
+  ]
+}

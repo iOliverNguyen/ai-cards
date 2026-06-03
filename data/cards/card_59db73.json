@@ -1,0 +1,100 @@
+{
+  "id": "card_59db73",
+  "slug": "how-organizations-use-ai-chatgpt",
+  "type": "paper",
+  "title": "How Organizations Actually Use AI: 17 Million Enterprise Messages",
+  "hook": "Linking ChatGPT Enterprise records to company financials shows who really adopts AI at work: large, R\u0026D-heavy firms — with early-career staff driving the heaviest use.",
+  "key_points": [
+    "Links ChatGPT Enterprise account records to usage, worker roles, task classifications, and public-company financials through March 2026.",
+    "The six-month-adoption worker sample alone covers 1,500+ organizations and 17M+ messages, analyzed privacy-preservingly.",
+    "Usage grew from both new firms adopting and existing adopters using it more intensively.",
+    "Among U.S. public companies, adoption concentrates in larger, more valuable, more R\u0026D- and SG\u0026A-intensive firms.",
+    "Active use spans job functions and seniority, with the highest intensity among early-career workers.",
+    "Tasks span knowledge work broadly: writing, technical work, communication, and information synthesis."
+  ],
+  "content_html": "\u003cp\u003eMost claims about \u0026quot;AI at work\u0026quot; rest on surveys or anecdotes. Aaron Chatterji and co-authors (arXiv, August 2026) instead link ChatGPT Enterprise account records to usage logs, worker roles, task classifications, and public-company financial data through March 2026 — a privacy-preserving view of adoption at scale. The six-month-adoption worker sample alone spans more than 1,500 organizations and over 17 million messages.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eFour facts\u003c/h2\u003e\n\u003cp\u003eUsage grew rapidly, from a mix of new firms signing on and existing adopters ramping up intensity. Among U.S.-based public companies, adoption skews toward larger, more valuable firms with higher R\u0026amp;D and SG\u0026amp;A intensity. Within adopting firms, active use spans job functions and seniority levels — with the highest intensity among early-career workers. And the task mix is broad knowledge work: writing, technical work, communication, and information synthesis.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe headline is dispersion. Firms differ widely in the speed, breadth, and purpose of enterprise AI adoption, which the authors read as evidence that organizations are still actively figuring out how to fit these tools into their workflows. Note the vantage point: this is one vendor's enterprise product, so it describes ChatGPT Enterprise customers rather than the whole market.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Aaron Chatterji",
+      "David Holtz",
+      "Neel Rakholia",
+      "Prasanna Tambe",
+      "Gawesha Weeratunga"
+    ],
+    "url": "https://arxiv.org/abs/2608.12236",
+    "published_at": "2026-08-12",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "lab-updates",
+    "papers-this-week"
+  ],
+  "tags": [
+    "news",
+    "paper",
+    "agent"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-08-13",
+  "date": "2026-08-12",
+  "related": [
+    {
+      "id": "card_2015b0",
+      "slug": "chatgpt-work",
+      "type": "news",
+      "title": "ChatGPT Work: An Agent That Delivers Finished Work",
+      "hook": "ChatGPT Work doesn't just chat — it reaches into your actual apps and files, grinds on a project for hours, and hands back a real spreadsheet or slide deck instead of a wall of text.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-07-09"
+    },
+    {
+      "id": "card_bf70d8",
+      "slug": "health-in-chatgpt",
+      "type": "news",
+      "title": "ChatGPT Starts Reading Your Medical Records",
+      "hook": "OpenAI has shipped Health in ChatGPT: eligible US users can connect their medical records and Apple Health data so the assistant answers from their own history rather than in general.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-07-23"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_59db73#0",
+      "format": "quiz",
+      "prompt": "Which U.S. public companies adopted ChatGPT Enterprise most, according to this study?",
+      "choices": [
+        {
+          "text": "Larger, more valuable firms with higher R\u0026D and SG\u0026A intensity",
+          "correct": true
+        },
+        {
+          "text": "Small firms, which can change tooling fastest",
+          "correct": false
+        },
+        {
+          "text": "Firms with the lowest software spending, seeking cheap automation",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAdoption among U.S.-based public companies concentrated among larger, more valuable, and more R\u0026amp;D- and SG\u0026amp;A-intensive firms.\u003c/p\u003e"
+    },
+    {
+      "id": "card_59db73#1",
+      "format": "flip",
+      "prompt": "Which workers used enterprise AI most intensively?",
+      "back_html": "\u003cp\u003eUse spread across job functions and seniority levels, but usage intensity was especially high among early-career workers.\u003c/p\u003e"
+    },
+    {
+      "id": "card_59db73#2",
+      "format": "flip",
+      "prompt": "What kinds of tasks dominated enterprise ChatGPT usage?",
+      "back_html": "\u003cp\u003eA broad range of knowledge work — writing, technical work, communication, and information synthesis — rather than one narrow use case.\u003c/p\u003e"
+    }
+  ]
+}

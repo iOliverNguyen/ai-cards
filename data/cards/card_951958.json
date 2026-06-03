@@ -1,0 +1,115 @@
+{
+  "id": "card_951958",
+  "slug": "speculative-decoding",
+  "type": "paper",
+  "title": "Speculative Decoding",
+  "hook": "Let a small, fast model guess the next few words, then have the big model check them all in one shot. Same output, fewer slow steps.",
+  "key_points": [
+    "A cheap 'draft' model proposes several tokens ahead; the large model verifies them in a single forward pass.",
+    "Correct guesses are accepted in bulk; the first wrong one is corrected and the rest discarded.",
+    "The output is provably identical to what the big model alone would produce — no quality trade-off.",
+    "Speedups come from the big model running far fewer sequential steps."
+  ],
+  "content_html": "\u003cp\u003eYaniv Leviathan, Matan Kalman, and Yossi Matias proposed speculative decoding to make LLM generation faster without changing what it produces. A small, quick model drafts a handful of upcoming tokens, then the large model evaluates that whole draft in one pass and accepts every token that matches what it would have chosen anyway. Because the big model verifies many tokens per step instead of producing one at a time, the same text comes out faster.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eNormally a large model generates one token per forward pass, which is slow because each step waits on the last. Here a small draft model cheaply proposes, say, the next several tokens. The big model then scores all of them at once. Thanks to a careful acceptance rule, it keeps the longest prefix of drafted tokens consistent with its own distribution and resamples at the first mismatch. When the draft is good, many tokens are confirmed per expensive step.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eLatency is the pain point in interactive LLM use, and it's bottlenecked by sequential decoding. Speculative decoding attacks that directly: a good draft model lets the large model commit multiple tokens per step, cutting wall-clock time meaningfully. Crucially, the verification step guarantees the result is distributionally identical to plain decoding, so you get speed for free in quality terms. The idea is now common in production serving stacks.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yaniv Leviathan",
+      "Matan Kalman",
+      "Yossi Matias"
+    ],
+    "url": "https://arxiv.org/abs/2211.17192",
+    "published_at": "2022-11-30",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference"
+  ],
+  "tags": [
+    "efficiency",
+    "inference"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2022-11-30",
+  "related": [
+    {
+      "id": "card_ef8b5f",
+      "slug": "paged-attention-vllm",
+      "type": "paper",
+      "title": "PagedAttention / vLLM: Efficient LLM Serving",
+      "hook": "LLM serving wastes huge amounts of GPU memory on the attention cache. PagedAttention borrows an OS trick — paging — to recover it and serve many more requests at once.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-09-12"
+    },
+    {
+      "id": "card_1bff26",
+      "slug": "jetspec-speculative-decoding",
+      "type": "paper",
+      "title": "JetSpec: Breaking the Scaling Ceiling of Speculative Decoding",
+      "hook": "Speculative decoding stalls when bigger draft trees stop paying off. JetSpec trains a causal parallel draft head that drafts in one pass yet stays branch-consistent — hitting up to 9.64x speedup.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-25"
+    },
+    {
+      "id": "card_69407e",
+      "slug": "windowed-mtp-draft-kv-tax",
+      "type": "paper",
+      "title": "The Draft Isn't Free at a Million Tokens",
+      "hook": "Speculative decoding assumes the draft is cheap. At million-token context the draft head reads the entire KV cache every step — and can end up slower than no speculation at all.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-23"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_951958#0",
+      "format": "flip",
+      "prompt": "How does speculative decoding cut latency without changing the output?",
+      "back_html": "\u003cp\u003eA small model drafts several tokens; the big model verifies them all in one forward pass, committing many tokens per expensive step instead of one at a time.\u003c/p\u003e"
+    },
+    {
+      "id": "card_951958#1",
+      "format": "quiz",
+      "prompt": "What happens when the draft model's guess is wrong?",
+      "choices": [
+        {
+          "text": "The longest correct prefix is kept; it resamples at the first mismatch",
+          "correct": true
+        },
+        {
+          "text": "The entire draft is discarded and decoding restarts from scratch",
+          "correct": false
+        },
+        {
+          "text": "The wrong token is kept to preserve speed",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAn acceptance rule keeps the longest prefix consistent with the big model's distribution and resamples at the first mismatch, so output stays distributionally identical.\u003c/p\u003e"
+    },
+    {
+      "id": "card_951958#2",
+      "format": "flip",
+      "prompt": "Why is speculative decoding 'free' in quality terms?",
+      "back_html": "\u003cp\u003eThe verification step guarantees the result is distributionally identical to plain decoding, so you gain speed with no quality trade-off.\u003c/p\u003e"
+    }
+  ]
+}

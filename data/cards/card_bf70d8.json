@@ -1,0 +1,89 @@
+{
+  "id": "card_bf70d8",
+  "slug": "health-in-chatgpt",
+  "type": "news",
+  "title": "ChatGPT Starts Reading Your Medical Records",
+  "hook": "OpenAI has shipped Health in ChatGPT: eligible US users can connect their medical records and Apple Health data so the assistant answers from their own history rather than in general.",
+  "key_points": [
+    "Health in ChatGPT launched 23 July 2026, initially for eligible users in the United States.",
+    "Users can connect medical records and Apple Health data to the assistant.",
+    "OpenAI frames the goal as more personalized insights and better understanding of one's own health.",
+    "It moves ChatGPT from answering general health questions to reasoning over an individual's own record.",
+    "Connecting a health record is a consequential data decision — the assistant's context now holds regulated personal data."
+  ],
+  "content_html": "\u003cp\u003eOpenAI has launched \u003cstrong\u003eHealth in ChatGPT\u003c/strong\u003e, which lets eligible users in the United States connect their medical records and Apple Health data to the assistant. The pitch is personalization: instead of general answers about a condition, the model reasons over your actual history.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhy this one is worth noticing\u003c/h2\u003e\n\u003cp\u003eMost assistant features add capability. This one adds \u003cem\u003edata\u003c/em\u003e — and specifically the most sensitive category of personal data most people have. The interesting questions are less about model quality than about plumbing and consent: what gets pulled into context, how long it persists, who can see it, and how a general-purpose model behaves when it is confidently wrong about something clinical.\u003c/p\u003e\n\u003cp\u003eIt also marks a direction of travel. Connecting authoritative personal records is the same move behind assistants reading your email, calendar, and files — the assistant becomes useful in proportion to how much of your life it can see, and risky for exactly the same reason. Announced by OpenAI, 23 July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "authors": [
+      "OpenAI"
+    ],
+    "url": "https://openai.com/index/health-in-chatgpt",
+    "published_at": "2026-07-23",
+    "license": "OpenAI blog"
+  },
+  "topic_ids": [
+    "lab-updates",
+    "releases"
+  ],
+  "tags": [
+    "news",
+    "agent",
+    "safety"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-07-27",
+  "date": "2026-07-23",
+  "related": [
+    {
+      "id": "card_2015b0",
+      "slug": "chatgpt-work",
+      "type": "news",
+      "title": "ChatGPT Work: An Agent That Delivers Finished Work",
+      "hook": "ChatGPT Work doesn't just chat — it reaches into your actual apps and files, grinds on a project for hours, and hands back a real spreadsheet or slide deck instead of a wall of text.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-07-09"
+    },
+    {
+      "id": "card_32a436",
+      "slug": "openai-biodefense",
+      "type": "news",
+      "title": "OpenAI's Biodefense Action Plan",
+      "hook": "The same frontier AI that could lower the bar for engineering a pathogen could also help defend against one. OpenAI's plan leans hard into the second half of that dual-use coin.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-04"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_bf70d8#0",
+      "format": "flip",
+      "prompt": "What changes when ChatGPT can read a user's medical records?",
+      "back_html": "\u003cp\u003eIt shifts from answering general health questions to reasoning over that person's own history — the answers become personalized rather than generic.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bf70d8#1",
+      "format": "quiz",
+      "prompt": "What data sources does Health in ChatGPT connect at launch?",
+      "choices": [
+        {
+          "text": "A user's medical records and Apple Health data, for eligible US users",
+          "correct": true
+        },
+        {
+          "text": "Only wearable fitness data, with clinical records explicitly excluded",
+          "correct": false
+        },
+        {
+          "text": "Insurance claims history from participating providers",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOpenAI describes securely connecting medical records plus Apple Health, initially limited to eligible users in the United States.\u003c/p\u003e"
+    }
+  ]
+}

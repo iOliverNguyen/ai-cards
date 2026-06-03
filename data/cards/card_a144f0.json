@@ -1,0 +1,103 @@
+{
+  "id": "card_a144f0",
+  "slug": "nano-banana",
+  "type": "news",
+  "title": "Nano Banana (Gemini Image)",
+  "hook": "Google's native Gemini image model — nicknamed Nano Banana — made conversational, character-consistent image editing go viral, drawing millions to the Gemini app.",
+  "key_points": [
+    "Google's native Gemini image-generation-and-editing model, released August 2025.",
+    "Edits images conversationally while keeping characters and subjects consistent across edits.",
+    "Went viral for photorealistic '3D figurine' renders, driving a surge of new Gemini users.",
+    "Followed by Nano Banana Pro (built on Gemini 3 Pro Image) later in 2025."
+  ],
+  "content_html": "\u003cp\u003e\u0026quot;Nano Banana\u0026quot; is the nickname for Google's native Gemini image model, released in August 2025, which generates and edits images directly within the Gemini ecosystem. Its standout trait is conversational editing with consistency: you can iteratively refine an image through natural language while the model keeps a character or subject recognizably the same across edits — a long-standing pain point for image generators.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's new\u003c/h2\u003e\n\u003cp\u003eRather than a standalone diffusion tool, Nano Banana is an image capability baked into Gemini, so editing is a chat: \u0026quot;make the jacket red,\u0026quot; \u0026quot;now put them on a beach,\u0026quot; each step preserving identity. It became a genuine viral moment — particularly for turning photos into photorealistic \u0026quot;3D figurine\u0026quot; renders — and Google credited it with attracting millions of new users and hundreds of millions of edits within weeks. Google later shipped a more capable Nano Banana Pro built on its Gemini 3 Pro Image model.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eCharacter consistency and conversational control are what separate a fun demo from a usable creative tool, and bundling image editing into a mainstream chat assistant put it in front of a huge audience. Nano Banana showed that distribution plus a genuinely better editing experience can make image generation a mass-market feature, not a niche.\u003c/p\u003e",
+  "source": {
+    "name": "Google DeepMind",
+    "authors": [
+      "Google DeepMind"
+    ],
+    "url": "https://deepmind.google/models/gemini-image/",
+    "published_at": "2025-08-26",
+    "license": "Google DeepMind"
+  },
+  "topic_ids": [
+    "text-to-image",
+    "releases"
+  ],
+  "tags": [
+    "generative",
+    "multimodal"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-06-03",
+  "date": "2025-08-26",
+  "related": [
+    {
+      "id": "card_7ca1ea",
+      "slug": "imagen",
+      "type": "paper",
+      "title": "Imagen: Photorealistic Text-to-Image Diffusion",
+      "hook": "Google found that a large frozen T5 text encoder matters more than a bigger image diffusion model - scaling language understanding is the key lever for photorealistic generation.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-05-23"
+    },
+    {
+      "id": "card_dd86b0",
+      "slug": "sdxl",
+      "type": "paper",
+      "title": "SDXL: Improving Latent Diffusion for High-Resolution Synthesis",
+      "hook": "A larger UNet, two text encoders, and a refinement diffusion stage gave open-source Stable Diffusion a major quality leap - now the workhorse of community image generation.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-07-04"
+    },
+    {
+      "id": "card_c9a4a9",
+      "slug": "controlnet",
+      "type": "paper",
+      "title": "ControlNet: Adding Conditional Control to Diffusion Models",
+      "hook": "Lock a diffusion model's weights, attach a trainable copy of its encoder fed with spatial signals like edges or pose, and gain precise compositional control without touching the original model.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-02-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a144f0#0",
+      "format": "flip",
+      "prompt": "What is Nano Banana's standout trait compared to earlier image generators?",
+      "back_html": "\u003cp\u003eConversational editing with consistency — iteratively refining an image in natural language while keeping a character or subject recognizable across edits.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a144f0#1",
+      "format": "quiz",
+      "prompt": "How is Nano Banana delivered to users?",
+      "choices": [
+        {
+          "text": "As an image capability baked into the Gemini chat ecosystem",
+          "correct": true
+        },
+        {
+          "text": "As a standalone open-weight diffusion download",
+          "correct": false
+        },
+        {
+          "text": "As a plugin for third-party editing apps only",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRather than a standalone tool, it is built into Gemini, so editing happens as a chat.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a144f0#2",
+      "format": "flip",
+      "prompt": "What lesson did Nano Banana illustrate about image generation as a product?",
+      "back_html": "\u003cp\u003eDistribution plus a genuinely better editing experience can make image generation a mass-market feature rather than a niche demo.\u003c/p\u003e"
+    }
+  ]
+}

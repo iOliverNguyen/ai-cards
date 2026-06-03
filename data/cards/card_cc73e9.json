@@ -1,0 +1,108 @@
+{
+  "id": "card_cc73e9",
+  "slug": "support-vector-machines",
+  "type": "paper",
+  "title": "Support-Vector Networks (SVMs)",
+  "hook": "An SVM draws the decision boundary that maximizes the gap to the nearest training points - the wider the margin, the better it generalizes to new data.",
+  "key_points": [
+    "The decision boundary is chosen to maximize the margin: the gap between the two classes' closest points.",
+    "Only the training points nearest the boundary - the support vectors - determine it; other points don't matter.",
+    "The soft-margin variant allows some misclassifications, controlled by a penalty parameter C.",
+    "Combined with kernels, SVMs can learn nonlinear boundaries without explicitly computing high-dim features.",
+    "Was the dominant classifier for images and text before deep learning surpassed it."
+  ],
+  "content_html": "\u003cp\u003eA support vector machine finds the line (or hyperplane, in higher dimensions) that separates two classes with the largest possible gap on either side. The intuition is that a wider margin means the classifier is less fragile - small shifts in new data are less likely to push points across the boundary.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe boundary is defined entirely by the training points closest to it - the support vectors. This gives the algorithm a kind of compression: you can discard all other training points and still reconstruct the exact model. In the real world, classes often overlap, so the soft-margin SVM introduced by Cortes and Vapnik allows some points to be on the wrong side, penalized by a tunable constant. Extending SVMs to nonlinear problems is done with the kernel trick.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe 1995 paper by Cortes and Vapnik introduced a framework with strong theoretical backing in statistical learning theory, and SVMs dominated benchmark results for a decade. Understanding them builds intuition for margin-based thinking and regularization that applies well beyond SVMs themselves. The original paper remains a clear read for the core theory.\u003c/p\u003e",
+  "source": {
+    "name": "Machine Learning (Springer)",
+    "authors": [
+      "Corinna Cortes",
+      "Vladimir Vapnik"
+    ],
+    "url": "https://link.springer.com/article/10.1007/BF00994018",
+    "published_at": "1995-09-01",
+    "license": "Springer"
+  },
+  "topic_ids": [
+    "svm-kernels"
+  ],
+  "tags": [
+    "classic-ml",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "1995-09-01",
+  "related": [
+    {
+      "id": "card_6a3036",
+      "slug": "kernel-trick",
+      "type": "concept",
+      "title": "The Kernel Trick",
+      "hook": "Instead of explicitly mapping data into a high-dimensional space, just define a function that computes similarities as if you had - and you get nonlinear learning for free.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-03"
+    },
+    {
+      "id": "card_21311f",
+      "slug": "logistic-regression",
+      "type": "concept",
+      "title": "Logistic Regression",
+      "hook": "Take linear regression, squash its output through a sigmoid, and you get a probability - turning a number-predictor into a classifier with one extra step.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-03"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_cc73e9#0",
+      "format": "flip",
+      "prompt": "What criterion does an SVM use to choose its decision boundary?",
+      "back_html": "\u003cp\u003eIt maximizes the margin - the gap between the boundary and the closest points of each class - since a wider margin generalizes better.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cc73e9#1",
+      "format": "quiz",
+      "prompt": "What are support vectors?",
+      "choices": [
+        {
+          "text": "The training points nearest the boundary, which alone determine it",
+          "correct": true
+        },
+        {
+          "text": "The points farthest from the boundary",
+          "correct": false
+        },
+        {
+          "text": "The features with the highest variance",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOnly the closest points define the boundary; you can discard all others and reconstruct the same model.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cc73e9#2",
+      "format": "quiz",
+      "prompt": "What does the soft-margin SVM's penalty parameter C control?",
+      "choices": [
+        {
+          "text": "How much misclassification of overlapping points is tolerated",
+          "correct": true
+        },
+        {
+          "text": "The number of support vectors allowed",
+          "correct": false
+        },
+        {
+          "text": "The dimensionality of the kernel feature space",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eReal classes overlap, so the soft-margin variant allows some wrong-side points, penalized by the tunable constant C.\u003c/p\u003e"
+    }
+  ]
+}

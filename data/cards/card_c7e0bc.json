@@ -1,0 +1,104 @@
+{
+  "id": "card_c7e0bc",
+  "slug": "variational-autoencoder",
+  "type": "paper",
+  "title": "VAE: Auto-Encoding Variational Bayes",
+  "hook": "Don't just compress data to a point — compress it to a distribution. That gives a smooth latent space you can sample from to generate genuinely new data.",
+  "key_points": [
+    "An encoder maps each input to a distribution in latent space, not a single point.",
+    "A decoder reconstructs data from latent samples.",
+    "Training balances reconstruction accuracy against keeping the latent space well-structured.",
+    "The smooth latent space lets you sample new, plausible data points.",
+    "The autoencoder concept behind latent diffusion models."
+  ],
+  "content_html": "\u003cp\u003eKingma and Welling introduced the variational autoencoder, which learns to compress data into a latent space and reconstruct it — but with a twist that makes the space useful for generation. Instead of mapping each input to a single latent point, the encoder maps it to a probability distribution, yielding a smooth space you can sample from to create new data.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe encoder outputs the parameters of a distribution (a mean and a spread) for each input. The model draws a sample from that distribution and the decoder tries to reconstruct the original from it. Training optimizes two things at once: reconstructions should be faithful, and the per-input distributions should stay close to a simple reference distribution. That second pressure keeps the latent space continuous and well-organized, so nearby points decode to similar, plausible outputs and you can generate by sampling from the reference distribution.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eVAEs gave generative modeling a principled, stable way to learn a structured latent space — a contrast to the adversarial training GANs use. Their outputs can look blurrier than a GAN's, but the well-behaved latent space proved invaluable: latent diffusion models use an autoencoder of this kind to compress images before running diffusion, making modern text-to-image generation tractable.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Diederik P. Kingma",
+      "Max Welling"
+    ],
+    "url": "https://arxiv.org/abs/1312.6114",
+    "published_at": "2013-12-20",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "diffusion"
+  ],
+  "tags": [
+    "architecture"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-02",
+  "date": "2013-12-20",
+  "related": [
+    {
+      "id": "card_047809",
+      "slug": "generative-adversarial-networks",
+      "type": "paper",
+      "title": "Generative Adversarial Networks (GANs)",
+      "hook": "Pit two networks against each other — a forger making fakes and a detective catching them — and the forger gets so good its fakes look real.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2014-06-10"
+    },
+    {
+      "id": "card_7e3221",
+      "slug": "latent-diffusion-models",
+      "type": "paper",
+      "title": "High-Resolution Image Synthesis with Latent Diffusion (Stable Diffusion)",
+      "hook": "Running diffusion on raw pixels is brutally expensive. Do it in a compressed latent space instead, and high-res text-to-image becomes cheap enough to run on a consumer GPU.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-12-20"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_dd14c6",
+      "slug": "how-neural-networks-learn",
+      "type": "concept",
+      "title": "How Neural Networks Learn: Backpropagation",
+      "hook": "A neural net learns by asking, for every weight, 'how much did you contribute to my mistake?' Backprop answers all of them at once.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2017-10-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_c7e0bc#0",
+      "format": "quiz",
+      "prompt": "What does a VAE encoder map each input to?",
+      "choices": [
+        {
+          "text": "A probability distribution in latent space (a mean and spread)",
+          "correct": true
+        },
+        {
+          "text": "A single fixed point in latent space",
+          "correct": false
+        },
+        {
+          "text": "A discrete cluster label",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMapping to a distribution rather than a point yields a smooth latent space you can sample from to generate new data.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c7e0bc#1",
+      "format": "flip",
+      "prompt": "What two objectives does VAE training balance?",
+      "back_html": "\u003cp\u003eFaithful reconstruction of inputs, and keeping each per-input distribution close to a simple reference distribution.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c7e0bc#2",
+      "format": "flip",
+      "prompt": "Why does keeping latents near a reference distribution matter for generation?",
+      "back_html": "\u003cp\u003eIt keeps the latent space continuous and well-organized, so nearby points decode to similar plausible outputs and you can sample to generate.\u003c/p\u003e"
+    }
+  ]
+}

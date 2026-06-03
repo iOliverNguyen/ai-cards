@@ -1,0 +1,129 @@
+{
+  "id": "card_8e75d6",
+  "slug": "spectral-allocation-samuon",
+  "type": "paper",
+  "title": "Spectral Allocation: Why Muon Outperforms Adam, and How to Improve Muon",
+  "hook": "Probe a transformer's loss landscape direction by direction and a pattern appears: a few volatile directions demand tiny steps, the bulk tolerates far larger. That explains Muon \u003e Adam \u003e SGD.",
+  "key_points": [
+    "The authors decompose momentum buffers into singular directions and measure the loss-optimal step size along each on held-out data.",
+    "The resulting profile is anisotropic but stable across batches, training stages, optimisers, and model scales.",
+    "A small 'head' of directions sits at the Edge of Stability; the tolerant 'bulk' permits much larger steps.",
+    "Muon's uniform scaling underuses the bulk — so SAMuon holds the head at Muon's scale and amplifies the bulk with a static spectral prior.",
+    "SAMuon needs 13.3-24.0% fewer tokens than Muon to hit the same validation loss on 124M-1B modded-nanogpt models."
+  ],
+  "content_html": "\u003cp\u003eOrthogonal optimisers like \u003cstrong\u003eMuon\u003c/strong\u003e speed up LLM pretraining over Adam, but nobody had a clean account of why. Wu and colleagues probe the loss landscape one singular direction at a time and find a stable, lopsided answer: a few volatile directions can only take tiny steps, while the vast bulk could take far larger ones than anyone is giving them.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe measurement\u003c/h2\u003e\n\u003cp\u003eAt checkpoints along real training runs, the authors decompose each momentum buffer into its singular directions and estimate, on held-out data, the step size that would most reduce loss along each one. The resulting \u003cstrong\u003espectral profile\u003c/strong\u003e is strongly anisotropic yet remarkably stable — across batches, across training stages, across optimisers, and across model scales. A volatile \u0026quot;head\u0026quot; operates at the Edge of Stability and supports only small steps; the \u0026quot;bulk\u0026quot; is tolerant and permits substantially larger ones. Reading optimisers through this lens gives a unified story for the observed ordering Muon \u0026gt; Adam \u0026gt; SGD: each allocates step size a little closer to the measured profile than the last.\u003c/p\u003e\n\u003ch2\u003eThe fix\u003c/h2\u003e\n\u003cp\u003eThe same profile exposes Muon's weakness — uniform scaling leaves the bulk underused. \u003cstrong\u003eSpectral-Aware Muon (SAMuon)\u003c/strong\u003e pins the head at Muon's scale and amplifies the bulk using a static spectral prior, via a low-rank randomised SVD; \u003cstrong\u003eSAMuon-lite\u003c/strong\u003e approximates this with a two-level rank-one power iteration. Neither adds persistent optimiser state or notable FLOPs at scale, and the idealised exact-whitening versions retain Muon's asymptotic convergence rate under standard assumptions. Across modded-nanogpt models from 124M to 1B parameters, both beat tuned AdamW and Muon baselines in every configuration tested, with SAMuon reaching Muon's validation loss on 13.3-24.0% fewer training tokens. arXiv, 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xiaodong Wu",
+      "Wenyi Yu",
+      "Chao Zhang",
+      "Philip Woodland"
+    ],
+    "url": "https://arxiv.org/abs/2608.25990",
+    "published_at": "2026-08-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "optimization",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-27",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_f399a5",
+      "slug": "muon-optimizer",
+      "type": "blog",
+      "title": "Muon: An Optimizer for Hidden Layers",
+      "hook": "Muon orthogonalizes each gradient update before applying it — and trained networks faster than AdamW, the first serious challenger to Adam's reign in years.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-12-08"
+    },
+    {
+      "id": "card_3c7407",
+      "slug": "dion3-orthogonal-updates",
+      "type": "paper",
+      "title": "Dion3: Making Muon's Orthogonalization Cheap",
+      "hook": "Muon trains faster than AdamW but pays for it in a cubic-time orthogonalization step. Dion3 attacks that overhead at every layer of the stack — up to 6x faster optimizer steps at matching loss.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-08-12"
+    },
+    {
+      "id": "card_e2153f",
+      "slug": "adam-basis-dependence-low-rank-bias",
+      "type": "blog",
+      "title": "The Loss Doesn't See the Basis, But Adam Does",
+      "hook": "A factored model's loss can't tell which basis you wrote the factors in — but Adam's per-coordinate scaling can. That asymmetry predicts which optimizers keep gradient descent's low-rank bias.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-08-12"
+    },
+    {
+      "id": "card_1bed6c",
+      "slug": "principles-behind-neural-network-optimizers",
+      "type": "paper",
+      "title": "Why Adam Beats SGD on Transformers: A Hessian Story",
+      "hook": "Adam is the default optimizer for LLMs and nobody could quite say why. This thesis traces it to the shape the Hessian takes during transformer training — and gets Adam-mini out of the explanation.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-08-17"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_f399a5",
+      "slug": "muon-optimizer",
+      "type": "blog",
+      "title": "Muon: An Optimizer for Hidden Layers",
+      "hook": "Muon orthogonalizes each gradient update before applying it — and trained networks faster than AdamW, the first serious challenger to Adam's reign in years.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-12-08"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_8e75d6#0",
+      "format": "flip",
+      "prompt": "What is the 'spectral allocation' account of why Muon beats Adam?",
+      "back_html": "\u003cp\u003eDifferent singular directions of the update tolerate very different step sizes: a volatile head sits at the Edge of Stability, the bulk tolerates much larger steps. Optimisers that allocate step size closer to this profile train faster — Muon closer than Adam, Adam closer than SGD.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8e75d6#1",
+      "format": "quiz",
+      "prompt": "What limitation of Muon does the spectral probing analysis expose?",
+      "choices": [
+        {
+          "text": "Its uniform scaling underuses the tolerant bulk of directions, which could take much larger steps",
+          "correct": true
+        },
+        {
+          "text": "It takes steps that are far too large along every direction, causing divergence",
+          "correct": false
+        },
+        {
+          "text": "It requires storing a second momentum buffer, doubling optimiser memory",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMuon scales all directions uniformly. The measured profile says the bulk could move much further, so SAMuon amplifies the bulk while pinning the head at Muon's scale.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8e75d6#2",
+      "format": "flip",
+      "prompt": "What does SAMuon cost relative to Muon?",
+      "back_html": "\u003cp\u003eEssentially nothing at scale: no persistent extra optimiser state and no notable extra FLOPs. The lite variant (rank-one power iteration) keeps most of the gain at near-zero wall-clock overhead.\u003c/p\u003e"
+    }
+  ]
+}

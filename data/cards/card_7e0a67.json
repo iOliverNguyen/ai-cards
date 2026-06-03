@@ -1,0 +1,117 @@
+{
+  "id": "card_7e0a67",
+  "slug": "qwen3-8-flash-next",
+  "type": "news",
+  "title": "Qwen3.8-Flash-Next: MoE Plus an N-Gram Table",
+  "hook": "An imminent Qwen release pairs a sparse ~125B-A6B mixture-of-experts with a 51B n-gram component — an unusual hybrid the local community thinks will fit on one machine.",
+  "key_points": [
+    "Qwen3.8-Flash-Next was announced as imminent, with day-0 support prepared by quantization tooling maintainers.",
+    "Community reporting describes roughly a 125B total / 6B active mixture-of-experts plus a separate ~51B n-gram component.",
+    "A community memory estimate puts an ideal 4-bit quant near 82GB — about 58GB of main weights plus 24GB of n-gram tables.",
+    "The n-gram table is sparsely accessed, which makes it a good candidate for offloading to system RAM.",
+    "If those figures hold, the model lands in the range a single high-memory machine can serve.",
+    "All numbers here are pre-release community estimates, not vendor specifications."
+  ],
+  "content_html": "\u003cp\u003eAhead of the weights dropping, r/LocalLLaMA spent a day sizing up Qwen3.8-Flash-Next — helped along by quantization tooling maintainers advertising day-0 support. The architecture drew the attention: a sparse mixture-of-experts of roughly 125B total and 6B active parameters, paired with a separate n-gram component of about 51B.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhy the hybrid is interesting\u003c/h2\u003e\n\u003cp\u003eAn n-gram table is the oldest trick in language modelling, and bolting one onto a modern MoE is a bet that a lot of next-token probability mass is cheap lookup rather than expensive computation. It also changes the deployment arithmetic. Community estimates put an ideal 4-bit quant around 82GB — roughly 58GB of main weights plus 24GB of n-gram tables — with real quants expected in the 80–90GB range. Because the table is accessed sparsely, it is a natural candidate to push into system RAM while the dense weights stay on the accelerator.\u003c/p\u003e\n\u003ch2\u003eCaveats\u003c/h2\u003e\n\u003cp\u003eEverything above is pre-release community analysis. The parameter split, the memory estimates, and the offload strategy are inferences drawn before anyone could load the model, so expect the details to shift once official specs and real benchmarks land.\u003c/p\u003e",
+  "source": {
+    "name": "r/LocalLLaMA",
+    "authors": [
+      "/u/pmv143"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1vy6smx/qwen38flashnext_this_architecture_could_be",
+    "published_at": "2026-08-25",
+    "license": "Reddit (community post)"
+  },
+  "resources": [
+    {
+      "title": "Day-0 support thread (r/LocalLLaMA)",
+      "url": "https://reddit.com/r/LocalLLaMA/comments/1vxybmy/qwen_38_flash_next_day_0_support_from_unsloth"
+    }
+  ],
+  "topic_ids": [
+    "releases",
+    "moe"
+  ],
+  "tags": [
+    "open-source",
+    "inference",
+    "efficiency",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-25",
+  "related": [
+    {
+      "id": "card_142fdd",
+      "slug": "qwen3-8-2-4t-a95b",
+      "type": "news",
+      "title": "Qwen3.8-2.4T-A95B Is Out",
+      "hook": "Qwen's next flagship landed after a week of countdown threads — and the name says it all: a sparse mixture-of-experts in the trillions, with under a hundred billion awake per token.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-08-12"
+    },
+    {
+      "id": "card_8fff9b",
+      "slug": "qwen3-8-27b-identical-architecture",
+      "type": "news",
+      "title": "Qwen3.8-27B Has the Same Architecture as Qwen3.6-27B",
+      "hook": "A community diff of the two model configs came back with zero changes — so whatever Qwen3.8-27B gained over its predecessor came entirely from the training recipe.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-14"
+    },
+    {
+      "id": "card_18dfd2",
+      "slug": "apple-m5-ultra-mac-studio",
+      "type": "news",
+      "title": "M5 Ultra and 512GB Mac Studio",
+      "hook": "Apple's new Mac Studio pairs M5 Max and M5 Ultra with up to 512GB of unified memory and 1.2 TB/s of bandwidth — the desktop that can hold a frontier-size model in RAM.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-08-25"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_7e0a67#0",
+      "format": "flip",
+      "prompt": "Why is a sparsely accessed n-gram table a good candidate for system-RAM offload?",
+      "back_html": "\u003cp\u003eOnly a small slice of it is touched per token, so the slower access path is paid rarely — unlike the dense weights, which stream every step and must stay on the fast device.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7e0a67#1",
+      "format": "quiz",
+      "prompt": "What does '125B-A6B' describe?",
+      "choices": [
+        {
+          "text": "A mixture-of-experts model with ~125B total parameters and ~6B active per token",
+          "correct": true
+        },
+        {
+          "text": "A model trained on 125 billion tokens with a 6-billion-token eval set",
+          "correct": false
+        },
+        {
+          "text": "125B parameters quantized to an average of 6 bits",
+          "correct": false
+        },
+        {
+          "text": "A 125-layer network with 6 attention heads per layer",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe A-number is the active parameter count: MoE routing means only a fraction of the total participates in any given token's forward pass.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7e0a67#2",
+      "format": "flip",
+      "prompt": "How much should you trust the 82GB figure for a 4-bit quant?",
+      "back_html": "\u003cp\u003eTreat it as a community estimate made before the weights shipped, not a vendor specification — the post itself frames real-world quants as landing somewhere in the 80–90GB range.\u003c/p\u003e"
+    }
+  ]
+}

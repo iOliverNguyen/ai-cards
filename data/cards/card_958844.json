@@ -1,0 +1,109 @@
+{
+  "id": "card_958844",
+  "slug": "ring-attention",
+  "type": "paper",
+  "title": "Ring Attention for Near-Infinite Context",
+  "hook": "Spread one long sequence across many devices and compute attention blockwise - the context length you can handle grows with the number of devices, all with exact attention and no extra overhead.",
+  "key_points": [
+    "Distributes a long sequence across multiple devices, computing self-attention and feedforward blockwise.",
+    "Effective context length scales with the number of devices, reaching millions of tokens.",
+    "Overlaps key-value block communication with blockwise computation, so there is no extra communication or computation overhead.",
+    "Uses no approximations - the attention computed is exact."
+  ],
+  "content_html": "\u003cp\u003eHao Liu, Matei Zaharia, and Pieter Abbeel introduced Ring Attention in October 2023 to push context length far beyond what a single device's memory allows. The idea is to spread one long sequence across many devices and compute attention and feedforward layers blockwise, so the context you can handle grows with the hardware you throw at it.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe sequence is split into blocks distributed across devices arranged in a ring. Each device computes self-attention and the feedforward block on its local chunk, and as it does so it passes key-value blocks around the ring to its neighbors. The authors overlap that communication with the blockwise computation, so transferring key-value blocks adds no extra communication or computation overhead. Crucially, the method uses no approximations: the attention it computes is exact.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eBecause the effective context length scales with the number of devices, Liu and colleagues report reaching contexts of millions of tokens. Ring Attention shows that very long context can be a systems-and-distribution problem rather than one that demands approximate attention, keeping full fidelity while the window grows.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Hao Liu",
+      "Matei Zaharia",
+      "Pieter Abbeel"
+    ],
+    "url": "https://arxiv.org/abs/2310.01889",
+    "published_at": "2023-10-03",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "context-memory"
+  ],
+  "tags": [
+    "efficiency",
+    "architecture",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2023-10-03",
+  "related": [
+    {
+      "id": "card_5727fe",
+      "slug": "flashattention",
+      "type": "paper",
+      "title": "FlashAttention: Fast, Memory-Efficient Exact Attention",
+      "hook": "Attention got faster not by approximating it, but by being smarter about GPU memory — never writing the giant attention matrix out to slow memory.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-05-27"
+    },
+    {
+      "id": "card_2f4185",
+      "slug": "longformer",
+      "type": "paper",
+      "title": "Longformer: The Long-Document Transformer",
+      "hook": "Most tokens only need to look at their neighbors, so swap full attention for a sliding window plus a few global tokens and the cost goes from quadratic to linear in sequence length.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2020-04-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_958844#0",
+      "format": "flip",
+      "prompt": "How does Ring Attention's effective context length scale?",
+      "back_html": "\u003cp\u003eIt grows with the number of devices, since one long sequence is spread across many devices computing attention blockwise.\u003c/p\u003e"
+    },
+    {
+      "id": "card_958844#1",
+      "format": "quiz",
+      "prompt": "How does Ring Attention avoid extra communication overhead?",
+      "choices": [
+        {
+          "text": "It overlaps key-value block communication with blockwise computation",
+          "correct": true
+        },
+        {
+          "text": "It approximates attention to send less data",
+          "correct": false
+        },
+        {
+          "text": "It stores the whole sequence on one device",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDevices arranged in a ring pass key-value blocks while computing, overlapping the two so transfer adds no extra overhead.\u003c/p\u003e"
+    },
+    {
+      "id": "card_958844#2",
+      "format": "quiz",
+      "prompt": "What does Ring Attention compute - exact or approximate attention?",
+      "choices": [
+        {
+          "text": "Exact attention, with no approximations",
+          "correct": true
+        },
+        {
+          "text": "An approximation that trades fidelity for speed",
+          "correct": false
+        },
+        {
+          "text": "Only local windowed attention",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe method uses no approximations; it keeps full fidelity while the window grows, making long context a systems/distribution problem.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "id": "card_293518",
+  "slug": "uncertainty-estimation-reasoning-language",
+  "type": "paper",
+  "title": "Tell a Model to Reason in English and Its Confidence Gets More Trustworthy",
+  "hook": "Ask a model a question in a low-resource language and its 'I'm not sure' signal gets noisy. This 22-language study finds a one-line fix: let it reason in English anyway.",
+  "key_points": [
+    "First large-scale study of LLM uncertainty estimation (UE) across 22 languages spanning high-, mid-, and low-resource settings, using two human-curated Q\u0026A datasets and nine UE methods.",
+    "Prompting a model to reason in English — even when the question itself is posed in a low-resource language — substantially improves uncertainty-estimation reliability.",
+    "This closes the UE performance gap between low- and high-resource languages, showing generation language matters more for reliability than question language.",
+    "The bottleneck is generation, not comprehension: models largely understand low-resource-language questions fine, but their reasoning/output language is what degrades their confidence signal.",
+    "Which UE method works best depends on model scale: probability-based (open-box) methods win at smaller scales; self-verbalized (closed-box) confidence wins at larger scales."
+  ],
+  "content_html": "\u003cp\u003eIf you ask an LLM a question in, say, Swahili, how much should you trust its \u0026quot;I'm fairly confident\u0026quot; versus \u0026quot;I'm not sure\u0026quot;? A large-scale study from Amazon AI researchers — the first to test uncertainty estimation across 22 languages — finds that the language the model reasons in matters more than the language the question was asked in.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eAndrea Alfarano, Marcello Federico, and colleagues evaluated nine uncertainty-estimation (UE) methods across high-, mid-, and low-resource languages using two human-curated Q\u0026amp;A datasets, deliberately avoiding LLM-as-judge or embedding-based scoring that can add its own noise. Their headline finding: prompting a model to reason in English — even when the question is posed in a low-resource language — substantially improves how reliable its uncertainty estimate is, and closes most of the gap between low- and high-resource languages. That points to generation, not comprehension, as the real bottleneck: models mostly understand low-resource questions fine, but their confidence signal degrades when they also have to think and answer in that language. The study also finds the best UE method depends on model scale — probability-based methods win for smaller models, self-verbalized confidence wins for larger ones — and offers guidance on setting abstention thresholds for multilingual deployments.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Andrea Alfarano",
+      "Andrea Bacciu",
+      "Saab Mansour",
+      "Amin Mantrach",
+      "Marcello Federico"
+    ],
+    "url": "https://arxiv.org/abs/2607.06327",
+    "published_at": "2026-07-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "interpretability",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "benchmark",
+    "nlp",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-07",
+  "related": [
+    {
+      "id": "card_01c403",
+      "slug": "rl-unseen-language-translation",
+      "type": "paper",
+      "title": "RL Teaches LLMs to Translate Languages They've Never Seen",
+      "hook": "Instead of memorizing a new language, what if a model learned the meta-skill of reading a grammar book on the fly? RL with a crude string-overlap reward gets it there.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-04"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_293518#0",
+      "format": "flip",
+      "prompt": "What simple prompting change improves uncertainty-estimation reliability for low-resource-language questions?",
+      "back_html": "\u003cp\u003ePrompting the model to reason (generate its chain of thought) in English, even though the question itself stays in the low-resource language.\u003c/p\u003e"
+    },
+    {
+      "id": "card_293518#1",
+      "format": "quiz",
+      "prompt": "Why does reasoning in English help uncertainty estimates for low-resource languages, according to the study?",
+      "choices": [
+        {
+          "text": "The reliability bottleneck lies in generation, not comprehension — models understand the low-resource question fine, but degrade when they must also generate reasoning in that language",
+          "correct": true
+        },
+        {
+          "text": "Low-resource languages have no training data at all, so any English text helps generically",
+          "correct": false
+        },
+        {
+          "text": "It works only because English questions are shorter on average",
+          "correct": false
+        },
+        {
+          "text": "It has no measurable effect on the gap between low- and high-resource languages",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper's core finding is that generation language, not question language, drives uncertainty-estimation reliability — comprehension of low-resource languages is largely intact, so switching the reasoning/output language to English closes the gap.\u003c/p\u003e"
+    },
+    {
+      "id": "card_293518#2",
+      "format": "flip",
+      "prompt": "How does the best uncertainty-estimation method vary with model scale in this study?",
+      "back_html": "\u003cp\u003eAt smaller model scales, open-box probability-based UE methods perform best; at larger scales, closed-box self-verbalized uncertainty (the model stating its own confidence) becomes superior.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "id": "card_f1077b",
+  "slug": "ring-forcing-long-term-video-memory",
+  "type": "paper",
+  "title": "Ring Forcing: Teaching Video Models Object Permanence",
+  "hook": "Long video generation breaks in two ways at once: models forget what an object looked like, and can't reach far enough back to check. Ring Forcing attacks both.",
+  "key_points": [
+    "The authors split long-term video memory into two needs: object permanence (reproduce an object's appearance when it re-enters) and memory capacity (use distant history).",
+    "Either alone fails: permanence without long context limits temporal scope; long context without permanence loses identity.",
+    "A ring-structured training strategy forces retrieval from distant history, balancing strict historical adherence against generative diversity.",
+    "Compression plus timestep composition stretches the effective historical span to minutes under a fixed sequence-length budget.",
+    "A sparse RoPE mechanism scales memory adaptation flexibly while reusing pre-trained positional priors.",
+    "Reported result: better minutes-long coherence and object permanence than prior state-of-the-art autoregressive video diffusion."
+  ],
+  "content_html": "\u003cp\u003ePush video generation past a few seconds and a specific failure shows up: an object leaves the frame, comes back, and looks different. Bowen Xue and colleagues (arXiv, August 2026) argue this is really two problems wearing one coat — object permanence, the ability to reproduce an object's appearance on re-entry, and memory capacity, the ability to reach into distant history at all. Fixing one without the other doesn't help: permanence with a short context just keeps the temporal scope small, and a long context without permanence drifts on identity.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eRing Forcing is their autoregressive video diffusion framework aimed at both. A ring-structured training strategy forces the model to retrieve from distant history rather than leaning on the last few frames, which the authors present as a way to balance strict historical adherence against generative diversity. To widen capacity under a fixed sequence-length budget, they add a compression and timestep composition strategy that stretches the effective historical span to minutes and gives coverage over the entire history. A sparse RoPE mechanism lets memory adaptation scale flexibly while still exploiting the pre-trained model's positional priors. Across their experiments the authors report better minutes-long coherence and object permanence than prior state-of-the-art methods; see the arXiv page for the benchmarks and video samples.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Bowen Xue",
+      "Brandon Y. Feng",
+      "Chenguo Lin",
+      "Yuchen Lin",
+      "Yujia Zeng",
+      "Lvmin Zhang",
+      "Maneesh Agrawala",
+      "Honglei Yan",
+      "Panwang Pan"
+    ],
+    "url": "https://arxiv.org/abs/2608.26794",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "video-audio",
+    "diffusion",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "generative",
+    "multimodal",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_c84948",
+      "slug": "flex-forcing-unified-video-diffusion",
+      "type": "paper",
+      "title": "Flex-Forcing: One Video Diffusion Model, Two Inference Modes",
+      "hook": "Video diffusion models used to force a choice: globally coherent but slow, or fast streaming that drifts apart. Flex-Forcing chunks time and denoising steps together so one model does both.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-03"
+    },
+    {
+      "id": "card_80c193",
+      "slug": "seriality-gap-video-diffusion",
+      "type": "paper",
+      "title": "The Seriality Gap in Video Diffusion Models",
+      "hook": "Give a video diffusion model more denoising steps and you'd expect better predictions on chains of causal events. Instead performance keeps degrading — the steps don't add real serial computation.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-14"
+    },
+    {
+      "id": "card_dae8db",
+      "slug": "sana-video-2",
+      "type": "paper",
+      "title": "SANA-Video 2.0: Softmax Where It Counts",
+      "hook": "Pure linear attention is cheap but loses full-rank token mixing. SANA-Video 2.0 sprinkles softmax anchors back in at a 3:1 ratio and reaches softmax-level video quality at linear-attention cost.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-23"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_f1077b#0",
+      "format": "flip",
+      "prompt": "What two distinct abilities does Ring Forcing decompose long-term video memory into?",
+      "back_html": "\u003cp\u003eObject permanence — precisely reproducing an object's appearance when it re-enters the frame — and memory capacity, the ability to process ultra-long context and use information from distant history.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f1077b#1",
+      "format": "quiz",
+      "prompt": "Why do the authors argue object permanence and memory capacity must be solved together?",
+      "choices": [
+        {
+          "text": "Permanence without enough context handling limits how far back the model can stay consistent, while long context without permanence fails to hold identity",
+          "correct": true
+        },
+        {
+          "text": "They are the same property under different names, so solving one automatically solves the other",
+          "correct": false
+        },
+        {
+          "text": "Memory capacity is only useful for audio, while permanence only matters for video",
+          "correct": false
+        },
+        {
+          "text": "Both reduce to increasing the model's parameter count",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper frames them as complementary: each without the other caps long-term coherence — permanence bounds the temporal scope, capacity alone loses object identity.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f1077b#2",
+      "format": "flip",
+      "prompt": "What does Ring Forcing's ring-structured training strategy actually enforce?",
+      "back_html": "\u003cp\u003eRetrieval from distant history during training, which the authors use to reconcile the trade-off between strict adherence to what was already generated and generative diversity.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f1077b#3",
+      "format": "quiz",
+      "prompt": "How does Ring Forcing extend its effective historical span to minutes without growing the sequence length?",
+      "choices": [
+        {
+          "text": "A compression and timestep composition strategy that packs more history into a fixed sequence budget",
+          "correct": true
+        },
+        {
+          "text": "By discarding all but the most recent few frames",
+          "correct": false
+        },
+        {
+          "text": "By retraining the model from scratch on minutes-long clips only",
+          "correct": false
+        },
+        {
+          "text": "By running a separate captioning model to summarize past frames in text",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eUnder fixed sequence-length constraints, compression plus timestep composition extends the span to minutes-long durations and gives a receptive field over the whole history.\u003c/p\u003e"
+    }
+  ]
+}

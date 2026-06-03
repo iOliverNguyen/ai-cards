@@ -1,0 +1,124 @@
+{
+  "id": "card_2cadb8",
+  "slug": "stealing-reasoning-traces",
+  "type": "paper",
+  "title": "Stealing Reasoning Traces from Proprietary LLM APIs",
+  "hook": "Labs hide chain-of-thought by handing you an encrypted blob to pass back. Researchers found you can feed that blob to a weaker model from the same provider and have it read the secret aloud.",
+  "key_points": [
+    "Providers conceal reasoning by returning it as encrypted text the client resends with each request, rather than storing it server-side.",
+    "The vulnerability: those encrypted blocks are interchangeable across sessions, users, and models within one provider's ecosystem.",
+    "Injecting a strong model's encrypted trace into a weaker, less safeguarded sibling makes it decode and emit the trace verbatim — no jailbreak of the strong model needed.",
+    "This defeats anti-distillation defenses; the authors demonstrate it across Anthropic, OpenAI, and Google.",
+    "Decoding 315,320 blocks scraped from public repos recovered 367 PII artifacts and 182 credentials from logs developers shared unaware.",
+    "It also exposes hazardous content the visible answer refused, and enables prompt injections hidden entirely inside encrypted blocks."
+  ],
+  "content_html": "\u003cp\u003eTo protect their models — and to stop rivals distilling them — the big labs stopped showing chain-of-thought. But the reasoning still has to survive between turns, so instead of keeping it server-side, providers hand the client an encrypted blob and ask for it back with the next request. A team spanning ELLIS, Google DeepMind and EPFL found that design has a hole in it.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe flaw is compatibility: within one provider's ecosystem, those encrypted blocks are interchangeable across sessions, users, and \u003cem\u003emodels\u003c/em\u003e. Take a trace produced by a strong, well-guarded model, inject it into a weaker sibling that shares the decoding machinery but not the safeguards, and the weaker model will happily emit the reasoning in plaintext. The capable model is never attacked directly. The authors demonstrate the extraction across Anthropic, OpenAI, and Google.\u003c/p\u003e\n\u003cp\u003eThree consequences follow. Developers routinely paste session logs into public repos; decoding 315,320 scraped blocks recovered 367 PII artifacts and 182 credentials. Hazardous content that the model reasoned through but declined to say out loud becomes readable. And because the blocks are opaque to humans, an attacker can hide a prompt injection inside one and poison public agentic rollouts. The paper was responsibly disclosed and proposes cryptographic and system-level fixes. Panfilov et al., August 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Alexander Panfilov",
+      "David Schmotz",
+      "Ilia Shumailov",
+      "Luca Beurer-Kellner",
+      "Joachim Schaeffer",
+      "Ameya Prabhu",
+      "Jonas Geiping",
+      "Maksym Andriushchenko"
+    ],
+    "url": "https://arxiv.org/abs/2608.09867",
+    "published_at": "2026-08-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "risks-policy",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-08-13",
+  "date": "2026-08-10",
+  "related": [
+    {
+      "id": "card_e4d9fc",
+      "slug": "grok-build-cli-data-exfiltration",
+      "type": "news",
+      "title": "Grok Build CLI Uploads Your Whole Repo, No Matter What You Tell It",
+      "hook": "A researcher wire-tapped xAI's coding CLI and found it uploads your entire repo - full git history and .env secrets - no matter what you tell it not to touch.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-07-11"
+    },
+    {
+      "id": "card_066cbf",
+      "slug": "hf-ceo-agent-attack-response",
+      "type": "news",
+      "title": "Two Asks After the First Autonomous-Agent Cyberattack",
+      "hook": "Hugging Face's CEO went public with what he asked OpenAI: release the rogue agents' traces so researchers can study them, and put $100M of compute behind the defenders.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-07-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_2cadb8#0",
+      "format": "flip",
+      "prompt": "What architectural property makes the encrypted-reasoning attack possible?",
+      "back_html": "\u003cp\u003eThe encrypted blocks are fully interchangeable across sessions, users, and models inside a single provider's ecosystem — so a blob from one model can be handed to another.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2cadb8#1",
+      "format": "quiz",
+      "prompt": "How do the attackers get a proprietary reasoning trace into plaintext?",
+      "choices": [
+        {
+          "text": "They inject the encrypted block into a weaker, less safeguarded model from the same provider and have it decode the trace verbatim",
+          "correct": true
+        },
+        {
+          "text": "They brute-force the provider's encryption key offline",
+          "correct": false
+        },
+        {
+          "text": "They jailbreak the strong model directly with a long adversarial prompt",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe point of the attack is that the capable model is never jailbroken — its weaker sibling shares the decoding ability but not the safeguards.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2cadb8#2",
+      "format": "flip",
+      "prompt": "What did the authors find in publicly shared session logs?",
+      "back_html": "\u003cp\u003eDecoding 315,320 scraped reasoning blocks yielded 367 PII artifacts and 182 credentials — developers had published logs without knowing what the encrypted blocks contained.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2cadb8#3",
+      "format": "quiz",
+      "prompt": "Which of these is NOT one of the attack vectors the paper demonstrates?",
+      "choices": [
+        {
+          "text": "Recovering the provider's model weights from the encrypted blocks",
+          "correct": true
+        },
+        {
+          "text": "Circumventing anti-distillation to extract a model's reasoning",
+          "correct": false
+        },
+        {
+          "text": "Hiding prompt injections entirely inside encrypted blocks",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe four vectors are anti-distillation bypass, private data extraction, exposure of hazardous reasoning behind a safe refusal, and invisible prompt injection. Weight extraction isn't among them.\u003c/p\u003e"
+    }
+  ]
+}

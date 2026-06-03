@@ -1,0 +1,99 @@
+{
+  "id": "card_b96ee0",
+  "slug": "evoarena",
+  "type": "paper",
+  "title": "EvoArena: Testing Agents in Environments That Keep Changing",
+  "hook": "Most agent benchmarks freeze the world. EvoArena makes the environment keep updating beneath the agent — and finds today's agents crack, averaging under 40%.",
+  "key_points": [
+    "Real deployments are dynamic, yet most agent evaluations assume a static environment.",
+    "EvoArena models change as sequences of progressive updates across terminal, software, and social domains.",
+    "Current agents struggle: ~39.6% average accuracy across these evolving domains.",
+    "EvoMem, a patch-based memory, records memory as structured update histories so an agent can reason about how the environment changed.",
+    "EvoMem helps and transfers — +6.1% on GAIA, +4.8% on LoCoMo, and +3.7% chain-level accuracy on EvoArena (consecutive evolving subtasks)."
+  ],
+  "content_html": "\u003cp\u003eLLM agents do well on benchmarks, but most of those evaluations assume a static environment. Real deployment is the opposite: conditions, software, and task requirements keep shifting, and the agent has to realign its knowledge and behavior as they do. EvoArena is a benchmark suite that models this directly, treating environment change as sequences of progressive updates across terminal, software, and social domains. Tested against it, current agents struggle — about 39.6% average accuracy.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTo help, the authors propose EvoMem, a patch-based memory paradigm that records memory evolution as structured update histories, letting an agent reason about environmental change through changes in its own memory. EvoMem consistently improves EvoArena performance and also lifts standard benchmarks (reported +6.1% on GAIA and +4.8% on LoCoMo). It even improves \u003cem\u003echain-level\u003c/em\u003e accuracy by 3.7% — success on a consecutive sequence of related evolving subtasks — which the authors attribute to better preservation of the complete evolving environment state. The broader lesson: both evaluation and memory should model evolution if we want agents that stay reliable after the world moves.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jundong Xu",
+      "Qingchuan Li",
+      "Jiaying Wu",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.13681",
+    "published_at": "2026-06-11",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-15",
+  "date": "2026-06-11",
+  "related": [
+    {
+      "id": "card_1b799b",
+      "slug": "agentic-environment-engineering-survey",
+      "type": "paper",
+      "title": "Agentic Environment Engineering: A Survey",
+      "hook": "Agents only get as good as the worlds they practice in. This survey maps the full lifecycle of agent environments — how we model, synthesize, evaluate, and grow them.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-06-10"
+    },
+    {
+      "id": "card_b2c4ec",
+      "slug": "harness-1-search-agents",
+      "type": "paper",
+      "title": "Harness-1: RL for Search Agents with State-Externalizing Harnesses",
+      "hook": "Stop making the policy remember everything. Harness-1 moves a search agent's bookkeeping into the environment, so RL only has to learn the decisions that matter.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b96ee0#0",
+      "format": "flip",
+      "prompt": "What does EvoArena change that most agent benchmarks hold fixed?",
+      "back_html": "\u003cp\u003eThe environment itself — it models progressive updates across terminal, software, and social domains, instead of testing the agent against a static world.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b96ee0#1",
+      "format": "quiz",
+      "prompt": "How do current agents fare on EvoArena's evolving environments?",
+      "choices": [
+        {
+          "text": "They struggle, averaging about 40% accuracy",
+          "correct": true
+        },
+        {
+          "text": "They roughly match their static-benchmark scores",
+          "correct": false
+        },
+        {
+          "text": "They exceed human baselines",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAgents average ~39.6% across the evolving terminal, software, and social-preference domains — far below static-benchmark performance — exposing a gap in handling change.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b96ee0#2",
+      "format": "flip",
+      "prompt": "How does EvoMem represent an agent's memory?",
+      "back_html": "\u003cp\u003eAs patch-based, structured update histories, so the agent can reason about how the environment evolved over time rather than only about its latest state.\u003c/p\u003e"
+    }
+  ]
+}

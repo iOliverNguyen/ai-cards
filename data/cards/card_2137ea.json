@@ -1,0 +1,84 @@
+{
+  "id": "card_2137ea",
+  "slug": "alphacode",
+  "type": "paper",
+  "title": "AlphaCode: Competition-Level Code Generation",
+  "hook": "Generate a massive pool of candidate programs for competitive-programming problems, filter by test-case behavior, cluster by output, and reach roughly the level of a median human competitor.",
+  "key_points": [
+    "Trained on GitHub code with a large transformer, then fine-tuned on competitive programming problems and solutions.",
+    "Generates up to one million candidates per problem, then filters to those passing sample test cases.",
+    "Clustering by program output on generated test inputs selects a small diverse submission set, improving odds within the submission cap.",
+    "Reached an estimated rank around the 50th percentile of human Codeforces competitors in internal evaluation."
+  ],
+  "content_html": "\u003cp\u003eLi and colleagues at DeepMind published AlphaCode in February 2022, tackling competitive programming problems that require not just syntax knowledge but multi-step algorithmic reasoning. Rather than optimizing a single output, the system generates an enormous number of candidate solutions and uses test-case filtering and output-based clustering to select a small submission set within platform-imposed limits.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eAlphaCode first pretrains a large transformer on public GitHub code, then fine-tunes it on a dataset of competitive programming problems paired with accepted solutions. At inference, the model samples up to one million candidate programs per problem. Those that fail the provided sample test cases are discarded. The survivors are clustered by their output behavior on generated test inputs, and one representative program is picked from each of the top clusters to form the final submission set. This search-and-filter strategy trades compute for correctness.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAlphaCode showed that competition-level algorithmic problem solving - long considered a hard test of reasoning - was within reach of large language models given sufficient sampling and smart filtering. The result raised the bar for what AI coding systems are expected to achieve and influenced how subsequent systems approach hard reasoning tasks. Read the full approach in the paper on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yujia Li",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2203.07814",
+    "published_at": "2022-02-08",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code"
+  ],
+  "tags": [
+    "nlp",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2022-02-08",
+  "related": [
+    {
+      "id": "card_176fda",
+      "slug": "codex",
+      "type": "paper",
+      "title": "Codex: Evaluating Large Language Models Trained on Code",
+      "hook": "Fine-tune GPT on public GitHub code and you get a model that solves programming problems and powers GitHub Copilot - plus a new benchmark, HumanEval, that tests functional correctness.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2021-07-07"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_2137ea#0",
+      "format": "quiz",
+      "prompt": "What is the core strategy AlphaCode uses to solve a competitive problem?",
+      "choices": [
+        {
+          "text": "Generate a huge pool of candidates, then filter and cluster to pick a few submissions",
+          "correct": true
+        },
+        {
+          "text": "Optimize a single high-confidence output per problem",
+          "correct": false
+        },
+        {
+          "text": "Retrieve the closest matching solution from its training set",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIt samples up to a million candidates, discards those failing sample tests, then clusters survivors by output to pick a diverse submission set.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2137ea#1",
+      "format": "flip",
+      "prompt": "Why does AlphaCode cluster surviving candidates by their output behavior?",
+      "back_html": "\u003cp\u003eTo select a small, diverse submission set — one representative per top cluster — improving the odds within the platform's submission cap.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2137ea#2",
+      "format": "flip",
+      "prompt": "How is the AlphaCode model built before it tackles contest problems?",
+      "back_html": "\u003cp\u003eA large transformer is pretrained on public GitHub code, then fine-tuned on competitive programming problems paired with accepted solutions.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "id": "card_2f157b",
+  "slug": "lingbot-vision-boundary-pretraining",
+  "type": "paper",
+  "title": "LingBot-Vision: Boundary-Aware Self-Supervised Pretraining",
+  "hook": "Masked-patch pretraining hopes boundary structure emerges on its own. This method forces the issue, masking exactly the regions a student can't infer by copying context — and beats a 7B model at 1.1B.",
+  "key_points": [
+    "Standard masked-image pretraining masks random patches and hopes boundary/edge structure emerges as a side effect.",
+    "LingBot-Vision instead has the teacher predict a dense boundary field online, then forces the boundary-bearing tokens into the student's mask — so the student must reconstruct exactly the regions that can't be inferred by copying nearby context.",
+    "Boundary targets come from the teacher itself, not external labels or an edge detector.",
+    "At 1.1B parameters, reaches 0.296 NYUv2 linear-probe RMSE, beating DINOv3-7B's 0.309 — with roughly 6x fewer parameters — though it trails on ImageNet.",
+    "Weights released in four model sizes."
+  ],
+  "content_html": "\u003cp\u003eSelf-supervised pretraining usually masks random patches and trusts that useful structure — like object boundaries — will emerge as a side effect of reconstruction. LingBot-Vision instead targets boundaries directly, on purpose.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe teacher model predicts a dense boundary field online, and those specific boundary-bearing tokens get forced into the student's mask — meaning the student can't cheat by copying nearby unmasked context, since the masked regions are exactly the ones that can't be inferred that way. The boundary targets come from the teacher itself, rather than external labels or a hand-built edge detector, and get recast as per-pixel categorical distributions so the same centering and sharpening machinery used elsewhere in the self-distillation setup applies to the geometric branch too. The payoff shows up in linear-probe transfer: at 1.1 billion parameters, LingBot-Vision reaches 0.296 RMSE on NYUv2 depth, edging out DINOv3-7B's 0.309 with roughly six times fewer parameters — though it trails DINOv3 on ImageNet classification. Weights are released in four sizes. Posted to r/MachineLearning, 2026-07-06.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit (r/MachineLearning)",
+    "authors": [
+      "/u/StillThese3747"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1up4cjh/lingbotvision_masked_boundary_modeling_for",
+    "published_at": "2026-07-06",
+    "license": "Community post"
+  },
+  "topic_ids": [
+    "vision-transformers",
+    "papers-this-week"
+  ],
+  "tags": [
+    "vision",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-06",
+  "related": [
+    {
+      "id": "card_9f7fa7",
+      "slug": "dino",
+      "type": "paper",
+      "title": "DINO: Self-Supervised Vision Transformers",
+      "hook": "Train a Vision Transformer with no labels at all, and something surprising happens: its attention maps trace out object boundaries on their own.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2021-04-29"
+    },
+    {
+      "id": "card_3d7d44",
+      "slug": "clip",
+      "type": "paper",
+      "title": "CLIP: Learning Visual Models from Language",
+      "hook": "Skip the fixed label list. Train on image–caption pairs so pictures and text share one space, and you can classify images from plain-text labels you make up on the spot.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-02-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_2f157b#0",
+      "format": "flip",
+      "prompt": "How does LingBot-Vision's masking strategy differ from standard random-patch masked pretraining?",
+      "back_html": "\u003cp\u003eInstead of masking random patches and hoping boundary structure emerges, it has the teacher predict a dense boundary field online and forces exactly those boundary-bearing tokens into the student's mask — so the student must reconstruct the regions that can't be inferred by copying context.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2f157b#1",
+      "format": "quiz",
+      "prompt": "Where do LingBot-Vision's boundary targets come from during training?",
+      "choices": [
+        {
+          "text": "The teacher model itself predicts them online — not external labels or a separate edge detector",
+          "correct": true
+        },
+        {
+          "text": "Human-annotated segmentation masks",
+          "correct": false
+        },
+        {
+          "text": "A classical Canny edge detector run as preprocessing",
+          "correct": false
+        },
+        {
+          "text": "They are randomly generated and unrelated to image content",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe boundary field comes from the teacher's own online predictions, recast as per-pixel categorical distributions so the geometric branch can reuse the same centering/sharpening machinery as the rest of the self-distillation pipeline.\u003c/p\u003e"
+    }
+  ]
+}

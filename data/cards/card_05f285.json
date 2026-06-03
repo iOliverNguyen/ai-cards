@@ -1,0 +1,116 @@
+{
+  "id": "card_05f285",
+  "slug": "llama-4",
+  "type": "news",
+  "title": "The Llama 4 Herd: Natively Multimodal, Mixture-of-Experts",
+  "hook": "Llama 4 is Meta's first mixture-of-experts family - only 17B parameters fire per token, but the full models hold hundreds of billions, and they read text, images, and video natively.",
+  "key_points": [
+    "Meta's first MoE Llama family, and natively multimodal via early fusion of text, image, and video rather than a bolted-on vision adapter.",
+    "Llama 4 Scout: 17B active params, 16 experts, 109B total, with a 10M-token context window.",
+    "Llama 4 Maverick: 17B active params, 128 experts, 400B total.",
+    "Llama 4 Behemoth: a preview only, still training, at 288B active params and roughly 2T total.",
+    "Scout and Maverick are open-weight, downloadable day-one from llama.com and Hugging Face."
+  ],
+  "content_html": "\u003cp\u003eMeta released the Llama 4 herd in April 2025, its first mixture-of-experts language model family and the first built to be natively multimodal. Two models ship open-weight on day one - Llama 4 Scout and Llama 4 Maverick - while a much larger model, Behemoth, was shown only as a preview while still training.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's new\u003c/h2\u003e\n\u003cp\u003eWhere earlier Llama models were dense - every parameter runs on every token - Llama 4 uses mixture-of-experts, so only a fraction of the network activates per token. Scout runs 17B active parameters across 16 experts (109B total) and carries a 10M-token context window; Maverick keeps the same 17B active but spreads them across 128 experts for 400B total. Multimodality comes from early fusion: text, image, and video are combined into the model's input rather than handled by a separate add-on. Behemoth, previewed but unreleased, runs 288B active parameters out of roughly 2T total.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eMoE lets Meta grow total capacity into the hundreds of billions of parameters while keeping the per-token compute close to a 17B model, and early-fusion multimodality means images and video are first-class inputs rather than an afterthought. Scout and Maverick being open-weight day-one on llama.com and Hugging Face keeps the most capable open ecosystem moving. See Meta's announcement for full details.\u003c/p\u003e",
+  "source": {
+    "name": "Meta AI",
+    "authors": [
+      "Meta"
+    ],
+    "url": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/",
+    "published_at": "2025-04-05",
+    "license": "Meta blog"
+  },
+  "topic_ids": [
+    "pretraining",
+    "releases"
+  ],
+  "tags": [
+    "open-source",
+    "multimodal",
+    "efficiency",
+    "nlp"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2025-04-05",
+  "related": [
+    {
+      "id": "card_ea6afd",
+      "slug": "llama-3",
+      "type": "paper",
+      "title": "The Llama 3 Herd of Models",
+      "hook": "Meta's Llama 3 family, trained on roughly 15 trillion tokens with a 405B-parameter flagship, narrowed the gap to closed frontier models while staying open-weights.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2024-07-23"
+    },
+    {
+      "id": "card_31ff4e",
+      "slug": "mixtral",
+      "type": "paper",
+      "title": "Mixtral of Experts",
+      "hook": "Mixtral packs 8 experts per layer but routes each token through only 2, so you get the capacity of a ~47B model at the compute cost of a ~13B one - open weights included.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-01-08"
+    },
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    },
+    {
+      "id": "card_dfb586",
+      "slug": "muse-glimmer",
+      "type": "news",
+      "title": "Muse Glimmer: Meta's 30B Local Agentic Multimodal Model",
+      "hook": "Meta distilled its Muse model down to 30B and shipped it Apache 2.0 — a vision-and-text model built to run locally and call tools, not just chat.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_05f285#0",
+      "format": "flip",
+      "prompt": "How does MoE let Llama 4 grow capacity without raising per-token compute much?",
+      "back_html": "\u003cp\u003eOnly a fraction of the network activates per token — e.g. 17B active — so total capacity reaches hundreds of billions while per-token cost stays near a 17B model.\u003c/p\u003e"
+    },
+    {
+      "id": "card_05f285#1",
+      "format": "quiz",
+      "prompt": "What does 'natively multimodal via early fusion' mean for Llama 4?",
+      "choices": [
+        {
+          "text": "Text, image, and video are combined into the model's input rather than handled by a bolted-on adapter",
+          "correct": true
+        },
+        {
+          "text": "A separate vision model post-processes outputs",
+          "correct": false
+        },
+        {
+          "text": "It only accepts text and converts it to images",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEarly fusion makes images and video first-class inputs, unlike earlier add-on vision adapters.\u003c/p\u003e"
+    },
+    {
+      "id": "card_05f285#2",
+      "format": "flip",
+      "prompt": "How do Llama 4 Scout and Maverick differ despite sharing 17B active params?",
+      "back_html": "\u003cp\u003eScout uses 16 experts (109B total) with a 10M-token context; Maverick spreads the same active params across 128 experts for 400B total.\u003c/p\u003e"
+    }
+  ]
+}

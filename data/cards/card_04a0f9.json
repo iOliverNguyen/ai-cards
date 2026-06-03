@@ -1,0 +1,94 @@
+{
+  "id": "card_04a0f9",
+  "slug": "longpibench-long-context-prompt-injection",
+  "type": "paper",
+  "title": "Prompt Injection Defenses Fall Apart in Long Context",
+  "hook": "Injection benchmarks are all short-context, which has been flattering the defenses. Stretch the input to tens of thousands of tokens and even naive attacks walk through state-of-the-art protections.",
+  "key_points": [
+    "Existing prompt injection benchmarks focus on short inputs, leaving long-context attacks and defenses unexplored.",
+    "The authors argue this gap substantially overestimates how effective current defenses are.",
+    "LongPIBench covers four realistic scenarios: paper peer review, resume screening, code review, and email summary.",
+    "Each scenario has a synthetic and a real-world dataset, with contexts from thousands to tens of thousands of tokens.",
+    "Even simple heuristic injection attacks achieve high success rates and frequently bypass state-of-the-art defenses."
+  ],
+  "content_html": "\u003cp\u003ePrompt injection is the security problem of the LLM application era, and the field has a benchmark suite for it. Liu and colleagues point out that suite is almost entirely short-context — which means the reassuring numbers defenses report may not describe the settings people actually deploy in.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe benchmark\u003c/h2\u003e\n\u003cp\u003eLongPIBench covers four scenarios chosen because they are both realistic and long: paper peer review, resume screening, code review, and email summarization. Each has a synthetic dataset and a real-world one, with context lengths from thousands to tens of thousands of tokens.\u003c/p\u003e\n\u003ch2\u003eThe finding\u003c/h2\u003e\n\u003cp\u003eDefenses degrade badly. The authors report that even simple heuristic injection attacks achieve high success rates and frequently bypass state-of-the-art defenses at these lengths. That is the uncomfortable part: it does not take an adaptive adversary or an optimized suffix, just a longer document to hide in.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eLong context is not an exotic configuration — it is the default for exactly the workflows in this benchmark, where an LLM reads a large untrusted document and acts on it. If defense evaluations have all been run at a length where the injected text is a big fraction of the prompt, the reported protection is measuring the easy case. This is a benchmark-gap paper, and its main claim is about the evaluation practice as much as about any particular defense.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yupei Liu",
+      "Yuqi Jia",
+      "Neil Zhenqiang Gong",
+      "Jinyuan Jia"
+    ],
+    "url": "https://arxiv.org/abs/2608.28411",
+    "published_at": "2026-08-28",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "context-memory",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "benchmark",
+    "agent",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-28",
+  "related": [
+    {
+      "id": "card_4fbe16",
+      "slug": "sara-tool-outputs-as-commands",
+      "type": "paper",
+      "title": "When Tool Outputs Become Commands",
+      "hook": "Prompt injection into agents is really one confusion: the thing that suggests an action and the thing that authorizes it are treated as the same thing.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-27"
+    },
+    {
+      "id": "card_4bdc1f",
+      "slug": "layered-llm-defenses-ensemble",
+      "type": "paper",
+      "title": "Stacked Defenses Only Multiply If They Fail Independently",
+      "hook": "A seven-layer defense stack refuses four in five benign prompts and is statistically indistinguishable from its single best layer — because the layers all fail on the same inputs.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-08-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_04a0f9#0",
+      "format": "flip",
+      "prompt": "Why did short-context benchmarks overestimate prompt injection defenses?",
+      "back_html": "\u003cp\u003eDefenses that work when the injected text is a large fraction of a short prompt lose their grip when it is buried in tens of thousands of tokens of legitimate content.\u003c/p\u003e"
+    },
+    {
+      "id": "card_04a0f9#1",
+      "format": "quiz",
+      "prompt": "What is LongPIBench's headline finding?",
+      "choices": [
+        {
+          "text": "Even simple heuristic attacks frequently bypass state-of-the-art defenses in long context",
+          "correct": true
+        },
+        {
+          "text": "Long context makes injection strictly harder for the attacker",
+          "correct": false
+        },
+        {
+          "text": "Only gradient-based adaptive attacks succeed at long context lengths",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe point is how little sophistication is needed. If naive attacks work at length, reported defense effectiveness from short-context evaluations does not transfer.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "id": "card_948b0a",
+  "slug": "denser-is-not-better-self-distillation-limits",
+  "type": "paper",
+  "title": "Denser ≠ Better: Limits of On-Policy Self-Distillation for Continual Post-Training",
+  "hook": "On-policy self-distillation was supposed to fight forgetting in continual post-training — instead, denser self-distillation can drift further off course and collapse outright.",
+  "key_points": [
+    "Continual post-training tries to add new knowledge without erasing old capabilities; on-policy self-distillation (a model scoring its own generations) looked like a promising stabilizer.",
+    "Revisiting this via 'self-distillation policy optimization' (SDPO): it speeds up in-domain specialization when teacher signals are stable, but generalizes poorly out-of-distribution.",
+    "In continual post-training, SDPO forgets more than plain on-policy RL like GRPO, and can collapse outright — GRPO adapts more conservatively and preserves prior capabilities better.",
+    "Denser self-distillation causes larger drift in both parameter space and response space, and can amplify high-frequency formatting artifacts through a self-reinforcing teacher-student loop.",
+    "Takeaway: on-policy data alone isn't sufficient for continual learning; dense self-distillation shouldn't be treated as a default stabilizer."
+  ],
+  "content_html": "\u003cp\u003eContinual post-training tries to teach a model new things without erasing what it already knows, and on-policy self-distillation — where a model generates and then scores its own outputs — has looked like a promising way to stabilize that process. This paper revisits the idea and finds the optimism was premature.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhen self-distillation helps, and when it doesn't\u003c/h2\u003e\n\u003cp\u003eStudying self-distillation policy optimization (SDPO), the authors find it does accelerate in-domain specialization when teacher signals are stable and well aligned. But it generalizes poorly once the setting shifts out-of-distribution — exactly the situation continual post-training is meant to handle. There, SDPO shows stronger forgetting than plain on-policy RL methods like GRPO, and can collapse outright, while GRPO adapts more conservatively and better preserves prior capabilities.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eDigging into why, the authors find denser self-distillation causes larger drift in both parameter space and response space, and can amplify high-frequency formatting artifacts through a self-reinforcing loop — the same model acting as teacher and student feeding its own quirks back to itself. The practical lesson: on-policy data alone isn't sufficient for continual learning, and \u0026quot;add more self-distillation\u0026quot; is not a safe default stabilizer — it can accelerate specialization in the easy case and accelerate collapse in the hard one.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Meng Wang",
+      "Haohan Zhao",
+      "Wenzhuo Liu",
+      "Lu Yang",
+      "Geng Liu",
+      "Haiyang Guo",
+      "Guo-Sen Xie",
+      "Gaofeng Meng",
+      "Hongbin Liu",
+      "Fei Zhu"
+    ],
+    "url": "https://arxiv.org/abs/2607.01763",
+    "published_at": "2026-07-02",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "distillation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "alignment",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-06",
+  "date": "2026-07-02",
+  "related": [
+    {
+      "id": "card_822dbf",
+      "slug": "geometry-of-on-policy-distillation",
+      "type": "paper",
+      "title": "On the Geometry of On-Policy Distillation",
+      "hook": "On-policy distillation isn't a midpoint between fine-tuning and RL — it carves its own narrow path through parameter space, locking into a low-dimensional subspace early in training.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-05"
+    },
+    {
+      "id": "card_2408d6",
+      "slug": "trust-region-on-policy-distillation",
+      "type": "paper",
+      "title": "Trust Region On-Policy Distillation",
+      "hook": "On-policy distillation breaks when teacher and student disagree too much. TrOPD only trusts the teacher where its supervision is reliable — and skips the rest.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-05-31"
+    },
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_948b0a#0",
+      "format": "flip",
+      "prompt": "What optimistic assumption about on-policy self-distillation does this paper challenge?",
+      "back_html": "\u003cp\u003eThat on-policy self-distillation (a model scoring its own generations) reliably mitigates forgetting in continual post-training — the paper shows it can instead cause stronger forgetting or collapse.\u003c/p\u003e"
+    },
+    {
+      "id": "card_948b0a#1",
+      "format": "quiz",
+      "prompt": "In continual post-training, how did SDPO (self-distillation) compare to plain on-policy RL like GRPO?",
+      "choices": [
+        {
+          "text": "SDPO forgot more and could collapse outright, while GRPO adapted more conservatively and preserved prior capabilities better",
+          "correct": true
+        },
+        {
+          "text": "SDPO and GRPO performed identically in every setting tested",
+          "correct": false
+        },
+        {
+          "text": "SDPO always outperformed GRPO regardless of domain shift",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSDPO helps when teacher signals are stable and in-domain, but under continual post-training with distribution shift it showed stronger forgetting than GRPO, and sometimes collapsed.\u003c/p\u003e"
+    },
+    {
+      "id": "card_948b0a#2",
+      "format": "flip",
+      "prompt": "Why can denser self-distillation make things worse rather than just 'more thorough'?",
+      "back_html": "\u003cp\u003eDenser self-distillation causes larger drift in parameter and response space, and can amplify high-frequency formatting artifacts through a self-reinforcing loop between the teacher and student roles the same model plays.\u003c/p\u003e"
+    }
+  ]
+}

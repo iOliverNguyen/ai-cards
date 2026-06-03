@@ -1,0 +1,88 @@
+{
+  "id": "card_b8af81",
+  "slug": "claude-opus-4-7",
+  "type": "news",
+  "title": "Claude Opus 4.7: Frontier Coding (2026)",
+  "hook": "Claude Opus 4.7's gains land hardest on the hardest software-engineering tasks, and it now checks its own work - better self-verification of its outputs alongside the coding boost.",
+  "key_points": [
+    "Generally available; a notable improvement over Opus 4.6 in advanced software engineering, with the largest gains on the hardest tasks.",
+    "Improved instruction-following and better self-verification of its own outputs.",
+    "Vision now accepts images up to 2,576 px on the long edge, about 3.75 megapixels - over 3x prior Claude models.",
+    "Available across Claude products, the API (model id claude-opus-4-7), Amazon Bedrock, Google Cloud Vertex AI, and Microsoft Foundry."
+  ],
+  "content_html": "\u003cp\u003eAnthropic made Claude Opus 4.7 generally available in April 2026, an iteration on its frontier line with a notable improvement over Opus 4.6 in advanced software engineering - and the largest gains showing up on the hardest tasks.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's new\u003c/h2\u003e\n\u003cp\u003eBeyond the coding boost, Opus 4.7 brings improved instruction-following and better self-verification, meaning the model is more able to check its own outputs. Its vision input grew too: it now accepts images up to 2,576 pixels on the long edge, about 3.75 megapixels, more than 3x the limit of prior Claude models.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eConcentrating improvement on the hardest engineering tasks, plus better self-verification, targets exactly where coding assistants tend to fail - long, gnarly problems where a wrong answer goes unnoticed. Opus 4.7 is available across Claude products, the API as model id claude-opus-4-7, Amazon Bedrock, Google Cloud Vertex AI, and Microsoft Foundry. See Anthropic's announcement for details.\u003c/p\u003e",
+  "source": {
+    "name": "Anthropic",
+    "authors": [
+      "Anthropic"
+    ],
+    "url": "https://www.anthropic.com/news/claude-opus-4-7",
+    "published_at": "2026-04-16",
+    "license": "Anthropic news"
+  },
+  "topic_ids": [
+    "pretraining",
+    "releases"
+  ],
+  "tags": [
+    "nlp",
+    "agent",
+    "reasoning"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2026-04-16",
+  "related": [
+    {
+      "id": "card_4ec030",
+      "slug": "claude-4",
+      "type": "news",
+      "title": "Claude 4: Opus 4 and Sonnet 4",
+      "hook": "Claude 4 lets a model interleave reasoning with tool calls - thinking, calling a tool, thinking again, and even running tools in parallel - rather than reasoning once and answering.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-05-22"
+    },
+    {
+      "id": "card_bf92f3",
+      "slug": "openai-o3",
+      "type": "news",
+      "title": "OpenAI o3: Reasoning that Uses Tools",
+      "hook": "o3 is the first reasoning model that can agentically reach for every ChatGPT tool mid-thought - web search, Python on your files, image input, image generation - and combine them to solve a problem.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-04-16"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b8af81#0",
+      "format": "flip",
+      "prompt": "Where do Opus 4.7's coding improvements land hardest?",
+      "back_html": "\u003cp\u003eOn the hardest software-engineering tasks — the largest gains show up on the gnarliest problems, exactly where coding assistants tend to fail.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b8af81#1",
+      "format": "quiz",
+      "prompt": "Why does better self-verification help on long, difficult engineering tasks?",
+      "choices": [
+        {
+          "text": "On long, gnarly problems a wrong answer often goes unnoticed, so checking its own outputs catches errors",
+          "correct": true
+        },
+        {
+          "text": "It lets the model skip reasoning entirely",
+          "correct": false
+        },
+        {
+          "text": "It removes the need for instruction-following",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe card notes self-verification targets where assistants fail: long problems where a wrong answer goes unnoticed.\u003c/p\u003e"
+    }
+  ]
+}

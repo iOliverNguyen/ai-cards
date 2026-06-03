@@ -1,0 +1,107 @@
+{
+  "id": "card_9ff16f",
+  "slug": "sentencepiece",
+  "type": "paper",
+  "title": "SentencePiece: Language-Independent Tokenization",
+  "hook": "Most tokenizers assume you can split on spaces first. SentencePiece drops that assumption and tokenizes raw text directly — in any language.",
+  "key_points": [
+    "Operates on raw text with no language-specific pre-tokenization step.",
+    "Treats whitespace as an ordinary character, so tokenization is fully reversible.",
+    "Language-independent, which helps with scripts that don't separate words by spaces.",
+    "Widely used to tokenize large language models."
+  ],
+  "content_html": "\u003cp\u003eKudo and Richardson built SentencePiece, a tokenizer that works directly on raw text without a separate, language-specific pre-tokenization step. By treating spaces as ordinary characters, it stays language-independent and fully reversible — you can reconstruct the exact original text from the tokens. It's widely used to tokenize large language models.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eMany tokenizers first split text on whitespace and only then apply subword rules, which quietly assumes the language uses spaces between words. SentencePiece skips that assumption: it consumes the raw character stream, encodes spaces as a special marker so they're preserved, and learns subword units (using algorithms such as byte-pair encoding or a unigram language model) over that stream. Because nothing is thrown away or guessed at, decoding the tokens reproduces the original text exactly.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eLanguages like Japanese, Chinese, and Thai don't put spaces between words, so space-based pre-tokenization breaks down for them. Handling raw text directly makes SentencePiece work consistently across languages and removes brittle, language-specific preprocessing from the pipeline. Its reversibility and self-contained design made it a convenient, reliable choice for training many modern models.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Taku Kudo",
+      "John Richardson"
+    ],
+    "url": "https://arxiv.org/abs/1808.06226",
+    "published_at": "2018-08-19",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "tokenization"
+  ],
+  "tags": [
+    "nlp"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2018-08-19",
+  "related": [
+    {
+      "id": "card_a2690e",
+      "slug": "byte-pair-encoding",
+      "type": "paper",
+      "title": "Subword Tokenization with Byte-Pair Encoding",
+      "hook": "Whole words make a giant vocabulary; single characters make long sequences. Subwords split the difference — and let models read words they've never seen.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2015-08-31"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_a2690e",
+      "slug": "byte-pair-encoding",
+      "type": "paper",
+      "title": "Subword Tokenization with Byte-Pair Encoding",
+      "hook": "Whole words make a giant vocabulary; single characters make long sequences. Subwords split the difference — and let models read words they've never seen.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2015-08-31"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_9ff16f#0",
+      "format": "flip",
+      "prompt": "How does SentencePiece achieve language independence?",
+      "back_html": "\u003cp\u003eIt operates on raw text with no whitespace-based pre-tokenization, treating spaces as ordinary characters via a special marker.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9ff16f#1",
+      "format": "quiz",
+      "prompt": "Why does SentencePiece treat whitespace as an ordinary character?",
+      "choices": [
+        {
+          "text": "So tokenization is fully reversible - the exact original text can be reconstructed",
+          "correct": true
+        },
+        {
+          "text": "To make the vocabulary larger and more expressive",
+          "correct": false
+        },
+        {
+          "text": "Because spaces are the most frequent token to merge",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEncoding spaces as a marker means nothing is thrown away, so decoding the tokens reproduces the original text exactly.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9ff16f#2",
+      "format": "quiz",
+      "prompt": "For which languages does space-based pre-tokenization break down?",
+      "choices": [
+        {
+          "text": "Languages like Japanese, Chinese, and Thai that don't separate words with spaces",
+          "correct": true
+        },
+        {
+          "text": "Languages with very large alphabets like Russian",
+          "correct": false
+        },
+        {
+          "text": "Languages written right-to-left like Arabic",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eScripts without spaces between words defeat whitespace pre-tokenization; SentencePiece's raw-text approach handles them.\u003c/p\u003e"
+    }
+  ]
+}

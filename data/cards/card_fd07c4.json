@@ -1,0 +1,119 @@
+{
+  "id": "card_fd07c4",
+  "slug": "atlasvla-persistent-world-ego-state",
+  "type": "paper",
+  "title": "AtlasVLA: Giving a Robot Policy a Memory of Where It Is and What It Has Done",
+  "hook": "A wrist camera forgets an object the moment it leaves frame. AtlasVLA keeps a persistent 3D map plus a record of task progress — and beats multi-view baselines with one camera.",
+  "key_points": [
+    "Diagnoses two failure modes of reactive vision-language-action models: perception forgetting when objects leave the camera's view, and task-progress forgetting during multi-step execution.",
+    "Answers both with a dual memory: a 4D Persistent World State Memory and an Ego-Working State Memory.",
+    "The world memory lifts transient 2D observations into a globally updated, voxel-hashed spatial state, so blind spots are filled from what was seen earlier.",
+    "The ego memory tracks historical ego state and how far along the task is, so multi-step plans do not restart from scratch.",
+    "A diffusion transformer policy is conditioned on the joint World-Ego state, turning reactive control into proactive spatial reasoning.",
+    "Using only a wrist camera it reports absolute success-rate gains of 9.4% on LIBERO-Long and 17.5% on real-world long-horizon tasks, outperforming multi-view baselines."
+  ],
+  "content_html": "\u003cp\u003eVision-language-action models drive a robot by mapping what the camera sees right now to the next action. That reactive framing breaks down in two ways, argue Guiyu Zhao and colleagues: with only a wrist-mounted camera, an object effectively ceases to exist once it leaves the field of view, and over a long multi-step task the model loses track of how far it has already gotten.\u003c/p\u003e\n\u003cp\u003eAtlasVLA attacks both with memory. A 4D Persistent World State Memory lifts each transient 2D observation into a globally updated, voxel-hashed spatial state, so earlier views keep filling in today's blind spots. An Ego-Working State Memory separately tracks the robot's own state history and task progress. A diffusion transformer policy is then conditioned on this joint World-Ego state. Evaluated on LIBERO, RLBench, and real-world benchmarks with a wrist camera alone, the authors report it beating multi-view baselines, with absolute success-rate improvements of 9.4% on LIBERO-Long and 17.5% on real-world long-horizon tasks.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe transferable idea is that a lot of \u0026quot;the model can't see it\u0026quot; is really \u0026quot;the model didn't remember it.\u0026quot; Separating spatial memory (where things are in the world) from ego memory (what I have already done) gives a policy two very different things it needs to carry forward, rather than trying to squeeze both into a context of recent frames. Full architecture and benchmark details are in the paper linked via the source.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Guiyu Zhao",
+      "Longteng Guo",
+      "Yanghong Mei",
+      "Zilin Zhu",
+      "Yu Zhang",
+      "Bin Cao",
+      "Mingming Yu",
+      "Xingjian He",
+      "Jie Jiang",
+      "Jing Liu"
+    ],
+    "url": "https://arxiv.org/abs/2608.06729",
+    "published_at": "2026-08-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "papers-this-week"
+  ],
+  "tags": [
+    "vision",
+    "multimodal",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-13",
+  "date": "2026-08-07",
+  "related": [
+    {
+      "id": "card_08a765",
+      "slug": "rynnworld-4d-embodied-world-models",
+      "type": "paper",
+      "title": "RynnWorld-4D: RGB-Depth-Flow World Models for Robot Manipulation",
+      "hook": "A robot needs to know how a scene's 3D structure will move, not just what it looks like. This world model predicts RGB, depth, and optical flow together, then hands the result straight to a policy.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-07"
+    },
+    {
+      "id": "card_07b0f9",
+      "slug": "capek-0-5-execution-centric-vlm",
+      "type": "paper",
+      "title": "Capek 0.5: Organizing an Embodied VLM Around Execution",
+      "hook": "Robot execution keeps changing what needs perceiving. Capek 0.5 groups embodied skills by their role in that loop, trains a specialist for each, then merges them into one model.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-07"
+    },
+    {
+      "id": "card_0dc810",
+      "slug": "pi-zero",
+      "type": "paper",
+      "title": "π0: A Vision-Language-Action Model",
+      "hook": "π0 is a generalist robot policy: it takes camera images, joint angles, and a plain-language instruction, and outputs smooth action sequences — folding laundry, bussing tables, bagging groceries.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-10-31"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_fd07c4#0",
+      "format": "flip",
+      "prompt": "What two kinds of forgetting does AtlasVLA say reactive VLA models suffer from?",
+      "back_html": "\u003cp\u003ePerception forgetting — objects vanish from the model's world once they leave the wrist camera's field of view — and temporal task-progress forgetting during multi-step execution.\u003c/p\u003e"
+    },
+    {
+      "id": "card_fd07c4#1",
+      "format": "quiz",
+      "prompt": "How does AtlasVLA let a single wrist camera cover visual blind spots?",
+      "choices": [
+        {
+          "text": "It lifts 2D observations into a globally updated, voxel-hashed 3D world state that persists across time",
+          "correct": true
+        },
+        {
+          "text": "It adds a second camera view and fuses the two streams",
+          "correct": false
+        },
+        {
+          "text": "It re-runs the whole video history through the encoder at each step",
+          "correct": false
+        },
+        {
+          "text": "It asks a language model to describe what is probably out of frame",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe 4D Persistent World State Memory accumulates past observations into a voxel-hashed spatial state, so a region seen earlier stays available after it leaves the current frame.\u003c/p\u003e"
+    },
+    {
+      "id": "card_fd07c4#2",
+      "format": "flip",
+      "prompt": "What is the policy in AtlasVLA conditioned on, and why does that matter?",
+      "back_html": "\u003cp\u003eA diffusion transformer conditioned on the joint World-Ego state — spatial memory plus task progress. That joint conditioning is what shifts it from reactive manipulation to proactive spatial reasoning.\u003c/p\u003e"
+    }
+  ]
+}

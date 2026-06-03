@@ -1,0 +1,134 @@
+{
+  "id": "card_505d45",
+  "slug": "slai-t-rex-ascend-post-training",
+  "type": "paper",
+  "title": "SLAI T-Rex: Post-training a Trillion-Param MoE on Ascend Chips",
+  "hook": "Full-parameter post-training of the DeepSeek-V4 family on Huawei's Ascend NPUs — not NVIDIA GPUs — hitting a 2.93x efficiency jump over the open-source baseline.",
+  "key_points": [
+    "Targets full-parameter post-training of trillion-parameter MoE models on the Ascend NPU SuperPOD, an alternative to GPU clusters.",
+    "Hierarchical optimization across three layers: model parallelism, computation–communication orchestration, and low-level kernel execution.",
+    "Reaches 34.22% Model FLOPs Utilization (MFU) — a 2.93x improvement over the open-source baseline recipe — while staying training-stable.",
+    "Adds a CPT + SFT pipeline for Operations Research, using solver-verified synthetic optimization documents (10K samples).",
+    "The specialized DeepSeek-V4-Flash tops the evaluated models at 71.81% zero-shot Pass@1, beating GPT-5.4-Mini by 3.98 points."
+  ],
+  "content_html": "\u003cp\u003eFull-parameter post-training of trillion-parameter mixture-of-experts models is brutal on a training system: severe memory pressure, communication that won't overlap with compute, and inefficient kernels. Dongfang Li, Xiaodong Luo, Ruoyu Sun, and a large team report doing it not on GPUs but on Huawei's Ascend NPU SuperPOD, using the DeepSeek-V4 family as the workload — and packaging the result as a framework they call SLAI T-Rex.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe authors build a hierarchical optimization framework spanning three levels: model-level parallelism, computation–communication orchestration (overlapping the two so the network doesn't stall the math), and low-level kernel execution. On the Ascend NPU SuperPOD this reaches 34.22% Model FLOPs Utilization — a 2.93x improvement over the open-source baseline recipe — while maintaining training stability.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAlmost all large-scale LLM training is built around GPU clusters, so an end-to-end recipe that hits competitive utilization on non-NVIDIA hardware is a meaningful data point on hardware diversity. On top of the infrastructure, the team builds a continued-pretraining and supervised-fine-tuning pipeline for Operations Research tasks, using solver-verified synthetic optimization documents (10K SFT samples across four task categories). The resulting DeepSeek-V4-Flash specialization reports the highest average zero-shot Pass@1 among the models evaluated, 71.81%, outperforming GPT-5.4-Mini by 3.98 points and the base Flash model by 11.27. See the arXiv report for the full system details.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Dongfang Li",
+      "Xiaodong Luo",
+      "Ruoyu Sun",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.20145",
+    "published_at": "2026-07-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "distributed-training",
+    "hardware",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-23",
+  "date": "2026-07-22",
+  "related": [
+    {
+      "id": "card_c0948e",
+      "slug": "deepseek-v4",
+      "type": "news",
+      "title": "DeepSeek-V4: Sparse Attention, Million-Token Default",
+      "hook": "DeepSeek-V4 makes a 1M-token context window the default and pairs token-wise compression with sparse attention, so long-context inference no longer pays the usual compute and memory tax.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-04-24"
+    },
+    {
+      "id": "card_09b3a2",
+      "slug": "megatron-lm",
+      "type": "paper",
+      "title": "Megatron-LM: Training LLMs with Model Parallelism",
+      "hook": "Split the big matrices inside attention and MLP layers across GPUs, add a few communication ops, and you can train an 8.3B model on 512 GPUs — no custom compiler needed.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2019-09-17"
+    },
+    {
+      "id": "card_27a1ab",
+      "slug": "the-hardware-lottery",
+      "type": "paper",
+      "title": "The Hardware Lottery",
+      "hook": "A research idea can win not because it is genuinely better, but because it happens to fit the hardware and software we already have. Sara Hooker calls this the hardware lottery.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2020-09-14"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_505d45#0",
+      "format": "flip",
+      "prompt": "What makes SLAI T-Rex's training setup unusual for a trillion-parameter model?",
+      "back_html": "\u003cp\u003eIt runs full-parameter post-training on Huawei's Ascend NPU SuperPOD instead of the usual GPU cluster, and still reaches competitive efficiency.\u003c/p\u003e"
+    },
+    {
+      "id": "card_505d45#1",
+      "format": "quiz",
+      "prompt": "How much did SLAI T-Rex's hierarchical optimization improve efficiency over the open-source baseline recipe?",
+      "choices": [
+        {
+          "text": "About 2.93x higher Model FLOPs Utilization",
+          "correct": true
+        },
+        {
+          "text": "About 10x, by switching to a smaller model",
+          "correct": false
+        },
+        {
+          "text": "No change; the gain was only in accuracy",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe system reaches 34.22% MFU, a 2.93x improvement over the open-source baseline, while keeping training stable.\u003c/p\u003e"
+    },
+    {
+      "id": "card_505d45#2",
+      "format": "quiz",
+      "prompt": "Which three layers did SLAI T-Rex's optimization framework span?",
+      "choices": [
+        {
+          "text": "Model parallelism, computation–communication orchestration, and low-level kernel execution",
+          "correct": true
+        },
+        {
+          "text": "Tokenizer, embedding, and output head",
+          "correct": false
+        },
+        {
+          "text": "Data loading, checkpointing, and logging",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe report frames its gains as a hierarchical stack: model-level parallelism, overlapping compute with communication, and tuned kernels.\u003c/p\u003e"
+    }
+  ]
+}

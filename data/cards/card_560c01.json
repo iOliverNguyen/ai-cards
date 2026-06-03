@@ -1,0 +1,87 @@
+{
+  "id": "card_560c01",
+  "slug": "bonsai-27b-1-bit-quantization",
+  "type": "news",
+  "title": "Bonsai 27B: A 1-Bit Model Small Enough for Your Browser (and Maybe Your Phone)",
+  "hook": "1-bit quantization shrinks a 27B dense model from 54GB to 3.8GB — a 93% cut — while keeping about 90% of its original capability, per the release.",
+  "key_points": [
+    "PrismML released Bonsai 27B, a 27B-parameter dense LLM (built on Qwen3.6-27B) quantized down to 1 bit per weight.",
+    "Shrinks it from 54GB to 3.8GB (a 93% cut); across 15 benchmarks it averages 76.1 vs 85.1 for the full-precision original (~90% retained).",
+    "True 'binary g128' quantization: one sign bit per weight, groups of 128 share an FP16 scale (~1.125 bits/weight) — no higher-precision layers.",
+    "Even the embeddings, attention/MLP projections, and LM head are binary — most 1-bit schemes keep some layers at higher precision.",
+    "Small enough to run entirely client-side in a web browser via custom WebGPU kernels, no server round-trip needed.",
+    "The community has framed the same release as the first 27B-parameter-class model able to run on a phone."
+  ],
+  "content_html": "\u003cp\u003eThe PrismML team released Bonsai 27B, a dense 27-billion-parameter LLM quantized all the way down to 1 bit per weight. That extreme compression takes the model from 54GB to just 3.8GB — a 93% reduction — while the release claims it retains roughly 90% of the original model's \u0026quot;intelligence.\u0026quot; The model is small enough to run entirely client-side in a browser via custom WebGPU kernels, with no server needed.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eCommunity reaction (via a companion r/LocalLLaMA post) framed the same release differently: as the first 27B-parameter-class model that can run on a phone, since a 3.8GB footprint fits where a 54GB one never could. A follow-up post filled in the technical detail behind the compression: it's true \u0026quot;binary g128\u0026quot; quantization — every weight collapses to a single sign bit, with each group of 128 weights sharing one FP16 scale, landing at roughly 1.125 bits per weight and no higher-precision escape hatches. Unusually, that includes the embeddings, attention/MLP projections, and even the LM head — most 1-bit schemes keep at least some of those layers at higher precision. Across 15 benchmarks, Bonsai 27B (built on Qwen3.6-27B) averages 76.1 versus 85.1 for the full-precision original. PrismML published it as a Hugging Face collection, alongside a live WebGPU demo space for trying it directly in-browser — no install required.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit (r/LocalLLaMA)",
+    "authors": [
+      "/u/xenovatech"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1uwfva9/bonsai_27b_1bit_dense_llm_running_locally_in_your",
+    "published_at": "2026-07-14",
+    "license": "Community post"
+  },
+  "topic_ids": [
+    "quantization",
+    "releases"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "open-source",
+    "news"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-16",
+  "date": "2026-07-14",
+  "related": [
+    {
+      "id": "card_20b368",
+      "slug": "qwen3-6-nvfp4-unsloth-quants",
+      "type": "news",
+      "title": "Unsloth's NVFP4 Qwen3.6 Quants Beat NVIDIA's Own — by Actually Using 4-bit Math",
+      "hook": "Unsloth's NVFP4 quants for Qwen3.6 run up to 2.5x faster than NVIDIA's official NVFP4 release, with no measured accuracy loss — by quantizing activations too, not just weights.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_560c01#0",
+      "format": "flip",
+      "prompt": "How much did 1-bit quantization shrink Bonsai 27B, and what did it cost in capability?",
+      "back_html": "\u003cp\u003eFrom 54GB down to 3.8GB — a 93% reduction — while retaining about 90% of the original model's capability, per PrismML.\u003c/p\u003e"
+    },
+    {
+      "id": "card_560c01#1",
+      "format": "quiz",
+      "prompt": "What lets Bonsai 27B run entirely inside a web browser?",
+      "choices": [
+        {
+          "text": "Custom WebGPU kernels running inference client-side, no server needed",
+          "correct": true
+        },
+        {
+          "text": "A cloud API called from JavaScript",
+          "correct": false
+        },
+        {
+          "text": "A WASM port of the original full-precision weights",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe release ships custom WebGPU kernels so the 1-bit model executes directly in-browser, with a public demo space to try it.\u003c/p\u003e"
+    },
+    {
+      "id": "card_560c01#2",
+      "format": "flip",
+      "prompt": "Why did the community call Bonsai 27B 'the first 27B-class model to run on a phone'?",
+      "back_html": "\u003cp\u003eIts 1-bit footprint (3.8GB) is small enough to fit and run on phone-class hardware, unlike a normal 54GB dense 27B model.\u003c/p\u003e"
+    }
+  ]
+}

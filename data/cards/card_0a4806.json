@@ -1,0 +1,115 @@
+{
+  "id": "card_0a4806",
+  "slug": "train-validation-test-split",
+  "type": "concept",
+  "title": "Train / Validation / Test Splits",
+  "hook": "If you tune and grade on the same data, you'll fool yourself. Keep a test set you never touch until the very end.",
+  "key_points": [
+    "Train set: the model learns its parameters here.",
+    "Validation set: you tune hyperparameters and pick models against this, without training on it.",
+    "Test set: a final, untouched holdout that gives an honest estimate of real-world performance.",
+    "Peeking at the test set during development leaks information and inflates your numbers."
+  ],
+  "content_html": "\u003cp\u003eTo know whether a model actually works, you split your data into three roles. You fit the model on the training set, make decisions like which model or settings to use on the validation set, and report final performance on a test set you've deliberately kept untouched. That last, clean estimate is the one you can trust.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe model adjusts its parameters only on the training data. The validation set acts as a stand-in for new data while you experiment — comparing architectures, picking a learning rate, deciding when to stop. Because you make choices based on it, the validation score is no longer fully unbiased, so a separate test set, evaluated once at the end, gives the honest measure.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eReusing the same data to both build and judge a model is the most common way people overstate results. Reported accuracy on data the model effectively saw is meaningless. The split discipline is what lets you, and others, believe a benchmark number — and it's a habit worth building from day one.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/Training,_validation,_and_test_data_sets",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "evaluation"
+  ],
+  "tags": [
+    "foundational"
+  ],
+  "importance": 5,
+  "difficulty": "intro",
+  "created_at": "2026-06-02",
+  "date": "2026-06-02",
+  "related": [
+    {
+      "id": "card_0d296c",
+      "slug": "cross-validation",
+      "type": "concept",
+      "title": "Cross-Validation",
+      "hook": "One lucky or unlucky split can flatter or sink your model. Rotate the holdout and average — that's cross-validation.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_a4574e",
+      "slug": "overfitting-and-regularization",
+      "type": "concept",
+      "title": "Overfitting \u0026 Regularization",
+      "hook": "A model that aces its training data but flops on anything new hasn't learned — it has memorized. Regularization is the cure.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_ce155a",
+      "slug": "what-is-machine-learning",
+      "type": "concept",
+      "title": "What Is Machine Learning?",
+      "hook": "Instead of hand-coding rules, you show a program examples and let it find the patterns — then it handles inputs it has never seen.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_0a4806#0",
+      "format": "quiz",
+      "prompt": "Why isn't the validation score a fully unbiased measure of performance?",
+      "choices": [
+        {
+          "text": "You make decisions based on it, so it's no longer fully unbiased",
+          "correct": true
+        },
+        {
+          "text": "The model trains its parameters on it",
+          "correct": false
+        },
+        {
+          "text": "It is evaluated only once at the end",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBecause you pick models and tune settings against the validation set, its score is biased, so a separate test set gives the honest measure.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0a4806#1",
+      "format": "flip",
+      "prompt": "What is the role of the test set?",
+      "back_html": "\u003cp\u003eA final, untouched holdout evaluated once at the end, giving an honest estimate of real-world performance.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0a4806#2",
+      "format": "quiz",
+      "prompt": "What happens if you peek at the test set during development?",
+      "choices": [
+        {
+          "text": "It leaks information and inflates your numbers",
+          "correct": true
+        },
+        {
+          "text": "It improves generalization to new data",
+          "correct": false
+        },
+        {
+          "text": "It has no effect on reported results",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePeeking at the test set leaks information and inflates results; reusing data to build and judge a model is the most common way to overstate it.\u003c/p\u003e"
+    }
+  ]
+}

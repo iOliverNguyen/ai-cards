@@ -1,0 +1,115 @@
+{
+  "id": "card_46ca0b",
+  "slug": "spatial-memory-agent",
+  "type": "paper",
+  "title": "Spatial Memory Agent: Self-Improvement Without Touching the Weights",
+  "hook": "A frozen VLM gets better at spatial reasoning by writing itself notes — verified lessons, scored by how well they transfer, retrieved at inference time.",
+  "key_points": [
+    "Asks whether a frozen VLM can self-evolve at spatial reasoning without fine-tuning and without external depth or 3D tools at inference.",
+    "In a verifiable environment, SMA queries the frozen model, gets an answer plus a reward, then uses verifier-guided reflection to distill compact transferable lessons.",
+    "Each lesson carries a Transfer Reliability Score (TRS), initialized uniformly and recalibrated from whether later retrievals actually helped.",
+    "At deployment the memory is read-only: lessons are retrieved by semantic filter plus combined similarity–TRS ranking and injected to guide inference.",
+    "Across five spatial benchmarks and four base VLMs, SMA reports the highest macro average in every base-model block.",
+    "The pitch is a parameter-update-free path to improvement — memory as the learning substrate instead of gradients."
+  ],
+  "content_html": "\u003cp\u003eTwo established routes exist for making a vision-language model better at spatial reasoning: post-train it (SFT, RL), or hand it external tools like depth estimators and 3D reconstruction at inference. Zhang and colleagues take a third path — leave the model frozen and give it a memory.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eSpatial Memory Agent runs the frozen VLM inside a verifiable spatial environment, so each attempt yields both a prediction and a reward. Verifier-guided reflection then distills those episodes into compact, transferable lessons — the kind of note that generalizes rather than a cached answer. Each lesson gets a Transfer Reliability Score, initialized uniformly and then recalibrated by whether retrieving it later actually helped. At deployment the memory is read-only: incoming queries retrieve lessons through a semantic filter and a ranking that combines similarity with TRS, and the retrieved lessons steer the frozen model's inference.\u003c/p\u003e\n\u003cp\u003eAcross five spatial benchmarks and four base VLMs, the authors report the highest macro average in every base-model block and the best accuracy in most of the 20 evaluations. The idea worth taking away is structural rather than numerical: if you can verify outcomes, you can accumulate capability in a retrieval store instead of in weights — cheaper to build, cheaper to audit, and easy to roll back. Whether the lessons keep transferring outside the benchmark families tested is the open question.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Haokai Zhang",
+      "Yuhang Ding",
+      "Yunshu Zhou",
+      "Xinze Du",
+      "Shengtao Zhang",
+      "Zhiyue Zhao",
+      "Yuling Xi",
+      "Hao Chen"
+    ],
+    "url": "https://arxiv.org/abs/2608.12743",
+    "published_at": "2026-08-13",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week",
+    "vlms"
+  ],
+  "tags": [
+    "agent",
+    "paper",
+    "multimodal",
+    "reasoning"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-17",
+  "date": "2026-08-13",
+  "related": [
+    {
+      "id": "card_0612bf",
+      "slug": "automem-memory-as-cognitive-skill",
+      "type": "paper",
+      "title": "AutoMem: Automated Learning of Memory as a Cognitive Skill",
+      "hook": "AutoMem treats knowing what to remember and when to retrieve it — metamemory — as a trainable skill, and tuning memory alone roughly doubles to quadruples performance on long-horizon games.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-01"
+    },
+    {
+      "id": "card_9e170d",
+      "slug": "spatialclaw",
+      "type": "paper",
+      "title": "SpatialClaw: Code as the Action Interface for Spatial Reasoning",
+      "hook": "Give a vision-language agent a live Python kernel instead of a fixed tool menu, and let it write one cell at a time. That flexibility lifts 3D/4D spatial reasoning by 11 points.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-11"
+    },
+    {
+      "id": "card_006aa1",
+      "slug": "concept-guided-spatial-regularization-world-models",
+      "type": "paper",
+      "title": "Concept-Guided Spatial Regularization for World Models in Atari Pong",
+      "hook": "Five world-model RL agents can master Atari Pong on paper — but freeze their world models and watch closely: the ball vanishes, bounces wrong, or phases through the paddle.",
+      "importance": 2,
+      "difficulty": "core",
+      "date": "2026-07-16"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_46ca0b#0",
+      "format": "quiz",
+      "prompt": "What does the Transfer Reliability Score (TRS) measure in Spatial Memory Agent?",
+      "choices": [
+        {
+          "text": "How well a stored lesson has actually helped on later retrievals",
+          "correct": true
+        },
+        {
+          "text": "How confident the frozen VLM was when it produced the original answer",
+          "correct": false
+        },
+        {
+          "text": "How semantically similar a lesson is to the current query",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eTRS starts uniform and is calibrated from later retrieval outcomes, so it's an empirical track record. Semantic similarity is a separate signal — retrieval ranks on both combined.\u003c/p\u003e"
+    },
+    {
+      "id": "card_46ca0b#1",
+      "format": "flip",
+      "prompt": "What makes SMA 'parameter-update-free'?",
+      "back_html": "\u003cp\u003eThe VLM stays frozen. Learning happens by writing verified experience into a lesson memory and retrieving it at inference time, so nothing in the weights changes.\u003c/p\u003e"
+    },
+    {
+      "id": "card_46ca0b#2",
+      "format": "flip",
+      "prompt": "Why does SMA need a verifiable environment during its learning phase?",
+      "back_html": "\u003cp\u003eLessons are distilled through verifier-guided reflection — the reward signal tells it which attempts were actually right, so it doesn't confidently store lessons drawn from its own mistakes.\u003c/p\u003e"
+    }
+  ]
+}

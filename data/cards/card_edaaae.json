@@ -1,0 +1,100 @@
+{
+  "id": "card_edaaae",
+  "slug": "gsm8k",
+  "type": "paper",
+  "title": "GSM8K: Training Verifiers for Grade-School Math",
+  "hook": "Instead of trusting a model's first answer, sample many and let a learned 'verifier' pick the best — and it beats just finetuning, scaling better with data.",
+  "key_points": [
+    "Introduces GSM8K, 8.5K high-quality, linguistically diverse grade-school math word problems.",
+    "Trains 'verifier' models to judge candidate solutions sampled from the model.",
+    "Ranks sampled solutions by verifier score and keeps the top one.",
+    "Verification beats a finetuning baseline and scales better with more data."
+  ],
+  "content_html": "\u003cp\u003eKarl Cobbe, Vineet Kosaraju, Mohammad Bavarian, and colleagues at OpenAI introduce GSM8K, a dataset of 8,500 high-quality, linguistically diverse grade-school math word problems, and use it to study a better way to get correct answers. Rather than relying on the model's single attempt, they train \u0026quot;verifier\u0026quot; models to judge candidate solutions, then rank many sampled solutions by verifier score. This verification approach significantly outperforms a finetuning baseline and scales better with data.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eFirst, the model generates many candidate solutions to a problem. A separate verifier — trained to predict whether a solution is correct — scores each candidate, and the highest-scoring one is selected as the final answer. Compared with simply finetuning a model to produce a single solution, this sample-and-verify pipeline produces more correct answers, and its advantage grows as more training data is added, suggesting verification is a more data-efficient way to spend supervision.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eGSM8K became a standard benchmark for arithmetic reasoning, popular precisely because grade-school problems are easy to state but require multi-step reasoning to solve. Beyond the dataset, the verifier idea was an early signal toward reward models for reasoning: instead of teaching a model to be right on the first try, you teach a separate model to recognize good reasoning and let it filter. That pattern echoes through later work on reasoning and reinforcement learning.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Karl Cobbe",
+      "Vineet Kosaraju",
+      "Mohammad Bavarian",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2110.14168",
+    "published_at": "2021-10-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety"
+  ],
+  "tags": [
+    "benchmark",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2021-10-27",
+  "related": [
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    },
+    {
+      "id": "card_812537",
+      "slug": "self-consistency",
+      "type": "paper",
+      "title": "Self-Consistency Improves Chain-of-Thought Reasoning",
+      "hook": "Sample the model many times, let each run reason its own way, then take the majority answer - diverse reasoning paths vote out individual errors.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-03-21"
+    },
+    {
+      "id": "card_ae53ac",
+      "slug": "gpqa",
+      "type": "paper",
+      "title": "GPQA: A Graduate-Level Google-Proof Q\u0026A Benchmark",
+      "hook": "What makes a question hard for a model? GPQA's are hard even for skilled people with Google: non-experts reach only 34% after 30+ minutes of searching.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-11-20"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_edaaae#0",
+      "format": "flip",
+      "prompt": "How does the verifier approach pick a final answer in GSM8K?",
+      "back_html": "\u003cp\u003eThe model samples many candidate solutions; a separate trained verifier scores each, and the highest-scoring one is selected.\u003c/p\u003e"
+    },
+    {
+      "id": "card_edaaae#1",
+      "format": "quiz",
+      "prompt": "What advantage did verification show over a finetuning baseline?",
+      "choices": [
+        {
+          "text": "It produced more correct answers and scaled better with more data",
+          "correct": true
+        },
+        {
+          "text": "It needed no sampling at inference",
+          "correct": false
+        },
+        {
+          "text": "It eliminated the need for a base model",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSample-and-verify beats finetuning, and its advantage grows with more training data — a more data-efficient way to spend supervision.\u003c/p\u003e"
+    }
+  ]
+}

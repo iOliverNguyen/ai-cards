@@ -1,0 +1,88 @@
+{
+  "id": "card_b19ec5",
+  "slug": "testing-ads-in-chatgpt",
+  "type": "news",
+  "title": "Ads Arrive in ChatGPT",
+  "hook": "OpenAI has started testing ads to fund the free tier — and is promising the thing that actually matters: that ads never change the answer you get.",
+  "key_points": [
+    "OpenAI has begun testing advertising in ChatGPT, framed as a way to sustain free access.",
+    "The stated commitments are clear labeling, answer independence, strong privacy protections, and user control.",
+    "Answer independence is the load-bearing promise: ad spend is not supposed to influence what the model says.",
+    "Ad-funded assistants create a structural tension — the incentive to shade recommendations exists whether or not it's acted on.",
+    "It's a test, not a rollout, so the details of targeting and disclosure are still moving."
+  ],
+  "content_html": "\u003cp\u003eOpenAI has started testing advertising inside ChatGPT, positioning it as the way to keep the free tier sustainable. The announcement pairs the test with four commitments: ads will be clearly labeled, answers stay independent of advertising, privacy protections are strong, and users get controls.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eAnswer independence is the one worth watching. Search engines solved this with layout — paid results sit in a visually distinct block, and you can see what you're being sold. An assistant gives you one synthesized answer, so there's no organic column to compare against; commercial influence, if any, would be invisible by construction. That makes the promise harder to verify from the outside than the equivalent promise in search, and it puts weight on how OpenAI demonstrates independence rather than merely asserting it.\u003c/p\u003e\n\u003cp\u003eThis is a test rather than a rollout, so targeting mechanics and disclosure format are still in motion. OpenAI, August 2026.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "authors": [
+      "OpenAI"
+    ],
+    "url": "https://openai.com/index/testing-ads-in-chatgpt",
+    "published_at": "2026-08-11",
+    "license": "OpenAI (blog post)"
+  },
+  "topic_ids": [
+    "lab-updates",
+    "risks-policy"
+  ],
+  "tags": [
+    "news",
+    "safety"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-08-13",
+  "date": "2026-08-11",
+  "related": [
+    {
+      "id": "card_bf70d8",
+      "slug": "health-in-chatgpt",
+      "type": "news",
+      "title": "ChatGPT Starts Reading Your Medical Records",
+      "hook": "OpenAI has shipped Health in ChatGPT: eligible US users can connect their medical records and Apple Health data so the assistant answers from their own history rather than in general.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-07-23"
+    },
+    {
+      "id": "card_a9688e",
+      "slug": "opaque-epistemic-mediation",
+      "type": "paper",
+      "title": "A Model's Stance Is a Deployment Setting, Not a Property",
+      "hook": "The same Grok model ID rated a pseudo-scientific claim 75 via API and 5.5 via web. What a commercial LLM 'believes' turns out to be a contingent effect of how it's deployed.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b19ec5#0",
+      "format": "quiz",
+      "prompt": "Which commitment is the one that most directly addresses the trust problem with ads in an assistant?",
+      "choices": [
+        {
+          "text": "Answer independence — advertising is not supposed to influence what the model says",
+          "correct": true
+        },
+        {
+          "text": "Clear labeling of which units are ads",
+          "correct": false
+        },
+        {
+          "text": "Giving users controls over ad settings",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLabeling and controls matter, but the distinctive risk of an assistant is that the \u003cem\u003eanswer itself\u003c/em\u003e gets shaded. Independence is the claim that has to hold.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b19ec5#1",
+      "format": "flip",
+      "prompt": "Why are ads in a conversational assistant structurally trickier than ads in search?",
+      "back_html": "\u003cp\u003eA search page separates paid results from organic ones visually; an assistant gives you a single synthesized answer, so any commercial influence blends into the recommendation itself.\u003c/p\u003e"
+    }
+  ]
+}

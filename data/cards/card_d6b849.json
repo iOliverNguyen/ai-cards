@@ -1,0 +1,114 @@
+{
+  "id": "card_d6b849",
+  "slug": "boogu-image-unified-multimodal",
+  "type": "paper",
+  "title": "Boogu-Image-0.1: Boosting Open-Source Unified Multimodal Understanding and Generation",
+  "hook": "An open recipe for text-to-image, editing, and bilingual text rendering that closes in on closed-source giants — for a reported $400K training budget.",
+  "key_points": [
+    "One model family (Base, Turbo, Edit, Edit-Turbo) covers text-to-image generation, fast inference, instruction-based editing, and Chinese-English text rendering.",
+    "Matches or beats other open-source models on standard benchmarks, and approaches leading closed systems like Nano-Banana-Pro and GPT-Image-2.",
+    "Trained on only ~208.6 million unique images, with a reported base-model training cost of roughly $400K.",
+    "Gains come from better data quality and training pipelines plus agentic inference-time scaling, not just more compute.",
+    "Weights, code, and training recipes released under Apache 2.0."
+  ],
+  "content_html": "\u003cp\u003eClosed-source image models like Nano-Banana-Pro and GPT-Image-2 look untouchable partly because nobody outside the lab knows how they're built — the gains come from system-level integration that stays undisclosed. Boogu-Image-0.1 is an attempt to open that recipe back up.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe model family — Base, Turbo, Edit, and Edit-Turbo — handles text-to-image generation, fast inference, instruction-based editing, and bilingual (Chinese-English) text rendering. Guoxuan Chen and a large multi-institution team report that targeted improvements to model understanding, data quality, and training pipelines, combined with agentic inference-time scaling, let them match or beat other open-source models and approach leading closed systems — using only about 208.6 million unique images and a theoretical training cost around $400K for the base model.\u003c/p\u003e\n\u003cp\u003eThe team released weights, code, and training recipes under Apache 2.0, explicitly framing the paper as a set of practical discussions for the open research community rather than just a model drop. Chen and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Guoxuan Chen",
+      "Chufeng Xiao",
+      "Haoran Yang",
+      "Siyue Xie",
+      "Binxiao Huang",
+      "Ming Zhang",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.13125",
+    "published_at": "2026-07-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "text-to-image",
+    "vlms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "generative",
+    "vision",
+    "open-source",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-14",
+  "related": [
+    {
+      "id": "card_963731",
+      "slug": "vision-as-unified-multimodal-generation",
+      "type": "paper",
+      "title": "Vision as Unified Multimodal Generation",
+      "hook": "Detection, segmentation, depth, pose — each normally needs its own architecture. This model does all of them as text-and-image generation from one multimodal model, no task-specific heads.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-07"
+    },
+    {
+      "id": "card_a144f0",
+      "slug": "nano-banana",
+      "type": "news",
+      "title": "Nano Banana (Gemini Image)",
+      "hook": "Google's native Gemini image model — nicknamed Nano Banana — made conversational, character-consistent image editing go viral, drawing millions to the Gemini app.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2025-08-26"
+    },
+    {
+      "id": "card_cdf4c8",
+      "slug": "qwen-image-2-rl",
+      "type": "paper",
+      "title": "Qwen-Image-2.0-RL: RLHF for a Diffusion Model",
+      "hook": "Qwen's team applied RLHF and on-policy distillation to a text-to-image diffusion model — the same post-training playbook that shaped chat models, now tuning image generation and editing.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-25"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_d6b849#0",
+      "format": "flip",
+      "prompt": "What's the headline claim of Boogu-Image-0.1's training cost?",
+      "back_html": "\u003cp\u003eThe authors report a theoretical base-model training cost of roughly $400K, using only about 208.6 million unique images.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d6b849#1",
+      "format": "quiz",
+      "prompt": "What do the authors say separates their approach from closed systems like Nano-Banana-Pro or GPT-Image-2?",
+      "choices": [
+        {
+          "text": "Those systems get strong results via system-level integration, while their internal single-model practices stay undisclosed",
+          "correct": true
+        },
+        {
+          "text": "Closed systems use far less training data than Boogu-Image-0.1",
+          "correct": false
+        },
+        {
+          "text": "Closed systems can't do instruction-based editing at all",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper frames closed-source strength as coming from undisclosed system-level integration, whereas Boogu-Image-0.1 shares its single-model recipe openly.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d6b849#2",
+      "format": "flip",
+      "prompt": "What four variants make up the Boogu-Image-0.1 family, and what does each add?",
+      "back_html": "\u003cp\u003eBase (core generation), Turbo (fast inference), Edit (instruction-based editing), and Edit-Turbo (fast editing).\u003c/p\u003e"
+    }
+  ]
+}

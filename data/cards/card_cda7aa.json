@@ -1,0 +1,118 @@
+{
+  "id": "card_cda7aa",
+  "slug": "arc-agi-2",
+  "type": "paper",
+  "title": "ARC-AGI-2",
+  "hook": "ARC-AGI-2 rebuilt the abstraction benchmark to defeat brute-force search — frontier models that aced version 1 initially scored near zero, while humans still solve it.",
+  "key_points": [
+    "Second version of the Abstraction and Reasoning Corpus from the ARC Prize team (2025).",
+    "Tasks require inferring novel rules from a few examples — no memorizable training data helps.",
+    "Designed to resist the brute-force program search that cracked ARC-AGI-1.",
+    "Major labs now report ARC-AGI-2 scores; it remains a rare unsaturated reasoning benchmark."
+  ],
+  "content_html": "\u003cp\u003eARC-AGI-2 is the second iteration of the Abstraction and Reasoning Corpus, the benchmark built around François Chollet's argument that intelligence is skill-acquisition efficiency, not memorized skill. Each task gives a few input-output grid examples and asks the solver to infer the underlying rule and apply it to a new case — puzzles with little in common with web-scale training data.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eVersion 2 was rebuilt specifically to close the loopholes that let systems crack the original: it curates tasks that resist brute-force program search and that don't yield to pattern-matching against training data, providing a more granular signal of genuine abstract reasoning. When it launched, frontier models that had posted high numbers on ARC-AGI-1 dropped to very low scores, while average humans still solved a majority of tasks — a deliberate gap.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eMost benchmarks saturate: models reach ceiling and the test stops discriminating. ARC-AGI-2 was engineered to keep separating systems precisely where it matters — novel reasoning rather than recall — which is why the major labs began reporting scores on it and why it became a closely watched proxy for real generalization rather than memorization.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "François Chollet",
+      "ARC Prize Foundation"
+    ],
+    "url": "https://arxiv.org/abs/2505.11831",
+    "published_at": "2025-05-19",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "reasoning"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2025-05-19",
+  "related": [
+    {
+      "id": "card_e9af36",
+      "slug": "on-the-measure-of-intelligence",
+      "type": "paper",
+      "title": "On the Measure of Intelligence (ARC)",
+      "hook": "Is a high benchmark score the same as intelligence? Chollet argues no — intelligence is how efficiently you acquire new skills, not how well you perform known ones.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2019-11-05"
+    },
+    {
+      "id": "card_24717f",
+      "slug": "gemini-3-1-pro",
+      "type": "news",
+      "title": "Gemini 3.1 Pro: Frontier Reasoning (2026)",
+      "hook": "Gemini 3.1 Pro pushes core reasoning past the Gemini 3 Pro baseline, scoring 77.1% verified on ARC-AGI-2 - a benchmark built to resist the memorization that inflates other scores.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-02-19"
+    },
+    {
+      "id": "card_9328c5",
+      "slug": "chatbot-arena",
+      "type": "paper",
+      "title": "Chatbot Arena: Ranking LLMs by Human Preference",
+      "hook": "How do you rank chatbots when there's no single right answer? Let people pick the better of two anonymous replies, then aggregate the votes into a leaderboard.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-03-07"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_cda7aa#0",
+      "format": "flip",
+      "prompt": "What was ARC-AGI-2 specifically rebuilt to resist?",
+      "back_html": "\u003cp\u003eThe brute-force program search and training-data pattern-matching that let systems crack the original ARC-AGI-1.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cda7aa#1",
+      "format": "quiz",
+      "prompt": "What happened at ARC-AGI-2's launch to models that had scored high on version 1?",
+      "choices": [
+        {
+          "text": "They dropped to very low scores while average humans still solved most tasks",
+          "correct": true
+        },
+        {
+          "text": "They scored even higher than on version 1",
+          "correct": false
+        },
+        {
+          "text": "They matched human performance exactly",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eFrontier models that posted high ARC-AGI-1 numbers fell to very low scores, while average humans still solved a majority — a deliberate gap.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cda7aa#2",
+      "format": "quiz",
+      "prompt": "Why did major labs start reporting ARC-AGI-2 scores?",
+      "choices": [
+        {
+          "text": "It stays unsaturated, separating systems on novel reasoning rather than recall",
+          "correct": true
+        },
+        {
+          "text": "It is the easiest benchmark to score well on",
+          "correct": false
+        },
+        {
+          "text": "It rewards memorizing web-scale training data",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eUnlike benchmarks that saturate, ARC-AGI-2 keeps discriminating on genuine generalization, making it a watched proxy for real reasoning.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "id": "card_f16914",
+  "slug": "moral-foundations-geometry",
+  "type": "paper",
+  "title": "How Language Models Organize Moral Knowledge",
+  "hook": "Six moral foundations, six linear probes: the directions neither collapse into one 'morality detector' nor sit independently — they span near-maximal dimensions while sharing a common component.",
+  "key_points": [
+    "Trains six independent linear probes on open-weight models, one per Moral Foundations Theory category.",
+    "The learned directions span a near-maximal number of independent dimensions while sharing a positive common component.",
+    "That shared component is moral-specific: mean pairwise cosine 0.26 versus 0.013 for a matched non-moral concept battery.",
+    "The geometry is consistent across architectures and scale, and reaches its integration regime early in pretraining — before probe accuracy saturates.",
+    "No evidence of the individualizing/binding split predicted by Moral Foundations Theory; structure reflects corpus statistics instead (an underpowered test — only 20 candidate partitions).",
+    "Most of a dilemma's variance encodes conflict-specific structure: the model represents moral tension, not a pre-resolved judgment."
+  ],
+  "content_html": "\u003cp\u003eDetecting that text is about morality is a low bar; models clear it easily. Reblitz-Richardson asks the harder question: do LLMs distinguish moral foundations from one another, and is there geometric structure in how they relate?\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe setup\u003c/h2\u003e\n\u003cp\u003eSix independent linear probes are trained on open-weight models, one per Moral Foundations Theory category — care/harm, fair/cheat, liberty/oppression, loyalty/betrayal, authority/subversion, sanctity/degradation — and the resulting directions are compared in representation space.\u003c/p\u003e\n\u003cp\u003eTwo null results were plausible: the directions could collapse into a single moral detector, or sit fully independent. Neither happens. They span a near-maximal number of independent dimensions \u003cem\u003ewhile\u003c/em\u003e sharing a positive common component. That shared component is the signature of integration, and it is moral-specific — mean pairwise cosine 0.26, against 0.013 for a matched non-moral concept battery built the same way. The geometry holds across architectures and scales, and arrives early in pretraining, well before probe accuracy saturates.\u003c/p\u003e\n\u003ch2\u003eWhat it doesn't find\u003c/h2\u003e\n\u003cp\u003eNo evidence of the individualizing/binding distinction that Moral Foundations Theory predicts; the structure looks more like corpus statistics. The author flags this as an underpowered test — only 20 candidate partitions exist.\u003c/p\u003e\n\u003ch2\u003eDilemmas\u003c/h2\u003e\n\u003cp\u003eExtending to moral dilemmas, each dilemma direction partially composes from its component foundations, at 2.7x a mismatched-pair baseline. But the majority of its variance encodes conflict-specific structure. The reading the paper offers: the model represents moral tension itself rather than a pre-resolved judgment — which is a more interesting object for alignment work than a scalar \u0026quot;how moral is this\u0026quot; signal.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Orion Reblitz-Richardson"
+    ],
+    "url": "https://arxiv.org/abs/2608.27402",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "ai-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "alignment",
+    "safety",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_a19b09",
+      "slug": "circuit-condensation",
+      "type": "paper",
+      "title": "Circuit Condensation: Train the Circuit Smaller",
+      "hook": "Circuit discovery on a frozen model returns hundreds of edges nobody can check. Post-train the model to route the behavior through fewer, and circuits shrink 8x on average — up to 316x.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-08-27"
+    },
+    {
+      "id": "card_683aef",
+      "slug": "constitutional-ai",
+      "type": "paper",
+      "title": "Constitutional AI",
+      "hook": "What if a model could critique and improve its own answers against a written set of principles, instead of relying on humans to label every harmful case?",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_f16914#0",
+      "format": "flip",
+      "prompt": "What would it have meant if the six moral probe directions had collapsed into one?",
+      "back_html": "\u003cp\u003eThat the model has a single undifferentiated morality detector — able to flag moral content but not to distinguish care from fairness from loyalty. They don't collapse.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f16914#1",
+      "format": "quiz",
+      "prompt": "What does the paper conclude about how models represent moral dilemmas?",
+      "choices": [
+        {
+          "text": "Mostly conflict-specific structure — the model encodes the tension rather than a resolved judgment",
+          "correct": true
+        },
+        {
+          "text": "Dilemmas are represented as a weighted average of the winning foundation",
+          "correct": false
+        },
+        {
+          "text": "Dilemmas have no distinguishable representation from single-foundation content",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDilemma directions partially compose from their component foundations at 2.7x a mismatched-pair baseline, but the majority of variance is specific to the conflict itself.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f16914#2",
+      "format": "flip",
+      "prompt": "How do we know the shared component across moral directions is moral-specific?",
+      "back_html": "\u003cp\u003eA matched non-moral concept battery, built identically, has mean pairwise cosine 0.013 versus 0.26 for the moral directions.\u003c/p\u003e"
+    }
+  ]
+}

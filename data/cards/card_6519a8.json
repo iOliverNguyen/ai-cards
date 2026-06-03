@@ -1,0 +1,109 @@
+{
+  "id": "card_6519a8",
+  "slug": "alayaworld-playable-video-world-generation",
+  "type": "paper",
+  "title": "AlayaWorld: An Open-Source Framework for Playable Video Worlds",
+  "hook": "Building a game world the old way means authoring every asset by hand. AlayaWorld generates it live instead — combat, spell-casting, monster summoning — and open-sources the whole pipeline.",
+  "key_points": [
+    "Traditional game-world production is labor-intensive, costly, hard to customize, and expensive to modify after deployment.",
+    "Video world models autoregressively synthesize future observations conditioned on current state and user interactions, letting playable worlds be generated online instead of hand-authored.",
+    "Trained on gameplay recordings and real-world video, capturing diverse visual appearances and physical dynamics — useful beyond gaming, including embodied intelligence.",
+    "AlayaWorld unifies the full stack — data prep, model architecture, training, inference acceleration, and deployment — in one modular, extensible open-source framework.",
+    "Ships reproducible pipelines, reference implementations, evaluation tools, and documentation, aiming to be a practical foundation for future generative-world research."
+  ],
+  "content_html": "\u003cp\u003eGame worlds have always been built the hard way: every asset, every interaction, authored by hand, expensive to change once shipped. AlayaWorld is a bet on a different paradigm — generate the world as you go, instead of building it in advance.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eRather than explicitly authoring every component of a virtual environment, video world models like AlayaWorld autoregressively synthesize future observations conditioned on the current world state and the user's actions, letting a playable world be generated online. Trained on both gameplay recordings and real-world video, the framework captures diverse visual appearances and physical dynamics, which the authors note opens up applications beyond gaming, including embodied intelligence. AlayaWorld itself enables open-ended real-time interaction — free navigation plus actions like combat, spell-casting, and monster summoning — and unifies the entire development pipeline, from data preparation through model architecture, training, inference acceleration, and deployment, inside one modular, extensible framework. Alongside the framework, the team releases reproducible pipelines, reference implementations, evaluation tools, and documentation, aiming to give the field a practical foundation for real-time generative-world research and applications. AlayaWorld Team and colleagues, arXiv 2026 (69 HF community upvotes).\u003c/p\u003e",
+  "source": {
+    "name": "hf-daily",
+    "authors": [
+      "AlayaWorld Team",
+      "Kaipeng Zhang",
+      "Chuanhao Li",
+      "Yifan Zhan",
+      "Yongtao Ge",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.06291",
+    "published_at": "2026-07-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "releases",
+    "papers-this-week"
+  ],
+  "tags": [
+    "generative",
+    "open-source",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-07",
+  "related": [
+    {
+      "id": "card_a71af8",
+      "slug": "multiplayer-interactive-world-models",
+      "type": "paper",
+      "title": "MIRA: A Multiplayer World Model for Rocket League",
+      "hook": "Single-player world models treat other agents as scenery. This one, trained on 10,000 hours of Rocket League, tracks four players' independent actions at once — and stays coherent for hours.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_7e087b",
+      "slug": "world-models-persistent-state",
+      "type": "paper",
+      "title": "World Models Lack a Persistent State",
+      "hook": "Today's video world models render great frames but treat the world like a tracking shot: look away and back, and off-screen events freeze instead of running on — the moon keeps orbiting unwatched.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    },
+    {
+      "id": "card_08a765",
+      "slug": "rynnworld-4d-embodied-world-models",
+      "type": "paper",
+      "title": "RynnWorld-4D: RGB-Depth-Flow World Models for Robot Manipulation",
+      "hook": "A robot needs to know how a scene's 3D structure will move, not just what it looks like. This world model predicts RGB, depth, and optical flow together, then hands the result straight to a policy.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-07"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_6519a8#0",
+      "format": "flip",
+      "prompt": "How does a video world model like AlayaWorld generate a playable game world, compared to traditional game development?",
+      "back_html": "\u003cp\u003eInstead of hand-authoring every asset and scripted behavior, it autoregressively synthesizes future observations conditioned on the current world state and the user's actions — generating a playable world online rather than building it explicitly upfront.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6519a8#1",
+      "format": "quiz",
+      "prompt": "What does AlayaWorld provide beyond just a trained model?",
+      "choices": [
+        {
+          "text": "A full-stack, modular open-source framework covering data preparation, architecture, training, inference acceleration, and deployment, plus reproducible pipelines and documentation",
+          "correct": true
+        },
+        {
+          "text": "Only a closed API with no released code",
+          "correct": false
+        },
+        {
+          "text": "A dataset release with no training or inference code",
+          "correct": false
+        },
+        {
+          "text": "A single fixed game world with no customization options",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAlayaWorld is positioned as infrastructure, not just a model: it unifies the complete development pipeline in one extensible framework and releases reference implementations and eval tools to support future research.\u003c/p\u003e"
+    }
+  ]
+}

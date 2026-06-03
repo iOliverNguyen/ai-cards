@@ -1,0 +1,129 @@
+{
+  "id": "card_686595",
+  "slug": "vlm-source-credibility-bias",
+  "type": "paper",
+  "title": "Brand as Memory: VLMs Trust the Masthead, Not the Evidence",
+  "hook": "Show a VLM the same article under a trusted outlet's logo versus an unknown one, and its verdict swings by 1.8x — a bias localized to three specific layers and steerable away.",
+  "key_points": [
+    "VLMs increasingly read news as images, where publisher identity (masthead, logo, domain) is visually present alongside the content.",
+    "CueTrust benchmark: across 7 VLMs and 5 surface cues, only outlet identity moves credibility judgments — not a named author, in-text authority, or page layout (clean negative controls).",
+    "Swapping only the masthead shifts credibility across an ~11 log-odds range that correlates with real-world outlet ratings (rho = 0.88 vs. Media Bias/Fact Check).",
+    "The bias is causally formed at layers 19-21, carried by interpretable sparse-autoencoder features, and overrides content evidence by about 1.8x.",
+    "Steering the localized direction cuts the override by 41% and generalizes to outlets never seen during steering."
+  ],
+  "content_html": "\u003cp\u003eFeed a vision-language model the same article image twice, changing only the masthead logo at the top, and its judgment of how credible the content is can swing dramatically — even though nothing in the actual text changed.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eAs VLMs increasingly read news and web pages as images rather than plain text, the publisher's identity is visually baked into the input alongside the content. The authors introduce \u003cstrong\u003eCueTrust\u003c/strong\u003e, a cross-model diagnostic testing which surface cues override an article's content evidence across seven VLMs and five candidate cues. Only outlet identity moves the needle — firing consistently from the masthead name, the logo image, or the bare domain — while clean negative controls (a named author, in-text authority claims, page layout) don't. For the masthead specifically, the effect is large and mechanistically traceable: swapping only the logo moves credibility across roughly an 11 log-odds range that tracks real professional outlet ratings (rho = 0.88 against Media Bias/Fact Check), is causally formed at layers 19-21, and is carried by interpretable sparse-autoencoder features that recur at the same relative location in a second model family. The prior overrides actual content by about 1.8x. Encouragingly, steering the localized direction cuts that override by 41% and generalizes to outlets the steering never saw — evidence the bias is causally used, not just decodable, and that it can be dialed back. Chih-Ting Liao and Xin Cao, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Chih-Ting Liao",
+      "Xin Cao"
+    ],
+    "url": "https://arxiv.org/abs/2607.03365",
+    "published_at": "2026-07-03",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "vlms",
+    "risks-policy",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "safety",
+    "vision",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-13",
+  "date": "2026-07-03",
+  "related": [
+    {
+      "id": "card_1745b7",
+      "slug": "sycophancy-emergent-misalignment",
+      "type": "paper",
+      "title": "When Flattery Breaks the Model: Sycophancy as a Driver of Emergent Misalignment",
+      "hook": "Teaching a model to flatter users into agreeing with wrong opinions can trigger broad misalignment — and learnable 'gates' can find and suppress the unsafe directions to reverse it.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-08"
+    },
+    {
+      "id": "card_e2857d",
+      "slug": "sae-interventions-unreliable",
+      "type": "paper",
+      "title": "SAE Interventions Are Unreliable",
+      "hook": "Clamping a 'harmful' sparse-autoencoder feature looks like it stops bad behavior — but this paper recovers it 95.8% of the time, exposing the gap between feature-level and real control.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-16"
+    },
+    {
+      "id": "card_426fcd",
+      "slug": "scaling-monosemanticity",
+      "type": "paper",
+      "title": "Scaling Monosemanticity: Features from Claude 3 Sonnet",
+      "hook": "Does dictionary learning survive at production scale? Anthropic found millions of features in Claude 3 Sonnet — and could steer the model by turning one up.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2024-05-21"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_686595#0",
+      "format": "flip",
+      "prompt": "What is the 'Source-Override Index' in the CueTrust benchmark measuring?",
+      "back_html": "\u003cp\u003eHow much a surface source cue (like a masthead, logo, or domain) shifts a VLM's credibility judgment relative to the article's actual content evidence.\u003c/p\u003e"
+    },
+    {
+      "id": "card_686595#1",
+      "format": "quiz",
+      "prompt": "Which surface cues actually moved VLM credibility judgments in the study?",
+      "choices": [
+        {
+          "text": "Outlet identity — masthead name, logo image, or bare domain",
+          "correct": true
+        },
+        {
+          "text": "A named author byline",
+          "correct": false
+        },
+        {
+          "text": "The page's visual layout",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe clean negative controls (author, in-text authority, layout) didn't move judgments; only outlet-identity cues did, and they worked whether shown as text, logo, or domain.\u003c/p\u003e"
+    },
+    {
+      "id": "card_686595#2",
+      "format": "flip",
+      "prompt": "Where is the brand-credibility bias causally located, and what happens when you steer against it?",
+      "back_html": "\u003cp\u003eIt's causally formed at layers 19-21, carried by interpretable sparse-autoencoder features. Steering the localized direction reduces the content-override effect by 41%, and this generalizes to outlets not used during steering.\u003c/p\u003e"
+    },
+    {
+      "id": "card_686595#3",
+      "format": "quiz",
+      "prompt": "How closely did the masthead-swap credibility shift track real-world media bias ratings?",
+      "choices": [
+        {
+          "text": "Strongly — rho = 0.88 against Media Bias/Fact Check ratings",
+          "correct": true
+        },
+        {
+          "text": "Not at all — the two measures were uncorrelated",
+          "correct": false
+        },
+        {
+          "text": "Only for one specific VLM out of seven tested",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe ~11 log-odds credibility range from swapping only the masthead correlated at rho = 0.88 with independent professional outlet ratings, suggesting the model has internalized real-world outlet reputations.\u003c/p\u003e"
+    }
+  ]
+}

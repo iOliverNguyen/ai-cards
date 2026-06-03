@@ -1,0 +1,116 @@
+{
+  "id": "card_3e4a5d",
+  "slug": "swe-bench",
+  "type": "paper",
+  "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+  "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+  "key_points": [
+    "2,294 task instances drawn from 12 popular Python repos, each pairing a real issue description with the merged fix PR.",
+    "Success requires editing an unfamiliar, multi-file codebase so the project's existing tests pass - a realistic software engineering task.",
+    "Early evaluated models resolved only a small fraction of tasks, exposing a gap between code-generation benchmarks and real-world engineering.",
+    "Now a headline metric for coding agent systems and a driver of agent scaffolding research."
+  ],
+  "content_html": "\u003cp\u003eJimenez and colleagues published SWE-bench in October 2023, arguing that function-level code generation benchmarks like HumanEval underestimate the difficulty of real software engineering. By collecting thousands of GitHub issues and their corresponding merged pull requests from popular open-source Python projects, they built a benchmark where a model must navigate an entire repository, understand existing code, and produce a patch that passes the project's test suite.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eEach task instance provides the repository at the state before the fix, the natural-language issue description, and a set of pass/fail tests that the correct fix should satisfy. A model or agent must generate a code patch - potentially spanning multiple files - that resolves the issue. Evaluation runs the project's tests in a controlled environment; a task is solved only if the relevant tests go from failing to passing without breaking others.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eSWE-bench reframed the capability question from \u0026quot;can a model write a function\u0026quot; to \u0026quot;can a model act as a software engineer on a real project.\u0026quot; The low initial solve rates spurred development of agent scaffolding, retrieval-augmented code editing, and tool-use frameworks. It is now a standard leaderboard for coding agent systems. Read the benchmark design and baseline results in the paper on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Carlos E. Jimenez",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2310.06770",
+    "published_at": "2023-10-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "evals-safety"
+  ],
+  "tags": [
+    "benchmark",
+    "nlp",
+    "agent",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2023-10-10",
+  "related": [
+    {
+      "id": "card_176fda",
+      "slug": "codex",
+      "type": "paper",
+      "title": "Codex: Evaluating Large Language Models Trained on Code",
+      "hook": "Fine-tune GPT on public GitHub code and you get a model that solves programming problems and powers GitHub Copilot - plus a new benchmark, HumanEval, that tests functional correctness.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2021-07-07"
+    },
+    {
+      "id": "card_063597",
+      "slug": "mmlu",
+      "type": "paper",
+      "title": "MMLU: Measuring Massive Multitask Language Understanding",
+      "hook": "Want one number for how broadly an LLM 'knows stuff'? MMLU is a 57-subject exam spanning history, law, medicine, and math — and it became a default yardstick.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-09-07"
+    },
+    {
+      "id": "card_3ce408",
+      "slug": "helm",
+      "type": "paper",
+      "title": "HELM: Holistic Evaluation of Language Models",
+      "hook": "A single accuracy number hides a lot. HELM evaluates language models across many scenarios and many metrics at once — and reports it all in the open.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-16"
+    },
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_3e4a5d#0",
+      "format": "quiz",
+      "prompt": "When is a SWE-bench task counted as solved?",
+      "choices": [
+        {
+          "text": "When the relevant tests go from failing to passing without breaking others",
+          "correct": true
+        },
+        {
+          "text": "When the patch matches the merged PR token-for-token",
+          "correct": false
+        },
+        {
+          "text": "When any single test in the repo passes",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEvaluation runs the project's tests in a controlled environment; the fix must turn failing tests green without regressions.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3e4a5d#1",
+      "format": "flip",
+      "prompt": "What makes SWE-bench harder than function-level benchmarks like HumanEval?",
+      "back_html": "\u003cp\u003eA model must navigate an unfamiliar multi-file repository, understand existing code, and produce a patch that passes the project's test suite.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3e4a5d#2",
+      "format": "flip",
+      "prompt": "What did SWE-bench's low initial solve rates spur in the field?",
+      "back_html": "\u003cp\u003eDevelopment of agent scaffolding, retrieval-augmented code editing, and tool-use frameworks; it became a standard coding-agent leaderboard.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "id": "card_c23bf2",
+  "slug": "bahdanau-attention",
+  "type": "paper",
+  "title": "Neural Machine Translation by Jointly Learning to Align and Translate",
+  "hook": "Cramming a whole sentence into one vector loses information. This 2014 paper let the decoder look back at relevant source words at each step — the original attention mechanism.",
+  "key_points": [
+    "Introduced attention: the decoder learns to focus on relevant parts of the input at each output step.",
+    "Removed the fixed-vector bottleneck that limited basic encoder–decoder models.",
+    "Improved translation quality, especially on longer sentences.",
+    "Produces soft alignments between source and target words as a byproduct.",
+    "Seeded the core idea that Transformers later built on."
+  ],
+  "content_html": "\u003cp\u003eBahdanau, Cho, and Bengio fixed the biggest weakness of encoder–decoder translation: forcing the whole source sentence through a single fixed-length vector. Their answer was attention — letting the decoder dynamically look back at the most relevant input words as it produces each output word. It is the mechanism the entire Transformer era was built on.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eInstead of relying on one summary vector, the encoder keeps a representation for every input word. At each decoding step, the model computes a set of weights scoring how relevant each input word is to the word being generated, then blends those representations into a context vector tailored to that step. Because the weights are learned end to end, the model figures out for itself which source words to align with each target word.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAttention lifted the information bottleneck and notably improved translation of long sentences, where the fixed-vector approach faltered. More importantly, it introduced the idea that a model can selectively focus on parts of its input — the seed that grew into self-attention and the Transformer architecture powering modern language models.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Dzmitry Bahdanau",
+      "Kyunghyun Cho",
+      "Yoshua Bengio"
+    ],
+    "url": "https://arxiv.org/abs/1409.0473",
+    "published_at": "2014-09-01",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rnns",
+    "attention-mechanisms"
+  ],
+  "tags": [
+    "nlp",
+    "architecture",
+    "landmark"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2014-09-01",
+  "related": [
+    {
+      "id": "card_9cee40",
+      "slug": "seq2seq",
+      "type": "paper",
+      "title": "Sequence to Sequence Learning",
+      "hook": "Translate a sentence by reading it into one vector, then writing a new sentence out of that vector. This encoder–decoder recipe powered early neural machine translation.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2014-09-10"
+    },
+    {
+      "id": "card_7ed03d",
+      "slug": "what-is-attention",
+      "type": "concept",
+      "title": "What Is Attention?",
+      "hook": "Attention lets a model decide what to focus on: it scores how relevant each piece of input is to the current question, then blends them by those scores.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2018-06-24"
+    },
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_9cee40",
+      "slug": "seq2seq",
+      "type": "paper",
+      "title": "Sequence to Sequence Learning",
+      "hook": "Translate a sentence by reading it into one vector, then writing a new sentence out of that vector. This encoder–decoder recipe powered early neural machine translation.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2014-09-10"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_c23bf2#0",
+      "format": "flip",
+      "prompt": "How does attention let the decoder avoid the fixed-vector bottleneck?",
+      "back_html": "\u003cp\u003eThe encoder keeps a representation for every input word; at each step the decoder blends them by learned relevance weights into a context vector.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c23bf2#1",
+      "format": "quiz",
+      "prompt": "Where did attention most notably improve translation quality?",
+      "choices": [
+        {
+          "text": "On longer sentences",
+          "correct": true
+        },
+        {
+          "text": "On very short sentences",
+          "correct": false
+        },
+        {
+          "text": "Only on the training set",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLifting the fixed-vector bottleneck especially helped long sentences, where the single-vector approach faltered.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c23bf2#2",
+      "format": "flip",
+      "prompt": "What useful byproduct does the attention mechanism produce?",
+      "back_html": "\u003cp\u003eSoft alignments between source and target words, since the learned weights show which input words align with each output word.\u003c/p\u003e"
+    }
+  ]
+}

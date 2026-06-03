@@ -1,0 +1,127 @@
+{
+  "id": "card_a7468c",
+  "slug": "attention-is-all-you-need",
+  "type": "paper",
+  "title": "Attention Is All You Need",
+  "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+  "key_points": [
+    "Introduced the Transformer: stacked self-attention and feed-forward layers, no recurrence or convolution.",
+    "Self-attention lets every position see every other in one step, capturing long-range context.",
+    "Because there's no sequential recurrence, training parallelizes well across the sequence.",
+    "Became the backbone of GPT, BERT, and most modern large language models."
+  ],
+  "content_html": "\u003cp\u003eVaswani and colleagues introduced the Transformer, an architecture built entirely from attention and feed-forward layers, with no recurrence or convolution. By relying on self-attention to relate positions in a sequence, the model could be trained in parallel rather than step by step, and it set new results on machine translation. The design has since become the backbone of GPT, BERT, and nearly every modern large language model.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe Transformer processes a whole sequence at once. Each layer uses self-attention so every token can directly attend to every other token, then passes the result through a position-wise feed-forward network. Residual connections and layer normalization keep training stable as layers stack up. Since words no longer arrive one at a time through a recurrent loop, the model adds positional encodings so it still knows the order of the sequence.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eRemoving recurrence was the key unlock: it let these models use modern hardware efficiently and scale to enormous sizes and datasets. That scalability is precisely what made today's large language models possible. Almost every notable language model since 2018 is a descendant of this design, which is why it's considered one of the landmark papers in deep learning.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ashish Vaswani",
+      "Noam Shazeer",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/1706.03762",
+    "published_at": "2017-06-12",
+    "license": "arXiv (open access)"
+  },
+  "resources": [
+    {
+      "title": "The Illustrated Transformer",
+      "url": "https://jalammar.github.io/illustrated-transformer/"
+    },
+    {
+      "title": "The Annotated Transformer",
+      "url": "https://nlp.seas.harvard.edu/annotated-transformer/"
+    }
+  ],
+  "topic_ids": [
+    "transformers"
+  ],
+  "tags": [
+    "attention",
+    "architecture",
+    "nlp",
+    "landmark"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2017-06-12",
+  "related": [
+    {
+      "id": "card_32f3c7",
+      "slug": "bert",
+      "type": "paper",
+      "title": "BERT: Pretraining Deep Bidirectional Transformers",
+      "hook": "What if a model read a sentence both directions at once? BERT did, by masking words and predicting them — and made pretrain-then-fine-tune the default recipe in NLP.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2018-10-11"
+    },
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    },
+    {
+      "id": "card_4ecc14",
+      "slug": "the-illustrated-transformer",
+      "type": "resource",
+      "title": "The Illustrated Transformer",
+      "hook": "Before you tackle the Transformer paper, watch a sentence flow through one — query, key, value, and all — in clear pictures.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2018-06-27"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7ed03d",
+      "slug": "what-is-attention",
+      "type": "concept",
+      "title": "What Is Attention?",
+      "hook": "Attention lets a model decide what to focus on: it scores how relevant each piece of input is to the current question, then blends them by those scores.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2018-06-24"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_a7468c#0",
+      "format": "flip",
+      "prompt": "Why can the Transformer be trained in parallel across a sequence?",
+      "back_html": "\u003cp\u003eIt has no sequential recurrence — self-attention relates all positions in one step, so tokens don't have to be processed one at a time.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a7468c#1",
+      "format": "quiz",
+      "prompt": "Why does the Transformer add positional encodings?",
+      "choices": [
+        {
+          "text": "Without recurrence it has no inherent sense of token order, so encodings supply position",
+          "correct": true
+        },
+        {
+          "text": "To normalize activations between stacked layers",
+          "correct": false
+        },
+        {
+          "text": "To let each token attend only to nearby tokens",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSince words no longer arrive through a recurrent loop, positional encodings tell the model the order of the sequence.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a7468c#2",
+      "format": "flip",
+      "prompt": "What was the key unlock from removing recurrence?",
+      "back_html": "\u003cp\u003eIt let models use modern hardware efficiently and scale to enormous sizes and datasets — the scalability that made today's LLMs possible.\u003c/p\u003e"
+    }
+  ]
+}

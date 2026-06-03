@@ -1,0 +1,92 @@
+{
+  "id": "card_302178",
+  "slug": "leanstral-1-5-mistral",
+  "type": "news",
+  "title": "Leanstral 1.5: Mistral's Open Model for Formal Verification",
+  "hook": "A 6B-active-parameter open model that saturates miniF2F and solves 587 of 672 PutnamBench problems — and found five previously unknown bugs across 57 real repositories.",
+  "key_points": [
+    "Leanstral 1.5, Apache-2.0 licensed, has 6B active parameters and specializes in formal verification and automated theorem proving.",
+    "Saturates miniF2F, solves 587/672 PutnamBench problems, and sets state-of-the-art on FATE-H (87%) and FATE-X (34%).",
+    "Trained through mid-training, supervised fine-tuning, and RL with CISPO, aimed at agentic proof engineering and real-world code verification.",
+    "Found 5 previously unknown bugs across 57 tested repositories — formal verification catching real-world issues, not just benchmark problems."
+  ],
+  "content_html": "\u003cp\u003eFormal verification is the strongest guarantee software correctness can get, but writing the proofs is famously slow work even for experts. Mistral's Leanstral 1.5 targets exactly that bottleneck, and ships it as an open, Apache-2.0 model.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eWith 6B active parameters, Leanstral 1.5 delivers a major jump in formal-verification capability: it saturates miniF2F, solves 587 of 672 PutnamBench problems, and sets state-of-the-art results on FATE-H (87%) and FATE-X (34%). The model went through mid-training, supervised fine-tuning, and reinforcement learning with CISPO, aimed squarely at agentic proof engineering and real-world code verification. The most concrete evidence its capability generalizes past curated benchmarks: testing it against 57 real repositories turned up five previously unknown bugs. Announced via Mistral AI, reported on r/LocalLLaMA, 2026-07-03.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit (r/LocalLLaMA)",
+    "authors": [
+      "Mistral AI"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1umgdhx/mistral_released_leanstral15119ba6b",
+    "published_at": "2026-07-03",
+    "license": "Community post"
+  },
+  "topic_ids": [
+    "releases",
+    "lab-updates"
+  ],
+  "tags": [
+    "reasoning",
+    "open-source",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-03",
+  "related": [
+    {
+      "id": "card_5ff636",
+      "slug": "aria-code-agents-software-verification",
+      "type": "paper",
+      "title": "Aria: Letting a Code Agent Write Its Own Formal Proofs",
+      "hook": "Prior LLM provers force the model into a fixed, human-designed strategy and still prove only a fraction of their targets. A free-roaming Claude Code agent, unconstrained, proves every single one.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-07"
+    },
+    {
+      "id": "card_eab680",
+      "slug": "mistral-medium-3",
+      "type": "news",
+      "title": "Mistral Medium 3",
+      "hook": "Mistral Medium 3 chased frontier-class quality at a fraction of the cost — 'medium is the new large' — aimed squarely at enterprise deployment.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2025-05-07"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_302178#0",
+      "format": "flip",
+      "prompt": "What is Leanstral 1.5 specialized for, and what benchmark result stands out?",
+      "back_html": "\u003cp\u003eFormal verification and automated theorem proving. It saturates miniF2F and solves 587 of 672 PutnamBench problems, with state-of-the-art results on FATE-H and FATE-X.\u003c/p\u003e"
+    },
+    {
+      "id": "card_302178#1",
+      "format": "quiz",
+      "prompt": "Beyond benchmark scores, what real-world result did Leanstral 1.5 demonstrate?",
+      "choices": [
+        {
+          "text": "It found 5 previously unknown bugs across 57 tested real-world repositories",
+          "correct": true
+        },
+        {
+          "text": "It was deployed as the default model in a major IDE",
+          "correct": false
+        },
+        {
+          "text": "It outperformed every closed frontier model on all coding benchmarks",
+          "correct": false
+        },
+        {
+          "text": "It requires no training data, learning purely from formal specifications",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBeyond saturating math-proof benchmarks, Leanstral 1.5's formal verification approach caught genuinely unknown bugs in real code — evidence its proof-engineering capability transfers past curated test sets.\u003c/p\u003e"
+    }
+  ]
+}

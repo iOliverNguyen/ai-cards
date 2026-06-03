@@ -1,0 +1,97 @@
+{
+  "id": "card_9237d7",
+  "slug": "deduplicating-training-data",
+  "type": "paper",
+  "title": "Deduplicating Training Data Makes LMs Better",
+  "hook": "Training corpora are full of copies — one 61-word sentence shows up 60,000+ times in C4. Strip the duplicates and models memorize far less and evaluate more honestly.",
+  "key_points": [
+    "Corpora hold many near-duplicates; one 61-word sentence appears 60,000+ times in C4.",
+    "Deduplication cuts verbatim memorized output by roughly 10x.",
+    "It also improves training efficiency.",
+    "It reduces train-test overlap, which affected about 4% of validation examples.",
+    "Less overlap enables more accurate evaluation."
+  ],
+  "content_html": "\u003cp\u003eKatherine Lee, Daphne Ippolito, Andrew Nystrom, and colleagues found that language-model training corpora contain many near-duplicate examples and repeated substrings — strikingly, one 61-word sentence appears over 60,000 times in the C4 dataset. They show that cleaning this up changes how models behave.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eAfter deduplicating the data, the authors measure roughly a 10x reduction in verbatim memorized output, meaning the model regurgitates training text far less often. Deduplication also improves training efficiency and cuts down train-test overlap, which they find had contaminated about 4% of validation examples.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eLess overlap between training and test data enables more accurate evaluation, since a model can no longer score well simply by having seen the answers. Together with the drop in memorization, the work makes a practical case that careful data hygiene is a cheap, high-leverage step before training a language model.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Katherine Lee",
+      "Daphne Ippolito",
+      "Andrew Nystrom",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2107.06499",
+    "published_at": "2021-07-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "data"
+  ],
+  "tags": [
+    "dataset",
+    "nlp",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2021-07-14",
+  "related": [
+    {
+      "id": "card_7a5e17",
+      "slug": "the-pile",
+      "type": "dataset",
+      "title": "The Pile: 800GB of Diverse Text",
+      "hook": "Web text alone leaves gaps. The Pile stitches together 22 curated sources — academic and professional — so a language model picks up knowledge plain web crawls miss.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-12-31"
+    },
+    {
+      "id": "card_85f66a",
+      "slug": "scaling-laws",
+      "type": "paper",
+      "title": "Scaling Laws for Neural Language Models",
+      "hook": "Loss doesn't drop randomly as models grow — it follows a smooth power law in size, data, and compute. That predictability is what made betting on bigger models rational.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2020-01-23"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_9237d7#0",
+      "format": "flip",
+      "prompt": "What is the main effect of deduplicating training data on a model's behavior?",
+      "back_html": "\u003cp\u003eIt cuts verbatim memorized output by roughly 10x, so the model regurgitates training text far less often.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9237d7#1",
+      "format": "quiz",
+      "prompt": "Why does deduplication enable more accurate evaluation?",
+      "choices": [
+        {
+          "text": "It reduces train-test overlap, so a model can't score by having seen the answers",
+          "correct": true
+        },
+        {
+          "text": "It increases the number of test examples",
+          "correct": false
+        },
+        {
+          "text": "It makes the model larger",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDeduplication cut train-test overlap that had contaminated about 4% of validation examples, enabling more honest evaluation.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9237d7#2",
+      "format": "flip",
+      "prompt": "What surprising example shows how much duplication corpora contain?",
+      "back_html": "\u003cp\u003eOne 61-word sentence appears over 60,000 times in the C4 dataset.\u003c/p\u003e"
+    }
+  ]
+}

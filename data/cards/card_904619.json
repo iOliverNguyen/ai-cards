@@ -1,0 +1,99 @@
+{
+  "id": "card_904619",
+  "slug": "contrastive-decoding-diffing",
+  "type": "paper",
+  "title": "Contrastive Decoding Diffing: Extracting Verbatim Finetuning Data With Just Logits",
+  "hook": "You don't need the weights to steal what a model was fine-tuned on — you barely need anything. CDD recovers verbatim training text using only the logits a model already hands you.",
+  "key_points": [
+    "Prior work (Minder, Dumas et al.'s 'Activation Difference Lens') showed narrow fine-tuning leaves readable traces in activation differences between base and fine-tuned models — but it needs full weight/activation access and only recovers vague, domain-level descriptions.",
+    "Contrastive Decoding Diffing (CDD) is a model-diffing method that instead works from grey-box logit access alone — no weights, no activations, no probe corpus.",
+    "By contrasting the base and fine-tuned models' next-token logits, CDD recovers actual verbatim content the fine-tuned model was trained on, not just a vague topic summary.",
+    "It extends model-diffing from a white-box research technique into a more accessible extraction attack against narrowly fine-tuned LLMs."
+  ],
+  "content_html": "\u003cp\u003eIf a lab fine-tunes a model on sensitive or proprietary data, how much protection does keeping the weights private actually buy them? Less than it might seem, according to a model-diffing technique shared on r/MachineLearning called Contrastive Decoding Diffing (CDD).\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eEarlier work (Minder, in \u0026quot;Narrow Finetuning Leaves Clearly Readable Traces in Activation Differences\u0026quot;) showed that fine-tuning leaves a detectable fingerprint in the difference between a base model's and fine-tuned model's internal activations. Their method, the Activation Difference Lens (ADL), could steer generation using that difference — but it's white-box (needs full weight and activation access) and only recovers a vague, domain-level sense of what the model was tuned on. CDD pushes the same idea much further while asking for much less: using only grey-box logit access — no weights, no activations, no probe corpus of guesses — it contrasts the base and fine-tuned models' output logits to recover actual verbatim content from the fine-tuning data. That turns model diffing from a research tool for understanding fine-tuning into a practical extraction attack that works against models an attacker can only query, not inspect internally.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit (r/MachineLearning)",
+    "authors": [
+      "/u/CebulkaZapiekana"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1umn2dk/contrastive_decoding_diffing_cdd_recovering",
+    "published_at": "2026-07-03",
+    "license": "Community post"
+  },
+  "topic_ids": [
+    "interpretability",
+    "risks-policy",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "safety",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-13",
+  "date": "2026-07-03",
+  "related": [
+    {
+      "id": "card_a19552",
+      "slug": "warp-recovering-training-data-portfolios",
+      "type": "paper",
+      "title": "WARP: Weight-Space Analysis for Recovering Training Data Portfolios",
+      "hook": "Labs rarely disclose their data mixture recipes — but WARP shows you can recover a fine-tuned model's training-domain proportions just from its released weights, no training data required.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-02"
+    },
+    {
+      "id": "card_419bc4",
+      "slug": "propensity-aware-memorization",
+      "type": "paper",
+      "title": "Can vs. Will: Propensity-Aware Memorization in LLMs",
+      "hook": "Most memorization tests ask whether you can force a model to spit out training data. This one asks a sharper question: does it leak under ordinary use? The two answers are very different.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-04"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_904619#0",
+      "format": "flip",
+      "prompt": "What access does Contrastive Decoding Diffing (CDD) need to extract training data from a fine-tuned model?",
+      "back_html": "\u003cp\u003eOnly grey-box logit access — the next-token probabilities the model already outputs. No weight access, no activation access, and no probe corpus of candidate documents.\u003c/p\u003e"
+    },
+    {
+      "id": "card_904619#1",
+      "format": "quiz",
+      "prompt": "How does CDD improve on the prior white-box method (Activation Difference Lens / Minder)?",
+      "choices": [
+        {
+          "text": "It recovers actual verbatim fine-tuning content from logits alone, versus ADL's vague domain-level description that needed full weight/activation access",
+          "correct": true
+        },
+        {
+          "text": "It requires more compute but achieves the same vague topic-level output as ADL",
+          "correct": false
+        },
+        {
+          "text": "It only works when the attacker already has the original training corpus",
+          "correct": false
+        },
+        {
+          "text": "It is strictly less powerful than ADL but easier to run",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eADL needed white-box weight/activation access and only surfaced a rough topic. CDD needs just logit access and recovers verbatim content — a stronger extraction result from a weaker access requirement, which is what makes it a more accessible attack.\u003c/p\u003e"
+    },
+    {
+      "id": "card_904619#2",
+      "format": "flip",
+      "prompt": "Why does CDD matter for model safety even though it doesn't touch weights?",
+      "back_html": "\u003cp\u003eIt shows that narrowly fine-tuned models can leak verbatim training content to an attacker who only has ordinary API-level logit access — no need to break in and grab weights first, lowering the bar for extraction attacks.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "id": "card_1ccfb1",
+  "slug": "veo-3",
+  "type": "news",
+  "title": "Veo 3",
+  "hook": "Google's Veo 3 generates video with synchronized native audio — dialogue, sound effects, and ambient noise produced together with the picture, not dubbed on after.",
+  "key_points": [
+    "Google DeepMind's video model, unveiled at Google I/O in May 2025.",
+    "Generates synchronized audio — speech, sound effects, ambient noise — natively with the video.",
+    "A leap from silent generation: the clip and its soundtrack are produced together.",
+    "Followed by Veo 3.1 later in 2025 with higher resolution and longer clips."
+  ],
+  "content_html": "\u003cp\u003eVeo 3, unveiled by Google DeepMind at I/O in May 2025, pushed text-to-video past silent clips: it generates synchronized audio — dialogue, sound effects, and ambient noise — as part of the same generation, rather than producing a video and adding sound separately. The result is clips where lip movements, footsteps, and background ambience line up with what's on screen.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's new\u003c/h2\u003e\n\u003cp\u003eThe headline capability is native, synchronized audio. Earlier video generators produced silent footage that had to be scored or dubbed afterward; Veo 3 models the soundtrack jointly with the visuals, so the audio matches the action. Google paired it with improved visual quality and physical consistency, and followed up with Veo 3.1 later in 2025 adding higher resolution and longer durations.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eSound is half of video, and generating it jointly is both a technical and a creative step change — it makes generated clips feel like finished media rather than mood reels. Veo 3 and OpenAI's Sora 2 racing to synchronized audio in 2025 marked the moment AI video moved from impressive demos toward something usable for real production.\u003c/p\u003e",
+  "source": {
+    "name": "Google DeepMind",
+    "authors": [
+      "Google DeepMind"
+    ],
+    "url": "https://deepmind.google/models/veo/",
+    "published_at": "2025-05-20",
+    "license": "Google DeepMind"
+  },
+  "topic_ids": [
+    "video-audio",
+    "releases"
+  ],
+  "tags": [
+    "generative",
+    "multimodal"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2025-05-20",
+  "related": [
+    {
+      "id": "card_2e9343",
+      "slug": "sora",
+      "type": "news",
+      "title": "Sora: Video Generation as World Simulation",
+      "hook": "OpenAI's Sora generates minute-long high-fidelity video from text by treating video as space-time patches - and frames the whole task as learning a world simulator.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2024-02-15"
+    },
+    {
+      "id": "card_edc166",
+      "slug": "sora-2",
+      "type": "news",
+      "title": "Sora 2",
+      "hook": "OpenAI's Sora 2 added synchronized audio and sharper physical consistency — and shipped inside a TikTok-style social app where you remix each other's generations.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-09-30"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_1ccfb1#0",
+      "format": "flip",
+      "prompt": "What is the headline capability of Veo 3?",
+      "back_html": "\u003cp\u003eNative, synchronized audio — dialogue, sound effects, and ambient noise modeled jointly with the visuals, not dubbed on afterward.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1ccfb1#1",
+      "format": "quiz",
+      "prompt": "How does Veo 3's audio differ from earlier video generators?",
+      "choices": [
+        {
+          "text": "It models the soundtrack jointly with the video, so audio matches the action",
+          "correct": true
+        },
+        {
+          "text": "It produces silent footage that must be scored separately",
+          "correct": false
+        },
+        {
+          "text": "It only adds background music, never dialogue",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEarlier generators produced silent footage scored or dubbed afterward; Veo 3 models the soundtrack jointly so lip movements, footsteps, and ambience line up.\u003c/p\u003e"
+    }
+  ]
+}

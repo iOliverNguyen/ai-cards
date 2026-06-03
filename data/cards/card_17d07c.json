@@ -1,0 +1,112 @@
+{
+  "id": "card_17d07c",
+  "slug": "predictive-validity-agent-evals",
+  "type": "paper",
+  "title": "Beyond Static Leaderboards for Agents",
+  "hook": "Topping an agent leaderboard doesn't mean it'll work when deployed: aggregate-score rankings don't transfer out-of-distribution. Rank by predictive validity instead.",
+  "key_points": [
+    "No single agent benchmark covers more than four or five of the dimensions real deployment exposes.",
+    "Rankings from aggregate scores don't transfer to out-of-distribution settings — public-to-hidden retrospectives show rank instability.",
+    "Proposes ranking by predictive validity: the correlation between in-sample and out-of-sample rank, not the in-sample mean.",
+    "Aggregates 14 parallel studies plus 7 prior benchmarks into a 12-tier apparatus exposing dimensions HELM-style leaderboards collapse."
+  ],
+  "content_html": "\u003cp\u003eAgent benchmarks are multiplying fast, but they all share a blind spot: no single one touches more than four or five of the many dimensions that deployment actually exposes. This position paper argues that the standard move — collapse everything into an aggregate score and rank — quietly breaks down when agents leave the lab.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe argument\u003c/h2\u003e\n\u003cp\u003eDrawing on fourteen parallel deep-dive studies of an MCP-based industrial-agent benchmark plus seven prior benchmarks, the authors show that aggregate-score rankings don't transfer to out-of-distribution settings, with public-to-hidden competition retrospectives offering direct evidence of rank instability. Their fix: rank configurations by \u003cem\u003epredictive validity\u003c/em\u003e — the correlation between in-sample and out-of-sample rank — rather than by in-sample mean. They lay out a twelve-tier measurement apparatus that surfaces deployment-relevant dimensions which HELM-style leaderboards collapse, and operationalize the position with three falsifiable out-of-distribution criteria.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAs agents move into production, \u0026quot;which model tops the leaderboard?\u0026quot; is the wrong question if that ranking doesn't survive distribution shift. Predictive validity reframes evaluation around what teams actually care about — will this configuration still win on cases it hasn't seen? — and gives benchmark designers a concrete target to report. The authors are careful that existing evidence only partly supports the claim, and close with a pre-registered pilot.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Dhaval C. Patel",
+      "Kaoutar El Maghraoui",
+      "Shuxin Lin",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.19704",
+    "published_at": "2026-06-18",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evaluation",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "agent",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-22",
+  "date": "2026-06-18",
+  "related": [
+    {
+      "id": "card_3ce408",
+      "slug": "helm",
+      "type": "paper",
+      "title": "HELM: Holistic Evaluation of Language Models",
+      "hook": "A single accuracy number hides a lot. HELM evaluates language models across many scenarios and many metrics at once — and reports it all in the open.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-16"
+    },
+    {
+      "id": "card_9328c5",
+      "slug": "chatbot-arena",
+      "type": "paper",
+      "title": "Chatbot Arena: Ranking LLMs by Human Preference",
+      "hook": "How do you rank chatbots when there's no single right answer? Let people pick the better of two anonymous replies, then aggregate the votes into a leaderboard.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-03-07"
+    },
+    {
+      "id": "card_b96ee0",
+      "slug": "evoarena",
+      "type": "paper",
+      "title": "EvoArena: Testing Agents in Environments That Keep Changing",
+      "hook": "Most agent benchmarks freeze the world. EvoArena makes the environment keep updating beneath the agent — and finds today's agents crack, averaging under 40%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-11"
+    },
+    {
+      "id": "card_ddce7e",
+      "slug": "agent-benchmark-protocol-validity",
+      "type": "paper",
+      "title": "Do Agent Benchmarks Measure Capability?",
+      "hook": "An agent score only means something if the task still requires the skill it claims to test. Auditing 2,385 traces, two-thirds showed the agent taking a shortcut instead.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_17d07c#0",
+      "format": "flip",
+      "prompt": "What is 'predictive validity' as a way to rank agent configurations?",
+      "back_html": "\u003cp\u003eThe correlation between a configuration's in-sample rank and its out-of-sample rank — measuring whether a leaderboard position actually predicts performance on unseen, deployment-like settings, rather than just reporting the in-sample mean.\u003c/p\u003e"
+    },
+    {
+      "id": "card_17d07c#1",
+      "format": "quiz",
+      "prompt": "What core problem does the paper identify with aggregate-score agent leaderboards?",
+      "choices": [
+        {
+          "text": "Their rankings don't transfer to out-of-distribution, deployment-relevant settings",
+          "correct": true
+        },
+        {
+          "text": "They are too expensive to compute",
+          "correct": false
+        },
+        {
+          "text": "They only work for vision models",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors argue aggregate scores systematically underspecify deployed-agent evaluation; public-to-hidden competition retrospectives provide direct evidence that ranks are unstable out-of-distribution.\u003c/p\u003e"
+    }
+  ]
+}

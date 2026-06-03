@@ -1,0 +1,108 @@
+{
+  "id": "card_08a765",
+  "slug": "rynnworld-4d-embodied-world-models",
+  "type": "paper",
+  "title": "RynnWorld-4D: RGB-Depth-Flow World Models for Robot Manipulation",
+  "hook": "A robot needs to know how a scene's 3D structure will move, not just what it looks like. This world model predicts RGB, depth, and optical flow together, then hands the result straight to a policy.",
+  "key_points": [
+    "Argues that synchronized RGB, depth, and optical flow (RGB-DF) form a physically grounded representation of 4D scene dynamics — closer to what a manipulation policy actually needs than 2D pixel video alone.",
+    "RynnWorld-4D co-produces future RGB, depth, and optical flow from one RGB-D image plus a language instruction, in a single unified diffusion process.",
+    "A tri-branch architecture combines cross-modal attention with frame-wise 3D RoPE, keeping appearance, geometry, and motion evolving consistently together.",
+    "Trained on Rynn4DDataset 1.0: 254.4 million frames of egocentric human and robot manipulation video with pseudo-labeled depth and flow.",
+    "RynnWorld-4D-Policy reads the model's internal 4D representations directly (skipping expensive multi-step denoising) to output actions in closed loop, reaching state-of-the-art on real-world dexterous bimanual manipulation."
+  ],
+  "content_html": "\u003cp\u003ePredicting what a scene will look like next is one problem. Predicting how its 3D structure will actually move under a robot's touch is a harder, different one — and this paper argues most video world models only solve the first.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eRynnWorld-4D's core bet is that synchronized RGB, depth, and optical flow (RGB-DF) capture a scene's underlying 4D dynamics in a way plain pixel video doesn't: aligning visual appearance with geometric structure and motion creates a representation much closer to the low-level end-effector actions a manipulation policy actually needs, narrowing the gap between \u0026quot;predicting the world\u0026quot; and \u0026quot;controlling a robot in it.\u0026quot; The model co-produces future RGB frames, depth maps, and optical flow from a single RGB-D image and a language instruction, all within one unified diffusion process, using a tri-branch architecture that combines cross-modal attention with frame-wise 3D RoPE so appearance, geometry, and motion evolve consistently together. To train at scale, the team curated Rynn4DDataset 1.0 — over 254.4 million frames of egocentric human and robot manipulation video with pseudo-labeled depth and flow. The payoff comes through RynnWorld-4D-Policy, an inverse-dynamics head that reads the world model's internal 4D representations in a single forward pass (skipping expensive multi-step denoising) to output actions in closed loop, reaching state-of-the-art results on real-world dexterous bimanual manipulation, especially tasks demanding spatial precision and tight temporal coordination. Haoyu Zhao and colleagues, arXiv 2026 (72 HF community upvotes, the top-upvoted paper in this batch).\u003c/p\u003e",
+  "source": {
+    "name": "hf-daily",
+    "authors": [
+      "Haoyu Zhao",
+      "Xingyue Zhao",
+      "Siteng Huang",
+      "Xin Li",
+      "Deli Zhao",
+      "Zhongyu Li"
+    ],
+    "url": "https://arxiv.org/abs/2607.06559",
+    "published_at": "2026-07-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "papers-this-week"
+  ],
+  "tags": [
+    "generative",
+    "vision",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-07",
+  "related": [
+    {
+      "id": "card_296943",
+      "slug": "dreamerv3",
+      "type": "paper",
+      "title": "DreamerV3: Mastering Domains through World Models",
+      "hook": "Instead of learning only from real experience, DreamerV3 builds a world model and practices inside its own imagination — one fixed config, 150+ tasks.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2023-01-10"
+    },
+    {
+      "id": "card_b9d1db",
+      "slug": "world-action-models-survey",
+      "type": "paper",
+      "title": "World Action Models: A Survey",
+      "hook": "Robots are learning to imagine the future before acting. This survey untangles 'world action models' from video generators and VLA policies — and finds them converging on one idea.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    },
+    {
+      "id": "card_162a5c",
+      "slug": "mop-jepa-hard-assigned-predictors",
+      "type": "paper",
+      "title": "MoP-JEPA: Fixing JEPA's Blind Spot for Branching Futures",
+      "hook": "A single deterministic predictor can't represent a fork in the road — it averages the branches into a state that matches nowhere. This paper proves it, then fixes it with one head per future.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_08a765#0",
+      "format": "flip",
+      "prompt": "Why do the authors argue RGB-depth-flow (RGB-DF) is a better world-model representation than plain RGB video for robotic manipulation?",
+      "back_html": "\u003cp\u003eRGB-DF synchronizes visual appearance with 3D geometric structure and motion, aligning the representation much more closely with the low-level end-effector actions a manipulation policy needs — narrowing the gap between world prediction and actually controlling a robot.\u003c/p\u003e"
+    },
+    {
+      "id": "card_08a765#1",
+      "format": "quiz",
+      "prompt": "How does RynnWorld-4D-Policy turn the world model's predictions into robot actions efficiently?",
+      "choices": [
+        {
+          "text": "It reads the world model's internal 4D representations directly in a single forward pass, bypassing the expensive multi-step denoising the generative model would normally require",
+          "correct": true
+        },
+        {
+          "text": "It runs the full diffusion process to generate a video, then applies a separate vision model to extract actions",
+          "correct": false
+        },
+        {
+          "text": "It ignores the world model entirely and trains a policy from scratch",
+          "correct": false
+        },
+        {
+          "text": "It requires a human operator to label each action manually",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRather than waiting for full multi-step denoising to produce a video and then interpreting it, the inverse-dynamics policy head consumes RynnWorld-4D's internal representations in one forward pass — making closed-loop control practical.\u003c/p\u003e"
+    }
+  ]
+}

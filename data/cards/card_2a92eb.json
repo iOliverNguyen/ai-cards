@@ -1,0 +1,104 @@
+{
+  "id": "card_2a92eb",
+  "slug": "qwen3-coder",
+  "type": "news",
+  "title": "Qwen3-Coder",
+  "hook": "Qwen3-Coder is an open-weight agentic coding model — a 480B Mixture-of-Experts built for long-horizon, tool-using software tasks, rivaling closed models on agentic coding.",
+  "key_points": [
+    "Alibaba's Qwen team, July 2025: open-weight coding models led by Qwen3-Coder-480B-A35B.",
+    "480B-parameter MoE with 35B active; 256K native context, extendable toward 1M.",
+    "Tuned for agentic coding — planning, tool use, and recovering from failed runs.",
+    "Reported state-of-the-art among open models on agentic coding, near Claude Sonnet 4."
+  ],
+  "content_html": "\u003cp\u003eQwen3-Coder, from Alibaba's Qwen team, is an open-weight family of coding models led by Qwen3-Coder-480B-A35B — a 480-billion-parameter Mixture-of-Experts model with 35 billion parameters active per token. Released in mid-2025, it was tuned specifically for agentic software work: not just autocompleting code, but planning, calling tools, running code, and recovering when things break.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's new\u003c/h2\u003e\n\u003cp\u003eThe flagship model supports a 256K-token context natively and can be extended toward a million tokens — useful for reasoning over whole repositories. Qwen reported state-of-the-art results among open models on agentic coding, browser-use, and tool-use benchmarks, putting it in the conversation with strong closed models like Claude Sonnet 4. Training leaned on large-scale synthesis of verifiable coding tasks paired with executable environments, so the model learns from real execution feedback.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eOpen-weight coding models that are genuinely agentic — able to drive a multi-step task with tools — narrow one of the most economically important capability gaps with closed labs. Because the weights are downloadable, teams can run Qwen3-Coder privately as the backend for their own coding agents, a major draw for organizations that can't send code to an external API.\u003c/p\u003e",
+  "source": {
+    "name": "Qwen",
+    "authors": [
+      "Qwen Team, Alibaba"
+    ],
+    "url": "https://qwenlm.github.io/blog/qwen3-coder/",
+    "published_at": "2025-07-22",
+    "license": "Qwen blog"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "releases"
+  ],
+  "tags": [
+    "open-source",
+    "agent",
+    "nlp"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2025-07-22",
+  "related": [
+    {
+      "id": "card_3e4a3f",
+      "slug": "qwen3",
+      "type": "news",
+      "title": "Qwen3: Hybrid Thinking, Open Weights",
+      "hook": "Qwen3 puts a reasoning switch in one model - a slow 'thinking' mode and a fast 'non-thinking' mode with a controllable budget - across a lineup that runs from 0.6B to a 235B MoE.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-04-29"
+    },
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    },
+    {
+      "id": "card_176fda",
+      "slug": "codex",
+      "type": "paper",
+      "title": "Codex: Evaluating Large Language Models Trained on Code",
+      "hook": "Fine-tune GPT on public GitHub code and you get a model that solves programming problems and powers GitHub Copilot - plus a new benchmark, HumanEval, that tests functional correctness.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2021-07-07"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_2a92eb#0",
+      "format": "flip",
+      "prompt": "What does 'agentic coding' mean for Qwen3-Coder, beyond autocompletion?",
+      "back_html": "\u003cp\u003ePlanning, calling tools, running code, and recovering when things break — driving a multi-step software task rather than just completing code.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2a92eb#1",
+      "format": "quiz",
+      "prompt": "What is the architecture of the flagship Qwen3-Coder-480B-A35B model?",
+      "choices": [
+        {
+          "text": "A 480B-parameter Mixture-of-Experts with 35B active per token",
+          "correct": true
+        },
+        {
+          "text": "A 480B dense transformer with all parameters active",
+          "correct": false
+        },
+        {
+          "text": "A 35B dense model extended to 480B context tokens",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIt is a 480B MoE with 35B active parameters, with 256K native context extendable toward 1M.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2a92eb#2",
+      "format": "flip",
+      "prompt": "Why is an open-weight agentic coding model strategically significant?",
+      "back_html": "\u003cp\u003eTeams can run it privately as the backend for their own coding agents — a major draw for organizations that can't send code to an external API.\u003c/p\u003e"
+    }
+  ]
+}

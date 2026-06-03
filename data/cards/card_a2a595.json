@@ -1,0 +1,118 @@
+{
+  "id": "card_a2a595",
+  "slug": "verification-horizon-coding-rewards",
+  "type": "paper",
+  "title": "The Verification Horizon: No Silver Bullet for Coding Agent Rewards",
+  "hook": "Checking a solution used to be easier than writing one. For coding agents that's flipped — and this paper argues no fixed reward works forever: verification must co-evolve with the model.",
+  "key_points": [
+    "As models get better at generating code, the hard part shifts from producing solutions to reliably verifying them.",
+    "Every verifier is only a proxy for human intent — and intent is underspecified by nature.",
+    "Optimization widens the gap between proxy and intent, showing up as reward hacking or signal saturation.",
+    "Good verification signals need scalability, faithfulness, and robustness — achieving all three at once is the central challenge.",
+    "The authors study four verifiers: test-based, rubric-based (frontend), user-as-verifier, and an automated agent verifier.",
+    "Core claim: no fixed reward stays effective as policy capability grows — verification must co-evolve with the generator."
+  ],
+  "content_html": "\u003cp\u003eA classical intuition says checking an answer is easier than producing one. For modern coding agents, \u003cstrong\u003eThe Verification Horizon\u003c/strong\u003e argues that intuition has flipped: as models reason better and harnesses grow more capable, generating plausible solutions is cheap — \u003cem\u003etrusting\u003c/em\u003e them is the hard part.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhy verification is hard\u003c/h2\u003e\n\u003cp\u003eEvery verifier we can build is a proxy for human intent, never the intent itself. That creates a twofold difficulty. First, intent is underspecified by nature, so it's inherently hard to check faithfully whether a solution actually fulfills it. Second, during training the optimizer actively widens the gap between proxy and intent — the familiar failure modes of reward hacking and signal saturation. The authors frame verification quality along three axes — \u003cstrong\u003escalability, faithfulness, robustness\u003c/strong\u003e — and argue the real challenge is getting all three at once.\u003c/p\u003e\n\u003ch2\u003eWhat they study\u003c/h2\u003e\n\u003cp\u003eThey examine four reward constructions across task types: a test verifier for general coding, a rubric verifier for frontend tasks, the user as verifier for real-world agent tasks, and an automated agent verifier for long-horizon work. Targeted verification design, they find, can suppress reward hacking and lift task quality on internal and public benchmarks. The unifying lesson: there is no silver-bullet reward — no fixed function stays effective as the policy keeps improving, so verification has to \u003cstrong\u003eco-evolve with the generator\u003c/strong\u003e.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Binghai Wang",
+      "Chenlong Zhang",
+      "Dayiheng Liu",
+      "Jiajun Zhang",
+      "Jiawei Chen",
+      "Mouxiang Chen",
+      "Rongyao Fang",
+      "Siyuan Zhang",
+      "Xuwu Wang",
+      "Yuheng Jing",
+      "Zeyao Ma",
+      "Zeyu Cui"
+    ],
+    "url": "https://arxiv.org/abs/2606.26300",
+    "published_at": "2026-06-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "alignment",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-29",
+  "date": "2026-06-24",
+  "related": [
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    },
+    {
+      "id": "card_83c74b",
+      "slug": "devin",
+      "type": "news",
+      "title": "Devin: The AI Software Engineer",
+      "hook": "Cognition's Devin was marketed as the first 'AI software engineer' — an autonomous agent that plans, writes, runs, and debugs code across a whole task in its own sandbox.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2024-03-12"
+    },
+    {
+      "id": "card_2a92eb",
+      "slug": "qwen3-coder",
+      "type": "news",
+      "title": "Qwen3-Coder",
+      "hook": "Qwen3-Coder is an open-weight agentic coding model — a 480B Mixture-of-Experts built for long-horizon, tool-using software tasks, rivaling closed models on agentic coding.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-07-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a2a595#0",
+      "format": "quiz",
+      "prompt": "What 'inversion' do the authors observe for today's coding agents?",
+      "choices": [
+        {
+          "text": "Generating candidate solutions is now easy; reliably verifying them has become the harder problem",
+          "correct": true
+        },
+        {
+          "text": "Verifying is easy but generation has become impossible",
+          "correct": false
+        },
+        {
+          "text": "Both generation and verification are now trivial",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe classical intuition that verifying is easier than producing is being inverted: stronger models make generation cheap, so verification is now the bottleneck.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a2a595#1",
+      "format": "flip",
+      "prompt": "Why can't a fixed reward function keep working as a coding agent improves?",
+      "back_html": "\u003cp\u003eA verifier is only a proxy for human intent. As the policy optimizes against it, the gap between proxy and intent widens — surfacing as reward hacking or signal saturation. Verification must co-evolve with the generator.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a2a595#2",
+      "format": "flip",
+      "prompt": "What three properties do the authors say a good verification signal needs?",
+      "back_html": "\u003cp\u003eScalability, faithfulness, and robustness — and achieving all three simultaneously is the central challenge of reward design.\u003c/p\u003e"
+    }
+  ]
+}

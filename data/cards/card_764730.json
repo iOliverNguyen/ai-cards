@@ -1,0 +1,100 @@
+{
+  "id": "card_764730",
+  "slug": "react-agents",
+  "type": "paper",
+  "title": "ReAct: Reasoning + Acting",
+  "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+  "key_points": [
+    "Interleaves reasoning traces ('thoughts') with actions like tool calls and searches.",
+    "Lets the model gather external information instead of relying on memory alone.",
+    "Observations from actions feed back into the next round of reasoning.",
+    "Reduces hallucination versus reasoning with no grounding.",
+    "A foundational loop behind modern LLM agents."
+  ],
+  "content_html": "\u003cp\u003eReAct, from Yao, Zhao, and colleagues in 2022, combines two things LLMs do well separately: reasoning in words and taking actions. The model alternates between writing a thought and performing an action — like searching a knowledge source — then uses what it observes to inform the next thought. This loop lets it plan, fetch facts, and adjust as it goes.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eAt each step the model emits either a thought (free-form reasoning about what to do) or an action (a tool call, such as a search query). The environment returns an observation, which gets appended to the running context. The model reads that result and decides its next thought or action, repeating until it can produce an answer. Reasoning guides which actions to take, and actions supply grounding the reasoning can't invent.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003ePure chain-of-thought reasoning can confidently go off the rails because nothing checks it against the real world. By weaving in actions that pull in real information, ReAct keeps the model honest and lets it solve tasks that need external knowledge or steps. This thought-action-observation cycle became a foundational pattern for the LLM agents that browse, query tools, and complete multi-step tasks today.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Shunyu Yao",
+      "Jeffrey Zhao",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2210.03629",
+    "published_at": "2022-10-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents"
+  ],
+  "tags": [
+    "agent",
+    "nlp"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2022-10-06",
+  "related": [
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    },
+    {
+      "id": "card_200002",
+      "slug": "toolformer",
+      "type": "paper",
+      "title": "Toolformer: Language Models That Use Tools",
+      "hook": "Instead of hand-scripting when to call a calculator or search, Toolformer lets the model teach itself — try API calls during training, keep the ones that actually help.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-02-09"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_764730#0",
+      "format": "flip",
+      "prompt": "What does ReAct interleave, and what is the repeating cycle?",
+      "back_html": "\u003cp\u003eIt interleaves reasoning ('thoughts') with actions (tool calls); each action returns an observation that feeds the next thought — a thought-action-observation loop.\u003c/p\u003e"
+    },
+    {
+      "id": "card_764730#1",
+      "format": "quiz",
+      "prompt": "Why does ReAct reduce hallucination versus pure chain-of-thought?",
+      "choices": [
+        {
+          "text": "Actions pull in real information that grounds the reasoning",
+          "correct": true
+        },
+        {
+          "text": "It generates longer reasoning traces",
+          "correct": false
+        },
+        {
+          "text": "It avoids reasoning steps entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePure reasoning can drift with nothing to check it; weaving in actions supplies grounding the reasoning can't invent.\u003c/p\u003e"
+    }
+  ]
+}

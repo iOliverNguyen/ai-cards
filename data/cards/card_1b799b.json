@@ -1,0 +1,98 @@
+{
+  "id": "card_1b799b",
+  "slug": "agentic-environment-engineering-survey",
+  "type": "paper",
+  "title": "Agentic Environment Engineering: A Survey",
+  "hook": "Agents only get as good as the worlds they practice in. This survey maps the full lifecycle of agent environments — how we model, synthesize, evaluate, and grow them.",
+  "key_points": [
+    "Frames 'environment engineering' as a lifecycle: modeling, synthesis, evaluation, and application of the interactive worlds agents learn in.",
+    "Catalogs environments along eight attributes and eight domains, tracing how their capabilities developed.",
+    "Distinguishes two synthesis paradigms — symbolic synthesis and neural synthesis — each with matching evaluation methods.",
+    "Names four agent-evolution pathways: memory-centric, orchestration-centric, trajectory-centric (offline), and exploration-centric (online).",
+    "Points to future directions: Environment-as-a-Service, multi-agent environments, and neural-symbolic environments."
+  ],
+  "content_html": "\u003cp\u003eEnvironments are the interactive systems LLM agents act in, and they quietly drive how far agent capabilities can evolve — yet, the authors note, the field lacks a systematic account of them. This survey studies agentic environments through an \u0026quot;environment engineering lifecycle\u0026quot;: modeling, synthesis, evaluation, and application. It first characterizes representative environments along eight attributes and eight domains, analyzing how their core capabilities developed.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eFor automated environment \u003cem\u003esynthesis\u003c/em\u003e, it lays out two paradigms — symbolic and neural — with the evaluation methods that suit each. It then frames agent–environment co-evolution, naming four complementary pathways for how agents improve in dynamic environments: memory-centric experience evolution, orchestration-centric workflow evolution, trajectory-centric offline evolution, and exploration-centric online evolution, alongside three styles of environment evolution (neural-driven, difficulty-driven, scaling-driven). It closes on open directions like Environment-as-a-Service, multi-agent environments, and neural-symbolic environments. As a survey it's a good orientation card: a map of why \u0026quot;the environment\u0026quot; is becoming a first-class design surface for agents, rather than a single new result.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jiachun Li",
+      "Zhuoran Jin",
+      "Tianyi Men",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.12191",
+    "published_at": "2026-06-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-06-15",
+  "date": "2026-06-10",
+  "related": [
+    {
+      "id": "card_b96ee0",
+      "slug": "evoarena",
+      "type": "paper",
+      "title": "EvoArena: Testing Agents in Environments That Keep Changing",
+      "hook": "Most agent benchmarks freeze the world. EvoArena makes the environment keep updating beneath the agent — and finds today's agents crack, averaging under 40%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-11"
+    },
+    {
+      "id": "card_b2c4ec",
+      "slug": "harness-1-search-agents",
+      "type": "paper",
+      "title": "Harness-1: RL for Search Agents with State-Externalizing Harnesses",
+      "hook": "Stop making the policy remember everything. Harness-1 moves a search agent's bookkeeping into the environment, so RL only has to learn the decisions that matter.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_1b799b#0",
+      "format": "flip",
+      "prompt": "What lifecycle does 'agentic environment engineering' organize the field around?",
+      "back_html": "\u003cp\u003eModeling, synthesis, evaluation, and application of the interactive environments in which agents learn and act.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1b799b#1",
+      "format": "quiz",
+      "prompt": "Which two environment-synthesis paradigms does the survey distinguish?",
+      "choices": [
+        {
+          "text": "Symbolic synthesis and neural synthesis",
+          "correct": true
+        },
+        {
+          "text": "Supervised and unsupervised synthesis",
+          "correct": false
+        },
+        {
+          "text": "Online and offline reinforcement learning",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe survey separates automated environment synthesis into symbolic and neural paradigms, each paired with its own evaluation methods.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1b799b#2",
+      "format": "flip",
+      "prompt": "Name two of the four agent-evolution pathways the survey identifies.",
+      "back_html": "\u003cp\u003eAny two of: memory-centric experience evolution, orchestration-centric workflow evolution, trajectory-centric offline evolution, and exploration-centric online evolution.\u003c/p\u003e"
+    }
+  ]
+}

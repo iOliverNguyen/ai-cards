@@ -1,0 +1,108 @@
+{
+  "id": "card_f14fdc",
+  "slug": "alphazero",
+  "type": "paper",
+  "title": "AlphaZero: Mastering Games from Scratch",
+  "hook": "AlphaGo learned from human games. AlphaZero threw those away — one algorithm reached superhuman chess, shogi, and Go knowing only the rules and playing itself.",
+  "key_points": [
+    "A single general algorithm masters chess, shogi, and Go to superhuman strength.",
+    "Learns entirely from self-play, with no human game data — only the rules of each game.",
+    "Pairs one neural network (predicting moves and outcomes) with Monte Carlo tree search.",
+    "Starting from random play, it surpassed strong existing programs in each game."
+  ],
+  "content_html": "\u003cp\u003eDavid Silver, Thomas Hubert, and the DeepMind team generalized their game-playing work into AlphaZero, a single algorithm that masters chess, shogi, and Go to superhuman strength. Unlike its predecessors, it uses no human games at all — just the rules — and learns purely by playing against itself from random beginnings. The same method, with no game-specific tuning, reached top-tier play in three very different games, showing how far self-play alone can go.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eAlphaZero uses one neural network that, for a given position, predicts both which moves look good and who is likely to win. That network guides a Monte Carlo tree search, which looks ahead and produces stronger move choices than the raw network alone. Those improved choices become training targets, so the network gradually teaches itself. The loop starts from random play and bootstraps upward through millions of self-played games, with no human examples in the mix.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eRemoving human data was the headline: it showed that strong play could emerge from rules plus self-play, rather than from imitating people, and that the same recipe transfers across games. That generality made AlphaZero a landmark in reinforcement learning and a template for later self-improving systems. It also produced strikingly creative play in chess and Go that influenced how human experts think about those games.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "David Silver",
+      "Thomas Hubert",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/1712.01815",
+    "published_at": "2017-12-05",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-science"
+  ],
+  "tags": [
+    "landmark"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-02",
+  "date": "2017-12-05",
+  "related": [
+    {
+      "id": "card_0df4be",
+      "slug": "alphago",
+      "type": "paper",
+      "title": "AlphaGo: Mastering the Game of Go",
+      "hook": "Go has more board positions than atoms in the universe, and experts thought superhuman play was a decade off. AlphaGo beat a top professional in 2016.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2016-01-27"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_0df4be",
+      "slug": "alphago",
+      "type": "paper",
+      "title": "AlphaGo: Mastering the Game of Go",
+      "hook": "Go has more board positions than atoms in the universe, and experts thought superhuman play was a decade off. AlphaGo beat a top professional in 2016.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2016-01-27"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_f14fdc#0",
+      "format": "quiz",
+      "prompt": "What did AlphaZero remove compared to AlphaGo?",
+      "choices": [
+        {
+          "text": "All human game data — it learns from self-play given only the rules",
+          "correct": true
+        },
+        {
+          "text": "The neural network, relying on search alone",
+          "correct": false
+        },
+        {
+          "text": "The ability to play more than one game",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAlphaZero uses no human games at all, just the rules, learning purely by self-play from random beginnings.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f14fdc#1",
+      "format": "flip",
+      "prompt": "How does AlphaZero's self-improvement loop work?",
+      "back_html": "\u003cp\u003eOne network predicts good moves and the likely winner; it guides a Monte Carlo tree search whose improved choices become training targets — bootstrapping upward from random play.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f14fdc#2",
+      "format": "quiz",
+      "prompt": "Why was removing human data the headline result?",
+      "choices": [
+        {
+          "text": "It showed strong play emerges from rules plus self-play, and the recipe transfers across games",
+          "correct": true
+        },
+        {
+          "text": "It made the model far smaller to deploy",
+          "correct": false
+        },
+        {
+          "text": "It proved human strategies were always wrong",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOne method, no game-specific tuning, mastered chess, shogi, and Go — making generality the landmark contribution.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "id": "card_cdd111",
+  "slug": "funes-agent-memory",
+  "type": "blog",
+  "title": "Funes: Give Your Coding Agents a Memory You Own",
+  "hook": "Your agent's reasoning from last Tuesday vanishes when the session ends. Funes indexes past sessions locally so an agent can recall its own prior decisions instead of being re-briefed.",
+  "key_points": [
+    "Problem: context dies with the session, and switching machines or agents loses it entirely.",
+    "Funes normalizes agent traces, chunks them, embeds locally with pinned models, and stores them in a Lance dataset.",
+    "Retrieval combines vector and BM25 search with cross-encoder reranking and recency weighting.",
+    "Agents call a `recall` tool autonomously; humans can query the archive with `funes ask`.",
+    "Works across Claude Code, Codex, pi, and Hermes — the archive is yours, not a vendor's.",
+    "On handoff-versus-recall benchmarks the authors report recall 8x cheaper than a written handoff on one task and 4x on the other, succeeding on both where compaction failed on one."
+  ],
+  "content_html": "\u003cp\u003eEvery coding-agent session starts from nothing. Whatever the agent figured out last Tuesday — why you rejected an approach, what the tricky invariant was — is gone, and re-establishing it means either a hand-written handoff or letting the agent rediscover it. Corvoysier's Funes, released open-source by Hugging Face, treats that as a retrieval problem over your own history.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eFunes ingests agent traces into a standard format, chunks them, embeds them locally with pinned models, and stores the result in a Lance dataset. Queries blend vector search with BM25, then apply cross-encoder reranking and recency weighting. Agents reach it through a \u003ccode\u003erecall\u003c/code\u003e tool they can invoke themselves mid-task; you can also query directly with \u003ccode\u003efunes ask\u003c/code\u003e. It works across Claude Code, Codex, pi, and Hermes, so the archive survives switching agents or machines.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe post's handoff-versus-recall benchmarks report recall being 8x cheaper than a written handoff on one task and 4x on the other, while succeeding on both — where compaction-based approaches failed on one. That's the useful reframing: the alternative to targeted recall isn't free, it's the cost of writing and re-reading a summary of everything. Code is at github.com/huggingface/funes.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face Blog",
+    "authors": [
+      "David Corvoysier"
+    ],
+    "url": "https://huggingface.co/blog/funes",
+    "published_at": "2026-09-03",
+    "license": "Hugging Face Blog"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "context-memory",
+    "releases"
+  ],
+  "tags": [
+    "tutorial",
+    "agent",
+    "rag",
+    "open-source"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-09-03",
+  "date": "2026-09-03",
+  "related": [
+    {
+      "id": "card_aea630",
+      "slug": "handoff-tax-agent-model-switching",
+      "type": "paper",
+      "title": "The Handoff Tax: Swapping Models Mid-Run in Coding Agents",
+      "hook": "Escalating a struggling coding agent to a stronger model recovers less than half the quality gap while costing a premium. Downshifting, oddly, is the good deal.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-25"
+    },
+    {
+      "id": "card_5ba78b",
+      "slug": "agent-memory-dosing",
+      "type": "blog",
+      "title": "Agent Memory Is a Dose, Not a Switch",
+      "hook": "IBM Research tested how much extracted guideline memory to give an agent. The right amount depends on the model: strong ones absorb everything, weaker ones do better with curated retrieval.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-18"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_cdd111#0",
+      "format": "flip",
+      "prompt": "What does Funes retrieve over, and how?",
+      "back_html": "\u003cp\u003eChunked, locally embedded agent session traces in a Lance dataset — queried with hybrid vector plus BM25 search, cross-encoder reranking, and recency weighting.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cdd111#1",
+      "format": "quiz",
+      "prompt": "What advantage did recall show over a written handoff in the post's benchmarks?",
+      "choices": [
+        {
+          "text": "It was 8x cheaper on one task and 4x on the other, and succeeded on both",
+          "correct": true
+        },
+        {
+          "text": "It was slower but produced more accurate summaries",
+          "correct": false
+        },
+        {
+          "text": "It removed the need for the agent to read any source files",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRetrieving only the relevant slice of past reasoning beats paying to write and re-read a full handoff document — and compaction methods failed on one of the two tasks.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cdd111#2",
+      "format": "flip",
+      "prompt": "Why does 'a memory you own' matter for agent memory specifically?",
+      "back_html": "\u003cp\u003eThe archive is local and portable across agents (Claude Code, Codex, pi, Hermes), so your accumulated reasoning isn't locked to one vendor's session store.\u003c/p\u003e"
+    }
+  ]
+}

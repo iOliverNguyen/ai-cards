@@ -1,0 +1,57 @@
+{
+  "id": "card_3cf925",
+  "slug": "gpus-for-deep-learning",
+  "type": "resource",
+  "title": "Why GPUs Power Deep Learning",
+  "hook": "Neural networks are parallel by nature, and a GPU runs thousands of threads at once - so the same math that crawls on a CPU maps naturally onto a GPU and trains far faster.",
+  "key_points": [
+    "Neural networks are highly parallel, and a GPU has hundreds of cores running thousands of threads simultaneously.",
+    "That parallelism maps the math of training onto GPUs, giving a large speedup over CPU-only training.",
+    "Training a deep network adjusts millions to billions of parameters via backpropagation.",
+    "Common frameworks such as PyTorch and TensorFlow target GPUs out of the box."
+  ],
+  "content_html": "\u003cp\u003eIf you have ever wondered why deep learning and GPUs are practically synonymous, NVIDIA's explainer gives the short answer: the work neural networks do is naturally parallel, and GPUs are built to do many things at once. It is a good first stop before diving into the harder hardware details.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eNeural networks are highly parallel by nature - the same kind of math repeated across many units at the same time. A GPU has hundreds of cores that run thousands of threads simultaneously, so that math maps directly onto the chip instead of being squeezed through a handful of CPU cores one piece at a time. The result is a large speedup over CPU-only training. The training itself works by adjusting millions to billions of parameters through backpropagation, and that is exactly the repeated, parallel arithmetic GPUs excel at.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThis is why GPUs became the default workhorse for deep learning, and why common frameworks such as PyTorch and TensorFlow target them directly so you rarely have to think about the underlying parallelism. For a beginner-friendly walkthrough of the terms, the NVIDIA explainer is the place to read more.\u003c/p\u003e",
+  "source": {
+    "name": "NVIDIA",
+    "authors": [
+      "NVIDIA"
+    ],
+    "url": "https://www.nvidia.com/en-us/glossary/deep-learning/",
+    "license": "NVIDIA (reference)"
+  },
+  "topic_ids": [
+    "hardware"
+  ],
+  "tags": [
+    "efficiency",
+    "tutorial"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-06-03",
+  "date": "2026-06-03",
+  "related": [
+    {
+      "id": "card_b185fa",
+      "slug": "tpu",
+      "type": "paper",
+      "title": "In-Datacenter Performance Analysis of a TPU",
+      "hook": "Google built a custom chip whose heart is a 256x256 grid of 8-bit multiply-accumulate units - and in production it ran neural-net inference roughly 15-30x faster than the GPUs and CPUs of its day.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2017-04-16"
+    },
+    {
+      "id": "card_1718c4",
+      "slug": "mixed-precision-training",
+      "type": "paper",
+      "title": "Mixed Precision Training",
+      "hook": "Store weights, activations, and gradients in 16-bit floats to roughly halve memory - but keep a 32-bit master copy of the weights and scale the loss so tiny gradients don't vanish.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-10-10"
+    }
+  ],
+  "prereqs": []
+}

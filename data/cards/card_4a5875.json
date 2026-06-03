@@ -1,0 +1,127 @@
+{
+  "id": "card_4a5875",
+  "slug": "grokking-canalization",
+  "type": "paper",
+  "title": "Canalization Before Generalization: Grokking as a Dynamical Probe",
+  "hook": "Nudge weight decay briefly during grokking's plateau and you shift when generalization arrives. Early nudges scatter; later ones line up by dose — a hidden selection finishing unseen.",
+  "key_points": [
+    "Grokking separates fitting the training data from visible generalization, opening a window to study which solution gets selected.",
+    "Method: sweep short, fixed-duration weight-decay pulses across the plateau and measure how each shifts later generalization time.",
+    "Early pulses produce unordered shifts; later pulses produce a stable dose ordering across all three tasks tested.",
+    "Stronger weight-decay increases pull generalization earlier; stronger decreases push it later.",
+    "The ordering emerges before visible generalization — the selection is settled before the test-accuracy jump.",
+    "Test-loss barriers between perturbed and baseline checkpoints collapse toward zero while the timing effects persist."
+  ],
+  "content_html": "\u003cp\u003eFor an overparameterized network, many solutions fit the training data equally well and behave completely differently on unseen data. Something during training picks one. \u003cstrong\u003eGrokking\u003c/strong\u003e — where test accuracy jumps long after training accuracy saturates — gives you a plateau to watch that picking happen in.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe probe\u003c/h2\u003e\n\u003cp\u003eLin sweeps short, fixed-duration weight-decay pulses across the grokking plateau and measures how each pulse shifts the time at which generalization later appears. Across three grokking tasks the pattern is consistent: pulses applied early in the plateau produce \u003cstrong\u003eunordered\u003c/strong\u003e shifts, but pulses applied later produce a stable \u003cstrong\u003edose ordering\u003c/strong\u003e — stronger weight-decay increases lead to earlier generalization, stronger decreases to later. Crucially, this ordering emerges \u003cem\u003ebefore\u003c/em\u003e visible generalization in all three tasks, so whatever it reflects has already settled by the time the test-accuracy jump shows up.\u003c/p\u003e\n\u003ch2\u003eCanalization\u003c/h2\u003e\n\u003cp\u003eMeanwhile a second measurement moves the other way: test-loss barriers between the perturbed and baseline generalization checkpoints collapse toward zero, indicating the reachable solutions are converging on one region. Lin names this combination — increasingly constrained solution selection alongside persistent dose-ordered timing sensitivity — the \u003cstrong\u003ecanalization of function selection\u003c/strong\u003e, borrowing a term from developmental biology for a trajectory that becomes progressively channeled. The practical read: the plateau isn't idle, and regularization applied during it acts on \u003cem\u003ewhen\u003c/em\u003e a mostly-decided solution surfaces rather than on \u003cem\u003ewhich\u003c/em\u003e one you get. arXiv, 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yiming Lin"
+    ],
+    "url": "https://arxiv.org/abs/2608.25813",
+    "published_at": "2026-08-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "generalization",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "foundational",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-27",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_bbc68f",
+      "slug": "grokking",
+      "type": "paper",
+      "title": "Grokking: Generalization Long After Overfitting",
+      "hook": "A network memorizes the training set and seems done. Keep training anyway, and much later it can suddenly snap into real generalization — an effect called grokking.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-01-06"
+    },
+    {
+      "id": "card_aa026f",
+      "slug": "double-descent",
+      "type": "paper",
+      "title": "Deep Double Descent",
+      "hook": "Bigger models should overfit, then get worse — right? Instead test error often dips, climbs, then dips again as model size grows, breaking the classic bias-variance story.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2019-12-04"
+    },
+    {
+      "id": "card_0eb81a",
+      "slug": "lottery-ticket-hypothesis",
+      "type": "paper",
+      "title": "The Lottery Ticket Hypothesis",
+      "hook": "You can prune over 90% of a trained network and keep its accuracy. The catch: a tiny 'winning ticket' subnetwork was hiding inside the dense one from the start.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2018-03-09"
+    },
+    {
+      "id": "card_a4574e",
+      "slug": "overfitting-and-regularization",
+      "type": "concept",
+      "title": "Overfitting \u0026 Regularization",
+      "hook": "A model that aces its training data but flops on anything new hasn't learned — it has memorized. Regularization is the cure.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_bbc68f",
+      "slug": "grokking",
+      "type": "paper",
+      "title": "Grokking: Generalization Long After Overfitting",
+      "hook": "A network memorizes the training set and seems done. Keep training anyway, and much later it can suddenly snap into real generalization — an effect called grokking.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-01-06"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_4a5875#0",
+      "format": "flip",
+      "prompt": "What does the paper mean by 'canalization of function selection'?",
+      "back_html": "\u003cp\u003eThe combination of two things seen during grokking's plateau: solution selection becoming increasingly constrained (test-loss barriers collapsing toward zero) while timing stays sensitive to weight-decay dose in a stable order.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4a5875#1",
+      "format": "quiz",
+      "prompt": "What happens when a weight-decay pulse is applied early in the grokking plateau versus late?",
+      "choices": [
+        {
+          "text": "Early pulses shift generalization time unpredictably; later pulses produce a stable dose ordering",
+          "correct": true
+        },
+        {
+          "text": "Early pulses always delay generalization; later pulses always advance it",
+          "correct": false
+        },
+        {
+          "text": "Neither has any measurable effect on when generalization appears",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAcross three grokking tasks the shifts are unordered early in the plateau but later settle into a stable ordering — stronger weight-decay increases generalize earlier, stronger decreases later.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4a5875#2",
+      "format": "flip",
+      "prompt": "Why is grokking a useful probe for studying generalization?",
+      "back_html": "\u003cp\u003eBecause it pulls training fit and visible generalization apart in time, giving you a plateau during which you can intervene and watch how the network's choice among many training-fitting solutions gets narrowed.\u003c/p\u003e"
+    }
+  ]
+}

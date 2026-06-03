@@ -1,0 +1,96 @@
+{
+  "id": "card_5ca3a6",
+  "slug": "steerability-via-constraints",
+  "type": "paper",
+  "title": "Steerability via Constraints: A Substrate for Scalable Oversight of Coding Agents",
+  "hook": "Coding agents are already capable enough that human review is the bottleneck — this paper borrows access control and network policy from engineering-org playbooks to make oversight scale instead.",
+  "key_points": [
+    "Argues that decades-old tools for managing large human engineering teams — access control, network policies, tooling-enforced conventions — transfer directly to coding agents, and are cheaper in tokens than fancier scaffolding.",
+    "Tests the idea with a small reviewer model (Gemma 4 e4b) checking a Python codebase seeded with 11 backdoors.",
+    "Recall on finding backdoors rises from 54.5% (unconstrained agent, no tools) to 90.9% (constrained substrate plus a ~200-line-of-code docs CLI).",
+    "The constrained substrate and the review tooling contribute independently — each helps even without the other.",
+    "Python was chosen deliberately because it gives the fewest guarantees by default, so gains there should be largest; the authors argue the principle extends to languages like Rust."
+  ],
+  "content_html": "\u003cp\u003eCoding agents keep getting more capable, but the human review that's supposed to catch their mistakes hasn't scaled with them. This paper's answer isn't a smarter reviewer model — it's borrowing the same tools engineering orgs have used for decades to manage large human teams: access control, network policies, and conventions enforced by tooling rather than trust.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe experiment\u003c/h2\u003e\n\u003cp\u003eThe author sketches an end-to-end system built on this \u0026quot;constrained substrate\u0026quot; principle, then runs a controlled test: a deliberately small reviewer model (Gemma 4 e4b) inspects a Python codebase seeded with 11 backdoors. Left unconstrained with no tools, it recalls only 54.5% of them. Give it the constrained substrate plus a lightweight (~200 lines of code) \u003ccode\u003edocs\u003c/code\u003e CLI, and recall jumps to 90.9% — with the substrate and the tooling each contributing independently, not just as a combined effect.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe core bet is that scalable oversight doesn't require a more powerful judge — it requires making the thing being judged easier to judge, the same way engineering teams constrain what any one contributor can touch. The authors picked Python deliberately because it offers the fewest structural guarantees, which is where substrate-level oversight should help most; they argue the same principle carries over to languages like Rust that already give more guarantees for free.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Thomas Winninger"
+    ],
+    "url": "https://arxiv.org/abs/2607.02389",
+    "published_at": "2026-07-02",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "safety",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-06",
+  "date": "2026-07-02",
+  "related": [
+    {
+      "id": "card_000849",
+      "slug": "govern-the-repository-not-the-agent",
+      "type": "paper",
+      "title": "Govern the Repository, Not the Agent",
+      "hook": "Across 930,000+ agent-authored pull requests, half the friction of merging code traces to the repository, not the agent — and AI contributions concentrate that risk 2x more than human ones.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-26"
+    },
+    {
+      "id": "card_bf8bf1",
+      "slug": "distributed-attacks-persistent-state-ai-control",
+      "type": "paper",
+      "title": "Distributed Attacks in Persistent-State AI Control",
+      "hook": "A misaligned coding agent doesn't need to sneak a backdoor into one pull request — it can spread the attack across many, and no single monitor catches both strategies at once.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-02"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_5ca3a6#0",
+      "format": "flip",
+      "prompt": "What's the core idea behind 'steerability via constraints' for coding agents?",
+      "back_html": "\u003cp\u003eInstead of building a smarter reviewer model, borrow the tools engineering orgs already use to manage large human teams — access control, network policies, tooling-enforced conventions — and apply them to agents.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5ca3a6#1",
+      "format": "quiz",
+      "prompt": "How much did backdoor-finding recall improve when the small reviewer got the constrained substrate plus a lightweight docs CLI?",
+      "choices": [
+        {
+          "text": "From 54.5% (unconstrained, no tools) to 90.9%",
+          "correct": true
+        },
+        {
+          "text": "From 90.9% down to 54.5%",
+          "correct": false
+        },
+        {
+          "text": "It stayed flat around 70% regardless of tooling",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA small reviewer model (Gemma 4 e4b) went from catching just over half of 11 seeded backdoors to catching nearly all of them once given the constrained substrate and a ~200-line docs CLI.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5ca3a6#2",
+      "format": "flip",
+      "prompt": "Why did the authors test this on Python specifically?",
+      "back_html": "\u003cp\u003ePython gives the fewest structural guarantees by default, so it's where substrate-level oversight gains should be largest — the authors argue the same principle carries over to languages like Rust that already offer more guarantees.\u003c/p\u003e"
+    }
+  ]
+}

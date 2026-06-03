@@ -1,0 +1,117 @@
+{
+  "id": "card_7ca1ea",
+  "slug": "imagen",
+  "type": "paper",
+  "title": "Imagen: Photorealistic Text-to-Image Diffusion",
+  "hook": "Google found that a large frozen T5 text encoder matters more than a bigger image diffusion model - scaling language understanding is the key lever for photorealistic generation.",
+  "key_points": [
+    "A large frozen T5-XXL text encoder drives image quality more than scaling the diffusion model itself, per the authors' ablations.",
+    "Cascaded diffusion: a base 64x64 model followed by two super-resolution diffusion models reaches high resolution.",
+    "Introduced DrawBench, a structured benchmark for evaluating text-to-image alignment.",
+    "Classifier-free guidance applied at a high scale was critical for image-text fidelity."
+  ],
+  "content_html": "\u003cp\u003eSaharia and colleagues at Google Brain published Imagen in May 2022, offering a compelling counterpoint to pixel-space and latent-space generation debates: the text encoder choice dominates image quality. By using a large T5 language model frozen from text-only pretraining, they produced strikingly photorealistic images without any domain-specific text encoder training.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eImagen encodes a text prompt with a frozen T5-XXL encoder and conditions a diffusion model on those embeddings. The base model generates a 64x64 image; two successive super-resolution diffusion models then upsample it to 1024x1024. Classifier-free guidance is applied at each stage. The authors ran ablations showing that swapping T5-XXL for CLIP text encoders hurt quality, supporting the claim that general-purpose language understanding transfers well to image generation.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eImagen reframed the design question: instead of asking \u0026quot;how big should the image model be,\u0026quot; ask \u0026quot;how good is your text understanding.\u0026quot; The cascaded upsampling strategy is also widely used in production image systems. Read the full paper and see the DrawBench evaluation on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Chitwan Saharia",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2205.11487",
+    "published_at": "2022-05-23",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "text-to-image",
+    "diffusion"
+  ],
+  "tags": [
+    "generative",
+    "vision",
+    "multimodal",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2022-05-23",
+  "related": [
+    {
+      "id": "card_7e3221",
+      "slug": "latent-diffusion-models",
+      "type": "paper",
+      "title": "High-Resolution Image Synthesis with Latent Diffusion (Stable Diffusion)",
+      "hook": "Running diffusion on raw pixels is brutally expensive. Do it in a compressed latent space instead, and high-res text-to-image becomes cheap enough to run on a consumer GPU.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-12-20"
+    },
+    {
+      "id": "card_95ce18",
+      "slug": "dalle-2",
+      "type": "paper",
+      "title": "DALL·E 2 (unCLIP): Text-to-Image with CLIP Latents",
+      "hook": "Turn a prompt into a CLIP image embedding first, then diffusion-decode that embedding into a picture. A two-stage path from words to vivid, editable images.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-04-13"
+    },
+    {
+      "id": "card_d622c0",
+      "slug": "classifier-free-guidance",
+      "type": "paper",
+      "title": "Classifier-Free Guidance",
+      "hook": "Want a diffusion model to follow your prompt more closely? Blend its prompt-aware and prompt-blind predictions — no extra classifier required. That's the guidance-scale slider.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-07-26"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_2b95b6",
+      "slug": "denoising-diffusion-probabilistic-models",
+      "type": "paper",
+      "title": "Denoising Diffusion Probabilistic Models (DDPM)",
+      "hook": "Wreck an image into pure static one tiny step at a time, then train a network to undo it. Run the undo from random noise and you get a brand-new image.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2020-06-19"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_7ca1ea#0",
+      "format": "flip",
+      "prompt": "Per Imagen's ablations, what choice mattered most for image quality?",
+      "back_html": "\u003cp\u003eThe text encoder. A large frozen T5-XXL drove quality more than scaling the diffusion model itself.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7ca1ea#1",
+      "format": "quiz",
+      "prompt": "How does Imagen reach high resolution from the base model?",
+      "choices": [
+        {
+          "text": "A base 64x64 model followed by two super-resolution diffusion models",
+          "correct": true
+        },
+        {
+          "text": "A single diffusion model trained directly at 1024x1024",
+          "correct": false
+        },
+        {
+          "text": "A GAN upscaler applied after diffusion",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eImagen uses cascaded diffusion: a 64x64 base model then two super-resolution diffusion stages.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7ca1ea#2",
+      "format": "flip",
+      "prompt": "Why did Imagen reframe the text-to-image design question?",
+      "back_html": "\u003cp\u003eIt showed the lever is text understanding (\u0026quot;how good is your text encoder\u0026quot;) rather than just \u0026quot;how big is the image model.\u0026quot;\u003c/p\u003e"
+    }
+  ]
+}

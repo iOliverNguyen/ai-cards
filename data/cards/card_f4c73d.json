@@ -1,0 +1,113 @@
+{
+  "id": "card_f4c73d",
+  "slug": "llm-as-a-verifier",
+  "type": "paper",
+  "title": "LLM-as-a-Verifier: Verification as a New Scaling Axis",
+  "hook": "Everyone scales pretraining, post-training, and test-time compute. This paper argues verification — checking if a solution is correct — is its own scaling axis, and hits SOTA on four agentic benchmarks.",
+  "key_points": [
+    "Instead of discrete LM-judge scores, it computes the expectation over the full distribution of scoring-token logits — producing continuous, more calibrated scores.",
+    "Scales along three dimensions: finer score granularity, repeated evaluation, and decomposing criteria — each adds measurable accuracy gains.",
+    "State of the art on Terminal-Bench V2 (86.5%), SWE-Bench Verified (78.2%), RoboRewardBench (87.4%), and MedAgentBench (73.3%).",
+    "Ships as a Claude Code extension so developers can monitor and improve their own agentic systems' task progress in real time.",
+    "The dense verifier signal also improves RL sample efficiency (SAC and GRPO) on robotics and math-reasoning benchmarks."
+  ],
+  "content_html": "\u003cp\u003eScale the pretraining data, scale the RLHF, scale the test-time thinking — the recipe for better LLMs by now has a familiar shape. This paper adds a fourth lever that's been hiding in plain sight: how well the model can tell whether a candidate answer is actually \u003cem\u003ecorrect\u003c/em\u003e.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eLLM-as-a-Verifier reframes verification as a general-purpose, training-free framework for agentic tasks. Where a standard LM judge asks the model to output a discrete score, this approach computes the expectation over the full distribution of scoring-token logits, yielding a continuous score. That probabilistic formulation is what lets verification scale: finer score granularity separates strong and weak solutions more cleanly, and scaling repeated evaluation or decomposing the judging criteria into parts each reduce noise and complexity, compounding into real accuracy gains. The framework hits state-of-the-art on Terminal-Bench V2 (86.5%), SWE-Bench Verified (78.2%), RoboRewardBench (87.4%), and MedAgentBench (73.3%), and the authors package it as an extension for Claude Code so developers can watch their own agents' task progress unfold live. Beyond pure verification, the same dense signal boosts sample efficiency for RL algorithms like SAC and GRPO on robotics and math-reasoning tasks — suggesting a good verifier isn't just a scorer, it's training fuel. Jacky Kwok and colleagues (Stanford, with Chelsea Finn and Azalia Mirhoseini), arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jacky Kwok",
+      "Shulu Li",
+      "Pranav Atreya",
+      "Yuejiang Liu",
+      "Yixing Jiang",
+      "Chelsea Finn",
+      "Marco Pavone",
+      "Ion Stoica",
+      "Azalia Mirhoseini"
+    ],
+    "url": "https://arxiv.org/abs/2607.05391",
+    "published_at": "2026-07-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "reasoning",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-06",
+  "related": [
+    {
+      "id": "card_ecf574",
+      "slug": "pace-agentic-capability-proxy",
+      "type": "paper",
+      "title": "PACE: A Proxy for Agentic Capability Evaluation",
+      "hook": "Full agentic evals like SWE-Bench and GAIA can cost thousands of dollars and days to run — PACE predicts those scores from a tiny, cheap subset of ordinary benchmarks, at under 1% of the cost.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-02"
+    },
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    },
+    {
+      "id": "card_a2a595",
+      "slug": "verification-horizon-coding-rewards",
+      "type": "paper",
+      "title": "The Verification Horizon: No Silver Bullet for Coding Agent Rewards",
+      "hook": "Checking a solution used to be easier than writing one. For coding agents that's flipped — and this paper argues no fixed reward works forever: verification must co-evolve with the model.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_f4c73d#0",
+      "format": "flip",
+      "prompt": "What does LLM-as-a-Verifier compute instead of the discrete scores a typical LM-judge produces?",
+      "back_html": "\u003cp\u003eThe expectation over the full distribution of scoring-token logits, giving a continuous score instead of a discrete one — which makes comparisons between candidate solutions better calibrated.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f4c73d#1",
+      "format": "quiz",
+      "prompt": "Along which three dimensions does LLM-as-a-Verifier scale verification quality?",
+      "choices": [
+        {
+          "text": "Score granularity, repeated evaluation, and criteria decomposition",
+          "correct": true
+        },
+        {
+          "text": "Model size, training data, and learning rate",
+          "correct": false
+        },
+        {
+          "text": "Number of GPUs, batch size, and context length",
+          "correct": false
+        },
+        {
+          "text": "Temperature, top-k, and top-p sampling",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eScaling scoring granularity separates good from bad solutions better; scaling repeated evaluation and criteria decomposition reduce variance and complexity, each adding measurable verification-accuracy gains.\u003c/p\u003e"
+    }
+  ]
+}

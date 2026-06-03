@@ -1,0 +1,129 @@
+{
+  "id": "card_b11089",
+  "slug": "self-supervised-visual-on-policy-distillation",
+  "type": "paper",
+  "title": "Self-Supervised Visual On-Policy Distillation",
+  "hook": "Distillation needs a teacher who knows more than the student. This paper gets that gap for free — not by informing the teacher, but by blinding the student.",
+  "key_points": [
+    "On-policy distillation depends on teacher-student asymmetry, usually bought with a bigger teacher or privileged info like reference answers or ground-truth regions.",
+    "S²VOPD inverts the trick: same model, but the student sees a strongly augmented view while the teacher sees the original image.",
+    "No annotations, no rewards, no separate stronger model — the augmentation gap alone supplies the learning signal.",
+    "All four augmentation families they tested helped, while symmetric self-distillation (same view both sides) actively hurt.",
+    "Augmentation strength has a sweet spot: too weak gives no signal, too strong erases the question-relevant evidence and the gap becomes uninformative.",
+    "Reported to lift Qwen3.5-4B from 70.7% to 77.4% across six fine-grained perception benchmarks, recovering 96% of what privileged-info methods achieve."
+  ],
+  "content_html": "\u003cp\u003eDistilling a model into a better version of itself only works if the teacher knows something the student doesn't. Usually you buy that gap: a larger teacher model, or privileged supervision like reference answers and ground-truth regions of interest. Li et al. ask where the gap can come from when nothing privileged is available — and answer by flipping the direction. Instead of adding information to the teacher, subtract it from the student.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTheir method, S²VOPD, distills on-policy from a teacher conditioned on the original image into a student conditioned on a strongly augmented view of that same image. Same weights, no labels, no rewards, no bigger model: the augmentation is the asymmetry.\u003c/p\u003e\n\u003cp\u003eThe interesting part is the design-space sweep. Three findings: asymmetry is load-bearing — all four augmentation families they tried improved results, while symmetric self-distillation made things worse; strength matters, with performance peaking at moderate augmentation; and the gap has to stay task-consistent, because augmentations that wipe out the question-relevant evidence produce a big but meaningless discrepancy.\u003c/p\u003e\n\u003cp\u003eOn six fine-grained perception benchmarks they report Qwen3.5-4B going from 70.7% to 77.4% — ahead of the open-source models they compare against, up to Qwen3-VL at 235B, and past GPT-5.4 — and, holding training data fixed, recovering 96% of the gain from methods that do get privileged information. August 2026, arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yijiang Li",
+      "Yijun Liang",
+      "Yunjie Tian",
+      "Bingyang Wang",
+      "Ke Zhang",
+      "Zhenfei Yin",
+      "Di Fu",
+      "Philip Torr",
+      "Nuno Vasconcelos"
+    ],
+    "url": "https://arxiv.org/abs/2608.14144",
+    "published_at": "2026-08-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "distillation",
+    "vlms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "paper",
+    "training",
+    "vision"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-17",
+  "date": "2026-08-14",
+  "related": [
+    {
+      "id": "card_faa6a6",
+      "slug": "unsupervised-on-policy-self-distillation",
+      "type": "paper",
+      "title": "On-Policy Self-Distillation without Any Supervision",
+      "hook": "Self-distillation that finally deserves the name: no ground truth, no bigger teacher — just a model voting against itself and fixing where it was confidently wrong.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-09"
+    },
+    {
+      "id": "card_55e125",
+      "slug": "latent-on-policy-self-distillation",
+      "type": "paper",
+      "title": "Latent On-Policy Self-Distillation",
+      "hook": "Every on-policy self-distillation method hand-picks what the teacher gets to see. LOPD makes that privileged context a learned vector instead of a design choice.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-08-13"
+    },
+    {
+      "id": "card_63a204",
+      "slug": "direct-on-policy-distillation",
+      "type": "paper",
+      "title": "Weak-to-Strong Generalization via Direct On-Policy Distillation",
+      "hook": "RL post-training gets pricier as models scale, since it needs the strong model's own rollouts. Direct-OPD reuses a cheap RL run on a small model instead, transferring the direction RL moved it.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b11089#0",
+      "format": "flip",
+      "prompt": "How does S²VOPD create teacher-student asymmetry without a stronger teacher?",
+      "back_html": "\u003cp\u003eIt subtracts information from the student instead of adding it to the teacher: the teacher conditions on the original image, the student on a strongly augmented view of the same image.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b11089#1",
+      "format": "quiz",
+      "prompt": "What happened when the authors made the distillation symmetric — teacher and student seeing the same view?",
+      "choices": [
+        {
+          "text": "Performance degraded, confirming the asymmetry is what carries the signal",
+          "correct": true
+        },
+        {
+          "text": "Performance matched the asymmetric setup but trained faster",
+          "correct": false
+        },
+        {
+          "text": "Training diverged because the KL term went to zero",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSymmetric self-distillation degraded performance, while all four asymmetric augmentation families improved it — the gap between the two views is the whole mechanism.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b11089#2",
+      "format": "quiz",
+      "prompt": "Why does pushing augmentation strength too far stop helping?",
+      "choices": [
+        {
+          "text": "It removes the evidence the question depends on, so the teacher-student gap is large but uninformative",
+          "correct": true
+        },
+        {
+          "text": "It makes the student's distribution collapse onto a single token",
+          "correct": false
+        },
+        {
+          "text": "It shifts the images off the teacher's pretraining distribution, so the teacher's outputs become random",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper's third finding: the gap must stay task-consistent. Once the question-relevant evidence is gone, the discrepancy no longer teaches anything useful.\u003c/p\u003e"
+    }
+  ]
+}

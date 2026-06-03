@@ -1,0 +1,104 @@
+{
+  "id": "card_b85342",
+  "slug": "next-latent-prediction",
+  "type": "paper",
+  "title": "Next-Latent Prediction: Beyond Next-Token",
+  "hook": "Microsoft's NextLat teaches a transformer to predict its own next hidden state, not just the next token - building a compact internal world model and decoding up to 3.3x faster.",
+  "key_points": [
+    "Adds an auxiliary objective: predict the model's own next latent (hidden) state from the current latent and the next token, on top of standard next-token prediction.",
+    "Argues next-token prediction alone is 'myopic'; latent prediction pressures the model to form compact internal world models for reasoning and planning.",
+    "Enables up to 3.3x faster inference via self-speculative decoding, drafting from the model's own predicted latents.",
+    "Acts as a self-supervised add-on that improves representation learning rather than a new architecture."
+  ],
+  "content_html": "\u003cp\u003eMost transformers are trained on a single objective: predict the next token. Microsoft\nResearch argues that's \u003cem\u003emyopic\u003c/em\u003e — it never explicitly asks the model to model where it's\nheaded. Their method, Next-Latent Prediction (NextLat), adds a second self-supervised\nobjective on top: predict the model's own next latent (hidden) state, given the current\nlatent state and the next token.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe claimed benefits are threefold. First, representation learning improves, because the\nmodel must encode information useful for forecasting its own future states. Second, those\nforecasts encourage compact internal \u003cem\u003eworld models\u003c/em\u003e that help with reasoning and planning.\nThird — and concretely — predicting your own next latent enables \u003cem\u003eself-speculative\ndecoding\u003c/em\u003e: the model drafts ahead from its predicted latents and verifies in parallel,\nwhich the authors report yields up to 3.3x faster inference. NextLat is presented as a\ntraining add-on rather than a new architecture. Figures and claims are from the authors'\npreprint shared on r/MachineLearning; see the source for details.\u003c/p\u003e",
+  "source": {
+    "name": "Microsoft Research (via r/MachineLearning)",
+    "authors": [
+      "Microsoft Research"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1u84mio/nextlatent_prediction_transformers_r",
+    "published_at": "2026-06-17"
+  },
+  "topic_ids": [
+    "transformers",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "reasoning",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-18",
+  "date": "2026-06-17",
+  "related": [
+    {
+      "id": "card_9a9bd2",
+      "slug": "world-models-meet-language-models",
+      "type": "paper",
+      "title": "World Models Meet Language Models",
+      "hook": "A world model can imagine what happens next; an LLM can reason about it. The hard part is knowing when to trust the daydream — and when the simulation is just plausible nonsense.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_5d2914",
+      "slug": "latent-context-language-models",
+      "type": "paper",
+      "title": "Latent Context Language Models: Compressing the Prompt, Not the Cache",
+      "hook": "Instead of shrinking the KV cache, compress the prompt itself: a small encoder folds a long context into a few latent embeddings that a bigger decoder reads — letting agents skim and expand on demand.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-08"
+    },
+    {
+      "id": "card_951958",
+      "slug": "speculative-decoding",
+      "type": "paper",
+      "title": "Speculative Decoding",
+      "hook": "Let a small, fast model guess the next few words, then have the big model check them all in one shot. Same output, fewer slow steps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-30"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b85342#0",
+      "format": "flip",
+      "prompt": "What does NextLat predict beyond the next token?",
+      "back_html": "\u003cp\u003eThe model's own next latent (hidden) state — given the current latent and the next\ntoken — as an auxiliary self-supervised objective layered on top of next-token\nprediction.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b85342#1",
+      "format": "quiz",
+      "prompt": "Why does NextLat claim up to 3.3x faster inference?",
+      "choices": [
+        {
+          "text": "It enables self-speculative decoding from the model's own predicted latents",
+          "correct": true
+        },
+        {
+          "text": "It quantizes all weights to 4-bit precision",
+          "correct": false
+        },
+        {
+          "text": "It replaces attention with state-space layers",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBecause the model can forecast its own next latent state, it can draft and verify\ntokens itself — self-speculative decoding — without a separate draft model.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b85342#2",
+      "format": "flip",
+      "prompt": "What problem with plain next-token prediction does NextLat target?",
+      "back_html": "\u003cp\u003eIt's \u0026quot;myopic\u0026quot;: predicting only the next token doesn't push the model to build the\ncompact internal world models useful for reasoning and planning.\u003c/p\u003e"
+    }
+  ]
+}

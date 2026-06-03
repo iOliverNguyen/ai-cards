@@ -1,0 +1,97 @@
+{
+  "id": "card_490028",
+  "slug": "model-evaluation-for-extreme-risks",
+  "type": "paper",
+  "title": "Model Evaluation for Extreme Risks",
+  "hook": "General-purpose AI tends to pick up dangerous capabilities alongside useful ones. So test for those capabilities directly — before you ship, not after.",
+  "key_points": [
+    "Argues general-purpose AI development tends to produce both beneficial and harmful capabilities.",
+    "Warns of 'extreme risks' like offensive cyber capabilities and strong manipulation.",
+    "Proposes structured 'model evaluation for extreme risks' to find dangerous capabilities and alignment failures.",
+    "Frames such evaluations as a core governance tool to run before deployment."
+  ],
+  "content_html": "\u003cp\u003eToby Shevlane and colleagues, in a DeepMind-led position paper, argue that building general-purpose AI tends to produce systems with both beneficial and harmful capabilities at once. They point to potential \u0026quot;extreme risks\u0026quot; — such as offensive cyber capabilities and strong manipulation — and propose \u0026quot;model evaluation for extreme risks\u0026quot;: structured evaluations that probe for dangerous capabilities and alignment failures. The author roster spans DeepMind and external researchers, including Yoshua Bengio and Paul Christiano.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe paper treats dangerous-capability testing as a discipline of its own. Rather than only measuring whether a model is helpful, evaluators ask whether it can do specific harmful things and whether it would. Two threads run through the proposal: evaluating for dangerous capabilities such as offensive cyber operations or manipulation, and evaluating for alignment failures where a model pursues goals at odds with its developers' intent. The authors position these evaluations as inputs to deployment decisions.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe authors frame model evaluation for extreme risks as a core governance tool — something to run before a system reaches users. If general-purpose development reliably produces dual-use capabilities, then catching the dangerous ones early is how labs and regulators can make informed calls about whether, and how, to release a model. The cross-organization author list signals broad agreement that capability evaluation belongs at the center of AI safety practice.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Toby Shevlane",
+      "Sebastian Farquhar",
+      "Ben Garfinkel",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2305.15324",
+    "published_at": "2023-05-24",
+    "license": "arXiv (CC BY 4.0)"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "evals-safety"
+  ],
+  "tags": [
+    "safety",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2023-05-24",
+  "related": [
+    {
+      "id": "card_395956",
+      "slug": "red-teaming-lms",
+      "type": "paper",
+      "title": "Red Teaming Language Models with Language Models",
+      "hook": "Finding the prompts that make a model misbehave is slow if humans do it by hand. So use another language model to generate those attacks automatically — at scale.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-02-07"
+    },
+    {
+      "id": "card_b475e8",
+      "slug": "frontier-ai-regulation",
+      "type": "paper",
+      "title": "Frontier AI Regulation",
+      "hook": "How do you regulate models too new to have rules yet? This paper sketches three building blocks: set standards, make labs report, then enforce.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-07-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_490028#0",
+      "format": "flip",
+      "prompt": "Why does the paper argue we must test models for dangerous capabilities directly?",
+      "back_html": "\u003cp\u003eBecause general-purpose AI development tends to produce beneficial and harmful capabilities together, so the dangerous ones must be caught before shipping.\u003c/p\u003e"
+    },
+    {
+      "id": "card_490028#1",
+      "format": "quiz",
+      "prompt": "What two things does 'model evaluation for extreme risks' probe for?",
+      "choices": [
+        {
+          "text": "Dangerous capabilities and alignment failures",
+          "correct": true
+        },
+        {
+          "text": "Inference speed and memory footprint",
+          "correct": false
+        },
+        {
+          "text": "Helpfulness and user satisfaction only",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIt evaluates both dangerous capabilities (e.g. offensive cyber, manipulation) and alignment failures where a model pursues goals at odds with developers' intent.\u003c/p\u003e"
+    },
+    {
+      "id": "card_490028#2",
+      "format": "flip",
+      "prompt": "Where does the paper place these evaluations in the governance process?",
+      "back_html": "\u003cp\u003eAs a core governance tool and an input to deployment decisions — run before a system reaches users.\u003c/p\u003e"
+    }
+  ]
+}

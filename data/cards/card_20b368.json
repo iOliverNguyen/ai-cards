@@ -1,0 +1,106 @@
+{
+  "id": "card_20b368",
+  "slug": "qwen3-6-nvfp4-unsloth-quants",
+  "type": "news",
+  "title": "Unsloth's NVFP4 Qwen3.6 Quants Beat NVIDIA's Own — by Actually Using 4-bit Math",
+  "hook": "Unsloth's NVFP4 quants for Qwen3.6 run up to 2.5x faster than NVIDIA's official NVFP4 release, with no measured accuracy loss — by quantizing activations too, not just weights.",
+  "key_points": [
+    "Unsloth's NVFP4 quants for Qwen3.6-27B run 2.5x faster than NVIDIA's own NVFP4 quants; the 35B-A3B variant is 1.56x-1.79x faster.",
+    "The speedup comes from true W4A4 (4-bit weights AND activations, using 4-bit tensor cores), versus NVIDIA's W4A16 (4-bit weights, 16-bit activations).",
+    "Validated on MMLU-Pro, AIME 2025, and GPQA against FP8, BF16, and NVIDIA's NVFP4, with no reported accuracy degradation.",
+    "Bundled FP8 KV-cache calibration roughly doubles usable context length.",
+    "Ships a fast/accuracy trade-off pair for the 35B-A3B model: NVFP4-Fast (full W4A4, 1.79x) and NVFP4 (1.56x)."
+  ],
+  "content_html": "\u003cp\u003eNVIDIA shipped official NVFP4 quants for Qwen3.6. Unsloth's own NVFP4 quants for the same model are faster still — up to 2.5x on the 27B model — without giving up accuracy.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe gap comes down to what actually gets quantized. NVIDIA's NVFP4 release keeps activations at 16-bit precision (W4A16); Unsloth's quants use true \u003cstrong\u003eW4A4\u003c/strong\u003e — 4-bit weights and 4-bit activations — so matrix multiplies run on real 4-bit tensor cores instead of falling back to wider math. Unsloth reports 2.5x faster inference for Qwen3.6-27B and 1.56x-1.79x for 35B-A3B (offering both a full-speed \u0026quot;NVFP4-Fast\u0026quot; and a slightly more conservative \u0026quot;NVFP4\u0026quot; variant), validated with no accuracy degradation on MMLU-Pro, AIME 2025, and GPQA against FP8, BF16, and NVIDIA's NVFP4. The release also bundles FP8 KV-cache calibration, roughly doubling usable context length, and comes with Multi-Token Prediction pre-embedded. Posted by Unsloth co-founder Daniel Han to r/LocalLLaMA, 2026-07-10.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit (r/LocalLLaMA)",
+    "authors": [
+      "/u/danielhanchen"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1usniqh/25x_faster_qwen36_nvfp4_unsloth_quants",
+    "published_at": "2026-07-10",
+    "license": "Community post"
+  },
+  "topic_ids": [
+    "quantization",
+    "releases"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "open-source",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-10",
+  "related": [
+    {
+      "id": "card_ec7996",
+      "slug": "gemma-4-qat",
+      "type": "news",
+      "title": "Gemma 4 QAT: 4-Bit Weights That Keep Their Quality",
+      "hook": "Squeezing a model to 4 bits after training loses quality. Quantization-aware training bakes the rounding into training instead — and Google shipped Gemma 4 checkpoints that do exactly that.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-06-05"
+    },
+    {
+      "id": "card_ccd6d9",
+      "slug": "nemotron-3-ultra",
+      "type": "paper",
+      "title": "Nemotron 3 Ultra: Open Hybrid Mamba-Attention MoE",
+      "hook": "NVIDIA's open 550B model interleaves Mamba and attention inside a Mixture-of-Experts - hitting ~6x the inference throughput of comparable LLMs at on-par accuracy.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-12"
+    },
+    {
+      "id": "card_72ef98",
+      "slug": "illusion-of-equivalency-quantization",
+      "type": "paper",
+      "title": "The Illusion of Equivalency: Why 'Same Accuracy' Doesn't Mean 'Same Model'",
+      "hook": "Two quantized models can score identically on accuracy while disagreeing on which individual examples they get right — a gap standard benchmarks are structurally blind to.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-09"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_20b368#0",
+      "format": "flip",
+      "prompt": "Why are Unsloth's NVFP4 Qwen3.6 quants faster than NVIDIA's own NVFP4 quants?",
+      "back_html": "\u003cp\u003eNVIDIA's NVFP4 uses W4A4 weights with 16-bit activations (W4A16). Unsloth's uses true W4A4 — 4-bit weights AND activations — so matmuls run on actual 4-bit tensor cores instead of falling back to wider math.\u003c/p\u003e"
+    },
+    {
+      "id": "card_20b368#1",
+      "format": "quiz",
+      "prompt": "How did Unsloth check that the extra speed didn't cost accuracy?",
+      "choices": [
+        {
+          "text": "Benchmarked MMLU-Pro, AIME 2025, and GPQA against FP8, BF16, and NVIDIA's NVFP4",
+          "correct": true
+        },
+        {
+          "text": "They only compared file size, not benchmark scores",
+          "correct": false
+        },
+        {
+          "text": "They relied on NVIDIA's published numbers without independent testing",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe release reports running MMLU-Pro, AIME 2025, and GPQA across FP8, BF16, NVIDIA's NVFP4, and Unsloth's NVFP4 quants, with no reported accuracy degradation from the extra speed.\u003c/p\u003e"
+    },
+    {
+      "id": "card_20b368#2",
+      "format": "flip",
+      "prompt": "Besides weight/activation quantization, what other technique does the release bundle for longer context?",
+      "back_html": "\u003cp\u003eFP8 KV-cache calibration, which the release says roughly doubles usable context length.\u003c/p\u003e"
+    }
+  ]
+}

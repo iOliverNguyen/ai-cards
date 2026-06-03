@@ -1,0 +1,99 @@
+{
+  "id": "card_01c403",
+  "slug": "rl-unseen-language-translation",
+  "type": "paper",
+  "title": "RL Teaches LLMs to Translate Languages They've Never Seen",
+  "hook": "Instead of memorizing a new language, what if a model learned the meta-skill of reading a grammar book on the fly? RL with a crude string-overlap reward gets it there.",
+  "key_points": [
+    "Earlier methods translate low-resource languages via continued training or a grammar book in context — but overfit specific languages.",
+    "The authors argue LLMs need the meta-skill of using in-context linguistic knowledge, not memorized languages.",
+    "They train with RL using chrF — a surface character-overlap metric — as the only reward signal.",
+    "RL-trained models beat in-context learning and supervised fine-tuning on completely unseen languages."
+  ],
+  "content_html": "\u003cp\u003eLLMs can already translate a language they've never been trained on if you hand them a grammar book in the prompt — but that trick tends to overfit the specific languages it was tuned on, with weak zero-shot transfer to new ones. Hu and colleagues reframe the goal: rather than teaching a model \u003cem\u003ea\u003c/em\u003e low-resource language, teach it the \u003cstrong\u003emeta-skill\u003c/strong\u003e of pulling grammar and vocabulary out of whatever linguistic context it's given.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTheir recipe is reinforcement learning with a deliberately lightweight reward: chrF, a surface-level character-overlap score between the model's output and a reference. Even with such a crude signal, the RL-trained models learn to extract and apply the relevant linguistic information from the provided context, producing better translations on \u003cem\u003ecompletely unseen\u003c/em\u003e languages than either in-context learning or supervised fine-tuning. The analysis suggests the model is acquiring a transferable skill, not memorizing languages. The bigger implication: outcome-based RL — already the workhorse for math and coding — can also serve as a recipe for learning languages from context. See the arXiv link for the experimental setup.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Hanxu Hu",
+      "Zdeněk Šnajdr",
+      "Pinzhen Chen",
+      "Jannis Vamvas",
+      "Rico Sennrich"
+    ],
+    "url": "https://arxiv.org/abs/2606.06428",
+    "published_at": "2026-06-04",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "nlp",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-08",
+  "date": "2026-06-04",
+  "related": [
+    {
+      "id": "card_13953d",
+      "slug": "in-context-learning",
+      "type": "concept",
+      "title": "In-Context Learning",
+      "hook": "Paste a few examples into a prompt and a large language model performs the task - no gradient updates, no fine-tuning, the prompt is the program.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-31"
+    },
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_01c403#0",
+      "format": "flip",
+      "prompt": "What 'meta-skill' do the authors say a model needs to translate unseen languages at scale?",
+      "back_html": "\u003cp\u003eThe ability to extract and apply linguistic knowledge from in-context material (like a grammar book) on the fly — rather than memorizing any specific language through training.\u003c/p\u003e"
+    },
+    {
+      "id": "card_01c403#1",
+      "format": "quiz",
+      "prompt": "What reward signal did the RL approach use?",
+      "choices": [
+        {
+          "text": "chrF, a surface-level character-overlap translation metric",
+          "correct": true
+        },
+        {
+          "text": "A learned neural reward model trained on human preferences",
+          "correct": false
+        },
+        {
+          "text": "Exact-match accuracy against a reference translation",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDespite being a lightweight surface metric, chrF as the reward pushed models to actually extract and apply context linguistic information, beating ICL and SFT on unseen languages.\u003c/p\u003e"
+    },
+    {
+      "id": "card_01c403#2",
+      "format": "flip",
+      "prompt": "What broader claim does the paper make about outcome-based RL?",
+      "back_html": "\u003cp\u003eThat RL can extend beyond conventional reasoning tasks like math and coding to serve as a recipe for language learning from context — eliciting a generalizable in-context skill.\u003c/p\u003e"
+    }
+  ]
+}

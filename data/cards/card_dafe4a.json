@@ -1,0 +1,106 @@
+{
+  "id": "card_dafe4a",
+  "slug": "k-means-clustering",
+  "type": "concept",
+  "title": "k-Means Clustering",
+  "hook": "Pick k cluster centers, assign every point to the nearest one, move each center to the mean of its points, repeat - clusters emerge without any labels.",
+  "key_points": [
+    "An unsupervised algorithm: it finds structure in data with no labels at all.",
+    "Alternates between assignment (each point joins its nearest center) and update (centers move to their cluster mean).",
+    "Converges to a local minimum - results vary with random initialization; run it multiple times.",
+    "You must choose k in advance; methods like the elbow plot help pick a sensible number.",
+    "Assumes roughly spherical, equal-size clusters; struggles with elongated or unequal-density groups."
+  ],
+  "content_html": "\u003cp\u003ek-Means clustering groups a dataset into k clusters by iteratively refining a set of center points. Each data point belongs to whichever center is closest, and the centers shift to sit at the average of their assigned points. This repeats until the assignments stop changing.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eStart by placing k centers, either randomly or using a smarter initialization like k-means++ (which spreads them out). Then alternate: assign every point to its nearest center, then recompute each center as the mean of its assigned points. The process always converges because each step reduces the total within-cluster variance, but it can get stuck in local minima - running it several times with different starting points and picking the best result is standard practice.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003ek-Means is often the first unsupervised algorithm people encounter, and it cleanly illustrates the core challenge of unsupervised learning: finding structure without being told what to look for. It is used in customer segmentation, image compression, and as a preprocessing step before supervised learning. The Wikipedia article covers initialization strategies, complexity, and the algorithm's limitations in depth.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/K-means_clustering",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "clustering-dimred"
+  ],
+  "tags": [
+    "classic-ml",
+    "foundational"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-06-03",
+  "date": "2026-06-03",
+  "related": [
+    {
+      "id": "card_d3603e",
+      "slug": "principal-component-analysis",
+      "type": "concept",
+      "title": "Principal Component Analysis (PCA)",
+      "hook": "Find the directions your data varies most, then keep only the top few - you compress many correlated features into a handful while retaining most of the signal.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-03"
+    },
+    {
+      "id": "card_6147d2",
+      "slug": "supervised-vs-unsupervised",
+      "type": "concept",
+      "title": "Supervised vs Unsupervised Learning",
+      "hook": "Do your examples come with answer keys? That one question splits machine learning into two very different jobs.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_dafe4a#0",
+      "format": "flip",
+      "prompt": "What two steps does k-Means alternate between?",
+      "back_html": "\u003cp\u003eAssignment (each point joins its nearest center) and update (each center moves to the mean of its assigned points).\u003c/p\u003e"
+    },
+    {
+      "id": "card_dafe4a#1",
+      "format": "quiz",
+      "prompt": "Why is it standard to run k-Means several times with different starting points?",
+      "choices": [
+        {
+          "text": "It converges only to a local minimum, so results vary with initialization",
+          "correct": true
+        },
+        {
+          "text": "It never converges otherwise",
+          "correct": false
+        },
+        {
+          "text": "It needs labels that change each run",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ek-Means converges to a local minimum and can get stuck, so running it multiple times and picking the best result is standard.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dafe4a#2",
+      "format": "quiz",
+      "prompt": "What kind of clusters does k-Means struggle with?",
+      "choices": [
+        {
+          "text": "Elongated or unequal-density groups",
+          "correct": true
+        },
+        {
+          "text": "Roughly spherical, equal-size clusters",
+          "correct": false
+        },
+        {
+          "text": "Any labeled dataset",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ek-Means assumes roughly spherical, equal-size clusters and struggles with elongated or unequal-density groups.\u003c/p\u003e"
+    }
+  ]
+}

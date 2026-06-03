@@ -1,0 +1,120 @@
+{
+  "id": "card_11253d",
+  "slug": "shippy-lessons-building-agents",
+  "type": "blog",
+  "title": "What Building Shippy Taught Us About Building Agents",
+  "hook": "When a wrong answer can send a patrol boat miles off course, Ai2's maritime agent Shippy leans on deterministic tools and sandboxed sessions instead of hoping the model behaves.",
+  "key_points": [
+    "Shippy is Ai2 Skylight's maritime-awareness agent, serving 300+ partners across 70+ countries on vessel-activity and boundary questions.",
+    "Design splits into 'soul' (system prompt = persona/boundaries), 'skills' (markdown task handlers), and 'config' (model/harness settings).",
+    "Instead of raw API calls, Shippy talks to a purpose-built CLI with rich --help/errors — raw calls once caused silent pagination and geometry bugs.",
+    "'Mothership' gives each user session its own Kubernetes pod with scoped credentials, so a session's files never leak across users.",
+    "Static benchmarks miss real agent behavior, so the team built custom evals: expert-written scenarios and rubrics graded on live data.",
+    "Real failures found: tactical overreach in patrol planning, boundary-simplification errors, and one invented, nonexistent CLI command."
+  ],
+  "content_html": "\u003cp\u003eShippy is Ai2 Skylight's agent for real-time maritime domain awareness — answering questions about vessel activity, fishing events, and protected-area boundaries for government agencies and NGOs across 70+ countries, where a wrong answer could send a patrol boat miles off course. The team's write-up distills what shipping a high-stakes agent like this actually required.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe Skylight team frames an agent as three separable pieces: a \u0026quot;soul\u0026quot; (the system prompt setting persona and hard boundaries — Shippy won't make legal determinations about whether a vessel is breaking the law, for instance), \u0026quot;skills\u0026quot; (markdown files that handle specific request types), and \u0026quot;config\u0026quot; (runtime settings like which model or harness to run). That split makes swapping models a config change rather than a rewrite. Two more lessons stand out: give a nondeterministic model deterministic tools — Shippy calls a purpose-built CLI with self-documenting errors rather than constructing Skylight API calls itself, after early prototypes that did so directly produced silent pagination drops and geometry bugs — and isolate every session, via \u0026quot;Mothership,\u0026quot; a platform that spins up a dedicated Kubernetes pod with scoped credentials per user. Because static benchmarks don't capture real agent behavior, the team also built custom evals — expert-written scenarios and rubrics scored against live data — which surfaced concrete failures like tactical overreach in patrol planning and one invented, nonexistent CLI command. Ai2 Skylight Team, Hugging Face blog, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face",
+    "authors": [
+      "Ai2 Skylight Team"
+    ],
+    "url": "https://huggingface.co/blog/allenai/shippy-tech-blog",
+    "published_at": "2026-07-15",
+    "license": "Ai2 (blog post)"
+  },
+  "topic_ids": [
+    "agents",
+    "lab-updates"
+  ],
+  "tags": [
+    "agent",
+    "news",
+    "safety"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-16",
+  "date": "2026-07-15",
+  "related": [
+    {
+      "id": "card_2e50ab",
+      "slug": "claude-agent-skills",
+      "type": "news",
+      "title": "Claude Agent Skills",
+      "hook": "Agent Skills package instructions, scripts, and resources into folders an agent loads on demand — composable, portable expertise, later opened as a standard like MCP.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2025-10-16"
+    },
+    {
+      "id": "card_e283b9",
+      "slug": "model-context-protocol",
+      "type": "news",
+      "title": "Model Context Protocol (MCP): A Standard for Connecting LLMs to Tools",
+      "hook": "MCP is an open protocol that standardizes how AI applications expose tools, data, and resources to models - think USB-C for AI tool integrations.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-11-25"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_11253d#0",
+      "format": "flip",
+      "prompt": "How does the Shippy team split an agent's design into three parts?",
+      "back_html": "\u003cp\u003e\u0026quot;Soul\u0026quot; (the system prompt defining persona and boundaries), \u0026quot;skills\u0026quot; (markdown files handling specific request types), and \u0026quot;config\u0026quot; (model/harness settings) — so swapping a model is a config change, not a rebuild.\u003c/p\u003e"
+    },
+    {
+      "id": "card_11253d#1",
+      "format": "quiz",
+      "prompt": "Why does Shippy talk to a purpose-built CLI instead of constructing Skylight API calls itself?",
+      "choices": [
+        {
+          "text": "Letting the agent build raw API calls caused silent pagination drops and geometry encoding errors",
+          "correct": true
+        },
+        {
+          "text": "The Skylight API has no documentation at all",
+          "correct": false
+        },
+        {
+          "text": "CLIs are always faster than direct API calls",
+          "correct": false
+        },
+        {
+          "text": "Direct API access is against Ai2's usage policy",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEarly prototypes that let the agent build API calls directly produced malformed pagination and geometry errors, so the team put a CLI with rich --help text and clear errors between the agent and the API.\u003c/p\u003e"
+    },
+    {
+      "id": "card_11253d#2",
+      "format": "flip",
+      "prompt": "What does 'Mothership' do for Shippy's user sessions?",
+      "back_html": "\u003cp\u003eIt provisions a dedicated Kubernetes pod per user session with scoped credentials, so files from one analyst's session are never shared with another user's.\u003c/p\u003e"
+    },
+    {
+      "id": "card_11253d#3",
+      "format": "quiz",
+      "prompt": "What real failure mode did Shippy's custom evals catch, beyond boundary and geometry issues?",
+      "choices": [
+        {
+          "text": "The agent invented a CLI command that didn't actually exist",
+          "correct": true
+        },
+        {
+          "text": "The agent refused to answer any maritime question",
+          "correct": false
+        },
+        {
+          "text": "The agent leaked one user's session data to another user",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAmong the failure modes the eval suite surfaced was tactical overreach in patrol planning and one case where the agent hallucinated a nonexistent CLI command.\u003c/p\u003e"
+    }
+  ]
+}

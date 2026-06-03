@@ -1,0 +1,124 @@
+{
+  "id": "card_0bb3c4",
+  "slug": "vibethinker-3b",
+  "type": "paper",
+  "title": "VibeThinker-3B: Frontier Reasoning in a Small Model",
+  "hook": "A 3B model matches giant flagships on hard math and coding - because verifiable reasoning, it turns out, compresses into a tiny 'reasoning core.'",
+  "key_points": [
+    "A 3B dense model scores 94.3 on AIME26 and 80.2 Pass@1 on LiveCodeBench v6, rivaling far larger flagship reasoning models.",
+    "Trained with a 'Spectrum-to-Signal' recipe: curriculum supervised fine-tuning, multi-domain RL, then offline self-distillation.",
+    "Parametric Compression-Coverage Hypothesis: verifiable reasoning compresses into a compact core, but broad world knowledge still needs many parameters.",
+    "Claim-level test-time scaling lifts AIME26 to 97.1; out-of-distribution transfer stays strong (96.1% on unseen LeetCode contests).",
+    "93.4 on IFEval shows the extreme reasoning tuning doesn't break instruction-following."
+  ],
+  "content_html": "\u003cp\u003eVibeThinker-3B is a 3-billion-parameter dense model built to probe how far verifiable\nreasoning can be pushed in a strictly small-model regime. Using a \u0026quot;Spectrum-to-Signal\u0026quot;\npost-training paradigm — curriculum-based supervised fine-tuning, multi-domain\nreinforcement learning, and offline self-distillation — its authors report frontier-level\nscores: 94.3 on AIME26 (97.1 with claim-level test-time scaling) and 80.2 Pass@1 on\nLiveCodeBench v6, matching or exceeding flagships orders of magnitude larger.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe headline isn't just the benchmark numbers but the framing. The team proposes the\n\u003cem\u003eParametric Compression-Coverage Hypothesis\u003c/em\u003e: verifiable reasoning (math, code) seems to\ncompress into a small \u0026quot;reasoning core,\u0026quot; while open-domain knowledge and general competence\nrequire broad parameter coverage over facts and long-tail scenarios. A 93.4 on IFEval\nsuggests the reasoning push doesn't sacrifice instruction-following. The takeaway, per the\nauthors, is that compact models are a complementary route to frontier capability — not just\na cheaper substitute. Results are the authors' own claims; see the technical report for\nmethodology and caveats.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Sen Xu",
+      "Shixi Liu",
+      "Wei Wang",
+      "Jixin Min",
+      "Yingwei Dai",
+      "Zhibin Yin",
+      "Yirong Chen",
+      "Xin Zhou",
+      "Junlin Zhang"
+    ],
+    "url": "https://arxiv.org/abs/2606.16140",
+    "published_at": "2026-06-15",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "reasoning",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-18",
+  "date": "2026-06-15",
+  "related": [
+    {
+      "id": "card_4cd8fd",
+      "slug": "deepseek-r1",
+      "type": "paper",
+      "title": "DeepSeek-R1: Incentivizing Reasoning via Reinforcement Learning",
+      "hook": "DeepSeek shows strong reasoning can emerge from RL on verifiable rewards with minimal supervised data - and those reasoning traces can be distilled into smaller models.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2025-01-22"
+    },
+    {
+      "id": "card_822dbf",
+      "slug": "geometry-of-on-policy-distillation",
+      "type": "paper",
+      "title": "On the Geometry of On-Policy Distillation",
+      "hook": "On-policy distillation isn't a midpoint between fine-tuning and RL — it carves its own narrow path through parameter space, locking into a low-dimensional subspace early in training.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-05"
+    },
+    {
+      "id": "card_1f00c3",
+      "slug": "test-time-compute-scaling",
+      "type": "paper",
+      "title": "Scaling LLM Test-Time Compute",
+      "hook": "A new scaling axis: instead of a bigger model, let a model think longer at inference — often a better use of compute, and the principle behind o1 and R1.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-08-06"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_0bb3c4#0",
+      "format": "flip",
+      "prompt": "What is the Parametric Compression-Coverage Hypothesis?",
+      "back_html": "\u003cp\u003eVerifiable reasoning can be compressed into a compact \u0026quot;reasoning core,\u0026quot; so small\nmodels can be frontier reasoners — but broad open-domain knowledge and general\ncompetence still require wide parameter coverage.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0bb3c4#1",
+      "format": "quiz",
+      "prompt": "How does VibeThinker-3B reach frontier reasoning despite its tiny size?",
+      "choices": [
+        {
+          "text": "A post-training pipeline: curriculum SFT, multi-domain RL, then offline self-distillation",
+          "correct": true
+        },
+        {
+          "text": "Pretraining on roughly 10x more tokens than larger models",
+          "correct": false
+        },
+        {
+          "text": "A new attention mechanism that replaces the transformer",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eVibeThinker-3B is a small dense model; its gains come from the \u0026quot;Spectrum-to-Signal\u0026quot;\npost-training recipe, not from more pretraining data or a new architecture.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0bb3c4#2",
+      "format": "flip",
+      "prompt": "What does VibeThinker-3B suggest about the role of small models?",
+      "back_html": "\u003cp\u003eThey're not merely deployment-efficient substitutes — they're a complementary path\nto frontier-level performance in verifiable, parameter-dense capability regimes.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "id": "card_72286a",
+  "slug": "gemini-3-5-flash-computer-use",
+  "type": "news",
+  "title": "Computer Use in Gemini 3.5 Flash",
+  "hook": "DeepMind put computer-use agents — reading the screen, then clicking, typing, and scrolling through real UIs — into its fast, low-cost Flash tier.",
+  "key_points": [
+    "Computer use lets the model operate software like a person: it sees the screen, then issues clicks, keystrokes, and scrolls to finish a task.",
+    "Shipping it in the Flash tier targets the per-action speed and cost that long, multi-step UI workflows demand.",
+    "Browser and app navigation becomes an API capability rather than a one-off research demo.",
+    "It extends the agent loop from text and tool calls to direct control of graphical interfaces."
+  ],
+  "content_html": "\u003cp\u003eGoogle DeepMind brought \u0026quot;computer use\u0026quot; to Gemini 3.5 Flash — the model's fast, low-cost tier. Computer use means the model can operate software the way a person does: it looks at the screen, then clicks buttons, types into fields, and scrolls to carry out a task, instead of only calling predefined tools.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat it is\u003c/h2\u003e\n\u003cp\u003eA computer-use agent runs in a loop: observe the current screen, decide the next action, perform it, then observe again. That turns browser and application navigation into something the model drives end to end, rather than a workflow a developer has to script step by step. Putting it in the Flash tier — built for speed and low cost — is the notable part, because long UI tasks chain together many model calls.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eMost real automation work is many small steps, not one big prompt, so the economics of each action matter as much as raw capability. Offering computer use in a cheap, fast tier pushes GUI automation closer to something you can run at production scale. See DeepMind's announcement for capabilities and availability.\u003c/p\u003e",
+  "source": {
+    "name": "Google DeepMind",
+    "authors": [
+      "Google DeepMind"
+    ],
+    "url": "https://deepmind.google/blog/introducing-computer-use-in-gemini-3-5-flash",
+    "published_at": "2026-06-24",
+    "license": "DeepMind blog"
+  },
+  "topic_ids": [
+    "agents",
+    "releases",
+    "lab-updates"
+  ],
+  "tags": [
+    "agent",
+    "multimodal",
+    "news"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-25",
+  "date": "2026-06-24",
+  "related": [
+    {
+      "id": "card_24717f",
+      "slug": "gemini-3-1-pro",
+      "type": "news",
+      "title": "Gemini 3.1 Pro: Frontier Reasoning (2026)",
+      "hook": "Gemini 3.1 Pro pushes core reasoning past the Gemini 3 Pro baseline, scoring 77.1% verified on ARC-AGI-2 - a benchmark built to resist the memorization that inflates other scores.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-02-19"
+    },
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    },
+    {
+      "id": "card_e283b9",
+      "slug": "model-context-protocol",
+      "type": "news",
+      "title": "Model Context Protocol (MCP): A Standard for Connecting LLMs to Tools",
+      "hook": "MCP is an open protocol that standardizes how AI applications expose tools, data, and resources to models - think USB-C for AI tool integrations.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-11-25"
+    },
+    {
+      "id": "card_5e431b",
+      "slug": "gemini-3-6-flash",
+      "type": "news",
+      "title": "Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber",
+      "hook": "Google splits its fast tier three ways: a workhorse that answers in fewer tokens, a 350-tokens-per-second speed model, and a security specialist locked behind a government pilot.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-07-21"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_72286a#0",
+      "format": "flip",
+      "prompt": "What does 'computer use' let a model do that plain tool-calling does not?",
+      "back_html": "\u003cp\u003eOperate graphical software directly — read the screen and click, type, and scroll — instead of only calling predefined functions or APIs.\u003c/p\u003e"
+    },
+    {
+      "id": "card_72286a#1",
+      "format": "quiz",
+      "prompt": "Why ship computer use in the fast, low-cost Flash tier specifically?",
+      "choices": [
+        {
+          "text": "Multi-step UI workflows make many model calls, so per-action speed and cost dominate the bill",
+          "correct": true
+        },
+        {
+          "text": "Flash is the only Gemini tier able to process images",
+          "correct": false
+        },
+        {
+          "text": "Smaller models are inherently safer to give control of a computer",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA task that takes dozens of screen-read-then-act steps multiplies the cost and latency of each call, so a cheap, fast tier is what makes the capability practical.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "id": "card_5b5e57",
+  "slug": "spider-2-aifunc-sql-benchmark",
+  "type": "paper",
+  "title": "Spider 2.0-AIFunc: Extending Real-World Text-to-SQL to AI-Native SQL Workflows",
+  "hook": "Cloud platforms let analysts call AI functions right inside SQL. Spider 2.0-AIFunc is the first benchmark testing whether models can write that kind of query — top models still cap out near 70%.",
+  "key_points": [
+    "465 verified instances across 125 real-world databases, covering six AI-native SQL function types on Snowflake.",
+    "Built by rewriting an existing enterprise text-to-SQL benchmark via an agent-based pipeline into AI-native form.",
+    "Every instance passes repeated execution across separated time windows to confirm answer stability before release.",
+    "Best proprietary models reach only 67-70% execution accuracy; the best open-source model manages 58.1%.",
+    "Agent frameworks built for classic text-to-SQL don't transfer here — a minimal agent setup matches or beats them."
+  ],
+  "content_html": "\u003cp\u003eReal analysts already write SQL that calls out to AI functions — classify this row, extract that entity, find similar text — right inside platforms like Snowflake. \u003cstrong\u003eSpider 2.0-AIFunc\u003c/strong\u003e is the first benchmark that tests whether models can actually generate that kind of query.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's being tested\u003c/h2\u003e\n\u003cp\u003eBuilt from an existing enterprise text-to-SQL benchmark, Spider 2.0-AIFunc rewrites 465 tasks across 125 real databases into AI-native form covering six function types — classification, filtering, sentiment analysis, extraction, similarity search, aggregation — on Snowflake's AI SQL functions. An agent-based pipeline handled the rewriting, and every instance was run repeatedly across separated time windows to confirm the expected answer stays stable before release.\u003c/p\u003e\n\u003ch2\u003eWhat they found\u003c/h2\u003e\n\u003cp\u003eThe best proprietary models land at only 67-70% execution accuracy; the strongest open-source model manages 58.1%. Failures cluster around predicate specification, schema grounding, and getting the AI function's own parameters right, not just standard SQL logic. More surprising: agent frameworks built for classic text-to-SQL problems, like schema retrieval and table selection, don't transfer to this AI-native setting — a minimal, bare-bones agent setup matches or beats the elaborate ones. Liu, Xu, and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Tianyang Liu",
+      "Canwen Xu",
+      "Fangyu Lei",
+      "Nikki Lijing Kuang",
+      "Jixuan Chen",
+      "Tao Yu",
+      "Julian McAuley",
+      "Zhewei Yao",
+      "Yuxiong He"
+    ],
+    "url": "https://arxiv.org/abs/2607.06229",
+    "published_at": "2026-07-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "nlp",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-07",
+  "related": [
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_5b5e57#0",
+      "format": "flip",
+      "prompt": "What's different about the SQL that Spider 2.0-AIFunc tests, versus classic text-to-SQL benchmarks?",
+      "back_html": "\u003cp\u003eQueries invoke AI-native SQL functions — classification, extraction, similarity search, sentiment analysis, and more — inside otherwise ordinary SQL, not just standard relational operations.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5b5e57#1",
+      "format": "quiz",
+      "prompt": "Where do models mostly fail on Spider 2.0-AIFunc, per the error analysis?",
+      "choices": [
+        {
+          "text": "Predicate specification, schema grounding, and parameterizing the AI functions themselves",
+          "correct": true
+        },
+        {
+          "text": "Basic SQL syntax errors like missing keywords",
+          "correct": false
+        },
+        {
+          "text": "Failing to connect to the Snowflake database at all",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe 67-70% ceiling for top proprietary models traces to getting predicates, schema references, and AI-function parameters right, not baseline SQL syntax.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5b5e57#2",
+      "format": "flip",
+      "prompt": "What did the authors find about elaborate agent frameworks on this benchmark?",
+      "back_html": "\u003cp\u003eFrameworks built for traditional text-to-SQL challenges, like schema retrieval and table selection, didn't transfer — a minimal agent setup consistently matched or beat them.\u003c/p\u003e"
+    }
+  ]
+}

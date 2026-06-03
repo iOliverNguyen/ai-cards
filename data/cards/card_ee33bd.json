@@ -1,0 +1,71 @@
+{
+  "id": "card_ee33bd",
+  "slug": "economy-of-minds",
+  "type": "paper",
+  "title": "Economy of Minds: Agents That Bid to Act",
+  "hook": "Skip the orchestrator. Let agents bid in auctions for the right to act, pay each other, and accumulate wealth — and collective intelligence emerges from the market, not from central control.",
+  "key_points": [
+    "Hayek-inspired: agents compete in auctions for the right to act, exchange payments, accumulate wealth.",
+    "Economic signals induce decentralized credit assignment — planning with no global orchestrator or comms protocol.",
+    "Effective agents grow wealthy and are mutated (exploit); bankrupt ones are replaced (explore).",
+    "Starting from weak agents, the economy yields emergent multi-step reasoning beating monolithic baselines on 5 tasks."
+  ],
+  "content_html": "\u003cp\u003eHow can a population of agents organize itself into stronger collective intelligence without anyone in charge? Qi and colleagues borrow Friedrich Hayek's theory of decentralized market coordination and build an agent economy: agents compete in auctions for the right to act, exchange payments, and accumulate wealth from environmental rewards. Those simple economic signals turn out to induce decentralized credit assignment — agents end up planning without any global orchestrator or explicit communication protocol.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe population evolves by economic selection. Agents that prove effective accumulate wealth and are mutated via exploitation; ineffective ones go bankrupt and get replaced via exploration. Starting from weak agents, the economy produces emergent multi-step reasoning strategies and, the authors report, outperforms stronger monolithic baselines across five agentic tasks spanning mathematical reasoning, financial research, scientific research, accelerator design, and distributed-system optimization. The paper also offers theory linking local incentives to long-term global performance. The provocation: rather than engineering coordination by hand, design the right decentralized incentives and let coordination emerge. See the arXiv link for the full results.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zhenting Qi",
+      "Huangyuan Su",
+      "Ao Qu",
+      "Chenyu Wang",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.02859",
+    "published_at": "2026-06-01",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-05",
+  "date": "2026-06-01",
+  "related": [],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_ee33bd#0",
+      "format": "flip",
+      "prompt": "How do agents in Economy of Minds get 'selected' over time?",
+      "back_html": "\u003cp\u003eThrough economic selection: effective agents accumulate wealth and are mutated via exploitation, while ineffective ones go bankrupt and are replaced via exploration.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ee33bd#1",
+      "format": "quiz",
+      "prompt": "What role do the economic signals (auctions, payments, wealth) play in the system?",
+      "choices": [
+        {
+          "text": "They induce decentralized credit assignment, driving planning without global orchestration",
+          "correct": true
+        },
+        {
+          "text": "They are a logging layer that doesn't affect agent behavior",
+          "correct": false
+        },
+        {
+          "text": "They require a central controller to clear every auction",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe economic signals themselves drive decentralized credit assignment and planning — no central orchestrator or explicit communication protocol needed.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "id": "card_54f98b",
+  "slug": "sae-feature-effect-geometry",
+  "type": "paper",
+  "title": "An SAE Feature Can Be Interpretable and Still Be Useless for Steering",
+  "hook": "Sparse-autoencoder features with clean descriptions often steer badly or backwards. Studying what they do to the logits explains why: few features act as reusable directions.",
+  "key_points": [
+    "The known problem: features with clear activation descriptions can have weak, unexpected, or opposite causal effects, and steering varies across prompts.",
+    "Prior work analyzed feature geometry inside the model; this paper analyzes the geometry of the logit changes an intervention causes.",
+    "FEGA is unsupervised: remove the same active SAE feature across many contexts and study the resulting cloud of logit changes.",
+    "Across SAE variants, consistent one-dimensional effects are rare — few features behave like reusable directions.",
+    "Value-like features (static information, e.g. factual attributes) more often show structured low-dimensional effects, though usually spanning several directions.",
+    "Pointer-like features (context-dependent operations) show predominantly diffuse effects — interpretable and causally relevant, but with no stable steering direction."
+  ],
+  "content_html": "\u003cp\u003eSparse autoencoders are the workhorse of modern interpretability, and they carry a persistent embarrassment: a feature whose activations have a clean, human-readable description will often steer weakly, unpredictably, or in the wrong direction. Selecting features by activation can also miss the ones that would actually produce the output change you want.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eLooking downstream instead of inside\u003c/h2\u003e\n\u003cp\u003eMost geometric analysis of SAE features has studied where they sit in the model's representation space — where they're computed. Hoang and colleagues invert that. Their Feature-Effect Geometry Analysis (FEGA) is unsupervised: take one active SAE feature, remove it across many different contexts, and examine the resulting cloud of logit changes. If a feature were a reusable steering direction, that cloud would be essentially one-dimensional.\u003c/p\u003e\n\u003cp\u003eAcross SAE variants, it usually isn't. Consistent one-dimensional effects are rare.\u003c/p\u003e\n\u003ch2\u003eTwo kinds of feature\u003c/h2\u003e\n\u003cp\u003eTo make sense of the variation, the authors distinguish \u003cstrong\u003evalue-like\u003c/strong\u003e features, tied to static information such as factual attributes, from \u003cstrong\u003epointer-like\u003c/strong\u003e features, associated with context-dependent operations. Value-like features more often show structured, low-dimensional effects — though typically still spanning several directions. Pointer-like features are predominantly diffuse. The conclusion is a useful caution rather than a dismissal: interpretability and causal relevance do not imply steerability, and a feature can have all three properties come apart.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Phu Gia Hoang",
+      "Anwoy Chatterjee",
+      "Tanmoy Chakraborty",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.24645",
+    "published_at": "2026-07-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "safety",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-10",
+  "date": "2026-07-27",
+  "related": [
+    {
+      "id": "card_e2857d",
+      "slug": "sae-interventions-unreliable",
+      "type": "paper",
+      "title": "SAE Interventions Are Unreliable",
+      "hook": "Clamping a 'harmful' sparse-autoencoder feature looks like it stops bad behavior — but this paper recovers it 95.8% of the time, exposing the gap between feature-level and real control.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-16"
+    },
+    {
+      "id": "card_704af4",
+      "slug": "scaling-evaluating-sparse-autoencoders",
+      "type": "paper",
+      "title": "Scaling and Evaluating Sparse Autoencoders",
+      "hook": "Tuning the sparsity penalty on an autoencoder is fiddly. Use a top-k constraint instead and you can dial sparsity directly — and scale SAEs to GPT-4.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-06-06"
+    },
+    {
+      "id": "card_0946f0",
+      "slug": "towards-monosemanticity",
+      "type": "paper",
+      "title": "Towards Monosemanticity: Decomposing Models with Dictionary Learning",
+      "hook": "If neurons mean several things at once, can we find cleaner units? A sparse autoencoder pulled 4,000+ single-concept features out of one tiny transformer layer.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2023-10-05"
+    },
+    {
+      "id": "card_426fcd",
+      "slug": "scaling-monosemanticity",
+      "type": "paper",
+      "title": "Scaling Monosemanticity: Features from Claude 3 Sonnet",
+      "hook": "Does dictionary learning survive at production scale? Anthropic found millions of features in Claude 3 Sonnet — and could steer the model by turning one up.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2024-05-21"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_0946f0",
+      "slug": "towards-monosemanticity",
+      "type": "paper",
+      "title": "Towards Monosemanticity: Decomposing Models with Dictionary Learning",
+      "hook": "If neurons mean several things at once, can we find cleaner units? A sparse autoencoder pulled 4,000+ single-concept features out of one tiny transformer layer.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2023-10-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_54f98b#0",
+      "format": "flip",
+      "prompt": "What does FEGA measure that prior SAE geometry work did not?",
+      "back_html": "\u003cp\u003eThe geometry of \u003cem\u003eeffects\u003c/em\u003e: it ablates the same active feature across many contexts and analyzes the resulting cloud of logit changes — downstream of the model, rather than the geometry of where features live inside it.\u003c/p\u003e"
+    },
+    {
+      "id": "card_54f98b#1",
+      "format": "quiz",
+      "prompt": "What distinguishes 'value-like' from 'pointer-like' SAE features in this analysis?",
+      "choices": [
+        {
+          "text": "Value-like features encode static information and tend to have structured low-dimensional effects; pointer-like features encode context-dependent operations and have diffuse effects",
+          "correct": true
+        },
+        {
+          "text": "Value-like features activate more frequently, pointer-like features more sparsely",
+          "correct": false
+        },
+        {
+          "text": "Value-like features live in early layers, pointer-like features in late layers",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe split is functional: features tied to static facts produce comparatively structured effects (still usually spanning several directions), while features associated with context-dependent operations scatter their effects across many directions.\u003c/p\u003e"
+    },
+    {
+      "id": "card_54f98b#2",
+      "format": "flip",
+      "prompt": "What is the paper's headline caution for anyone steering models with SAE features?",
+      "back_html": "\u003cp\u003eA feature can be genuinely interpretable and genuinely causally relevant without providing a stable direction to steer along — consistent one-dimensional effects turn out to be rare across SAE variants.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "id": "card_ad2c60",
+  "slug": "dspark-speculative-decoding",
+  "type": "paper",
+  "title": "DSpark: The Speculative Decoder Behind DeepSeek's Production Serving",
+  "hook": "Parallel drafters draft fast, but verifying all of it wastes capacity on likely rejects. DSpark schedules verification by confidence — and cut DeepSeek-V4's per-user latency 60-85% in production.",
+  "key_points": [
+    "Parallel drafters decode fast but suffer 'rapid acceptance decay' — later tokens in a long draft are increasingly likely to be wrong, so verifying the whole block wastes batch capacity.",
+    "DSpark's drafter is semi-autoregressive: a parallel backbone plus a lightweight sequential module that models dependencies within a block, slowing the decay.",
+    "Confidence-scheduled verification dynamically sets how much of each draft to verify per request, based on estimated survival probability and the serving engine's throughput profile.",
+    "Deployed in DeepSeek-V4's live production serving system, DSpark cut per-user generation latency 60-85% versus the prior MTP-1 production baseline at matched throughput.",
+    "By avoiding wasted verification under strict interactivity constraints, it unlocked serving performance tiers that weren't reachable before."
+  ],
+  "content_html": "\u003cp\u003eMost speculative-decoding papers report offline benchmark speedups. DSpark's headline number comes from somewhere rarer: DeepSeek's actual production serving system, under live user traffic.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe problem DSpark targets is specific to parallel drafters, which propose a whole block of tokens in a single forward pass without modeling dependencies between them. That makes later tokens in the block increasingly likely to be wrong — \u0026quot;rapid acceptance decay\u0026quot; — so indiscriminately verifying the full block burns batch capacity on tokens that were never going to be accepted anyway. DSpark attacks this two ways: a \u003cstrong\u003esemi-autoregressive\u003c/strong\u003e drafter couples a parallel backbone with a lightweight sequential module that models intra-block dependencies, slowing the decay; and \u003cstrong\u003econfidence-scheduled verification\u003c/strong\u003e dynamically sets how much of each draft to verify per request, based on estimated prefix-survival probability and the serving engine's own throughput profile. Deployed inside DeepSeek-V4's production serving system, DSpark is reported to cut per-user generation latency by 60-85% versus the established MTP-1 production baseline at matched throughput — and, by avoiding wasted verification under strict interactivity constraints, to unlock performance tiers that weren't previously attainable. From DeepSeek, arXiv, 2026-07-06.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xin Cheng",
+      "Xingkai Yu",
+      "Chenze Shao",
+      "Jiashi Li",
+      "Yunfan Xiong",
+      "Yi Qian",
+      "Jiaqi Zhu",
+      "Shirong Ma",
+      "Xiaokang Zhang",
+      "Jiasheng Ye",
+      "Qinyu Chen",
+      "Chengqi Deng",
+      "Jiping Yu",
+      "Damai Dai",
+      "Zhengyan Zhang",
+      "Yixuan Wei",
+      "Yixuan Tan",
+      "Wenkai Yang",
+      "Runxin Xu",
+      "Yu Wu",
+      "Zhean Xu",
+      "Xuanyu Wang",
+      "Muyang Chen",
+      "Rui Tian",
+      "Xiao Bi",
+      "Zhewen Hao",
+      "Shaoyuan Chen",
+      "Huanqi Cao",
+      "Wentao Zhang",
+      "Anyi Xu",
+      "Huishuai Zhang",
+      "Dongyan Zhao",
+      "Wenfeng Liang"
+    ],
+    "url": "https://arxiv.org/abs/2607.05147",
+    "published_at": "2026-07-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-13",
+  "date": "2026-07-06",
+  "related": [
+    {
+      "id": "card_951958",
+      "slug": "speculative-decoding",
+      "type": "paper",
+      "title": "Speculative Decoding",
+      "hook": "Let a small, fast model guess the next few words, then have the big model check them all in one shot. Same output, fewer slow steps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-30"
+    },
+    {
+      "id": "card_b570de",
+      "slug": "domino-speculative-decoding",
+      "type": "paper",
+      "title": "Domino: Decoupling Causal Modeling from Autoregressive Drafting",
+      "hook": "Speculative decoding is stuck between fast-but-sloppy parallel drafters and accurate-but-slow autoregressive ones. Domino splits the difference and hits up to 5.8× throughput.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-05-28"
+    },
+    {
+      "id": "card_1bff26",
+      "slug": "jetspec-speculative-decoding",
+      "type": "paper",
+      "title": "JetSpec: Breaking the Scaling Ceiling of Speculative Decoding",
+      "hook": "Speculative decoding stalls when bigger draft trees stop paying off. JetSpec trains a causal parallel draft head that drafts in one pass yet stays branch-consistent — hitting up to 9.64x speedup.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-25"
+    },
+    {
+      "id": "card_c0948e",
+      "slug": "deepseek-v4",
+      "type": "news",
+      "title": "DeepSeek-V4: Sparse Attention, Million-Token Default",
+      "hook": "DeepSeek-V4 makes a 1M-token context window the default and pairs token-wise compression with sparse attention, so long-context inference no longer pays the usual compute and memory tax.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-04-24"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_951958",
+      "slug": "speculative-decoding",
+      "type": "paper",
+      "title": "Speculative Decoding",
+      "hook": "Let a small, fast model guess the next few words, then have the big model check them all in one shot. Same output, fewer slow steps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-30"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_ad2c60#0",
+      "format": "flip",
+      "prompt": "What is 'rapid acceptance decay' and why does it hurt parallel drafters?",
+      "back_html": "\u003cp\u003eParallel drafters propose long blocks of tokens in one shot without modeling dependencies between them, so later tokens in the block become increasingly likely to be wrong — verifying the full block then wastes batch capacity on doomed tokens.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ad2c60#1",
+      "format": "quiz",
+      "prompt": "How does DSpark decide how much of each draft to verify?",
+      "choices": [
+        {
+          "text": "Confidence-scheduled verification: verification length is set per request from estimated prefix survival probability and the engine's throughput profile",
+          "correct": true
+        },
+        {
+          "text": "It always verifies a fixed-length block regardless of request",
+          "correct": false
+        },
+        {
+          "text": "It skips verification for requests marked low-priority",
+          "correct": false
+        },
+        {
+          "text": "It verifies every token individually, one at a time",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDSpark tailors verification length dynamically per request rather than using a fixed policy, trading off estimated acceptance odds against the serving engine's real throughput profile.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ad2c60#2",
+      "format": "flip",
+      "prompt": "What production result does DSpark report from DeepSeek-V4's live serving system?",
+      "back_html": "\u003cp\u003eA 60-85% cut in per-user generation latency versus the prior production baseline (MTP-1) at matched throughput, and new serving performance tiers under strict interactivity constraints.\u003c/p\u003e"
+    }
+  ]
+}

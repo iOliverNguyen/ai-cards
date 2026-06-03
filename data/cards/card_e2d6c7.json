@@ -1,0 +1,99 @@
+{
+  "id": "card_e2d6c7",
+  "slug": "edgebench-scaling-laws",
+  "type": "paper",
+  "title": "EdgeBench: Scaling Laws for Learning from Real Environments",
+  "hook": "Pretraining has scaling laws everyone knows by heart. This paper finds the first one for what happens after deployment — how fast agents actually improve from real-world experience.",
+  "key_points": [
+    "Analyzing ~38,000 hours of agent-environment interaction across 134 real-world tasks, performance during environment learning follows a log-sigmoid scaling law with R² = 0.998.",
+    "Across model generations, agent learning speed roughly doubles every three months.",
+    "EdgeBench tasks span science, software engineering, combinatorial optimization, professional knowledge work, formal math, and games — each sustaining 12+ hours of continuous agent operation.",
+    "51 of the 134 tasks and the full evaluation framework are released publicly."
+  ],
+  "content_html": "\u003cp\u003ePretraining scaling laws — more data and compute, predictably better models — are well established. What happens \u003cem\u003eafter\u003c/em\u003e deployment, as an agent actually learns from operating in a real environment, has been far murkier. EdgeBench puts a number on it.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe authors analyze roughly 38,000 hours of agent-environment interaction across 134 real-world tasks — spanning scientific discovery, software engineering, combinatorial optimization, professional knowledge work, formal mathematics, and interactive games, each requiring at least 12 hours of continuous agent operation under rich feedback. They find, to their knowledge for the first time, that overall performance during environment learning follows a log-sigmoid scaling law with striking precision (R² = 0.998). Comparing across model generations, they also find agent learning speed roughly doubling every three months. The team publicly releases 51 of the tasks plus the full evaluation framework, aiming to make this a shared yardstick for studying how agents improve from real experience rather than just from more pretraining. Deyao Zhu and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Deyao Zhu",
+      "Xin Zhou",
+      "Shengling Qin",
+      "Xuekai Zhu",
+      "Hangliang Ding",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.05155",
+    "published_at": "2026-07-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-06",
+  "related": [
+    {
+      "id": "card_26a94f",
+      "slug": "agents-a1-scaling-the-horizon",
+      "type": "paper",
+      "title": "Scaling the Horizon, Not the Parameters",
+      "hook": "A 35B mixture-of-experts agent matches trillion-parameter models on long-horizon tasks — by scaling how long its trajectories run, not how big its weights are.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-29"
+    },
+    {
+      "id": "card_ecf574",
+      "slug": "pace-agentic-capability-proxy",
+      "type": "paper",
+      "title": "PACE: A Proxy for Agentic Capability Evaluation",
+      "hook": "Full agentic evals like SWE-Bench and GAIA can cost thousands of dollars and days to run — PACE predicts those scores from a tiny, cheap subset of ordinary benchmarks, at under 1% of the cost.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-02"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_e2d6c7#0",
+      "format": "flip",
+      "prompt": "What kind of scaling law does EdgeBench find for agents learning from real-world environments post-deployment?",
+      "back_html": "\u003cp\u003eA log-sigmoid scaling law (R² = 0.998) describing how agent performance improves with environment-learning experience — the post-deployment analogue of pretraining scaling laws.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e2d6c7#1",
+      "format": "quiz",
+      "prompt": "According to EdgeBench, roughly how fast has agent learning speed from real-world experience been improving across model generations?",
+      "choices": [
+        {
+          "text": "Roughly doubling every three months",
+          "correct": true
+        },
+        {
+          "text": "Doubling every ten years",
+          "correct": false
+        },
+        {
+          "text": "It has stayed flat across model generations",
+          "correct": false
+        },
+        {
+          "text": "It only improves when task difficulty decreases",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAcross generations of models, EdgeBench measured agent learning speed from real-world environment interaction roughly doubling every three months — a fast, measurable trend distinct from pretraining scaling.\u003c/p\u003e"
+    }
+  ]
+}

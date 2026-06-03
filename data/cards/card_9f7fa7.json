@@ -1,0 +1,94 @@
+{
+  "id": "card_9f7fa7",
+  "slug": "dino",
+  "type": "paper",
+  "title": "DINO: Self-Supervised Vision Transformers",
+  "hook": "Train a Vision Transformer with no labels at all, and something surprising happens: its attention maps trace out object boundaries on their own.",
+  "key_points": [
+    "Trains a ViT with self-distillation and no labels — pure self-supervision.",
+    "A student network learns to match a teacher built from its own running average.",
+    "Attention maps emerge that highlight object shapes, without any segmentation supervision.",
+    "Produces features strong enough for tasks like nearest-neighbor classification off the shelf."
+  ],
+  "content_html": "\u003cp\u003eMathilde Caron, Hugo Touvron, and colleagues at Meta trained Vision Transformers without any labels using a method they call DINO — self-distillation with no labels. A student network learns to match the output of a teacher that is just a smoothed copy of the student. The striking finding: the resulting ViT attention maps spotlight object boundaries, and its features are good enough to classify images well without fine-tuning.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eDINO makes two crops of an image and passes them through a student and a teacher network that share architecture. The teacher's weights are an exponential moving average of the student's, so it changes slowly. The student is trained to predict the teacher's output distribution for the same image across different crops; tricks like centering and sharpening the outputs prevent the networks from collapsing to a trivial solution. No labels enter the loop — the only signal is agreement between two views of the same picture.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eMost strong vision models lean on labeled data, which is expensive to gather. DINO shows that self-supervision alone can teach a ViT meaningful structure — to the point where attention spontaneously segments objects, a property the supervised counterparts don't display as clearly. That emergent behavior hinted at how much visual understanding is latent in unlabeled images and shaped later self-supervised vision research.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Mathilde Caron",
+      "Hugo Touvron",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2104.14294",
+    "published_at": "2021-04-29",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "vision-transformers"
+  ],
+  "tags": [
+    "vision"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-02",
+  "date": "2021-04-29",
+  "related": [
+    {
+      "id": "card_4aba44",
+      "slug": "vision-transformer-vit",
+      "type": "paper",
+      "title": "An Image is Worth 16x16 Words (ViT)",
+      "hook": "Chop an image into patches, treat each like a word, and feed them to a plain Transformer. With enough pretraining data, it matches or beats convolutional networks.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-10-22"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_4aba44",
+      "slug": "vision-transformer-vit",
+      "type": "paper",
+      "title": "An Image is Worth 16x16 Words (ViT)",
+      "hook": "Chop an image into patches, treat each like a word, and feed them to a plain Transformer. With enough pretraining data, it matches or beats convolutional networks.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-10-22"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_9f7fa7#0",
+      "format": "flip",
+      "prompt": "In DINO, where does the teacher network's weights come from?",
+      "back_html": "\u003cp\u003eThe teacher is a slowly-changing exponential moving average of the student's own weights, so the student learns to match a smoothed copy of itself.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9f7fa7#1",
+      "format": "quiz",
+      "prompt": "What is the only training signal in DINO?",
+      "choices": [
+        {
+          "text": "Agreement between the student and teacher outputs across two crops of the same image",
+          "correct": true
+        },
+        {
+          "text": "Labeled object boundaries for segmentation",
+          "correct": false
+        },
+        {
+          "text": "Class labels predicted against ImageNet categories",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eNo labels enter the loop — the student is trained to predict the teacher's output distribution for different crops of the same picture.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9f7fa7#2",
+      "format": "flip",
+      "prompt": "What surprising property emerges in DINO-trained ViTs?",
+      "back_html": "\u003cp\u003eTheir attention maps spotlight object boundaries on their own, without any segmentation supervision.\u003c/p\u003e"
+    }
+  ]
+}

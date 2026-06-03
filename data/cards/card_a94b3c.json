@@ -1,0 +1,104 @@
+{
+  "id": "card_a94b3c",
+  "slug": "kimi-k2",
+  "type": "paper",
+  "title": "Kimi K2: Open Agentic Intelligence",
+  "hook": "Moonshot's Kimi K2 is a trillion-parameter open-weight Mixture-of-Experts model built agentic-first — and trained at that scale without a single loss spike using the MuonClip optimizer.",
+  "key_points": [
+    "1T-parameter MoE with 32B active per token, open-sourced by Moonshot AI in July 2025.",
+    "Trained on 15.5T tokens with no loss spikes, using the MuonClip optimizer (a stabilized Muon).",
+    "Designed agentic-first: strong tool use, coding, and multi-step task performance.",
+    "A landmark open-weight release from a Chinese lab, competitive with frontier models."
+  ],
+  "content_html": "\u003cp\u003eKimi K2, open-sourced by Beijing-based Moonshot AI in July 2025, is a trillion-parameter Mixture-of-Experts language model with 32 billion parameters active per token. Released with weights and a detailed technical report, it was built explicitly for agentic workflows — coding, tool use, and autonomous multi-step tasks — and stood out as one of the strongest open models of its generation.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eLike other large MoE models, K2 routes each token to a small subset of experts, so it holds a trillion parameters of capacity while only paying the compute of a ~32B model per token. A notable engineering result is its training stability: Moonshot trained on 15.5 trillion tokens without the loss spikes that plague runs at this scale, crediting the MuonClip optimizer — a variant of Muon with a QK-clip technique to keep attention logits in check. Post-training included a large-scale agentic data pipeline and reinforcement learning.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eK2 is a clear data point in the open-weight, agentic-first trend: a frontier-scale model released openly, tuned less for chat and more for getting work done with tools. Its training-stability story also pushed the Muon family of optimizers into the spotlight for large runs, where AdamW had long been the unquestioned default.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Kimi Team (Moonshot AI)"
+    ],
+    "url": "https://arxiv.org/abs/2507.20534",
+    "published_at": "2025-07-11",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining",
+    "releases"
+  ],
+  "tags": [
+    "open-source",
+    "agent",
+    "nlp"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2025-07-11",
+  "related": [
+    {
+      "id": "card_f399a5",
+      "slug": "muon-optimizer",
+      "type": "blog",
+      "title": "Muon: An Optimizer for Hidden Layers",
+      "hook": "Muon orthogonalizes each gradient update before applying it — and trained networks faster than AdamW, the first serious challenger to Adam's reign in years.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-12-08"
+    },
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    },
+    {
+      "id": "card_de5399",
+      "slug": "deepseek-v3",
+      "type": "paper",
+      "title": "DeepSeek-V3 Technical Report",
+      "hook": "DeepSeek-V3 trained a frontier-class MoE model for a fraction of the cost of comparable closed models, using FP8 training and a novel load-balancing scheme to make efficiency the headline result.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-12-27"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a94b3c#0",
+      "format": "flip",
+      "prompt": "How does Kimi K2 hold trillion-parameter capacity while paying ~32B compute per token?",
+      "back_html": "\u003cp\u003eIts MoE routing sends each token to a small subset of experts, so only ~32B parameters are active per token despite 1T total.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a94b3c#1",
+      "format": "quiz",
+      "prompt": "What was the notable training-stability result for Kimi K2?",
+      "choices": [
+        {
+          "text": "Trained on 15.5T tokens with no loss spikes using the MuonClip optimizer",
+          "correct": true
+        },
+        {
+          "text": "It avoided spikes by training on far fewer tokens",
+          "correct": false
+        },
+        {
+          "text": "It used AdamW with no modifications",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMoonshot credited MuonClip — a Muon variant with QK-clip to keep attention logits in check — for stable training at that scale.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a94b3c#2",
+      "format": "flip",
+      "prompt": "What does 'agentic-first' mean for how Kimi K2 was built?",
+      "back_html": "\u003cp\u003eIt was tuned less for chat and more for getting work done with tools — coding, tool use, and autonomous multi-step tasks.\u003c/p\u003e"
+    }
+  ]
+}

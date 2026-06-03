@@ -1,0 +1,135 @@
+{
+  "id": "card_075c4b",
+  "slug": "ncp-bench-narrative-commitment",
+  "type": "paper",
+  "title": "Can LLM Agents Stick to the Script? A Benchmark for Long-Horizon Consistency in Interactive Narratives",
+  "hook": "Fluent writing is not the same as staying consistent: the best model keeps its story straight for only 42% of runs past 20 turns of adversarial play.",
+  "key_points": [
+    "Frames the problem as Narrative Commitment Preservation: can an agent honor earlier facts and promises under unconstrained user moves?",
+    "NCP-Bench: 100 narrative environments built from movie synopses, each with a checkable spec of trajectory, commitments, and initial facts.",
+    "Automatic checking throughout the player-agent vs. narrator-agent interaction, so consistency is graded turn by turn, not just at the end.",
+    "Best model (GPT-5.2) survives only 42% of runs past 20 turns; fact-conflict rates run 40-68% across tested models.",
+    "Within a 100-turn limit, only isolated runs satisfied every achievement commitment — long-horizon consistency is largely unsolved.",
+    "High linguistic quality does not predict commitment preservation: the two are measured separately and come apart."
+  ],
+  "content_html": "\u003cp\u003eInteractive storytelling is a natural fit for LLMs — but a narrator that writes beautifully and then contradicts its own plot is useless. This benchmark separates the two skills and finds that even frontier models lose the thread fast.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eYingpeng Ma and colleagues formalize the challenge as Narrative Commitment Preservation: holding logical consistency and narrative integrity together while a user pushes in unconstrained directions. Their testbed, NCP-Bench, is 100 narrative environments derived from movie synopses; each carries a structured specification — the intended trajectory, the commitments the story has made, and its initial facts — that can be checked automatically as a player agent and a narrator agent interact. Across state-of-the-art models the authors report a substantial long-horizon consistency gap: linguistic quality does not guarantee commitment preservation, the best-performing model (GPT-5.2) survives only 42% of runs after 20 turns, fact-conflict rates span 40-68% across models, and within the 100-turn limit only isolated runs satisfied every achievement commitment. Yingpeng Ma and colleagues, arXiv, August 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yingpeng Ma",
+      "Jianhao Yan",
+      "Bei Shi",
+      "Ka Hou Kam",
+      "Runnan Wang",
+      "Xuebo Liu",
+      "Yulong Chen",
+      "Yue Zhang",
+      "Derek F. Wong"
+    ],
+    "url": "https://arxiv.org/abs/2608.08160",
+    "published_at": "2026-08-08",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-13",
+  "date": "2026-08-08",
+  "related": [
+    {
+      "id": "card_488a94",
+      "slug": "long-horizon-terminal-bench",
+      "type": "paper",
+      "title": "Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks",
+      "hook": "46 terminal tasks that take hours, not minutes — and today's best agent still only nails 15% of them, with the average model managing barely 4%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-09"
+    },
+    {
+      "id": "card_6ce440",
+      "slug": "attractor-states-llm-conversations",
+      "type": "paper",
+      "title": "Attractor States Emerge in Multi-Turn LLM Conversations",
+      "hook": "Let two LLMs debate long enough and one model's style pulls the other toward it — Claude Haiku drags partners into its own habits, while GPT-4.1 nano is easily swayed.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-29"
+    },
+    {
+      "id": "card_043751",
+      "slug": "llms-lost-in-evolving-intent",
+      "type": "paper",
+      "title": "LLMs Get Lost When Intent Keeps Moving",
+      "hook": "Real users don't state what they want up front — they reveal, revise, and redirect it mid-conversation. Rewrite existing benchmarks that way and scores drop across every model family.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_075c4b#0",
+      "format": "flip",
+      "prompt": "What does Narrative Commitment Preservation (NCP) measure?",
+      "back_html": "\u003cp\u003eWhether an agent keeps honoring the facts and commitments it established earlier, even when a user intervenes in unconstrained or adversarial ways over a long interaction.\u003c/p\u003e"
+    },
+    {
+      "id": "card_075c4b#1",
+      "format": "quiz",
+      "prompt": "What survival rate does the best-performing model reach after 20 turns on NCP-Bench?",
+      "choices": [
+        {
+          "text": "42%",
+          "correct": true
+        },
+        {
+          "text": "78%",
+          "correct": false
+        },
+        {
+          "text": "95%",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGPT-5.2, the strongest model tested, survives only 42% of runs past 20 turns — and fact-conflict rates range from 40% to 68% across models.\u003c/p\u003e"
+    },
+    {
+      "id": "card_075c4b#2",
+      "format": "flip",
+      "prompt": "How does NCP-Bench make narrative consistency automatically checkable?",
+      "back_html": "\u003cp\u003eEach of its 100 environments, derived from movie synopses, ships a structured spec — trajectory, commitments, initial facts — that a checker verifies throughout the player/narrator interaction.\u003c/p\u003e"
+    },
+    {
+      "id": "card_075c4b#3",
+      "format": "quiz",
+      "prompt": "What does the paper conclude about the link between linguistic quality and consistency?",
+      "choices": [
+        {
+          "text": "Fluent output does not guarantee commitment preservation",
+          "correct": true
+        },
+        {
+          "text": "Models that write well always stay consistent",
+          "correct": false
+        },
+        {
+          "text": "Consistency improves steadily as conversations get longer",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors report that high linguistic quality does not guarantee commitment preservation: strong models still generate logically conflicting content under adversarial interventions.\u003c/p\u003e"
+    }
+  ]
+}

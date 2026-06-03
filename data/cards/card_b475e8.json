@@ -1,0 +1,95 @@
+{
+  "id": "card_b475e8",
+  "slug": "frontier-ai-regulation",
+  "type": "paper",
+  "title": "Frontier AI Regulation",
+  "hook": "How do you regulate models too new to have rules yet? This paper sketches three building blocks: set standards, make labs report, then enforce.",
+  "key_points": [
+    "Targets 'frontier AI' — highly capable foundation models that could pose risks to public safety.",
+    "Proposes three building blocks: standard-setting, registration and reporting, and compliance and enforcement.",
+    "Recommends pre-deployment risk assessments and external scrutiny of models.",
+    "Calls for evaluation-gated deployment decisions plus post-deployment monitoring."
+  ],
+  "content_html": "\u003cp\u003eMarkus Anderljung, Joslyn Barnhart, Anton Korinek, and co-authors focus on how to govern \u0026quot;frontier AI\u0026quot; — highly capable foundation models whose capabilities could pose risks to public safety. They propose three regulatory building blocks: standard-setting for developers, registration and reporting that give regulators visibility into what is being built, and compliance and enforcement mechanisms to back it up.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe three building blocks stack into a regime. Standards define what responsible development looks like; registration and reporting let regulators see which frontier models exist and how they behave; compliance and enforcement give the standards teeth. On top of this, the authors recommend concrete safety standards: pre-deployment risk assessments, external scrutiny of models, deployment decisions gated on those evaluations, and continued monitoring after a model is released.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eFrontier models advance faster than most legal frameworks can track, and their risks can be hard to anticipate from the outside. By naming specific mechanisms — visibility before harm, evaluation before release, oversight after — the paper offers regulators and labs a shared vocabulary for governing capabilities that don't yet have settled rules.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Markus Anderljung",
+      "Joslyn Barnhart",
+      "Anton Korinek",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2307.03718",
+    "published_at": "2023-07-06",
+    "license": "arXiv (CC BY 4.0)"
+  },
+  "topic_ids": [
+    "risks-policy"
+  ],
+  "tags": [
+    "safety",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2023-07-06",
+  "related": [
+    {
+      "id": "card_490028",
+      "slug": "model-evaluation-for-extreme-risks",
+      "type": "paper",
+      "title": "Model Evaluation for Extreme Risks",
+      "hook": "General-purpose AI tends to pick up dangerous capabilities alongside useful ones. So test for those capabilities directly — before you ship, not after.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-24"
+    },
+    {
+      "id": "card_acc5ad",
+      "slug": "eu-ai-act",
+      "type": "resource",
+      "title": "The EU AI Act",
+      "hook": "The EU's answer to regulating AI: sort systems by how much risk they pose, then scale the rules to match — from outright bans to no rules at all.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-08-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b475e8#0",
+      "format": "quiz",
+      "prompt": "What three building blocks does the paper propose for frontier AI regulation?",
+      "choices": [
+        {
+          "text": "Standard-setting; registration and reporting; compliance and enforcement",
+          "correct": true
+        },
+        {
+          "text": "Taxation, licensing, and public ownership",
+          "correct": false
+        },
+        {
+          "text": "Open-sourcing, auditing, and insurance",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe three building blocks are standard-setting, registration/reporting for visibility, and compliance/enforcement to give standards teeth.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b475e8#1",
+      "format": "flip",
+      "prompt": "What does the paper recommend before a frontier model is deployed?",
+      "back_html": "\u003cp\u003ePre-deployment risk assessments and external scrutiny, with deployment decisions gated on those evaluations, plus post-deployment monitoring.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b475e8#2",
+      "format": "flip",
+      "prompt": "Why does frontier AI need new governance vocabulary?",
+      "back_html": "\u003cp\u003eFrontier models advance faster than legal frameworks can track and their risks are hard to anticipate, so the paper names specific mechanisms labs and regulators can share.\u003c/p\u003e"
+    }
+  ]
+}

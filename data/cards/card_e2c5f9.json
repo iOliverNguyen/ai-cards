@@ -1,0 +1,89 @@
+{
+  "id": "card_e2c5f9",
+  "slug": "clap-cross-embodiment-world-models",
+  "type": "paper",
+  "title": "CLAP: One World Model, Many Bodies",
+  "hook": "Action-conditioned video models are usually locked to one robot, which locks them out of internet video. CLAP unifies action spaces so human footage and robot logs can train the same world model.",
+  "key_points": [
+    "State-of-the-art action-conditioned video models are typically tied to a single robot embodiment, so they cannot use heterogeneous video.",
+    "Core premise: universal physical laws govern spatiotemporal dynamics regardless of who is acting.",
+    "The obstacle is that action representations differ sharply across robots and are absent from human video.",
+    "CLAP reconciles action spaces using end-effector poses, language instructions, and latent actions.",
+    "A curriculum recipe first learns physical priors from unlabeled video via latent actions, then grounds them in end-effector action spaces for zero-shot deployment.",
+    "It approaches or surpasses state-of-the-art single-embodiment video models in challenging environments like DROID, and compounds further with few-shot adaptation."
+  ],
+  "content_html": "\u003cp\u003eAn action-conditioned video model that predicts what happens when a robot moves is a world model you can plan against. The catch is that these models are usually trained for one robot, which means they can only learn from data recorded on that robot — a rounding error next to the internet's supply of video showing physical interaction.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe premise and the obstacle\u003c/h2\u003e\n\u003cp\u003eCLAP starts from the observation that universal physical laws govern spatiotemporal dynamics regardless of the actor: a mug tips over the same way whether a human or a gripper pushes it. The obstacle is representational, not physical. Action spaces vary sharply across robot platforms, and human video has no action labels at all.\u003c/p\u003e\n\u003cp\u003eCLAP reconciles them with three complementary handles: end-effector poses as a physical common denominator, language instructions for intent, and latent actions for footage with no labels. A curriculum-based recipe then does the work in two stages — first learn foundational physical priors from unlabeled video using latent actions, then ground them in end-effector action spaces for zero-shot deployment to real tasks.\u003c/p\u003e\n\u003ch2\u003eResults\u003c/h2\u003e\n\u003cp\u003eCLAP approaches or surpasses state-of-the-art \u003cem\u003esingle-embodiment\u003c/em\u003e video models even in challenging environments like DROID, and few-shot adaptation compounds the advantage. The release is unusually broad: models spanning multiple action-conditioning spaces (end-effector, language, latent) and morphologies including DROID, Bridge, bimanual YAM robots, and G1 humanoids, with code and weights open-sourced.\u003c/p\u003e\n\u003cp\u003eThe paradigm claim is the one to watch — that even if you only care about one robot, the best way to train its world model may be to train it on everyone else's data first.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Kechen Liu",
+      "Ola Shorinwa"
+    ],
+    "url": "https://arxiv.org/abs/2608.27406",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "generative",
+    "vision",
+    "open-source",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_4f9539",
+      "slug": "vgi-bench",
+      "type": "paper",
+      "title": "VGI-Bench: Can Video Models Reason by Generating?",
+      "hook": "Video generators appear to do zero-shot visual reasoning in their frames. Held to a benchmark that demands a valid evolving process, the best model — Seedance 2.0 — scores 51%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_e2c5f9#0",
+      "format": "flip",
+      "prompt": "Why is single-embodiment training such a limitation for world models?",
+      "back_html": "\u003cp\u003eIt cuts the model off from the vast corpus of heterogeneous human and robot video that contains rich physical signal — the data exists, but its action labels don't match.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e2c5f9#1",
+      "format": "quiz",
+      "prompt": "How does CLAP reconcile action spaces across humans and different robots?",
+      "choices": [
+        {
+          "text": "Via end-effector poses, language instructions, and latent actions",
+          "correct": true
+        },
+        {
+          "text": "By retargeting every dataset to a single reference robot's joint angles",
+          "correct": false
+        },
+        {
+          "text": "By discarding action conditioning and training unconditionally",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThree complementary representations: end-effector poses give a physical common denominator, language covers intent, and latent actions cover video with no action labels at all.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e2c5f9#2",
+      "format": "flip",
+      "prompt": "What is the two-stage curriculum in CLAP?",
+      "back_html": "\u003cp\u003eFirst learn foundational physical priors from unlabeled video using latent actions; then ground those priors in end-effector action spaces for zero-shot deployment on real tasks.\u003c/p\u003e"
+    }
+  ]
+}

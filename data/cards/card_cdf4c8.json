@@ -1,0 +1,127 @@
+{
+  "id": "card_cdf4c8",
+  "slug": "qwen-image-2-rl",
+  "type": "paper",
+  "title": "Qwen-Image-2.0-RL: RLHF for a Diffusion Model",
+  "hook": "Qwen's team applied RLHF and on-policy distillation to a text-to-image diffusion model — the same post-training playbook that shaped chat models, now tuning image generation and editing.",
+  "key_points": [
+    "Builds task-specific reward models via fine-tuned VLMs with chain-of-thought scoring — alignment, aesthetics, and portrait fidelity for generation; instruction-following and identity preservation for editing.",
+    "Trains with a GRPO-based RL framework, including guidance tricks to preserve pretrained knowledge and per-category reward calibration.",
+    "Merges separately-trained generation and editing policies into one model via on-policy distillation with trajectory-level velocity matching.",
+    "Reports consistent gains: +2.61 on Qwen-Image-Bench, plus higher Elo in both text-to-image and image-edit arenas."
+  ],
+  "content_html": "\u003cp\u003eRLHF reshaped chat models by scoring outputs against learned preferences instead of raw next-token likelihood. Qwen-Image-2.0-RL brings that same idea to image generation and editing.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe pipeline builds task-specific composite reward models by fine-tuning vision-language models with pointwise scoring and chain-of-thought reasoning — covering alignment, aesthetics, and portrait fidelity for text-to-image generation, and instruction-following accuracy plus face-identity preservation for editing. On top of that reward system, the team runs a scalable GRPO-based RL framework with a hybrid classifier-free-guidance strategy to preserve pretrained knowledge, prompt curation via reward-range filtering, and per-category reward weight calibration. To merge the separately trained generation and editing policies into one deployable model, they use on-policy distillation as a final stage, consolidating multiple teachers through trajectory-level velocity matching. The result: Qwen-Image-2.0-RL gains 2.61 points on Qwen-Image-Bench over the base model, plus Elo gains of 78 and 93 points in the text-to-image and image-edit arenas respectively — consistent improvements in aesthetics, prompt adherence, and editing accuracy. Yixian Xu and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yixian Xu",
+      "Kaiyuan Gao",
+      "Yuxiang Chen",
+      "Yilei Chen",
+      "Zecheng Tang",
+      "Zihao Liu",
+      "Zikai Zhou",
+      "Deqing Li",
+      "Hao Meng",
+      "Kuan Cao",
+      "Jiahao Li",
+      "Jie Zhang",
+      "Liang Peng",
+      "Lihan Jiang",
+      "Ningyuan Tang",
+      "Shengming Yin",
+      "Tianhe Wu",
+      "Xiaoyue Chen",
+      "Yan Shu",
+      "Yanran Zhang",
+      "Yi Wang",
+      "Yu Wu",
+      "Yujia Wu",
+      "Zekai Zhang",
+      "Zhendong Wang",
+      "Xiao Xu",
+      "Kun Yan",
+      "Chenfei Wu"
+    ],
+    "url": "https://arxiv.org/abs/2606.27608",
+    "published_at": "2026-06-25",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "text-to-image",
+    "rlhf",
+    "papers-this-week"
+  ],
+  "tags": [
+    "generative",
+    "training",
+    "vision",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-02",
+  "date": "2026-06-25",
+  "related": [
+    {
+      "id": "card_d5a521",
+      "slug": "direct-preference-optimization",
+      "type": "paper",
+      "title": "Direct Preference Optimization (DPO)",
+      "hook": "RLHF works but is fiddly: a separate reward model and a finicky RL loop. DPO reaches the same goal with one simple loss — and became a popular default.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2023-05-29"
+    },
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    },
+    {
+      "id": "card_a144f0",
+      "slug": "nano-banana",
+      "type": "news",
+      "title": "Nano Banana (Gemini Image)",
+      "hook": "Google's native Gemini image model — nicknamed Nano Banana — made conversational, character-consistent image editing go viral, drawing millions to the Gemini app.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2025-08-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_cdf4c8#0",
+      "format": "flip",
+      "prompt": "What post-training technique, familiar from chat-model RLHF, does this paper bring to a diffusion model?",
+      "back_html": "\u003cp\u003eReinforcement learning from fine-tuned reward models (via GRPO), followed by on-policy distillation to merge specialized policies into one deployable model.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cdf4c8#1",
+      "format": "quiz",
+      "prompt": "How does Qwen-Image-2.0-RL combine its separately trained text-to-image and image-editing policies?",
+      "choices": [
+        {
+          "text": "On-policy distillation with trajectory-level velocity matching, consolidating multiple teachers into one student",
+          "correct": true
+        },
+        {
+          "text": "Simply averaging their weights together",
+          "correct": false
+        },
+        {
+          "text": "Running both models side-by-side at inference time",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe final training stage distills the task-specialized RL policies into a single student model via trajectory-level velocity matching.\u003c/p\u003e"
+    }
+  ]
+}

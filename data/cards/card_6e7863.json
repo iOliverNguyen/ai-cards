@@ -1,0 +1,93 @@
+{
+  "id": "card_6e7863",
+  "slug": "hiera-gpu-kernel-search-space-planning",
+  "type": "paper",
+  "title": "HIERA: Choosing the Search Space for GPU Kernels",
+  "hook": "LLM kernel optimizers all pick one implementation space and search inside it. HIERA's first decision is which space to search at all — PyTorch op, CUDA library, or handwritten kernel.",
+  "key_points": [
+    "Existing LLM-based kernel generators optimize within a fixed implementation space, trading flexibility against search efficiency.",
+    "HIERA plans hierarchically: it first selects an implementation space, then searches within it.",
+    "Candidate spaces span PyTorch operators, CUDA libraries, and custom CUDA kernels.",
+    "Contract-augmented task specifications plus profiling feedback and expert knowledge guide iterative refinement.",
+    "On KernelBench it beats training-free methods on validity, sample efficiency and performance, and stays competitive with training-based CUDA-L1.",
+    "A scientific-computing stencil operator case study reached a 1.53x speedup over cuDNN."
+  ],
+  "content_html": "\u003cp\u003eAutomated GPU kernel generation with LLMs has settled into a pattern: fix an implementation space — write raw CUDA, or compose PyTorch operators — and search inside it. Jinghao Wang and colleagues argue that fixing the space up front is what limits these systems, since a wide space is expensive to search and a narrow one caps how fast the kernel can get. HIERA makes the space selection itself a planning decision, choosing across PyTorch operators, CUDA libraries and custom CUDA kernels based on a contract-augmented specification of the task.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eWithin the chosen space, refinement is driven by profiling feedback and injected expert knowledge rather than blind resampling. On KernelBench across several workload levels and base LLMs, the paper reports better implementation validity, sample efficiency and final performance than other training-free methods, and competitive results against the training-based CUDA-L1 without any model training. A case study on a specialized scientific-computing stencil operator hit a 1.53x speedup over cuDNN. Details on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jinghao Wang",
+      "Qiqi Gu",
+      "Chenpeng Wu",
+      "Jianguo Yao",
+      "Haibing Guan",
+      "Xijun Li"
+    ],
+    "url": "https://arxiv.org/abs/2608.21157",
+    "published_at": "2026-08-21",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "hardware",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "efficiency",
+    "inference",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-24",
+  "date": "2026-08-21",
+  "related": [
+    {
+      "id": "card_cff050",
+      "slug": "asymmetric-capacity-self-refinement",
+      "type": "paper",
+      "title": "Where to Spend Model Size in Self-Refinement",
+      "hook": "Generate, critique, revise — three stages, and most systems use the same big model for all three. The critic barely needs to be big; the reviser absolutely does.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-21"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_6e7863#0",
+      "format": "quiz",
+      "prompt": "What does HIERA add above the usual LLM kernel-optimization loop?",
+      "choices": [
+        {
+          "text": "A planning step that chooses which implementation space to search — PyTorch ops, CUDA libraries, or custom kernels",
+          "correct": true
+        },
+        {
+          "text": "A learned reward model trained on kernel latencies",
+          "correct": false
+        },
+        {
+          "text": "A compiler pass that rewrites the generated CUDA automatically",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePrior methods fix the implementation space up front, which caps either flexibility or search efficiency; HIERA makes that choice part of the search.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6e7863#1",
+      "format": "flip",
+      "prompt": "What guides HIERA's iterative refinement once a space is chosen?",
+      "back_html": "\u003cp\u003eContract-augmented task specifications, plus profiling feedback from running the kernel and injected expert knowledge.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6e7863#2",
+      "format": "flip",
+      "prompt": "Why is the stencil-operator result interesting beyond ML workloads?",
+      "back_html": "\u003cp\u003eIt reached a 1.53x speedup over cuDNN on a specialized scientific-computing operator — suggesting the framework generalizes past the standard deep-learning kernel shapes.\u003c/p\u003e"
+    }
+  ]
+}

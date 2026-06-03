@@ -1,0 +1,111 @@
+{
+  "id": "card_b52032",
+  "slug": "kvarn-kv-cache-quantization",
+  "type": "paper",
+  "title": "KVarN: Variance-Normalized KV-Cache Quantization",
+  "hook": "Long reasoning chains blow up the KV cache. Squeeze it to 2 bits and errors snowball over thousands of decode steps — unless you fix the token scales first.",
+  "key_points": [
+    "Test-time scaling makes reasoning memory-bound: the KV cache grows with every decoded token.",
+    "Under autoregressive decoding, quantization errors *accumulate* across steps — unlike the prefill-style settings prior work tested.",
+    "The culprit is incorrect per-token scales; KVarN applies a Hadamard rotation plus dual-axis variance normalization to fix them.",
+    "Calibration-free, it sets a new state of the art for 2-bit KV-cache quantization on MATH500, AIME24, and HumanEval."
+  ],
+  "content_html": "\u003cp\u003eWhen a model \u0026quot;thinks\u0026quot; for a long time — the test-time scaling that drives modern reasoning — the bottleneck shifts from compute to memory. Every token decoded adds to the KV cache, and over thousands of steps that cache dominates memory. Quantizing it to very low precision is the obvious fix, but KVarN shows the standard evaluation has been misleading.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003ePrior KV-cache quantizers were largely measured in prefill-like settings, where the whole cache is quantized once. KVarN's key observation is that errors behave differently during long autoregressive decoding: they \u003cem\u003eaccumulate\u003c/em\u003e across timesteps, and the accumulation is driven primarily by incorrectly scaled tokens. The method is calibration-free — it applies a Hadamard rotation to the key and value matrices, then a dual-scaling variance normalization across both axes. Together these flatten outlying token-scale errors and sharply reduce the step-to-step error buildup.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAt 2-bit precision, KVarN reports a new state of the art on generative reasoning benchmarks including MATH500, AIME24, and HumanEval, with a vLLM implementation released. The broader insight is that low-precision tricks validated on prefill don't automatically transfer to long-horizon decoding — the regime that reasoning models actually run in — and that controlling per-token scale is what keeps errors from compounding.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Lorenz K. Muller",
+      "Philippe Bich",
+      "Chiara Boretti",
+      "Hyun-Min Chang",
+      "Jiawei Zhuang",
+      "Lukas Cavigelli"
+    ],
+    "url": "https://arxiv.org/abs/2606.03458",
+    "published_at": "2026-06-02",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "quantization",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-04",
+  "date": "2026-06-02",
+  "related": [
+    {
+      "id": "card_4deb70",
+      "slug": "smoothquant",
+      "type": "paper",
+      "title": "SmoothQuant: Accurate Post-Training Quantization for LLMs",
+      "hook": "Activations are hard to quantize; weights are easy. SmoothQuant shifts that difficulty from activations into weights with a simple rescaling, enabling clean 8-bit inference.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2022-11-18"
+    },
+    {
+      "id": "card_688904",
+      "slug": "kv-cache-and-batching",
+      "type": "concept",
+      "title": "The KV Cache \u0026 Continuous Batching",
+      "hook": "Generating one token reuses every prior key and value - that growing cache is why LLM inference is memory-bound, and continuous batching is how servers fight back.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-11-09"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_688904",
+      "slug": "kv-cache-and-batching",
+      "type": "concept",
+      "title": "The KV Cache \u0026 Continuous Batching",
+      "hook": "Generating one token reuses every prior key and value - that growing cache is why LLM inference is memory-bound, and continuous batching is how servers fight back.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-11-09"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_b52032#0",
+      "format": "flip",
+      "prompt": "Why does long reasoning shift the bottleneck from compute to memory?",
+      "back_html": "\u003cp\u003eTest-time scaling decodes many tokens, and every token adds to the KV cache — over thousands of steps that cache dominates memory.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b52032#1",
+      "format": "quiz",
+      "prompt": "What did KVarN find about quantization errors during long autoregressive decoding?",
+      "choices": [
+        {
+          "text": "They accumulate across timesteps, driven by incorrectly scaled tokens",
+          "correct": true
+        },
+        {
+          "text": "They stay constant once the cache is quantized at prefill",
+          "correct": false
+        },
+        {
+          "text": "They cancel out over many steps",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eUnlike prefill-style settings prior work tested, errors compound step to step, primarily because of incorrect per-token scales.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b52032#2",
+      "format": "flip",
+      "prompt": "What two operations does the calibration-free KVarN method apply?",
+      "back_html": "\u003cp\u003eA Hadamard rotation on the key and value matrices, followed by a dual-axis variance normalization that flattens outlying per-token scale errors.\u003c/p\u003e"
+    }
+  ]
+}

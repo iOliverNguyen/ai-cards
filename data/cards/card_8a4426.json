@@ -1,0 +1,95 @@
+{
+  "id": "card_8a4426",
+  "slug": "whisper",
+  "type": "paper",
+  "title": "Whisper: Robust Speech Recognition at Scale",
+  "hook": "Train a plain encoder-decoder transformer on 680,000 hours of weakly-labeled multilingual audio and you get near-human transcription robustness without task-specific fine-tuning.",
+  "key_points": [
+    "A standard encoder-decoder transformer trained on ~680k hours of diverse web audio - no custom acoustic model needed.",
+    "Weak supervision from naturally occurring audio-transcript pairs scales data collection without expensive human labeling.",
+    "Handles transcription, translation to English, language ID, and timestamps in a single multitask model.",
+    "Open weights across multiple model sizes (tiny to large) enable local deployment without API access."
+  ],
+  "content_html": "\u003cp\u003eRadford and colleagues at OpenAI published Whisper in December 2022, demonstrating that scale and diversity of training data can substitute for elaborate domain-specific speech recognition engineering. By scraping roughly 680,000 hours of audio with associated transcripts from the web, they trained a model that generalizes robustly to accents, noise conditions, and languages that typical ASR systems struggle with.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eAudio is converted to log-mel spectrograms and processed by a convolutional stem before entering a standard transformer encoder. A transformer decoder then generates text tokens autoregressively, conditioned on the encoded audio. The model is trained on a mix of tasks specified by special tokens: transcribe in the original language, translate to English, detect the language, or predict timestamps. This multitask framing is handled in one model without task-specific heads.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eWhisper showed that general-purpose sequence modeling and large-scale weak supervision can reach near-human accuracy in speech recognition across many languages, eliminating the need for hand-engineered acoustic features or careful domain adaptation. Its open weights made high-quality transcription accessible for local use cases, and its architecture has since been integrated into products like GPT-4o. Explore the paper and model weights on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Alec Radford",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2212.04356",
+    "published_at": "2022-12-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "video-audio"
+  ],
+  "tags": [
+    "speech",
+    "multimodal",
+    "open-source",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2022-12-06",
+  "related": [
+    {
+      "id": "card_9cee40",
+      "slug": "seq2seq",
+      "type": "paper",
+      "title": "Sequence to Sequence Learning",
+      "hook": "Translate a sentence by reading it into one vector, then writing a new sentence out of that vector. This encoder–decoder recipe powered early neural machine translation.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2014-09-10"
+    },
+    {
+      "id": "card_ee605b",
+      "slug": "gpt-4o",
+      "type": "news",
+      "title": "GPT-4o: One Model for Text, Audio, and Vision",
+      "hook": "GPT-4o is a single model that natively processes text, audio, and images end-to-end - no separate speech pipeline - cutting voice response latency to near human conversational speed.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2024-05-13"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_8a4426#0",
+      "format": "flip",
+      "prompt": "What substituted for elaborate task-specific speech engineering in Whisper?",
+      "back_html": "\u003cp\u003eScale and diversity of training data — ~680k hours of weakly-labeled web audio let a standard encoder-decoder transformer generalize without a custom acoustic model.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8a4426#1",
+      "format": "quiz",
+      "prompt": "How does Whisper handle transcription, translation, and language ID?",
+      "choices": [
+        {
+          "text": "One multitask model, with tasks specified by special tokens",
+          "correct": true
+        },
+        {
+          "text": "A separate fine-tuned model per task",
+          "correct": false
+        },
+        {
+          "text": "Task-specific output heads bolted onto a shared encoder",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eWhisper uses special tokens to specify the task — transcribe, translate to English, detect language, or predict timestamps — all in one model without task-specific heads.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8a4426#2",
+      "format": "flip",
+      "prompt": "What is 'weak supervision' in Whisper's training?",
+      "back_html": "\u003cp\u003eUsing naturally occurring audio-transcript pairs scraped from the web, which scales data collection without expensive human labeling.\u003c/p\u003e"
+    }
+  ]
+}

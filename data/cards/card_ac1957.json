@@ -1,0 +1,92 @@
+{
+  "id": "card_ac1957",
+  "slug": "multi-livecodebench",
+  "type": "paper",
+  "title": "Multi-LCB: Code Eval Beyond Python",
+  "hook": "LiveCodeBench keeps coding evals contamination-free — but only in Python. Multi-LCB extends it to twelve languages and finds models that look strong are quietly overfit to Python.",
+  "key_points": [
+    "LiveCodeBench (LCB) is popular for contamination-aware code eval, adding fresh problems filtered by release date — but it's Python-only.",
+    "Multi-LCB transforms LCB tasks into equivalent problems across twelve languages while preserving its contamination controls.",
+    "It stays compatible with LCB's format, so it automatically tracks future LCB updates.",
+    "Across 24 models, it exposed Python overfitting, language-specific contamination, and large multilingual performance gaps."
+  ],
+  "content_html": "\u003cp\u003eLiveCodeBench (LCB) became a go-to benchmark for code-generation LLMs because it fights contamination: it curates competitive-programming problems, keeps adding fresh ones, and filters by release date so models can't just have memorized the answers. Its blind spot is that every problem is in Python — leaving open whether models generalize to the many languages real software actually uses.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's new\u003c/h2\u003e\n\u003cp\u003eMulti-LCB transforms LCB's Python tasks into equivalent tasks across twelve programming languages while preserving the original contamination controls and evaluation protocol. Because it stays fully compatible with the LCB format, it automatically inherits future LCB updates rather than going stale. The authors then evaluated 24 instruction and reasoning models on it.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe results undercut a comforting assumption: a model that tops a Python coding benchmark isn't necessarily a strong general coder. Multi-LCB surfaced clear Python overfitting, language-specific contamination, and large disparities in multilingual performance — exactly the gaps a single-language benchmark hides. For anyone choosing a coding model for a non-Python stack, it's a reminder that the headline number may not be the number that matters.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Maria Ivanova",
+      "Pavel Zadorozhny",
+      "Rodion Levichev",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.20517",
+    "published_at": "2026-06-18",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "dataset",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-22",
+  "date": "2026-06-18",
+  "related": [
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    },
+    {
+      "id": "card_2a92eb",
+      "slug": "qwen3-coder",
+      "type": "news",
+      "title": "Qwen3-Coder",
+      "hook": "Qwen3-Coder is an open-weight agentic coding model — a 480B Mixture-of-Experts built for long-horizon, tool-using software tasks, rivaling closed models on agentic coding.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-07-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_ac1957#0",
+      "format": "flip",
+      "prompt": "What gap in LiveCodeBench does Multi-LCB address, and how?",
+      "back_html": "\u003cp\u003eLCB only evaluates Python. Multi-LCB transforms its tasks into equivalent problems across twelve languages while preserving LCB's contamination controls and evaluation protocol.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ac1957#1",
+      "format": "quiz",
+      "prompt": "What did Multi-LCB reveal about code-generation LLMs?",
+      "choices": [
+        {
+          "text": "They show Python overfitting and large performance disparities across other languages",
+          "correct": true
+        },
+        {
+          "text": "They perform identically across all programming languages",
+          "correct": false
+        },
+        {
+          "text": "They can no longer solve Python problems",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEvaluating 24 models surfaced Python overfitting, language-specific contamination, and substantial multilingual gaps — capability that single-language benchmarks hide.\u003c/p\u003e"
+    }
+  ]
+}

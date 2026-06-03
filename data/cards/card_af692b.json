@@ -1,0 +1,89 @@
+{
+  "id": "card_af692b",
+  "slug": "nvidia-hf-llama-cpp-stewardship",
+  "type": "news",
+  "title": "The llama.cpp Question in the Nvidia–Hugging Face Deal",
+  "hook": "Buying Hugging Face means also acquiring the employer of the llama.cpp and ggml team — the software almost all local LLM inference runs on.",
+  "key_points": [
+    "Hugging Face hired the llama.cpp/ggml team, including Georgi Gerganov, in February 2026 to work on the projects full time.",
+    "An Nvidia acquisition of Hugging Face therefore sweeps up the team and the corporate stewardship around llama.cpp.",
+    "llama.cpp and ggml underpin most consumer-hardware inference — Ollama, LM Studio, and countless local tools build on them.",
+    "The code is MIT-licensed, so existing releases can always be forked; what changes is who steers the roadmap and pays the maintainers.",
+    "Community concern focuses on Nvidia's incentive to prioritize its own accelerators over CPU, Apple Silicon, and AMD paths."
+  ],
+  "content_html": "\u003cp\u003eA less-noticed consequence of Nvidia's reported acquisition of Hugging Face: Hugging Face employs the llama.cpp and ggml team. Georgi Gerganov and colleagues joined in February 2026 specifically to keep working on the projects, which means the deal also brings the maintainers of the dominant local-inference stack under Nvidia's roof.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003ellama.cpp is how most people actually run a model on their own machine. Ollama, LM Studio, and a long tail of local tools sit on top of it or on ggml, and much of its engineering effort has gone into paths Nvidia does not sell: CPU inference, Apple Silicon Metal kernels, AMD and Vulkan backends. A hardware vendor funding that work has an obvious tension of interest.\u003c/p\u003e\n\u003cp\u003eThe mitigation is licensing. llama.cpp is MIT, so the existing code cannot be clawed back and a fork is always possible. What an acquirer really controls is direction — which backends get optimized, which get quietly left behind, and whether the maintainers stay. This framing is community speculation on an unclosed deal, not an announced plan; the substantive point is that open-source health depends on funding and stewardship as much as on the license text.\u003c/p\u003e",
+  "source": {
+    "name": "r/LocalLLaMA",
+    "authors": [
+      "/u/vexatious-big"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1w01y1f/with_huggingface_nvidia_is_also_acquiring",
+    "published_at": "2026-08-27",
+    "license": "Reddit (community post)"
+  },
+  "topic_ids": [
+    "lab-updates",
+    "inference"
+  ],
+  "tags": [
+    "news",
+    "open-source",
+    "inference"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_fc42c9",
+      "slug": "nvidia-acquires-hugging-face",
+      "type": "news",
+      "title": "Nvidia Buys Hugging Face",
+      "hook": "The default public home for open-weight models is being bought by the company that sells the chips to run them — reported at roughly $13 billion.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-08-27"
+    },
+    {
+      "id": "card_a93179",
+      "slug": "trellis-cpp",
+      "type": "news",
+      "title": "Trellis.cpp Reaches Reference Quality for Open Image-to-3D",
+      "hook": "A GGML-style CPU/non-CUDA port of TRELLIS.2 now produces 3D assets on par with the original reference implementation — no NVIDIA GPU required.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-17"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_af692b#0",
+      "format": "flip",
+      "prompt": "Why is llama.cpp's ownership entangled with the Hugging Face acquisition?",
+      "back_html": "\u003cp\u003eHugging Face employed the llama.cpp and ggml team from February 2026, so acquiring Hugging Face also acquires the team and the corporate stewardship of those projects.\u003c/p\u003e"
+    },
+    {
+      "id": "card_af692b#1",
+      "format": "quiz",
+      "prompt": "What protects the existing llama.cpp code from a change of corporate owner?",
+      "choices": [
+        {
+          "text": "It is MIT-licensed, so anyone can fork the released code and continue independently",
+          "correct": true
+        },
+        {
+          "text": "A binding neutrality clause in the acquisition agreement",
+          "correct": false
+        },
+        {
+          "text": "Nothing — a new owner can revoke the license on past releases",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA permissive license makes the published code un-revocable. What an owner controls is the future roadmap, the trademark, and who is paid to maintain it.\u003c/p\u003e"
+    }
+  ]
+}

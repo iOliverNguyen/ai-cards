@@ -1,0 +1,108 @@
+{
+  "id": "card_e283b9",
+  "slug": "model-context-protocol",
+  "type": "news",
+  "title": "Model Context Protocol (MCP): A Standard for Connecting LLMs to Tools",
+  "hook": "MCP is an open protocol that standardizes how AI applications expose tools, data, and resources to models - think USB-C for AI tool integrations.",
+  "key_points": [
+    "Defines a client-server protocol: AI apps (clients) connect to MCP servers that expose tools and resources.",
+    "One MCP server integration works across any MCP-compatible client, eliminating N×M custom connectors.",
+    "Servers can expose three primitives: tools (functions to call), resources (data to read), and prompts.",
+    "Released as an open standard with an Apache 2.0 SDK; adopted quickly across the developer ecosystem."
+  ],
+  "content_html": "\u003cp\u003eAnthropic released the Model Context Protocol in November 2024, an open standard that defines how AI applications connect to external tools and data sources. Rather than every team writing custom integrations for every AI client, MCP provides a shared protocol layer so a single server implementation works with any compatible client.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eMCP is a client-server protocol where AI host applications (like Claude Desktop or an IDE extension) act as MCP clients, and external services or local utilities run as MCP servers. Servers declare three types of capabilities: tools (functions the model can invoke), resources (files or data the model can read), and prompts (reusable prompt templates). Communication happens over a simple JSON-RPC-style transport, so servers can be local processes, remote HTTP services, or anything in between.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eBefore MCP, connecting an LLM to a new data source or tool meant writing a one-off integration for each AI client that wanted to use it - a combinatorial maintenance problem. MCP collapses that to one integration per tool and one integration per client. It also shifts tool definitions to the server side, so tool behavior can be updated without touching the model or client. Read Anthropic's announcement for the full motivation, spec overview, and links to the open-source SDKs.\u003c/p\u003e",
+  "source": {
+    "name": "Anthropic",
+    "authors": [
+      "Anthropic"
+    ],
+    "url": "https://www.anthropic.com/news/model-context-protocol",
+    "published_at": "2024-11-25",
+    "license": "Anthropic"
+  },
+  "topic_ids": [
+    "agents",
+    "releases"
+  ],
+  "tags": [
+    "agent",
+    "news",
+    "open-source"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-06-03",
+  "date": "2024-11-25",
+  "related": [
+    {
+      "id": "card_200002",
+      "slug": "toolformer",
+      "type": "paper",
+      "title": "Toolformer: Language Models That Use Tools",
+      "hook": "Instead of hand-scripting when to call a calculator or search, Toolformer lets the model teach itself — try API calls during training, keep the ones that actually help.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-02-09"
+    },
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_e283b9#0",
+      "format": "flip",
+      "prompt": "What core problem does MCP solve for connecting LLMs to tools?",
+      "back_html": "\u003cp\u003eIt replaces N×M custom connectors with a shared protocol: one server integration works across any compatible client, and one client works with any server.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e283b9#1",
+      "format": "quiz",
+      "prompt": "Which three primitives can an MCP server expose?",
+      "choices": [
+        {
+          "text": "Tools, resources, and prompts",
+          "correct": true
+        },
+        {
+          "text": "Models, weights, and datasets",
+          "correct": false
+        },
+        {
+          "text": "Agents, skills, and rewards",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eServers declare tools (functions to call), resources (data to read), and prompts (reusable templates).\u003c/p\u003e"
+    },
+    {
+      "id": "card_e283b9#2",
+      "format": "quiz",
+      "prompt": "What advantage comes from putting tool definitions on the server side?",
+      "choices": [
+        {
+          "text": "Tool behavior can be updated without touching the model or client",
+          "correct": true
+        },
+        {
+          "text": "The model retrains automatically when a tool changes",
+          "correct": false
+        },
+        {
+          "text": "Clients no longer need any integration",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eShifting tool definitions to the server lets behavior change without modifying the model or client.\u003c/p\u003e"
+    }
+  ]
+}

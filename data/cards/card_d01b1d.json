@@ -1,0 +1,106 @@
+{
+  "id": "card_d01b1d",
+  "slug": "gptq",
+  "type": "paper",
+  "title": "GPTQ: Accurate Post-Training Quantization",
+  "hook": "Already trained a giant LLM? GPTQ squeezes its weights down to 3–4 bits afterward — no retraining — with surprisingly little quality loss.",
+  "key_points": [
+    "Quantizes a finished model's weights to 3 or 4 bits, with no fine-tuning or retraining needed.",
+    "Works layer by layer, choosing roundings that minimize the output error each step introduces.",
+    "Uses second-order (Hessian) information to decide how to round, so accumulated error stays small.",
+    "Shrinks model size dramatically, making very large LLMs servable on modest hardware."
+  ],
+  "content_html": "\u003cp\u003eElias Frantar and colleagues introduced GPTQ, a way to compress a trained LLM's weights down to 3 or 4 bits after the fact, without any retraining. Instead of rounding all weights naively, it goes column by column through each layer and picks roundings that keep the layer's outputs as close as possible to the original. The payoff is much smaller models with only a small drop in quality, computed in a matter of hours even for very large networks.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eNaive rounding treats each weight independently, but errors pile up. GPTQ instead frames quantization as: which rounded weights best reproduce this layer's behavior on some sample data? It processes weights in order, and after fixing each one, it nudges the not-yet-quantized weights to compensate for the error just introduced. Curvature information (the Hessian of the layer's reconstruction loss) guides those adjustments, so the running error stays controlled.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003ePost-training quantization is attractive because you skip the expensive step of retraining. GPTQ pushed accurate quantization to 3–4 bits, well below the 8-bit comfort zone, which roughly quarters memory compared to 16-bit weights. That lets large open models run on a single consumer GPU. It became a default building block for the open-source LLM ecosystem, paired with tooling that serves these compressed models efficiently.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Elias Frantar",
+      "Saleh Ashkboos",
+      "Torsten Hoefler",
+      "Dan Alistarh"
+    ],
+    "url": "https://arxiv.org/abs/2210.17323",
+    "published_at": "2022-10-31",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "quantization"
+  ],
+  "tags": [
+    "efficiency",
+    "inference"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2022-10-31",
+  "related": [
+    {
+      "id": "card_5bd418",
+      "slug": "llm-int8",
+      "type": "paper",
+      "title": "LLM.int8(): 8-bit Inference for Transformers",
+      "hook": "Big transformers usually run in 16-bit. LLM.int8() halves that to 8-bit integers without losing accuracy — by treating a few rare 'outlier' features with care.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-08-15"
+    },
+    {
+      "id": "card_2e95ee",
+      "slug": "qlora",
+      "type": "paper",
+      "title": "QLoRA: Fine-tuning Quantized LLMs",
+      "hook": "Fine-tune a model with tens of billions of parameters on a single GPU. QLoRA squeezes the frozen base to 4-bit, then trains LoRA adapters on top — without losing quality.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-23"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_5bd418",
+      "slug": "llm-int8",
+      "type": "paper",
+      "title": "LLM.int8(): 8-bit Inference for Transformers",
+      "hook": "Big transformers usually run in 16-bit. LLM.int8() halves that to 8-bit integers without losing accuracy — by treating a few rare 'outlier' features with care.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-08-15"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_d01b1d#0",
+      "format": "flip",
+      "prompt": "Why does GPTQ avoid rounding each weight independently?",
+      "back_html": "\u003cp\u003eIndependent rounding lets errors pile up. GPTQ picks roundings that keep the layer's outputs close to the original, controlling accumulated error.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d01b1d#1",
+      "format": "quiz",
+      "prompt": "After GPTQ fixes a rounded weight, what does it do next?",
+      "choices": [
+        {
+          "text": "Nudges the not-yet-quantized weights to compensate for the error just introduced",
+          "correct": true
+        },
+        {
+          "text": "Retrains the whole layer from scratch",
+          "correct": false
+        },
+        {
+          "text": "Re-rounds all previously fixed weights",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGPTQ processes weights in order and, after fixing each, adjusts the remaining weights to offset the error, guided by Hessian curvature information.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d01b1d#2",
+      "format": "flip",
+      "prompt": "What is the main practical appeal of post-training quantization like GPTQ?",
+      "back_html": "\u003cp\u003eYou skip the expensive retraining step, yet can push weights to 3–4 bits — quartering memory vs. 16-bit — so large open models run on a single consumer GPU.\u003c/p\u003e"
+    }
+  ]
+}

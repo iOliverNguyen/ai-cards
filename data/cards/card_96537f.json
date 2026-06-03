@@ -1,0 +1,110 @@
+{
+  "id": "card_96537f",
+  "slug": "cosmos-h-dreams",
+  "type": "news",
+  "title": "Cosmos-H-Dreams: A Real-Time Generative Simulator for Surgical Robots",
+  "hook": "Rehearsing robot surgery on real hardware is slow, costly, and bends instruments. NVIDIA distilled its surgical world model into a two-step student that dreams the operating field at ~160 FPS.",
+  "key_points": [
+    "Runs at roughly 160 frames per second on a single RTX PRO 6000 — up from roughly ten for the base Cosmos-H-Surgical-Simulator it distills.",
+    "Self-forcing distillation has the student generate its own context autoregressively while a frozen teacher supervises it.",
+    "The distilled student needs as few as two denoising steps per latent frame, plus a causal warmup from cached teacher trajectories.",
+    "Teacher fine-tuned on JHU dVRK suturing data that deliberately includes failures — needle drops, missed throws.",
+    "FlashDreams inference library adds a streaming key/value cache, CUDA Graph capture, and model compilation.",
+    "Closed-loop control from a browser keyboard or Meta Quest controllers; code, checkpoints, and the dataset released."
+  ],
+  "content_html": "\u003cp\u003ePhysical robotic-surgery rigs are expensive to run, slow, and easy to damage, while conventional simulators struggle with what makes surgery hard: deformable tissue, fine instrument contact, specular metal, smoke, occlusion. NVIDIA's Cosmos-H-Dreams is an action-conditioned generative simulator that renders the operating field faster than real time, so surgical policies can be driven and evaluated in a closed loop instead.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe model starts from Cosmos-Predict2.5-2B, post-trained on NVIDIA's Open-H-Embodiment dataset and specialized for da Vinci Research Kit tabletop suturing. The speed comes from a teacher-to-student pipeline with three parts: a surgical teacher fine-tuned on JHU dVRK recordings that deliberately include failures such as needle drops and missed throws; a causal warmup that initializes the student from cached teacher trajectories; and self-forcing distillation, where the student generates its own context autoregressively while the frozen teacher supervises — addressing the mismatch between training on given context and running on self-generated context.\u003c/p\u003e\n\u003cp\u003eThe result needs as few as two denoising steps per latent frame, and NVIDIA's FlashDreams library — streaming key/value cache, CUDA Graph capture, model compilation — pushes it to about 160 frames per second on a single RTX PRO 6000, versus roughly ten for the base Cosmos-H-Surgical-Simulator. It can be driven interactively from browser keyboard commands or Meta Quest VR controllers, or handed to a learned surgical policy; a collaboration with CMR Surgical showed it working with the Versius surgeon controller. Code, checkpoints, and the dataset are released, along with a recipe for fine-tuning and distilling on custom data. Posted by Lukas Zbinden, Javier Gamazo, Mostafa Toloui, and Sean Huver of NVIDIA on July 27, 2026.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face Blog (NVIDIA)",
+    "authors": [
+      "Lukas Zbinden",
+      "Javier Gamazo",
+      "Mostafa Toloui",
+      "Sean Huver"
+    ],
+    "url": "https://huggingface.co/blog/nvidia/cosmos-h-dreams",
+    "published_at": "2026-07-27",
+    "license": "Hugging Face blog"
+  },
+  "topic_ids": [
+    "robotics",
+    "releases"
+  ],
+  "tags": [
+    "generative",
+    "efficiency",
+    "inference",
+    "open-source"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-27",
+  "date": "2026-07-27",
+  "related": [
+    {
+      "id": "card_833749",
+      "slug": "cosmos-3",
+      "type": "paper",
+      "title": "Cosmos 3: Omnimodal World Models for Physical AI",
+      "hook": "One model that reads and generates language, images, video, audio, and actions — NVIDIA's open Cosmos 3 folds VLMs, video generators, and robot policies into a single backbone.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-01"
+    },
+    {
+      "id": "card_46d88c",
+      "slug": "cosmos-3-edge",
+      "type": "news",
+      "title": "Cosmos 3 Edge: A 4B World Model for Real-Time Robots",
+      "hook": "NVIDIA shrinks its Cosmos world model down to 4B parameters and real-time speed — bringing robot perception, prediction, and action generation to edge hardware like Jetson Thor.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-20"
+    },
+    {
+      "id": "card_6519a8",
+      "slug": "alayaworld-playable-video-world-generation",
+      "type": "paper",
+      "title": "AlayaWorld: An Open-Source Framework for Playable Video Worlds",
+      "hook": "Building a game world the old way means authoring every asset by hand. AlayaWorld generates it live instead — combat, spell-casting, monster summoning — and open-sources the whole pipeline.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-07"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_96537f#0",
+      "format": "flip",
+      "prompt": "What is self-forcing distillation, and which problem does it target?",
+      "back_html": "\u003cp\u003eThe student generates its own context autoregressively while a frozen teacher supervises it — attacking the train-test mismatch of a model trained on someone else's context but run on its own.\u003c/p\u003e"
+    },
+    {
+      "id": "card_96537f#1",
+      "format": "quiz",
+      "prompt": "Where does Cosmos-H-Dreams' faster-than-real-time speed come from?",
+      "choices": [
+        {
+          "text": "A few-step distilled student — as few as two denoising steps per latent frame — plus the FlashDreams inference stack",
+          "correct": true
+        },
+        {
+          "text": "Replacing diffusion entirely with a token-by-token autoregressive decoder",
+          "correct": false
+        },
+        {
+          "text": "Sharding the teacher model across several GPUs",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDistillation cuts the denoising steps per frame; FlashDreams then adds streaming KV cache, CUDA Graph capture, and compilation. It runs on one RTX PRO 6000.\u003c/p\u003e"
+    },
+    {
+      "id": "card_96537f#2",
+      "format": "flip",
+      "prompt": "Why does a faster-than-real-time simulator matter for surgical robotics?",
+      "back_html": "\u003cp\u003ePhysical surgical rigs are expensive and slow to run and risk damaging instruments, and conventional simulators struggle with deformable tissue, smoke, specular metal, and occlusion.\u003c/p\u003e"
+    }
+  ]
+}

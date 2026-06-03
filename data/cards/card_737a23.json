@@ -1,0 +1,108 @@
+{
+  "id": "card_737a23",
+  "slug": "massive-activations-hybrid-attention",
+  "type": "paper",
+  "title": "Massive Activations Line Up With the Attention Layers",
+  "hook": "Hybrid linear-attention models have huge outlier activations too — and they aren't random. They spike right before every full-attention layer and plateau across the linear ones in between.",
+  "key_points": [
+    "First systematic study of massive activations (MAs) in layer-interleaved hybrid linear-attention (HLA) LLMs.",
+    "Two architecture-aligned shapes: pre-attention spikes (PAS) just before full-attention layers, and inter-spike plateaus (ISP) persisting through linear-attention layers.",
+    "As full attention gets denser, spikes connect through plateaus and recover the stable outlier pattern of full-attention LLMs.",
+    "Reproduced across five linear-attention architectures, six hybridization configs, five data domains, and open models from 1.2B to 397B parameters.",
+    "Controlled pretraining of GDN hybrids up to 1.3B: both shapes emerge early and respond asymmetrically to output gating.",
+    "Proposed lifecycle account — PAS follows a localized write-sink-cancel process; ISP reflects delayed cancellation."
+  ],
+  "content_html": "\u003cp\u003eFull-attention LLMs are known to develop \u003cstrong\u003emassive activations\u003c/strong\u003e — a handful of hidden dimensions with enormous magnitudes that matter disproportionately for quantization and interpretability. Zunhai Su and co-authors (arXiv, August 2026) run the first systematic study of the phenomenon in \u003cem\u003ehybrid\u003c/em\u003e linear-attention models, which interleave cheap linear-attention layers with occasional full-attention ones.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eTwo shapes\u003c/h2\u003e\n\u003cp\u003eThe outliers turn out to track the architecture. \u003cstrong\u003ePre-attention spikes (PAS)\u003c/strong\u003e appear immediately before full-attention layers; \u003cstrong\u003einter-spike plateaus (ISP)\u003c/strong\u003e are elevated values that persist through the intervening linear-attention layers. As full attention becomes denser in the hybrid, successive spikes get linked by plateaus until the pattern converges on the familiar full-attention morphology.\u003c/p\u003e\n\u003cp\u003eThe authors establish this across five linear-attention architectures, six hybridization configurations, five data domains, and open hybrid models spanning 1.2B to 397B total parameters. Controlled pretraining of GDN-based hybrids up to 1.3B shows both shapes emerge early in training and respond asymmetrically to output gating: full-attention output gating strongly attenuates their magnitudes without changing the layerwise organization, while removing GDN gates amplifies them only modestly.\u003c/p\u003e\n\u003ch2\u003eThe mechanism they propose\u003c/h2\u003e\n\u003cp\u003eA systematic-outlier analysis supports a shared lifecycle governed by \u003cem\u003ewhen\u003c/em\u003e massive activations get cancelled — PAS following a localized write-sink-cancel process, ISP reflecting delayed cancellation. Code is public. For anyone quantizing or probing a hybrid model, the practical value is knowing these outliers have predictable homes rather than appearing at random.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zunhai Su",
+      "Bohan Sun",
+      "Xialie Zhuang",
+      "Shuibai Zhang",
+      "He Xiao",
+      "Jing Xiong",
+      "Hengyuan Zhang",
+      "Zhongzhu Zhou",
+      "Tiantian Zhang",
+      "Ngai Wong",
+      "Chuan-Wei Kuo"
+    ],
+    "url": "https://arxiv.org/abs/2608.12149",
+    "published_at": "2026-08-12",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "ssm-mamba",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "attention",
+    "architecture",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-13",
+  "date": "2026-08-12",
+  "related": [
+    {
+      "id": "card_2c4ace",
+      "slug": "attention-amnesia-hybrid-llms",
+      "type": "paper",
+      "title": "Attention Amnesia: When Chain-of-Thought Tuning Breaks Long-Range Recall",
+      "hook": "Fine-tuning a hybrid LLM on chain-of-thought makes it reason better but quietly forget how to find a needle in a long haystack — and the fix is to just copy back two weight matrices.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-09"
+    },
+    {
+      "id": "card_6f79d6",
+      "slug": "super-weights-selective-training-failure",
+      "type": "paper",
+      "title": "Super Weights Are Critical to Read — But Useless to Train Alone",
+      "hook": "A handful of parameters wreck accuracy if removed. You'd think training just those would be the cheapest fine-tune ever. It isn't — it collapses the model to random guessing instead.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-09"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_737a23#0",
+      "format": "quiz",
+      "prompt": "Where do massive activations appear in a hybrid linear-attention LLM?",
+      "choices": [
+        {
+          "text": "Spiking immediately before full-attention layers, sometimes plateauing across the linear layers in between",
+          "correct": true
+        },
+        {
+          "text": "Uniformly across all layers, independent of layer type",
+          "correct": false
+        },
+        {
+          "text": "Only in the final layer, just before the output head",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe two morphologies are architecture-aligned: pre-attention spikes (PAS) before full-attention layers, and inter-spike plateaus (ISP) that persist through intervening linear-attention layers.\u003c/p\u003e"
+    },
+    {
+      "id": "card_737a23#1",
+      "format": "flip",
+      "prompt": "What happens to these patterns as a hybrid model uses denser full attention?",
+      "back_html": "\u003cp\u003eSuccessive spikes become increasingly connected by plateaus, eventually recovering the stable massive-activation morphology seen in full-attention LLMs.\u003c/p\u003e"
+    },
+    {
+      "id": "card_737a23#2",
+      "format": "flip",
+      "prompt": "What lifecycle do the authors propose to explain the two shapes?",
+      "back_html": "\u003cp\u003eA shared write-sink-cancel process governed by cancellation timing: spikes are localized and cancelled quickly, while plateaus reflect delayed cancellation.\u003c/p\u003e"
+    }
+  ]
+}

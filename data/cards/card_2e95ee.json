@@ -1,0 +1,121 @@
+{
+  "id": "card_2e95ee",
+  "slug": "qlora",
+  "type": "paper",
+  "title": "QLoRA: Fine-tuning Quantized LLMs",
+  "hook": "Fine-tune a model with tens of billions of parameters on a single GPU. QLoRA squeezes the frozen base to 4-bit, then trains LoRA adapters on top — without losing quality.",
+  "key_points": [
+    "Quantizes the frozen base model to 4-bit to cut memory, then trains LoRA adapters on top.",
+    "Brings fine-tuning of very large models within reach of a single GPU.",
+    "Introduces a 4-bit NormalFloat data type, double quantization, and paged optimizers to save memory.",
+    "Matches the quality of 16-bit fine-tuning despite the aggressive quantization."
+  ],
+  "content_html": "\u003cp\u003eTim Dettmers and colleagues combined two ideas to make fine-tuning huge models cheap. QLoRA loads the frozen base model in 4-bit precision to slash memory, then trains LoRA adapters on top of it. The trick is that the heavy frozen weights barely cost anything, while the small adapters do the learning — and the result holds up against full 16-bit fine-tuning.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eQLoRA keeps the base model frozen and quantized to 4-bit, so it occupies a fraction of the usual memory. During training, those 4-bit weights are dequantized on the fly to compute activations, but no gradients flow into them — only the LoRA adapters get updated. The paper adds three tricks to make this work cleanly: a 4-bit NormalFloat type tuned for normally-distributed weights, double quantization that even compresses the quantization constants, and paged optimizers that offload memory spikes to avoid running out during training.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eBefore QLoRA, customizing the largest open models often meant renting a cluster. By driving the memory footprint down far enough, it let researchers and hobbyists fine-tune models that previously needed many GPUs on a single one — all while preserving quality. That accessibility helped spark a wave of community fine-tunes of open-weight models.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Tim Dettmers",
+      "Artidoro Pagnoni",
+      "Ari Holtzman",
+      "Luke Zettlemoyer"
+    ],
+    "url": "https://arxiv.org/abs/2305.14314",
+    "published_at": "2023-05-23",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "finetuning",
+    "quantization"
+  ],
+  "tags": [
+    "efficiency",
+    "training"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2023-05-23",
+  "related": [
+    {
+      "id": "card_cae140",
+      "slug": "lora",
+      "type": "paper",
+      "title": "LoRA: Low-Rank Adaptation",
+      "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-06-17"
+    },
+    {
+      "id": "card_5bd418",
+      "slug": "llm-int8",
+      "type": "paper",
+      "title": "LLM.int8(): 8-bit Inference for Transformers",
+      "hook": "Big transformers usually run in 16-bit. LLM.int8() halves that to 8-bit integers without losing accuracy — by treating a few rare 'outlier' features with care.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-08-15"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_cae140",
+      "slug": "lora",
+      "type": "paper",
+      "title": "LoRA: Low-Rank Adaptation",
+      "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-06-17"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_2e95ee#0",
+      "format": "flip",
+      "prompt": "How does QLoRA cut memory while still training effectively?",
+      "back_html": "\u003cp\u003eIt quantizes the frozen base model to 4-bit so it barely costs memory, and trains only LoRA adapters on top.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2e95ee#1",
+      "format": "quiz",
+      "prompt": "During QLoRA training, where do gradients flow?",
+      "choices": [
+        {
+          "text": "Only into the LoRA adapters, not the frozen 4-bit base",
+          "correct": true
+        },
+        {
+          "text": "Into both the base weights and the adapters",
+          "correct": false
+        },
+        {
+          "text": "Only into the quantization constants",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe 4-bit weights are dequantized on the fly to compute activations, but no gradients flow into them - only the adapters update.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2e95ee#2",
+      "format": "quiz",
+      "prompt": "Which trick does QLoRA use to handle memory spikes during training?",
+      "choices": [
+        {
+          "text": "Paged optimizers that offload memory spikes",
+          "correct": true
+        },
+        {
+          "text": "Deleting the base model mid-training",
+          "correct": false
+        },
+        {
+          "text": "Disabling backpropagation periodically",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePaged optimizers offload memory spikes to avoid running out, alongside 4-bit NormalFloat and double quantization.\u003c/p\u003e"
+    }
+  ]
+}

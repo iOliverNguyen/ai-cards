@@ -1,0 +1,99 @@
+{
+  "id": "card_813970",
+  "slug": "multi-agent-information-bottleneck",
+  "type": "paper",
+  "title": "When Do Multi-Agent Systems Help? An Information Bottleneck Perspective",
+  "hook": "Multi-agent LLM setups help sometimes and hurt other times, with no clear pattern — until you view them as an information bottleneck problem: compressing context helps only when it loses less than it saves.",
+  "key_points": [
+    "Key framing: a single-agent system keeps one shared context; a multi-agent system uses isolated local contexts linked by bounded relay messages.",
+    "With infinite relay bandwidth, any single-agent system can be simulated by a multi-agent one — so MAS's real advantage only shows up under bounded relays.",
+    "Bounded relays force a tradeoff: compressing context cuts redundancy but risks losing task-relevant information.",
+    "Formalized as an information bottleneck with an effective parameter beta capturing how the balance shifts with model capability.",
+    "18 controlled experiments across 5 benchmarks and 3 model scales: MAS helps most when relays are near-sufficient, especially for weaker models — but gains shrink or reverse for stronger models that lose little from full context."
+  ],
+  "content_html": "\u003cp\u003eMulti-agent LLM systems sometimes clearly beat a single agent, and sometimes don't help at all — with no consistent story for why. This paper offers one: it's fundamentally a question of what gets lost when you compress context between agents.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eWendi Yu, Shuiwang Ji, and colleagues observe that a single-agent system (SAS) keeps its entire reasoning trace in one shared context, while a multi-agent system (MAS) splits work across isolated local contexts stitched together by bounded relay messages. They prove that with infinite relay bandwidth, any SAS can be simulated by a MAS that just forwards the full upstream context — meaning MAS's real value only appears once relays are bandwidth-limited, where compressing context cuts redundancy but risks discarding task-relevant information. They formalize this as an information bottleneck governed by an effective parameter beta that tracks how the tradeoff shifts with model capability.\u003c/p\u003e\n\u003cp\u003eAcross 18 controlled experiments spanning five benchmarks and three model scales, MAS consistently helps when relays are near-sufficient, especially for weaker models — but the gains shrink or reverse when relays lose information, particularly for stronger models that can already pull useful signal out of redundant context and so gain little from compressing it. The upshot: multi-agent design is fundamentally an information-bottleneck optimization problem, which explains when bounded inter-agent communication helps versus hurts. arXiv, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Wendi Yu",
+      "Lianhao Zhou",
+      "Xiangjue Dong",
+      "Sai Sudarshan Barath",
+      "Declan Staunton",
+      "Byung-Jun Yoon",
+      "Xiaoning Qian",
+      "James Caverlee",
+      "Shuiwang Ji"
+    ],
+    "url": "https://arxiv.org/abs/2607.16133",
+    "published_at": "2026-07-17",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-17",
+  "related": [
+    {
+      "id": "card_553800",
+      "slug": "multi-agent-llms-fail-to-explore",
+      "type": "paper",
+      "title": "Multi-Agent LLMs Fail to Explore Each Other",
+      "hook": "Drop LLM agents into a room together and they don't probe each other's abilities — they lock into narrow, polarized patterns that tank coordination and inflate regret.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-13"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_813970#0",
+      "format": "flip",
+      "prompt": "What's the structural difference the paper draws between single-agent and multi-agent systems?",
+      "back_html": "\u003cp\u003eA single-agent system accumulates its full reasoning trace in one shared context; a multi-agent system uses isolated local contexts connected only by bounded relay messages.\u003c/p\u003e"
+    },
+    {
+      "id": "card_813970#1",
+      "format": "quiz",
+      "prompt": "When does a multi-agent system have a genuine, non-trivial advantage over a single-agent one, per this paper?",
+      "choices": [
+        {
+          "text": "Only under bounded relay bandwidth, where context compression trades off against information loss",
+          "correct": true
+        },
+        {
+          "text": "Always, regardless of relay bandwidth",
+          "correct": false
+        },
+        {
+          "text": "Only when agents use different underlying models",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eWith infinite relay bandwidth, any SAS can be simulated by a MAS transmitting full context — so MAS's real advantage only emerges when relays are bandwidth-limited and compression matters.\u003c/p\u003e"
+    },
+    {
+      "id": "card_813970#2",
+      "format": "flip",
+      "prompt": "For which models did multi-agent systems help most, and why did gains shrink for others?",
+      "back_html": "\u003cp\u003eMAS helped most for weaker models when relays were near-sufficient. Gains shrank or reversed for stronger models, which can already extract useful signal from redundant context and gain less from compression.\u003c/p\u003e"
+    },
+    {
+      "id": "card_813970#3",
+      "format": "flip",
+      "prompt": "What does the effective parameter beta represent in the paper's information-bottleneck formalization?",
+      "back_html": "\u003cp\u003eHow the tradeoff between context compression and information loss shifts as model capability changes.\u003c/p\u003e"
+    }
+  ]
+}

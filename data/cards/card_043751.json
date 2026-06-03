@@ -1,0 +1,109 @@
+{
+  "id": "card_043751",
+  "slug": "llms-lost-in-evolving-intent",
+  "type": "paper",
+  "title": "LLMs Get Lost When Intent Keeps Moving",
+  "hook": "Real users don't state what they want up front — they reveal, revise, and redirect it mid-conversation. Rewrite existing benchmarks that way and scores drop across every model family.",
+  "key_points": [
+    "A framework converts static single-turn tasks into multi-turn conversations where the user's intent evolves across turns.",
+    "Intent is incrementally revealed, revised, and sometimes redirected mid-conversation, while each task's original evaluation protocol is preserved.",
+    "Because the protocol is untouched, existing benchmarks become controlled testbeds with no new annotation.",
+    "Strong static-setting performance does not transfer: the authors report substantial drops across multiple model families.",
+    "The failure is invisible to standard single-turn evaluation, yet central to any model deployed as a collaborator."
+  ],
+  "content_html": "\u003cp\u003eAs LLMs get deployed as collaborators rather than one-shot answerers, they take on tasks through back-and-forth. But genuine interaction is dynamic: users rarely lay out what they want at the start. They disclose it piecemeal, revise it once they see a draft, and sometimes change direction entirely. Training and evaluation, meanwhile, are still overwhelmingly single-turn and fully specified.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eReusing benchmarks instead of building one\u003c/h2\u003e\n\u003cp\u003eRather than writing a new dataset, the authors build a framework that \u003cem\u003etransforms\u003c/em\u003e static single-turn tasks into multi-turn conversations where the user's intent evolves — incrementally revealed, revised, and at times redirected mid-conversation. Crucially, each task's original evaluation protocol is preserved, so existing benchmarks become controlled testbeds for the dynamic setting without any new annotation. That makes the comparison clean: same task, same scoring, only the delivery of intent changes.\u003c/p\u003e\n\u003ch2\u003eThe result\u003c/h2\u003e\n\u003cp\u003eAcross multiple tasks the pattern is consistent — strong static-setting performance does not transfer, with substantial drops across model families. The authors' reading is that today's LLMs don't yet faithfully track and act on a user's evolving intent, and that this is exactly the kind of capability static evaluation cannot see while being central to anything you'd call a collaborative agent. Tack, Laban, and Neville, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jihoon Tack",
+      "Philippe Laban",
+      "Jennifer Neville"
+    ],
+    "url": "https://arxiv.org/abs/2607.20734",
+    "published_at": "2026-07-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-27",
+  "date": "2026-07-22",
+  "related": [
+    {
+      "id": "card_bf9760",
+      "slug": "ai-assistants-overassist",
+      "type": "paper",
+      "title": "AI Tutors Jump In Too Soon",
+      "hook": "Put an LLM in the tutor's seat and it interrupts sooner and more often than a human would — and hands over the whole solution where a person would have offered a hint.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-23"
+    },
+    {
+      "id": "card_6ce440",
+      "slug": "attractor-states-llm-conversations",
+      "type": "paper",
+      "title": "Attractor States Emerge in Multi-Turn LLM Conversations",
+      "hook": "Let two LLMs debate long enough and one model's style pulls the other toward it — Claude Haiku drags partners into its own habits, while GPT-4.1 nano is easily swayed.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-29"
+    },
+    {
+      "id": "card_9c1f76",
+      "slug": "plans-dont-persist-context",
+      "type": "paper",
+      "title": "Plans Don't Persist: Context Management Is Load-Bearing for Agents",
+      "hook": "An agent writes a plan, then context compression evicts it. This paper shows the plan never became internal state — once it leaves the window, the agent forgets it and task success craters.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_043751#0",
+      "format": "flip",
+      "prompt": "What does the paper's framework change about an existing benchmark, and what does it deliberately leave alone?",
+      "back_html": "\u003cp\u003eIt turns each single-turn task into a multi-turn conversation with evolving user intent, while preserving the task's original evaluation protocol — so no new annotation is needed.\u003c/p\u003e"
+    },
+    {
+      "id": "card_043751#1",
+      "format": "quiz",
+      "prompt": "What is the paper's central finding about evolving-intent conversations?",
+      "choices": [
+        {
+          "text": "Strong static-setting performance does not transfer — models drop substantially once intent is revealed and revised over turns",
+          "correct": true
+        },
+        {
+          "text": "Models handle evolving intent well, but only when the user is explicit about changing their mind",
+          "correct": false
+        },
+        {
+          "text": "Larger models close the gap entirely, so it is purely a scale problem",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe drop shows up across model families, which is why the authors frame it as a capability gap rather than a quirk of one model or size.\u003c/p\u003e"
+    },
+    {
+      "id": "card_043751#2",
+      "format": "flip",
+      "prompt": "Why is this gap described as invisible to standard evaluation?",
+      "back_html": "\u003cp\u003eBenchmarks predominantly present tasks as single-turn and fully specified, so a model that cannot track intent as it shifts still scores well.\u003c/p\u003e"
+    }
+  ]
+}

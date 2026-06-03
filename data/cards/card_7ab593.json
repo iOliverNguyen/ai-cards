@@ -1,0 +1,100 @@
+{
+  "id": "card_7ab593",
+  "slug": "sliding-window-beats-linear-attention",
+  "type": "paper",
+  "title": "Sliding Window Beats Linear Attention",
+  "hook": "The cheap baseline nobody bothered to run wins: sliding-window attention with sinks matches or beats retrofitted linear-attention models, and needs no post-training at all.",
+  "key_points": [
+    "Compares sliding window attention (SWA) with attention sinks against LLMs post-trained to use linear attention.",
+    "SWA performs as well or better across multiple LLMs and downstream tasks.",
+    "On long-context retrieval (Needle-in-a-Haystack, BABILong) SWA scores 2-10x higher than linear attention.",
+    "SWA needs zero post-training — you just change how inference reads the cache.",
+    "Authors conclude linear attention likely needs training from scratch, or heavy post-training, to even match SWA."
+  ],
+  "content_html": "\u003cp\u003eFull attention is quadratic: every token you generate adds keys and values that must be kept in memory indefinitely. Linear attention promises to fix this by replacing the growing cache with a fixed-size recurrent state, and a lot of recent work has gone into post-training existing LLMs to use it. Jolicoeur-Martineau and colleagues point out that this line of research has never been carefully compared to the simplest alternative — and when you do compare, the simple thing wins.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe result\u003c/h2\u003e\n\u003cp\u003eSliding window attention with attention sinks — keep only the last N tokens plus a few special anchor tokens — performs as well or better than post-trained linear attention across several LLMs and downstream tasks. On long-context reasoning benchmarks (Needle-in-a-Haystack, BABILong) the gap is dramatic: the authors report SWA scoring two to ten times higher. This is the regime where a fixed-size state has to throw away exactly the detail the task asks for.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eSWA is not a new method; it is the baseline. The paper's contribution is showing that the baseline was skipped, and that the practical recommendation for cutting inference memory should therefore be \u0026quot;switch to SWA\u0026quot; rather than \u0026quot;post-train a linear model.\u0026quot; The authors do not claim linear attention is worthless — their read is that it may need to be trained from scratch, or post-trained far more heavily, before it earns its complexity. It is a good example of how a missing baseline can distort a whole research direction.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Alexia Jolicoeur-Martineau",
+      "Rhea Sanjay Sukthanker",
+      "Pashmina Cameron",
+      "Emy Gervais"
+    ],
+    "url": "https://arxiv.org/abs/2608.28444",
+    "published_at": "2026-08-28",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "attention-mechanisms",
+    "context-memory",
+    "papers-this-week"
+  ],
+  "tags": [
+    "attention",
+    "efficiency",
+    "inference",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-28",
+  "related": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    },
+    {
+      "id": "card_e8e6f5",
+      "slug": "probabilistic-kv-cache-eviction",
+      "type": "paper",
+      "title": "KV Cache Eviction, Formalized",
+      "hook": "Everyone drops KV cache entries with clever heuristics. Formalize the problem properly and it turns into expectation estimation — which finally lets you correct for what you threw away.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-08-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_7ab593#0",
+      "format": "flip",
+      "prompt": "What problem do both sliding-window and linear attention try to solve?",
+      "back_html": "\u003cp\u003eThe quadratic cost of full attention: every new token's keys and values must be stored forever, so memory and energy grow without bound as context lengthens.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7ab593#1",
+      "format": "quiz",
+      "prompt": "On long-context retrieval tasks, how did SWA compare to post-trained linear attention?",
+      "choices": [
+        {
+          "text": "SWA scored 2-10x higher",
+          "correct": true
+        },
+        {
+          "text": "SWA was roughly 2x worse",
+          "correct": false
+        },
+        {
+          "text": "The two were statistically indistinguishable",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper reports a large SWA advantage on Needle-in-a-Haystack and BABILong, which is where a compressed fixed-size recurrent state hurts most.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7ab593#2",
+      "format": "flip",
+      "prompt": "Why is 'requires no post-training' the paper's strongest practical claim?",
+      "back_html": "\u003cp\u003eRetrofitting linear attention costs a training run per model. SWA is an inference-time change to which keys and values you keep, so the memory saving is available immediately and for free.\u003c/p\u003e"
+    }
+  ]
+}

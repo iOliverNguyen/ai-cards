@@ -1,0 +1,92 @@
+{
+  "id": "card_a763c5",
+  "slug": "activevision-benchmark",
+  "type": "paper",
+  "title": "An Exam for Active Observers",
+  "hook": "Human vision is a loop — look, form a hypothesis, look again. A new benchmark for that loop leaves frontier MLLMs scoring single digits, while humans average 96%.",
+  "key_points": [
+    "ActiveVision: 17 tasks across 3 categories that force repeated visual perception instead of a single static glance.",
+    "Best model tested, GPT-5.5 at max reasoning effort, solves only 10.6% of items and scores zero on 11 of 17 tasks.",
+    "Claude Fable 5 solves just 3.5%, despite topping most reasoning and coding leaderboards — three human participants average 96.1%.",
+    "Letting models write and run their own vision code doesn't rescue them: the code is unreliable on realistic images.",
+    "Catching those code failures itself requires the active perception loop the models are shown to lack."
+  ],
+  "content_html": "\u003cp\u003eHuman vision doesn't take one snapshot and stop — the eye keeps moving, redirected by whatever hypothesis you're currently testing. This paper asks whether today's multimodal LLMs do anything like that, and builds an exam to find out.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eJiarui Zhang, Willie Neiswanger, and colleagues introduce ActiveVision, a benchmark of 17 tasks across three categories designed to force repeated visual perception rather than a single static description, drawing on decades of psychophysics showing active observation is essential for many vision tasks. Frontier MLLMs collapse on it: the best model tested, GPT-5.5 at its highest reasoning-effort tier, solves only 10.6% of items and scores zero on 11 of the 17 tasks, while Claude Fable 5 — despite topping most reasoning and coding leaderboards — manages just 3.5%. Three human participants average 96.1%.\u003c/p\u003e\n\u003cp\u003eThe authors also tried letting models write and execute their own vision code to compensate, but that code proves unreliable on realistic images, and catching its failures itself demands the same active perception loop the models are missing. The result argues for architectures and training objectives that explicitly close the loop between perception and reasoning, rather than treating vision as a one-shot input. Paper on arXiv, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jiarui Zhang",
+      "Muzi Tao",
+      "Shangshang Wang",
+      "Ollie Liu",
+      "Xuezhe Ma",
+      "Willie Neiswanger"
+    ],
+    "url": "https://arxiv.org/abs/2607.16165",
+    "published_at": "2026-07-17",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "vlms",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "benchmark",
+    "vision",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-17",
+  "related": [
+    {
+      "id": "card_896f54",
+      "slug": "multimodal-cot-limits",
+      "type": "paper",
+      "title": "Look Light, Think Heavy: The Limits of Multimodal Chain-of-Thought",
+      "hook": "Chain-of-thought should make models think harder. For vision-language tasks this study finds it's no free lunch — it can hurt perception, and models keep talking while they stop looking.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-21"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a763c5#0",
+      "format": "flip",
+      "prompt": "What does 'active observation' mean, and why does ActiveVision test for it?",
+      "back_html": "\u003cp\u003eGaze continuously redirected by intermediate hypotheses rather than one snapshot — a closed loop. ActiveVision's 17 tasks force repeated perception to check if MLLMs do this too.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a763c5#1",
+      "format": "quiz",
+      "prompt": "How did the best-performing model (GPT-5.5, max reasoning effort) do on ActiveVision?",
+      "choices": [
+        {
+          "text": "Solved only 10.6% of items, scoring zero on 11 of 17 tasks",
+          "correct": true
+        },
+        {
+          "text": "Matched human performance at roughly 90%",
+          "correct": false
+        },
+        {
+          "text": "Solved about half the tasks",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEven the top frontier model collapsed on ActiveVision, solving 10.6% overall versus a 96.1% human average across three participants.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a763c5#2",
+      "format": "flip",
+      "prompt": "Why didn't letting models write and run their own vision code fix the gap?",
+      "back_html": "\u003cp\u003eSelf-written vision code is unreliable on realistic imagery, and noticing when that code fails itself requires the active perception loop the models lack.\u003c/p\u003e"
+    }
+  ]
+}

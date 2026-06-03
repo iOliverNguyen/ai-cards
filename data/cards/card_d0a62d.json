@@ -1,0 +1,124 @@
+{
+  "id": "card_d0a62d",
+  "slug": "function-aware-fill-in-the-middle",
+  "type": "paper",
+  "title": "Function-Aware Fill-in-the-Middle as Mid-Training for Coding Agent Foundation Models",
+  "hook": "Ordinary pretraining only sees code left-to-right. This mid-training trick masks whole functions like a tool call's return value — and it measurably makes coding agents better.",
+  "key_points": [
+    "Notices that a coding agent's tool-call loop (call, get a return value, keep reasoning) mirrors a function call site: caller binds args, callee returns a value, downstream code consumes it.",
+    "Trains on function-aware fill-in-the-middle: masking functions chosen via program dependency graph analysis plus a complexity-inferability criterion, on a 2.6B-token decontaminated corpus from 968 GitHub repos.",
+    "Mid-training Qwen2.5-Coder-Instruct (7B/14B) and Qwen3-8B lifts SWE-Bench-Verified by +2.8 to +3.2 points and SWE-Bench-Lite by +3.7 to +5.4 points, before any agentic post-training.",
+    "Gains hold across two different agentic post-training pipelines (R2E-Gym, SWE-Smith) and a non-Qwen2.5 base model.",
+    "Also mitigates the capability erosion that agentic post-training normally causes on non-agent coding (LiveCodeBench) and non-coding tool-use benchmarks (tau-bench, BFCL) — despite the corpus being Python-only."
+  ],
+  "content_html": "\u003cp\u003eStandard code pretraining reads left to right — but a coding agent's real job is different: call a tool, get back a result computed somewhere else, and keep reasoning from there. This paper's insight is that this loop already has a natural analogue buried in ordinary code: a function call, where a caller hands off arguments and later consumes a return value it didn't compute itself.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eYubo Wang and colleagues turn that analogy into a self-supervised mid-training objective: function-aware fill-in-the-middle, which masks out functions selected via program dependency graph analysis and a complexity-inferability criterion, then trains the model to fill them back in. Applied to Qwen2.5-Coder-Instruct (7B and 14B) and Qwen3-8B on a 2.6-billion-token decontaminated corpus from 968 GitHub repositories, it lifts SWE-Bench-Verified by 2.8-3.2 points and SWE-Bench-Lite by 3.7-5.4 points — and those gains survive two different downstream agentic post-training pipelines (R2E-Gym, SWE-Smith) and a different base model.\u003c/p\u003e\n\u003cp\u003eThe more surprising result: agentic post-training usually erodes a model's non-agentic coding skill (on benchmarks like LiveCodeBench) and general tool-use ability (tau-bench, BFCL), but models that went through this mid-training step hold onto those capabilities better — even though the mid-training corpus is exclusively Python. The authors read this as evidence that the function-call inductive bias, once learned, survives later training stages. Wang and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yubo Wang",
+      "Jiarong Liang",
+      "Yuxuan Zhang",
+      "Xuye Liu",
+      "Cong Wei",
+      "Yuyu Zhang",
+      "Ping Nie",
+      "Wenhu Chen"
+    ],
+    "url": "https://arxiv.org/abs/2607.12463",
+    "published_at": "2026-07-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining",
+    "ai-for-code",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "agent",
+    "nlp",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-20",
+  "date": "2026-07-14",
+  "related": [
+    {
+      "id": "card_2a92eb",
+      "slug": "qwen3-coder",
+      "type": "news",
+      "title": "Qwen3-Coder",
+      "hook": "Qwen3-Coder is an open-weight agentic coding model — a 480B Mixture-of-Experts built for long-horizon, tool-using software tasks, rivaling closed models on agentic coding.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-07-22"
+    },
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_d0a62d#0",
+      "format": "flip",
+      "prompt": "What structural similarity motivates function-aware fill-in-the-middle as mid-training for coding agents?",
+      "back_html": "\u003cp\u003eA coding agent's action-observation-continuation loop is structurally like a function call site: a caller binds arguments, a callee returns a value computed elsewhere, and downstream code consumes it — a pattern that's already everywhere in ordinary code.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d0a62d#1",
+      "format": "quiz",
+      "prompt": "How does this mid-training method pick which functions to mask?",
+      "choices": [
+        {
+          "text": "Via program dependency graph analysis combined with a complexity-inferability double criterion",
+          "correct": true
+        },
+        {
+          "text": "By masking every function in the corpus at random",
+          "correct": false
+        },
+        {
+          "text": "By masking only the shortest functions in each file",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe selection criterion targets functions that are both structurally meaningful (via dependency graph analysis) and plausible to infer, rather than masking arbitrarily.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d0a62d#2",
+      "format": "flip",
+      "prompt": "What happens to non-agent and non-coding capabilities after mid-training plus agentic post-training, compared to skipping mid-training?",
+      "back_html": "\u003cp\u003eNormally agentic post-training erodes non-agent coding (LiveCodeBench) and non-coding tool-use (tau-bench, BFCL) skills; adding this mid-training step mitigates that erosion, even though its corpus is Python-only.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d0a62d#3",
+      "format": "quiz",
+      "prompt": "Does the SWE-Bench improvement from mid-training depend on a specific agentic post-training pipeline?",
+      "choices": [
+        {
+          "text": "No — the gains hold across two different pipelines (R2E-Gym and SWE-Smith) and a non-Qwen2.5 base model",
+          "correct": true
+        },
+        {
+          "text": "Yes, it only worked with one specific post-training pipeline",
+          "correct": false
+        },
+        {
+          "text": "The paper only tested one post-training pipeline, so this is unknown",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors explicitly test two agentic post-training pipelines plus a different base model (Qwen3-8B with SWE-Lego) and see the improvement hold in each case.\u003c/p\u003e"
+    }
+  ]
+}

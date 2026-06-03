@@ -1,0 +1,99 @@
+{
+  "id": "card_7706ce",
+  "slug": "imagenet-dataset",
+  "type": "dataset",
+  "title": "ImageNet: The Dataset That Sparked Deep Learning",
+  "hook": "A hand-labeled hoard of millions of images turned into the contest that, in 2012, lit the fuse on the deep learning era.",
+  "key_points": [
+    "ImageNet holds millions of images organized into thousands of categories, labeled by hand.",
+    "Its labels follow the WordNet hierarchy, giving categories a structured taxonomy.",
+    "The ILSVRC challenge ran a classification competition on a subset of ImageNet.",
+    "AlexNet's 2012 win on ILSVRC, by a wide margin, kicked off the deep-learning boom."
+  ],
+  "content_html": "\u003cp\u003eImageNet, built by Fei-Fei Li and collaborators, is a massive collection of hand-labeled images spanning thousands of object categories. The annual ImageNet Large Scale Visual Recognition Challenge (ILSVRC) ran on a subset of it, and when a deep convolutional network called AlexNet won that competition in 2012, it convinced the field that deep learning was the way forward.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe dataset was assembled by collecting web images and labeling them through large-scale crowdsourcing, with categories drawn from the WordNet hierarchy of concepts. That scale — millions of carefully labeled examples — is what made it possible to train large image models that actually generalized, rather than overfitting a tiny dataset.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eBefore ImageNet, vision models trained on small datasets and progress was slow. The combination of a huge labeled benchmark and a public competition gave researchers a common yardstick and a reason to push. AlexNet's dramatic ILSVRC win showed that deep neural networks plus lots of data plus GPUs beat hand-engineered features, and the modern era of deep learning followed.\u003c/p\u003e",
+  "source": {
+    "name": "ImageNet",
+    "authors": [
+      "Jia Deng",
+      "Wei Dong",
+      "Richard Socher",
+      "Li-Jia Li",
+      "Kai Li",
+      "Fei-Fei Li"
+    ],
+    "url": "https://www.image-net.org/",
+    "published_at": "2009-06-20",
+    "license": "ImageNet (research use)"
+  },
+  "topic_ids": [
+    "data",
+    "cnns"
+  ],
+  "tags": [
+    "dataset",
+    "benchmark",
+    "vision"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2009-06-20",
+  "related": [
+    {
+      "id": "card_f94290",
+      "slug": "alexnet",
+      "type": "paper",
+      "title": "ImageNet Classification with Deep CNNs (AlexNet)",
+      "hook": "In 2012 a single deep CNN trained on two GPUs crushed the ImageNet contest by a wide margin — and kicked off the deep learning era.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2012-12-03"
+    },
+    {
+      "id": "card_e778b2",
+      "slug": "resnet",
+      "type": "paper",
+      "title": "Deep Residual Learning (ResNet)",
+      "hook": "Stacking more layers used to make networks worse, not better. ResNet's fix — let each layer learn a tweak to its input — unlocked nets over 100 layers deep.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-12-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_7706ce#0",
+      "format": "flip",
+      "prompt": "What about ImageNet made it possible to train models that actually generalized?",
+      "back_html": "\u003cp\u003eIts scale - millions of hand-labeled examples - let large image models generalize rather than overfit a tiny dataset.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7706ce#1",
+      "format": "quiz",
+      "prompt": "What did AlexNet's 2012 ILSVRC win demonstrate to the field?",
+      "choices": [
+        {
+          "text": "Deep nets plus lots of data plus GPUs beat hand-engineered features",
+          "correct": true
+        },
+        {
+          "text": "Hand-engineered features were still superior",
+          "correct": false
+        },
+        {
+          "text": "Small datasets were sufficient for vision",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe wide-margin win showed deep neural networks, large labeled data, and GPUs outperformed hand-engineered features, launching the deep-learning era.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7706ce#2",
+      "format": "flip",
+      "prompt": "What gives ImageNet's categories a structured taxonomy?",
+      "back_html": "\u003cp\u003eIts labels follow the WordNet hierarchy of concepts.\u003c/p\u003e"
+    }
+  ]
+}

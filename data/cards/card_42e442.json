@@ -1,0 +1,102 @@
+{
+  "id": "card_42e442",
+  "slug": "forecast-collapse-time-series",
+  "type": "paper",
+  "title": "Forecast Collapse in Time-Series Foundation Models",
+  "hook": "Ask a forecasting model to predict hourly stock returns and it hedges into a nearly flat line — technically well-calibrated, useless for ranking. Per-series metrics never show you this.",
+  "key_points": [
+    "Forecasting hourly returns for 1,000 US equities, predictions go nearly flat and rank stocks poorly — the authors call this forecast collapse.",
+    "It largely vanishes when forecasting trading volume in the same setup, so it tracks how predictable the target is, not the model.",
+    "Two causes: low predictability caps the amplitude of a calibrated point forecast, and per-series objectives never learn cross-series structure.",
+    "The result is a calibration-ranking tradeoff: minimizing squared error flattens forecasts; optimizing cross-sectional correlation can inflate amplitude by over an order of magnitude.",
+    "CalibRank, their proposed objective, balances the two — nearly tripling cross-sectional correlation on Finance1K while keeping amplitude near target.",
+    "The broader lesson: per-series metrics can hide failures in exactly the cross-series structure downstream decisions depend on."
+  ],
+  "content_html": "\u003cp\u003eThe setup sounds routine: point a time-series foundation model at hourly returns for a thousand US stocks. The output is nearly a flat line. It scores fine on the usual metrics, and it is worthless for deciding which stock to buy.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eShu Wan and colleagues name this forecast collapse and trace it across time-series foundation models, twelve deep-learning forecasters, and 97 public benchmark configurations. It is tied to target predictability rather than to any one architecture — swap returns for trading volume in the same setup and it largely disappears. Two mechanisms drive it: when a target is barely predictable, a calibrated point forecast can only take a small amplitude; and per-series training objectives leave the cross-series structure unidentified entirely.\u003c/p\u003e\n\u003cp\u003eThat produces a calibration-ranking tradeoff. Optimizing squared error gives you flat predictions; optimizing cross-sectional correlation directly improves ranking but can inflate forecast amplitude by more than an order of magnitude. Their proposed objective, CalibRank, balances the two: on the Finance1K benchmark it nearly triples cross-sectional correlation while keeping amplitude close to target, and improves correlation on every model tested. The transferable takeaway is about evaluation, not finance — a per-series metric can be green across the board while the cross-series structure your decisions rest on is missing. arXiv, August 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Shu Wan",
+      "Miles Ma",
+      "Hank Zhu",
+      "Guangqi Liu",
+      "Stephen Wang",
+      "Qingsong Wen",
+      "Huan Liu"
+    ],
+    "url": "https://arxiv.org/abs/2608.14106",
+    "published_at": "2026-08-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "paper",
+    "training"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-17",
+  "date": "2026-08-14",
+  "related": [
+    {
+      "id": "card_07fbce",
+      "slug": "beyond-iid-tabular-foundation-models",
+      "type": "paper",
+      "title": "Beyond IID: How General Are Tabular Foundation Models, Really?",
+      "hook": "Tabular foundation models look great on standard IID benchmarks — but on temporal, grouped, high-dimensional, and non-IID data, plain tree-based models still win.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-29"
+    },
+    {
+      "id": "card_780660",
+      "slug": "feature-importance-can-mislead",
+      "type": "blog",
+      "title": "When Your Top Feature Makes Predictions Worse",
+      "hook": "A feature can top your model's importance ranking and still hurt accuracy. The only way to be sure it helps: delete it, retrain, and compare on held-out data.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_42e442#0",
+      "format": "flip",
+      "prompt": "What is 'forecast collapse'?",
+      "back_html": "\u003cp\u003eWhen a forecasting model's predictions become nearly flat and rank series poorly — observed here on hourly returns for 1,000 US equities, measured by cross-sectional correlation.\u003c/p\u003e"
+    },
+    {
+      "id": "card_42e442#1",
+      "format": "quiz",
+      "prompt": "Why does minimizing squared error tend to flatten forecasts on low-predictability targets?",
+      "choices": [
+        {
+          "text": "Low predictability caps the amplitude a well-calibrated point forecast can take",
+          "correct": true
+        },
+        {
+          "text": "Squared error is undefined for financial returns",
+          "correct": false
+        },
+        {
+          "text": "The model runs out of capacity and underfits every series",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA calibrated point forecast hedges toward the mean when the target is barely predictable, so the safe answer is a small, flat one — accurate on average, useless for ranking.\u003c/p\u003e"
+    },
+    {
+      "id": "card_42e442#2",
+      "format": "flip",
+      "prompt": "What blind spot in conventional time-series evaluation does this expose?",
+      "back_html": "\u003cp\u003ePer-series metrics can look fine while the model has learned no cross-series structure — the ranking information downstream decisions actually need. Forecast volume and the collapse mostly disappears; forecast returns and it does not.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "id": "card_574bea",
+  "slug": "glm-4-6",
+  "type": "news",
+  "title": "GLM-4.6",
+  "hook": "Zhipu's GLM-4.6 is an open-weight MoE that became a popular drop-in coding backend — near Claude Sonnet 4 on real-world coding, with a 200K context and a permissive license.",
+  "key_points": [
+    "Zhipu AI's open-weight model, released September 2025 under an MIT license.",
+    "355B-parameter Mixture-of-Experts with a 200K-token context window.",
+    "Tuned for real-world coding, long-context work, reasoning, and agentic tool use.",
+    "Reported near parity with Claude Sonnet 4 on multi-turn coding evaluations."
+  ],
+  "content_html": "\u003cp\u003eGLM-4.6, from Beijing-based Zhipu AI, is an open-weight Mixture-of-Experts model released in late September 2025 under a permissive MIT license. With 355 billion parameters and a 200K-token context window, it was tuned heavily for real-world coding and agentic work, and it found traction as an affordable, self-hostable backend for coding agents.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's new\u003c/h2\u003e\n\u003cp\u003eGLM-4.6 emphasized practical coding strength over leaderboard chasing: Zhipu reported it near parity with Claude Sonnet 4 on multi-turn coding tasks evaluated by humans in isolated environments, while using fewer tokens than its predecessor to finish jobs. It pairs a long context with reasoning, search, and tool-use improvements, and ships open weights that run on common serving stacks like vLLM and SGLang.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eGLM-4.6 is part of a wave of strong open-weight Chinese models — alongside DeepSeek, Qwen, and Kimi — that closed much of the gap with closed frontier labs on coding specifically. For developers, an MIT-licensed model that approaches a top closed model on coding, at far lower cost and fully self-hostable, is a compelling backend for agentic tools.\u003c/p\u003e",
+  "source": {
+    "name": "Zhipu AI",
+    "authors": [
+      "Zhipu AI"
+    ],
+    "url": "https://z.ai/blog/glm-4.6",
+    "published_at": "2025-09-30",
+    "license": "Zhipu AI blog"
+  },
+  "topic_ids": [
+    "pretraining",
+    "releases"
+  ],
+  "tags": [
+    "open-source",
+    "nlp",
+    "agent"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2025-09-30",
+  "related": [
+    {
+      "id": "card_eda172",
+      "slug": "glm-5-2",
+      "type": "news",
+      "title": "GLM-5.2",
+      "hook": "z.ai's GLM-5.2 became the strongest open-weights model of mid-2026 — the first reported to clear 80% on Terminal-Bench and a coding favorite that rivals top closed models at a fraction of the cost.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-16"
+    },
+    {
+      "id": "card_de5399",
+      "slug": "deepseek-v3",
+      "type": "paper",
+      "title": "DeepSeek-V3 Technical Report",
+      "hook": "DeepSeek-V3 trained a frontier-class MoE model for a fraction of the cost of comparable closed models, using FP8 training and a novel load-balancing scheme to make efficiency the headline result.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-12-27"
+    },
+    {
+      "id": "card_2a92eb",
+      "slug": "qwen3-coder",
+      "type": "news",
+      "title": "Qwen3-Coder",
+      "hook": "Qwen3-Coder is an open-weight agentic coding model — a 480B Mixture-of-Experts built for long-horizon, tool-using software tasks, rivaling closed models on agentic coding.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-07-22"
+    },
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_574bea#0",
+      "format": "flip",
+      "prompt": "Why did GLM-4.6 find traction as a coding-agent backend?",
+      "back_html": "\u003cp\u003eIt's near Claude Sonnet 4 on real-world coding, MIT-licensed, self-hostable on common stacks like vLLM and SGLang, and far cheaper than top closed models.\u003c/p\u003e"
+    },
+    {
+      "id": "card_574bea#1",
+      "format": "quiz",
+      "prompt": "How did Zhipu characterize GLM-4.6's coding focus?",
+      "choices": [
+        {
+          "text": "Practical coding strength over leaderboard chasing",
+          "correct": true
+        },
+        {
+          "text": "Topping every academic benchmark",
+          "correct": false
+        },
+        {
+          "text": "Generating images alongside code",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eZhipu reported near parity with Claude Sonnet 4 on human-evaluated multi-turn coding while using fewer tokens than its predecessor.\u003c/p\u003e"
+    }
+  ]
+}

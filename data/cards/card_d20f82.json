@@ -1,0 +1,130 @@
+{
+  "id": "card_d20f82",
+  "slug": "qwen2-vl",
+  "type": "paper",
+  "title": "Qwen2-VL: Vision-Language at Any Resolution",
+  "hook": "Qwen2-VL processes images at their native resolution rather than forcing a fixed size, making it significantly better at reading small text and understanding fine-grained visual detail.",
+  "key_points": [
+    "Naive Dynamic Resolution: images are processed at their original resolution by adapting the number of visual tokens, avoiding quality loss from resizing or padding.",
+    "Multimodal Rotary Position Embedding (M-RoPE) encodes spatial positions in images and timestamps in video within the same position scheme as text.",
+    "Handles both images and video natively; strong on document understanding, diagram reading, and video comprehension tasks.",
+    "Open weights released by Alibaba, with models available at multiple scales."
+  ],
+  "content_html": "\u003cp\u003eAlibaba's Qwen team published Qwen2-VL in September 2024, a vision-language model designed to handle images and video at varying resolutions without forcing inputs into a fixed size. The key design decision is Naive Dynamic Resolution processing, where the model allocates more visual tokens to higher-resolution inputs rather than discarding detail through downsampling.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eQwen2-VL uses a Vision Transformer to encode images, but rather than resizing all images to a standard resolution, it processes each image at its native size and produces a variable number of visual tokens proportional to the resolution. A modified rotary position embedding called M-RoPE encodes 2D spatial positions for images and temporal positions for video frames in a unified way compatible with the language model's existing position encoding.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eMost vision-language models at the time resized or cropped images to fit a fixed context budget, which hurts tasks that require reading small text, understanding dense diagrams, or tracking motion in video. Qwen2-VL's resolution-adaptive approach makes it a practical open baseline for document understanding and video analysis. Read the paper on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Peng Wang",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2409.12191",
+    "published_at": "2024-09-18",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "vlms",
+    "releases"
+  ],
+  "tags": [
+    "multimodal",
+    "vision",
+    "open-source",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2024-09-18",
+  "related": [
+    {
+      "id": "card_837a7b",
+      "slug": "llava",
+      "type": "paper",
+      "title": "LLaVA: Visual Instruction Tuning",
+      "hook": "Connect a CLIP vision encoder to an LLM with just a linear projection, fine-tune on GPT-4-generated image dialogues, and get a capable open chat-with-images model for under a day of training.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-04-17"
+    },
+    {
+      "id": "card_ee605b",
+      "slug": "gpt-4o",
+      "type": "news",
+      "title": "GPT-4o: One Model for Text, Audio, and Vision",
+      "hook": "GPT-4o is a single model that natively processes text, audio, and images end-to-end - no separate speech pipeline - cutting voice response latency to near human conversational speed.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2024-05-13"
+    },
+    {
+      "id": "card_3d7d44",
+      "slug": "clip",
+      "type": "paper",
+      "title": "CLIP: Learning Visual Models from Language",
+      "hook": "Skip the fixed label list. Train on image–caption pairs so pictures and text share one space, and you can classify images from plain-text labels you make up on the spot.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-02-26"
+    },
+    {
+      "id": "card_f3614a",
+      "slug": "trace-visual-reasoning-environment",
+      "type": "paper",
+      "title": "Trace: A Taxonomy-Guided Environment for Multidomain Visual Reasoning",
+      "hook": "Verifiable-reward training sharpened text reasoning but stalls on vision — exact-answer image tasks are hard to make at scale. Trace generates them procedurally, and it transfers to real benchmarks.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_d20f82#0",
+      "format": "flip",
+      "prompt": "What is Naive Dynamic Resolution in Qwen2-VL, and why does it help?",
+      "back_html": "\u003cp\u003eImages are processed at their native resolution by varying the number of visual tokens, rather than resizing/padding — so detail like small text isn't lost to downsampling.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d20f82#1",
+      "format": "quiz",
+      "prompt": "What does Qwen2-VL's M-RoPE position embedding encode?",
+      "choices": [
+        {
+          "text": "2D spatial positions for images and temporal positions for video, unified with text",
+          "correct": true
+        },
+        {
+          "text": "The brightness and color histogram of each image",
+          "correct": false
+        },
+        {
+          "text": "Only the order of text tokens, ignoring images",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eM-RoPE encodes image spatial positions and video timestamps in a scheme compatible with the LLM's existing position encoding.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d20f82#2",
+      "format": "quiz",
+      "prompt": "Which tasks benefit most from Qwen2-VL's resolution-adaptive approach?",
+      "choices": [
+        {
+          "text": "Reading small text, dense diagrams, and tracking motion in video",
+          "correct": true
+        },
+        {
+          "text": "Generating images from text prompts",
+          "correct": false
+        },
+        {
+          "text": "Compressing models for mobile deployment",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eFixed-resolution models hurt tasks needing fine detail; Qwen2-VL's adaptive tokens make it strong on document and video understanding.\u003c/p\u003e"
+    }
+  ]
+}

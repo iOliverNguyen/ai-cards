@@ -1,0 +1,113 @@
+{
+  "id": "card_8e9d40",
+  "slug": "externd-ternary-decomposition",
+  "type": "blog",
+  "title": "ExTernD: Making Ternary Quantization's Accuracy Tunable by Rank",
+  "hook": "Ternary quantization (weights in {-1, 0, 1}) is usually all-or-nothing on accuracy. ExTernD decomposes the weight matrix so you can dial accuracy up by spending a little more rank and VRAM.",
+  "key_points": [
+    "Argues that ternary post-training quantization (PTQ) with a fixed matrix size is a dead end for accuracy.",
+    "Instead decomposes the weight matrix into two ternary matrices plus an inner diagonal scaling matrix.",
+    "Because the inner rank can be made arbitrarily large, accuracy can be pushed arbitrarily close to full precision.",
+    "The rank doesn't need to be very large to see gains, and the extra VRAM cost over standard quantization is reportedly small."
+  ],
+  "content_html": "\u003cp\u003eTernary quantization squeezes weights down to just three values (-1, 0, 1) — great for size, but usually stuck at whatever accuracy that fixed representation gives you. ExTernD argues that's the wrong frame: decompose the matrix instead, and accuracy becomes a knob you can turn.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eShared by its author on r/MachineLearning (with a paper on arXiv), ExTernD replaces a single fixed-size ternary matrix with two ternary matrices and an inner diagonal scaling matrix. Because that inner rank can be set arbitrarily large, accuracy is no longer capped by the ternary representation — it can approach that of any target quantization level. The author reports the rank doesn't need to be very large to see gains, and that the extra VRAM over standard quantization methods is small enough to be worth the trade. See the source post and linked paper for details.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit r/MachineLearning",
+    "authors": [
+      "/u/LMTLS5"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1uy2zb3/externd_expandedrank_ternary_decomposition",
+    "published_at": "2026-07-16",
+    "license": "Reddit post (link-out)"
+  },
+  "topic_ids": [
+    "quantization"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "open-source"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-20",
+  "date": "2026-07-16",
+  "related": [
+    {
+      "id": "card_d01b1d",
+      "slug": "gptq",
+      "type": "paper",
+      "title": "GPTQ: Accurate Post-Training Quantization",
+      "hook": "Already trained a giant LLM? GPTQ squeezes its weights down to 3–4 bits afterward — no retraining — with surprisingly little quality loss.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-10-31"
+    },
+    {
+      "id": "card_560c01",
+      "slug": "bonsai-27b-1-bit-quantization",
+      "type": "news",
+      "title": "Bonsai 27B: A 1-Bit Model Small Enough for Your Browser (and Maybe Your Phone)",
+      "hook": "1-bit quantization shrinks a 27B dense model from 54GB to 3.8GB — a 93% cut — while keeping about 90% of its original capability, per the release.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-14"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_8e9d40#0",
+      "format": "flip",
+      "prompt": "Why does the author argue that fixed-matrix-size ternary PTQ is a 'dead end'?",
+      "back_html": "\u003cp\u003eWith a fixed matrix size, ternary quantization's accuracy is capped — there's no lever to push it higher without changing the representation itself.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8e9d40#1",
+      "format": "quiz",
+      "prompt": "How does ExTernD change the representation to make accuracy tunable?",
+      "choices": [
+        {
+          "text": "It decomposes the weight matrix into two ternary matrices plus an inner diagonal scaling matrix",
+          "correct": true
+        },
+        {
+          "text": "It stores weights in mixed 4-bit and 8-bit precision",
+          "correct": false
+        },
+        {
+          "text": "It prunes low-magnitude weights before quantizing",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eExTernD's core idea is splitting a single ternary matrix into two ternary matrices with an inner scaling matrix between them.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8e9d40#2",
+      "format": "flip",
+      "prompt": "Why can ExTernD's accuracy approach that of a higher-precision quantization?",
+      "back_html": "\u003cp\u003eThe inner rank of the decomposition can be made arbitrarily large, and accuracy scales with that rank — so it isn't capped like a fixed-size ternary matrix.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8e9d40#3",
+      "format": "quiz",
+      "prompt": "What's the reported VRAM cost of ExTernD compared to standard quantization methods?",
+      "choices": [
+        {
+          "text": "Only slightly more VRAM, which the author argues is worth it",
+          "correct": true
+        },
+        {
+          "text": "Roughly double the VRAM of standard methods",
+          "correct": false
+        },
+        {
+          "text": "Significantly less VRAM than any existing method",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe author reports the extra rank costs only slightly more VRAM than current quantization methods.\u003c/p\u003e"
+    }
+  ]
+}

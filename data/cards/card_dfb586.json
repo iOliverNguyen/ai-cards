@@ -1,0 +1,112 @@
+{
+  "id": "card_dfb586",
+  "slug": "muse-glimmer",
+  "type": "news",
+  "title": "Muse Glimmer: Meta's 30B Local Agentic Multimodal Model",
+  "hook": "Meta distilled its Muse model down to 30B and shipped it Apache 2.0 — a vision-and-text model built to run locally and call tools, not just chat.",
+  "key_points": [
+    "Announced by Meta on 2026-08-10 and released under the Apache 2.0 license.",
+    "30B parameters, distilled from the larger Muse model: a 2B ViT-style Perception Encoder plus a 28B text decoder.",
+    "Aimed at local agentic use: multimodal tool calling, code generation, reasoning, and object detection in images.",
+    "Handles video by sampling up to 96 frames at 2 fps.",
+    "Hybrid attention alternates sliding-window and full-attention layers; gated grouped-query attention cuts KV-cache memory 16x.",
+    "An optional DFlash speculative-decoding drafter ships alongside it for faster generation."
+  ],
+  "content_html": "\u003cp\u003eMeta released \u003cstrong\u003eMuse Glimmer\u003c/strong\u003e on August 10, 2026: a 30B-parameter multimodal model, distilled from its larger Muse model, and shipped under the \u003cstrong\u003eApache 2.0\u003c/strong\u003e license. The framing is less \u0026quot;another chat model\u0026quot; and more a workhorse for \u003cstrong\u003elocal agentic\u003c/strong\u003e applications — small enough to run yourself, and built to call tools over text, images, and video.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's inside\u003c/h2\u003e\n\u003cp\u003eThe 30B splits into a \u003cstrong\u003e2B ViT-style Perception Encoder\u003c/strong\u003e for vision and a \u003cstrong\u003e28B text decoder\u003c/strong\u003e. Two efficiency choices stand out: the decoder uses \u003cstrong\u003ehybrid attention\u003c/strong\u003e, alternating sliding-window layers with full-attention layers, and \u003cstrong\u003egated grouped-query attention\u003c/strong\u003e, which Meta says reduces KV-cache memory by \u003cstrong\u003e16x\u003c/strong\u003e — the kind of saving that decides whether a model fits on local hardware at long context. An optional \u003cstrong\u003eDFlash\u003c/strong\u003e speculative-decoding drafter ships alongside for faster generation. Video comes in as up to \u003cstrong\u003e96 frames sampled at 2 fps\u003c/strong\u003e.\u003c/p\u003e\n\u003ch2\u003eWhat it claims to do\u003c/h2\u003e\n\u003cp\u003eBeyond text and image understanding, the release advertises multimodal tool calling, object detection in images, code generation, and reasoning. Meta reports scores including 75.5 on MCP Atlas and 74.6 on DeepSearch QA for agentic use, 51.2 on SWE-Bench Pro for coding, 78.8 on Charxiv Reasoning for multimodal, and 94.7 on AIME 2026 — vendor-reported numbers on a same-day launch, so treat them as claims until third parties replicate. The announcement post is the primary source.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face Blog",
+    "authors": [
+      "Meta"
+    ],
+    "url": "https://huggingface.co/blog/muse-glimmer",
+    "published_at": "2026-08-10",
+    "license": "Hugging Face blog"
+  },
+  "topic_ids": [
+    "vlms",
+    "lab-updates",
+    "releases"
+  ],
+  "tags": [
+    "multimodal",
+    "agent",
+    "open-source",
+    "inference"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-10",
+  "date": "2026-08-10",
+  "related": [
+    {
+      "id": "card_05f285",
+      "slug": "llama-4",
+      "type": "news",
+      "title": "The Llama 4 Herd: Natively Multimodal, Mixture-of-Experts",
+      "hook": "Llama 4 is Meta's first mixture-of-experts family - only 17B parameters fire per token, but the full models hold hundreds of billions, and they read text, images, and video natively.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2025-04-05"
+    },
+    {
+      "id": "card_24717f",
+      "slug": "gemini-3-1-pro",
+      "type": "news",
+      "title": "Gemini 3.1 Pro: Frontier Reasoning (2026)",
+      "hook": "Gemini 3.1 Pro pushes core reasoning past the Gemini 3 Pro baseline, scoring 77.1% verified on ARC-AGI-2 - a benchmark built to resist the memorization that inflates other scores.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-02-19"
+    },
+    {
+      "id": "card_5c30aa",
+      "slug": "qwen2-5-omni",
+      "type": "paper",
+      "title": "Qwen2.5-Omni",
+      "hook": "Qwen2.5-Omni is one model that takes text, image, audio, and video in — and streams text and natural speech out, in real time, via a 'Thinker-Talker' design.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2025-03-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_dfb586#0",
+      "format": "flip",
+      "prompt": "What is Muse Glimmer designed for, and how does it differ from a plain chat model?",
+      "back_html": "\u003cp\u003eA 30B multimodal model Meta built for \u003cem\u003elocal agentic\u003c/em\u003e work: it understands text, images, and video, and does multimodal tool calling, coding, reasoning, and object detection — so it can drive tasks on-device, not only converse.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dfb586#1",
+      "format": "quiz",
+      "prompt": "Which architectural choice does Meta credit with a 16x reduction in KV-cache memory?",
+      "choices": [
+        {
+          "text": "Gated grouped-query attention",
+          "correct": true
+        },
+        {
+          "text": "The 2B ViT-style Perception Encoder",
+          "correct": false
+        },
+        {
+          "text": "DFlash speculative decoding",
+          "correct": false
+        },
+        {
+          "text": "Sampling video at 2 fps",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGated grouped-query attention is the KV-cache saving. The Perception Encoder handles vision, DFlash is an optional drafter for faster decoding, and the 2 fps sampling is how video frames are fed in.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dfb586#2",
+      "format": "flip",
+      "prompt": "How is Muse Glimmer's 30B split, and where did those weights come from?",
+      "back_html": "\u003cp\u003eA 2B vision encoder plus a 28B text decoder, distilled down from Meta's larger Muse model — and released open-weight under Apache 2.0.\u003c/p\u003e"
+    }
+  ]
+}

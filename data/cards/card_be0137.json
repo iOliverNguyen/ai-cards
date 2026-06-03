@@ -1,0 +1,112 @@
+{
+  "id": "card_be0137",
+  "slug": "learning-rate-and-schedules",
+  "type": "concept",
+  "title": "Learning Rate \u0026 Schedules",
+  "hook": "The single most important hyperparameter: set it too high and training diverges, too low and it crawls — so we warm it up, then decay it.",
+  "key_points": [
+    "The learning rate scales how big a step gradient descent takes each update.",
+    "Too high overshoots or diverges; too low wastes compute and stalls.",
+    "Warmup ramps the rate up early to avoid unstable first steps.",
+    "Decay schedules (cosine, step, linear) shrink it later to settle into a minimum."
+  ],
+  "content_html": "\u003cp\u003eThe learning rate controls how far the parameters move along the gradient at each training step. It is consistently the hyperparameter that matters most: get it wrong and even a perfect model and dataset won't train. Rather than picking one fixed value, modern training varies it over time with a schedule.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eSet the rate too high and updates overshoot the minimum, causing the loss to bounce or blow up; set it too low and training inches along, burning compute. A common recipe is a short warmup — starting tiny and ramping up over the first few hundred steps to avoid wild early updates — followed by a decay phase that gradually shrinks the rate so the model can settle. Cosine, step, and linear decays are popular shapes. Adaptive optimizers like Adam adjust an effective per-parameter rate on top of this global schedule.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAlmost every training failure or success traces back to the learning rate. Warmup-then-decay schedules became standard for training large transformers because they keep the early phase stable and the late phase precise. Understanding the rate demystifies a lot of training folklore: it's why batch size, warmup length, and decay shape are tuned so carefully in practice.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/Learning_rate",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "training-intuition"
+  ],
+  "tags": [
+    "foundational",
+    "training"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2026-06-03",
+  "related": [
+    {
+      "id": "card_7921e0",
+      "slug": "gradient-descent",
+      "type": "concept",
+      "title": "Gradient Descent",
+      "hook": "Lost in fog on a hillside, you'd feel for the steepest downhill step and take it, again and again. That's how models learn.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_e41b8a",
+      "slug": "adam-optimizer",
+      "type": "paper",
+      "title": "Adam: The Default Optimizer",
+      "hook": "Adam gives every parameter its own adaptive step size by tracking the gradient's recent average and spread — and it mostly just works.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2014-12-22"
+    },
+    {
+      "id": "card_203675",
+      "slug": "adamw",
+      "type": "paper",
+      "title": "AdamW: Decoupled Weight Decay",
+      "hook": "L2 regularization and weight decay are the same thing for plain SGD - but not for Adam. Decoupling them fixes Adam's generalization and makes the best decay value independent of the learning rate.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-11-14"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7921e0",
+      "slug": "gradient-descent",
+      "type": "concept",
+      "title": "Gradient Descent",
+      "hook": "Lost in fog on a hillside, you'd feel for the steepest downhill step and take it, again and again. That's how models learn.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_be0137#0",
+      "format": "flip",
+      "prompt": "Why does training use warmup before decay rather than a fixed learning rate?",
+      "back_html": "\u003cp\u003eWarmup ramps the rate up early to avoid unstable wild first updates; decay then shrinks it so the model can settle precisely into a minimum.\u003c/p\u003e"
+    },
+    {
+      "id": "card_be0137#1",
+      "format": "quiz",
+      "prompt": "What does the learning rate control at each training step?",
+      "choices": [
+        {
+          "text": "How big a step gradient descent takes along the gradient",
+          "correct": true
+        },
+        {
+          "text": "Which loss function the model minimizes",
+          "correct": false
+        },
+        {
+          "text": "How many parameters the model has",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe learning rate scales how far parameters move along the gradient each update — too high overshoots, too low stalls.\u003c/p\u003e"
+    },
+    {
+      "id": "card_be0137#2",
+      "format": "flip",
+      "prompt": "How do adaptive optimizers like Adam interact with a learning-rate schedule?",
+      "back_html": "\u003cp\u003eThey adjust an effective per-parameter rate on top of the global schedule, rather than replacing it.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "id": "card_454c1f",
+  "slug": "motif-3",
+  "type": "paper",
+  "title": "Motif 3: 314B Parameters, 13.2B Awake",
+  "hook": "A 314B-parameter MoE that only lights up 13.2B per token, built on 384 experts per layer and a hybrid attention scheme that folds differential attention into compressed KV.",
+  "key_points": [
+    "Decoder-only Mixture-of-Experts: 314B total parameters, 13.2B activated per token, 384 routed experts per sparse layer with 8 selected.",
+    "Fine-grained sparsity is the design bet — lots of expert capacity, small compute bill per token.",
+    "Grouped Differential Latent Attention (GDLA) combines grouped differential attention with Multi-head Latent Attention's compressed key-value representation.",
+    "Adds manifold-constrained hyper-connections, Expert-Specific PolyNorm activations, and multi-token prediction for stability and inference speed.",
+    "Pretrained on ~12.5T tokens; selective MXFP8 compute, fused kernels, and window-aware context parallelism enable 256K-token training contexts.",
+    "Post-training uses six RL specialist teachers plus a supervised SWE teacher, merged via Multi-teacher On-Policy Distillation."
+  ],
+  "content_html": "\u003cp\u003eMotif 3 is a decoder-only Mixture-of-Experts model whose numbers tell the whole architectural story: 314 billion total parameters, 13.2 billion activated per token, and 384 routed experts per sparse layer with eight selected. That's fine-grained sparsity taken seriously — enormous expert capacity, a modest compute bill on each forward pass.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eAttention is the other bet. Grouped Differential Latent Attention (GDLA) fuses grouped differential attention with the compressed key-value representation of Multi-head Latent Attention, and the stack adds modified manifold-constrained hyper-connections, Expert-Specific PolyNorm activations, and multi-token prediction to keep optimization stable and inference quick.\u003c/p\u003e\n\u003cp\u003ePretraining ran over roughly 12.5 trillion tokens of web, STEM, code, math, multilingual and domain corpora, with selective MXFP8 compute and communication, memory-efficient fused kernels, and window-aware context parallelism carrying training out to 256K-token contexts. Post-training is where the specialist skills get merged: general supervised fine-tuning, then six RL-trained specialist teachers and one supervised software-engineering teacher folded together by Multi-teacher On-Policy Distillation. The authors report competitive results against leading open-weight models, with particular strength on long-horizon agentic tasks and hallucination-sensitive evaluation. Lim et al., August 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Junghwan Lim",
+      "Joon Son Chung",
+      "Sungmin Lee",
+      "Wai Ting Cheung",
+      "Gihun Cho",
+      "Minsu Ha",
+      "Sangho Kang",
+      "Beomgyu Kim",
+      "Dongseok Kim",
+      "Jangwoong Kim",
+      "Taehyun Kim",
+      "Taewhan Kim",
+      "Jeesoo Lee",
+      "Jeongdoo Lee",
+      "Junhyeok Lee",
+      "Dongpin Oh",
+      "Hyeyeon Cho",
+      "Dahye Choi",
+      "Jaeheui Her",
+      "Hanbin Jung",
+      "Changjin Kang",
+      "Minjae Kim",
+      "Youngrok Kim",
+      "Hyukjin Kweon",
+      "Hongjoo Lee",
+      "Yeongjae Park",
+      "Bokki Ryu"
+    ],
+    "url": "https://arxiv.org/abs/2608.09119",
+    "published_at": "2026-08-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "moe",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "training",
+    "paper",
+    "open-source"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-13",
+  "date": "2026-08-10",
+  "related": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    },
+    {
+      "id": "card_1ba4b7",
+      "slug": "grouped-query-experts",
+      "type": "paper",
+      "title": "Grouped Query Experts: MoE Inside Attention",
+      "hook": "Mixture-of-experts usually routes whole feed-forward layers. Grouped Query Experts routes attention query heads instead — matching a dense baseline while firing half of them per token.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_454c1f#0",
+      "format": "quiz",
+      "prompt": "Motif 3 has 314B total parameters. How many are active per token?",
+      "choices": [
+        {
+          "text": "13.2B — eight of 384 routed experts fire per sparse layer",
+          "correct": true
+        },
+        {
+          "text": "All 314B, since MoE only shards storage, not compute",
+          "correct": false
+        },
+        {
+          "text": "157B, half the model, alternating between two expert halves",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eFine-grained sparsity is the point: huge expert capacity in storage, a small activated slice per token.\u003c/p\u003e"
+    },
+    {
+      "id": "card_454c1f#1",
+      "format": "flip",
+      "prompt": "What two ideas does Grouped Differential Latent Attention combine?",
+      "back_html": "\u003cp\u003eGrouped differential attention, plus the compressed key-value representation from Multi-head Latent Attention.\u003c/p\u003e"
+    },
+    {
+      "id": "card_454c1f#2",
+      "format": "flip",
+      "prompt": "How does Motif 3 consolidate many specialist skills into one model?",
+      "back_html": "\u003cp\u003eSix specialist teachers trained with RL plus a supervised software-engineering teacher are merged into the student via Multi-teacher On-Policy Distillation, after general supervised fine-tuning.\u003c/p\u003e"
+    }
+  ]
+}

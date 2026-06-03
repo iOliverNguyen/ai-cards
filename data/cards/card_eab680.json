@@ -1,0 +1,88 @@
+{
+  "id": "card_eab680",
+  "slug": "mistral-medium-3",
+  "type": "news",
+  "title": "Mistral Medium 3",
+  "hook": "Mistral Medium 3 chased frontier-class quality at a fraction of the cost — 'medium is the new large' — aimed squarely at enterprise deployment.",
+  "key_points": [
+    "Released May 2025 by French lab Mistral AI, balancing strong quality with low cost.",
+    "Mistral reported it matching most of a frontier model's quality at far lower price.",
+    "Built for enterprise: self-hostable on a few GPUs, with a 128K-token context window.",
+    "Customizable via continued pretraining, fine-tuning, and enterprise knowledge bases."
+  ],
+  "content_html": "\u003cp\u003eMistral AI released Mistral Medium 3 in May 2025 with the tagline \u0026quot;medium is the new large,\u0026quot; arguing that a carefully built mid-sized model could deliver most of the quality of a frontier model at a small fraction of the cost. The release targeted enterprises that need strong performance but also predictable economics and the option to self-host.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's new\u003c/h2\u003e\n\u003cp\u003eMistral positioned Medium 3 as hitting at or above 90% of a leading competitor's benchmark quality while costing dramatically less per token. It supports a 128K-token context window and is designed for deployment flexibility: self-hosted on a modest number of GPUs or run in any cloud. It can be specialized through continued pretraining, fine-tuning, and integration with enterprise knowledge bases for domain-specific work.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eMedium 3 is a clear example of the cost-efficiency frontier moving as fast as the capability frontier. For many production use cases, the relevant question is not \u0026quot;what is the single best model?\u0026quot; but \u0026quot;what is the cheapest model that is good enough?\u0026quot; — and a mid-sized model that approaches frontier quality at enterprise-friendly cost is exactly that bet.\u003c/p\u003e",
+  "source": {
+    "name": "Mistral AI",
+    "authors": [
+      "Mistral AI"
+    ],
+    "url": "https://mistral.ai/news/mistral-medium-3/",
+    "published_at": "2025-05-07",
+    "license": "Mistral news"
+  },
+  "topic_ids": [
+    "pretraining",
+    "releases"
+  ],
+  "tags": [
+    "nlp",
+    "efficiency",
+    "open-source"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2025-05-07",
+  "related": [
+    {
+      "id": "card_647d0f",
+      "slug": "mistral-7b",
+      "type": "paper",
+      "title": "Mistral 7B",
+      "hook": "Mistral 7B outperforms much larger open models on most benchmarks - showing that architecture choices and data quality can stretch a 7B parameter budget a long way.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    },
+    {
+      "id": "card_31ff4e",
+      "slug": "mixtral",
+      "type": "paper",
+      "title": "Mixtral of Experts",
+      "hook": "Mixtral packs 8 experts per layer but routes each token through only 2, so you get the capacity of a ~47B model at the compute cost of a ~13B one - open weights included.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-01-08"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_eab680#0",
+      "format": "flip",
+      "prompt": "What does the tagline 'medium is the new large' mean for Mistral Medium 3?",
+      "back_html": "\u003cp\u003eA carefully built mid-sized model can deliver most of a frontier model's quality at a small fraction of the cost.\u003c/p\u003e"
+    },
+    {
+      "id": "card_eab680#1",
+      "format": "quiz",
+      "prompt": "For many production use cases, what question does Medium 3 reframe the choice as?",
+      "choices": [
+        {
+          "text": "What is the cheapest model that is good enough?",
+          "correct": true
+        },
+        {
+          "text": "What is the single best model regardless of cost?",
+          "correct": false
+        },
+        {
+          "text": "Which model has the most parameters?",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe card argues the cost-efficiency frontier moves as fast as the capability frontier, making 'good enough and cheap' the bet.\u003c/p\u003e"
+    }
+  ]
+}

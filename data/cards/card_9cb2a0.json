@@ -1,0 +1,85 @@
+{
+  "id": "card_9cb2a0",
+  "slug": "bias-variance-tradeoff",
+  "type": "concept",
+  "title": "The Bias–Variance Tradeoff",
+  "hook": "Too simple and your model misses the pattern; too flexible and it chases noise. Generalization lives between the two.",
+  "key_points": [
+    "High bias means underfitting — the model is too simple to capture the real relationship.",
+    "High variance means overfitting — the model is too sensitive to the particular training sample.",
+    "Generalization error reflects both, so reducing one often increases the other.",
+    "Model complexity is the dial: increase it and bias falls while variance tends to rise."
+  ],
+  "content_html": "\u003cp\u003eThe bias–variance tradeoff is the classic lens for thinking about why models fail to generalize. Bias is error from a model being too simple to represent the truth; variance is error from a model being so flexible that it swings around with each new training sample. The art is balancing the two to minimize total error on unseen data.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003ePicture fitting a curve to scattered points. A straight line is high bias: it can't bend to the real shape, so it's wrong in a consistent way. A wildly wiggly curve is high variance: it threads every point but would look completely different on a fresh sample. As you increase model complexity, bias generally drops and variance generally grows, and generalization error traces out a tradeoff between them.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThis framing turns vague worries about \u0026quot;underfitting\u0026quot; and \u0026quot;overfitting\u0026quot; into a single dial — model complexity — that you can reason about. It tells you whether to add capacity or add regularization, and it explains why blindly making a model bigger doesn't always help.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "generalization"
+  ],
+  "tags": [
+    "foundational"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2026-06-02",
+  "related": [
+    {
+      "id": "card_a4574e",
+      "slug": "overfitting-and-regularization",
+      "type": "concept",
+      "title": "Overfitting \u0026 Regularization",
+      "hook": "A model that aces its training data but flops on anything new hasn't learned — it has memorized. Regularization is the cure.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_a4574e",
+      "slug": "overfitting-and-regularization",
+      "type": "concept",
+      "title": "Overfitting \u0026 Regularization",
+      "hook": "A model that aces its training data but flops on anything new hasn't learned — it has memorized. Regularization is the cure.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_9cb2a0#0",
+      "format": "quiz",
+      "prompt": "What does high bias indicate about a model?",
+      "choices": [
+        {
+          "text": "It is too simple to capture the real relationship (underfitting)",
+          "correct": true
+        },
+        {
+          "text": "It is too sensitive to the particular training sample",
+          "correct": false
+        },
+        {
+          "text": "It has memorized the training noise",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eHigh bias is underfitting error — like a straight line that can't bend to the real shape. High variance, by contrast, is overfitting.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9cb2a0#1",
+      "format": "flip",
+      "prompt": "What single dial connects bias and variance, and how does it move them?",
+      "back_html": "\u003cp\u003eModel complexity: increasing it generally lowers bias while raising variance, so reducing one error often increases the other.\u003c/p\u003e"
+    }
+  ]
+}

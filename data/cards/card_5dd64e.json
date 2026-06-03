@@ -1,0 +1,130 @@
+{
+  "id": "card_5dd64e",
+  "slug": "mamba",
+  "type": "paper",
+  "title": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+  "hook": "Make the state-space transitions depend on the input itself, add a hardware-aware scan, and you get a linear-time sequence model that matches Transformers on language - with no KV cache.",
+  "key_points": [
+    "Introduces 'selective' SSMs: the A, B, C matrices are functions of the input token, not fixed constants, letting the model decide what to remember or forget.",
+    "A hardware-aware parallel scan avoids materializing large intermediate state matrices, keeping GPU memory use low.",
+    "Matches or exceeds Transformer perplexity on language modeling at comparable parameter counts.",
+    "Inference time and memory scale linearly with sequence length, with no key-value cache to grow."
+  ],
+  "content_html": "\u003cp\u003eAlbert Gu and Tri Dao introduced Mamba in December 2023, combining two ideas: input-dependent state transitions (so the model selectively compresses information) and a hardware-aware parallel scan (so the computation runs efficiently on GPUs). Together they yield language-model quality on par with Transformers at a fraction of the inference cost for long contexts.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eStandard SSMs use fixed transition matrices, meaning the same \u0026quot;memory update rule\u0026quot; applies regardless of what the input says. Mamba makes those matrices functions of the current input token - a selective mechanism that lets the model gate what enters the state and what is forgotten, similar in spirit to LSTM gates but operating in the SSM framework. To keep this efficient, the authors replace the naive recurrence with a parallel prefix scan implemented to avoid slow memory reads, drawing on the same hardware-awareness ideas behind FlashAttention.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eMamba was the first SSM to match GPT-quality language modeling at scale, challenging the assumption that attention is necessary for strong language models. Its linear-time inference and fixed-size state make it especially attractive for long contexts and edge deployment. Gu and Dao have since extended the design (Mamba-2), so the arXiv paper is the right place to start for the core algorithmic contribution.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Albert Gu",
+      "Tri Dao"
+    ],
+    "url": "https://arxiv.org/abs/2312.00752",
+    "published_at": "2023-12-01",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ssm-mamba"
+  ],
+  "tags": [
+    "architecture",
+    "efficiency",
+    "paper",
+    "landmark"
+  ],
+  "importance": 5,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2023-12-01",
+  "related": [
+    {
+      "id": "card_e74a78",
+      "slug": "s4-structured-state-spaces",
+      "type": "paper",
+      "title": "S4: Efficiently Modeling Long Sequences with Structured State Spaces",
+      "hook": "A clever matrix parameterization turns the notoriously unstable state-space recurrence into a stable, fast sequence model that handles sequences 100x longer than Transformers.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2021-10-31"
+    },
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    },
+    {
+      "id": "card_5727fe",
+      "slug": "flashattention",
+      "type": "paper",
+      "title": "FlashAttention: Fast, Memory-Efficient Exact Attention",
+      "hook": "Attention got faster not by approximating it, but by being smarter about GPU memory — never writing the giant attention matrix out to slow memory.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-05-27"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_f58fe4",
+      "slug": "what-are-state-space-models",
+      "type": "concept",
+      "title": "What Are State-Space Models?",
+      "hook": "A compact hidden state summarizes everything seen so far - update it with each new input and you get sequence modeling that scales linearly, not quadratically.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-03"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_5dd64e#0",
+      "format": "flip",
+      "prompt": "What makes Mamba's state-space model 'selective'?",
+      "back_html": "\u003cp\u003eIts A, B, C matrices are functions of the input token rather than fixed constants, letting the model decide what to remember or forget.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5dd64e#1",
+      "format": "quiz",
+      "prompt": "How does Mamba keep its selective SSM efficient on GPUs?",
+      "choices": [
+        {
+          "text": "A hardware-aware parallel scan that avoids materializing large intermediate state matrices",
+          "correct": true
+        },
+        {
+          "text": "By caching all key-value pairs like a Transformer",
+          "correct": false
+        },
+        {
+          "text": "By reducing the model to a single fixed convolution",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMamba replaces the naive recurrence with a hardware-aware parallel scan, avoiding slow memory reads and keeping memory use low.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5dd64e#2",
+      "format": "quiz",
+      "prompt": "What does Mamba's linear-time inference avoid that Transformers need?",
+      "choices": [
+        {
+          "text": "A growing key-value cache - Mamba's state stays fixed-size",
+          "correct": true
+        },
+        {
+          "text": "Any form of hidden state",
+          "correct": false
+        },
+        {
+          "text": "Training on language data",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eInference time and memory scale linearly with sequence length, with no KV cache to grow - attractive for long contexts.\u003c/p\u003e"
+    }
+  ]
+}

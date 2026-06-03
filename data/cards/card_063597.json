@@ -1,0 +1,119 @@
+{
+  "id": "card_063597",
+  "slug": "mmlu",
+  "type": "paper",
+  "title": "MMLU: Measuring Massive Multitask Language Understanding",
+  "hook": "Want one number for how broadly an LLM 'knows stuff'? MMLU is a 57-subject exam spanning history, law, medicine, and math — and it became a default yardstick.",
+  "key_points": [
+    "A multiple-choice benchmark covering 57 subjects, from humanities to STEM to professional fields.",
+    "Tests broad knowledge and reasoning in zero- or few-shot settings, with no task-specific training.",
+    "Questions range from high-school to expert difficulty, so strong scores require real breadth.",
+    "Became one of the most-cited yardsticks for comparing large language models."
+  ],
+  "content_html": "\u003cp\u003eDan Hendrycks, Collin Burns, and colleagues built MMLU as a broad test of what a language model actually knows. It's a multiple-choice exam spanning 57 subjects — elementary math, US history, law, medicine, and many more — drawn at difficulties from high school up to expert level. Because models answer with little or no task-specific training, a high score signals genuine breadth of knowledge and reasoning, which is why MMLU became a go-to benchmark for comparing LLMs.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eEach question is multiple choice with four options, and the model picks an answer, typically given just a few examples (few-shot) or none at all (zero-shot). Spanning 57 distinct subjects, the benchmark rewards general capability rather than a narrow skill, since you can't do well by mastering one area. Scores are reported as accuracy, and the spread across subjects also shows where a model is strong or weak. Random guessing would score around 25 percent, setting a clear floor.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eBefore benchmarks like this, comparing models often meant juggling many narrow datasets. MMLU offered a single, broad scoreboard that tracks general knowledge well, which made it a fixture in nearly every major LLM release. That popularity is double-edged: it pushed progress and gave a common language for comparison, but it also invited overfitting and contamination concerns as the same questions circulated widely. Even so, it remains a standard reference point for model capability.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Dan Hendrycks",
+      "Collin Burns",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2009.03300",
+    "published_at": "2020-09-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety"
+  ],
+  "tags": [
+    "benchmark",
+    "nlp"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2020-09-07",
+  "related": [
+    {
+      "id": "card_3ce408",
+      "slug": "helm",
+      "type": "paper",
+      "title": "HELM: Holistic Evaluation of Language Models",
+      "hook": "A single accuracy number hides a lot. HELM evaluates language models across many scenarios and many metrics at once — and reports it all in the open.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-16"
+    },
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_063597#0",
+      "format": "flip",
+      "prompt": "What makes a high MMLU score signal genuine breadth?",
+      "back_html": "\u003cp\u003eIt spans 57 subjects answered zero- or few-shot with no task-specific training, so you can't do well by mastering one narrow area.\u003c/p\u003e"
+    },
+    {
+      "id": "card_063597#1",
+      "format": "quiz",
+      "prompt": "What is the approximate floor score on MMLU from random guessing?",
+      "choices": [
+        {
+          "text": "About 25%",
+          "correct": true
+        },
+        {
+          "text": "About 50%",
+          "correct": false
+        },
+        {
+          "text": "About 10%",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eWith four-option multiple choice, random guessing scores around 25 percent.\u003c/p\u003e"
+    },
+    {
+      "id": "card_063597#2",
+      "format": "quiz",
+      "prompt": "What is the double-edged downside of MMLU's popularity?",
+      "choices": [
+        {
+          "text": "It invited overfitting and contamination as the questions circulated widely",
+          "correct": true
+        },
+        {
+          "text": "It became too expensive to run",
+          "correct": false
+        },
+        {
+          "text": "It only covers STEM subjects",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIts popularity pushed progress but also raised overfitting and contamination concerns as the same questions spread.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "id": "card_18dfd2",
+  "slug": "apple-m5-ultra-mac-studio",
+  "type": "news",
+  "title": "M5 Ultra and 512GB Mac Studio",
+  "hook": "Apple's new Mac Studio pairs M5 Max and M5 Ultra with up to 512GB of unified memory and 1.2 TB/s of bandwidth — the desktop that can hold a frontier-size model in RAM.",
+  "key_points": [
+    "Apple introduced a Mac Studio with M5 Max and M5 Ultra chips, configurable up to 512GB of unified memory.",
+    "The M5 Ultra is reported at 1.2 TB/s of memory bandwidth.",
+    "Unified memory means the GPU addresses all of it, so model size is bounded by RAM rather than by a discrete card's VRAM.",
+    "For local inference, bandwidth is the usual limit on tokens per second once the weights fit.",
+    "The local-LLM community reads this as a workstation that can run very large open-weight models without a multi-GPU rig."
+  ],
+  "content_html": "\u003cp\u003eApple introduced a new Mac Studio built around the M5 Max and M5 Ultra, configurable to 512GB of unified memory, with the M5 Ultra reported at 1.2 TB/s of memory bandwidth. It is a consumer product launch, but the local-model community treated it as an inference hardware announcement.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhy the local-LLM crowd cares\u003c/h2\u003e\n\u003cp\u003eTwo numbers decide whether a machine can run a big open-weight model: how much memory the accelerator can address, and how fast it can read it. Apple's unified memory architecture collapses the first question into \u0026quot;how much RAM did you buy,\u0026quot; which is how a desktop ends up with more usable model capacity than a stack of discrete GPUs. The second number sets the ceiling on speed, since decoding streams the weights once per token — hence the attention paid to 1.2 TB/s.\u003c/p\u003e\n\u003cp\u003eDiscussion on r/LocalLLaMA speculated about the memory technology involved and what a future generation might reach; those are community guesses, not Apple specifications. The durable point is the shape of the trade: high-capacity, high-bandwidth unified memory makes single-box local inference of very large models a normal thing to attempt.\u003c/p\u003e",
+  "source": {
+    "name": "r/LocalLLaMA",
+    "authors": [
+      "/u/themixtergames"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1vxzg6v/apple_introduces_new_mac_studio_with_m5_max_and",
+    "published_at": "2026-08-25",
+    "license": "Reddit (link post)"
+  },
+  "resources": [
+    {
+      "title": "M5 Ultra bandwidth discussion (r/LocalLLaMA)",
+      "url": "https://reddit.com/r/LocalLLaMA/comments/1vxzgyt/apple_releases_m5_ultra_at_12tbs_bandwith"
+    }
+  ],
+  "topic_ids": [
+    "hardware",
+    "releases"
+  ],
+  "tags": [
+    "inference",
+    "efficiency",
+    "open-source",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-08-27",
+  "date": "2026-08-25",
+  "related": [
+    {
+      "id": "card_233637",
+      "slug": "local-llm-inference-guide",
+      "type": "resource",
+      "title": "Local LLM Inference Optimization: The Complete Guide",
+      "hook": "A year of llama.cpp experiments, distilled: how to actually fit a model in your VRAM, tune the KV cache, and stop hitting out-of-memory walls.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-21"
+    },
+    {
+      "id": "card_242035",
+      "slug": "blackwell-gpu",
+      "type": "news",
+      "title": "NVIDIA Blackwell (B200 / GB200)",
+      "hook": "Blackwell is the chip the 2025 frontier ran on: a two-die GPU with an FP4 transformer engine, built to train and serve trillion-parameter models.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2024-03-18"
+    },
+    {
+      "id": "card_3cf925",
+      "slug": "gpus-for-deep-learning",
+      "type": "resource",
+      "title": "Why GPUs Power Deep Learning",
+      "hook": "Neural networks are parallel by nature, and a GPU runs thousands of threads at once - so the same math that crawls on a CPU maps naturally onto a GPU and trains far faster.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-06-03"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_18dfd2#0",
+      "format": "flip",
+      "prompt": "Why does unified memory matter for running large models locally?",
+      "back_html": "\u003cp\u003eThe GPU addresses the whole pool, so what fits is bounded by system RAM — up to 512GB here — instead of a discrete card's much smaller VRAM.\u003c/p\u003e"
+    },
+    {
+      "id": "card_18dfd2#1",
+      "format": "quiz",
+      "prompt": "Once a model's weights fit in memory, what usually limits local generation speed?",
+      "choices": [
+        {
+          "text": "Memory bandwidth",
+          "correct": true
+        },
+        {
+          "text": "Disk read speed",
+          "correct": false
+        },
+        {
+          "text": "The number of CPU cores",
+          "correct": false
+        },
+        {
+          "text": "Network latency",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAutoregressive decoding streams the weights for every token, so tokens per second tracks bandwidth — which is why the M5 Ultra's reported 1.2 TB/s is the number the local-LLM community fixated on.\u003c/p\u003e"
+    }
+  ]
+}

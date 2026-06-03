@@ -1,0 +1,96 @@
+{
+  "id": "card_281868",
+  "slug": "muse-glimmer-local-agent-model",
+  "type": "news",
+  "title": "Muse Glimmer: a 30B Open-Weight Model Built for Always-On Local Agents",
+  "hook": "Meta released a 30B dense multimodal model under Apache 2.0, tuned for agents that run all day on your own machine — quantized to ~4-bit it fits under 20 GB.",
+  "key_points": [
+    "30B dense parameters, released as open weights under a permissive Apache 2.0 license.",
+    "Multimodal: interleaved text and images through a dedicated perception encoder.",
+    "Trained on 100+ languages, with controllable reasoning effort to trade quality against speed.",
+    "Full precision needs 55+ GB; ~4-bit quantization brings the language model under 20 GB, leaving headroom on a 24 GB card.",
+    "Positioned for always-on local agent workflows rather than one-off chat."
+  ],
+  "content_html": "\u003cp\u003eMeta released Muse Glimmer, a 30B open-weight model aimed squarely at agents that run continuously on your own hardware rather than at a chat window.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat shipped\u003c/h2\u003e\n\u003cp\u003eMuse Glimmer is a dense 30B model released under Apache 2.0. It takes interleaved text and images through a dedicated perception encoder, was trained across more than 100 languages, and exposes a controllable reasoning-effort setting so callers can trade answer quality against latency. Meta puts the full-precision memory footprint at 55+ GB, which rules out consumer cards; quantizing the weights to roughly 4 bits brings the language model under 20 GB and leaves headroom inside a 24 GB GPU.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eMost open-weight releases are framed around benchmark scores. This one is framed around a deployment envelope: a model small enough and cheap enough to leave running all day, doing agent work locally, with the vision stack included rather than bolted on. That combination — permissive license, multimodal input, and a memory budget that a single consumer GPU can actually hold — is what makes always-on local agents plausible outside a datacenter.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit r/LocalLLaMA",
+    "authors": [
+      "/u/AIatMeta"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1vkgsum/introducing_muse_glimmer_an_openweight_model",
+    "published_at": "2026-08-10",
+    "license": "Reddit post (link-out)"
+  },
+  "topic_ids": [
+    "releases",
+    "agents"
+  ],
+  "tags": [
+    "open-source",
+    "news",
+    "agent",
+    "multimodal"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-08-10",
+  "date": "2026-08-10",
+  "related": [
+    {
+      "id": "card_07ec5b",
+      "slug": "openpangu-2-flash",
+      "type": "news",
+      "title": "Huawei Open-Sources OpenPangu-2.0-Flash",
+      "hook": "Huawei open-sourced OpenPangu 2.0's Flash tier — a 92B-parameter, 6B-active MoE model with 512K context, weights, inference code, and training ops all released — with a 505B flagship still to come.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-06-30"
+    },
+    {
+      "id": "card_9d933c",
+      "slug": "awq-quantization",
+      "type": "paper",
+      "title": "AWQ: Activation-Aware Weight Quantization",
+      "hook": "Not all weights are equal - protect the 1% that matter most (flagged by activation magnitude) and quantize the rest to 4-bit with minimal quality loss.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2023-06-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_281868#0",
+      "format": "flip",
+      "prompt": "Why does Muse Glimmer's 4-bit quantization matter for its stated use case?",
+      "back_html": "\u003cp\u003eAt full precision the 30B model needs 55+ GB — beyond consumer hardware. Quantized to ~4-bit the language model drops under 20 GB, so it fits on a 24 GB consumer GPU with headroom to spare.\u003c/p\u003e"
+    },
+    {
+      "id": "card_281868#1",
+      "format": "quiz",
+      "prompt": "What kind of architecture is Muse Glimmer?",
+      "choices": [
+        {
+          "text": "A 30B dense multimodal model",
+          "correct": true
+        },
+        {
+          "text": "A 30B mixture-of-experts model with a few billion active parameters",
+          "correct": false
+        },
+        {
+          "text": "A text-only 30B model with a separate vision adapter sold separately",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMeta describes it as 30B parameters, dense, with multimodal input — interleaved text and images via a dedicated perception encoder.\u003c/p\u003e"
+    },
+    {
+      "id": "card_281868#2",
+      "format": "flip",
+      "prompt": "What does 'controllable reasoning effort' buy a local agent?",
+      "back_html": "\u003cp\u003eA quality/speed dial: the same model can think harder on difficult steps or answer fast on cheap ones — useful when an agent runs continuously on limited local hardware.\u003c/p\u003e"
+    }
+  ]
+}

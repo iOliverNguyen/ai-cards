@@ -1,0 +1,128 @@
+{
+  "id": "card_5e917c",
+  "slug": "autoresearch-failure-taxonomy",
+  "type": "paper",
+  "title": "How Agents Fail at Autonomous Research: The Missing Metacognitive Loop",
+  "hook": "800 agent trajectories across 100 real frontier-science tasks converge on one deficit: agents don't check what they wrote against what they found.",
+  "key_points": [
+    "AutoResearchEval: 100 tasks grounded in published frontier science across 7 domains and the full research lifecycle.",
+    "Covers ideation, retrieval, execution, analysis, writing, and review — not a single narrow slice.",
+    "Evaluating 8 harness-model combinations produced 800 trajectories with process-level annotation.",
+    "ARFT, the resulting failure taxonomy, catalogues 45 empirically-grounded failure patterns.",
+    "A human-calibrated agent-as-a-judge pipeline inspects full trajectories and intermediate artifacts, not just final answers.",
+    "The same patterns recur across all 8 combinations including the strongest models — locating the deficit at the model level, not the scaffold."
+  ],
+  "content_html": "\u003cp\u003e\u0026quot;AutoResearch\u0026quot; — one system carrying a project from hypothesis to finished paper — is now a real category, and the evaluations for it mostly tell you a score without telling you anything about how the agent got there or where it went wrong. This paper builds the diagnostic instead of the leaderboard.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eAutoResearchEval poses 100 tasks grounded in published frontier science across seven scientific domains, spanning the whole research lifecycle: ideation, retrieval, execution, analysis, writing, and review. The authors ran 8 harness-model combinations to produce 800 trajectories, annotated at the process level, and used a human-calibrated agent-as-a-judge pipeline to inspect complete trajectories and intermediate artifacts. The output is ARFT, a taxonomy of 45 empirically-grounded failure patterns.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe patterns collapse onto one overarching gap the authors call the absence of a metacognitive loop — the ability to check a produced claim against the evidence actually gathered, revise when it doesn't survive, and step back to ask whether the path taken was the right one. Crucially, the same patterns show up across all eight harness-model pairings, including the strongest models tested, which points the finger at the model rather than any individual scaffold. The authors are explicit that whether orchestration-level interventions could close the gap is a question this work does not answer. Both the benchmark and the taxonomy are released publicly.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yanlin Fei",
+      "Nazhou Liu",
+      "Xinmiao Yu",
+      "Shaolong Chen",
+      "Lei Li",
+      "Rahul Thapa",
+      "Qingqing Mao",
+      "Ritankar Das"
+    ],
+    "url": "https://arxiv.org/abs/2608.14905",
+    "published_at": "2026-08-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "ai-for-science",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-20",
+  "date": "2026-08-14",
+  "related": [
+    {
+      "id": "card_c2fa32",
+      "slug": "human-vs-llm-research-ideas-gap",
+      "type": "paper",
+      "title": "How Far Are LLM Research Ideas From Human Ones? A Reverse-Engineering Study",
+      "hook": "Judging LLM research ideas one at a time (novel? feasible? liked?) hides a bigger question: does the whole distribution of ideas an LLM can produce look like what human researchers actually do?",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-01"
+    },
+    {
+      "id": "card_971f11",
+      "slug": "self-improving-agents-survey",
+      "type": "paper",
+      "title": "Self-Improvements in Modern Agentic Systems: A Survey",
+      "hook": "Self-improving agents are leaving the lab for production. This survey, co-authored by Jürgen Schmidhuber, gives the field a shared vocabulary for what an agent can update about itself, and what drives that update.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-07-14"
+    },
+    {
+      "id": "card_611d9b",
+      "slug": "quest-deep-research-agent",
+      "type": "news",
+      "title": "QUEST: An Open Deep-Research Agent",
+      "hook": "A fully open Deep Research agent trained on ~32 H100s and ~8K synthetic samples — recipe, code, weights, and data all released, and reportedly competitive with frontier closed systems.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-19"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_5e917c#0",
+      "format": "flip",
+      "prompt": "What single limitation do the paper's 45 failure patterns converge on?",
+      "back_html": "\u003cp\u003eA missing metacognitive loop: agents don't check what they produced against what they found, revise when it doesn't hold up, or question whether their chosen path was sound.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5e917c#1",
+      "format": "quiz",
+      "prompt": "Why do the authors argue the deficit sits at the model level rather than in a particular scaffold?",
+      "choices": [
+        {
+          "text": "The same failure patterns recur across all 8 harness-model combinations, including the strongest models tested",
+          "correct": true
+        },
+        {
+          "text": "Because swapping scaffolds changed the failure rate by less than 1%",
+          "correct": false
+        },
+        {
+          "text": "Because the agents used identical prompts in every condition",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRecurrence across every harness-model pairing is the evidence. The paper is careful to note it does not test whether orchestration-level fixes could close the gap.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5e917c#2",
+      "format": "quiz",
+      "prompt": "What does AutoResearchEval measure that prior autoresearch evaluations did not?",
+      "choices": [
+        {
+          "text": "Process — full trajectories and intermediate artifacts, not just end performance",
+          "correct": true
+        },
+        {
+          "text": "Wall-clock cost per completed research task",
+          "correct": false
+        },
+        {
+          "text": "Whether generated papers pass peer review at a real venue",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePrior evaluations scored outcomes on narrow tasks. This one annotates process at artifact level via a human-calibrated agent-as-a-judge pipeline.\u003c/p\u003e"
+    }
+  ]
+}

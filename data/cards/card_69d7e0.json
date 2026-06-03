@@ -1,0 +1,95 @@
+{
+  "id": "card_69d7e0",
+  "slug": "stylegan",
+  "type": "paper",
+  "title": "StyleGAN: Controllable Image Synthesis",
+  "hook": "A GAN that generates photorealistic faces of people who don't exist — and lets you dial features at different scales, from face shape down to freckles.",
+  "key_points": [
+    "A style-based generator that produces strikingly photorealistic, high-resolution faces.",
+    "Injects a learned 'style' at each layer, controlling features at different scales.",
+    "Coarse layers shape pose and face structure; fine layers control details like hair and skin texture.",
+    "Maps random noise through a network into a more disentangled latent space for cleaner control.",
+    "Enables intuitive editing and style mixing between generated images."
+  ],
+  "content_html": "\u003cp\u003eKarras, Laine, and Aila redesigned the GAN generator so that a learned \u0026quot;style\u0026quot; is fed into every layer, giving fine-grained control over what the image looks like. The result was a leap in photorealism for generated faces, along with the ability to tune features at different scales rather than treating the output as one tangled blob.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eInstead of feeding random noise straight into the generator, StyleGAN first maps it through a small network into an intermediate latent space that tends to be more disentangled — meaning separate directions correspond to separate, meaningful features. That latent code is then injected as a \u0026quot;style\u0026quot; at each layer of the generator. Because earlier layers set coarse attributes (pose, face shape) and later layers set fine details (hair strands, skin texture), you can control the image at the scale you want, and even mix styles from two images.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eStyleGAN set a high bar for image quality and made the latent space genuinely useful to manipulate, turning generation into something you can steer rather than just sample. The \u0026quot;this person does not exist\u0026quot; demos that went viral came from this line of work, and its ideas about disentangled, scale-separated control influenced how people think about controllable generation broadly.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Tero Karras",
+      "Samuli Laine",
+      "Timo Aila"
+    ],
+    "url": "https://arxiv.org/abs/1812.04948",
+    "published_at": "2018-12-12",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "gans"
+  ],
+  "tags": [
+    "vision"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2018-12-12",
+  "related": [
+    {
+      "id": "card_047809",
+      "slug": "generative-adversarial-networks",
+      "type": "paper",
+      "title": "Generative Adversarial Networks (GANs)",
+      "hook": "Pit two networks against each other — a forger making fakes and a detective catching them — and the forger gets so good its fakes look real.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2014-06-10"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_047809",
+      "slug": "generative-adversarial-networks",
+      "type": "paper",
+      "title": "Generative Adversarial Networks (GANs)",
+      "hook": "Pit two networks against each other — a forger making fakes and a detective catching them — and the forger gets so good its fakes look real.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2014-06-10"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_69d7e0#0",
+      "format": "quiz",
+      "prompt": "In StyleGAN, which layers control coarse attributes like pose and face shape?",
+      "choices": [
+        {
+          "text": "The earlier layers",
+          "correct": true
+        },
+        {
+          "text": "The later layers",
+          "correct": false
+        },
+        {
+          "text": "The discriminator's layers",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEarlier layers set coarse attributes (pose, face shape); later layers set fine details like hair and skin texture.\u003c/p\u003e"
+    },
+    {
+      "id": "card_69d7e0#1",
+      "format": "flip",
+      "prompt": "Why does StyleGAN map random noise through a network before using it?",
+      "back_html": "\u003cp\u003eTo produce a more disentangled intermediate latent space where separate directions correspond to separate, meaningful features.\u003c/p\u003e"
+    },
+    {
+      "id": "card_69d7e0#2",
+      "format": "flip",
+      "prompt": "How is the learned 'style' used in the generator?",
+      "back_html": "\u003cp\u003eIt is injected at each layer, letting you control image features at different scales and even mix styles between images.\u003c/p\u003e"
+    }
+  ]
+}

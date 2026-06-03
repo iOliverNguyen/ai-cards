@@ -1,0 +1,108 @@
+{
+  "id": "card_45c9df",
+  "slug": "agentic-abstention",
+  "type": "paper",
+  "title": "Agentic Abstention: Do Agents Know When to Stop?",
+  "hook": "Across 28,000+ tasks, agents often can't tell when to quit — some never give up when they should, others bail out only after dozens of wasted tool calls.",
+  "key_points": [
+    "Agentic abstention is a multi-turn call — answer, abstain, or gather more info each step — not a one-shot answer-or-refuse decision.",
+    "Evaluated 13 LLM-as-agent systems across web shopping, terminal use, and QA on 28,000+ tasks.",
+    "Bigger or more capable models sometimes abstain worse — scale alone doesn't fix the timing problem.",
+    "Hardest failures: tasks that look feasible until the environment reveals they aren't.",
+    "CONVOLVE distills past trajectories into reusable stopping rules, lifting Llama-3.3-70B's timely-abstention recall from 26.7% to 57.4%."
+  ],
+  "content_html": "\u003cp\u003eAsk an agent to find a product that doesn't exist, or finish a task the environment quietly makes impossible, and plenty of them mishandle it — either grinding on forever or bailing out after burning dozens of unnecessary tool calls. A new study names this failure mode: agentic abstention, the problem of knowing when to stop acting under uncertainty.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eUnlike standard LLM abstention — a single answer-or-refuse call — agentic abstention unfolds over many turns: at each step the agent can answer, abstain, or gather more information, and the case for stopping often only becomes clear once the environment pushes back. The authors evaluate 13 LLM-as-agent systems across web shopping, terminal environments, and question answering on more than 28,000 tasks, and the core problem isn't just \u003cem\u003ewhether\u003c/em\u003e agents can abstain — it's \u003cem\u003ewhen\u003c/em\u003e. Some never abstain when they should; others do it only after many wasted interactions, especially when an instruction looks feasible until the environment reveals otherwise. Model scale and reasoning don't reliably help — some larger, more capable models abstain worse. The paper's fix, CONVOLVE, distills full interaction trajectories into reusable stopping rules, more than doubling Llama-3.3-70B's timely-abstention recall on WebShop (26.7% → 57.4%) without any weight updates. Han Luo, Bingbing Wen, and Lucy Lu Wang, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Han Luo",
+      "Bingbing Wen",
+      "Lucy Lu Wang"
+    ],
+    "url": "https://arxiv.org/abs/2606.28733",
+    "published_at": "2026-06-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "safety",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-02",
+  "date": "2026-06-27",
+  "related": [
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    },
+    {
+      "id": "card_42f624",
+      "slug": "agent-token-budget-overruns",
+      "type": "paper",
+      "title": "Token Budgets: When Agents Burn Money",
+      "hook": "A single retry loop can spend thousands of dollars before anyone notices. This paper catalogs 63 real budget-overrun incidents — and asks the type system to make over-spending a compile error.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_ea9437",
+      "slug": "critique-of-agent-model",
+      "type": "paper",
+      "title": "Critique of Agent Model: Agentic vs. Agentive Systems",
+      "hook": "When is a system really an 'agent' and not just a clever workflow? This paper draws the line at whether agency is internalized or scaffolded — and sketches an architecture for the former.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_45c9df#0",
+      "format": "flip",
+      "prompt": "Why is agentic abstention harder than a single-turn 'answer or refuse' decision?",
+      "back_html": "\u003cp\u003eAn agent can answer, abstain, or gather more info at every turn, and often only learns a goal is unreachable after interacting with the environment — it's a sequential judgment call, not a one-shot label.\u003c/p\u003e"
+    },
+    {
+      "id": "card_45c9df#1",
+      "format": "quiz",
+      "prompt": "What did the study find about model scale and timely abstention?",
+      "choices": [
+        {
+          "text": "Larger or more capable models sometimes abstain worse, not better",
+          "correct": true
+        },
+        {
+          "text": "Every model improved abstention proportionally with scale",
+          "correct": false
+        },
+        {
+          "text": "Only small models struggled to abstain at all",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eScale, reasoning, and scaffolding affected abstention in inconsistent ways — larger models weren't reliably better at knowing when to stop.\u003c/p\u003e"
+    },
+    {
+      "id": "card_45c9df#2",
+      "format": "flip",
+      "prompt": "What does CONVOLVE do to improve agentic abstention?",
+      "back_html": "\u003cp\u003eIt distills full past interaction trajectories into reusable stopping rules — improving timely abstention without touching model weights.\u003c/p\u003e"
+    }
+  ]
+}

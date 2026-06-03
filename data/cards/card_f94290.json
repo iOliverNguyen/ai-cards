@@ -1,0 +1,131 @@
+{
+  "id": "card_f94290",
+  "slug": "alexnet",
+  "type": "paper",
+  "title": "ImageNet Classification with Deep CNNs (AlexNet)",
+  "hook": "In 2012 a single deep CNN trained on two GPUs crushed the ImageNet contest by a wide margin — and kicked off the deep learning era.",
+  "key_points": [
+    "AlexNet won ImageNet 2012 by a large margin over hand-engineered methods, proving deep CNNs work at scale.",
+    "Used ReLU activations to train much faster than saturating tanh/sigmoid units.",
+    "Dropout and data augmentation fought overfitting on 60M parameters.",
+    "Training on two GPUs made a then-huge network practical.",
+    "Sparked the modern deep learning boom in computer vision."
+  ],
+  "content_html": "\u003cp\u003eKrizhevsky, Sutskever, and Hinton trained a deep convolutional network on the ImageNet dataset and won the 2012 classification challenge by a striking margin over the best traditional computer-vision pipelines. The result convinced the field that deep learning, given enough data and compute, beats hand-engineered features — and it set off the deep learning boom.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe network stacks convolutional layers that detect edges and textures, building up to whole objects, followed by fully connected layers that classify. Three choices made it trainable: ReLU activations that don't saturate and so learn faster, dropout that randomly silences neurons to curb overfitting, and aggressive data augmentation. Splitting the model across two GPUs let them fit and train a network that was huge for its time.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAlexNet was the moment computer vision flipped from carefully designed features to learned ones. Its core ingredients — ReLU, dropout, GPU training, big labeled datasets — became standard, and nearly every later vision architecture traces its lineage back to this paper.\u003c/p\u003e",
+  "source": {
+    "name": "NeurIPS",
+    "authors": [
+      "Alex Krizhevsky",
+      "Ilya Sutskever",
+      "Geoffrey Hinton"
+    ],
+    "url": "https://papers.nips.cc/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html",
+    "published_at": "2012-12-03",
+    "license": "NeurIPS (open access)"
+  },
+  "topic_ids": [
+    "cnns"
+  ],
+  "tags": [
+    "vision",
+    "foundational",
+    "landmark"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2012-12-03",
+  "related": [
+    {
+      "id": "card_e778b2",
+      "slug": "resnet",
+      "type": "paper",
+      "title": "Deep Residual Learning (ResNet)",
+      "hook": "Stacking more layers used to make networks worse, not better. ResNet's fix — let each layer learn a tweak to its input — unlocked nets over 100 layers deep.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-12-10"
+    },
+    {
+      "id": "card_7706ce",
+      "slug": "imagenet-dataset",
+      "type": "dataset",
+      "title": "ImageNet: The Dataset That Sparked Deep Learning",
+      "hook": "A hand-labeled hoard of millions of images turned into the contest that, in 2012, lit the fuse on the deep learning era.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2009-06-20"
+    },
+    {
+      "id": "card_4aba44",
+      "slug": "vision-transformer-vit",
+      "type": "paper",
+      "title": "An Image is Worth 16x16 Words (ViT)",
+      "hook": "Chop an image into patches, treat each like a word, and feed them to a plain Transformer. With enough pretraining data, it matches or beats convolutional networks.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-10-22"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_dd14c6",
+      "slug": "how-neural-networks-learn",
+      "type": "concept",
+      "title": "How Neural Networks Learn: Backpropagation",
+      "hook": "A neural net learns by asking, for every weight, 'how much did you contribute to my mistake?' Backprop answers all of them at once.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2017-10-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_f94290#0",
+      "format": "quiz",
+      "prompt": "Why did AlexNet use ReLU activations?",
+      "choices": [
+        {
+          "text": "They don't saturate, so the network trains much faster",
+          "correct": true
+        },
+        {
+          "text": "They squash outputs into a bounded range",
+          "correct": false
+        },
+        {
+          "text": "They eliminate the need for any training data",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eReLU activations train much faster than saturating tanh/sigmoid units, which helped make the deep network practical.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f94290#1",
+      "format": "flip",
+      "prompt": "How did AlexNet fight overfitting on its 60M parameters?",
+      "back_html": "\u003cp\u003eWith dropout (randomly silencing neurons) and aggressive data augmentation.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f94290#2",
+      "format": "quiz",
+      "prompt": "What broader shift did AlexNet's win signal for computer vision?",
+      "choices": [
+        {
+          "text": "A move from hand-engineered features to learned ones",
+          "correct": true
+        },
+        {
+          "text": "A return to rule-based image processing",
+          "correct": false
+        },
+        {
+          "text": "That GPUs were unnecessary for vision",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAlexNet was the moment vision flipped from carefully designed features to learned ones, proving deep CNNs work at scale.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "id": "card_edc166",
+  "slug": "sora-2",
+  "type": "news",
+  "title": "Sora 2",
+  "hook": "OpenAI's Sora 2 added synchronized audio and sharper physical consistency — and shipped inside a TikTok-style social app where you remix each other's generations.",
+  "key_points": [
+    "OpenAI's video-and-audio model, released September 2025 as the successor to Sora.",
+    "Generates synchronized speech, sound effects, and ambient audio with the video.",
+    "Improved physical realism and consistency over the original Sora.",
+    "Launched with a social iOS app for creating, remixing, and 'cameo' insertion of people."
+  ],
+  "content_html": "\u003cp\u003eOpenAI released Sora 2 in September 2025, the next generation of its text-to-video system, and — unusually — wrapped it in a consumer social app. Like Google's Veo 3, Sora 2 generates synchronized audio together with the video, and it improved the physical consistency that made the first Sora's demos occasionally surreal.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's new\u003c/h2\u003e\n\u003cp\u003eSora 2 produces clips with matching speech, Foley-style sound effects, and ambient audio, and handles motion and physics more believably than its predecessor. OpenAI launched it alongside a social iOS app called Sora, where users create videos, remix each other's generations in a feed, and insert themselves or friends into clips via a \u0026quot;cameo\u0026quot; feature — a deliberate push to make generative video a participatory, social product rather than a pro tool.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eTwo things stand out. Technically, joint audio-video generation with better physics moved AI video toward finished content. Strategically, shipping it as a social app — rather than just an API — was a bet that the killer use of generative video is consumer creation and remixing, raising fresh questions about likeness, consent, and provenance that the cameo feature made concrete.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "authors": [
+      "OpenAI"
+    ],
+    "url": "https://openai.com/index/sora-2/",
+    "published_at": "2025-09-30",
+    "license": "OpenAI news"
+  },
+  "topic_ids": [
+    "video-audio",
+    "releases"
+  ],
+  "tags": [
+    "generative",
+    "multimodal"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2025-09-30",
+  "related": [
+    {
+      "id": "card_2e9343",
+      "slug": "sora",
+      "type": "news",
+      "title": "Sora: Video Generation as World Simulation",
+      "hook": "OpenAI's Sora generates minute-long high-fidelity video from text by treating video as space-time patches - and frames the whole task as learning a world simulator.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2024-02-15"
+    },
+    {
+      "id": "card_1ccfb1",
+      "slug": "veo-3",
+      "type": "news",
+      "title": "Veo 3",
+      "hook": "Google's Veo 3 generates video with synchronized native audio — dialogue, sound effects, and ambient noise produced together with the picture, not dubbed on after.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-05-20"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_edc166#0",
+      "format": "flip",
+      "prompt": "What were the two main advances of Sora 2 over the original Sora?",
+      "back_html": "\u003cp\u003eSynchronized audio (speech, sound effects, ambient sound) generated with the video, plus improved physical realism and consistency.\u003c/p\u003e"
+    },
+    {
+      "id": "card_edc166#1",
+      "format": "quiz",
+      "prompt": "Why was shipping Sora 2 inside a social iOS app strategically notable?",
+      "choices": [
+        {
+          "text": "It bet the killer use of generative video is consumer creation and remixing",
+          "correct": true
+        },
+        {
+          "text": "It was meant only for professional film studios",
+          "correct": false
+        },
+        {
+          "text": "It abandoned the underlying video model entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLaunching as a social app, not just an API, was a bet on participatory consumer creation and remixing — raising questions about likeness and consent via the cameo feature.\u003c/p\u003e"
+    }
+  ]
+}

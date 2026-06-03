@@ -1,0 +1,110 @@
+{
+  "id": "card_037239",
+  "slug": "continual-learning-in-transition",
+  "type": "paper",
+  "title": "Continual Learning Has Quietly Moved Outside the Weights",
+  "hook": "Classical continual learning was about updating weights without forgetting. This survey argues the field has moved to system-level adaptation — memory, skill libraries, harnesses.",
+  "key_points": [
+    "Classical continual learning is parameter-centric: training strategies, architectures, and weight adaptation.",
+    "Newer paradigms break that frame — on-policy learning widens the update mechanisms available.",
+    "Test-time training extends continual learning from the training phase into inference.",
+    "External harness components — memory, skill libraries, interaction protocols — extend capability beyond the static parameter space.",
+    "The survey organizes the shift along three axes: When learning happens, How it happens, and Where it lands.",
+    "Where is the sharpest axis: updates to internal parameters versus updates to external structure."
+  ],
+  "content_html": "\u003cp\u003eContinual learning used to have a crisp definition: keep updating a model's parameters on new data without destroying what it already knew. Hou and colleagues argue that definition no longer describes what practitioners are actually doing, and offer a survey organized around the shift.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThree axes\u003c/h2\u003e\n\u003cp\u003eThe framing is tri-axial. \u003cstrong\u003eHow\u003c/strong\u003e covers the update mechanics — off-policy, on-policy, and beyond-gradient methods. \u003cstrong\u003eWhen\u003c/strong\u003e covers the stage at which learning happens, now spanning pre-training, post-training, and inference time. \u003cstrong\u003eWhere\u003c/strong\u003e is the axis that carries the argument: updates can land in internal parameters, or in external structure entirely.\u003c/p\u003e\n\u003cp\u003eThat last axis is where the transition shows. Test-time training pushes adaptation into inference. Agent harnesses accumulate memory, skill libraries, and interaction protocols that expand what a system can do while its weights sit frozen. Read together, the authors say, these developments mark a move from parameter-centric learning to system-level adaptation — and the survey uses the framework to place representative methods and to name the open problems the shift creates.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zhiyan Hou",
+      "Dan Zhang",
+      "Tao Feng",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.06216",
+    "published_at": "2026-08-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "training-alignment",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "agent",
+    "foundational",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-10",
+  "date": "2026-08-06",
+  "related": [
+    {
+      "id": "card_7e5a32",
+      "slug": "agentic-test-time-training",
+      "type": "paper",
+      "title": "Agentic Test-Time Training: Adapting Mid-Episode",
+      "hook": "LLM agents degrade over long episodes, repeating failed moves — this method updates the model's weights continuously during the episode itself, but only on genuinely new information.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-03"
+    },
+    {
+      "id": "card_b9fac2",
+      "slug": "learning-on-the-job-frozen-weight-agents",
+      "type": "paper",
+      "title": "Agents That Learn on the Job Without Weight Updates",
+      "hook": "An agent that cracks a hard request today starts from zero tomorrow. Distil each episode into a retrievable rule and a frozen model gets 2.6x better — no fine-tuning.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    },
+    {
+      "id": "card_9624de",
+      "slug": "agent-optimizers-compound-continual-learning",
+      "type": "paper",
+      "title": "Do Agent Optimizers Compound? A Continual-Learning Evaluation",
+      "hook": "Most agent-optimization papers report a one-shot gain and stop. Rerun the optimizer on new tasks and two of three popular methods actually make the agent worse than doing nothing.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_037239#0",
+      "format": "flip",
+      "prompt": "What are the three axes this survey uses to characterize continual learning?",
+      "back_html": "\u003cp\u003e\u003cstrong\u003eWhen\u003c/strong\u003e learning occurs (pre-training, post-training, inference-time), \u003cstrong\u003eHow\u003c/strong\u003e it occurs (off-policy, on-policy, beyond-gradient), and \u003cstrong\u003eWhere\u003c/strong\u003e the update lands (internal parameters versus external structure).\u003c/p\u003e"
+    },
+    {
+      "id": "card_037239#1",
+      "format": "quiz",
+      "prompt": "What transition does the survey argue continual learning is undergoing?",
+      "choices": [
+        {
+          "text": "From parameter-centric model adaptation toward system-level adaptation",
+          "correct": true
+        },
+        {
+          "text": "From supervised objectives toward purely self-supervised ones",
+          "correct": false
+        },
+        {
+          "text": "From small specialist models toward a single general model per domain",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe claim is that mechanisms like test-time training and external harness components — memory, skill libraries, interaction protocols — now extend a system's capabilities without touching the static parameter space at all.\u003c/p\u003e"
+    },
+    {
+      "id": "card_037239#2",
+      "format": "flip",
+      "prompt": "Give two examples of learning that happens outside a model's weights.",
+      "back_html": "\u003cp\u003eTest-time training, which moves adaptation into the inference phase, and external harness components such as memory stores, skill libraries, and interaction protocols that grow capability without weight updates.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "id": "card_1f360f",
+  "slug": "illusion-of-robustness-prediction-flips",
+  "type": "paper",
+  "title": "The Illusion of Robustness: Aggregate Accuracy Hides Prediction Flips",
+  "hook": "A model's accuracy barely budges when you paste in random gibberish — but under the hood, a chunk of its individual answers silently flip, some right to wrong, some wrong to right.",
+  "key_points": [
+    "Prepending task-irrelevant context — even meaningless pseudo-word prefixes — barely changes aggregate accuracy on benchmarks.",
+    "But it flips individual predictions on a subset of examples: hurting some, helping others, so the net score looks stable.",
+    "This two-sided instability holds consistently across many models and datasets, though which examples flip is model-specific.",
+    "The instability's size is modulated by context type, context length, test-time compute, and how developed the model is.",
+    "Aggregate accuracy conceals real per-example tail risk — the authors argue benchmarks need per-example reliability checks too."
+  ],
+  "content_html": "\u003cp\u003eState-of-the-art LLMs often look robust to irrelevant context: paste a long, unrelated passage in front of a benchmark question, and overall accuracy barely moves. Zhang, Koyejo, and Yang show that stability is an illusion at the level of individual examples. Underneath a flat aggregate score, a real slice of predictions flip — some newly wrong, some newly right.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe effect shows up even with pseudo-words — strings formed by randomly combining characters, carrying no real meaning at all — prepended to the input. It's consistent across a wide range of models and datasets, though which specific examples flip is largely model-specific, not a shared \u0026quot;hard set.\u0026quot; The authors trace the size of the effect to four factors: what kind of context is prepended, how long it is, how much test-time compute the model gets to use, and where the model sits in its development lifecycle. The upshot is a blind spot in how models get evaluated: aggregate accuracy can look rock-solid while concealing context-induced tail risk that only per-example reliability checks would catch. Yanzhe Zhang, Sanmi Koyejo, and Diyi Yang, arXiv 2026 (arxiv.org/abs/2607.12963).\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yanzhe Zhang",
+      "Sanmi Koyejo",
+      "Diyi Yang"
+    ],
+    "url": "https://arxiv.org/abs/2607.12963",
+    "published_at": "2026-07-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "generalization",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "safety",
+    "nlp",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-16",
+  "date": "2026-07-14",
+  "related": [
+    {
+      "id": "card_17d07c",
+      "slug": "predictive-validity-agent-evals",
+      "type": "paper",
+      "title": "Beyond Static Leaderboards for Agents",
+      "hook": "Topping an agent leaderboard doesn't mean it'll work when deployed: aggregate-score rankings don't transfer out-of-distribution. Rank by predictive validity instead.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    },
+    {
+      "id": "card_780660",
+      "slug": "feature-importance-can-mislead",
+      "type": "blog",
+      "title": "When Your Top Feature Makes Predictions Worse",
+      "hook": "A feature can top your model's importance ranking and still hurt accuracy. The only way to be sure it helps: delete it, retrain, and compare on held-out data.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_1f360f#0",
+      "format": "flip",
+      "prompt": "What does 'aggregate stability' hide, according to this paper?",
+      "back_html": "\u003cp\u003eSignificant per-example instability — task-irrelevant context can flip a model's answer on individual questions even while overall accuracy barely moves.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1f360f#1",
+      "format": "quiz",
+      "prompt": "What kind of context can flip individual predictions, per the authors?",
+      "choices": [
+        {
+          "text": "Even semantically meaningless pseudo-word prefixes, formed from random characters",
+          "correct": true
+        },
+        {
+          "text": "Only context that's topically related to the question",
+          "correct": false
+        },
+        {
+          "text": "Only adversarially optimized attack strings",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe effect shows up even with nonsense text — it's not about meaningful distraction, just the presence of irrelevant context.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1f360f#2",
+      "format": "flip",
+      "prompt": "Is the flipping effect one-directional — does irrelevant context always hurt accuracy?",
+      "back_html": "\u003cp\u003eNo — it's two-sided: some examples get worse, others get better, so the net aggregate score can look almost unchanged despite real underlying instability.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1f360f#3",
+      "format": "quiz",
+      "prompt": "What factors modulate how much of this instability shows up?",
+      "choices": [
+        {
+          "text": "Context type, context length, test-time compute, and model development stage",
+          "correct": true
+        },
+        {
+          "text": "Only the size of the model in parameters",
+          "correct": false
+        },
+        {
+          "text": "Only the benchmark's difficulty level",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors show the effect isn't fixed — it scales with these four factors, all measurable by practitioners.\u003c/p\u003e"
+    }
+  ]
+}

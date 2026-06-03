@@ -1,0 +1,108 @@
+{
+  "id": "card_296b02",
+  "slug": "latent-programming-horizons-coding-agents",
+  "type": "paper",
+  "title": "Latent Programming Horizons in Coding Agents",
+  "hook": "A coding agent's hidden states seem to know where an edit is heading up to 25 steps before it's made — long before the agent has written the code.",
+  "key_points": [
+    "Logistic-regression probes on residual-stream hidden states decode whether the current code parses, passes tests, reduces failing tests, or introduces regressions — AUC up to 0.83 for correctness.",
+    "Tested across two coding-agent models and two software-engineering benchmarks.",
+    "More surprising: probes trained to predict the outcome of edits not yet made stay above chance up to roughly 25 steps in advance — the 'latent programming horizon.'",
+    "These probe directions transfer across benchmarks without retraining, a check for external validity.",
+    "Suggests coding-agent LLMs carry a forward-looking internal representation of where the code is heading, not just its current state."
+  ],
+  "content_html": "\u003cp\u003eA coding agent grinds through dozens of steps — reasoning, editing, running tests — but until now, little was known about what the language model underneath actually represents about the program it's building. This paper looks inside.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe authors train logistic-regression probes on the residual streams of language models operating as coding agents, and find those hidden states linearly encode whether the current code parses, passes its test suite, reduces the number of failing tests, or introduces a regression — reaching AUC up to 0.83 for correctness across two models and two benchmarks. The more striking finding is directional: probes trained to predict the outcome of edits \u003cem\u003ebefore they're materialized and written to disk\u003c/em\u003e perform above chance as much as roughly 25 steps ahead of time — a phenomenon the authors call the agent's \u003cstrong\u003elatent programming horizon\u003c/strong\u003e. As a check on external validity, these probes transfer across benchmarks without retraining. The authors frame this as an open invitation for more mechanistic-interpretability work on coding agents specifically. André Silva, Han Tu, and Martin Monperrus, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "André Silva",
+      "Han Tu",
+      "Martin Monperrus"
+    ],
+    "url": "https://arxiv.org/abs/2607.05188",
+    "published_at": "2026-07-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "ai-for-code",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "agent",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-13",
+  "date": "2026-07-06",
+  "related": [
+    {
+      "id": "card_a2a595",
+      "slug": "verification-horizon-coding-rewards",
+      "type": "paper",
+      "title": "The Verification Horizon: No Silver Bullet for Coding Agent Rewards",
+      "hook": "Checking a solution used to be easier than writing one. For coding agents that's flipped — and this paper argues no fixed reward works forever: verification must co-evolve with the model.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-24"
+    },
+    {
+      "id": "card_6e175b",
+      "slug": "internal-state-probes-misalignment-monitoring",
+      "type": "paper",
+      "title": "Internal-State Probes Read the Situation, Not the Action",
+      "hook": "Probes that seem to detect an LLM's harmful intent before it acts mostly just detect the prompt's topic — three careful tests find they don't predict future misbehavior.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-29"
+    },
+    {
+      "id": "card_d9c6e9",
+      "slug": "reading-between-the-dots",
+      "type": "paper",
+      "title": "Reading Between the Dots: Hidden Computation in Filler Tokens",
+      "hook": "Frontier models can solve multi-step problems while outputting nothing but dots — no visible reasoning at all. This paper shows that 'hidden' computation is still legible, just not in the output.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-03"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_296b02#0",
+      "format": "flip",
+      "prompt": "What can a linear probe decode from a coding agent's residual stream about the current code?",
+      "back_html": "\u003cp\u003eWhether it parses, passes its test suite, has reduced the number of failing tests, or has introduced a regression — reaching AUC up to 0.83 for correctness across two models and two benchmarks.\u003c/p\u003e"
+    },
+    {
+      "id": "card_296b02#1",
+      "format": "quiz",
+      "prompt": "What is the 'latent programming horizon' the authors report?",
+      "choices": [
+        {
+          "text": "Probes can predict the outcome of edits before they're made, staying above chance up to roughly 25 steps ahead",
+          "correct": true
+        },
+        {
+          "text": "The maximum number of files an agent can edit in one session",
+          "correct": false
+        },
+        {
+          "text": "The point at which an agent runs out of context window",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe surprising result is that hidden-state probes anticipate future edit outcomes well before those edits are written to disk, not just describing the code as it currently stands.\u003c/p\u003e"
+    },
+    {
+      "id": "card_296b02#2",
+      "format": "flip",
+      "prompt": "Why does the probes' cross-benchmark transfer (without retraining) matter?",
+      "back_html": "\u003cp\u003eIt's evidence the decoded signal reflects a real internal representation the model uses generally, rather than a quirk fit to one specific benchmark's data.\u003c/p\u003e"
+    }
+  ]
+}

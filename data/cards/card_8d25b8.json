@@ -1,0 +1,108 @@
+{
+  "id": "card_8d25b8",
+  "slug": "information-abundance-paradox",
+  "type": "paper",
+  "title": "The Information Abundance Paradox: Long Context Can Undermine What a Model Knows",
+  "hook": "If the answer is always in the context window, the model stops bothering to learn it. Past an intermediate context length, more training context makes a model weaker without its crutch.",
+  "key_points": [
+    "Proposes the Information Abundance Paradox: abundant in-context evidence reduces the incentive to encode that knowledge in the weights.",
+    "In pretraining, growing the context window helps language modeling, NLU, and closed-book MCQA only up to an intermediate optimum — then performance declines.",
+    "In supervised fine-tuning, more task-relevant train-time context helps when context is present but hurts robustness when it is absent or misleading.",
+    "Mechanism: informative context shifts gradient pressure away from feed-forward layers (linked to parametric knowledge) toward attention modules.",
+    "Causal interventions confirm the shift increases reliance on context at inference — so scaling toward near-infinite context is not free."
+  ],
+  "content_html": "\u003cp\u003eEveryone assumes longer training contexts can only help: more evidence in view, more to learn from. Arda Uzunoglu, Benjamin van Durme, and Daniel Khashabi (arXiv, August 2026) argue the opposite can happen. Their \u003cstrong\u003eInformation Abundance Paradox\u003c/strong\u003e says that when the context already contains the answer, the model has little reason to bake that knowledge into its weights — it learns to look things up instead of learning them.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat they measured\u003c/h2\u003e\n\u003cp\u003eIn pretraining on long documents, widening the context window improves language modeling, natural language understanding, and \u003cem\u003eclosed-book\u003c/em\u003e multiple-choice QA only up to an intermediate optimum; past that point, performance consistently declines. In supervised fine-tuning, giving the model more task-relevant context at train time helps when supporting context is available at test time — but makes it markedly less robust when the context is missing or misleading.\u003c/p\u003e\n\u003ch2\u003eWhy it happens\u003c/h2\u003e\n\u003cp\u003eThe authors' analysis suggests longer context simply offers a \u003cem\u003elower-complexity solution\u003c/em\u003e to the training objective. Mechanistically, training with informative context shifts gradient pressure from feed-forward networks — often linked to parametric knowledge storage — toward attention modules, and causal interventions show this shift increases context reliance at inference. The practical takeaway: scaling toward near-infinite context isn't just a matter of supplying more high-quality long data. There's a trade to manage between what a model knows and what it merely retrieves.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Arda Uzunoglu",
+      "Benjamin van Durme",
+      "Daniel Khashabi"
+    ],
+    "url": "https://arxiv.org/abs/2608.12218",
+    "published_at": "2026-08-12",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "context-memory",
+    "pretraining",
+    "papers-this-week"
+  ],
+  "tags": [
+    "attention",
+    "training",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-13",
+  "date": "2026-08-12",
+  "related": [
+    {
+      "id": "card_958844",
+      "slug": "ring-attention",
+      "type": "paper",
+      "title": "Ring Attention for Near-Infinite Context",
+      "hook": "Spread one long sequence across many devices and compute attention blockwise - the context length you can handle grows with the number of devices, all with exact attention and no extra overhead.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2023-10-03"
+    },
+    {
+      "id": "card_e8632a",
+      "slug": "position-interpolation",
+      "type": "paper",
+      "title": "Extending Context Windows via Positional Interpolation",
+      "hook": "Don't extrapolate to positions the model never saw - squeeze the position indices back inside the trained range, and a short fine-tune stretches the context window many times over.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-06-27"
+    },
+    {
+      "id": "card_e80acb",
+      "slug": "wildtrace-long-context-benchmark-gap",
+      "type": "paper",
+      "title": "WILDTRACE: Benchmarking Natural Evidence Trails in Long-Context Reasoning",
+      "hook": "Most long-context tests plant a fake 'needle' in a haystack. Real evidence doesn't look like that — passing needle tests may not mean a model can truly reason over a document.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_8d25b8#0",
+      "format": "flip",
+      "prompt": "What is the Information Abundance Paradox?",
+      "back_html": "\u003cp\u003eWhen relevant information is abundant in the training context, the model has less incentive to store it in its weights — so it internalizes less and leans harder on context at inference time.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8d25b8#1",
+      "format": "quiz",
+      "prompt": "What happens to closed-book performance as the pretraining context window keeps growing?",
+      "choices": [
+        {
+          "text": "It improves up to an intermediate context length, then consistently declines",
+          "correct": true
+        },
+        {
+          "text": "It improves monotonically, since the model sees richer evidence",
+          "correct": false
+        },
+        {
+          "text": "It is unaffected, because closed-book tasks use no context",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper finds an intermediate optimum: language modeling, NLU, and closed-book MCQA all improve at first, then degrade as context keeps growing.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8d25b8#2",
+      "format": "flip",
+      "prompt": "Mechanistically, where does the gradient pressure go when training with lots of informative context?",
+      "back_html": "\u003cp\u003eAway from the feed-forward networks often associated with parametric knowledge, and toward the attention modules — a shift causal interventions link to greater context reliance.\u003c/p\u003e"
+    }
+  ]
+}

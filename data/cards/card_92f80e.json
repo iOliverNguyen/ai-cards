@@ -1,0 +1,152 @@
+{
+  "id": "card_92f80e",
+  "slug": "prefix-sliding-test-time-scaling",
+  "type": "paper",
+  "title": "Prefix Sliding for Efficient Test-Time Scaling",
+  "hook": "Most intermediate reasoning tokens stop mattering as the model reasons on. Keep only the prefix and the last few thousand tokens and you cap memory forever — 3x faster with no training.",
+  "key_points": [
+    "Test-time scaling keeps the whole reasoning trace in memory via full attention, so long thinking gets prohibitively expensive.",
+    "The observation: most intermediate reasoning tokens lose importance as the model continues reasoning.",
+    "Prefix Sliding discards tokens outside the prefix and a window of the last few thousand tokens.",
+    "Total memory is capped regardless of how long the model reasons.",
+    "Without training it makes existing models 3x faster while maintaining performance.",
+    "Trained with RL, it enables scaling to reasoning traces beyond a hundred thousand tokens."
+  ],
+  "content_html": "\u003cp\u003eTest-time scaling buys accuracy with compute: let the model think longer. The bill comes from full attention, which keeps the \u003cem\u003eentire\u003c/em\u003e reasoning trace in memory, so genuinely hard problems become prohibitively expensive. Muennighoff and colleagues make a simple observation that changes the arithmetic — \u003cstrong\u003emost intermediate reasoning tokens lose importance as the model continues reasoning\u003c/strong\u003e. So why keep paying for them?\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe method\u003c/h2\u003e\n\u003cp\u003e\u003cstrong\u003ePrefix Sliding\u003c/strong\u003e discards any token that is neither part of the prefix nor inside a window of the last few thousand tokens. The prefix retains the key instructions and the tools available to the model — the things that stay relevant to the end. The recent window holds the reasoning currently in progress. Everything in between is dropped. The consequence is structural: total memory is \u003cstrong\u003ecapped regardless of how long the model reasons\u003c/strong\u003e, which is what makes genuinely long-horizon test-time scaling affordable.\u003c/p\u003e\n\u003ch2\u003eResults\u003c/h2\u003e\n\u003cp\u003eApplied without any training, Prefix Sliding makes existing models 3x faster while maintaining performance. Train with it using reinforcement learning and you get more: performance improves by enabling scaling to reasoning traces beyond a hundred thousand tokens. Ablations rule out the obvious alternatives — it outperforms both summarizing the intermediate tokens and a vanilla sliding window, so the preserved prefix is doing real work rather than the truncation alone. Code is released at github.com/Muennighoff/prefix-sliding. arXiv, 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Niklas Muennighoff",
+      "Zhengyang Wang",
+      "Zeyi Chen",
+      "Weijia Shi",
+      "Binyuan Hui",
+      "John Yang",
+      "Dapeng Jiang",
+      "Mika Senghaas",
+      "Fares Obeid",
+      "Johannes Hagemann",
+      "Sami Jaghouar",
+      "Ludwig Schmidt",
+      "Percy Liang",
+      "Jason Wei",
+      "Andrew Y. Ng",
+      "Luke Zettlemoyer",
+      "Yejin Choi",
+      "Mike Lewis"
+    ],
+    "url": "https://arxiv.org/abs/2608.26070",
+    "published_at": "2026-08-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "context-memory",
+    "papers-this-week"
+  ],
+  "tags": [
+    "inference",
+    "efficiency",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_688904",
+      "slug": "kv-cache-and-batching",
+      "type": "concept",
+      "title": "The KV Cache \u0026 Continuous Batching",
+      "hook": "Generating one token reuses every prior key and value - that growing cache is why LLM inference is memory-bound, and continuous batching is how servers fight back.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-11-09"
+    },
+    {
+      "id": "card_ef8b5f",
+      "slug": "paged-attention-vllm",
+      "type": "paper",
+      "title": "PagedAttention / vLLM: Efficient LLM Serving",
+      "hook": "LLM serving wastes huge amounts of GPU memory on the attention cache. PagedAttention borrows an OS trick — paging — to recover it and serve many more requests at once.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-09-12"
+    },
+    {
+      "id": "card_4fbed7",
+      "slug": "shadow-price-of-reasoning",
+      "type": "paper",
+      "title": "The Shadow Price of Reasoning",
+      "hook": "When you can't afford to let every query think as long as it wants, who gets the compute? Treat reasoning tokens like a scarce resource and economics gives a clean answer.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_69407e",
+      "slug": "windowed-mtp-draft-kv-tax",
+      "type": "paper",
+      "title": "The Draft Isn't Free at a Million Tokens",
+      "hook": "Speculative decoding assumes the draft is cheap. At million-token context the draft head reads the entire KV cache every step — and can end up slower than no speculation at all.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-23"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_688904",
+      "slug": "kv-cache-and-batching",
+      "type": "concept",
+      "title": "The KV Cache \u0026 Continuous Batching",
+      "hook": "Generating one token reuses every prior key and value - that growing cache is why LLM inference is memory-bound, and continuous batching is how servers fight back.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-11-09"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_92f80e#0",
+      "format": "flip",
+      "prompt": "Which two spans of tokens does Prefix Sliding keep, and why those?",
+      "back_html": "\u003cp\u003eThe prefix, which holds key instructions and the tools available to the model, and a window of the last few thousand tokens, which is the reasoning currently being worked on. Everything between is discarded.\u003c/p\u003e"
+    },
+    {
+      "id": "card_92f80e#1",
+      "format": "quiz",
+      "prompt": "What is the key empirical observation motivating Prefix Sliding?",
+      "choices": [
+        {
+          "text": "Most intermediate reasoning tokens lose importance as the model keeps reasoning",
+          "correct": true
+        },
+        {
+          "text": "Attention weights are uniformly distributed over the reasoning trace",
+          "correct": false
+        },
+        {
+          "text": "The first tokens of a reasoning trace are the least useful",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIf old intermediate tokens stop mattering, paying full-attention memory to retain them is waste — which is exactly what Prefix Sliding stops paying.\u003c/p\u003e"
+    },
+    {
+      "id": "card_92f80e#2",
+      "format": "flip",
+      "prompt": "What do the ablations compare Prefix Sliding against?",
+      "back_html": "\u003cp\u003eSummarizing the intermediate tokens, and a vanilla sliding window with no preserved prefix. Prefix Sliding outperforms both.\u003c/p\u003e"
+    },
+    {
+      "id": "card_92f80e#3",
+      "format": "flip",
+      "prompt": "What does training with Prefix Sliding via RL unlock beyond the training-free speedup?",
+      "back_html": "\u003cp\u003eBetter performance, by letting the model scale to reasoning traces beyond a hundred thousand tokens — because memory no longer grows with trace length.\u003c/p\u003e"
+    }
+  ]
+}

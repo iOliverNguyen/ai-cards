@@ -1,0 +1,110 @@
+{
+  "id": "card_a86ac1",
+  "slug": "moving-alphabet",
+  "type": "paper",
+  "title": "Moving Alphabet: A Controlled Study of Training Data for Text-to-Video Generation",
+  "hook": "Text-to-video research chases bigger architectures; this controlled study shows the training data decides the outcome — caption quality alone can cap what the model learns.",
+  "key_points": [
+    "Introduces Moving Alphabet: a procedural testbed of letters moving on a black background, so data distribution and caption quality can be controlled exactly.",
+    "A diverse, balanced spread of content and clip durations is critical for the model to generalize.",
+    "Caption quality strongly affects both performance and training efficiency — text-to-video is bounded by video-understanding ability.",
+    "Corrupting captions hurts; classifier-free guidance and fine-tuning on clean data recover only partially, never fully.",
+    "Bad pre-training data can't be patched downstream — the authors argue for a real 'science of pre-training data.'"
+  ],
+  "content_html": "\u003cp\u003eText-to-video generation has scaled up fast through bigger models and more compute, but the training data behind it stays underexplored. This paper builds a controlled testbed — \u0026quot;Moving Alphabet,\u0026quot; which renders letters in varied fonts, colors, and sizes moving across a black background — to isolate exactly how data distribution and caption quality shape a text-to-video model. The verdict: data matters as much as architecture, and low-quality captions set a ceiling the model can't train past.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat they found\u003c/h2\u003e\n\u003cp\u003eBecause the testbed is procedural, the authors can dial data distribution and caption quality up or down and even corrupt ground-truth metadata deliberately. Three findings emerge. First, a diverse, balanced spread of video content and clip durations is critical for generalization. Second, caption quality strongly affects both final performance and training efficiency — suggesting text-to-video models are ultimately bounded by their video-understanding ability. Third, classifier-free guidance and fine-tuning on high-quality data offer partial recovery from a model trained on corrupted captions, but never fully compensate for poor pre-training data.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe practical lesson is that you can't cheaply repair bad data after the fact — the pre-training distribution and captions largely decide the outcome. It echoes findings elsewhere that caption quality can rival architectural changes, and the authors close by advocating for greater attention to the \u0026quot;science of pre-training data\u0026quot; as text-to-video systems scale.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Amber Yijia Zheng",
+      "Lu Liu",
+      "Raymond A. Yeh",
+      "Xi Yin"
+    ],
+    "url": "https://arxiv.org/abs/2607.18789",
+    "published_at": "2026-07-21",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "video-audio",
+    "data",
+    "papers-this-week"
+  ],
+  "tags": [
+    "paper",
+    "dataset",
+    "training",
+    "generative"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-23",
+  "date": "2026-07-21",
+  "related": [
+    {
+      "id": "card_1dc582",
+      "slug": "photoroom-prx-data-strategy",
+      "type": "blog",
+      "title": "Photoroom's Data Lesson: Caption Quality Rivals Architecture",
+      "hook": "Photoroom re-captioned their pretraining set with a VLM — longer, more accurate captions moved image FID from 21 to 13, a bigger jump than most architecture changes deliver.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_9237d7",
+      "slug": "deduplicating-training-data",
+      "type": "paper",
+      "title": "Deduplicating Training Data Makes LMs Better",
+      "hook": "Training corpora are full of copies — one 61-word sentence shows up 60,000+ times in C4. Strip the duplicates and models memorize far less and evaluate more honestly.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2021-07-14"
+    },
+    {
+      "id": "card_2e9343",
+      "slug": "sora",
+      "type": "news",
+      "title": "Sora: Video Generation as World Simulation",
+      "hook": "OpenAI's Sora generates minute-long high-fidelity video from text by treating video as space-time patches - and frames the whole task as learning a world simulator.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2024-02-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a86ac1#0",
+      "format": "flip",
+      "prompt": "In the Moving Alphabet study, what set the ceiling on text-to-video quality?",
+      "back_html": "\u003cp\u003eCaption quality. The study found text-to-video models are bounded by video-understanding ability, so poor captions cap performance regardless of the architecture.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a86ac1#1",
+      "format": "quiz",
+      "prompt": "Can a text-to-video model trained on corrupted captions be fully repaired later?",
+      "choices": [
+        {
+          "text": "No — classifier-free guidance and fine-tuning on clean data recover some, but never fully compensate for bad pre-training data",
+          "correct": true
+        },
+        {
+          "text": "Yes — a short fine-tune on a small clean set restores it completely",
+          "correct": false
+        },
+        {
+          "text": "Yes — simply raising classifier-free guidance at inference cancels the damage",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper reports only partial recovery: CFG and clean-data fine-tuning help, but poor pre-training data leaves a gap they can't close.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a86ac1#2",
+      "format": "flip",
+      "prompt": "Why build a procedural 'Moving Alphabet' testbed instead of using real video?",
+      "back_html": "\u003cp\u003eRendering letters lets the authors control data distribution and caption quality exactly — even corrupting ground-truth metadata on purpose — for clean, controlled experiments.\u003c/p\u003e"
+    }
+  ]
+}

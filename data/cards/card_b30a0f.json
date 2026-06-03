@@ -1,0 +1,144 @@
+{
+  "id": "card_b30a0f",
+  "slug": "slpo-latent-reasoning-surrogate-policy",
+  "type": "paper",
+  "title": "SLPO: Reinforcement Learning for Reasoners That Think in Vectors",
+  "hook": "Latent reasoners think in continuous vectors, not tokens — but couldn't learn from outcome rewards the way chain-of-thought models can. SLPO gives them a surrogate policy so RL finally works.",
+  "key_points": [
+    "RL with verifiable rewards is the standard recipe for test-time scaling in explicit chain-of-thought reasoners, but decoding every step as a token is costly.",
+    "Latent reasoning carries intermediate computation as continuous vectors and can match explicit CoT at far shorter horizons.",
+    "But latent reasoners stay imitation-bound: their trajectories lack a tractable per-step likelihood and an adaptive stopping signal, so outcome rewards can't guide them.",
+    "SLPO adds an empirical surrogate policy density over latent transitions, giving trajectory-level credit assignment.",
+    "A correctness-supervised stopping head, refined by outcome-reward optimization, becomes a variable-horizon policy — spending more latent compute on harder problems."
+  ],
+  "content_html": "\u003cp\u003eReinforcement learning with verifiable rewards is now the standard way to unlock test-time scaling in reasoning models — but only for explicit chain-of-thought, where every intermediate step is decoded as a language token. That's expensive. Runyang You, Zhiyuan Liu, Yongqi Li, and Wenjie Li target a cheaper alternative: latent reasoning, which carries intermediate computation as continuous vectors and can match explicit CoT at far shorter horizons.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe gap\u003c/h2\u003e\n\u003cp\u003eThe catch is that latent reasoners have stayed imitation-bound — trained to copy, not to improve from outcome rewards the way explicit CoT already has. Two things block outcome-reward RL: a latent trajectory has no tractable per-step likelihood to assign credit against, and no adaptive stopping interface to decide when the model is done thinking under a fixed budget.\u003c/p\u003e\n\u003ch2\u003eWhat SLPO adds\u003c/h2\u003e\n\u003cp\u003eSurrogate Latent Policy Optimization tackles both. It fits an empirical surrogate policy density over latent transitions, giving a trajectory-level signal RL can optimize, and it adds a correctness-supervised stopping head that outcome-reward optimization sharpens into a variable-horizon policy. Across continuous and soft \u0026quot;thinking\u0026quot; settings, the authors report SLPO improving Pass@k under parallel sampling and allocating longer latent computation to harder instances, with higher deterministic accuracy. See the arXiv paper for the method and results.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Runyang You",
+      "Zhiyuan Liu",
+      "Yongqi Li",
+      "Wenjie Li"
+    ],
+    "url": "https://arxiv.org/abs/2607.19691",
+    "published_at": "2026-07-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "reasoning",
+    "efficiency",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-23",
+  "date": "2026-07-22",
+  "related": [
+    {
+      "id": "card_01a1d7",
+      "slug": "cot-scaling-trap-latent-reasoning",
+      "type": "blog",
+      "title": "Chain of Thought Is a Scaling Trap? The Case for Latent Reasoning",
+      "hook": "A visible chain of thought reads like the model's thinking — but it can be an unfaithful, expensive trace. The next wave reasons in hidden state instead of tokens.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-13"
+    },
+    {
+      "id": "card_4cd8fd",
+      "slug": "deepseek-r1",
+      "type": "paper",
+      "title": "DeepSeek-R1: Incentivizing Reasoning via Reinforcement Learning",
+      "hook": "DeepSeek shows strong reasoning can emerge from RL on verifiable rewards with minimal supervised data - and those reasoning traces can be distilled into smaller models.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2025-01-22"
+    },
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_01a1d7",
+      "slug": "cot-scaling-trap-latent-reasoning",
+      "type": "blog",
+      "title": "Chain of Thought Is a Scaling Trap? The Case for Latent Reasoning",
+      "hook": "A visible chain of thought reads like the model's thinking — but it can be an unfaithful, expensive trace. The next wave reasons in hidden state instead of tokens.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-13"
+    },
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_b30a0f#0",
+      "format": "flip",
+      "prompt": "Why couldn't outcome-reward RL be applied to latent reasoners before SLPO?",
+      "back_html": "\u003cp\u003eLatent trajectories lack a tractable per-step likelihood and an adaptive stopping interface under a fixed thinking budget, so outcome rewards had nothing to attach credit to.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b30a0f#1",
+      "format": "quiz",
+      "prompt": "What does 'latent reasoning' carry intermediate computation as, instead of language tokens?",
+      "choices": [
+        {
+          "text": "Continuous vectors in the model's hidden state",
+          "correct": true
+        },
+        {
+          "text": "Extra rows appended to the training dataset",
+          "correct": false
+        },
+        {
+          "text": "Discrete symbols from a separate vocabulary",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLatent reasoning keeps intermediate steps as continuous vectors rather than decoding each one as a token, which lets it match CoT at shorter horizons.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b30a0f#2",
+      "format": "quiz",
+      "prompt": "What role does SLPO's correctness-supervised stopping head play?",
+      "choices": [
+        {
+          "text": "Outcome-reward optimization refines it into a variable-horizon policy that spends more latent compute on harder problems",
+          "correct": true
+        },
+        {
+          "text": "It caps every problem at a single reasoning step",
+          "correct": false
+        },
+        {
+          "text": "It translates the latent vectors back into readable text",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe stopping head gives the model an adaptive way to decide when to stop, so RL can allocate longer latent computation to harder instances.\u003c/p\u003e"
+    }
+  ]
+}

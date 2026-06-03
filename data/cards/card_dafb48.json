@@ -1,0 +1,92 @@
+{
+  "id": "card_dafb48",
+  "slug": "gated-recurrent-transformers",
+  "type": "paper",
+  "title": "Gated Recurrent Transformers: Buying Depth with Recurrence",
+  "hook": "Sharing one transformer block across many layers saves memory but flattens the model. Add a GRU-style update gate and the same three layers can act like twelve.",
+  "key_points": [
+    "Unique per-layer weights preserve functional specialization but cost memory; naive depth-sharing collapses that diversity and hurts quality.",
+    "Gated Recurrent Transformer brackets a single shared core — iterated R times — between fixed-depth prelude and coda blocks.",
+    "A lightweight projection and elementwise update gate modulate each recurrent step, conditioned on the hidden state, prelude output, and freshly resampled noise.",
+    "The gate lets the model specialize its input to the same few layers per recurrence instead of needing many unique layers.",
+    "Reported: a 3-layer variant matches 12-layer GPT-2 Small accuracy under isoFLOPS, and reaches 2.76 validation loss vs 2.84 for a non-recurrent model at matched params and data.",
+    "At large scale the authors report 63% fewer parameters and 59% less peak decoding memory for a 10% increase in compiled generation latency."
+  ],
+  "content_html": "\u003cp\u003eScaling a transformer forces a choice between expressivity and memory. Give every layer its own weights and you preserve the functional specialization that emerges with depth — early layers grounding the input, later ones refining abstractions — but you pay for all of them. Share weights across depth and you save the memory while flattening the model into a repeated, uniform transformation. Hegazy, Alanwar, and Elhoushi propose splitting the difference: keep small fixed-depth prelude and coda blocks, and put a \u003cem\u003esingle\u003c/em\u003e shared core between them that iterates R times.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe trick that makes the shared core behave like distinct layers is borrowed from gated RNNs. A lightweight projection plus an elementwise update gate — conditioned on the current hidden state, the prelude's output, and noise resampled at every step — modulates each recurrent update, so the model learns to present its input differently to the same few layers on each pass rather than needing many unique layers to get functional diversity. Under an isoFLOPS constraint the authors report a 3-layer Gated Recurrent Transformer matching a 12-layer GPT-2 Small baseline at similar training and inference FLOPs, and leading Mixture-of-Recursions and heavy-tail depth sampling in all nine scale-by-budget cells. Under matched parameters and data it reaches 2.76 validation loss against 2.84 for a non-recurrent counterpart. The headline efficiency claim at large scale: 63% fewer parameters and 59% less peak decoding memory, for about 10% more compiled generation latency.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Amr Hegazy",
+      "Amr Alanwar",
+      "Mostafa Elhoushi"
+    ],
+    "url": "https://arxiv.org/abs/2608.15062",
+    "published_at": "2026-08-25",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "transformers",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-27",
+  "date": "2026-08-25",
+  "related": [
+    {
+      "id": "card_2ecdfd",
+      "slug": "looped-language-models-tool-calling",
+      "type": "paper",
+      "title": "Looped Language Models Improve Compositional Tool Calling",
+      "hook": "Recurrent depth helps most where tool use is actually hard: chaining calls, holding intermediate state, keeping dependencies straight. Single API calls barely notice.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-17"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_dafb48#0",
+      "format": "flip",
+      "prompt": "What goes wrong with plain depth-sharing in transformers, and how does gating fix it?",
+      "back_html": "\u003cp\u003eReusing one block enforces a uniform transformation that collapses representational diversity. An elementwise update gate modulates each recurrence, so the same few layers can specialize differently per step.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dafb48#1",
+      "format": "quiz",
+      "prompt": "What is the architectural shape of a Gated Recurrent Transformer?",
+      "choices": [
+        {
+          "text": "Fixed-depth prelude and coda blocks bracketing a single shared core iterated R times",
+          "correct": true
+        },
+        {
+          "text": "Every layer given unique weights but half the hidden size",
+          "correct": false
+        },
+        {
+          "text": "A router that picks one of R expert blocks per token",
+          "correct": false
+        },
+        {
+          "text": "A state-space layer replacing attention entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe prelude and coda stay fixed-depth with their own weights; the middle is one shared core looped R times, each pass modulated by the update gate.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dafb48#2",
+      "format": "flip",
+      "prompt": "What is the trade the paper is proposing, in one sentence?",
+      "back_html": "\u003cp\u003eTrade parameters and decoding memory for extra sequential compute — the authors report 63% fewer parameters and 59% less peak decoding memory at large scale for roughly 10% more generation latency.\u003c/p\u003e"
+    }
+  ]
+}

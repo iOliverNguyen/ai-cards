@@ -1,0 +1,127 @@
+{
+  "id": "card_3344bc",
+  "slug": "lora-rank-error-bounds",
+  "type": "paper",
+  "title": "How Much Rank Does LoRA Need? Rank-Error Bounds for Transformer Attention",
+  "hook": "Picking a LoRA rank is normally guesswork. This paper derives what error each rank can actually achieve for attention — and shows softmax saturation means you often need less rank than you'd think.",
+  "key_points": [
+    "Bounds the smallest expected KL error a rank-r query LoRA update can achieve, given a pretrained head and a downstream input distribution.",
+    "The controlling quantity is the downstream-weighted tail energy of the target update — the spectral mass rank r leaves behind.",
+    "Error behaves like min{t^2, t} in the score gap: quadratic for small mismatches, only linear once the gap is large.",
+    "Softmax saturation means matching the attention function can need strictly less rank than matching the raw logits.",
+    "Extends to fused multi-head LoRA and joint query/key updates, exposing the cost of rank sharing and Q/K factorization."
+  ],
+  "content_html": "\u003cp\u003eChoosing the rank of a \u003cstrong\u003eLoRA\u003c/strong\u003e update is almost always empirical: try 8, try 16, see what sticks. Conangla Planes gives the missing theory for transformer attention — a task-dependent account of what approximation error is even achievable at each rank.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe setup\u003c/h2\u003e\n\u003cp\u003eFix a pretrained attention head, a target attention function, and a distribution over inputs from the downstream task. The paper bounds the smallest expected KL error achievable by a rank-r \u003cem\u003equery\u003c/em\u003e LoRA update. When the target attention probabilities are bounded away from zero, the error is lower-bounded by a term proportional to psi(||d||), where d is the gap between candidate and target attention scores and psi(t) = min{t^2, t}; an unconditional upper bound of min{||d||^2/4, sqrt(2)||d||} holds throughout. Under explicit realizability, geometry, and moment conditions, the best rank-r error is sandwiched in terms of T_r, the \u003cstrong\u003edownstream-weighted tail energy\u003c/strong\u003e of the target update — the spectral mass rank r must leave on the table. Target-Fisher bounds cover the case where candidate scores stay near the target, and a separate lower bound handles inputs where a few tokens carry most of the probability mass.\u003c/p\u003e\n\u003ch2\u003eThe twist\u003c/h2\u003e\n\u003cp\u003eBecause softmax saturates, the paper constructs explicit families in which the rank needed to match the \u003cem\u003eattention function\u003c/em\u003e is strictly smaller than the rank needed to match the \u003cem\u003efinite logits\u003c/em\u003e — a concrete reason low ranks work better in practice than logit-space intuition predicts. The analysis then extends to fused multi-head LoRA and to joint query/key updates, making visible what rank sharing across heads and the query/key factorization constraint each cost you. arXiv, 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Gerard Conangla Planes"
+    ],
+    "url": "https://arxiv.org/abs/2608.26052",
+    "published_at": "2026-08-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "finetuning",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "efficiency",
+    "attention",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-27",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_cae140",
+      "slug": "lora",
+      "type": "paper",
+      "title": "LoRA: Low-Rank Adaptation",
+      "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-06-17"
+    },
+    {
+      "id": "card_5f10e6",
+      "slug": "adapter-capacity-in-bits",
+      "type": "paper",
+      "title": "How Many Bits Can a LoRA Adapter Write?",
+      "hook": "Everyone treats a LoRA adapter as a skill, not a record of its training data. Weighed in bits, it stores a couple per trainable parameter — and where you put them matters more than how many.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-23"
+    },
+    {
+      "id": "card_2e2448",
+      "slug": "kappa-lora-condition-numbers",
+      "type": "paper",
+      "title": "Not Every LoRA Matrix Is Worth Updating",
+      "hook": "LoRA trains every matrix equally hard. A matrix's condition number reveals which ones actually drive adaptation — tune the top half and you keep the accuracy for half the parameters.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_cae140",
+      "slug": "lora",
+      "type": "paper",
+      "title": "LoRA: Low-Rank Adaptation",
+      "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-06-17"
+    },
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_3344bc#0",
+      "format": "flip",
+      "prompt": "What quantity controls the best error a rank-r LoRA update can achieve on attention?",
+      "back_html": "\u003cp\u003eThe downstream-weighted tail energy of the target update — the spectral mass beyond rank r, weighted by the task's input distribution. Bounds on the best rank-r error are expressed in terms of that tail.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3344bc#1",
+      "format": "quiz",
+      "prompt": "Why can matching an attention function need less rank than matching its logits?",
+      "choices": [
+        {
+          "text": "Softmax saturates, so large logit differences can map to nearly identical attention probabilities",
+          "correct": true
+        },
+        {
+          "text": "Attention probabilities are stored in lower precision than logits",
+          "correct": false
+        },
+        {
+          "text": "The rank of the attention matrix is capped by the number of heads",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper constructs explicit families where softmax saturation collapses distinct logits onto the same probabilities, so the rank needed to match the function is strictly smaller than the rank needed to match the finite scores.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3344bc#2",
+      "format": "flip",
+      "prompt": "What does the min{t^2, t} shape of the error bound tell you?",
+      "back_html": "\u003cp\u003eError grows quadratically while the score gap is small but only linearly once it's large — so the first few ranks buy disproportionately much, and mis-specifying a large update degrades more gracefully than a quadratic penalty would suggest.\u003c/p\u003e"
+    }
+  ]
+}

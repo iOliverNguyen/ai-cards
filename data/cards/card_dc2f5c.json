@@ -1,0 +1,136 @@
+{
+  "id": "card_dc2f5c",
+  "slug": "test-time-scaling-exploitation-bottleneck",
+  "type": "paper",
+  "title": "Test-Time Scaling in the Wild: Choosing Is the Bottleneck, Not Generating",
+  "hook": "Spend more inference compute on open-ended tasks and the best candidate in your pool keeps getting better. The problem is you can't tell which one it is.",
+  "key_points": [
+    "First compute-normalised comparison of five TTS families across five open-ended benchmarks: medicine, law, finance, chat, creative writing.",
+    "The framework splits each method's token budget into exploration (build the pool) and exploitation (pick the output).",
+    "Exploration scales fine: best-in-pool quality improves steadily with compute everywhere.",
+    "Exploitation breaks — reward models correlate at only ρ≈0.12 with true quality, making selection near-random at any budget.",
+    "Tree search amplifies the failure via diversity collapse; refinement helps on 1 of 5 benchmarks.",
+    "Only Fusion — synthesising across candidates — beats single-sample consistently, and still recovers only ~40% of available quality."
+  ],
+  "content_html": "\u003cp\u003eGenerate many answers and pick the best one: test-time scaling has been one of the most reliable levers of the past two years. It also grew up in a very forgiving environment — math and code, where a verifier can just tell you which candidate is right. This paper runs the first compute-normalised comparison of five TTS families on five open-ended benchmarks (medicine, law, finance, general chat, creative writing) and finds the lever mostly stops working, for a specific and diagnosable reason.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe authors decompose each method's token budget into two jobs: \u003cem\u003eexploration\u003c/em\u003e, building a pool of candidates, and \u003cem\u003eexploitation\u003c/em\u003e, turning that pool into one output. Measured separately, the two behave completely differently. The best candidate in the pool improves steadily with compute in every setting — exploration scales. Exploitation is where it falls apart: with state-of-the-art generators, the reward models used for selection correlate at only ρ ≈ 0.12 with true quality, which makes picking a winner nearly random no matter how much you spend.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe per-family results follow from that. Tree search makes things worse by amplifying selection error through diversity collapse. Refinement helps on one of five benchmarks, and the authors argue its apparent gains elsewhere are confounded. Only Fusion — synthesising across candidates rather than choosing among them — consistently beats a single sample, and even it recovers only about 40% of the quality sitting in the pool. The practical takeaway is a redirection of effort: on open-ended work, better verifiers and better synthesis are the frontier, not bigger candidate pools.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Davide Romano",
+      "Kanak Raj",
+      "Jerrod Parker",
+      "Daniele Giofrè"
+    ],
+    "url": "https://arxiv.org/abs/2608.18931",
+    "published_at": "2026-08-19",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "inference",
+    "reasoning",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-08-20",
+  "date": "2026-08-19",
+  "related": [
+    {
+      "id": "card_1f00c3",
+      "slug": "test-time-compute-scaling",
+      "type": "paper",
+      "title": "Scaling LLM Test-Time Compute",
+      "hook": "A new scaling axis: instead of a bigger model, let a model think longer at inference — often a better use of compute, and the principle behind o1 and R1.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-08-06"
+    },
+    {
+      "id": "card_f4c73d",
+      "slug": "llm-as-a-verifier",
+      "type": "paper",
+      "title": "LLM-as-a-Verifier: Verification as a New Scaling Axis",
+      "hook": "Everyone scales pretraining, post-training, and test-time compute. This paper argues verification — checking if a solution is correct — is its own scaling axis, and hits SOTA on four agentic benchmarks.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_4fbed7",
+      "slug": "shadow-price-of-reasoning",
+      "type": "paper",
+      "title": "The Shadow Price of Reasoning",
+      "hook": "When you can't afford to let every query think as long as it wants, who gets the compute? Treat reasoning tokens like a scarce resource and economics gives a clean answer.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_1f00c3",
+      "slug": "test-time-compute-scaling",
+      "type": "paper",
+      "title": "Scaling LLM Test-Time Compute",
+      "hook": "A new scaling axis: instead of a bigger model, let a model think longer at inference — often a better use of compute, and the principle behind o1 and R1.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-08-06"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_dc2f5c#0",
+      "format": "flip",
+      "prompt": "What is the exploration/exploitation decomposition of a test-time-scaling budget?",
+      "back_html": "\u003cp\u003eExploration is the compute spent building a candidate pool; exploitation is the step that converts that pool into a final output. The paper finds exploration scales and exploitation doesn't.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dc2f5c#1",
+      "format": "quiz",
+      "prompt": "Why does the paper say selection is 'near-random regardless of budget' on open-ended tasks?",
+      "choices": [
+        {
+          "text": "Reward models correlate at only ρ≈0.12 with true quality when scoring state-of-the-art generators",
+          "correct": true
+        },
+        {
+          "text": "The candidate pool stops improving once compute exceeds a threshold",
+          "correct": false
+        },
+        {
+          "text": "Open-ended benchmarks have no consistent ground-truth ranking at all",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe pool keeps getting better, but the scorer used to pick from it is barely correlated with quality, so more candidates don't translate into a better final answer.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dc2f5c#2",
+      "format": "quiz",
+      "prompt": "Which TTS family consistently improved over single-sample baselines here?",
+      "choices": [
+        {
+          "text": "Fusion — synthesising across candidates — though it recovers only about 40% of available quality",
+          "correct": true
+        },
+        {
+          "text": "Tree search, which benefits most from a larger budget",
+          "correct": false
+        },
+        {
+          "text": "Iterative refinement, which helped on all five benchmarks",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eTree search amplified the selection failure through diversity collapse; refinement helped on one of five benchmarks. Only Fusion was consistent, and only partially.\u003c/p\u003e"
+    }
+  ]
+}

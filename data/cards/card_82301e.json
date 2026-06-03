@@ -1,0 +1,108 @@
+{
+  "id": "card_82301e",
+  "slug": "omniopt-optimizer-taxonomy",
+  "type": "paper",
+  "title": "OmniOpt: A Taxonomy and Benchmark of 100+ Optimizers",
+  "hook": "Choosing an optimizer for training a large model is now a system-level design decision, but the field has 100+ methods and no shared map. This paper builds one — and a benchmark to go with it.",
+  "key_points": [
+    "Treats every optimizer update as a structured transformation through a five-stage meta-pipeline; most existing methods only touch one or two of those stages.",
+    "Uses norm-constrained linear minimization oracles (LMOs) as a common language to unify wildly different optimizers under one lens.",
+    "Builds a dual-dimension taxonomy: one axis for the mechanism family, one for the training objective the method actually targets.",
+    "Instantiates the full taxonomy in a cross-domain benchmark spanning language-model pretraining to image classification, at multiple model scales.",
+    "The result is an operational coordinate system for choosing an optimizer given explicit assumptions about mechanism and objective — plus a map of trade-offs across the whole optimizer landscape."
+  ],
+  "content_html": "\u003cp\u003ePick an optimizer for training a large model today, and you're making a system-level decision constrained by compute, memory, tuning budget, and task diversity — except the landscape of options has ballooned past one hundred methods with no shared map between them. OmniOpt tries to build that map.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe authors treat every optimizer update as a structured transformation through a five-stage meta-pipeline, and observe that most existing methods only actually engage one or two of those stages — a useful diagnostic on its own. To compare methods that look superficially unrelated, they use norm-constrained linear minimization oracles (LMOs) as a unifying mathematical lens, which grounds a dual-dimension taxonomy: one axis for the mechanism family a method belongs to, the other for the measurable training objective it's actually trying to improve. The core contribution is instantiating that full taxonomy in a cross-domain benchmark — representative optimizers tested across model scales and training regimes, from language-model pretraining to image classification — systematically laying out each family's trade-offs across multiple objectives. The result is less a single \u0026quot;best optimizer\u0026quot; answer and more an operational coordinate system: pick your mechanism and objective assumptions, and OmniOpt tells you where the options actually stand. Siyuan Li and colleagues, arXiv 2026 (64 HF community upvotes, the most upvoted paper in this batch).\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Siyuan Li",
+      "Jiabao Pan",
+      "Yumou Liu",
+      "Zhuoli Ouyang",
+      "Xin Jin",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.04033",
+    "published_at": "2026-07-04",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "optimization",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-04",
+  "related": [
+    {
+      "id": "card_203675",
+      "slug": "adamw",
+      "type": "paper",
+      "title": "AdamW: Decoupled Weight Decay",
+      "hook": "L2 regularization and weight decay are the same thing for plain SGD - but not for Adam. Decoupling them fixes Adam's generalization and makes the best decay value independent of the learning rate.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-11-14"
+    },
+    {
+      "id": "card_f399a5",
+      "slug": "muon-optimizer",
+      "type": "blog",
+      "title": "Muon: An Optimizer for Hidden Layers",
+      "hook": "Muon orthogonalizes each gradient update before applying it — and trained networks faster than AdamW, the first serious challenger to Adam's reign in years.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-12-08"
+    },
+    {
+      "id": "card_e41b8a",
+      "slug": "adam-optimizer",
+      "type": "paper",
+      "title": "Adam: The Default Optimizer",
+      "hook": "Adam gives every parameter its own adaptive step size by tracking the gradient's recent average and spread — and it mostly just works.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2014-12-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_82301e#0",
+      "format": "flip",
+      "prompt": "What common mathematical lens does OmniOpt use to unify over 100 different optimizers?",
+      "back_html": "\u003cp\u003eNorm-constrained linear minimization oracles (LMOs) — a framework general enough to describe wildly different optimizer designs under one shared language, enabling a systematic taxonomy.\u003c/p\u003e"
+    },
+    {
+      "id": "card_82301e#1",
+      "format": "quiz",
+      "prompt": "What are the two axes of OmniOpt's optimizer taxonomy?",
+      "choices": [
+        {
+          "text": "The mechanism family a method belongs to, and the measurable training objective it aims to improve",
+          "correct": true
+        },
+        {
+          "text": "Model size and dataset size",
+          "correct": false
+        },
+        {
+          "text": "GPU vendor and framework (PyTorch vs. JAX)",
+          "correct": false
+        },
+        {
+          "text": "Publication year and citation count",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOmniOpt assigns each optimizer to a mechanism family (how it transforms updates through the five-stage meta-pipeline) and separately records what training objective it's actually trying to improve — giving two independent, useful ways to compare methods.\u003c/p\u003e"
+    }
+  ]
+}

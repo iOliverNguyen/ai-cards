@@ -1,0 +1,96 @@
+{
+  "id": "card_ebc582",
+  "slug": "weathernext-cyclones",
+  "type": "news",
+  "title": "WeatherNext Cyclones: An Extra Day of Hurricane Warning",
+  "hook": "DeepMind's cyclone model makes three-day forecasts as accurate as yesterday's two-day forecasts — about a decade of meteorological progress, delivered in under a minute on a TPU.",
+  "key_points": [
+    "WeatherNext Cyclones predicts a tropical cyclone's track, intensity, and wind structure in one end-to-end model.",
+    "It buys forecasters more than 24 hours of extra lead time: three-day forecasts match the accuracy of prior two-day forecasts.",
+    "It runs at 28x28 km resolution — about 100x coarser than traditional physics models — and produces a forecast in under a minute on a TPU.",
+    "Training used roughly 20 terabytes of global atmospheric data plus nearly 5,000 historical storms from the IBTrACS database.",
+    "Ensembles grew from 50 members last year to 1,000, to capture rare but critical scenarios.",
+    "Evaluated with NOAA's National Hurricane Center, the UK Met Office, and CIRA; used in the 2025 season including Hurricane Melissa."
+  ],
+  "content_html": "\u003cp\u003eCyclone forecasting is one of the places where a modest accuracy gain converts directly into evacuation time. DeepMind and Google Research say their WeatherNext Cyclones model buys forecasters more than a full extra day: its three-day predictions of track, intensity, and wind structure match the accuracy of the previous generation's two-day predictions — historically about a decade of progress.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it's built\u003c/h2\u003e\n\u003cp\u003eThe model is trained on roughly 20 terabytes of global atmospheric data together with nearly 5,000 historical storms from the IBTrACS database, and it handles track, intensity, and wind structure in a single end-to-end architecture rather than stitching together separate systems. DeepMind's framing of the technical trick is that track is steered by global weather patterns while intensity is governed by localized thermodynamics, and the model bridges the two; Functional Generative Networks supply the uncertainty quantification. Ensembles have grown from 50 members last year to 1,000, which is what lets rare-but-critical scenarios show up at all.\u003c/p\u003e\n\u003cp\u003eIt runs at 28x28 km resolution — about 100 times coarser than traditional physics-based models — and still produces a forecast in under a minute on a TPU. Expert collaborators including NOAA's National Hurricane Center, the UK Met Office, and CIRA evaluated it, and DeepMind points to the 2025 hurricane season, Hurricane Melissa among them, as real-world use. Full announcement at the link above.\u003c/p\u003e",
+  "source": {
+    "name": "Google DeepMind Blog",
+    "authors": [
+      "Google DeepMind"
+    ],
+    "url": "https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones",
+    "published_at": "2026-08-06",
+    "license": "DeepMind blog"
+  },
+  "topic_ids": [
+    "ai-for-science",
+    "lab-updates"
+  ],
+  "tags": [
+    "news",
+    "generative",
+    "benchmark"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-08-10",
+  "date": "2026-08-06",
+  "related": [
+    {
+      "id": "card_0b6e14",
+      "slug": "graphcast",
+      "type": "paper",
+      "title": "GraphCast: Skillful Medium-Range Weather Forecasting",
+      "hook": "A graph neural network predicts 10-day global weather in under a minute on one machine, matching or beating physics-based forecast models on most variables.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-24"
+    },
+    {
+      "id": "card_c38a80",
+      "slug": "alphafold",
+      "type": "paper",
+      "title": "AlphaFold: Protein Structure Prediction",
+      "hook": "Predicting a protein's 3D shape from its sequence stumped biology for ~50 years. AlphaFold cracked it at near-experimental accuracy — and then released the structures to everyone.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2021-07-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_ebc582#0",
+      "format": "quiz",
+      "prompt": "What does DeepMind mean by saying WeatherNext Cyclones delivers 'about a decade of progress'?",
+      "choices": [
+        {
+          "text": "Its three-day forecasts are as accurate as the previous generation's two-day forecasts — a full extra day of lead time",
+          "correct": true
+        },
+        {
+          "text": "It was trained on ten years more historical storm data than its predecessor",
+          "correct": false
+        },
+        {
+          "text": "It reduces forecast compute cost by a factor of ten",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGaining a day of lead time at equal accuracy is the framing DeepMind uses, and historically that much improvement in cyclone forecasting took roughly a decade.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ebc582#1",
+      "format": "flip",
+      "prompt": "Why is it notable that WeatherNext Cyclones runs at 28x28 km resolution?",
+      "back_html": "\u003cp\u003eThat's roughly 100x coarser than traditional physics-based models, yet it still reaches state-of-the-art accuracy on track, intensity, and wind structure — and generates a forecast in under a minute on a TPU.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ebc582#2",
+      "format": "flip",
+      "prompt": "Why did the model move from 50-member to 1,000-member ensembles?",
+      "back_html": "\u003cp\u003eTo capture rare but critical scenarios. A cyclone forecast is a distribution over outcomes, and the low-probability tracks that would be catastrophic are exactly the ones a small ensemble misses.\u003c/p\u003e"
+    }
+  ]
+}

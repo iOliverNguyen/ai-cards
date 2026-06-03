@@ -1,0 +1,111 @@
+{
+  "id": "card_a8ad97",
+  "slug": "scalable-visual-pretraining-language-intelligence",
+  "type": "paper",
+  "title": "Scalable Visual Pretraining for Language Intelligence",
+  "hook": "Documents pack meaning into layout, figures, and equations that plain text can't fully capture. Skip the OCR step: pretraining directly on rendered pages beats text-only pretraining.",
+  "key_points": [
+    "Challenges the assumption that language models must be trained on text-only representations of documents and web pages.",
+    "Converting visually rich sources (figures, equations, page layout) into plain text for pretraining discards information text can't fully capture.",
+    "Studies unsupervised visual pretraining that learns directly from rendered visual documents, skipping text extraction entirely.",
+    "On the same underlying corpora, visual pretraining consistently beats text-only pretraining across multiple backbones and benchmarks.",
+    "Offers an efficient path to scalable language intelligence, using data pretraining pipelines currently discard."
+  ],
+  "content_html": "\u003cp\u003ePretraining pipelines for language models usually start by stripping documents down to plain text — even when the source is a web page with figures, equations, or careful layout. This paper asks whether that's a mistake, studying what happens when a model pretrains directly on the visual rendering of documents instead of the OCR'd text.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe authors run a systematic comparison of unsupervised visual pretraining against standard text-only pretraining, holding the underlying corpus fixed. Across several model backbones and benchmarks, the visually-pretrained models come out ahead, suggesting the layout and figures normally discarded during text extraction are themselves a useful learning signal. The authors position direct visual pretraining as a scalable, efficient path to stronger language intelligence, not just a bolt-on for multimodal models.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yiming Zhang",
+      "Zhonghan Zhao",
+      "Wenwei Zhang",
+      "Kai Chen",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.09657",
+    "published_at": "2026-07-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining",
+    "multimodal-vision",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "vision",
+    "training",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-16",
+  "date": "2026-07-10",
+  "related": [
+    {
+      "id": "card_bd473d",
+      "slug": "unlimited-ocr",
+      "type": "paper",
+      "title": "Unlimited OCR: Constant KV Cache for Long Documents",
+      "hook": "LLM-based OCR slows down as documents get longer because the KV cache keeps growing. Unlimited OCR holds the cache constant, transcribing dozens of pages in one pass.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a8ad97#0",
+      "format": "flip",
+      "prompt": "What key assumption about language model pretraining does this paper challenge?",
+      "back_html": "\u003cp\u003eThat LMs must be trained on text-only representations. Converting documents to plain text discards figures, equations, and layout that carry meaning text alone can't capture.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a8ad97#1",
+      "format": "quiz",
+      "prompt": "What pretraining approach did the authors find outperforms text-only pretraining on the same corpora?",
+      "choices": [
+        {
+          "text": "Unsupervised visual pretraining directly on rendered documents, no text extraction",
+          "correct": true
+        },
+        {
+          "text": "Training only on OCR-extracted text with better tokenization",
+          "correct": false
+        },
+        {
+          "text": "Doubling the amount of text-only training data",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAcross backbones and benchmarks, visual pretraining on the same underlying corpora consistently beat text-only pretraining.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a8ad97#2",
+      "format": "flip",
+      "prompt": "Why can't converting a document to plain text fully preserve its information?",
+      "back_html": "\u003cp\u003eFigures, typeset equations, and page layout carry meaning that plain-text extraction discards or can't faithfully represent.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a8ad97#3",
+      "format": "quiz",
+      "prompt": "What's the practical implication of this study for scaling language intelligence?",
+      "choices": [
+        {
+          "text": "Visual pretraining on documents offers an efficient path to scale beyond text-only data",
+          "correct": true
+        },
+        {
+          "text": "Visual data is a distraction and should be filtered out of pretraining corpora",
+          "correct": false
+        },
+        {
+          "text": "Only multimodal chat models benefit; base language models see no gain",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper frames direct visual pretraining as a scalable, efficient path to language intelligence, not just a multimodal add-on.\u003c/p\u003e"
+    }
+  ]
+}

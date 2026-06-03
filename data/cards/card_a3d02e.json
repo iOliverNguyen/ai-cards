@@ -1,0 +1,108 @@
+{
+  "id": "card_a3d02e",
+  "slug": "ethics-offensive-security-agents",
+  "type": "paper",
+  "title": "The Ethics of Autonomous AI Agents for Offensive Security",
+  "hook": "Autonomous AI agents drop the skill floor for cyberattacks and blur who's to blame. This paper maps three kinds of 'indeterminacy' that break existing dual-use ethics frameworks.",
+  "key_points": [
+    "Unlike traditional pen-testing tools (deterministic, narrow, expert-run), agentic offensive tools are indeterminate along three independent axes.",
+    "Action indeterminacy: outputs of a non-deterministic policy resist explanation, frustrating incident attribution and pre-deployment safety review.",
+    "Impact indeterminacy: open-ended effects arise from model agency and opaque LLM supply chains.",
+    "User indeterminacy: the skill floor to run or build offensive capability has dropped sharply, widening who can attack.",
+    "With an offense-vs-defense cost asymmetry, this industrializes attacks and diffuses moral responsibility across users, tool-makers, and third parties."
+  ],
+  "content_html": "\u003cp\u003eTraditional penetration-testing tools are deterministic, narrowly scoped, and run by trained practitioners. LLM-driven autonomous agents change all three properties at once — and this paper works through what that means for ethics and accountability.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThree kinds of indeterminacy\u003c/h2\u003e\n\u003cp\u003eThe authors argue agentic offensive-security tools are \u003cem\u003eindeterminate\u003c/em\u003e along three independent dimensions. \u003cstrong\u003eActions\u003c/strong\u003e come from a non-deterministic policy whose outputs resist both before-the-fact and after-the-fact explanation, frustrating incident attribution and pre-deployment safety review. \u003cstrong\u003eImpact\u003c/strong\u003e is open-ended, driven by the agency of the underlying models and opaque LLM supply chains. And the \u003cstrong\u003euser population\u003c/strong\u003e is indeterminate in both size and skill: the floor for using or building offensive capability has dropped sharply.\u003c/p\u003e\n\u003ch2\u003eWhy frameworks break\u003c/h2\u003e\n\u003cp\u003eThese properties are thematically linked but not derivable from one another, and combined with the structural cost asymmetry between offense and defense, they enable the \u003cem\u003eindustrialization\u003c/em\u003e of offensive capability. The net short-term effect favors attackers, even if the same technology may eventually democratize defensive practice. Existing dual-use cybersecurity and AI-ethics frameworks weren't built for this combination, so the paper analyzes how moral attribution becomes diffuse across users, tool-makers, and third parties, and offers stratified recommendations for each. Happe, Cito, and Wachter, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Andreas Happe",
+      "Jürgen Cito",
+      "Jasmin Wachter"
+    ],
+    "url": "https://arxiv.org/abs/2607.20255",
+    "published_at": "2026-07-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "agent",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-23",
+  "date": "2026-07-22",
+  "related": [
+    {
+      "id": "card_490028",
+      "slug": "model-evaluation-for-extreme-risks",
+      "type": "paper",
+      "title": "Model Evaluation for Extreme Risks",
+      "hook": "General-purpose AI tends to pick up dangerous capabilities alongside useful ones. So test for those capabilities directly — before you ship, not after.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-24"
+    },
+    {
+      "id": "card_b475e8",
+      "slug": "frontier-ai-regulation",
+      "type": "paper",
+      "title": "Frontier AI Regulation",
+      "hook": "How do you regulate models too new to have rules yet? This paper sketches three building blocks: set standards, make labs report, then enforce.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-07-06"
+    },
+    {
+      "id": "card_5ff6f6",
+      "slug": "agent-permission-systems-survey",
+      "type": "paper",
+      "title": "How Agents Ask for Permission: User Permissions for AI Agents",
+      "hook": "Most agent-security work assumes one policy fits every user. This survey of 21 proposals plus five commercial agents finds user-level permission handling is still full of gaps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a3d02e#0",
+      "format": "quiz",
+      "prompt": "What three axes of 'indeterminacy' distinguish agentic offensive-security tools from traditional pen-testing tools?",
+      "choices": [
+        {
+          "text": "Action, impact, and user-population indeterminacy",
+          "correct": true
+        },
+        {
+          "text": "Cost, speed, and accuracy",
+          "correct": false
+        },
+        {
+          "text": "Hardware, software, and network layers",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eTraditional tooling is deterministic, narrow, and expert-operated; agentic tools instead vary in their actions, their open-ended impact, and the size and skill of who can wield them.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a3d02e#1",
+      "format": "flip",
+      "prompt": "Why do autonomous offensive-security agents make moral attribution 'diffuse'?",
+      "back_html": "\u003cp\u003eResponsibility spreads across users, tool-makers, and third parties because the agent's non-deterministic actions resist explanation and its impact is open-ended — no single party clearly owns the outcome.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a3d02e#2",
+      "format": "flip",
+      "prompt": "Why does the paper argue the short-term effect favors attackers?",
+      "back_html": "\u003cp\u003eThe skill floor for offense drops sharply while an offense-vs-defense cost asymmetry remains, industrializing offensive capability faster than defensive practice can adapt.\u003c/p\u003e"
+    }
+  ]
+}

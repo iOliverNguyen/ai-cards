@@ -1,0 +1,105 @@
+{
+  "id": "card_1d915b",
+  "slug": "decision-trees",
+  "type": "concept",
+  "title": "Decision Trees",
+  "hook": "A decision tree asks a series of yes/no questions about your data and follows the answers to a prediction - it learns which questions to ask from the training set.",
+  "key_points": [
+    "Each internal node splits on one feature; leaf nodes hold predictions.",
+    "The algorithm greedily picks the split that most reduces impurity (e.g., Gini or entropy for classification).",
+    "Trees are highly interpretable - you can print them out and follow the logic by hand.",
+    "A single deep tree overfits easily; ensembles of trees (Random Forests, boosting) fix this."
+  ],
+  "content_html": "\u003cp\u003eA decision tree is a flowchart learned from data. Starting at the root, each node asks a question about one feature - \u0026quot;is the temperature above 20 degrees?\u0026quot; - and routes the example left or right based on the answer. At the bottom, leaf nodes give the final prediction.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eTraining works top-down and greedily. At each node, the algorithm tries every possible split on every feature and picks the one that best separates the classes (or reduces prediction error for regression). It keeps splitting until some stopping criterion is met - maximum depth, minimum samples per leaf, or no further improvement in purity. The result is a tree structure that can be visualized and inspected directly.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eDecision trees are the most human-readable non-trivial ML model, which makes them useful when you need to explain a decision to a non-technical audience. They also handle mixed feature types and missing values gracefully. Their main weakness - overfitting - is solved by the ensemble methods built on top of them, making the tree the building block for some of the most powerful tabular models around. The Wikipedia article covers splitting criteria and pruning strategies in more detail.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/Decision_tree_learning",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "trees-ensembles"
+  ],
+  "tags": [
+    "classic-ml",
+    "foundational"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-06-03",
+  "date": "2026-06-03",
+  "related": [
+    {
+      "id": "card_4ebd4c",
+      "slug": "random-forests",
+      "type": "paper",
+      "title": "Random Forests",
+      "hook": "Grow hundreds of slightly different decision trees and average their votes - the crowd is smarter than any individual tree, and much harder to overfit.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2001-10-01"
+    },
+    {
+      "id": "card_820bce",
+      "slug": "gradient-boosting-xgboost",
+      "type": "paper",
+      "title": "XGBoost: Scalable Tree Boosting",
+      "hook": "Boosting builds an ensemble one tree at a time, each tree correcting the mistakes of all the ones before it - XGBoost made this fast enough to dominate competitions.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2016-03-09"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_1d915b#0",
+      "format": "flip",
+      "prompt": "How does a decision tree choose where to split during training?",
+      "back_html": "\u003cp\u003eTop-down and greedily: at each node it picks the split that most reduces impurity (e.g. Gini or entropy), continuing until a stopping criterion is met.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1d915b#1",
+      "format": "quiz",
+      "prompt": "What is the main weakness of a single deep decision tree, and how is it addressed?",
+      "choices": [
+        {
+          "text": "It overfits easily; ensembles like Random Forests and boosting fix this",
+          "correct": true
+        },
+        {
+          "text": "It cannot handle missing values; imputation fixes this",
+          "correct": false
+        },
+        {
+          "text": "It is too hard to interpret; pruning makes it readable",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA single deep tree overfits; ensembles of trees are the standard remedy. Trees are actually highly interpretable.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1d915b#2",
+      "format": "quiz",
+      "prompt": "Why are decision trees considered especially interpretable?",
+      "choices": [
+        {
+          "text": "You can print the tree and follow its yes/no logic by hand",
+          "correct": true
+        },
+        {
+          "text": "They output calibrated probabilities for every class",
+          "correct": false
+        },
+        {
+          "text": "They reduce all features to a single linear score",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEach node asks a question about one feature, so the path to a prediction can be read and followed directly.\u003c/p\u003e"
+    }
+  ]
+}

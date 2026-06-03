@@ -1,0 +1,139 @@
+{
+  "id": "card_96f5dc",
+  "slug": "nunchaku-4bit-diffusion",
+  "type": "blog",
+  "title": "Nunchaku: 4-bit Diffusion Inference in Diffusers",
+  "hook": "Diffusion models hate 4-bit — activation outliers wreck image quality. SVDQuant peels the hardest weights into a tiny 16-bit low-rank branch, and Nunchaku now runs it inside Diffusers.",
+  "key_points": [
+    "SVDQuant moves activation outliers into the weights, then factors out the hardest weights as a 16-bit low-rank branch — quantizing only the smooth residual to 4-bit.",
+    "Two modes: `svdq_w4a4` quantizes weights and activations to 4-bit; `awq_w4a16` keeps activations at 16-bit.",
+    "HF reports up to ~50% lower peak VRAM (31.1→20.6 GB) and ~1.35× faster than BF16 — ~1.8× with torch.compile.",
+    "NVFP4 needs a Blackwell (RTX 50) GPU; INT4 runs on older Turing/Ampere/Ada cards.",
+    "Load pre-quantized checkpoints (FLUX.2, ERNIE-Image, Krea) straight from `from_pretrained` — no custom pipeline or local build."
+  ],
+  "content_html": "\u003cp\u003eQuantizing large language models to 4 bits is now routine, but diffusion transformers have resisted it: their activations carry extreme per-channel outliers that, once crushed into 4-bit, visibly degrade the generated images. SVDQuant — the technique behind the Nunchaku inference engine, originally from MIT's HAN Lab — sidesteps the problem, and Hugging Face has now wired it into the Diffusers library.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow SVDQuant works\u003c/h2\u003e\n\u003cp\u003eThe trick is a two-step decomposition. First, following SmoothQuant, it shifts the activation outliers into the weight matrices so the activations become easy to quantize. That makes the weights harder, so the second step factors out the most troublesome component of each weight matrix as a small low-rank branch kept in 16-bit precision; only the smooth residual is quantized to 4-bit. The low-rank branch is cheap to run but absorbs the error that plain 4-bit quantization would otherwise introduce.\u003c/p\u003e\n\u003ch2\u003eRunning it in Diffusers\u003c/h2\u003e\n\u003cp\u003eNunchaku ships two quantization modes: \u003ccode\u003esvdq_w4a4\u003c/code\u003e (4-bit weights and activations, in INT4 or NVFP4 form) and \u003ccode\u003eawq_w4a16\u003c/code\u003e (4-bit weights, 16-bit activations). NVFP4 requires Blackwell-class GPUs (RTX 50 series); INT4 works on older Turing, Ampere, and Ada cards. Users load a pre-quantized checkpoint — for models like FLUX.2 Klein, ERNIE-Image-Turbo, and Krea 2 Turbo — through the normal \u003ccode\u003efrom_pretrained\u003c/code\u003e call, with no custom pipeline or local compilation. Hugging Face reports up to roughly 50% lower peak VRAM (31.1 GB down to 20.6 GB in one example) and about 1.35× faster inference than a BF16 baseline, rising to ~1.8× with torch.compile. See the Hugging Face blog for the full walkthrough and benchmarks.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face Blog",
+    "authors": [
+      "Pham Hong Vinh",
+      "Sayak Paul"
+    ],
+    "url": "https://huggingface.co/blog/nunchaku-diffusers",
+    "published_at": "2026-07-23",
+    "license": "Hugging Face (blog)"
+  },
+  "topic_ids": [
+    "quantization",
+    "diffusion",
+    "releases"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "generative",
+    "open-source"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-23",
+  "date": "2026-07-23",
+  "related": [
+    {
+      "id": "card_4deb70",
+      "slug": "smoothquant",
+      "type": "paper",
+      "title": "SmoothQuant: Accurate Post-Training Quantization for LLMs",
+      "hook": "Activations are hard to quantize; weights are easy. SmoothQuant shifts that difficulty from activations into weights with a simple rescaling, enabling clean 8-bit inference.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2022-11-18"
+    },
+    {
+      "id": "card_9d933c",
+      "slug": "awq-quantization",
+      "type": "paper",
+      "title": "AWQ: Activation-Aware Weight Quantization",
+      "hook": "Not all weights are equal - protect the 1% that matter most (flagged by activation magnitude) and quantize the rest to 4-bit with minimal quality loss.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2023-06-01"
+    },
+    {
+      "id": "card_ac2918",
+      "slug": "flux-1",
+      "type": "news",
+      "title": "FLUX.1",
+      "hook": "FLUX.1 became the leading open-weight image model — from the Black Forest Labs team that built Stable Diffusion, now shipping a frontier-quality model you can run yourself.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2024-08-01"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_4deb70",
+      "slug": "smoothquant",
+      "type": "paper",
+      "title": "SmoothQuant: Accurate Post-Training Quantization for LLMs",
+      "hook": "Activations are hard to quantize; weights are easy. SmoothQuant shifts that difficulty from activations into weights with a simple rescaling, enabling clean 8-bit inference.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2022-11-18"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_96f5dc#0",
+      "format": "flip",
+      "prompt": "Why does plain 4-bit quantization hurt diffusion transformers more than most LLMs?",
+      "back_html": "\u003cp\u003eTheir activations carry extreme outliers; crushing those into 4-bit loses information and visibly degrades the generated images.\u003c/p\u003e"
+    },
+    {
+      "id": "card_96f5dc#1",
+      "format": "quiz",
+      "prompt": "What does SVDQuant add on top of migrating activation outliers into the weights?",
+      "choices": [
+        {
+          "text": "Factor the hardest part of the now-outlier-heavy weights into a 16-bit low-rank branch, quantizing only the residual to 4-bit",
+          "correct": true
+        },
+        {
+          "text": "Keep every weight in mixed 8-bit precision",
+          "correct": false
+        },
+        {
+          "text": "Retrain the diffusion model on a calibration set",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA small 16-bit low-rank branch absorbs the quantization error, so only the smooth residual is stored at 4-bit.\u003c/p\u003e"
+    },
+    {
+      "id": "card_96f5dc#2",
+      "format": "flip",
+      "prompt": "What's the difference between Nunchaku's `svdq_w4a4` and `awq_w4a16` modes?",
+      "back_html": "\u003cp\u003e\u003ccode\u003esvdq_w4a4\u003c/code\u003e quantizes both weights and activations to 4-bit; \u003ccode\u003eawq_w4a16\u003c/code\u003e quantizes only the weights to 4-bit and keeps activations at 16-bit.\u003c/p\u003e"
+    },
+    {
+      "id": "card_96f5dc#3",
+      "format": "quiz",
+      "prompt": "Which Nunchaku path requires a Blackwell (RTX 50-series) GPU?",
+      "choices": [
+        {
+          "text": "The NVFP4 variant of 4-bit quantization",
+          "correct": true
+        },
+        {
+          "text": "Any INT4 quantization",
+          "correct": false
+        },
+        {
+          "text": "The 16-bit low-rank branch",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eNVFP4 needs Blackwell hardware; the INT4 path runs on older Turing, Ampere, and Ada GPUs.\u003c/p\u003e"
+    }
+  ]
+}

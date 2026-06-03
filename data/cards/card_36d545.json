@@ -1,0 +1,99 @@
+{
+  "id": "card_36d545",
+  "slug": "fort-searcher",
+  "type": "paper",
+  "title": "FORT-Searcher: Shortcut-Resistant Tasks for Search Agents",
+  "hook": "Harder-looking questions aren't harder to search. FORT builds tasks where the intended search can't collapse into a cheap shortcut — and trains better deep-search agents on them.",
+  "key_points": [
+    "Training search agents needs questions whose answers stay hidden until enough evidence is gathered — but structural complexity alone doesn't guarantee that.",
+    "The intended multi-step search can collapse via a cheaper identifying route; FORT names four shortcut risks.",
+    "Those risks: evidence co-coverage, single-clue selectivity, exposed constants, and prior-knowledge binding.",
+    "FORT diagnoses realized difficulty with trajectory signatures (solving cost, answer-hit time, prior-shortcut rate) and controls risk across entity selection, graph construction, question formulation, and adversarial refinement.",
+    "Training on the resulting trajectories with SFT only yields the best overall performance among comparable open-source search agents."
+  ],
+  "content_html": "\u003cp\u003eTraining a \u0026quot;deep search\u0026quot; agent needs verifiable questions whose answers stay out of reach until the agent has actually searched and gathered enough evidence. A common way to make tasks look harder is to enrich the underlying graph structure — but the authors point out that structural complexity alone doesn't guarantee \u003cem\u003erealized\u003c/em\u003e search difficulty: the intended search process can quietly collapse through a cheaper identifying route, a shortcut.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThey formalize this with a shortcut-aware difficulty framework and name four actionable shortcut risks — evidence co-coverage, single-clue selectivity, exposed constants, and prior-knowledge binding — and diagnose their effects with trajectory signatures like solving cost, answer-hit time, and prior-shortcut rate. FORT (a Framework of shOrtcut-Resistant Training-data synthesis) then controls those risks across entity selection, evidence-graph construction, question formulation, and adversarial refinement. The synthesized data induces longer pre-answer search and fewer shortcut patterns than existing open datasets; training FORT-Searcher on those trajectories with supervised fine-tuning alone gives the best overall results among comparable-size open-source search agents. The transferable lesson is about data quality: when synthesizing training tasks, design against the cheap path, not just for surface difficulty.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jia Deng",
+      "Yimeng Chen",
+      "Xiaoqing Xiang",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.12087",
+    "published_at": "2026-06-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "synthetic-data",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "dataset",
+    "agent",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-15",
+  "date": "2026-06-10",
+  "related": [
+    {
+      "id": "card_b2c4ec",
+      "slug": "harness-1-search-agents",
+      "type": "paper",
+      "title": "Harness-1: RL for Search Agents with State-Externalizing Harnesses",
+      "hook": "Stop making the policy remember everything. Harness-1 moves a search agent's bookkeeping into the environment, so RL only has to learn the decisions that matter.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-01"
+    },
+    {
+      "id": "card_e51b4a",
+      "slug": "self-instruct",
+      "type": "paper",
+      "title": "Self-Instruct: Aligning LMs with Self-Generated Instructions",
+      "hook": "Instead of paying humans to write instruction data, have the model write its own — bootstrap instructions, inputs, and outputs from its own generations, filter, and fine-tune.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-20"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_36d545#0",
+      "format": "flip",
+      "prompt": "Why isn't a structurally complex question necessarily a hard search task?",
+      "back_html": "\u003cp\u003eThe intended multi-step search can collapse through a cheaper identifying route — a shortcut — so apparent (structural) difficulty doesn't guarantee realized search difficulty.\u003c/p\u003e"
+    },
+    {
+      "id": "card_36d545#1",
+      "format": "quiz",
+      "prompt": "What does FORT do to make training tasks 'shortcut-resistant'?",
+      "choices": [
+        {
+          "text": "Controls shortcut risks across entity selection, evidence-graph construction, question formulation, and adversarial refinement",
+          "correct": true
+        },
+        {
+          "text": "Adds more entities to the underlying knowledge graph",
+          "correct": false
+        },
+        {
+          "text": "Shortens the questions to reduce ambiguity",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eFORT targets shortcut risks at each construction stage so the answer can't be reached cheaply, forcing a genuine multi-step search.\u003c/p\u003e"
+    },
+    {
+      "id": "card_36d545#2",
+      "format": "flip",
+      "prompt": "Name one of FORT's four shortcut risks.",
+      "back_html": "\u003cp\u003eAny of: evidence co-coverage, single-clue selectivity, exposed constants, or prior-knowledge binding.\u003c/p\u003e"
+    }
+  ]
+}

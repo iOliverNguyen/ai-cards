@@ -1,0 +1,97 @@
+{
+  "id": "card_3fbed3",
+  "slug": "zer0fit-tabfm-timesfm-mcp-server",
+  "type": "resource",
+  "title": "Zer0Fit: Zero-Shot Tabular ML and Forecasting, Callable by Any LLM",
+  "hook": "Instead of training a model on your spreadsheet, an agent can now just ask a foundation model to guess — and get scores close to a tuned one, no training loop involved.",
+  "key_points": [
+    "Zer0Fit packages Google's newly released TabFM (tabular) and TimesFM (time-series) foundation models into a single Docker container.",
+    "It exposes them as an MCP server, so a local LLM client (Open WebUI, Claude Code, Codex) can call them directly instead of a human training a bespoke model.",
+    "Runs entirely locally — the models do zero-shot forecasting, classification, and regression with no task-specific training.",
+    "On classic benchmark datasets the author reports 94.7% accuracy on Iris and R² of 0.91 on a regression test, calling it comparable to traditionally tuned ML models.",
+    "Turns 'train a model' into a tool call an agent can make on the fly for quick classic-ML tasks."
+  ],
+  "content_html": "\u003cp\u003eNeed a quick classification or forecast on a small dataset? Normally that means training and tuning a model yourself. Zer0Fit, shared by its author on r/MachineLearning, tries to skip that step entirely by handing the job to a foundation model instead.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe project packages Google's just-released TabFM (tabular) and TimesFM (time-series) foundation models into one Docker container and exposes them as an MCP server, so a local LLM client — Open WebUI, Claude Code, or Codex — can call them directly to do zero-shot forecasting, classification, or regression, all running locally with no dedicated training run. Testing on classic benchmark datasets, the author reports 94.7% accuracy on Iris and an R² of 0.91 on a regression test, describing the results as comparable to traditionally tuned ML models — though this comes from the author's own informal testing rather than a controlled benchmark study.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit (r/MachineLearning)",
+    "authors": [
+      "/u/Porespellar"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1uue8cc/zer0fit_i_took_googles_new_tabfm_timesfm_ml",
+    "published_at": "2026-07-12",
+    "license": "Community post"
+  },
+  "topic_ids": [
+    "agents",
+    "ml-basics",
+    "releases"
+  ],
+  "tags": [
+    "agent",
+    "classic-ml",
+    "open-source",
+    "efficiency"
+  ],
+  "importance": 2,
+  "difficulty": "intro",
+  "created_at": "2026-07-13",
+  "date": "2026-07-12",
+  "related": [
+    {
+      "id": "card_e283b9",
+      "slug": "model-context-protocol",
+      "type": "news",
+      "title": "Model Context Protocol (MCP): A Standard for Connecting LLMs to Tools",
+      "hook": "MCP is an open protocol that standardizes how AI applications expose tools, data, and resources to models - think USB-C for AI tool integrations.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-11-25"
+    },
+    {
+      "id": "card_ce155a",
+      "slug": "what-is-machine-learning",
+      "type": "concept",
+      "title": "What Is Machine Learning?",
+      "hook": "Instead of hand-coding rules, you show a program examples and let it find the patterns — then it handles inputs it has never seen.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_3fbed3#0",
+      "format": "flip",
+      "prompt": "What does Zer0Fit let an LLM agent do that it couldn't do directly before?",
+      "back_html": "\u003cp\u003eRun zero-shot forecasting, classification, and regression on tabular/time-series data by calling Google's TabFM and TimesFM foundation models as MCP tools — instead of training a dedicated model for the task.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3fbed3#1",
+      "format": "quiz",
+      "prompt": "How does Zer0Fit expose Google's TabFM and TimesFM models to an LLM client like Claude Code?",
+      "choices": [
+        {
+          "text": "As an MCP server running in a local Docker container",
+          "correct": true
+        },
+        {
+          "text": "By fine-tuning the LLM directly on TabFM's weights",
+          "correct": false
+        },
+        {
+          "text": "Through a cloud API requiring a training job per dataset",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eZer0Fit bundles both foundation models into one Docker container and serves them over MCP, so any MCP-compatible LLM client can call them as tools, entirely locally.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3fbed3#2",
+      "format": "flip",
+      "prompt": "What accuracy did the author report for zero-shot classification on the Iris dataset?",
+      "back_html": "\u003cp\u003e94.7% accuracy on Iris, and R² of 0.91 on a regression benchmark — reported by the author as comparable to traditionally tuned ML models, though this is a single informal benchmark, not a rigorous evaluation.\u003c/p\u003e"
+    }
+  ]
+}

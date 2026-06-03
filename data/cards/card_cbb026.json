@@ -1,0 +1,117 @@
+{
+  "id": "card_cbb026",
+  "slug": "semcomp-bench-video-task-completion",
+  "type": "paper",
+  "title": "SemComp-Bench: Judge the Video by the Outcome, Not the Frames",
+  "hook": "Most video-generation benchmarks grade appearance consistency. SemComp-Bench asks a blunter question: did the task in the prompt actually get done?",
+  "key_points": [
+    "Proposes Semantic Task Completion Video Generation — an outcome-oriented framing of the task.",
+    "Success needs two things: the intended outcome is achieved, and it stays semantically grounded in the reference image.",
+    "Evaluation ignores intermediate steps and conventional appearance consistency with the reference.",
+    "SemComp-Data spans six domains; each instance pairs a reference image, detailed and brief instructions, and an outcome-centric clip.",
+    "A VLM answers structured binary questions to produce an Outcome Achievement score and a Generation Reliability score.",
+    "Current video models find outcome plus task-relevant grounding hard — the gap is the point of the benchmark."
+  ],
+  "content_html": "\u003cp\u003eVideo generation is usually scored on whether the output looks right — temporally smooth, visually consistent with a reference image. That misses the thing you'd care about if you were using video generation as a world model or a plan: whether the thing you asked for actually happened. SemComp-Bench reframes the task around the outcome.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe authors define Semantic Task Completion Video Generation, where success requires both achieving the intended outcome and keeping it \u003cem\u003esemantically grounded\u003c/em\u003e in the reference image — matching the high-level semantics relevant to the task rather than its appearance. Evaluation looks only at the generated outcome: no credit for showing every intermediate step, no penalty for departing from the reference's look. SemComp-Data, built by a four-stage curation pipeline over raw video, covers six domains, each instance pairing a reference image, a detailed instruction, a brief instruction, and an outcome-centric clip. SemComp-Bench then has a vision-language model answer structured binary questions, reporting an Outcome Achievement score and a Generation Reliability score.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eExperiments on representative video generators show that hitting the intended outcome \u003cem\u003ewhile\u003c/em\u003e staying grounded in the reference remains hard. That's a different failure surface than the one appearance-based metrics expose — and a more relevant one if video models are going to be used for anything beyond looking good.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Keyu Tu",
+      "Zhuowei Chen",
+      "Mengqi Huang",
+      "Yuxin Wang",
+      "Jiahao Zhu",
+      "Zhendong Mao",
+      "Yongdong Zhang"
+    ],
+    "url": "https://arxiv.org/abs/2608.17426",
+    "published_at": "2026-08-18",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "video-audio",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "generative",
+    "multimodal",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-20",
+  "date": "2026-08-18",
+  "related": [
+    {
+      "id": "card_edc166",
+      "slug": "sora-2",
+      "type": "news",
+      "title": "Sora 2",
+      "hook": "OpenAI's Sora 2 added synchronized audio and sharper physical consistency — and shipped inside a TikTok-style social app where you remix each other's generations.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-09-30"
+    },
+    {
+      "id": "card_1ccfb1",
+      "slug": "veo-3",
+      "type": "news",
+      "title": "Veo 3",
+      "hook": "Google's Veo 3 generates video with synchronized native audio — dialogue, sound effects, and ambient noise produced together with the picture, not dubbed on after.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-05-20"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_cbb026#0",
+      "format": "flip",
+      "prompt": "What does 'semantic grounding' mean in SemComp-Bench, and how is it different from appearance consistency?",
+      "back_html": "\u003cp\u003eIt's the correspondence between the reference image and the generated outcome in \u003cem\u003etask-relevant high-level semantics\u003c/em\u003e — not pixel-level or stylistic similarity, which the benchmark deliberately ignores.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cbb026#1",
+      "format": "quiz",
+      "prompt": "What does SemComp-Bench deliberately *not* require of a generated video?",
+      "choices": [
+        {
+          "text": "A complete sequence of intermediate task steps, or appearance consistency with the reference",
+          "correct": true
+        },
+        {
+          "text": "That the intended outcome be achieved",
+          "correct": false
+        },
+        {
+          "text": "Any correspondence to the reference image at all",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEvaluation focuses on the generated outcome. Intermediate steps and conventional appearance consistency are explicitly out of scope; semantic grounding is not.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cbb026#2",
+      "format": "quiz",
+      "prompt": "How does SemComp-Bench compute its scores?",
+      "choices": [
+        {
+          "text": "A vision-language model answers structured binary questions about the video",
+          "correct": true
+        },
+        {
+          "text": "Human annotators rate each clip on a five-point scale",
+          "correct": false
+        },
+        {
+          "text": "Frame-level FID against the reference image",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe protocol uses a VLM judge over structured yes/no questions, reporting an OA (Outcome Achievement) score and a GR (Generation Reliability) score.\u003c/p\u003e"
+    }
+  ]
+}

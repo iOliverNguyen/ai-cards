@@ -1,0 +1,92 @@
+{
+  "id": "card_27a1ab",
+  "slug": "the-hardware-lottery",
+  "type": "paper",
+  "title": "The Hardware Lottery",
+  "hook": "A research idea can win not because it is genuinely better, but because it happens to fit the hardware and software we already have. Sara Hooker calls this the hardware lottery.",
+  "key_points": [
+    "Coins the term 'hardware lottery': an idea succeeds when it fits the available hardware and software, not necessarily because it is superior.",
+    "Argues hardware and software have historically determined which research ideas win or lose.",
+    "Uses historical examples of ideas dismissed because the hardware to support them did not yet exist.",
+    "Warns that increasingly specialized AI hardware raises the barrier to pursuing unconventional directions."
+  ],
+  "content_html": "\u003cp\u003eSara Hooker's essay names a force that usually stays invisible in research narratives: sometimes an idea wins the field not on its merits but because it happened to match the hardware and software available at the time. She calls this the hardware lottery, and argues it has quietly steered which directions in machine learning flourished and which were left behind.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eHooker walks through the history of computing to show that hardware and software have repeatedly determined which research ideas succeed or fail. She points to ideas that were dismissed not because they were wrong, but because no hardware existed to make them practical - so they sat dormant until the substrate caught up. The lesson is that the tooling we build on is never neutral; it tilts the playing field toward whatever it happens to run well.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe essay's warning is forward-looking: as AI hardware grows more specialized and optimized for today's dominant approaches, the barrier to exploring unconventional directions rises. Ideas that don't map onto the prevailing chips become expensive to even test, which can lock the field into a narrower path. It is a foundational reframing for anyone thinking about where progress actually comes from.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Sara Hooker"
+    ],
+    "url": "https://arxiv.org/abs/2009.06489",
+    "published_at": "2020-09-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "hardware"
+  ],
+  "tags": [
+    "efficiency",
+    "foundational"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2020-09-14",
+  "related": [
+    {
+      "id": "card_b185fa",
+      "slug": "tpu",
+      "type": "paper",
+      "title": "In-Datacenter Performance Analysis of a TPU",
+      "hook": "Google built a custom chip whose heart is a 256x256 grid of 8-bit multiply-accumulate units - and in production it ran neural-net inference roughly 15-30x faster than the GPUs and CPUs of its day.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2017-04-16"
+    },
+    {
+      "id": "card_1718c4",
+      "slug": "mixed-precision-training",
+      "type": "paper",
+      "title": "Mixed Precision Training",
+      "hook": "Store weights, activations, and gradients in 16-bit floats to roughly halve memory - but keep a 32-bit master copy of the weights and scale the loss so tiny gradients don't vanish.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-10-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_27a1ab#0",
+      "format": "flip",
+      "prompt": "What does Sara Hooker mean by the 'hardware lottery'?",
+      "back_html": "\u003cp\u003eAn idea wins the field not necessarily on its merits, but because it happens to fit the hardware and software available at the time.\u003c/p\u003e"
+    },
+    {
+      "id": "card_27a1ab#1",
+      "format": "quiz",
+      "prompt": "According to the essay, why is increasingly specialized AI hardware a concern?",
+      "choices": [
+        {
+          "text": "It raises the barrier to pursuing unconventional research directions",
+          "correct": true
+        },
+        {
+          "text": "It makes existing models run slower",
+          "correct": false
+        },
+        {
+          "text": "It eliminates the need for software entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAs chips optimize for today's dominant approaches, ideas that don't map onto them get expensive to even test, narrowing the field's path.\u003c/p\u003e"
+    },
+    {
+      "id": "card_27a1ab#2",
+      "format": "flip",
+      "prompt": "Why does Hooker say tooling is never neutral?",
+      "back_html": "\u003cp\u003eIt tilts the playing field toward whatever it happens to run well, quietly steering which research ideas flourish.\u003c/p\u003e"
+    }
+  ]
+}

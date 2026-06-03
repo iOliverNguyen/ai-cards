@@ -1,0 +1,103 @@
+{
+  "id": "card_6fb668",
+  "slug": "badwam-world-action-drift-attacks",
+  "type": "paper",
+  "title": "BadWAM: When World-Action Models Dream Right but Act Wrong",
+  "hook": "World-action models look safer because you can check a robot's imagined future against its action. BadWAM shows a small pixel nudge leaves the imagination intact while hijacking the action.",
+  "key_points": [
+    "World-action models (WAMs) couple action generation with future-world prediction, which is often assumed to make them more robust and checkable.",
+    "BadWAM introduces 'World-Action Drift Attacks': small visual perturbations that desync what a WAM imagines from what it actually executes.",
+    "An action-only attack maximizes disruption directly, cutting task success from 96.5% to 43.1% in the authors' tests.",
+    "An imagination-preserving variant adds stealth: it shifts the action while keeping the predicted future close to the clean, unattacked imagination.",
+    "Moderate future-preserving regularization keeps the attack strong while shrinking the imagination drift — so checking imagined futures doesn't reliably catch it."
+  ],
+  "content_html": "\u003cp\u003eWorld-action models are the current bet for embodied control: instead of just outputting actions, they learn to imagine a future first, and the action is supposed to follow from that imagined future. That coupling is often sold as a safety win — you can, in principle, check whether the robot's action matches what it just imagined. Qi Li, Xingyi Yang, and Xinchao Wang's BadWAM paper tests that assumption directly, and it doesn't hold up well.\u003c/p\u003e\n\u003cp\u003eBadWAM introduces \u0026quot;World-Action Drift Attacks\u0026quot;: small, targeted visual perturbations that break the link between imagination and execution. A blunt version just maximizes task failure, cutting success from 96.5% to 43.1% in their tests. A stealthier version adds a second goal — keep the model's imagined future looking normal while still steering the action off task — and the authors find that regularizing for that stealth barely weakens the attack. The takeaway: imagined-future checks are a weaker safety net than they look, at least against an adversary who knows to target them.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe paper frames the attack surface along two axes — strength and stealthiness — and evaluates across several WAM variants under closed-loop execution (the robot actually acts on its own perturbed predictions, rather than being scored on a fixed dataset). That closed-loop setup is what makes the imagination-preserving result notable: even when a lightweight regularizer is added specifically to keep the predicted future close to clean, the attack's disruptive power barely drops. Full details and the arXiv PDF are linked via the source.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Qi Li",
+      "Xingyi Yang",
+      "Xinchao Wang"
+    ],
+    "url": "https://arxiv.org/abs/2607.15207",
+    "published_at": "2026-07-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "vision",
+    "agent",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-16",
+  "related": [
+    {
+      "id": "card_b9d1db",
+      "slug": "world-action-models-survey",
+      "type": "paper",
+      "title": "World Action Models: A Survey",
+      "hook": "Robots are learning to imagine the future before acting. This survey untangles 'world action models' from video generators and VLA policies — and finds them converging on one idea.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    },
+    {
+      "id": "card_1f360f",
+      "slug": "illusion-of-robustness-prediction-flips",
+      "type": "paper",
+      "title": "The Illusion of Robustness: Aggregate Accuracy Hides Prediction Flips",
+      "hook": "A model's accuracy barely budges when you paste in random gibberish — but under the hood, a chunk of its individual answers silently flip, some right to wrong, some wrong to right.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-14"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_6fb668#0",
+      "format": "flip",
+      "prompt": "Why are world-action models assumed to be safer, and what does BadWAM show about that assumption?",
+      "back_html": "\u003cp\u003eThey're assumed safer because you can check a predicted future against the action taken. BadWAM shows small visual perturbations can hijack the action while leaving the predicted future looking clean — so the check can be fooled.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6fb668#1",
+      "format": "quiz",
+      "prompt": "What distinguishes BadWAM's 'imagination-preserving' attack from its 'action-only' attack?",
+      "choices": [
+        {
+          "text": "It keeps the model's predicted future close to normal while still driving the action toward failure",
+          "correct": true
+        },
+        {
+          "text": "It only works on models that don't predict the future at all",
+          "correct": false
+        },
+        {
+          "text": "It improves the model's imagined future instead of the action",
+          "correct": false
+        },
+        {
+          "text": "It requires physical access to the robot's actuators",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe imagination-preserving attack adds a stealth goal on top of disruption: it keeps the WAM's predicted future close to its clean, unattacked imagination while still shifting the executed action off task.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6fb668#2",
+      "format": "flip",
+      "prompt": "By how much did BadWAM's action-only attack cut task success in the paper's evaluation?",
+      "back_html": "\u003cp\u003eFrom 96.5% success down to 43.1%, under closed-loop execution against the WAM variants they tested.\u003c/p\u003e"
+    }
+  ]
+}

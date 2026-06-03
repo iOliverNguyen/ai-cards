@@ -1,0 +1,89 @@
+{
+  "id": "card_41605e",
+  "slug": "sm4rt-structured-motion",
+  "type": "paper",
+  "title": "Motion Has Geometry Too",
+  "hook": "Tracking and optical flow treat every pixel as drifting on its own. But real objects are rigid — points on the same body move together, so give motion a basis instead of a per-pixel guess.",
+  "key_points": [
+    "Geometry foundation models pushed monocular 3D reconstruction forward; extending them to 4D dynamic scenes is the open problem.",
+    "Sparse tracking and dense point-wise flow model motion as independent per-point displacements, ignoring that real objects obey rigid-body kinematics.",
+    "The premise: physical motion is structured — objects undergo rigid-body transformations governed by SE(3), not unstructured displacements.",
+    "Structure-of-Motion decomposes scene dynamics into a compact set of motion bases, each a temporal sequence of 6D twists in SE(3).",
+    "Dense motion is recovered by sparse, time-shared per-pixel assignment weights over those bases, so points on one object share a rigid-body trajectory.",
+    "A parallel motion-geometry encoder and decoder infer 3D geometry, world-coordinate motion, and kinematic structure in one forward pass from monocular RGB video."
+  ],
+  "content_html": "\u003cp\u003eGeometry foundation models have substantially advanced monocular 3D reconstruction, but extending that to 4D — dynamic scenes over time — is still open. Lin and colleagues argue the obstacle is representational. Most motion-perception methods, whether sparse tracking or dense point-wise flow, treat motion as independent per-point displacements. Real-world objects don't move that way: they obey rigid-body kinematics, so their points move collectively. Motion itself has geometric structure, in the form of rigid-body transformations governed by SE(3).\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eStructure-of-Motion\u003c/h2\u003e\n\u003cp\u003e\u003cstrong\u003eSM4RT\u003c/strong\u003e is a transformer for end-to-end 3D reconstruction and structured motion perception, built on a representation the authors call Structure-of-Motion. Scene motion is decomposed into a compact set of motion bases, each represented as a temporal sequence of 6D twists in SE(3). Dense scene motion is then recovered through sparse, time-shared per-pixel assignment weights over those bases — which is the mechanism that forces points on the same object to share a common rigid-body motion trajectory instead of each drifting independently.\u003c/p\u003e\n\u003ch2\u003eThe architecture\u003c/h2\u003e\n\u003cp\u003eA parallel motion-geometry encoder and decoder jointly infer three things in a single forward pass from monocular RGB video: 3D geometry, motion in world coordinates, and the scene's kinematic structure. The authors report strong motion-reconstruction performance while preserving the geometric structure of scene motion — the recurring lesson being that building a physical prior into the representation tends to beat regressing an unconstrained field and hoping coherence emerges.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Shing Ho J. Lin",
+      "Wenzhao Zheng",
+      "Dong Zhuo",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.22534",
+    "published_at": "2026-07-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "multimodal-vision",
+    "papers-this-week"
+  ],
+  "tags": [
+    "vision",
+    "architecture",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-27",
+  "date": "2026-07-24",
+  "related": [
+    {
+      "id": "card_62ba4a",
+      "slug": "video-generation-models-general-purpose-vision-learners",
+      "type": "paper",
+      "title": "Video Generation Models Are General-Purpose Vision Learners",
+      "hook": "Next-token prediction turned NLP into a generalist. This paper argues text-to-video generation can do the same for vision — one backbone, many tasks, beating specialists.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2026-07-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_41605e#0",
+      "format": "flip",
+      "prompt": "What assumption do sparse tracking and dense optical flow make that this paper rejects?",
+      "back_html": "\u003cp\u003eThat motion is a set of independent point-wise displacements. Real objects obey rigid-body kinematics, so points on the same body move collectively rather than in isolation.\u003c/p\u003e"
+    },
+    {
+      "id": "card_41605e#1",
+      "format": "quiz",
+      "prompt": "How does Structure-of-Motion represent a scene's dynamics?",
+      "choices": [
+        {
+          "text": "As a compact set of motion bases, each a temporal sequence of 6D twists in SE(3)",
+          "correct": true
+        },
+        {
+          "text": "As a dense per-pixel displacement field regressed independently at each frame",
+          "correct": false
+        },
+        {
+          "text": "As a single global camera transform plus a residual depth map per frame",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe bases carry the rigid-body structure; dense motion then comes from sparse, time-shared per-pixel assignment weights over them, which is what forces points on one object onto a common trajectory.\u003c/p\u003e"
+    },
+    {
+      "id": "card_41605e#2",
+      "format": "flip",
+      "prompt": "What does the assignment-weight design buy you?",
+      "back_html": "\u003cp\u003eBecause weights are sparse and shared across time, points assigned to the same basis necessarily follow a common rigid-body motion trajectory — the object's coherence is built into the representation rather than hoped for.\u003c/p\u003e"
+    }
+  ]
+}

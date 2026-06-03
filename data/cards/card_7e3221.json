@@ -1,0 +1,117 @@
+{
+  "id": "card_7e3221",
+  "slug": "latent-diffusion-models",
+  "type": "paper",
+  "title": "High-Resolution Image Synthesis with Latent Diffusion (Stable Diffusion)",
+  "hook": "Running diffusion on raw pixels is brutally expensive. Do it in a compressed latent space instead, and high-res text-to-image becomes cheap enough to run on a consumer GPU.",
+  "key_points": [
+    "Runs the diffusion process in a compressed latent space from an autoencoder, not on raw pixels.",
+    "Drastically cuts the compute needed for high-resolution image generation.",
+    "Adds text and other conditioning via cross-attention in the denoising network.",
+    "Open-sourced as Stable Diffusion, putting text-to-image in many hands.",
+    "Helped launch the consumer text-to-image wave."
+  ],
+  "content_html": "\u003cp\u003eRombach, Blattmann, and colleagues made high-resolution diffusion practical by moving the expensive denoising work out of pixel space and into a compact latent space learned by an autoencoder. The same team open-sourced the approach as Stable Diffusion, which put capable text-to-image generation into the hands of ordinary users.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eFirst, an autoencoder learns to compress images into a much smaller latent representation and decode them back with little visible loss. The diffusion model then does all its noising and denoising on these latents rather than on full-resolution pixels, which is far cheaper because the data is so much smaller. To condition on a text prompt, the denoising network uses cross-attention, letting each step attend to the prompt's encoded meaning. A final decode step turns the cleaned-up latent back into a full image.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eBy slashing the compute cost of diffusion, latent diffusion made high-quality image generation runnable on widely available hardware instead of large clusters. Released openly as Stable Diffusion, it triggered an explosion of consumer text-to-image apps, fine-tunes, and creative tools, and its latent-space approach influenced later generative systems well beyond images.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Robin Rombach",
+      "Andreas Blattmann",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2112.10752",
+    "published_at": "2021-12-20",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "diffusion"
+  ],
+  "tags": [
+    "vision",
+    "multimodal",
+    "landmark"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2021-12-20",
+  "related": [
+    {
+      "id": "card_2b95b6",
+      "slug": "denoising-diffusion-probabilistic-models",
+      "type": "paper",
+      "title": "Denoising Diffusion Probabilistic Models (DDPM)",
+      "hook": "Wreck an image into pure static one tiny step at a time, then train a network to undo it. Run the undo from random noise and you get a brand-new image.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2020-06-19"
+    },
+    {
+      "id": "card_3d7d44",
+      "slug": "clip",
+      "type": "paper",
+      "title": "CLIP: Learning Visual Models from Language",
+      "hook": "Skip the fixed label list. Train on image–caption pairs so pictures and text share one space, and you can classify images from plain-text labels you make up on the spot.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-02-26"
+    },
+    {
+      "id": "card_c7e0bc",
+      "slug": "variational-autoencoder",
+      "type": "paper",
+      "title": "VAE: Auto-Encoding Variational Bayes",
+      "hook": "Don't just compress data to a point — compress it to a distribution. That gives a smooth latent space you can sample from to generate genuinely new data.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2013-12-20"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_2b95b6",
+      "slug": "denoising-diffusion-probabilistic-models",
+      "type": "paper",
+      "title": "Denoising Diffusion Probabilistic Models (DDPM)",
+      "hook": "Wreck an image into pure static one tiny step at a time, then train a network to undo it. Run the undo from random noise and you get a brand-new image.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2020-06-19"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_7e3221#0",
+      "format": "quiz",
+      "prompt": "Why is latent diffusion far cheaper than pixel-space diffusion?",
+      "choices": [
+        {
+          "text": "It runs noising and denoising on a small autoencoder latent, not full-resolution pixels",
+          "correct": true
+        },
+        {
+          "text": "It uses fewer denoising steps than DDPM",
+          "correct": false
+        },
+        {
+          "text": "It skips the decoding step entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAn autoencoder compresses images into a much smaller latent; diffusion operates there, so the data being processed is far smaller.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7e3221#1",
+      "format": "flip",
+      "prompt": "How does latent diffusion condition generation on a text prompt?",
+      "back_html": "\u003cp\u003eThe denoising network uses cross-attention, letting each step attend to the prompt's encoded meaning.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7e3221#2",
+      "format": "flip",
+      "prompt": "What was the broader impact of open-sourcing this as Stable Diffusion?",
+      "back_html": "\u003cp\u003eIt made high-quality image generation runnable on widely available hardware, triggering an explosion of consumer text-to-image apps and fine-tunes.\u003c/p\u003e"
+    }
+  ]
+}

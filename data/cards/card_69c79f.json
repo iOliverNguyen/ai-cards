@@ -1,0 +1,145 @@
+{
+  "id": "card_69c79f",
+  "slug": "simplax-simplex-relaxation-discrete-diffusion",
+  "type": "paper",
+  "title": "Simplax: Enriching Discrete Diffusion Without Changing Its Noise",
+  "hook": "Discrete diffusion is boxed in by its corruption kernel. Simplax bolts a continuous simplex variable onto each noisy token — richer training signal, same underlying categorical process.",
+  "key_points": [
+    "In discrete diffusion the corruption kernel fixes both the intermediate state space and the reverse prediction problem, which limits how the objective can be built.",
+    "Simplax augments each corrupted categorical state with an auxiliary simplex-valued (Dirichlet) variable, chosen so the original uniform diffusion is preserved exactly as the categorical marginal.",
+    "The augmentation buys a tractable Rao-Blackwellized reverse-bridge objective plus a matching stochastic reverse sampler — a lower-variance training signal, not a different noise process.",
+    "The denoiser still takes only the corrupted categorical state as input, so the extra variable costs nothing at inference.",
+    "On unconditional OpenWebText generation it improves the generative perplexity-versus-entropy tradeoff, the standard way to check a sampler isn't buying fluency with collapsed diversity.",
+    "Trained only on 30-clue Sudoku, it was the most accurate of the compared methods at every clue density tested, including the hardest uniquely-solvable 17-clue case."
+  ],
+  "content_html": "\u003cp\u003eDiscrete diffusion models generate categorical data — tokens, grid cells — by corrupting them and\nlearning to reverse the corruption. The corruption kernel is doing a lot of quiet work: it decides\nwhat the intermediate states look like and, with that, what the reverse prediction problem even is.\nA team spanning Japanese and Singaporean institutions asked whether you can enrich the training\nobjective and the reverse transitions without touching that kernel at all. Their answer, posted to\narXiv in August 2026, is Simplax.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe trick is an exact Dirichlet-categorical augmentation: pair every corrupted categorical state\nwith a continuous variable living on the probability simplex, arranged so that marginalizing the new\nvariable out recovers the original uniform diffusion exactly. Nothing about the noise process\nchanges; what changes is that the richer joint admits a Rao-Blackwellized reverse-bridge objective\nand a matching stochastic reverse sampler. Rao-Blackwellization is the classic move of conditioning\non extra structure to cut estimator variance — here it means a cleaner training signal for the same\nunderlying problem. The denoiser's input stays the plain categorical state, so inference is unchanged.\u003c/p\u003e\n\u003cp\u003eThe authors report a better generative perplexity-versus-entropy tradeoff on unconditional\nOpenWebText generation, and on Sudoku a model trained only on 30-clue puzzles led the compared\nmethods at every clue density they tested, including the 17-clue minimum for a uniquely solvable\npuzzle, along with the highest validity in unconditional generation. See the paper for the\nderivation and the full comparison set.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jinya Sakurai",
+      "Patrick Pynadath",
+      "Satoshi Hayakawa",
+      "Jaehong Yoon",
+      "Xulei Yang",
+      "Nancy F. Chen",
+      "Xun Xu"
+    ],
+    "url": "https://arxiv.org/abs/2608.10615",
+    "published_at": "2026-08-11",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "diffusion",
+    "papers-this-week"
+  ],
+  "tags": [
+    "generative",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-13",
+  "date": "2026-08-11",
+  "related": [
+    {
+      "id": "card_7f2461",
+      "slug": "discrete-diffusion-oracle-distance",
+      "type": "paper",
+      "title": "What Does a Discrete Diffusion Model Learn?",
+      "hook": "A discrete diffusion model can be read as a denoiser, a score, or a bridge predictor. This paper proves they're the same optimum in different coordinates — with one exact best solution.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_cf3048",
+      "slug": "illada-diffusion-language-model",
+      "type": "paper",
+      "title": "iLLaDA: Improved Large Language Diffusion Models",
+      "hook": "An 8B language model trained from scratch with full bidirectional attention and a masked-diffusion objective — no autoregression — that holds its own against same-size autoregressive LLMs.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-24"
+    },
+    {
+      "id": "card_2b95b6",
+      "slug": "denoising-diffusion-probabilistic-models",
+      "type": "paper",
+      "title": "Denoising Diffusion Probabilistic Models (DDPM)",
+      "hook": "Wreck an image into pure static one tiny step at a time, then train a network to undo it. Run the undo from random noise and you get a brand-new image.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2020-06-19"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_2b95b6",
+      "slug": "denoising-diffusion-probabilistic-models",
+      "type": "paper",
+      "title": "Denoising Diffusion Probabilistic Models (DDPM)",
+      "hook": "Wreck an image into pure static one tiny step at a time, then train a network to undo it. Run the undo from random noise and you get a brand-new image.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2020-06-19"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_69c79f#0",
+      "format": "flip",
+      "prompt": "What does Simplax add to uniform discrete diffusion, and what does it deliberately leave alone?",
+      "back_html": "\u003cp\u003eIt couples each corrupted categorical state with an auxiliary simplex-valued variable. The categorical corruption process itself is untouched — the original uniform diffusion is preserved exactly as the marginal of the augmented process.\u003c/p\u003e"
+    },
+    {
+      "id": "card_69c79f#1",
+      "format": "quiz",
+      "prompt": "Why does Simplax's auxiliary simplex variable not make the model more expensive to sample from?",
+      "choices": [
+        {
+          "text": "The denoiser still takes only the corrupted categorical state as input",
+          "correct": true
+        },
+        {
+          "text": "The auxiliary variable is discarded after the first reverse step",
+          "correct": false
+        },
+        {
+          "text": "The simplex variable is computed once and shared across all timesteps",
+          "correct": false
+        },
+        {
+          "text": "Sampling falls back to the unaugmented model at inference time",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe augmentation reshapes the training objective and reverse bridge, but the network's input signature is unchanged, so the extra variable never has to be produced at inference.\u003c/p\u003e"
+    },
+    {
+      "id": "card_69c79f#2",
+      "format": "quiz",
+      "prompt": "What made the Sudoku result notable?",
+      "choices": [
+        {
+          "text": "A model trained only on 30-clue puzzles stayed most accurate down to the 17-clue minimum",
+          "correct": true
+        },
+        {
+          "text": "It solved every puzzle it was shown during training without error",
+          "correct": false
+        },
+        {
+          "text": "It was the first diffusion model applied to constraint-satisfaction problems",
+          "correct": false
+        },
+        {
+          "text": "It needed no clues at all to generate valid grids",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eTraining at a single clue density and still leading at every density tested — including the hardest uniquely-solvable regime — is evidence the improvement is in the learned reverse process, not in matching the training distribution.\u003c/p\u003e"
+    }
+  ]
+}

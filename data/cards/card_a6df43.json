@@ -1,0 +1,100 @@
+{
+  "id": "card_a6df43",
+  "slug": "openrath",
+  "type": "paper",
+  "title": "OpenRath: Sessions as First-Class Agent State",
+  "hook": "Agent state is usually scattered across logs you stitch back together. OpenRath makes the Session a first-class value you can fork, replay, and inspect like a tensor.",
+  "key_points": [
+    "OpenRath gathers fragmented agent state — transcripts, tool effects, memory, lineage — into one first-class value: the Session.",
+    "Because the Session is the value passed between agents, fork, merge, and replay become explicit runtime operations.",
+    "It records conversation chunks, sandbox placement, lineage, token usage, pending work, and tool evidence in one place.",
+    "A 'Selector' turns control flow into runtime-routed decisions; Sandbox, Tool, Agent, Memory, and Workflow round out the model.",
+    "The report claims only controlled runtime properties — quality comparisons are left to follow-on work."
+  ],
+  "content_html": "\u003cp\u003eModern agent systems leak state everywhere: transcripts in one place, tool effects in another, memory events, workspace placement, branch provenance, and replay evidence all recorded separately. That makes runs hard to inspect or reproduce. OpenRath, from Wen, Wang, and Xu, proposes a fix borrowed in spirit from PyTorch: a single first-class runtime value.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe idea\u003c/h2\u003e\n\u003cp\u003eOpenRath's core abstraction is the Session — the runtime value passed between agents and workflows. A Session is branchable, inspectable, replayable, backend-aware, and composable. It records conversation chunks, sandbox placement, lineage metadata, token usage, pending work, and tool evidence, and it defines where memory interactions enter the runtime record. Because this state is carried by the same value used in execution, fork, merge, and replay become explicit runtime operations rather than states reconstructed from external traces. Around it sit Sandbox, Tool, Agent, Memory, Workflow, and a Selector that turns control flow into runtime-routed decisions.\u003c/p\u003e\n\u003ch2\u003eScope\u003c/h2\u003e\n\u003cp\u003eThe report deliberately limits its claims to controlled runtime properties — auditable composition — and leaves broad quantitative comparisons, live-provider quality, and memory quality to follow-on evaluation. The thesis is structural: give agent systems a first-class runtime value, and reproducibility stops being an afterthought.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Fukang Wen",
+      "Zhijie Wang",
+      "Ruilin Xu"
+    ],
+    "url": "https://arxiv.org/abs/2606.19409",
+    "published_at": "2026-06-17",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-25",
+  "date": "2026-06-17",
+  "related": [
+    {
+      "id": "card_e283b9",
+      "slug": "model-context-protocol",
+      "type": "news",
+      "title": "Model Context Protocol (MCP): A Standard for Connecting LLMs to Tools",
+      "hook": "MCP is an open protocol that standardizes how AI applications expose tools, data, and resources to models - think USB-C for AI tool integrations.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-11-25"
+    },
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    },
+    {
+      "id": "card_1b799b",
+      "slug": "agentic-environment-engineering-survey",
+      "type": "paper",
+      "title": "Agentic Environment Engineering: A Survey",
+      "hook": "Agents only get as good as the worlds they practice in. This survey maps the full lifecycle of agent environments — how we model, synthesize, evaluate, and grow them.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-06-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a6df43#0",
+      "format": "flip",
+      "prompt": "What is OpenRath's core abstraction, and why does it matter?",
+      "back_html": "\u003cp\u003eThe Session — a single first-class runtime value carrying all agent state — so fork, merge, and replay become explicit operations instead of being reconstructed from scattered external traces.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a6df43#1",
+      "format": "quiz",
+      "prompt": "What does making the Session the value passed between agents enable?",
+      "choices": [
+        {
+          "text": "Branching, replaying, and inspecting agent runs as explicit runtime operations",
+          "correct": true
+        },
+        {
+          "text": "Faster matrix multiplication inside the model",
+          "correct": false
+        },
+        {
+          "text": "Eliminating the need for any memory store",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eWhen state lives in the same value the program executes with, fork/merge/replay are first-class operations rather than something you rebuild from logs after the fact.\u003c/p\u003e"
+    }
+  ]
+}

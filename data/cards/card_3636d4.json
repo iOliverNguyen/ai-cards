@@ -1,0 +1,111 @@
+{
+  "id": "card_3636d4",
+  "slug": "agent-plugin-marketplace-maintenance",
+  "type": "paper",
+  "title": "Agent Plugins Are Maintained Software, Not Write-Once Config",
+  "hook": "An empirical sweep of 2,018 Claude Code plugin marketplaces found prose instruction files and their scripts drift out of sync — a maintenance dependency traditional software doesn't have.",
+  "key_points": [
+    "Studied 1,926 repositories hosting plugin marketplaces: 8,351 plugins, 77,773 commits across 2,018 marketplaces.",
+    "Plugin-touching commit activity grew 8.8x over the six months after the October 2025 launch.",
+    "Software-engineering tasks account for 61.3% of all plugins.",
+    "Development is feature-driven: feature commits run at more than twice the rate of conventional open-source software (39.6% vs 17.2%).",
+    "Inside skills directories, natural-language instruction files and their implementation scripts co-evolve above chance, with 78% of co-changes functionally coupled.",
+    "Most other component types evolve independently, and four commit types (docs, perf, style, refactor) carry different meanings here than in ordinary repos."
+  ],
+  "content_html": "\u003cp\u003eCoding agents are increasingly extended through plugin marketplaces, but plugins are not ordinary packages: they deliver functionality through a mix of natural-language instruction files, scripts, and configuration. Hereiz and colleagues ask whether these are maintained artifacts that co-evolve, or one-off files written once and forgotten, and answer it empirically across 1,926 repositories hosting Claude Code plugin marketplaces — 8,351 plugins and 77,773 commits.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat the data shows\u003c/h2\u003e\n\u003cp\u003eThe ecosystem is expanding fast: plugin-touching commit activity grew 8.8x over the six months following the October 2025 launch, with software-engineering tasks accounting for 61.3% of plugins. Development skews heavily toward features, at 39.6% feature commits versus 17.2% in conventional open-source software, and the authors note that docs, perf, style, and refactor commits carry substantially different meanings in these repositories than in traditional ones.\u003c/p\u003e\n\u003ch2\u003eThe finding that generalizes\u003c/h2\u003e\n\u003cp\u003eMost component types evolve independently — but inside skills directories, natural-language instruction files and their implementation scripts co-change at above-chance rates, with 78% of those co-changes functionally coupled. That is a maintenance dependency between prose and code with no counterpart in traditional software engineering, and a concrete argument for reviewing a skill's instructions and its scripts together. Method and full breakdown in the paper.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ahmed Hereiz",
+      "Yingzhe Lyu",
+      "Hao Li",
+      "Bram Adams",
+      "Ahmed E. Hassan"
+    ],
+    "url": "https://arxiv.org/abs/2608.28497",
+    "published_at": "2026-08-28",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "open-source",
+    "paper",
+    "benchmark"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-08-31",
+  "date": "2026-08-28",
+  "related": [
+    {
+      "id": "card_2e50ab",
+      "slug": "claude-agent-skills",
+      "type": "news",
+      "title": "Claude Agent Skills",
+      "hook": "Agent Skills package instructions, scripts, and resources into folders an agent loads on demand — composable, portable expertise, later opened as a standard like MCP.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2025-10-16"
+    },
+    {
+      "id": "card_083c15",
+      "slug": "agentic-coding-adoption-github-projects",
+      "type": "paper",
+      "title": "Early Adoption of Agentic Coding Tools by GitHub Projects",
+      "hook": "25,264 agent-written pull requests later: most open-source projects have barely touched agentic coding tools, and the ones that have still keep exactly one human gatekeeping every PR.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-15"
+    },
+    {
+      "id": "card_99ec55",
+      "slug": "agent-skill-regression-tax",
+      "type": "paper",
+      "title": "The Regression Tax on Agent Skills",
+      "hook": "Handing an agent a procedural skill doesn't only add wins — it also breaks tasks it used to solve. The best skills win by regressing less, not by gaining more.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_3636d4#0",
+      "format": "flip",
+      "prompt": "What new kind of maintenance dependency did the study find inside skills directories?",
+      "back_html": "\u003cp\u003eNatural-language instruction files and their implementation scripts co-evolve at above-chance rates — 78% of those co-changes were functionally coupled.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3636d4#1",
+      "format": "quiz",
+      "prompt": "How does commit activity in agent plugin repositories compare to conventional open-source software?",
+      "choices": [
+        {
+          "text": "Far more feature-driven — 39.6% feature commits versus 17.2% in conventional OSS",
+          "correct": true
+        },
+        {
+          "text": "Almost identical, suggesting plugins are maintained like ordinary packages",
+          "correct": false
+        },
+        {
+          "text": "Dominated by refactor commits, since prose files are rewritten constantly",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePlugin development skews heavily toward adding features rather than the maintenance mix typical of conventional OSS.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3636d4#2",
+      "format": "flip",
+      "prompt": "Why does the paper argue agent plugins deserve their own study?",
+      "back_html": "\u003cp\u003eThey deliver functionality through a mix of natural-language instruction files, scripts, and config rather than source code alone — so traditional maintenance findings may not transfer.\u003c/p\u003e"
+    }
+  ]
+}

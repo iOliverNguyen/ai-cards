@@ -1,0 +1,107 @@
+{
+  "id": "card_e8632a",
+  "slug": "position-interpolation",
+  "type": "paper",
+  "title": "Extending Context Windows via Positional Interpolation",
+  "hook": "Don't extrapolate to positions the model never saw - squeeze the position indices back inside the trained range, and a short fine-tune stretches the context window many times over.",
+  "key_points": [
+    "Linearly down-scales input position indices to fit the originally trained context window, instead of extrapolating to unseen positions.",
+    "Extrapolation blows up attention scores; interpolation keeps positions in-distribution, with an error bound about 600x smaller.",
+    "Extends LLaMA context windows up to 32,768 tokens, demonstrated on models from 7B through 65B.",
+    "Needs only short fine-tuning, within 1,000 steps."
+  ],
+  "content_html": "\u003cp\u003eShouyuan Chen, Sherman Wong, Liangjian Chen, and Yuandong Tian proposed Positional Interpolation in June 2023 as a simple way to extend a pretrained model's context window. The trick is to down-scale position indices so they land inside the range the model was trained on, rather than asking it to extrapolate to positions it has never seen.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eWhen you push a model past its trained context length, the position indices run off into unseen territory, and the authors note this can make attention scores blow up. Instead, they linearly interpolate: the input position indices are scaled down to fit within the original trained window. Because interpolation keeps positions in-distribution, the authors report an error bound roughly 600x smaller than extrapolation. The method needs only a short fine-tune, within 1,000 steps, to adapt.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eChen and colleagues used Positional Interpolation to extend LLaMA context windows up to 32,768 tokens, demonstrated across models from 7B through 65B parameters. That turns a cheap fine-tune into a large jump in usable context, without retraining from scratch.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Shouyuan Chen",
+      "Sherman Wong",
+      "Liangjian Chen",
+      "Yuandong Tian"
+    ],
+    "url": "https://arxiv.org/abs/2306.15595",
+    "published_at": "2023-06-27",
+    "license": "arXiv (CC BY 4.0)"
+  },
+  "topic_ids": [
+    "context-memory"
+  ],
+  "tags": [
+    "efficiency",
+    "nlp",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2023-06-27",
+  "related": [
+    {
+      "id": "card_832133",
+      "slug": "rotary-position-embedding",
+      "type": "paper",
+      "title": "RoPE: Rotary Position Embedding",
+      "hook": "Encode position by rotating query/key vectors - relative distances then fall out of the dot product for free, no extra tokens or additive embeddings needed.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2021-04-20"
+    },
+    {
+      "id": "card_2f4185",
+      "slug": "longformer",
+      "type": "paper",
+      "title": "Longformer: The Long-Document Transformer",
+      "hook": "Most tokens only need to look at their neighbors, so swap full attention for a sliding window plus a few global tokens and the cost goes from quadratic to linear in sequence length.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2020-04-10"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_832133",
+      "slug": "rotary-position-embedding",
+      "type": "paper",
+      "title": "RoPE: Rotary Position Embedding",
+      "hook": "Encode position by rotating query/key vectors - relative distances then fall out of the dot product for free, no extra tokens or additive embeddings needed.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2021-04-20"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_e8632a#0",
+      "format": "quiz",
+      "prompt": "Why does interpolation beat extrapolation for extending a context window?",
+      "choices": [
+        {
+          "text": "It keeps position indices in-distribution instead of running off into unseen territory",
+          "correct": true
+        },
+        {
+          "text": "It trains the model from scratch on longer sequences",
+          "correct": false
+        },
+        {
+          "text": "It removes positional information entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eExtrapolation can make attention scores blow up; interpolation scales indices down to stay in the trained range, with a far smaller error bound.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e8632a#1",
+      "format": "flip",
+      "prompt": "How does Positional Interpolation actually adjust the position indices?",
+      "back_html": "\u003cp\u003eIt linearly down-scales the input position indices so they fall within the model's originally trained context window.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e8632a#2",
+      "format": "flip",
+      "prompt": "What makes Positional Interpolation a cheap way to extend context?",
+      "back_html": "\u003cp\u003eIt needs only a short fine-tune, within 1,000 steps, rather than retraining from scratch.\u003c/p\u003e"
+    }
+  ]
+}

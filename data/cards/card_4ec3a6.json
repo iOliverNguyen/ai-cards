@@ -1,0 +1,120 @@
+{
+  "id": "card_4ec3a6",
+  "slug": "license-laundering-ai-supply-chains",
+  "type": "paper",
+  "title": "Don't Trust the Label: License Laundering in AI Supply Chains",
+  "hook": "Licenses are supposed to travel with AI datasets and models — but across 232,270 supply-chain paths, obligation-bearing licenses survive end-to-end under 7% of the time.",
+  "key_points": [
+    "Traces 232,270 dataset→model→application chains across Hugging Face and GitHub to see whether license obligations survive redistribution.",
+    "Two forms of 'license laundering': unlicensed artifacts gaining definitive labels downstream, and one license category being swapped for another.",
+    "62.3% of chains pass through at least one artifact with no declared license — concentrated in a few foundational datasets.",
+    "Every obligation-bearing license category has under 7% end-to-end survival, while permissive licenses survive 95.1% of the time.",
+    "Upshot: the license on a downstream model or app often can't be trusted to reflect its real upstream obligations."
+  ],
+  "content_html": "\u003cp\u003eEvery dataset, model, and application in the AI ecosystem carries a license, and its obligations are supposed to propagate as the artifact is reused and redistributed. This paper is the first to measure whether they actually do.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eTracing the chain\u003c/h2\u003e\n\u003cp\u003eThe authors follow 232,270 dataset→model→application chains spanning Hugging Face (datasets and models) and GitHub (applications). They quantify two forms of \u0026quot;license laundering\u0026quot;: when an artifact with no declared license acquires a definitive label further downstream, and when one declared license category is replaced by another during redistribution.\u003c/p\u003e\n\u003ch2\u003eObligations wash out\u003c/h2\u003e\n\u003cp\u003eThe results are stark. 62.3% of chains pass through at least one artifact with no declared license — concentrated in a small set of foundational datasets. Every obligation-bearing license category falls below 7% end-to-end survival, while the permissive category reaches 95.1%. In other words, restrictive terms mostly disappear as artifacts move downstream, and the license attached to a final model or app is a poor guide to its real upstream obligations. The paper closes with recommendations for practitioners, model publishers, rights holders, and platform owners. Jewitt, Li, Rajbahadur, Adams, and Hassan, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "James Jewitt",
+      "Hao Li",
+      "Gopi Krishnan Rajbahadur",
+      "Bram Adams",
+      "Ahmed E. Hassan"
+    ],
+    "url": "https://arxiv.org/abs/2607.20300",
+    "published_at": "2026-07-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "data",
+    "papers-this-week"
+  ],
+  "tags": [
+    "open-source",
+    "dataset",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-07-23",
+  "date": "2026-07-22",
+  "related": [
+    {
+      "id": "card_4e9f3d",
+      "slug": "linear-ensembles-wash-watermarks",
+      "type": "paper",
+      "title": "Linear Ensembles Wash Away Watermarks",
+      "hook": "Text watermarks survive paraphrasing — but not arithmetic. Averaging the outputs of 3–5 different models cancels the signal almost entirely, and improves quality while doing it.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-05-28"
+    },
+    {
+      "id": "card_f22c85",
+      "slug": "watermark-evidence-forensic-readiness",
+      "type": "paper",
+      "title": "AI Watermark Evidence Fails Forensic Readiness",
+      "hook": "Laws like the EU AI Act and California's SB 942 assume watermark detection can hold up in court. Tested against forensic and legal admissibility standards, three leading methods collapse.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-17"
+    },
+    {
+      "id": "card_7a5e17",
+      "slug": "the-pile",
+      "type": "dataset",
+      "title": "The Pile: 800GB of Diverse Text",
+      "hook": "Web text alone leaves gaps. The Pile stitches together 22 curated sources — academic and professional — so a language model picks up knowledge plain web crawls miss.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-12-31"
+    },
+    {
+      "id": "card_621b11",
+      "slug": "laion-5b",
+      "type": "dataset",
+      "title": "LAION-5B: Open Image-Text at Scale",
+      "hook": "CLIP and DALL-E showed huge, noisy image-text data is gold. LAION-5B made that public — billions of CLIP-filtered pairs anyone can train open models on.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-16"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_4ec3a6#0",
+      "format": "flip",
+      "prompt": "What is 'license laundering' in an AI supply chain?",
+      "back_html": "\u003cp\u003eWhen license obligations fail to propagate through redistribution — e.g., an unlicensed artifact acquires a definitive license downstream, or one license category is silently swapped for another.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4ec3a6#1",
+      "format": "quiz",
+      "prompt": "How often do obligation-bearing licenses survive end-to-end across the studied chains?",
+      "choices": [
+        {
+          "text": "Under 7% of the time",
+          "correct": true
+        },
+        {
+          "text": "Over 90% of the time",
+          "correct": false
+        },
+        {
+          "text": "About half the time",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEvery obligation-bearing license category fell below 7% end-to-end survival, while permissive licenses reached 95.1% — obligations mostly wash out downstream.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4ec3a6#2",
+      "format": "flip",
+      "prompt": "Why can't you trust the license shown on a downstream AI model or app?",
+      "back_html": "\u003cp\u003eObligations rarely survive the dataset→model→app chain — 62.3% of chains pass through an unlicensed artifact, and permissive labels dominate downstream regardless of upstream terms.\u003c/p\u003e"
+    }
+  ]
+}

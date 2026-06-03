@@ -1,0 +1,122 @@
+{
+  "id": "card_7921e0",
+  "slug": "gradient-descent",
+  "type": "concept",
+  "title": "Gradient Descent",
+  "hook": "Lost in fog on a hillside, you'd feel for the steepest downhill step and take it, again and again. That's how models learn.",
+  "key_points": [
+    "Gradient descent minimizes a loss by repeatedly stepping in the direction that lowers it most.",
+    "The gradient points uphill, so you move the opposite way — along the negative gradient.",
+    "The learning rate sets step size: too big overshoots, too small crawls.",
+    "Stochastic gradient descent estimates the gradient from small minibatches, making it fast and scalable."
+  ],
+  "content_html": "\u003cp\u003eGradient descent is the workhorse algorithm for training models. You define a loss that measures how wrong the model is, compute the gradient (the direction of steepest increase), and then nudge the parameters in the opposite direction to make the loss a little smaller. Repeat thousands of times and the model settles into good parameters.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eAt each step you calculate the gradient of the loss with respect to every parameter, then subtract a small fraction of it — scaled by the learning rate — from those parameters. That fraction matters: too large and you bounce around or diverge, too small and training drags. Stochastic gradient descent (SGD) speeds this up by estimating the gradient from a random minibatch rather than the whole dataset each step.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eNearly every neural network you've heard of was trained by some flavor of gradient descent. It's the bridge between a loss function and an actual working model, and the intuition — follow the slope downhill — explains why choices like learning rate and batch size are so consequential in practice.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/Gradient_descent",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "training-intuition"
+  ],
+  "tags": [
+    "foundational",
+    "training"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2026-06-02",
+  "related": [
+    {
+      "id": "card_dd14c6",
+      "slug": "how-neural-networks-learn",
+      "type": "concept",
+      "title": "How Neural Networks Learn: Backpropagation",
+      "hook": "A neural net learns by asking, for every weight, 'how much did you contribute to my mistake?' Backprop answers all of them at once.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2017-10-05"
+    },
+    {
+      "id": "card_fbbf2c",
+      "slug": "backpropagation",
+      "type": "paper",
+      "title": "Learning Representations by Back-Propagating Errors",
+      "hook": "The 1986 paper that made deep learning possible: run the error backward through the network with the chain rule, and you get every weight's gradient in one sweep.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "1986-10-09"
+    },
+    {
+      "id": "card_2c585b",
+      "slug": "loss-functions",
+      "type": "concept",
+      "title": "Loss Functions",
+      "hook": "A loss function turns 'how wrong was I?' into a single number the model chases downhill — and the loss you pick decides what it learns to care about.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2026-06-03"
+    },
+    {
+      "id": "card_e41b8a",
+      "slug": "adam-optimizer",
+      "type": "paper",
+      "title": "Adam: The Default Optimizer",
+      "hook": "Adam gives every parameter its own adaptive step size by tracking the gradient's recent average and spread — and it mostly just works.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2014-12-22"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_ce155a",
+      "slug": "what-is-machine-learning",
+      "type": "concept",
+      "title": "What Is Machine Learning?",
+      "hook": "Instead of hand-coding rules, you show a program examples and let it find the patterns — then it handles inputs it has never seen.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_7921e0#0",
+      "format": "flip",
+      "prompt": "Why does gradient descent step along the negative gradient?",
+      "back_html": "\u003cp\u003eThe gradient points in the direction of steepest increase (uphill), so to lower the loss you move the opposite way — along the negative gradient.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7921e0#1",
+      "format": "quiz",
+      "prompt": "What goes wrong if the learning rate is too large?",
+      "choices": [
+        {
+          "text": "Updates overshoot and you bounce around or diverge",
+          "correct": true
+        },
+        {
+          "text": "Training settles too precisely into the minimum",
+          "correct": false
+        },
+        {
+          "text": "The gradient stops pointing uphill",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eToo large a learning rate overshoots or diverges; too small and training crawls. The learning rate sets the step size.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7921e0#2",
+      "format": "flip",
+      "prompt": "How does stochastic gradient descent differ from plain gradient descent?",
+      "back_html": "\u003cp\u003eIt estimates the gradient from a small random minibatch instead of the whole dataset each step, making it fast and scalable.\u003c/p\u003e"
+    }
+  ]
+}

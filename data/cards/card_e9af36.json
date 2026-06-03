@@ -1,0 +1,107 @@
+{
+  "id": "card_e9af36",
+  "slug": "on-the-measure-of-intelligence",
+  "type": "paper",
+  "title": "On the Measure of Intelligence (ARC)",
+  "hook": "Is a high benchmark score the same as intelligence? Chollet argues no — intelligence is how efficiently you acquire new skills, not how well you perform known ones.",
+  "key_points": [
+    "Defines intelligence via algorithmic information theory: skill-acquisition efficiency, not raw performance.",
+    "Argues skill-based benchmarks reward priors and experience rather than generalization.",
+    "Introduces the Abstraction and Reasoning Corpus (ARC), a few-shot reasoning benchmark.",
+    "ARC is built on human-like innate priors, testing learning rather than memorized skill."
+  ],
+  "content_html": "\u003cp\u003eFrançois Chollet argues that the field has been measuring the wrong thing. A system that scores well on a task may simply have been trained on enough data to cover it, which says little about its ability to handle something new. He proposes a formal definition grounded in algorithmic information theory: intelligence as skill-acquisition efficiency, not raw task performance. To test that idea, he introduces the Abstraction and Reasoning Corpus (ARC), a few-shot benchmark built on human-like innate priors.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eChollet frames intelligence in information-theoretic terms, treating it as how efficiently a system converts prior knowledge and a little experience into new skills. From that lens, ordinary skill-based benchmarks are misleading: they reward whatever priors and experience were baked in during training rather than the capacity to generalize. ARC is his counter-proposal — a set of abstract, few-shot reasoning puzzles grounded in priors humans seem to have innately, so doing well requires learning the rule from a handful of examples rather than recalling a memorized skill.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThis reframing pushed the conversation past leaderboard-chasing toward generalization and sample efficiency as the real targets. ARC became a durable, deliberately hard challenge for that goal. A successor, ARC-AGI-2, arrived in 2025, and frontier models only began making real progress on it in 2025 and 2026 — a sign of how stubborn genuine few-shot reasoning has been, and why Chollet's distinction still resonates.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "François Chollet"
+    ],
+    "url": "https://arxiv.org/abs/1911.01547",
+    "published_at": "2019-11-05",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety"
+  ],
+  "tags": [
+    "benchmark",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2019-11-05",
+  "related": [
+    {
+      "id": "card_ae53ac",
+      "slug": "gpqa",
+      "type": "paper",
+      "title": "GPQA: A Graduate-Level Google-Proof Q\u0026A Benchmark",
+      "hook": "What makes a question hard for a model? GPQA's are hard even for skilled people with Google: non-experts reach only 34% after 30+ minutes of searching.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-11-20"
+    },
+    {
+      "id": "card_063597",
+      "slug": "mmlu",
+      "type": "paper",
+      "title": "MMLU: Measuring Massive Multitask Language Understanding",
+      "hook": "Want one number for how broadly an LLM 'knows stuff'? MMLU is a 57-subject exam spanning history, law, medicine, and math — and it became a default yardstick.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-09-07"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_e9af36#0",
+      "format": "flip",
+      "prompt": "How does Chollet redefine intelligence?",
+      "back_html": "\u003cp\u003eAs skill-acquisition efficiency — how efficiently a system converts priors and a little experience into new skills — not raw task performance.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e9af36#1",
+      "format": "quiz",
+      "prompt": "Why does Chollet argue ordinary skill-based benchmarks are misleading?",
+      "choices": [
+        {
+          "text": "They reward priors and experience baked in during training, not generalization",
+          "correct": true
+        },
+        {
+          "text": "They are too small to be statistically valid",
+          "correct": false
+        },
+        {
+          "text": "They only test memorized facts, never skills",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSkill-based benchmarks reward whatever priors and experience were baked in, rather than the capacity to generalize.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e9af36#2",
+      "format": "quiz",
+      "prompt": "What does ARC require a solver to do?",
+      "choices": [
+        {
+          "text": "Learn the rule from a handful of examples, using human-like innate priors",
+          "correct": true
+        },
+        {
+          "text": "Recall memorized skills from web-scale data",
+          "correct": false
+        },
+        {
+          "text": "Optimize a single accuracy metric",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eARC's few-shot puzzles are grounded in priors humans have innately, so success requires learning the rule, not recalling a skill.\u003c/p\u003e"
+    }
+  ]
+}

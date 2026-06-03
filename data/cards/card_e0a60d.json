@@ -1,0 +1,110 @@
+{
+  "id": "card_e0a60d",
+  "slug": "full-song-generation-frontier",
+  "type": "paper",
+  "title": "Pushing the Frontier of Full-Song Generation",
+  "hook": "Full, multi-minute songs from just lyrics and a text prompt: a two-stage system plans the song autoregressively, then renders it with flow matching for high-fidelity audio.",
+  "key_points": [
+    "One framework, three tasks: lyrics-to-song, instrumental-only generation, and cover generation that restyles a song while keeping its melody.",
+    "A semantic-aware tokenizer compresses audio into 8-codebook residual vector-quantized (RVQ) tokens.",
+    "A hierarchical autoregressive language model plans the full song over those tokens; a diffusion-style module (FullDiT) then flow-matches high-fidelity audio in a continuous VAE latent space.",
+    "Cover generation uses a two-level melody module that extracts and discretizes melody cues from a reference track.",
+    "Reward-based post-training (DPO, GRPO, OPD; flow-based GRPO for the renderer) lifts musicality — competitive on a multilingual benchmark and the Artificial Analysis vocals leaderboard."
+  ],
+  "content_html": "\u003cp\u003eGenerating a short musical clip is one thing; producing a coherent, multi-minute song with vocals, structure, and lyrics is much harder. This technical report presents a unified framework that does exactly that from lyrics, text descriptions, and musical attributes.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003ePlan, then render\u003c/h2\u003e\n\u003cp\u003eThe system supports three tasks — lyrics-to-song, instrumental-only generation, and cover generation. Under the hood it separates \u003cem\u003eplanning\u003c/em\u003e from \u003cem\u003erendering\u003c/em\u003e. A semantic-aware tokenizer first compresses audio into 8-codebook residual vector-quantized (RVQ) tokens. A hybrid autoregressive language model then performs hierarchical planning over those tokens to lay out the whole song, and FullDiT — a flow-matching module operating in a continuous VAE latent space, conditioned on the tokens, lyrics, and text captions — renders high-fidelity audio.\u003c/p\u003e\n\u003ch2\u003eMelody control and reward tuning\u003c/h2\u003e\n\u003cp\u003eFor covers, a two-level melody module extracts and discretizes melody cues from a reference track so the output preserves the original tune in a new style. The authors apply reward-based post-training — DPO, GRPO, and OPD for the planner, and flow-based GRPO for FullDiT — to improve musicality and rendering. On a multilingual automatic benchmark and the Artificial Analysis \u0026quot;Music with Vocals\u0026quot; leaderboard, the framework achieves competitive results. Dai et al., arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Junyu Dai",
+      "Xinyue Fan",
+      "Weiqin Li",
+      "Xiangang Li",
+      "Yunjia Li",
+      "Bin Ma",
+      "Yukun Ma",
+      "Chongjia Ni",
+      "Yufei Shi",
+      "Haoxu Wang",
+      "Menglin Wu",
+      "Jianwei Yu",
+      "Huaicheng Zhang",
+      "Han Zhao",
+      "Shengkui Zhao",
+      "Haina Zhu"
+    ],
+    "url": "https://arxiv.org/abs/2607.20253",
+    "published_at": "2026-07-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "video-audio",
+    "papers-this-week"
+  ],
+  "tags": [
+    "generative",
+    "multimodal",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-23",
+  "date": "2026-07-22",
+  "related": [
+    {
+      "id": "card_8b2939",
+      "slug": "musicgen",
+      "type": "paper",
+      "title": "MusicGen: Simple and Controllable Music Generation",
+      "hook": "Generate music from a text description or a melody reference using a single autoregressive transformer over discrete audio tokens - no cascade of specialized models required.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-06-08"
+    },
+    {
+      "id": "card_c3cb4c",
+      "slug": "stereo2spatial-binaural-upmix",
+      "type": "blog",
+      "title": "Stereo2Spatial: Upmixing Stereo Music to 7.1.4 Spatial Audio with Flow-Matching Diffusion",
+      "hook": "A hobbyist project trains a flow-matching diffusion model to turn ordinary stereo music into full 7.1.4 spatial mixes — built on a dedicated VAE latent space rather than working directly on audio.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-17"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_e0a60d#0",
+      "format": "quiz",
+      "prompt": "How does the framework split full-song generation into two stages?",
+      "choices": [
+        {
+          "text": "A hierarchical autoregressive LM plans the song over discrete tokens, then a flow-matching module renders high-fidelity audio",
+          "correct": true
+        },
+        {
+          "text": "A single GAN generates the entire waveform in one pass",
+          "correct": false
+        },
+        {
+          "text": "It retrieves and stitches together clips of existing songs",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe hybrid autoregressive LM does hierarchical planning over RVQ tokens; FullDiT then flow-matches audio in a continuous VAE latent space to improve fidelity.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e0a60d#1",
+      "format": "flip",
+      "prompt": "What does the semantic-aware tokenizer produce, and why?",
+      "back_html": "\u003cp\u003eIt encodes audio into 8-codebook RVQ (residual vector-quantized) tokens — a compact discrete representation the autoregressive model can plan a full song over efficiently.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e0a60d#2",
+      "format": "flip",
+      "prompt": "How does the system generate a cover of an existing song?",
+      "back_html": "\u003cp\u003eA two-level melody module extracts and discretizes melody cues from the reference audio, guiding generation so the new version keeps the original's melodic content in a different style.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "id": "card_de5399",
+  "slug": "deepseek-v3",
+  "type": "paper",
+  "title": "DeepSeek-V3 Technical Report",
+  "hook": "DeepSeek-V3 trained a frontier-class MoE model for a fraction of the cost of comparable closed models, using FP8 training and a novel load-balancing scheme to make efficiency the headline result.",
+  "key_points": [
+    "A 671B-parameter sparse MoE model (37B active per token) trained with FP8 mixed-precision, cutting compute costs substantially versus BF16 training.",
+    "Introduces Multi-head Latent Attention (MLA) to compress the KV cache, reducing memory bandwidth during inference.",
+    "Training cost was reportedly a small fraction of what comparable frontier models cost, making it a striking cost-efficiency result.",
+    "Open weights released, matching or approaching GPT-4-class performance on coding and reasoning benchmarks."
+  ],
+  "content_html": "\u003cp\u003eDeepSeek-AI published the DeepSeek-V3 technical report in December 2024, describing a 671-billion-parameter sparse Mixture-of-Experts model trained through a collection of engineering optimizations that significantly reduced cost relative to comparable models from other labs. The open-weights release matched or approached frontier closed-model performance on coding and reasoning tasks.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eDeepSeek-V3 uses a sparse MoE design with 671B total parameters and 37B active per token. Two notable architectural choices stand out: FP8 mixed-precision training, which reduces memory and compute versus the more common BF16, and Multi-head Latent Attention, which compresses the key-value cache into a lower-dimensional latent space to cut memory bandwidth during inference. A custom MoE routing strategy avoids the load-imbalance problems (some experts getting far more traffic than others) that can degrade training efficiency.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe cost efficiency story is the most discussed aspect: DeepSeek claims the full training run cost a small fraction of what comparable frontier models have been reported to cost, which raised questions in the industry about whether the expense of leading labs' training runs is strictly necessary. Read the full technical report on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "DeepSeek-AI"
+    ],
+    "url": "https://arxiv.org/abs/2412.19437",
+    "published_at": "2024-12-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining",
+    "releases"
+  ],
+  "tags": [
+    "nlp",
+    "open-source",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2024-12-27",
+  "related": [
+    {
+      "id": "card_31ff4e",
+      "slug": "mixtral",
+      "type": "paper",
+      "title": "Mixtral of Experts",
+      "hook": "Mixtral packs 8 experts per layer but routes each token through only 2, so you get the capacity of a ~47B model at the compute cost of a ~13B one - open weights included.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-01-08"
+    },
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    },
+    {
+      "id": "card_4cd8fd",
+      "slug": "deepseek-r1",
+      "type": "paper",
+      "title": "DeepSeek-R1: Incentivizing Reasoning via Reinforcement Learning",
+      "hook": "DeepSeek shows strong reasoning can emerge from RL on verifiable rewards with minimal supervised data - and those reasoning traces can be distilled into smaller models.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2025-01-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_de5399#0",
+      "format": "flip",
+      "prompt": "What does Multi-head Latent Attention (MLA) do in DeepSeek-V3?",
+      "back_html": "\u003cp\u003eIt compresses the key-value cache into a lower-dimensional latent space, cutting memory bandwidth during inference.\u003c/p\u003e"
+    },
+    {
+      "id": "card_de5399#1",
+      "format": "quiz",
+      "prompt": "How does FP8 mixed-precision training help DeepSeek-V3's economics?",
+      "choices": [
+        {
+          "text": "It reduces memory and compute versus the more common BF16",
+          "correct": true
+        },
+        {
+          "text": "It increases the number of active parameters per token",
+          "correct": false
+        },
+        {
+          "text": "It removes the need for a Mixture-of-Experts design",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eFP8 mixed precision cuts memory and compute relative to BF16, part of why the training run cost a fraction of comparable models.\u003c/p\u003e"
+    },
+    {
+      "id": "card_de5399#2",
+      "format": "flip",
+      "prompt": "Why does DeepSeek-V3 use a custom MoE routing strategy?",
+      "back_html": "\u003cp\u003eTo avoid load imbalance — some experts getting far more traffic than others — which can degrade training efficiency.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "id": "card_1cf15f",
+  "slug": "dropout",
+  "type": "paper",
+  "title": "Dropout: Preventing Overfitting by Dropping Units",
+  "hook": "Randomly delete units during each training step and you stop neurons from co-adapting - which is secretly like training a huge ensemble of thinned networks and averaging them at test time.",
+  "key_points": [
+    "Randomly drops units and their connections during training, so neurons can't rely on specific co-adaptations.",
+    "Training effectively samples from an exponential number of 'thinned' sub-networks.",
+    "At test time, a single network with scaled-down weights approximates averaging all those sub-networks.",
+    "Reduced overfitting and improved results across vision, speech recognition, document classification, and computational biology."
+  ],
+  "content_html": "\u003cp\u003eSrivastava, Hinton, Krizhevsky and colleagues introduced dropout in their 2014 JMLR paper as a simple cure for overfitting in large neural networks. The idea is almost suspiciously cheap: during training, randomly switch off units so the network can never lean too hard on any single feature detector.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eOn each training step, dropout randomly removes units along with their connections, so a different \u0026quot;thinned\u0026quot; version of the network sees each batch. This prevents units from co-adapting too much - a neuron can't count on a specific partner always being present, so it has to learn features that are useful more broadly. Over training, this effectively samples from an exponential number of sub-networks. At test time you don't run all of them; instead a single network with weights scaled down to match the dropout rate approximates averaging the whole ensemble in one forward pass.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eTreating dropout as cheap model averaging gave a principled story for why it works so well, and the authors showed it reduced overfitting and improved results across vision, speech recognition, document classification, and computational biology. That breadth made it a default regularizer in deep learning for years.\u003c/p\u003e",
+  "source": {
+    "name": "JMLR",
+    "authors": [
+      "Nitish Srivastava",
+      "Geoffrey Hinton",
+      "Alex Krizhevsky",
+      "et al."
+    ],
+    "url": "https://jmlr.org/papers/v15/srivastava14a.html",
+    "license": "JMLR (open access)"
+  },
+  "topic_ids": [
+    "optimization"
+  ],
+  "tags": [
+    "training",
+    "foundational",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2026-06-03",
+  "related": [
+    {
+      "id": "card_a4574e",
+      "slug": "overfitting-and-regularization",
+      "type": "concept",
+      "title": "Overfitting \u0026 Regularization",
+      "hook": "A model that aces its training data but flops on anything new hasn't learned — it has memorized. Regularization is the cure.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_df9c22",
+      "slug": "batch-normalization",
+      "type": "paper",
+      "title": "Batch Normalization",
+      "hook": "Re-center and re-scale each layer's activations on every minibatch, and deep nets suddenly train faster and tolerate much higher learning rates.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2015-02-11"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_1cf15f#0",
+      "format": "flip",
+      "prompt": "Why does randomly dropping units during training reduce overfitting?",
+      "back_html": "\u003cp\u003eIt stops neurons from co-adapting — a unit can't rely on a specific partner always being present, so it learns features useful more broadly.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1cf15f#1",
+      "format": "quiz",
+      "prompt": "What is the ensemble interpretation of dropout?",
+      "choices": [
+        {
+          "text": "Training samples from an exponential number of thinned sub-networks; testing approximates averaging them",
+          "correct": true
+        },
+        {
+          "text": "It trains one network and discards the worst-performing neurons",
+          "correct": false
+        },
+        {
+          "text": "It literally trains and stores thousands of separate models",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEach step sees a different thinned network; at test time, one network with scaled-down weights approximates averaging the ensemble.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1cf15f#2",
+      "format": "quiz",
+      "prompt": "How is dropout handled at test time?",
+      "choices": [
+        {
+          "text": "A single network with weights scaled down to match the dropout rate, in one forward pass",
+          "correct": true
+        },
+        {
+          "text": "All sub-networks are run and their outputs averaged",
+          "correct": false
+        },
+        {
+          "text": "Dropout stays active to keep behavior consistent",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRather than running every sub-network, a single net with scaled-down weights approximates the ensemble average in one pass.\u003c/p\u003e"
+    }
+  ]
+}

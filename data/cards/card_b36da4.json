@@ -1,0 +1,144 @@
+{
+  "id": "card_b36da4",
+  "slug": "native-multimodal-pretraining-scaling-laws",
+  "type": "paper",
+  "title": "Scaling Native Multimodal Pre-Training From Scratch",
+  "hook": "Chinchilla told you how to split compute between model size and tokens for text. This maps the same frontier for models trained on images and text from day one.",
+  "key_points": [
+    "Studies compute-optimal model size and token count for vision-language models trained natively, not bolted together late.",
+    "Minimum achievable loss follows a predictable compute law; optimal size and tokens scale as power laws.",
+    "Language and multimodal objectives scale differently — they are not one curve.",
+    "The language allocation law barely moves with data mixture; the multimodal one is highly sensitive to it.",
+    "Text-heavy mixtures only pay off at larger model scales, pushing budget toward capacity over tokens.",
+    "Authors report positive cross-modal transfer: multimodal training improved pure-text spatial reasoning."
+  ],
+  "content_html": "\u003cp\u003eScaling laws told us how to spend a fixed compute budget on a text model: this much size, this many tokens. Wu and colleagues ask the same question for vision-language models trained on both modalities from scratch — \u0026quot;native\u0026quot; multimodal pre-training, as opposed to stitching a vision encoder onto a finished LLM. Their answer is that the frontier is real and predictable, but it is not one curve: language and multimodal objectives scale by different rules.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat they found\u003c/h2\u003e\n\u003cp\u003eMinimum achievable loss follows a predictable compute law, and the compute-optimal model size and token count scale as power laws — familiar territory. The twist is data composition. The allocation law for the language objective is largely invariant to how much multimodal data is in the mix, so language learning stays stable no matter the ratio. The multimodal allocation law is the opposite: highly sensitive to composition, with text-heavy mixtures only becoming compute-efficient at larger model scales, which pushes the optimal budget toward model capacity. By modeling how composition affects the compute laws and allocation exponents, the authors derive an efficiency frontier that specifies model size, token count, and mixture together.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eIf you are training a multimodal model from scratch, you cannot borrow a text-only scaling recipe and expect it to hold — the mixture ratio changes where the optimum sits. The paper also reports positive cross-modal transfer: training on images and text improved pure-text spatial reasoning and enabled robust multimodal in-context learning, suggesting the modalities reinforce each other rather than compete for capacity. See the paper for the fitted exponents and evaluation details.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Haoyuan Wu",
+      "Aoqi Wu",
+      "Hai Wang",
+      "Jiajia Wu",
+      "Jinxiang Ou",
+      "Bei Yu"
+    ],
+    "url": "https://arxiv.org/abs/2607.22043",
+    "published_at": "2026-07-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining",
+    "vlms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "training",
+    "vision",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-27",
+  "date": "2026-07-24",
+  "related": [
+    {
+      "id": "card_85f66a",
+      "slug": "scaling-laws",
+      "type": "paper",
+      "title": "Scaling Laws for Neural Language Models",
+      "hook": "Loss doesn't drop randomly as models grow — it follows a smooth power law in size, data, and compute. That predictability is what made betting on bigger models rational.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2020-01-23"
+    },
+    {
+      "id": "card_46fd66",
+      "slug": "chinchilla-scaling-laws",
+      "type": "paper",
+      "title": "Chinchilla: Compute-Optimal Scaling",
+      "hook": "Most giant models were starved of data. Chinchilla showed that for a fixed compute budget you should grow parameters and tokens together — and a smaller, longer-trained model won.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2022-03-29"
+    },
+    {
+      "id": "card_a8ad97",
+      "slug": "scalable-visual-pretraining-language-intelligence",
+      "type": "paper",
+      "title": "Scalable Visual Pretraining for Language Intelligence",
+      "hook": "Documents pack meaning into layout, figures, and equations that plain text can't fully capture. Skip the OCR step: pretraining directly on rendered pages beats text-only pretraining.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-10"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_85f66a",
+      "slug": "scaling-laws",
+      "type": "paper",
+      "title": "Scaling Laws for Neural Language Models",
+      "hook": "Loss doesn't drop randomly as models grow — it follows a smooth power law in size, data, and compute. That predictability is what made betting on bigger models rational.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2020-01-23"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_b36da4#0",
+      "format": "flip",
+      "prompt": "What does 'native' multimodal pre-training mean here?",
+      "back_html": "\u003cp\u003eTraining on multimodal inputs from scratch rather than fusing separately-trained components late — which the authors argue gives deeper cross-modal integration and avoids optimization asymmetries.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b36da4#1",
+      "format": "quiz",
+      "prompt": "How do the language and multimodal allocation laws differ with respect to data mixture?",
+      "choices": [
+        {
+          "text": "The language law is largely invariant to mixture; the multimodal law is highly sensitive to it",
+          "correct": true
+        },
+        {
+          "text": "Both shift identically, so one curve covers each",
+          "correct": false
+        },
+        {
+          "text": "The language law is sensitive to mixture while the multimodal law stays fixed",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLanguage learning stayed stable regardless of the multimodal data ratio, but the compute-optimal multimodal allocation moved sharply with composition — which is why they must be modeled separately.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b36da4#2",
+      "format": "flip",
+      "prompt": "What does the paper say text-heavy data mixtures do to optimal resource allocation?",
+      "back_html": "\u003cp\u003eThey become compute-efficient only at larger model scales, shifting the optimal split toward greater model capacity rather than more tokens.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b36da4#3",
+      "format": "quiz",
+      "prompt": "What did downstream evaluation suggest about training on both modalities at once?",
+      "choices": [
+        {
+          "text": "Positive cross-modal transfer — it enhanced pure-text spatial reasoning",
+          "correct": true
+        },
+        {
+          "text": "A tax on text ability, traded away for visual skill",
+          "correct": false
+        },
+        {
+          "text": "No measurable effect on either modality",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors report that native multimodal pre-training improved text-only spatial reasoning and enabled robust multimodal in-context learning, so the modalities helped rather than competed.\u003c/p\u003e"
+    }
+  ]
+}

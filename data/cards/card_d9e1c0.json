@@ -1,0 +1,114 @@
+{
+  "id": "card_d9e1c0",
+  "slug": "xhc-expanded-hyper-connections",
+  "type": "paper",
+  "title": "xHC: Expanded Hyper-Connections",
+  "hook": "Hyper-Connections let a transformer keep several parallel residual streams instead of one — a big win from 1 to 4 streams, then a wall. xHC breaks the wall, scaling cleanly to 16 on real MoE models.",
+  "key_points": [
+    "Hyper-Connections (HC) expand a transformer's single residual stream into N parallel streams, a form of memory scaling beyond width and depth; going N=1 to N=4 gave large gains.",
+    "Prior HC-family methods stall past N=4: diminishing returns plus residual-mixing cost that scales cubically with N.",
+    "xHC fixes this with temporal feature augmentation for richer write-back, plus a sparse update that touches only k=4 of N=16 streams while keeping dense read access to the full residual state.",
+    "On 18B and 28B MoE models, xHC beats manifold-constrained HC (mHC) by 4.0 average downstream points at 18B, for only modest extra training FLOPs.",
+    "Scaling-law fits show vanilla residual connections need 1.50x and mHC needs 1.19x the compute of xHC to reach the same loss.",
+    "A companion method, xHC-Flash, cuts per-sublayer memory traffic from 73.5C to 40C — comparable to mHC's 34C at N=4 — while keeping xHC's full gains."
+  ],
+  "content_html": "\u003cp\u003eHyper-Connections are a simple-sounding idea: instead of one residual stream running through a transformer, keep several in parallel, giving the model more \u0026quot;memory\u0026quot; to route information through without growing width or depth. The jump from one stream to four already paid off big. But Xiangdong Zhang, Junchi Yan, and collaborators found the whole HC family — including the stabilized Manifold-Constrained HC (mHC) — hits a wall past four streams: gains flatten out just as the cost of mixing the streams starts scaling cubically with how many you have.\u003c/p\u003e\n\u003cp\u003eTheir fix, xHC, attacks both halves of that wall. It gives each stream richer information to write back (temporal feature augmentation), and it makes the update itself sparse — only 4 of 16 streams get written to at each step, while the model still reads densely from the full residual state. Tested on 18B and 28B MoE models, xHC beats mHC by 4.0 average downstream points at 18B for only modest extra compute; by the paper's scaling-law fits, plain residual connections need 1.5x and mHC needs 1.19x xHC's compute to hit the same loss. A companion technique, xHC-Flash, tames the memory-traffic cost of moving 16 streams' worth of state around, bringing it down near what mHC needs at just 4 streams.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe result matters less for the exact numbers than for the direction: it reopens residual-stream width as a scaling axis that looked exhausted at N=4, at MoE scales large enough (18B–28B) that the tradeoffs are representative of real pretraining runs. Full paper linked via the source.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xiangdong Zhang",
+      "Xiaohan Qin",
+      "Sunan Zou",
+      "Tuo Dai",
+      "Xiaoming Shi",
+      "Huaijin Wu",
+      "Yebin Yang",
+      "Zhuo Xia",
+      "Shaofeng Zhang",
+      "Lin Yao",
+      "Yuliang Liu",
+      "Yu Cheng",
+      "Junchi Yan"
+    ],
+    "url": "https://arxiv.org/abs/2607.14530",
+    "published_at": "2026-07-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "moe",
+    "optimization",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "training",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-20",
+  "date": "2026-07-16",
+  "related": [
+    {
+      "id": "card_249e07",
+      "slug": "moe-routers-manifold-power-iteration",
+      "type": "paper",
+      "title": "Redesigning MoE Routers with Manifold Power Iteration",
+      "hook": "An MoE router points each token at the right expert — yet nothing forces its rows to actually represent those experts. This aligns each router row with its expert's principal direction.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-10"
+    },
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_d9e1c0#0",
+      "format": "flip",
+      "prompt": "Why do Hyper-Connections stall past N=4 parallel residual streams, per this paper?",
+      "back_html": "\u003cp\u003eTwo bottlenecks: not enough write-back information to usefully fill an expanding number of streams, and residual-mixing computation whose cost scales cubically with N.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d9e1c0#1",
+      "format": "quiz",
+      "prompt": "How does xHC scale Hyper-Connections to N=16 streams without the usual cost blowup?",
+      "choices": [
+        {
+          "text": "It updates only a sparse subset (k=4) of the 16 streams per step while still reading densely from the full residual state",
+          "correct": true
+        },
+        {
+          "text": "It shrinks the model's hidden dimension to compensate for more streams",
+          "correct": false
+        },
+        {
+          "text": "It removes the residual connections entirely and relies on attention alone",
+          "correct": false
+        },
+        {
+          "text": "It runs each of the 16 streams as a fully separate model and averages outputs",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003exHC combines richer write-back (temporal feature augmentation) with a sparse residual-stream update — writing to only k=4 of N=16 streams while keeping full dense read access — avoiding the cubic cost of updating every stream.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d9e1c0#2",
+      "format": "flip",
+      "prompt": "What does xHC-Flash solve, and how much does it cut per-sublayer memory traffic?",
+      "back_html": "\u003cp\u003eIt controls the memory traffic from the expanded residual state at large N, cutting it from 73.5C to 40C per sublayer — close to mHC's 34C at N=4 — while keeping xHC's full accuracy gains.\u003c/p\u003e"
+    }
+  ]
+}

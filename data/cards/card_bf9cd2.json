@@ -1,0 +1,106 @@
+{
+  "id": "card_bf9cd2",
+  "slug": "switch-transformer",
+  "type": "paper",
+  "title": "Switch Transformer: Scaling to Trillion-Parameter Models",
+  "hook": "Route every token to exactly one expert instead of many - this single simplification made trillion-parameter MoE models stable enough to train at scale.",
+  "key_points": [
+    "Replaces top-k expert routing with top-1 ('switch') routing, cutting communication and gating complexity.",
+    "Demonstrates models with up to a trillion parameters trained on TPUs while keeping per-token FLOPs roughly constant.",
+    "Introduces auxiliary load-balancing losses to prevent routing collapse where one expert dominates.",
+    "Achieves 7x faster pre-training than a dense T5 baseline at the same compute budget."
+  ],
+  "content_html": "\u003cp\u003eFedus, Zoph, and Shazeer at Google Brain showed in 2021 that simplifying MoE routing to a single expert per token - the \u0026quot;switch\u0026quot; - removed enough complexity to make trillion-parameter Transformer models trainable. The paper appeared on arXiv in January 2021.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eEach Switch layer replaces the dense feed-forward block in a standard Transformer with a set of expert feed-forward networks. A router sends each token to exactly one expert (top-1), rather than blending outputs from several. A learned auxiliary loss penalizes uneven routing so that no single expert becomes a bottleneck. Expert capacity buffers are used to handle overflow when too many tokens land on one expert in the same batch.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe Switch Transformer showed that sparse MoE Transformers can train faster per FLOP than dense models of comparable quality, opening the door to trillion-parameter scale without proportionally larger compute budgets. The 7x pre-training speedup over T5 made the design hard to ignore. Read the full paper on arXiv for training recipes, stability tricks, and ablations across model sizes.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "William Fedus",
+      "Barret Zoph",
+      "Noam Shazeer"
+    ],
+    "url": "https://arxiv.org/abs/2101.03961",
+    "published_at": "2021-01-11",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "moe"
+  ],
+  "tags": [
+    "architecture",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2021-01-11",
+  "related": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    },
+    {
+      "id": "card_31ff4e",
+      "slug": "mixtral",
+      "type": "paper",
+      "title": "Mixtral of Experts",
+      "hook": "Mixtral packs 8 experts per layer but routes each token through only 2, so you get the capacity of a ~47B model at the compute cost of a ~13B one - open weights included.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-01-08"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_bf9cd2#0",
+      "format": "flip",
+      "prompt": "What single routing change did the Switch Transformer make, and why?",
+      "back_html": "\u003cp\u003eIt routes each token to exactly one expert (top-1) instead of several, cutting communication and gating complexity enough to make trillion-parameter models trainable.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bf9cd2#1",
+      "format": "quiz",
+      "prompt": "Why does the Switch Transformer add an auxiliary load-balancing loss?",
+      "choices": [
+        {
+          "text": "To prevent routing collapse where one expert dominates",
+          "correct": true
+        },
+        {
+          "text": "To speed up the softmax in the router",
+          "correct": false
+        },
+        {
+          "text": "To compress the experts into fewer parameters",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe auxiliary loss penalizes uneven routing so no single expert becomes a bottleneck.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bf9cd2#2",
+      "format": "flip",
+      "prompt": "Why was the Switch design hard to ignore?",
+      "back_html": "\u003cp\u003eIt achieved 7x faster pre-training than a dense T5 baseline at the same compute budget, while keeping per-token FLOPs roughly constant.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "id": "card_eb40d3",
+  "slug": "multi-head-attention",
+  "type": "resource",
+  "title": "The Annotated Transformer",
+  "hook": "Want to truly get multi-head attention? Read the Transformer paper line by line — next to runnable PyTorch that implements every equation.",
+  "key_points": [
+    "Reimplements 'Attention Is All You Need' as working PyTorch interleaved with the paper's text.",
+    "Multi-head attention runs several attention computations in parallel, each in its own subspace.",
+    "The heads' outputs are concatenated and mixed, letting the model attend to different patterns at once.",
+    "Walks through the full block: attention, feed-forward layers, residual connections, and normalization."
+  ],
+  "content_html": "\u003cp\u003eThe Annotated Transformer, from Harvard NLP, takes the \u0026quot;Attention Is All You Need\u0026quot; paper and reimplements it line by line in runnable PyTorch, placed right next to the original text. It's one of the clearest ways to actually understand multi-head attention and the full Transformer block, because you can read each equation and immediately see the code that computes it.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eA single attention operation looks at the data through one lens. Multi-head attention splits the model's representation into several smaller pieces and runs attention independently on each \u0026quot;head,\u0026quot; so different heads can focus on different relationships — say, one tracking syntax and another tracking meaning. The heads' results are concatenated and projected back together. The annotated walkthrough builds this up from scratch, then assembles the surrounding pieces — positional encoding, feed-forward layers, residual connections, and layer normalization — into a complete encoder-decoder model you can run.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eReading equations in a paper is one thing; seeing them as executable code that you can step through and modify is another. This resource bridges that gap, which is why it became a go-to reference for people learning Transformers. If the original paper feels dense, working through the annotated version alongside it makes the architecture concrete and far easier to remember.\u003c/p\u003e",
+  "source": {
+    "name": "Harvard NLP",
+    "authors": [
+      "Sasha Rush",
+      "et al."
+    ],
+    "url": "https://nlp.seas.harvard.edu/annotated-transformer/",
+    "published_at": "2018-04-03",
+    "license": "free educational"
+  },
+  "topic_ids": [
+    "attention-mechanisms",
+    "transformers"
+  ],
+  "tags": [
+    "architecture",
+    "nlp",
+    "tutorial"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2018-04-03",
+  "related": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    },
+    {
+      "id": "card_7ed03d",
+      "slug": "what-is-attention",
+      "type": "concept",
+      "title": "What Is Attention?",
+      "hook": "Attention lets a model decide what to focus on: it scores how relevant each piece of input is to the current question, then blends them by those scores.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2018-06-24"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7ed03d",
+      "slug": "what-is-attention",
+      "type": "concept",
+      "title": "What Is Attention?",
+      "hook": "Attention lets a model decide what to focus on: it scores how relevant each piece of input is to the current question, then blends them by those scores.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2018-06-24"
+    }
+  ]
+}

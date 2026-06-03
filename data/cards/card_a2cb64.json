@@ -1,0 +1,69 @@
+{
+  "id": "card_a2cb64",
+  "slug": "hitchhikers-guide-agentic-ai",
+  "type": "resource",
+  "title": "The Hitchhiker's Guide to Agentic AI",
+  "hook": "A practitioner reference that walks the whole agent stack — transformer substrate, RLHF, memory, MCP, A2A, multi-agent topologies — on the thesis that good agents demand understanding every layer.",
+  "key_points": [
+    "A comprehensive practitioner's reference for building autonomous AI systems, first principles to production.",
+    "Central thesis: great agentic systems require understanding every layer of the pipeline, not just one.",
+    "Foundations: transformers, GPU systems, SFT/LoRA/MoE, model compression, inference optimization.",
+    "Alignment \u0026 reasoning: RLHF, PPO, DPO, GRPO, reward modeling, chain-of-thought, test-time scaling.",
+    "Agentic core: trajectory RL, RAG and Agentic RAG, memory systems, harness/context design, MCP, A2A, and multi-agent topologies."
+  ],
+  "content_html": "\u003cp\u003e\u003cstrong\u003eThe Hitchhiker's Guide to Agentic AI\u003c/strong\u003e is a practitioner's reference for building autonomous AI systems end to end — and a useful map if you're trying to see how the pieces fit together rather than studying one in isolation.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat it covers\u003c/h2\u003e\n\u003cp\u003eThe book is organized around a single thesis: building great agentic systems means understanding \u003cem\u003eevery\u003c/em\u003e layer of the pipeline. It starts with the LLM substrate — transformer architecture, GPU systems, training and fine-tuning (SFT, LoRA, MoE), model compression, and inference optimization — treated as foundations rather than the focus. It then builds the alignment and reasoning layer: RLHF, PPO, DPO and variants, GRPO, reward modeling, and RL for reasoning models including chain-of-thought and test-time scaling.\u003c/p\u003e\n\u003cp\u003eThe second half is agentic AI proper: trajectory-based RL, retrieval-augmented generation (RAG and Agentic RAG), memory systems (in-context, external, episodic, semantic), agent harness and context management, and a taxonomy of design patterns. Inter-agent coordination gets real depth — the Model Context Protocol (MCP), agent skills and tool use, the Agent-to-Agent (A2A) protocol, and centralized, decentralized, and hierarchical multi-agent topologies — closing with frameworks, agentic UI, evaluation, and deployment. Each chapter pairs theory with code and pointers to the primary literature; it's linked as the source for anyone who wants the full treatment.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Haggai Roitman"
+    ],
+    "url": "https://arxiv.org/abs/2606.24937",
+    "published_at": "2026-06-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents"
+  ],
+  "tags": [
+    "agent",
+    "tutorial"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-29",
+  "date": "2026-06-22",
+  "related": [
+    {
+      "id": "card_1b799b",
+      "slug": "agentic-environment-engineering-survey",
+      "type": "paper",
+      "title": "Agentic Environment Engineering: A Survey",
+      "hook": "Agents only get as good as the worlds they practice in. This survey maps the full lifecycle of agent environments — how we model, synthesize, evaluate, and grow them.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-06-10"
+    },
+    {
+      "id": "card_e283b9",
+      "slug": "model-context-protocol",
+      "type": "news",
+      "title": "Model Context Protocol (MCP): A Standard for Connecting LLMs to Tools",
+      "hook": "MCP is an open protocol that standardizes how AI applications expose tools, data, and resources to models - think USB-C for AI tool integrations.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-11-25"
+    },
+    {
+      "id": "card_ea6c85",
+      "slug": "a2a-protocol",
+      "type": "news",
+      "title": "Agent2Agent (A2A) Protocol",
+      "hook": "A2A is an open standard for agents from different vendors to discover and delegate to each other — the agent-to-agent complement to MCP's agent-to-tool layer.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2025-04-09"
+    }
+  ],
+  "prereqs": []
+}

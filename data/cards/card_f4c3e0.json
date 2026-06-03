@@ -1,0 +1,114 @@
+{
+  "id": "card_f4c3e0",
+  "slug": "docops-document-operations-benchmark",
+  "type": "paper",
+  "title": "DocOps: Benchmarking Agents That Edit Real Documents",
+  "hook": "Even frontier agents can't reliably edit complex documents: a verifiable benchmark pins the failures on three modes — state-tracking collapse, shallow verification, and destructive metadata edits.",
+  "key_points": [
+    "DocOps deterministically verifies document-operation tasks via a taxonomy of atomic operations stacked into escalating workflow complexities.",
+    "Across many agent harnesses, even top closed- and open-source models fail on highly coupled, long-range document tasks.",
+    "Failure mode 1: long-term state tracking collapses over multi-step edits.",
+    "Failure mode 2: verification stays shallow — agents confirm surface text, not true semantic correctness.",
+    "Failure mode 3: agents destructively edit structural metadata, breaking global document consistency."
+  ],
+  "content_html": "\u003cp\u003eIn a July 2026 paper, Jiang and colleagues introduce DocOps, a benchmark for autonomous agents that manipulate real digital documents — the spreadsheets, slides, and files that fill everyday workspaces. Its tasks are deterministically verifiable: a hierarchical taxonomy breaks document work into atomic operations and stacks them into progressively harder, multi-step workflows. Testing leading closed- and open-source models across several agent harnesses, the authors find that even the strongest frontier setups struggle badly once tasks become long and tightly coupled.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhere agents break\u003c/h2\u003e\n\u003cp\u003eThe authors report three recurring failure modes. Agents suffer long-term state-tracking collapse, losing the thread of what they've already changed over a long edit. Their verification is shallow — they confirm that surface text looks right rather than checking whether the document is actually correct. And they perform destructive edits to structural metadata, quietly breaking the scaffolding that keeps a document internally consistent.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eReliable document editing is a prerequisite for general-purpose AI assistants that automate office work, and DocOps argues today's agents aren't there yet: they can't maintain global consistency across a complex document. The authors frame this as a call for more robust, non-destructive agent designs, and offer a verifiable yardstick to track progress. As with related computer-use benchmarks, the bottleneck is less about low-level control and more about planning, memory, and verification over long horizons.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jiazhen Jiang",
+      "Boxi Cao",
+      "Lingyong Yan",
+      "Yaojie Lu",
+      "Hongyu Lin",
+      "Shuaiqiang Wang",
+      "Dawei Yin",
+      "Xianpei Han",
+      "Le Sun"
+    ],
+    "url": "https://arxiv.org/abs/2607.19865",
+    "published_at": "2026-07-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-23",
+  "date": "2026-07-22",
+  "related": [
+    {
+      "id": "card_63374b",
+      "slug": "osworld-2-computer-use-agents",
+      "type": "paper",
+      "title": "OSWorld 2.0: Long-Horizon Computer Use, Stress-Tested",
+      "hook": "108 realistic computer-use workflows averaging 1.6 human-hours each expose how far agents are from professional-grade computer use — the best model completes only 20.6%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-28"
+    },
+    {
+      "id": "card_488a94",
+      "slug": "long-horizon-terminal-bench",
+      "type": "paper",
+      "title": "Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks",
+      "hook": "46 terminal tasks that take hours, not minutes — and today's best agent still only nails 15% of them, with the average model managing barely 4%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-09"
+    },
+    {
+      "id": "card_48a3f2",
+      "slug": "tua-bench-terminal-agents",
+      "type": "paper",
+      "title": "TUA-Bench: Benchmarking General-Purpose Terminal Agents",
+      "hook": "120 real terminal tasks — from email triage to PhD-level scientific workflows — show even Claude Opus 4.8 tops out around 66%, far from reliable general computer use.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_f4c3e0#0",
+      "format": "flip",
+      "prompt": "What three failure modes does DocOps identify in document-editing agents?",
+      "back_html": "\u003cp\u003eLong-term state-tracking collapse, shallow semantic verification, and destructive editing of structural metadata.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f4c3e0#1",
+      "format": "quiz",
+      "prompt": "What makes DocOps a 'verifiable' benchmark?",
+      "choices": [
+        {
+          "text": "Tasks are checked deterministically against a taxonomy of atomic document operations",
+          "correct": true
+        },
+        {
+          "text": "A panel of human raters scores each transcript by hand",
+          "correct": false
+        },
+        {
+          "text": "An LLM judge assigns partial credit from its own opinion",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDocOps verifies outcomes deterministically rather than leaning on subjective human or model judgments.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f4c3e0#2",
+      "format": "flip",
+      "prompt": "According to DocOps, where do document agents mainly struggle?",
+      "back_html": "\u003cp\u003eOn highly coupled, long-range tasks — even frontier configurations can't maintain global document consistency.\u003c/p\u003e"
+    }
+  ]
+}

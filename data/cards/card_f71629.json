@@ -1,0 +1,100 @@
+{
+  "id": "card_f71629",
+  "slug": "entity-binding-failures-tool-agents",
+  "type": "paper",
+  "title": "Entity Binding Failures in Tool-Augmented Agents",
+  "hook": "An agent can pick the right tool and still email the wrong Alex — 'entity binding' failures slip past standard tool-correctness checks in up to 26% of runs.",
+  "key_points": [
+    "Entity binding failure: the agent selects the correct tool and valid arguments, but acts on the wrong real-world entity — wrong contact, document, thread, or account.",
+    "Across 60 tasks, 5 model backends, and 6 tool-use methods, wrong-tool error was 0% — yet wrong-entity actions occurred in 24–26% of runs.",
+    "Entity-aware methods (resolution preconditions, confidence-gated binding, clarification, provenance tracking) eliminated wrong-entity actions.",
+    "The trade-off: entity-aware agents complete fewer tasks directly, since they defer to ask for clarification under ambiguity."
+  ],
+  "content_html": "\u003cp\u003e\u0026quot;Email Alex about the launch\u0026quot; sounds simple — until the agent has three contacts named Alex, two launch documents, and an ambiguous thread to reply in. This paper studies what happens when an agent nails the tool call but targets the wrong real-world thing.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eStandard agent evaluation checks whether the model picked the right tool and produced valid arguments. The authors show this misses a distinct failure mode: entity binding failures, where the agent still acts on the wrong contact, document, thread, or account. They formalize the split between tool correctness and entity correctness, build a taxonomy of wrong-entity failures in enterprise workflows, and evaluate entity-aware execution mechanisms — entity-resolution preconditions, confidence-gated binding, clarification under ambiguity, and provenance tracking. In a controlled diagnostic across 60 tasks, five model backends, and six tool-use methods, every method achieved 0% wrong-tool error, yet action-oriented baselines still produced wrong-entity actions in 24–26% of runs. Entity-aware methods eliminated those wrong-entity actions and the associated risk exposure, at the cost of completing fewer tasks directly — since the safer choice is often to defer and ask rather than guess. The upshot: safe tool use needs entity correctness, not just tool correctness. Rahul Suresh Babu and Shashank Indukuri, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Rahul Suresh Babu",
+      "Shashank Indukuri"
+    ],
+    "url": "https://arxiv.org/abs/2606.30531",
+    "published_at": "2026-06-29",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "safety",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-02",
+  "date": "2026-06-29",
+  "related": [
+    {
+      "id": "card_e283b9",
+      "slug": "model-context-protocol",
+      "type": "news",
+      "title": "Model Context Protocol (MCP): A Standard for Connecting LLMs to Tools",
+      "hook": "MCP is an open protocol that standardizes how AI applications expose tools, data, and resources to models - think USB-C for AI tool integrations.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-11-25"
+    },
+    {
+      "id": "card_200002",
+      "slug": "toolformer",
+      "type": "paper",
+      "title": "Toolformer: Language Models That Use Tools",
+      "hook": "Instead of hand-scripting when to call a calculator or search, Toolformer lets the model teach itself — try API calls during training, keep the ones that actually help.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-02-09"
+    },
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_f71629#0",
+      "format": "flip",
+      "prompt": "What's the difference between a 'wrong-tool' error and an 'entity binding' failure?",
+      "back_html": "\u003cp\u003eA wrong-tool error means the agent picked the wrong function; an entity binding failure means it picked the right tool and valid arguments but acted on the wrong real-world target, like the wrong 'Alex.'\u003c/p\u003e"
+    },
+    {
+      "id": "card_f71629#1",
+      "format": "quiz",
+      "prompt": "What trade-off did entity-aware execution methods introduce?",
+      "choices": [
+        {
+          "text": "They eliminated wrong-entity actions but completed fewer tasks directly, since they defer under ambiguity",
+          "correct": true
+        },
+        {
+          "text": "They completed every task perfectly with no downside",
+          "correct": false
+        },
+        {
+          "text": "They made wrong-entity errors worse but sped up task completion",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eTechniques like clarification and confidence-gated binding stop wrong-entity actions, but the agent sometimes stops short of finishing the task rather than risk acting on the wrong entity.\u003c/p\u003e"
+    }
+  ]
+}

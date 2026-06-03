@@ -1,0 +1,99 @@
+{
+  "id": "card_6f91c2",
+  "slug": "verbalization-debt-latent-state",
+  "type": "paper",
+  "title": "Verbalization Debt: What an LLM Loses When Its Subagent Has to Explain Itself in Words",
+  "hook": "In chess, robotics, and games the strongest agent isn't a language model. Wiring one into an LLM orchestrator means compressing its state into text — and that tax grows with scale.",
+  "key_points": [
+    "LLMs increasingly orchestrate specialized subagents, but in domains like games and robotics the best subagents aren't language models.",
+    "Integrating them normally requires verbalization: squeezing continuous representations into sparse text at every step.",
+    "LLAMIA-Bench is six collaborative chess tasks — behavioral imitation, state assessment, natural-language explanation — that neither the LLM nor the engine can solve alone.",
+    "Latent state internalization instead projects the subagent's continuous representations into the LLM's token stream as learned state tokens, re-encoded as the state advances.",
+    "The 'verbalization debt' widens over training and persists from 4B to 14B; a single 14B LLAMIA matches or beats task specialists and GPT-5.1 with tool access."
+  ],
+  "content_html": "\u003cp\u003eThe standard picture of an agentic system is an LLM orchestrating specialized subagents over natural language. That works when the subagents are also language models. But in chess, games, and robotics the strongest available agent is something else entirely — a search engine, a policy network — whose knowledge lives in continuous representations. Harini S I and colleagues ask what it costs to make such a subagent talk.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe authors build LLAMIA-Bench: six collaborative chess tasks spanning behavioral imitation, state assessment, and natural-language explanation, each instantiating a well-established chess problem that neither the LLM nor the engine can solve on its own. They then compare two integration styles. Verbalized integration has the subagent emit a textual summary each step. Latent state internalization projects the subagent's continuous representations straight into the LLM's token stream as learned state tokens, dynamically re-encoded as actions advance the environment.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe reported result is a consistent \u003cem\u003everbalization debt\u003c/em\u003e: the gap between the two approaches widens throughout training and persists as the LLM scales from 4B to 14B parameters — so it is not something more capacity or more data fixes. A single 14B model, LLAMIA, trained with latent state internalization, matches or exceeds task specialists and frontier models including GPT-5.1 with tool access across all the benchmark tasks, and generalizes out-of-distribution where task-specific finetunes collapse. If you are designing multi-agent systems, the text interface between components is not free.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Harini S I",
+      "Somesh Singh",
+      "Yaman K Singla",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2609.00474",
+    "published_at": "2026-09-02",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "paper",
+    "agent",
+    "multimodal",
+    "reasoning"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-09-03",
+  "date": "2026-09-02",
+  "related": [
+    {
+      "id": "card_813970",
+      "slug": "multi-agent-information-bottleneck",
+      "type": "paper",
+      "title": "When Do Multi-Agent Systems Help? An Information Bottleneck Perspective",
+      "hook": "Multi-agent LLM setups help sometimes and hurt other times, with no clear pattern — until you view them as an information bottleneck problem: compressing context helps only when it loses less than it saves.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-17"
+    },
+    {
+      "id": "card_9a9bd2",
+      "slug": "world-models-meet-language-models",
+      "type": "paper",
+      "title": "World Models Meet Language Models",
+      "hook": "A world model can imagine what happens next; an LLM can reason about it. The hard part is knowing when to trust the daydream — and when the simulation is just plausible nonsense.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_6f91c2#0",
+      "format": "flip",
+      "prompt": "What is the 'verbalization debt'?",
+      "back_html": "\u003cp\u003eThe performance gap from routing a non-language subagent's state through text instead of feeding it directly — and it widens over training rather than closing.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6f91c2#1",
+      "format": "quiz",
+      "prompt": "What does latent state internalization do differently from verbalized integration?",
+      "choices": [
+        {
+          "text": "It projects the subagent's continuous representations into the LLM's token stream as learned state tokens",
+          "correct": true
+        },
+        {
+          "text": "It fine-tunes the chess engine to output natural language",
+          "correct": false
+        },
+        {
+          "text": "It replaces the subagent with a larger LLM",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe subagent's continuous state enters the LLM directly as learned tokens, dynamically re-encoded as actions advance the environment — no textual summary bottleneck.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6f91c2#2",
+      "format": "flip",
+      "prompt": "Why did the authors design LLAMIA-Bench tasks that neither the LLM nor the chess engine can solve alone?",
+      "back_html": "\u003cp\u003eSo the benchmark actually measures collaboration. If either party could solve a task solo, it would say nothing about the cost of the interface between them.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "id": "card_cae140",
+  "slug": "lora",
+  "type": "paper",
+  "title": "LoRA: Low-Rank Adaptation",
+  "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+  "key_points": [
+    "Freezes the pretrained model and injects small low-rank matrices into its layers, training only those.",
+    "Trains a tiny fraction of the parameters, slashing memory and storage for fine-tuning.",
+    "Adapters are swappable: keep one base model and hot-swap a small LoRA per task.",
+    "Adds no extra inference latency once the low-rank update is merged back into the weights."
+  ],
+  "content_html": "\u003cp\u003eEdward Hu, Yelong Shen, and colleagues at Microsoft showed you can adapt a giant language model without touching its original weights. LoRA freezes the pretrained model and injects pairs of small, trainable low-rank matrices into its layers. You end up training a tiny slice of the parameters while reaching quality close to a full fine-tune, and you can keep one base model and swap a small adapter per task.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eA weight update during fine-tuning tends to have low \u0026quot;intrinsic rank\u0026quot; — it can be approximated by multiplying two skinny matrices together. LoRA exploits this: instead of updating a big weight matrix directly, it learns two small matrices whose product is added alongside the frozen original. Training touches only those small matrices, so gradients and optimizer state stay tiny. At inference you can fold the product back into the weights, leaving the model the same size and speed as before.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eFull fine-tuning of large models is expensive in memory, storage, and time, and it produces a full-size copy of the model per task. LoRA shrinks the cost dramatically and makes adapters portable — a few megabytes you can store, share, and switch between. It has become a default for customizing open models and is the foundation other methods like QLoRA build on.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Edward J. Hu",
+      "Yelong Shen",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2106.09685",
+    "published_at": "2021-06-17",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "finetuning"
+  ],
+  "tags": [
+    "efficiency",
+    "training",
+    "landmark"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2021-06-17",
+  "related": [
+    {
+      "id": "card_2e95ee",
+      "slug": "qlora",
+      "type": "paper",
+      "title": "QLoRA: Fine-tuning Quantized LLMs",
+      "hook": "Fine-tune a model with tens of billions of parameters on a single GPU. QLoRA squeezes the frozen base to 4-bit, then trains LoRA adapters on top — without losing quality.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-23"
+    },
+    {
+      "id": "card_1098fc",
+      "slug": "instructgpt",
+      "type": "paper",
+      "title": "InstructGPT: Aligning LMs with Human Feedback (RLHF)",
+      "hook": "A smaller model people actually like beats a bigger one they don't. InstructGPT used human preferences to make a model follow instructions — the recipe behind ChatGPT.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-03-04"
+    },
+    {
+      "id": "card_75c088",
+      "slug": "adapters",
+      "type": "paper",
+      "title": "Parameter-Efficient Transfer Learning (Adapters)",
+      "hook": "Don't fine-tune the whole model for every new task — slip in a few tiny trainable modules and freeze the rest. This 2019 idea seeded parameter-efficient fine-tuning.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2019-02-02"
+    },
+    {
+      "id": "card_3e2b09",
+      "slug": "hypernetwork-knowledge-injection",
+      "type": "paper",
+      "title": "Scaling Laws for Hypernetwork-Based Knowledge Injection",
+      "hook": "Instead of fine-tuning to memorize facts, train a hypernetwork to generate a LoRA adapter that injects them — and it follows clean scaling laws with steeper out-of-distribution gains.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-21"
+    },
+    {
+      "id": "card_5f10e6",
+      "slug": "adapter-capacity-in-bits",
+      "type": "paper",
+      "title": "How Many Bits Can a LoRA Adapter Write?",
+      "hook": "Everyone treats a LoRA adapter as a skill, not a record of its training data. Weighed in bits, it stores a couple per trainable parameter — and where you put them matters more than how many.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-23"
+    },
+    {
+      "id": "card_2e2448",
+      "slug": "kappa-lora-condition-numbers",
+      "type": "paper",
+      "title": "Not Every LoRA Matrix Is Worth Updating",
+      "hook": "LoRA trains every matrix equally hard. A matrix's condition number reveals which ones actually drive adaptation — tune the top half and you keep the accuracy for half the parameters.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_cae140#0",
+      "format": "flip",
+      "prompt": "What property of fine-tuning weight updates does LoRA exploit?",
+      "back_html": "\u003cp\u003eUpdates tend to have low intrinsic rank, so they can be approximated by the product of two small (skinny) matrices.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cae140#1",
+      "format": "quiz",
+      "prompt": "Why does LoRA add no extra inference latency?",
+      "choices": [
+        {
+          "text": "The low-rank product can be merged back into the original weights",
+          "correct": true
+        },
+        {
+          "text": "It skips the attention layers at inference",
+          "correct": false
+        },
+        {
+          "text": "It runs the adapters on a separate GPU",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAt inference the learned product is folded into the weights, leaving the model the same size and speed as before.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cae140#2",
+      "format": "flip",
+      "prompt": "What makes LoRA adapters portable across tasks?",
+      "back_html": "\u003cp\u003eEach task's adapter is just a few megabytes you can store, share, and hot-swap on top of one shared frozen base model.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "id": "card_8c7d52",
+  "slug": "gated-delta-networks",
+  "type": "paper",
+  "title": "Feature Learning in Gated Delta Networks at Scale",
+  "hook": "muP lets you tune hyperparameters on a small model and transfer them to a huge one. This paper derives the equivalent rules for gated delta networks, so sub-quadratic models scale without re-tuning.",
+  "key_points": [
+    "Sub-quadratic linear architectures are cheaper than Transformers but lack principled scaling rules.",
+    "Maximal Update Parametrization (muP) gives zero-shot hyperparameter transfer — but didn't extend to these models.",
+    "Derives scaling rules for Gated Delta Networks by tracking coordinate sizes through forward pass, gates, and recurrence.",
+    "Pre-training experiments confirm stable learning-rate transfer across widths under both AdamW and SGD."
+  ],
+  "content_html": "\u003cp\u003eTraining large language models is expensive, which drives interest in both sub-quadratic architectures (cheaper than attention) and principled ways to pick hyperparameters without re-tuning at every scale. The Maximal Update Parametrization (muP) solved the latter for standard Transformers — letting you transfer hyperparameters zero-shot across model widths — but extending it to linear models with structured state transitions and intricate gating had stayed largely unexplored.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eLiu and Gu derive the scaling rules for the Gated Delta Network by rigorously propagating coordinate-size estimates through the forward pass, the gating mechanisms, and the recurrent state dynamics. Language-model pre-training experiments confirm that their configurations enable stable learning-rate transfer across model widths under both AdamW and SGD, whereas standard parametrization fails to transfer — evidence that the analysis is both correct and practically useful. The upshot: a recipe for scaling these efficient architectures without redoing hyperparameter search at full size. See the arXiv link for the derivations.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yifeng Liu",
+      "Quanquan Gu"
+    ],
+    "url": "https://arxiv.org/abs/2606.04048",
+    "published_at": "2026-06-02",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ssm-mamba",
+    "systems-efficiency",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "efficiency",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-05",
+  "date": "2026-06-02",
+  "related": [
+    {
+      "id": "card_811596",
+      "slug": "subquadratic-architectures",
+      "type": "paper",
+      "title": "Subquadratic Architectures: xLSTM vs. Mamba-2 vs. Gated DeltaNet",
+      "hook": "Transformers pay a quadratic tax on sequence length. Pitting xLSTM, Mamba-2, and Gated DeltaNet head-to-head on hard tasks, xLSTM comes out ahead — and the paper explains why.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_8c7d52#0",
+      "format": "flip",
+      "prompt": "What does Maximal Update Parametrization (muP) buy you, and why was it a problem for gated delta networks?",
+      "back_html": "\u003cp\u003emuP enables zero-shot hyperparameter transfer across model widths. Its extension to linear models with structured state transitions was largely unexplored — this paper fills that gap.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8c7d52#1",
+      "format": "quiz",
+      "prompt": "How did the authors derive scaling rules for the Gated Delta Network?",
+      "choices": [
+        {
+          "text": "By propagating coordinate-size estimates through the forward pass, gates, and recurrent state",
+          "correct": true
+        },
+        {
+          "text": "By brute-force grid search at every model size",
+          "correct": false
+        },
+        {
+          "text": "By copying the Transformer's muP rules unchanged",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThey rigorously tracked coordinate sizes through the forward pass, gating mechanisms, and recurrent state dynamics to derive the scaling rules.\u003c/p\u003e"
+    }
+  ]
+}

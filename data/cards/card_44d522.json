@@ -1,0 +1,121 @@
+{
+  "id": "card_44d522",
+  "slug": "rules-or-character-safety-design",
+  "type": "paper",
+  "title": "Rules or Character? Where to Spend Your Safety Budget",
+  "hook": "Filters block bad outputs at inference; RLHF shapes behavior at training. A formal model asks how to split the budget — and finds scale matters far less than one parameter.",
+  "key_points": [
+    "Frames safety design as a single allocation alpha in [0,1] between character shaping (RLHF, Constitutional AI) and rule enforcement (output filters, safety classifiers).",
+    "The model incorporates scale-dependent filter degradation, common-mode failures, and 'character fragility' — the risk that shaped behavior collapses under novel conditions.",
+    "The optimal split is interior or at the rules-only boundary, and shifts weakly toward character shaping as deployment scale T grows.",
+    "That shift ranges from negligible (+0.01) to pronounced (+0.21) depending on scenario — optimistic, moderate, or pessimistic.",
+    "The dominant parameter is baseline character fragility, which moves the optimum by 0.50 across its range — far more than tail severity, filter quality, or common-mode failure probability.",
+    "Takeaway: safety architecture depends less on deployment scale than on how reliably character shaping survives distributional shift."
+  ],
+  "content_html": "\u003cp\u003eReal safety stacks combine two very different instruments. Character shaping — RLHF, Constitutional AI — changes the behavioral distribution at training time. Rule enforcement — output filters, safety classifiers — blocks harmful outputs at inference. Everyone runs both, and there has been little formal analysis of how the balance should shift as deployment grows.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTakahashi and colleagues build a stylized comparative-statics model that reduces the choice to one allocation parameter, alpha in [0,1], while accounting for the ways each side fails: filters degrade as scale rises, both mechanisms can fail in common mode, and shaped character can be \u003cem\u003efragile\u003c/em\u003e — degrading or collapsing under conditions it was never shaped for. Under a multiplicative Pareto damage model they derive expected harm in closed form and add tail-risk (CVaR) analysis by Monte Carlo.\u003c/p\u003e\n\u003cp\u003eTwo results stand out. The optimum does drift toward character shaping as deployment scale grows, but weakly — from +0.01 in the optimistic scenario to +0.21 in the pessimistic one, and sometimes sitting right at the rules-only boundary. What actually dominates is baseline character fragility, which moves the optimum by 0.50 across its plausible range, dwarfing tail severity, filter quality, and common-mode failure probability. So the authors' conclusion inverts the intuitive framing: how you architect safety should depend less on how widely you deploy than on how much you trust shaped behavior to survive distributional shift. It's a stylized model with assumed damage distributions, not an empirical study — useful for structuring the argument rather than for setting a number.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Satoshi Takahashi",
+      "Nobuji Kouno",
+      "Masaaki Komatsu",
+      "Ryuji Hamamoto"
+    ],
+    "url": "https://arxiv.org/abs/2608.13345",
+    "published_at": "2026-08-13",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "papers-this-week",
+    "evals-safety"
+  ],
+  "tags": [
+    "safety",
+    "alignment",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-17",
+  "date": "2026-08-13",
+  "related": [
+    {
+      "id": "card_683aef",
+      "slug": "constitutional-ai",
+      "type": "paper",
+      "title": "Constitutional AI",
+      "hook": "What if a model could critique and improve its own answers against a written set of principles, instead of relying on humans to label every harmful case?",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-15"
+    },
+    {
+      "id": "card_490028",
+      "slug": "model-evaluation-for-extreme-risks",
+      "type": "paper",
+      "title": "Model Evaluation for Extreme Risks",
+      "hook": "General-purpose AI tends to pick up dangerous capabilities alongside useful ones. So test for those capabilities directly — before you ship, not after.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-24"
+    },
+    {
+      "id": "card_954a0c",
+      "slug": "jadr-j-space-quantization-safety",
+      "type": "paper",
+      "title": "Silent Alarm: Catching Quantization's Hidden Safety Cost with J-Space",
+      "hook": "Quantizing a model to save memory can quietly gut its internal danger-recognition circuitry — even when its answers on safety benchmarks look unchanged.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-14"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_683aef",
+      "slug": "constitutional-ai",
+      "type": "paper",
+      "title": "Constitutional AI",
+      "hook": "What if a model could critique and improve its own answers against a written set of principles, instead of relying on humans to label every harmful case?",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-15"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_44d522#0",
+      "format": "quiz",
+      "prompt": "In this model, which parameter most strongly determines the optimal rules-vs-character split?",
+      "choices": [
+        {
+          "text": "Baseline character fragility — it shifts the optimum by 0.50 across its range",
+          "correct": true
+        },
+        {
+          "text": "Deployment scale, which dominates all other considerations",
+          "correct": false
+        },
+        {
+          "text": "Tail severity of the harm distribution",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eFragility's effect (0.50) far exceeds that of tail severity, filter quality, or common-mode failure probability. Scale shifts the optimum only weakly, by +0.01 to +0.21 depending on scenario.\u003c/p\u003e"
+    },
+    {
+      "id": "card_44d522#1",
+      "format": "flip",
+      "prompt": "What is 'character fragility'?",
+      "back_html": "\u003cp\u003eThe risk that behavior instilled at training time — via RLHF or Constitutional AI — degrades or collapses under novel conditions, i.e. under distributional shift away from what shaping covered.\u003c/p\u003e"
+    },
+    {
+      "id": "card_44d522#2",
+      "format": "flip",
+      "prompt": "What's the practical conclusion for someone choosing between filters and training-time shaping?",
+      "back_html": "\u003cp\u003eDon't decide from deployment scale. Decide from how reliably your shaped behavior holds under distributional shift — that's the parameter the optimum is actually sensitive to.\u003c/p\u003e"
+    }
+  ]
+}

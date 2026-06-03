@@ -1,0 +1,130 @@
+{
+  "id": "card_493f5f",
+  "slug": "past-and-future-of-ai-scientists",
+  "type": "paper",
+  "title": "The Past and Future of AI Scientists",
+  "hook": "Ross King's survey of machines that do science: the components are all automatable now, and have been since Adam and Eve. The unsolved problem is integration.",
+  "key_points": [
+    "An AI Scientist originates hypotheses, deduces consequences, runs experiments, interprets results, revises beliefs.",
+    "Adam was the first machine to make novel scientific discoveries via hypothesis-and-experiment cycles.",
+    "Eve established the architecture of the modern self-driving laboratory.",
+    "King's thesis: automating individual components of science is solved — integrating them is not.",
+    "Integration means joining neural learning with logic, probability, causal reasoning, simulation, and lab robotics.",
+    "The Nobel Turing Challenge sets the goal of AI capable of Nobel-quality science."
+  ],
+  "content_html": "\u003cp\u003eAn \u0026quot;AI Scientist,\u0026quot; in Ross King's definition, is a machine that does the whole loop: originate hypotheses, deduce their consequences, design and execute experiments, interpret the results, and revise its beliefs. Not a tool used by scientists — an integrated scientific agent, wired into the literature, formal knowledge, mathematical models, simulations, data-analysis systems, and physical laboratories. This survey traces where that idea came from and where it's going.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eFrom Adam and Eve to foundation models\u003c/h2\u003e\n\u003cp\u003eKing's own robot scientist \u003cstrong\u003eAdam\u003c/strong\u003e was the first machine to make novel scientific discoveries through cycles of hypothesis formation and physical experimentation. \u003cstrong\u003eEve\u003c/strong\u003e followed, establishing the architecture of what we now call the self-driving laboratory. Two decades on, foundation models, autonomous agents, and lab robotics make far more general systems possible.\u003c/p\u003e\n\u003ch2\u003eThe integration problem\u003c/h2\u003e\n\u003cp\u003eThe survey's core claim is a reframing. The question is no longer \u003cem\u003ewhether\u003c/em\u003e individual components of science can be automated — they can. The problem is putting them together: neural learning alongside logic, probability, mathematics, causal reasoning, simulation, experimental design, robotics, and formal scientific records, in one system that closes the loop.\u003c/p\u003e\n\u003cp\u003eKing argues the payoff isn't just faster and cheaper science, but \u003cem\u003edifferent\u003c/em\u003e science: systems too complicated for unaided humans, and thousands of AI scientists working together on a single problem. The \u003cstrong\u003eNobel Turing Challenge\u003c/strong\u003e — building AI capable of Nobel-quality discovery — is the benchmark he points the field toward.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ross D. King"
+    ],
+    "url": "https://arxiv.org/abs/2608.14407",
+    "published_at": "2026-08-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-science",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-08-17",
+  "date": "2026-08-14",
+  "related": [
+    {
+      "id": "card_33927c",
+      "slug": "closed-loop-generative-selection",
+      "type": "paper",
+      "title": "When Remembering More Slows the Search Down",
+      "hook": "Generate molecules, score them, keep the best, retrain, repeat. A convergence theory for this drug-discovery workhorse finds that training on more of the past can actually hurt.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-24"
+    },
+    {
+      "id": "card_c2fa32",
+      "slug": "human-vs-llm-research-ideas-gap",
+      "type": "paper",
+      "title": "How Far Are LLM Research Ideas From Human Ones? A Reverse-Engineering Study",
+      "hook": "Judging LLM research ideas one at a time (novel? feasible? liked?) hides a bigger question: does the whole distribution of ideas an LLM can produce look like what human researchers actually do?",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-01"
+    },
+    {
+      "id": "card_5af88a",
+      "slug": "spark-to-paper-composable-research-skills",
+      "type": "paper",
+      "title": "Spark-to-Paper: Research Paper Generation as Composable Skills",
+      "hook": "Not a new agent platform — thirteen skills bolted into an existing coding assistant, with integrity checks deciding which claims survive contact with the experiments.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-12"
+    },
+    {
+      "id": "card_c38a80",
+      "slug": "alphafold",
+      "type": "paper",
+      "title": "AlphaFold: Protein Structure Prediction",
+      "hook": "Predicting a protein's 3D shape from its sequence stumped biology for ~50 years. AlphaFold cracked it at near-experimental accuracy — and then released the structures to everyone.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2021-07-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_493f5f#0",
+      "format": "flip",
+      "prompt": "According to King, what is the central unsolved problem for AI Scientists?",
+      "back_html": "\u003cp\u003eIntegration. Individual components of science can already be automated; the hard part is combining neural learning with logic, probability, mathematics, causal reasoning, simulation, experimental design, robotics, and formal records.\u003c/p\u003e"
+    },
+    {
+      "id": "card_493f5f#1",
+      "format": "quiz",
+      "prompt": "What was Adam's historical significance?",
+      "choices": [
+        {
+          "text": "It was the first machine to make novel scientific discoveries through cycles of hypothesis formation and physical experimentation",
+          "correct": true
+        },
+        {
+          "text": "It was the first robot to operate a chemistry lab without human supervision",
+          "correct": false
+        },
+        {
+          "text": "It was the first language model trained on scientific literature",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eKing credits Adam as the first machine to originate hypotheses and test them physically, producing novel discoveries; Eve then established the architecture of the modern self-driving lab.\u003c/p\u003e"
+    },
+    {
+      "id": "card_493f5f#2",
+      "format": "quiz",
+      "prompt": "What capability does the survey argue AI Scientists could unlock beyond speed?",
+      "choices": [
+        {
+          "text": "Investigating systems too complicated for unaided human science, with thousands of agents on one problem",
+          "correct": true
+        },
+        {
+          "text": "Eliminating the need for physical laboratories entirely",
+          "correct": false
+        },
+        {
+          "text": "Guaranteeing that published results are correct",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBeyond making science faster and cheaper, King argues AI Scientists could tackle systems too complex for unaided humans and let thousands of AI scientists collaborate on a single problem.\u003c/p\u003e"
+    }
+  ]
+}

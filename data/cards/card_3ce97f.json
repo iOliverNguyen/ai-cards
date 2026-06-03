@@ -1,0 +1,90 @@
+{
+  "id": "card_3ce97f",
+  "slug": "native-speed-vllm-transformers-backend",
+  "type": "blog",
+  "title": "How vLLM Gets Native Speed from the Transformers Library",
+  "hook": "Every new model used to need a hand-ported vLLM implementation to serve fast. This integration reads the model's own code and rewrites it automatically — one implementation, native speed.",
+  "key_points": [
+    "Previously, serving a Transformers-library model at speed in vLLM meant either a slow inference path or hand-porting a separate optimized implementation.",
+    "Uses torch.fx for static analysis of the model's computation graph to identify optimization patterns, then uses Python's ast module to rewrite the source code and fuse operations.",
+    "Enables fused kernels (like MergedColumnParallelLinear) and expert parallelization automatically, without a human writing them per model.",
+    "Any new Transformers model now gets native vLLM inference speed — continuous batching, custom kernels — without weeks of manual porting work.",
+    "Model authors can maintain a single implementation that serves both training and fast inference, instead of two diverging codebases."
+  ],
+  "content_html": "\u003cp\u003eGetting a new model architecture to run fast in vLLM used to mean picking your poison: ship it with a slow generic inference path, or have someone hand-port a specialized implementation just for serving. This integration removes that choice entirely.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe system uses torch.fx to perform static analysis on a model's computation graph, identifying where known optimization patterns apply, then uses Python's ast module to rewrite the model's own source code and fuse operations — enabling things like \u003ccode\u003eMergedColumnParallelLinear\u003c/code\u003e and expert parallelization automatically, without a human writing a per-model optimized version. The practical effect: any new model added to the Transformers library now gets native vLLM inference speed — continuous batching, custom fused kernels — without weeks of manual porting work, and model authors can maintain a single implementation that serves both training and fast production inference instead of two codebases drifting apart. For an ecosystem that ships new architectures constantly, that turns \u0026quot;wait for someone to port it\u0026quot; into \u0026quot;it just works.\u0026quot; Hugging Face Blog, 2026-07-08.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face Blog",
+    "url": "https://huggingface.co/blog/native-speed-vllm-transformers-backend",
+    "published_at": "2026-07-08",
+    "license": "Blog post"
+  },
+  "topic_ids": [
+    "inference",
+    "lab-updates"
+  ],
+  "tags": [
+    "inference",
+    "efficiency",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-08",
+  "related": [
+    {
+      "id": "card_ef8b5f",
+      "slug": "paged-attention-vllm",
+      "type": "paper",
+      "title": "PagedAttention / vLLM: Efficient LLM Serving",
+      "hook": "LLM serving wastes huge amounts of GPU memory on the attention cache. PagedAttention borrows an OS trick — paging — to recover it and serve many more requests at once.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-09-12"
+    },
+    {
+      "id": "card_688904",
+      "slug": "kv-cache-and-batching",
+      "type": "concept",
+      "title": "The KV Cache \u0026 Continuous Batching",
+      "hook": "Generating one token reuses every prior key and value - that growing cache is why LLM inference is memory-bound, and continuous batching is how servers fight back.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-11-09"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_3ce97f#0",
+      "format": "flip",
+      "prompt": "What problem did serving a new Transformers-library model in vLLM used to require solving?",
+      "back_html": "\u003cp\u003eEither accepting a slow inference path, or hand-porting a separate optimized implementation of the model specifically for vLLM — duplicated work that had to be redone for every new architecture.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3ce97f#1",
+      "format": "quiz",
+      "prompt": "How does this integration automatically turn a plain Transformers model implementation into a fast vLLM one?",
+      "choices": [
+        {
+          "text": "It uses torch.fx to statically analyze the model's graph for optimization patterns, then uses Python's ast module to rewrite the source and fuse operations",
+          "correct": true
+        },
+        {
+          "text": "It requires the model author to manually rewrite every operation for vLLM",
+          "correct": false
+        },
+        {
+          "text": "It trains a separate neural network to translate the code",
+          "correct": false
+        },
+        {
+          "text": "It only works by falling back to a slower, unoptimized code path",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eStatic graph analysis (torch.fx) finds where fused kernels and parallelization patterns apply, and source-code rewriting (via ast) applies them automatically — turning one plain model implementation into a natively fast one without hand-porting.\u003c/p\u003e"
+    }
+  ]
+}

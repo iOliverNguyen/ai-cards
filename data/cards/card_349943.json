@@ -1,0 +1,126 @@
+{
+  "id": "card_349943",
+  "slug": "automatic-differentiation",
+  "type": "concept",
+  "title": "Automatic Differentiation",
+  "hook": "Backprop is one instance of a general trick: autodiff computes exact derivatives of any program by composing the chain rule — the engine inside every deep-learning framework.",
+  "key_points": [
+    "Autodiff computes exact gradients of a function expressed as code, not by hand or finite differences.",
+    "Reverse-mode autodiff is backpropagation generalized to arbitrary computation graphs.",
+    "Frameworks record each operation, then replay it backward to accumulate gradients.",
+    "This is why you write the forward pass and get the backward pass for free."
+  ],
+  "content_html": "\u003cp\u003eAutomatic differentiation (autodiff) is the technique that lets a computer compute exact derivatives of a function written as ordinary code. It is neither the messy hand-calculus of a textbook nor the inaccurate finite-difference approximation — it applies the chain rule mechanically to every elementary operation. Backpropagation is the most famous special case, and autodiff is the engine inside PyTorch, JAX, and TensorFlow.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eAs the forward pass runs, the framework records each primitive operation and its inputs into a computation graph. Reverse-mode autodiff then walks that graph backward from the output, multiplying local derivatives via the chain rule and accumulating the gradient for every parameter in a single sweep. Because the cost of the backward pass is proportional to the forward pass, training huge models stays tractable. (Forward-mode autodiff exists too, but reverse-mode wins when you have many parameters and one loss.)\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAutodiff is the quiet abstraction that made modern deep learning practical to build. You define only the forward computation; the framework derives the gradients automatically and correctly, no matter how exotic the architecture. That frees researchers to experiment with new layers and losses without re-deriving calculus by hand — turning \u0026quot;how does this train?\u0026quot; from a research project into a one-line \u003ccode\u003eloss.backward()\u003c/code\u003e.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/Automatic_differentiation",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "neural-nets"
+  ],
+  "tags": [
+    "foundational",
+    "training"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2026-06-03",
+  "related": [
+    {
+      "id": "card_fbbf2c",
+      "slug": "backpropagation",
+      "type": "paper",
+      "title": "Learning Representations by Back-Propagating Errors",
+      "hook": "The 1986 paper that made deep learning possible: run the error backward through the network with the chain rule, and you get every weight's gradient in one sweep.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "1986-10-09"
+    },
+    {
+      "id": "card_dd14c6",
+      "slug": "how-neural-networks-learn",
+      "type": "concept",
+      "title": "How Neural Networks Learn: Backpropagation",
+      "hook": "A neural net learns by asking, for every weight, 'how much did you contribute to my mistake?' Backprop answers all of them at once.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2017-10-05"
+    },
+    {
+      "id": "card_7921e0",
+      "slug": "gradient-descent",
+      "type": "concept",
+      "title": "Gradient Descent",
+      "hook": "Lost in fog on a hillside, you'd feel for the steepest downhill step and take it, again and again. That's how models learn.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_dd14c6",
+      "slug": "how-neural-networks-learn",
+      "type": "concept",
+      "title": "How Neural Networks Learn: Backpropagation",
+      "hook": "A neural net learns by asking, for every weight, 'how much did you contribute to my mistake?' Backprop answers all of them at once.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2017-10-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_349943#0",
+      "format": "quiz",
+      "prompt": "What is the relationship between backpropagation and autodiff?",
+      "choices": [
+        {
+          "text": "Backprop is reverse-mode autodiff applied to neural nets",
+          "correct": true
+        },
+        {
+          "text": "Backprop is a finite-difference approximation of autodiff",
+          "correct": false
+        },
+        {
+          "text": "Autodiff is a special case of backpropagation",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eReverse-mode autodiff is backpropagation generalized to arbitrary computation graphs; backprop is its most famous special case.\u003c/p\u003e"
+    },
+    {
+      "id": "card_349943#1",
+      "format": "flip",
+      "prompt": "How does a framework compute the backward pass for free once you write the forward pass?",
+      "back_html": "\u003cp\u003eIt records each primitive operation into a computation graph during the forward pass, then walks it backward applying the chain rule.\u003c/p\u003e"
+    },
+    {
+      "id": "card_349943#2",
+      "format": "quiz",
+      "prompt": "Why is reverse-mode autodiff preferred for training large models?",
+      "choices": [
+        {
+          "text": "It wins when you have many parameters and one loss",
+          "correct": true
+        },
+        {
+          "text": "It is the only mode that gives exact derivatives",
+          "correct": false
+        },
+        {
+          "text": "It avoids building a computation graph",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eReverse-mode wins with many parameters and a single loss; the backward cost stays proportional to the forward pass.\u003c/p\u003e"
+    }
+  ]
+}

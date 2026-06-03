@@ -1,0 +1,121 @@
+{
+  "id": "card_09b3a2",
+  "slug": "megatron-lm",
+  "type": "paper",
+  "title": "Megatron-LM: Training LLMs with Model Parallelism",
+  "hook": "Split the big matrices inside attention and MLP layers across GPUs, add a few communication ops, and you can train an 8.3B model on 512 GPUs — no custom compiler needed.",
+  "key_points": [
+    "Introduces intra-layer (tensor) model parallelism: split attention and MLP matrices across GPUs.",
+    "Implemented with a few communication operations, no custom compiler required.",
+    "Trained models up to 8.3B parameters on 512 GPUs.",
+    "Sustained 15.1 PetaFLOPs at 76% scaling efficiency.",
+    "Set state-of-the-art on WikiText103, LAMBADA, and RACE at the time."
+  ],
+  "content_html": "\u003cp\u003eMohammad Shoeybi, Mostofa Patwary, Raul Puri, and colleagues at NVIDIA introduced Megatron-LM to push transformer training past what fits on a single GPU. Their approach is intra-layer, or tensor, model parallelism: the large matrices inside the attention and MLP layers are split across GPUs. With this they trained models up to 8.3B parameters on 512 GPUs and set state-of-the-art results on WikiText103, LAMBADA, and RACE at the time.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eInstead of placing whole layers on different devices, Megatron-LM partitions the weight matrices within each attention and MLP block across GPUs, inserting a few communication operations to stitch the results back together. The design needs no custom compiler — it slots into an existing framework — which made the technique easy to adopt.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eTensor parallelism became a core building block of large-model training. The authors report sustaining 15.1 PetaFLOPs across the application at 76% scaling efficiency on 512 GPUs, showing the splits stay efficient at scale. Combined with data and pipeline parallelism, this style of partitioning is how today's largest models are trained.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Mohammad Shoeybi",
+      "Mostofa Patwary",
+      "Raul Puri",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/1909.08053",
+    "published_at": "2019-09-17",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "distributed-training"
+  ],
+  "tags": [
+    "training",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2019-09-17",
+  "related": [
+    {
+      "id": "card_1480e5",
+      "slug": "zero",
+      "type": "paper",
+      "title": "ZeRO: Memory Optimizations for Trillion-Parameter Models",
+      "hook": "Data-parallel training wastes memory by copying optimizer states, gradients, and parameters onto every GPU. ZeRO partitions them instead — fitting 100B+ parameter models.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2019-10-04"
+    },
+    {
+      "id": "card_c00b8d",
+      "slug": "gpipe",
+      "type": "paper",
+      "title": "GPipe: Pipeline Parallelism for Giant Networks",
+      "hook": "Spread a network's layers across accelerators as pipeline stages, then split each batch into micro-batches so no accelerator sits idle — near-linear speedup for giant models.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2018-11-16"
+    },
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_09b3a2#0",
+      "format": "flip",
+      "prompt": "What is the core idea of Megatron-LM's intra-layer (tensor) model parallelism?",
+      "back_html": "\u003cp\u003eIt splits the large weight matrices inside each attention and MLP block across GPUs, inserting a few communication ops to stitch results back.\u003c/p\u003e"
+    },
+    {
+      "id": "card_09b3a2#1",
+      "format": "quiz",
+      "prompt": "What made Megatron-LM's approach easy to adopt?",
+      "choices": [
+        {
+          "text": "It needs no custom compiler and slots into an existing framework",
+          "correct": true
+        },
+        {
+          "text": "It requires only a single GPU",
+          "correct": false
+        },
+        {
+          "text": "It avoids any communication between GPUs",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe design needs no custom compiler, implemented with just a few communication operations, which made it easy to adopt.\u003c/p\u003e"
+    },
+    {
+      "id": "card_09b3a2#2",
+      "format": "quiz",
+      "prompt": "How does tensor parallelism differ from pipeline parallelism?",
+      "choices": [
+        {
+          "text": "It splits matrices within a layer rather than placing whole layers on different devices",
+          "correct": true
+        },
+        {
+          "text": "It partitions optimizer states across GPUs",
+          "correct": false
+        },
+        {
+          "text": "It splits each batch into micro-batches",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMegatron partitions weight matrices within each block, instead of placing whole layers on separate devices as pipeline parallelism does.\u003c/p\u003e"
+    }
+  ]
+}

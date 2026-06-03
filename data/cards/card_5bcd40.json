@@ -1,0 +1,131 @@
+{
+  "id": "card_5bcd40",
+  "slug": "neutrino-sae-interpretable-latents",
+  "type": "paper",
+  "title": "Interpretable Latents in a Neutrino Foundation Model with Sparse Autoencoders",
+  "hook": "Sparse autoencoders find physics concepts in an IceCube foundation model — and show its direction head barely uses them. A head that does cuts angular error from 20.2 to 3.2 degrees.",
+  "key_points": [
+    "First application of SAE-based mechanistic interpretability to particle physics.",
+    "The subject is a neutrino foundation model pretrained on IceCube data, fine-tuned for direction reconstruction.",
+    "A validated atlas of physical concepts was extracted from the model's representation.",
+    "Causal interventions show the direction head barely draws on this atlas — the information is learned but underused.",
+    "An uncertainty head trained on the same representation depends causally on the atlas's quality and brightness features.",
+    "At 20% selection efficiency it improves median angular resolution from 20.2 to 3.2 degrees."
+  ],
+  "content_html": "\u003cp\u003eSparse autoencoders have become the standard tool for pulling interpretable features out of language models. Bonnet-Guerrini and colleagues apply them somewhere new: a \u003cstrong\u003eneutrino foundation model\u003c/strong\u003e pretrained on IceCube detector data and fine-tuned for direction reconstruction. It's the first SAE-based mechanistic interpretability work in particle physics.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eA validated atlas\u003c/h2\u003e\n\u003cp\u003eThe authors identify an atlas of physical concepts encoded in the model's representation, held to a strict validation protocol — held-out tests, matched nuisance controls, and replication across independent dictionary trainings. That bar matters here, because SAE features are notoriously easy to over-interpret. Then \u003cstrong\u003ecausal interventions\u003c/strong\u003e deliver the surprise: the direction head barely draws on this atlas. The model has learned physics it isn't using for its own task.\u003c/p\u003e\n\u003ch2\u003eInterpretability that pays\u003c/h2\u003e\n\u003cp\u003eRather than stopping at the diagnosis, the authors act on it. They train an \u003cstrong\u003euncertainty head\u003c/strong\u003e on the same event-level representation to predict the model's angular reconstruction error. Unlike the direction head, this one depends causally on quality and brightness features from the atlas — it's consuming exactly the information that was going to waste. At 20% selection efficiency, the resulting interpretable estimator improves median angular resolution from \u003cstrong\u003e20.2 degrees to 3.2 degrees\u003c/strong\u003e. That's the argument in miniature: mechanistic interpretability can reveal latent physics inside a model's representation and then guide the design of downstream tasks that exploit it. arXiv, 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Raphaël Bonnet-Guerrini",
+      "Johann Ioannou-Nikolaides",
+      "Inar Timiryasov",
+      "Vincenzo Piuri"
+    ],
+    "url": "https://arxiv.org/abs/2608.26090",
+    "published_at": "2026-08-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "ai-for-science",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "foundational",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-27",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_426fcd",
+      "slug": "scaling-monosemanticity",
+      "type": "paper",
+      "title": "Scaling Monosemanticity: Features from Claude 3 Sonnet",
+      "hook": "Does dictionary learning survive at production scale? Anthropic found millions of features in Claude 3 Sonnet — and could steer the model by turning one up.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2024-05-21"
+    },
+    {
+      "id": "card_0946f0",
+      "slug": "towards-monosemanticity",
+      "type": "paper",
+      "title": "Towards Monosemanticity: Decomposing Models with Dictionary Learning",
+      "hook": "If neurons mean several things at once, can we find cleaner units? A sparse autoencoder pulled 4,000+ single-concept features out of one tiny transformer layer.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2023-10-05"
+    },
+    {
+      "id": "card_e2857d",
+      "slug": "sae-interventions-unreliable",
+      "type": "paper",
+      "title": "SAE Interventions Are Unreliable",
+      "hook": "Clamping a 'harmful' sparse-autoencoder feature looks like it stops bad behavior — but this paper recovers it 95.8% of the time, exposing the gap between feature-level and real control.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-16"
+    },
+    {
+      "id": "card_15e015",
+      "slug": "dualifm-interpretable-retinal-foundation-model",
+      "type": "paper",
+      "title": "DualIFM: An Interpretable-by-Design Retinal Foundation Model",
+      "hook": "Most medical foundation models are black boxes you explain after the fact. DualIFM builds the explanation into the architecture — and still matches a rival 16 times its size.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-04"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_0946f0",
+      "slug": "towards-monosemanticity",
+      "type": "paper",
+      "title": "Towards Monosemanticity: Decomposing Models with Dictionary Learning",
+      "hook": "If neurons mean several things at once, can we find cleaner units? A sparse autoencoder pulled 4,000+ single-concept features out of one tiny transformer layer.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2023-10-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_5bcd40#0",
+      "format": "flip",
+      "prompt": "What did causal interventions reveal about the neutrino model's direction head?",
+      "back_html": "\u003cp\u003eThat it barely draws on the atlas of physical concepts found in the representation. The model had learned that information but the task head wasn't using it.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5bcd40#1",
+      "format": "quiz",
+      "prompt": "How did the authors turn that interpretability finding into a concrete gain?",
+      "choices": [
+        {
+          "text": "They trained an uncertainty head on the same representation to predict angular reconstruction error, exploiting the underused features",
+          "correct": true
+        },
+        {
+          "text": "They retrained the direction head from scratch with more data",
+          "correct": false
+        },
+        {
+          "text": "They pruned the unused features to shrink the model",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe new head depends causally on the atlas's quality and brightness features, and at 20% selection efficiency improves median angular resolution from 20.2 to 3.2 degrees.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5bcd40#2",
+      "format": "flip",
+      "prompt": "What validation protocol did the concept atlas have to pass?",
+      "back_html": "\u003cp\u003eHeld-out tests, matched nuisance controls, and replication across independently trained dictionaries — a strict bar, since SAE features are easy to over-interpret.\u003c/p\u003e"
+    }
+  ]
+}

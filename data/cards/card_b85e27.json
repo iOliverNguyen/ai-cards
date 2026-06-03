@@ -1,0 +1,95 @@
+{
+  "id": "card_b85e27",
+  "slug": "mance-manifold-concept-erasure",
+  "type": "paper",
+  "title": "MANCE: Erasing Concepts Without Leaving the Data Manifold",
+  "hook": "Erase a concept from a representation and you often damage everything correlated with it. This method's fix: constrain every edit to stay on the manifold real representations actually live on.",
+  "key_points": [
+    "Concept erasure is hard because representations encode many concepts that correlate with the erasure target — removing the target risks collateral damage to the rest.",
+    "The Manifold Constraint Hypothesis (MCH): natural representations concentrate on a structured, lower-dimensional manifold, so interventions should be constrained to that manifold to better preserve everything else.",
+    "MANCE estimates the manifold from natural inputs, then iteratively updates representations using a classifier's signal, projecting each concept-removal step back onto the estimated manifold.",
+    "Evaluated across 119 settings spanning text and vision — 13 language models, three NLP concepts, and 40 CelebA-CLIP attributes — with consistently improved leakage results over prior methods.",
+    "MANCE++ (prepending a closed-form erasure step before MANCE) achieves state-of-the-art results on nonlinear concept erasure."
+  ],
+  "content_html": "\u003cp\u003eTell a model's internal representation to \u0026quot;forget\u0026quot; a concept — a demographic attribute, a topic — and the update often bleeds into everything correlated with that concept, damaging information you never meant to touch. MANCE's answer starts from a hypothesis about representation geometry itself.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe Manifold Constraint Hypothesis holds that natural representations aren't spread evenly through their embedding space — they concentrate on a structured, lower-dimensional manifold. If that's true, the authors argue, interventions should be constrained to that manifold too, since staying on it should better preserve everything else the representation encodes. MANifold-aware Concept Erasure (MANCE) operationalizes this: it estimates the manifold from natural inputs, then iteratively updates representations using signal from a classifier trained to predict the target concept, projecting each removal step back onto the estimated manifold rather than letting it drift into unconstrained directions. Across 119 settings spanning text and vision — 13 language models, three NLP concepts, and 40 CelebA-CLIP attributes — layering MANCE on top of prior erasure methods consistently improves leakage results, and the paper's best variant, MANCE++ (which prepends a closed-form erasure step before MANCE), reaches state-of-the-art on nonlinear concept erasure. The results are a concrete point in favor of MCH: constrain your interventions to where real representations actually live. Matan Avitan, Yoav Goldberg, and Yanai Elazar, arXiv 2026 (28 HF community upvotes).\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Matan Avitan",
+      "Yoav Goldberg",
+      "Yanai Elazar"
+    ],
+    "url": "https://arxiv.org/abs/2607.03973",
+    "published_at": "2026-07-04",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "safety",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-04",
+  "related": [
+    {
+      "id": "card_0946f0",
+      "slug": "towards-monosemanticity",
+      "type": "paper",
+      "title": "Towards Monosemanticity: Decomposing Models with Dictionary Learning",
+      "hook": "If neurons mean several things at once, can we find cleaner units? A sparse autoencoder pulled 4,000+ single-concept features out of one tiny transformer layer.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2023-10-05"
+    },
+    {
+      "id": "card_e2857d",
+      "slug": "sae-interventions-unreliable",
+      "type": "paper",
+      "title": "SAE Interventions Are Unreliable",
+      "hook": "Clamping a 'harmful' sparse-autoencoder feature looks like it stops bad behavior — but this paper recovers it 95.8% of the time, exposing the gap between feature-level and real control.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-16"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b85e27#0",
+      "format": "flip",
+      "prompt": "What is the Manifold Constraint Hypothesis (MCH) that motivates MANCE?",
+      "back_html": "\u003cp\u003eNatural representations concentrate on a structured, lower-dimensional manifold, so interventions like concept erasure should be constrained to that manifold — doing so better preserves the other information encoded in the representation.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b85e27#1",
+      "format": "quiz",
+      "prompt": "Why does erasing a concept from a representation risk damaging unrelated information?",
+      "choices": [
+        {
+          "text": "Representations encode many concepts that are often correlated with the erasure target, so removing the target can collaterally damage correlated concepts too",
+          "correct": true
+        },
+        {
+          "text": "Representations only ever encode one concept at a time",
+          "correct": false
+        },
+        {
+          "text": "Erasure always requires deleting the entire representation",
+          "correct": false
+        },
+        {
+          "text": "It's purely a computational cost problem, not a correctness one",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBecause concepts in a representation are often correlated, a naive erasure update can leak into — and damage — information the erasure wasn't targeting. MANCE's manifold-constrained updates aim to avoid that collateral damage.\u003c/p\u003e"
+    }
+  ]
+}

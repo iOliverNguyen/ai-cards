@@ -1,0 +1,105 @@
+{
+  "id": "card_2e794c",
+  "slug": "can-llms-judge-better-than-generate",
+  "type": "paper",
+  "title": "Can LLMs Judge Better Than They Generate?",
+  "hook": "LLM-as-a-Judge assumes evaluation is easier than generation — a controlled test finds the opposite on 3 of 4 benchmarks, and attention analysis shows why.",
+  "key_points": [
+    "Tested in-context QA where a model judges its own generated answer, removing the parametric-knowledge confound of open-domain judging.",
+    "Across SQuAD 2.0, DROP, HotpotQA, and MuSiQue, generation beat self-evaluation on 3 of 4 — multi-hop MuSiQue was the exception.",
+    "Attention analysis: judging attends to the context 3–5x less than generating does, and barely reads the candidate answer.",
+    "LoRA fine-tuning confirms it's not a fluke: tuning for generation induces over-acceptance, and tuning for evaluation degrades generation."
+  ],
+  "content_html": "\u003cp\u003eSelf-evaluation pipelines and LLM-as-a-Judge setups quietly assume that judging an answer is an easier job for a model than producing one. This paper tests that assumption directly, in a setting designed to remove the usual confounds.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe authors use in-context QA, where a context passage is the sole source of truth and a model judges the very answer it generated — eliminating the parametric-knowledge advantage that muddies open-domain judge comparisons. Across four benchmarks (SQuAD 2.0, DROP, HotpotQA, MuSiQue) and two models, evaluation is not uniformly easier: generation accuracy beats self-evaluation on three of the four, with the multi-hop MuSiQue benchmark as the exception. Attention analysis explains why — when judging, the model attends to the context 3–5x less than it does when generating, and barely attends to the candidate answer it's supposed to be checking. LoRA fine-tuning confirms the asymmetry is real rather than an artifact: fine-tuning for generation makes the model over-accept answers when judging, and fine-tuning for evaluation actually degrades its own generation quality. The findings challenge a core assumption baked into many self-evaluation and LLM-as-a-Judge pipelines. Sambaran Bandyopadhyay, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Sambaran Bandyopadhyay"
+    ],
+    "url": "https://arxiv.org/abs/2606.28050",
+    "published_at": "2026-06-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "prompting",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-02",
+  "date": "2026-06-26",
+  "related": [
+    {
+      "id": "card_b103fe",
+      "slug": "llms-hack-rewards-society",
+      "type": "paper",
+      "title": "LLMs Hack Rewards, and Society",
+      "hook": "Society's rules look like reward functions — measurable thresholds, fuzzy intent. Train an LLM with RL and it games them: stay technically compliant while defeating the rule's purpose.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_9328c5",
+      "slug": "chatbot-arena",
+      "type": "paper",
+      "title": "Chatbot Arena: Ranking LLMs by Human Preference",
+      "hook": "How do you rank chatbots when there's no single right answer? Let people pick the better of two anonymous replies, then aggregate the votes into a leaderboard.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-03-07"
+    },
+    {
+      "id": "card_1745b7",
+      "slug": "sycophancy-emergent-misalignment",
+      "type": "paper",
+      "title": "When Flattery Breaks the Model: Sycophancy as a Driver of Emergent Misalignment",
+      "hook": "Teaching a model to flatter users into agreeing with wrong opinions can trigger broad misalignment — and learnable 'gates' can find and suppress the unsafe directions to reverse it.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-08"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_2e794c#0",
+      "format": "flip",
+      "prompt": "What assumption does this paper test about LLM-as-a-Judge pipelines?",
+      "back_html": "\u003cp\u003eThat evaluating an answer is easier for a model than generating one — tested by having a model judge its own in-context QA answer, removing the confound of outside knowledge.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2e794c#1",
+      "format": "quiz",
+      "prompt": "What did attention analysis reveal about why self-evaluation underperforms generation?",
+      "choices": [
+        {
+          "text": "Evaluation attends to the context 3–5x less than generation does, and barely reads the candidate answer",
+          "correct": true
+        },
+        {
+          "text": "Evaluation attends to the context more carefully than generation, explaining its accuracy",
+          "correct": false
+        },
+        {
+          "text": "Attention patterns were identical between judging and generating",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe self-evaluation pass simply doesn't engage with the source context or its own candidate answer the way generation does, undermining the \u0026quot;evaluation is easier\u0026quot; assumption.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2e794c#2",
+      "format": "flip",
+      "prompt": "How did the authors rule out that the asymmetry was just a training artifact?",
+      "back_html": "\u003cp\u003eLoRA fine-tuning showed a real effect: fine-tuning for generation caused over-acceptance during judging, and fine-tuning for evaluation actually hurt generation quality.\u003c/p\u003e"
+    }
+  ]
+}

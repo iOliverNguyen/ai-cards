@@ -1,0 +1,100 @@
+{
+  "id": "card_23280e",
+  "slug": "autotrainess",
+  "type": "paper",
+  "title": "AutoTrainess: Teaching Language Models to Improve Language Models Autonomously",
+  "hook": "Training a model is more than writing code — AutoTrainess gives agents purpose-built interfaces for planning, data prep, and training runs, and clearly out-trains agents left in a raw CLI.",
+  "key_points": [
+    "Autonomous post-training isn't just 'write code' — it needs an agent to plan iterations, build benchmark-aligned data, run stable training jobs, evaluate checkpoints, and track state over many hours.",
+    "AutoTrainess externalizes human training experience as explicit agent-computer interfaces (workflows, rules, execution constraints) instead of leaving the agent in a raw CLI with an open-ended action space.",
+    "On PostTrainBench, AutoTrainess scores 26.94 with GPT-5.4 (Codex) versus 23.21 for a CLI-only baseline.",
+    "Generalizes across models and harnesses: improves DeepSeek-V4-Flash (OpenCode) from 12.13 to 19.58."
+  ],
+  "content_html": "\u003cp\u003eTraining language models remains a highly human-intensive process, even as agents get good at software engineering and other long-horizon tasks. This paper's premise: autonomous post-training isn't primarily a coding problem — it's an operations problem, and agents need the right interfaces for it, not just a terminal.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003ePurpose-built interfaces, not a raw CLI\u003c/h2\u003e\n\u003cp\u003eAutoTrainess exposes the operations training actually requires — planning, data preparation, running training jobs, evaluating checkpoints, and logging — as a repository of agent-computer interfaces. Rather than leaving the agent to improvise in a raw CLI with an underspecified action space, it externalizes prior human training experience as explicit workflows, rules, and execution constraints that steer the agent toward reliable behavior.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eOn PostTrainBench, AutoTrainess scores 26.94 with GPT-5.4 (Codex) against 23.21 for a CLI-only baseline, and the gain isn't specific to one model: DeepSeek-V4-Flash running under OpenCode improves from 12.13 to 19.58 with the same interfaces. The broader point generalizes beyond training specifically — giving an agent well-designed, domain-specific interfaces for a long, stateful process tends to beat leaving it to reinvent the workflow from a raw shell every time.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zhaojian Yu",
+      "Penghao Yin",
+      "Shuzheng Gao",
+      "Shilin He",
+      "Kai Cai",
+      "Xiao-Ping Zhang"
+    ],
+    "url": "https://arxiv.org/abs/2606.31551",
+    "published_at": "2026-06-30",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "pretraining",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-06",
+  "date": "2026-06-30",
+  "related": [
+    {
+      "id": "card_c54cf2",
+      "slug": "star",
+      "type": "paper",
+      "title": "STaR: Bootstrapping Reasoning With Reasoning",
+      "hook": "Let the model write its own step-by-step rationales, keep only the ones that reach the right answer, fine-tune on those, and repeat — reasoning data that bootstraps itself.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2022-03-28"
+    },
+    {
+      "id": "card_bfcabe",
+      "slug": "language-models-need-sleep",
+      "type": "paper",
+      "title": "Language Models Need Sleep",
+      "hook": "Humans consolidate the day's memories while sleeping. This paper gives LLMs a 'sleep' phase to distill fragile short-term context into stable long-term weights — and a 'dreaming' phase to rehearse.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_23280e#0",
+      "format": "flip",
+      "prompt": "Why is autonomous post-training harder than just having an agent write training code?",
+      "back_html": "\u003cp\u003eIt requires planning iterations, constructing benchmark-aligned data, running stable multi-hour training jobs, evaluating checkpoints, and preserving experiment state throughout — not just producing a script.\u003c/p\u003e"
+    },
+    {
+      "id": "card_23280e#1",
+      "format": "quiz",
+      "prompt": "What does AutoTrainess give an agent instead of a raw CLI with an open-ended action space?",
+      "choices": [
+        {
+          "text": "Explicit agent-computer interfaces that externalize human training experience as workflows, rules, and execution constraints",
+          "correct": true
+        },
+        {
+          "text": "A larger context window so it can remember more shell history",
+          "correct": false
+        },
+        {
+          "text": "A fully automated pipeline with no agent decision-making at all",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAutoTrainess exposes planning, data prep, training, evaluation, and logging as structured interfaces rather than leaving the agent to improvise raw commands.\u003c/p\u003e"
+    },
+    {
+      "id": "card_23280e#2",
+      "format": "flip",
+      "prompt": "Did AutoTrainess's benefit hold only for the model it was built around?",
+      "back_html": "\u003cp\u003eNo — it generalized across models and harnesses, for example improving DeepSeek-V4-Flash running in OpenCode from a PostTrainBench score of 12.13 to 19.58.\u003c/p\u003e"
+    }
+  ]
+}

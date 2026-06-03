@@ -1,0 +1,106 @@
+{
+  "id": "card_5bd418",
+  "slug": "llm-int8",
+  "type": "paper",
+  "title": "LLM.int8(): 8-bit Inference for Transformers",
+  "hook": "Big transformers usually run in 16-bit. LLM.int8() halves that to 8-bit integers without losing accuracy — by treating a few rare 'outlier' features with care.",
+  "key_points": [
+    "Cuts weight memory roughly in half by storing most values as 8-bit integers instead of 16-bit floats.",
+    "A small number of large-magnitude 'outlier' features wreck naive quantization, so they're kept in higher precision.",
+    "This mixed-precision split keeps accuracy essentially matched to the full-precision model, even at large scale.",
+    "Made models that needed multiple GPUs fit on fewer, cheaper ones — and shipped inside the bitsandbytes library."
+  ],
+  "content_html": "\u003cp\u003eTim Dettmers and colleagues showed you can run large transformers in 8-bit integers — halving the memory their weights take — while matching the accuracy of the original 16-bit model. The trick is recognizing that a few feature dimensions carry unusually large values, and handling those in higher precision so they don't dominate the rounding error. The method shipped in the popular bitsandbytes library, letting models that once needed several GPUs fit on far fewer.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eMost of a layer's matrix multiply is done in 8-bit, which is fast and memory-light. But in large models, a handful of feature dimensions consistently produce huge activation values. If you quantize those alongside everything else, they blow up the error budget. LLM.int8() detects these outlier dimensions and computes them separately in 16-bit, then recombines the two parts. The result is one matrix multiply that is mostly cheap integers plus a tiny expensive remainder.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eMemory is the gatekeeper for running big models. Halving the footprint of the weights means a model that demanded an expensive multi-GPU setup can suddenly run on a single card, putting large LLMs in reach of researchers and hobbyists without a data center. Just as important, it does this with negligible quality loss, so you don't trade accuracy for affordability. This work helped kick off the wave of practical LLM quantization that followed.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Tim Dettmers",
+      "Mike Lewis",
+      "Younes Belkada",
+      "Luke Zettlemoyer"
+    ],
+    "url": "https://arxiv.org/abs/2208.07339",
+    "published_at": "2022-08-15",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "quantization"
+  ],
+  "tags": [
+    "efficiency",
+    "inference"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2022-08-15",
+  "related": [
+    {
+      "id": "card_d01b1d",
+      "slug": "gptq",
+      "type": "paper",
+      "title": "GPTQ: Accurate Post-Training Quantization",
+      "hook": "Already trained a giant LLM? GPTQ squeezes its weights down to 3–4 bits afterward — no retraining — with surprisingly little quality loss.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-10-31"
+    },
+    {
+      "id": "card_2e95ee",
+      "slug": "qlora",
+      "type": "paper",
+      "title": "QLoRA: Fine-tuning Quantized LLMs",
+      "hook": "Fine-tune a model with tens of billions of parameters on a single GPU. QLoRA squeezes the frozen base to 4-bit, then trains LoRA adapters on top — without losing quality.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-23"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_5bd418#0",
+      "format": "quiz",
+      "prompt": "How does LLM.int8() handle the few large-magnitude 'outlier' feature dimensions?",
+      "choices": [
+        {
+          "text": "Computes them separately in 16-bit, then recombines with the 8-bit part",
+          "correct": true
+        },
+        {
+          "text": "Quantizes them to 8-bit along with everything else",
+          "correct": false
+        },
+        {
+          "text": "Drops them entirely to save memory",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMost of the matmul runs in cheap 8-bit, but outlier dimensions are computed in 16-bit and recombined, so they don't blow up the error budget.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5bd418#1",
+      "format": "flip",
+      "prompt": "What does running large transformers in 8-bit integers buy you?",
+      "back_html": "\u003cp\u003eIt roughly halves the memory their weights take, so a model that once needed several GPUs can fit on far fewer — with negligible accuracy loss.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5bd418#2",
+      "format": "flip",
+      "prompt": "Why does naive 8-bit quantization fail for large transformers?",
+      "back_html": "\u003cp\u003eA handful of feature dimensions consistently produce huge activation values; quantizing them alongside everything else blows up the rounding error.\u003c/p\u003e"
+    }
+  ]
+}

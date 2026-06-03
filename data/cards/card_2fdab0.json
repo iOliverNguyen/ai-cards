@@ -1,0 +1,112 @@
+{
+  "id": "card_2fdab0",
+  "slug": "entropy-scaled-trust-regions-async-rl",
+  "type": "paper",
+  "title": "Importance Ratios Mean Different Things at Different Entropies",
+  "hook": "Async RL clips stale tokens by how big their importance ratio is. But the ratio's natural scale tracks token entropy — so one threshold admits noise and censors real exploration at once.",
+  "key_points": [
+    "Asynchronous RL speeds up LLM post-training by overlapping rollout generation with policy optimization, but stale off-policy data can collapse the policy.",
+    "Existing methods keep or drop tokens purely on importance-ratio magnitude, applying one uniform threshold across all token positions.",
+    "The paper's finding: the natural scale of the importance ratio varies systematically with token entropy.",
+    "At low entropy, the train-inference discrepancy gets drastically amplified into sampling noise.",
+    "At high entropy, in-flight weight updates produce pronounced but legitimate exploratory deviations — which magnitude-only clipping masks out.",
+    "ESTR scales each token's off-policy deviation by its local entropy, needing no extra forward passes or version-switch detection, and matches synchronous GRPO's accuracy at 2.6x the training speed."
+  ],
+  "content_html": "\u003cp\u003eAsynchronous reinforcement learning makes LLM post-training much faster by overlapping rollout generation with policy optimization, at the price of training on stale, off-policy data that can destabilize optimization and eventually collapse the policy. The standard defence is to keep or discard tokens based on the magnitude of their importance ratios, with the same threshold applied uniformly across token positions. Zhao and colleagues argue that this uniform treatment is the bug.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eTwo regimes, one threshold\u003c/h2\u003e\n\u003cp\u003eTheir observation is that the natural scale of the importance ratio varies systematically with token entropy, and that under asynchronous dynamics this entropy–ratio scaling produces two distinct phenomena. At \u003cstrong\u003elow entropy\u003c/strong\u003e, the inherent train–inference discrepancy is drastically amplified into substantial sampling noise. At \u003cstrong\u003ehigh entropy\u003c/strong\u003e, in-flight weight updates naturally induce pronounced deviations that are legitimate exploration. A magnitude-only rule therefore does exactly the wrong thing twice: it admits the amplified noise and strictly masks out the essential exploration.\u003c/p\u003e\n\u003ch2\u003eEntropy-Scaled Trust Region\u003c/h2\u003e\n\u003cp\u003eThe fix, \u003cstrong\u003eESTR\u003c/strong\u003e, scales each token's off-policy deviation by its local entropy rather than comparing raw magnitudes to a fixed bar. It requires no auxiliary forward passes and no explicit detection of when weights switched versions, so it stays cheap enough for the asynchronous setting it's meant to stabilize. Across long-horizon agentic tasks and mathematical reasoning benchmarks the authors report that ESTR consistently outperforms existing asynchronous methods and achieves the best train–inference consistency; against synchronous GRPO it reaches comparable accuracy while training 2.6× faster.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Guanqun Zhao",
+      "Zijun Xie",
+      "Binbin Zheng",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.22186",
+    "published_at": "2026-07-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "distributed-training",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "alignment",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-27",
+  "date": "2026-07-24",
+  "related": [
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    },
+    {
+      "id": "card_40de42",
+      "slug": "ppo",
+      "type": "paper",
+      "title": "PPO: Proximal Policy Optimization",
+      "hook": "Reinforcement learning is notoriously unstable. PPO's fix is simple: never let a single update move the policy too far. That restraint made it the field's workhorse.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2017-07-20"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_40de42",
+      "slug": "ppo",
+      "type": "paper",
+      "title": "PPO: Proximal Policy Optimization",
+      "hook": "Reinforcement learning is notoriously unstable. PPO's fix is simple: never let a single update move the policy too far. That restraint made it the field's workhorse.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2017-07-20"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_2fdab0#0",
+      "format": "flip",
+      "prompt": "Why does a single magnitude threshold on importance ratios misbehave in asynchronous RL?",
+      "back_html": "\u003cp\u003eBecause the ratio's natural scale varies with token entropy. One threshold therefore lets through amplified sampling noise at low-entropy positions while masking out the legitimate exploratory deviations that appear at high-entropy ones.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2fdab0#1",
+      "format": "quiz",
+      "prompt": "In this paper, what causes large importance ratios at HIGH-entropy token positions?",
+      "choices": [
+        {
+          "text": "In-flight weight updates producing pronounced but legitimate exploratory deviations",
+          "correct": true
+        },
+        {
+          "text": "Amplification of the train-inference discrepancy into sampling noise",
+          "correct": false
+        },
+        {
+          "text": "Numerical overflow in the log-probability computation",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper splits the two regimes: noise amplification is the low-entropy phenomenon, while at high entropy the large deviations are real exploration induced by weight updates landing mid-rollout — so they should be kept, not clipped.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2fdab0#2",
+      "format": "flip",
+      "prompt": "What does ESTR change about the off-policy correction, and what does it cost?",
+      "back_html": "\u003cp\u003eIt scales each token's off-policy deviation by that token's local entropy instead of thresholding on raw magnitude — and needs no auxiliary forward passes and no explicit version-switch detection.\u003c/p\u003e"
+    }
+  ]
+}

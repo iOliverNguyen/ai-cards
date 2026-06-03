@@ -1,0 +1,126 @@
+{
+  "id": "card_897073",
+  "slug": "linear-regression",
+  "type": "concept",
+  "title": "Linear Regression",
+  "hook": "Predict a number by fitting a straight line through your data - the simplest model in ML and the mental blueprint for almost everything that came after.",
+  "key_points": [
+    "A weighted sum of input features predicts the output; learning means finding the best weights.",
+    "Training minimizes squared error - penalizing big mistakes more than small ones.",
+    "The result is interpretable: each weight tells you how much one feature moves the prediction.",
+    "It assumes a linear relationship; nonlinear patterns need richer models built on this same foundation."
+  ],
+  "content_html": "\u003cp\u003eLinear regression is the idea of drawing the best straight line (or flat surface, in more dimensions) through a cloud of data points so you can predict a continuous number - like a house price or tomorrow's temperature - from a set of input features.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe model multiplies each feature by a learned weight and adds them up, plus a bias term. Training adjusts those weights to minimize the sum of squared differences between predictions and true values - a process called least squares. Because the math is clean, you can often solve it directly rather than relying on gradient descent.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eLinear regression is the foundation nearly every ML practitioner builds on first. Its simplicity makes it easy to debug and explain, and the intuition - a weighted sum of features - carries directly into logistic regression, neural networks, and beyond. The Wikipedia article is a good place to dig into the geometry and the math.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/Linear_regression",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "linear-models"
+  ],
+  "tags": [
+    "classic-ml",
+    "foundational"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-06-03",
+  "date": "2026-06-03",
+  "related": [
+    {
+      "id": "card_21311f",
+      "slug": "logistic-regression",
+      "type": "concept",
+      "title": "Logistic Regression",
+      "hook": "Take linear regression, squash its output through a sigmoid, and you get a probability - turning a number-predictor into a classifier with one extra step.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-03"
+    },
+    {
+      "id": "card_7921e0",
+      "slug": "gradient-descent",
+      "type": "concept",
+      "title": "Gradient Descent",
+      "hook": "Lost in fog on a hillside, you'd feel for the steepest downhill step and take it, again and again. That's how models learn.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_ce155a",
+      "slug": "what-is-machine-learning",
+      "type": "concept",
+      "title": "What Is Machine Learning?",
+      "hook": "Instead of hand-coding rules, you show a program examples and let it find the patterns — then it handles inputs it has never seen.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_ce155a",
+      "slug": "what-is-machine-learning",
+      "type": "concept",
+      "title": "What Is Machine Learning?",
+      "hook": "Instead of hand-coding rules, you show a program examples and let it find the patterns — then it handles inputs it has never seen.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_897073#0",
+      "format": "flip",
+      "prompt": "What does training a linear regression model minimize?",
+      "back_html": "\u003cp\u003eThe sum of squared differences between predictions and true values (least squares), penalizing big mistakes more than small ones.\u003c/p\u003e"
+    },
+    {
+      "id": "card_897073#1",
+      "format": "quiz",
+      "prompt": "What makes linear regression interpretable?",
+      "choices": [
+        {
+          "text": "Each weight tells you how much one feature moves the prediction",
+          "correct": true
+        },
+        {
+          "text": "It outputs a probability between 0 and 1",
+          "correct": false
+        },
+        {
+          "text": "It requires no training data",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEach learned weight directly indicates how much its feature shifts the prediction, making the model easy to explain.\u003c/p\u003e"
+    },
+    {
+      "id": "card_897073#2",
+      "format": "quiz",
+      "prompt": "What assumption does linear regression make about the data?",
+      "choices": [
+        {
+          "text": "A linear relationship between features and output",
+          "correct": true
+        },
+        {
+          "text": "That all features are uncorrelated",
+          "correct": false
+        },
+        {
+          "text": "That the output is a category",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIt assumes a linear relationship; nonlinear patterns need richer models built on this same foundation.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "id": "card_e51b4a",
+  "slug": "self-instruct",
+  "type": "paper",
+  "title": "Self-Instruct: Aligning LMs with Self-Generated Instructions",
+  "hook": "Instead of paying humans to write instruction data, have the model write its own — bootstrap instructions, inputs, and outputs from its own generations, filter, and fine-tune.",
+  "key_points": [
+    "A bootstrapping loop generates instructions, inputs, and outputs from the model's own output, then filters and fine-tunes on them.",
+    "Applied to GPT-3, it gives a 33% absolute gain on Super-NaturalInstructions.",
+    "Reaches performance on par with InstructGPT-001 using almost no human-labeled data.",
+    "Only a 5% absolute gap behind InstructGPT-001 on expert-written novel-task instructions."
+  ],
+  "content_html": "\u003cp\u003eYizhong Wang, Yeganeh Kordi, Swaroop Mishra, and colleagues asked whether a model could supply its own instruction-tuning data instead of relying on costly human labels. Their answer, Self-Instruct, is a bootstrapping framework that prompts the model to generate new instructions along with matching inputs and outputs, filters the results, and fine-tunes the model on what survives. Applied to GPT-3, it delivered a 33% absolute improvement on Super-NaturalInstructions and reached performance on par with InstructGPT-001.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe loop starts from a small seed set of tasks and asks the model to generate fresh instructions, then to produce the corresponding inputs and outputs. A filtering step drops low-quality or redundant examples before the kept data is folded back in to fine-tune the model. Because the data comes almost entirely from the model itself, the method needs nearly no human-labeled examples.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eSelf-Instruct showed that the expensive part of instruction tuning — writing the data — could be largely automated. The authors report that the GPT-3 model tuned this way matched InstructGPT-001 and sat only about 5% absolute behind it on expert-written novel-task instructions, a strong result for an approach with almost no human supervision. It became a template for the synthetic-data pipelines used to align many later models.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yizhong Wang",
+      "Yeganeh Kordi",
+      "Swaroop Mishra",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2212.10560",
+    "published_at": "2022-12-20",
+    "license": "arXiv (CC BY 4.0)"
+  },
+  "topic_ids": [
+    "synthetic-data"
+  ],
+  "tags": [
+    "training",
+    "nlp",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2022-12-20",
+  "related": [
+    {
+      "id": "card_9887c8",
+      "slug": "flan-instruction-tuning",
+      "type": "paper",
+      "title": "FLAN: Instruction Tuning",
+      "hook": "Teach a model to follow many tasks phrased as plain instructions, and it learns to follow instructions for tasks it never saw — zero-shot.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2021-09-03"
+    },
+    {
+      "id": "card_1098fc",
+      "slug": "instructgpt",
+      "type": "paper",
+      "title": "InstructGPT: Aligning LMs with Human Feedback (RLHF)",
+      "hook": "A smaller model people actually like beats a bigger one they don't. InstructGPT used human preferences to make a model follow instructions — the recipe behind ChatGPT.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-03-04"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_e51b4a#0",
+      "format": "flip",
+      "prompt": "What does the Self-Instruct bootstrapping loop do?",
+      "back_html": "\u003cp\u003eIt prompts the model to generate new instructions plus matching inputs and outputs, filters the results, and fine-tunes the model on what survives.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e51b4a#1",
+      "format": "quiz",
+      "prompt": "What is the key advantage of Self-Instruct over standard instruction tuning?",
+      "choices": [
+        {
+          "text": "The data comes almost entirely from the model itself, needing nearly no human labels",
+          "correct": true
+        },
+        {
+          "text": "It requires a larger model to generate the instructions",
+          "correct": false
+        },
+        {
+          "text": "It removes the fine-tuning step altogether",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSelf-Instruct automates the expensive part - writing instruction data - so it needs almost no human supervision.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e51b4a#2",
+      "format": "quiz",
+      "prompt": "What did Self-Instruct achieve when applied to GPT-3?",
+      "choices": [
+        {
+          "text": "A 33% absolute gain on Super-NaturalInstructions, on par with InstructGPT-001",
+          "correct": true
+        },
+        {
+          "text": "It surpassed GPT-4 on every benchmark",
+          "correct": false
+        },
+        {
+          "text": "It eliminated the need for any fine-tuning data",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe card reports a 33% absolute improvement on Super-NaturalInstructions and parity with InstructGPT-001.\u003c/p\u003e"
+    }
+  ]
+}

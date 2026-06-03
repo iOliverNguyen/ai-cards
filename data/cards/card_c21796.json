@@ -1,0 +1,94 @@
+{
+  "id": "card_c21796",
+  "slug": "prefix-invariance-audit",
+  "type": "paper",
+  "title": "The Mask Is Not the Model: Auditing Causality Leaks",
+  "hook": "Your attention mask can be perfectly correct and your model still peeks at the future. Two forward passes find the leak — and turned up real defects in Zamba2 and Nemotron-H.",
+  "key_points": [
+    "Prefix invariance: the representation at position t must not change when future inputs change.",
+    "Checking the attention mask is not enough — leaks can slip in through scans or normalization layers instead.",
+    "The proposed audit needs only two forward passes, with no training and no gradients, and localizes where causality breaks.",
+    "Across 192 injected-fault trials on eight checkpoints, mask inspection caught zero; the audit localized all 192.",
+    "Applied to real models, it surfaced defects in Zamba2 and Nemotron-H — both hybrid attention/state-space designs."
+  ],
+  "content_html": "\u003cp\u003eA causal language model is supposed to obey a simple contract: what it computes at position t cannot depend on anything that comes after t. Kim and colleagues formalize that contract as \u003cem\u003eprefix invariance\u003c/em\u003e and then ask whether the usual way of checking it — reading the attention mask — actually verifies it.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhere the leaks hide\u003c/h2\u003e\n\u003cp\u003eIt does not. Causality is a property of the entire forward computation, not of one tensor. A state-space scan or a normalization statistic taken over the whole sequence can carry future information backwards even when every mask in the model is correct. That matters most for the hybrid attention/state-space architectures now in wide use, where the two mechanisms interleave.\u003c/p\u003e\n\u003ch2\u003eA cheap audit\u003c/h2\u003e\n\u003cp\u003eThe authors propose a test that needs two forward passes, no training and no gradients, and reports not just whether causality broke but where. Across 192 deliberately injected faults on eight checkpoints, mask inspection caught none of them while the audit localized all 192. Run against released models, it also flagged defects in Zamba2 and Nemotron-H — a reminder that this class of bug is silent, since a leaky model still trains and still produces plausible text.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Taebong Kim",
+      "Youngsik Hong",
+      "Minsik Kim",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.22876",
+    "published_at": "2026-08-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ssm-mamba",
+    "attention-mechanisms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "attention",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-27",
+  "date": "2026-08-24",
+  "related": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_c21796#0",
+      "format": "flip",
+      "prompt": "What does prefix invariance require of a sequence model?",
+      "back_html": "\u003cp\u003eThe representation at position t must depend only on inputs up to t — changing anything after t must leave it untouched.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c21796#1",
+      "format": "quiz",
+      "prompt": "Why is inspecting the attention mask an incomplete check for causality?",
+      "choices": [
+        {
+          "text": "Future information can leak through scans or normalization even with a correct mask",
+          "correct": true
+        },
+        {
+          "text": "Masks are applied after the softmax, so they have no effect",
+          "correct": false
+        },
+        {
+          "text": "Hybrid models do not use attention masks at all",
+          "correct": false
+        },
+        {
+          "text": "Masks only constrain the first layer of the stack",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper's point is that causality is a property of the whole computation: a state-space scan or a normalization statistic computed over the full sequence can leak the future regardless of the mask.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c21796#2",
+      "format": "flip",
+      "prompt": "How well did mask inspection do on the paper's injected-fault trials?",
+      "back_html": "\u003cp\u003eIt found none of the 192 injected faults across eight checkpoints; the two-forward-pass audit localized all 192.\u003c/p\u003e"
+    }
+  ]
+}

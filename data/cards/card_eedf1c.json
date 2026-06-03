@@ -1,0 +1,118 @@
+{
+  "id": "card_eedf1c",
+  "slug": "deepseek-v4-pro-0813",
+  "type": "news",
+  "title": "DeepSeek-V4-Pro Ships for Real: 1.7T Under MIT",
+  "hook": "The preview is over. DeepSeek's 1.7-trillion-parameter MoE lands with open MIT weights, built-in speculative decoding, and benchmark claims aimed straight at the closed frontier.",
+  "key_points": [
+    "DeepSeek-V4-Pro-0813 supersedes the preview release, with the model card citing improved agentic capability.",
+    "1.7 trillion parameters in a mixture-of-experts design; deployment guidance covers expert parallelism across vLLM and SGLang.",
+    "Ships a DSpark speculative decoding module as part of the model rather than as a separate serving trick.",
+    "Three reasoning effort levels (low, high, max), with a recommended maximum output length of 384K tokens at high and max.",
+    "Reported benchmarks: HLE with tools 60.0, Terminal Bench 2.1 87.9, NL2Repo 61.5, DeepSWE 62.7.",
+    "Released under the MIT license — unusually permissive for a model at this scale."
+  ],
+  "content_html": "\u003cp\u003eDeepSeek's V4-Pro moved from preview to a dated release, \u003ccode\u003eDeepSeek-V4-Pro-0813\u003c/code\u003e, with weights on Hugging Face under the MIT license. The model card describes a 1.7-trillion-parameter mixture-of-experts with improved agentic capability over the preview, three selectable reasoning effort levels, and a bundled DSpark speculative decoding module — fast decoding shipped as part of the model instead of left to whoever serves it.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eDeepSeek's own reported numbers are agent- and code-heavy: 60.0 on HLE with tools, 87.9 on Terminal Bench 2.1, 61.5 on NL2Repo, and 62.7 on DeepSWE. The card claims the release outperforms the preview and is \u0026quot;broadly competitive with the strongest proprietary models available\u0026quot;; those are vendor claims on vendor-selected benchmarks, so the usual caution applies until independent evaluations land.\u003c/p\u003e\n\u003cp\u003eThe practical shape of this release: deployment guidance targets vLLM and SGLang with expert parallelism, and a recommended output ceiling of 384K tokens at high and max reasoning effort. A 1.7T MoE is not a laptop model regardless of sparsity, but MIT terms at frontier scale mean the barrier is GPUs rather than permission.\u003c/p\u003e",
+  "source": {
+    "name": "r/LocalLLaMA",
+    "authors": [
+      "/u/mossy_troll_84"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1vn9it4/deepseekaideepseekv4pro0813_hugging_face",
+    "published_at": "2026-08-13",
+    "license": "Reddit (link post)"
+  },
+  "topic_ids": [
+    "releases",
+    "moe",
+    "lab-updates"
+  ],
+  "tags": [
+    "open-source",
+    "news",
+    "agent"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-08-17",
+  "date": "2026-08-13",
+  "related": [
+    {
+      "id": "card_c0948e",
+      "slug": "deepseek-v4",
+      "type": "news",
+      "title": "DeepSeek-V4: Sparse Attention, Million-Token Default",
+      "hook": "DeepSeek-V4 makes a 1M-token context window the default and pairs token-wise compression with sparse attention, so long-context inference no longer pays the usual compute and memory tax.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-04-24"
+    },
+    {
+      "id": "card_ad2c60",
+      "slug": "dspark-speculative-decoding",
+      "type": "paper",
+      "title": "DSpark: The Speculative Decoder Behind DeepSeek's Production Serving",
+      "hook": "Parallel drafters draft fast, but verifying all of it wastes capacity on likely rejects. DSpark schedules verification by confidence — and cut DeepSeek-V4's per-user latency 60-85% in production.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_eedf1c#0",
+      "format": "quiz",
+      "prompt": "What is unusual about how DeepSeek-V4-Pro handles speculative decoding?",
+      "choices": [
+        {
+          "text": "A DSpark speculative decoding module ships as part of the model itself",
+          "correct": true
+        },
+        {
+          "text": "It rejects speculative decoding as incompatible with mixture-of-experts routing",
+          "correct": false
+        },
+        {
+          "text": "It requires a separately trained draft model from a third party",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSpeculative decoding is usually a serving-layer choice bolted on afterward. Bundling DSpark into the release makes fast decoding part of the model's contract rather than the deployer's problem.\u003c/p\u003e"
+    },
+    {
+      "id": "card_eedf1c#1",
+      "format": "flip",
+      "prompt": "Why does the MIT license matter for a 1.7T-parameter model?",
+      "back_html": "\u003cp\u003eAt this scale most releases carry custom or restricted terms. MIT means no usage restrictions on a model competitive with closed frontier systems — the constraint on using it becomes hardware, not legal.\u003c/p\u003e"
+    },
+    {
+      "id": "card_eedf1c#2",
+      "format": "flip",
+      "prompt": "What do the three reasoning effort levels imply about serving this model?",
+      "back_html": "\u003cp\u003eCompute per query is a deployment dial, not a fixed property: low, high, and max trade latency and token spend against answer quality, with output length recommendations up to 384K tokens at the higher settings.\u003c/p\u003e"
+    }
+  ]
+}

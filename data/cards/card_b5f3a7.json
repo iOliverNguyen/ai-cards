@@ -1,0 +1,101 @@
+{
+  "id": "card_b5f3a7",
+  "slug": "longcat-2-0",
+  "type": "news",
+  "title": "LongCat 2.0: A 1.6T-Parameter Open Model Under MIT License",
+  "hook": "1.6 trillion total parameters, ~48B active, and released under the MIT license — one of the most permissively licensed large open-weight MoE models yet.",
+  "key_points": [
+    "LongCat 2.0: 1.6T total parameters, roughly 48B active per token — a large sparse mixture-of-experts model.",
+    "Weights released under the MIT license, more permissive than the community or restricted licenses many large open models ship under.",
+    "Announced via a technical blog post and amplified across the open-model community (ModelScope, independent researchers)."
+  ],
+  "content_html": "\u003cp\u003eOpen-weight models at the trillion-parameter scale are no longer rare, but licensing terms still vary widely. LongCat 2.0 lands with both a large sparse mixture-of-experts design and one of the most permissive licenses going.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eLongCat 2.0 ships with 1.6 trillion total parameters and roughly 48 billion active per token, and — notably — the weights are released under the MIT license, more permissive than the community or restricted licenses many similarly large open models carry. The release was announced via a technical blog post and quickly amplified across the open-model community, including ModelScope. For teams choosing an open MoE model to build on, the license terms are often as consequential as the benchmark numbers. Reported on r/LocalLLaMA, 2026-07-05.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit (r/LocalLLaMA)",
+    "authors": [
+      "LongCat team"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1unyvnz/longcat_20_16t_48b_active_weights_are_now_open",
+    "published_at": "2026-07-05",
+    "license": "Community post"
+  },
+  "topic_ids": [
+    "releases",
+    "lab-updates",
+    "moe"
+  ],
+  "tags": [
+    "open-source",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-07-09",
+  "date": "2026-07-05",
+  "related": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    },
+    {
+      "id": "card_31ff4e",
+      "slug": "mixtral",
+      "type": "paper",
+      "title": "Mixtral of Experts",
+      "hook": "Mixtral packs 8 experts per layer but routes each token through only 2, so you get the capacity of a ~47B model at the compute cost of a ~13B one - open weights included.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-01-08"
+    },
+    {
+      "id": "card_c0948e",
+      "slug": "deepseek-v4",
+      "type": "news",
+      "title": "DeepSeek-V4: Sparse Attention, Million-Token Default",
+      "hook": "DeepSeek-V4 makes a 1M-token context window the default and pairs token-wise compression with sparse attention, so long-context inference no longer pays the usual compute and memory tax.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-04-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b5f3a7#0",
+      "format": "flip",
+      "prompt": "What are LongCat 2.0's headline specs?",
+      "back_html": "\u003cp\u003e1.6 trillion total parameters with roughly 48B active per token (a large sparse mixture-of-experts model), released under the permissive MIT license.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b5f3a7#1",
+      "format": "quiz",
+      "prompt": "Why does the MIT license matter for a model of LongCat 2.0's scale?",
+      "choices": [
+        {
+          "text": "It's notably more permissive than the community or restricted licenses many large open-weight models ship under, easing commercial and downstream use",
+          "correct": true
+        },
+        {
+          "text": "MIT licensing is required for any model over 1 trillion parameters",
+          "correct": false
+        },
+        {
+          "text": "It means the model's weights are encrypted",
+          "correct": false
+        },
+        {
+          "text": "It has no practical effect compared to other open licenses",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMany large open-weight releases use community or restricted licenses with usage caveats. MIT is one of the most permissive options, which matters for anyone wanting to build on or commercialize the model.\u003c/p\u003e"
+    }
+  ]
+}

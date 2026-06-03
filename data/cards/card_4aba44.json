@@ -1,0 +1,116 @@
+{
+  "id": "card_4aba44",
+  "slug": "vision-transformer-vit",
+  "type": "paper",
+  "title": "An Image is Worth 16x16 Words (ViT)",
+  "hook": "Chop an image into patches, treat each like a word, and feed them to a plain Transformer. With enough pretraining data, it matches or beats convolutional networks.",
+  "key_points": [
+    "Splits an image into fixed-size patches and treats each patch as a token.",
+    "Feeds the patch tokens into a standard Transformer encoder, with almost no vision-specific design.",
+    "Matches or surpasses strong CNNs when pretrained on large enough datasets.",
+    "Needs lots of pretraining data; on small datasets CNNs' built-in biases still win."
+  ],
+  "content_html": "\u003cp\u003eAlexey Dosovitskiy, Lucas Beyer, and colleagues at Google asked whether vision really needs convolutions. The Vision Transformer (ViT) says largely not: cut an image into fixed patches, embed each as a token, and run them through a standard Transformer. Given enough pretraining data, this nearly architecture-agnostic recipe matches or beats top convolutional networks, carrying the Transformer from language into vision.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eViT divides an image into a grid of small patches — say 16x16 pixels — and flattens each into a vector through a linear projection, producing a sequence of patch tokens. It adds positional embeddings so the model knows where each patch sat, prepends a special classification token, and feeds the whole sequence to a regular Transformer encoder. Self-attention lets every patch attend to every other from the first layer, so the model learns global relationships directly rather than building them up through local convolutions.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eConvolutional networks come with strong built-in assumptions about images, like locality, which help when data is limited. ViT drops most of those assumptions and instead learns them from data — which means it needs large-scale pretraining to shine, but then scales gracefully. It unified the architectures behind language and vision, and became the backbone for multimodal models and many later vision systems.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Alexey Dosovitskiy",
+      "Lucas Beyer",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2010.11929",
+    "published_at": "2020-10-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "vision-transformers"
+  ],
+  "tags": [
+    "vision",
+    "architecture",
+    "landmark"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2020-10-22",
+  "related": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    },
+    {
+      "id": "card_3d7d44",
+      "slug": "clip",
+      "type": "paper",
+      "title": "CLIP: Learning Visual Models from Language",
+      "hook": "Skip the fixed label list. Train on image–caption pairs so pictures and text share one space, and you can classify images from plain-text labels you make up on the spot.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-02-26"
+    },
+    {
+      "id": "card_e778b2",
+      "slug": "resnet",
+      "type": "paper",
+      "title": "Deep Residual Learning (ResNet)",
+      "hook": "Stacking more layers used to make networks worse, not better. ResNet's fix — let each layer learn a tweak to its input — unlocked nets over 100 layers deep.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-12-10"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_4aba44#0",
+      "format": "flip",
+      "prompt": "How does ViT turn an image into something a Transformer can process?",
+      "back_html": "\u003cp\u003eIt cuts the image into fixed-size patches, linearly projects each into a token vector, adds positional embeddings, and feeds the sequence to a standard Transformer encoder.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4aba44#1",
+      "format": "quiz",
+      "prompt": "Why does ViT need large-scale pretraining to beat CNNs?",
+      "choices": [
+        {
+          "text": "It drops the built-in image biases like locality, so it must learn them from lots of data",
+          "correct": true
+        },
+        {
+          "text": "Its self-attention is too slow to converge without huge batches",
+          "correct": false
+        },
+        {
+          "text": "Patch embeddings can only be learned from labeled segmentation masks",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eCNNs' built-in assumptions help with limited data; ViT learns those from data instead, so on small datasets CNNs still win.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4aba44#2",
+      "format": "flip",
+      "prompt": "What lets ViT learn global image relationships from the first layer?",
+      "back_html": "\u003cp\u003eSelf-attention lets every patch attend to every other patch directly, rather than building up global context gradually through local convolutions.\u003c/p\u003e"
+    }
+  ]
+}

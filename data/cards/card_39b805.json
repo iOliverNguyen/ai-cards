@@ -1,0 +1,105 @@
+{
+  "id": "card_39b805",
+  "slug": "pix2pix",
+  "type": "paper",
+  "title": "Pix2Pix: Image-to-Image Translation with Conditional GANs",
+  "hook": "Give a GAN paired input-output images and it learns a general recipe for translating any image domain to another - sketch to photo, map to satellite, day to night.",
+  "key_points": [
+    "Uses a conditional GAN: both generator and discriminator receive the input image, so the output is conditioned on it.",
+    "PatchGAN discriminator judges small image patches rather than the whole image, enforcing local sharpness.",
+    "L1 reconstruction loss added to the GAN objective reduces blurring and anchors outputs to the target.",
+    "A single architecture trained on paired data works across many translation tasks without task-specific design."
+  ],
+  "content_html": "\u003cp\u003eIsola et al. at Berkeley showed in 2016 that a single conditional GAN framework could handle a wide range of image-to-image translation problems - sketches to photos, semantic labels to street scenes, aerial maps to satellite imagery - using the same architecture and training procedure throughout. The key shift was conditioning both the generator and discriminator on the input image, turning the GAN into a structured prediction machine.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe generator is a U-Net that takes an input image and produces a translated output. The discriminator - a PatchGAN - sees pairs of (input, output) and decides whether each overlapping patch looks real or fake, rather than judging the whole image at once. A weighted L1 loss between the generated image and the ground truth is added to the standard GAN loss, which helps the model stay close to the target while the discriminator sharpens fine details.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003ePix2Pix made image translation a general-purpose tool rather than a bespoke engineering problem. The PatchGAN and the conditional formulation became standard building blocks, and the paper spawned a generation of translation models. Its main limitation is the requirement for aligned paired training data, which CycleGAN later addressed. Read the paper on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Phillip Isola",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/1611.07004",
+    "published_at": "2016-11-21",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "gans"
+  ],
+  "tags": [
+    "generative",
+    "vision",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2016-11-21",
+  "related": [
+    {
+      "id": "card_047809",
+      "slug": "generative-adversarial-networks",
+      "type": "paper",
+      "title": "Generative Adversarial Networks (GANs)",
+      "hook": "Pit two networks against each other — a forger making fakes and a detective catching them — and the forger gets so good its fakes look real.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2014-06-10"
+    },
+    {
+      "id": "card_059210",
+      "slug": "cyclegan",
+      "type": "paper",
+      "title": "CycleGAN: Unpaired Image-to-Image Translation",
+      "hook": "Translate horses to zebras without a single matched pair - a cycle-consistency constraint does the work that paired data used to do.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2017-03-30"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_047809",
+      "slug": "generative-adversarial-networks",
+      "type": "paper",
+      "title": "Generative Adversarial Networks (GANs)",
+      "hook": "Pit two networks against each other — a forger making fakes and a detective catching them — and the forger gets so good its fakes look real.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2014-06-10"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_39b805#0",
+      "format": "flip",
+      "prompt": "What does conditioning both generator and discriminator on the input image achieve in Pix2Pix?",
+      "back_html": "\u003cp\u003eIt turns the GAN into a structured prediction machine whose output is conditioned on the input image.\u003c/p\u003e"
+    },
+    {
+      "id": "card_39b805#1",
+      "format": "quiz",
+      "prompt": "What does the PatchGAN discriminator judge?",
+      "choices": [
+        {
+          "text": "Small overlapping patches rather than the whole image",
+          "correct": true
+        },
+        {
+          "text": "The entire image as a single real/fake decision",
+          "correct": false
+        },
+        {
+          "text": "Only the input image, ignoring the output",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePatchGAN judges local patches, which enforces local sharpness in the generated output.\u003c/p\u003e"
+    },
+    {
+      "id": "card_39b805#2",
+      "format": "flip",
+      "prompt": "Why is an L1 reconstruction loss added to the GAN objective?",
+      "back_html": "\u003cp\u003eIt reduces blurring and anchors the output to the target, keeping the model close to ground truth while the discriminator sharpens detail.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "id": "card_b670a8",
+  "slug": "trace-agent-credit-assignment",
+  "type": "paper",
+  "title": "TRACE: Turn-Level Reward Assignment via Credit Estimation for Long-Horizon Agents",
+  "hook": "A failed agent rollout might still contain dozens of genuinely useful actions — outcome-only RL punishes every one of them the same as the final mistake. TRACE assigns credit per tool call instead, with no extra critic.",
+  "key_points": [
+    "Targets credit assignment for multi-turn agents whose trajectories span tens to hundreds of tool calls before a final answer.",
+    "Outcome-only rewards get sparse and high-variance over long trajectories, and mislabel useful early actions in a rollout that ultimately fails.",
+    "TRACE represents rollouts as state transitions at tool-call boundaries and gets gold-answer log-probabilities from a frozen reference model.",
+    "Those log-probabilities become log-ratio state values; per-action rewards are the Temporal-Difference change in that value between turns — no extra critic or process-label training needed.",
+    "On the closed-web BrowseComp-Plus benchmark, TRACE raises Qwen3-4B from 7.2 to 35.6 and Qwen3-30B-A3B from 8.4 to 42.6, using pure RL with no cold-start SFT or mid-training stage.",
+    "The learned search behavior transfers to open-web benchmarks, and training curves show earlier improvement and faster convergence than outcome-only RL."
+  ],
+  "content_html": "\u003cp\u003eMulti-turn agents that chain together tool calls for tens or hundreds of steps before answering face a hard credit-assignment problem: outcome-only rewards get sparse and noisy as trajectories stretch out, and a rollout that ultimately fails can still contain plenty of individually useful actions that outcome-only training punishes just as harshly as the actual mistake.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eLeitian Tao, Baolin Peng, and colleagues propose TRACE (Turn-level Reward Assignment via Credit Estimation), a dense credit-assignment method for agentic RL. TRACE represents each rollout as a sequence of state transitions at tool-call boundaries, pulls gold-answer log-probabilities from a frozen reference model, and converts those into log-ratio state values. Per-action rewards then fall out as the Temporal-Difference change in that value from one turn to the next — a one-step log-ratio TD term that telescopes cleanly across redundant tool calls, with no additional critic network or process-label training required.\u003c/p\u003e\n\u003cp\u003eOn the closed-web BrowseComp-Plus benchmark, TRACE substantially improves tool-use ability with pure RL alone — no cold-start supervised fine-tuning, no agentic mid-training stage, and no live-web training data — lifting Qwen3-4B from 7.2 to 35.6 and Qwen3-30B-A3B from 8.4 to 42.6. The resulting search behavior also transfers to open-web benchmarks, and training curves show earlier improvement and faster convergence than outcome-only baselines. Leitian Tao, Baolin Peng, and colleagues, arXiv, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Leitian Tao",
+      "Baolin Peng",
+      "Wenlin Yao",
+      "Tao Ge",
+      "Hao Cheng",
+      "Mike Hang Wang",
+      "Jianfeng Gao",
+      "Sharon Li"
+    ],
+    "url": "https://arxiv.org/abs/2607.13988",
+    "published_at": "2026-07-15",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "rlhf",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "training",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-20",
+  "date": "2026-07-15",
+  "related": [
+    {
+      "id": "card_1710c1",
+      "slug": "zone-of-proximal-policy-optimization",
+      "type": "paper",
+      "title": "ZPPO: Put the Teacher in the Prompt, Not the Gradient",
+      "hook": "A small student learns from a bigger teacher without the drift that breaks on-policy RL - by feeding the teacher's answer into the prompt as a candidate to judge, never into the gradient.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-16"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b670a8#0",
+      "format": "flip",
+      "prompt": "Why does outcome-only reward become a problem for long-horizon, multi-turn agents specifically?",
+      "back_html": "\u003cp\u003eOver tens to hundreds of tool calls, outcome rewards get sparse and high-variance, and a failed rollout's useful early actions get the same negative signal as the eventual mistake that caused failure.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b670a8#1",
+      "format": "quiz",
+      "prompt": "How does TRACE turn a frozen reference model's gold-answer log-probabilities into per-action rewards?",
+      "choices": [
+        {
+          "text": "It converts them into log-ratio state values, then takes the Temporal-Difference change in that value across each tool-call boundary as the reward",
+          "correct": true
+        },
+        {
+          "text": "It trains a separate learned critic network to score each action",
+          "correct": false
+        },
+        {
+          "text": "It asks a human annotator to label each tool call as helpful or not",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eTRACE needs no extra critic or process-label training — the reward comes from the TD change in log-ratio state values derived from a frozen reference model's log-probabilities.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b670a8#2",
+      "format": "quiz",
+      "prompt": "How much did TRACE improve Qwen3-4B on the closed-web BrowseComp-Plus benchmark?",
+      "choices": [
+        {
+          "text": "From 7.2 to 35.6",
+          "correct": true
+        },
+        {
+          "text": "From 35.6 to 42.6",
+          "correct": false
+        },
+        {
+          "text": "From 7.2 to 8.4",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePure RL with TRACE raised Qwen3-4B from 7.2 to 35.6 on BrowseComp-Plus, and Qwen3-30B-A3B from 8.4 to 42.6 — with no cold-start SFT stage.\u003c/p\u003e"
+    }
+  ]
+}

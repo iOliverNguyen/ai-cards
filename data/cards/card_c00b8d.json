@@ -1,0 +1,110 @@
+{
+  "id": "card_c00b8d",
+  "slug": "gpipe",
+  "type": "paper",
+  "title": "GPipe: Pipeline Parallelism for Giant Networks",
+  "hook": "Spread a network's layers across accelerators as pipeline stages, then split each batch into micro-batches so no accelerator sits idle — near-linear speedup for giant models.",
+  "key_points": [
+    "Partitions a sequence of layers across accelerators as pipeline stages.",
+    "A novel batch-splitting (micro-batch) algorithm keeps all accelerators busy for near-linear speedup.",
+    "Demonstrated a 557M-parameter AmoebaNet reaching 84.4% top-1 on ImageNet.",
+    "Trained a 6B-parameter, 128-layer Transformer across 100+ languages."
+  ],
+  "content_html": "\u003cp\u003eYanping Huang, Youlong Cheng, Ankur Bapna, and colleagues at Google introduced GPipe, a pipeline-parallelism library for networks that can be expressed as a sequence of layers. It partitions those layers across accelerators as stages, then uses a micro-batch pipelining scheme to keep every accelerator working. They used it to train a 557M-parameter AmoebaNet to 84.4% top-1 accuracy on ImageNet and a 6B-parameter, 128-layer Transformer across more than 100 languages.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eGPipe assigns consecutive groups of layers to different accelerators, forming a pipeline of stages. The catch with naive pipelining is that stages stall waiting for each other, so GPipe splits each mini-batch into smaller micro-batches that flow through the pipeline together. With several micro-batches in flight at once, the accelerators stay busy and the method reaches near-linear speedup.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003ePipeline parallelism lets a model grow deeper than any single accelerator's memory allows, and GPipe made it practical with the micro-batch trick. Its results span both vision and language — the AmoebaNet ImageNet result and the multilingual 6B Transformer — showing the approach is general. (Its exact arXiv title is \u0026quot;GPipe: Efficient Training of Giant Neural Networks using Pipeline Parallelism\u0026quot;.)\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yanping Huang",
+      "Youlong Cheng",
+      "Ankur Bapna",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/1811.06965",
+    "published_at": "2018-11-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "distributed-training"
+  ],
+  "tags": [
+    "training",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2018-11-16",
+  "related": [
+    {
+      "id": "card_09b3a2",
+      "slug": "megatron-lm",
+      "type": "paper",
+      "title": "Megatron-LM: Training LLMs with Model Parallelism",
+      "hook": "Split the big matrices inside attention and MLP layers across GPUs, add a few communication ops, and you can train an 8.3B model on 512 GPUs — no custom compiler needed.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2019-09-17"
+    },
+    {
+      "id": "card_1480e5",
+      "slug": "zero",
+      "type": "paper",
+      "title": "ZeRO: Memory Optimizations for Trillion-Parameter Models",
+      "hook": "Data-parallel training wastes memory by copying optimizer states, gradients, and parameters onto every GPU. ZeRO partitions them instead — fitting 100B+ parameter models.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2019-10-04"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_c00b8d#0",
+      "format": "flip",
+      "prompt": "How does GPipe partition a network across accelerators?",
+      "back_html": "\u003cp\u003eIt assigns consecutive groups of layers to different accelerators, forming a pipeline of stages.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c00b8d#1",
+      "format": "quiz",
+      "prompt": "What problem does GPipe's micro-batch algorithm solve?",
+      "choices": [
+        {
+          "text": "Pipeline stages stalling while waiting for each other",
+          "correct": true
+        },
+        {
+          "text": "Optimizer states being replicated on every GPU",
+          "correct": false
+        },
+        {
+          "text": "Weight matrices being too large for one device",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eNaive pipelining stalls; splitting each mini-batch into micro-batches keeps all accelerators busy for near-linear speedup.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c00b8d#2",
+      "format": "quiz",
+      "prompt": "What does pipeline parallelism let a model do that single-accelerator memory cannot?",
+      "choices": [
+        {
+          "text": "Grow deeper than any single accelerator's memory allows",
+          "correct": true
+        },
+        {
+          "text": "Train without any communication between devices",
+          "correct": false
+        },
+        {
+          "text": "Eliminate the need for micro-batches",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePipeline parallelism lets a model grow deeper than one accelerator's memory allows, made practical by the micro-batch trick.\u003c/p\u003e"
+    }
+  ]
+}

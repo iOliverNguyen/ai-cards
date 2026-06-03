@@ -1,0 +1,129 @@
+{
+  "id": "card_69407e",
+  "slug": "windowed-mtp-draft-kv-tax",
+  "type": "paper",
+  "title": "The Draft Isn't Free at a Million Tokens",
+  "hook": "Speculative decoding assumes the draft is cheap. At million-token context the draft head reads the entire KV cache every step — and can end up slower than no speculation at all.",
+  "key_points": [
+    "Built-in Multi-Token-Prediction draft heads typically run full attention over the whole KV cache at every draft step.",
+    "That read grows linearly with context and comes to dominate draft cost exactly where speculation should pay off most.",
+    "The effect compounds with draft length, and sharpens under hybrid or linear-attention targets whose verification is already cheap.",
+    "Windowed-MTP applies a StreamingLLM-style sliding window plus attention sink to the draft's attention only.",
+    "Lossless by construction: the full-attention target still verifies every accepted token, so windowing changes proposals, never acceptances.",
+    "At 1M context it drops ~99% of KV entries for the draft and cuts per-decode-step cost 28-44% across three architecture families."
+  ],
+  "content_html": "\u003cp\u003eSpeculative decoding works by having a cheap draft propose tokens that the expensive target verifies in parallel. Frontier models increasingly ship a built-in Multi-Token-Prediction (MTP/NEXTN) head for exactly this, on the assumption that the draft costs almost nothing. This paper points out where that assumption breaks: at very long context.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe draft-KV tax\u003c/h2\u003e\n\u003cp\u003eAn MTP draft head typically attends over the \u003cem\u003eentire\u003c/em\u003e KV cache at every draft step, so its read grows linearly with context length. At a million tokens that read dominates the draft's cost — precisely in the regime where speculation is most valuable. It compounds with draft length, to the point where a deep native draft can go net-negative and run slower than not speculating at all. It's worse under hybrid and linear-attention targets: their verification pass is cheap, which leaves the draft's full-attention read as the exposed bottleneck.\u003c/p\u003e\n\u003ch2\u003eThe fix, and why it's safe\u003c/h2\u003e\n\u003cp\u003e\u003cstrong\u003eWindowed-MTP\u003c/strong\u003e applies a StreamingLLM-style sliding window plus attention sink to the draft's attention \u003cem\u003eonly\u003c/em\u003e, leaving full-attention verification untouched. It's training-free and drop-in, and it's lossless by construction: the target still decides every accepted token, so a worse-informed draft can cost acceptance rate but never correctness. Bounding the draft's KV working set to a constant drops roughly 99% of KV entries at 1M context. Measured on Qwen GDN-MoE (35B and 122B) and a Mamba2-hybrid NoPE 120B at 1M context on a single GPU in SGLang, it cuts per-decode-step cost over the shipping native draft by 28-44% — an input-invariant margin that widens with context — and the now-unread draft KV (7.7-11% of total at 1M) is reclaimed with a ring buffer. Valliappan, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Alagappan Valliappan"
+    ],
+    "url": "https://arxiv.org/abs/2607.21535",
+    "published_at": "2026-07-23",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "context-memory",
+    "papers-this-week"
+  ],
+  "tags": [
+    "inference",
+    "efficiency",
+    "attention",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-27",
+  "date": "2026-07-23",
+  "related": [
+    {
+      "id": "card_951958",
+      "slug": "speculative-decoding",
+      "type": "paper",
+      "title": "Speculative Decoding",
+      "hook": "Let a small, fast model guess the next few words, then have the big model check them all in one shot. Same output, fewer slow steps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-30"
+    },
+    {
+      "id": "card_1bff26",
+      "slug": "jetspec-speculative-decoding",
+      "type": "paper",
+      "title": "JetSpec: Breaking the Scaling Ceiling of Speculative Decoding",
+      "hook": "Speculative decoding stalls when bigger draft trees stop paying off. JetSpec trains a causal parallel draft head that drafts in one pass yet stays branch-consistent — hitting up to 9.64x speedup.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-25"
+    },
+    {
+      "id": "card_688904",
+      "slug": "kv-cache-and-batching",
+      "type": "concept",
+      "title": "The KV Cache \u0026 Continuous Batching",
+      "hook": "Generating one token reuses every prior key and value - that growing cache is why LLM inference is memory-bound, and continuous batching is how servers fight back.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-11-09"
+    },
+    {
+      "id": "card_e32d38",
+      "slug": "llamacpp-deepseek-v4-flash-1m-context",
+      "type": "news",
+      "title": "A Hobbyist CUDA Kernel Brings DeepSeek-V4 Flash's Full 1M Context to One GPU",
+      "hook": "Missing CUDA support for DeepSeek-V4 Flash's sparse-attention indexer meant llama.cpp needed ~256GB of VRAM for 1M-token context. One contributor's kernel patch shrinks that to a single RTX 5090.",
+      "importance": 2,
+      "difficulty": "core",
+      "date": "2026-07-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_951958",
+      "slug": "speculative-decoding",
+      "type": "paper",
+      "title": "Speculative Decoding",
+      "hook": "Let a small, fast model guess the next few words, then have the big model check them all in one shot. Same output, fewer slow steps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-30"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_69407e#0",
+      "format": "flip",
+      "prompt": "Why does a built-in MTP draft head stop being cheap at million-token context?",
+      "back_html": "\u003cp\u003eIt runs full attention over the entire KV cache at every draft step, so its read grows linearly with context until it dominates the cost of drafting.\u003c/p\u003e"
+    },
+    {
+      "id": "card_69407e#1",
+      "format": "quiz",
+      "prompt": "Why is Windowed-MTP lossless despite the draft seeing only a sliding window?",
+      "choices": [
+        {
+          "text": "The full-attention target still verifies every token, so windowing changes which tokens are proposed, never which are accepted",
+          "correct": true
+        },
+        {
+          "text": "The window is large enough that no relevant token is ever excluded",
+          "correct": false
+        },
+        {
+          "text": "It re-runs the draft with full attention whenever confidence is low",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSpeculative decoding's guarantee comes from verification. Degrading the proposer can only cost acceptance rate, never output correctness.\u003c/p\u003e"
+    },
+    {
+      "id": "card_69407e#2",
+      "format": "flip",
+      "prompt": "Under what kind of target model does the draft's full-attention read hurt most?",
+      "back_html": "\u003cp\u003eHybrid or linear-attention targets — their verification is already cheap, so the draft's quadratic-style full-context read is left exposed as the bottleneck.\u003c/p\u003e"
+    }
+  ]
+}

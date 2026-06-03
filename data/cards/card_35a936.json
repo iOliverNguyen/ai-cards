@@ -1,0 +1,97 @@
+{
+  "id": "card_35a936",
+  "slug": "item-response-theory-ai-evaluation",
+  "type": "paper",
+  "title": "Can We Trust Item Response Theory for AI Evaluation?",
+  "hook": "IRT ranks models off a handful of items instead of averaging accuracy — but the math was built for human test-takers, and AI benchmarks break its assumptions in ways that quietly distort rankings.",
+  "key_points": [
+    "AI benchmarks have far more items and far fewer 'test-takers' (models) than IRT was designed for, with skewed or clustered capability distributions.",
+    "Tested 4 estimators (MLE, MCMC, variational inference, a neural pseudo-Siamese method) across 18,000 simulated conditions built from 6 real LLM benchmarks.",
+    "Classical estimators become computationally infeasible at benchmark scale; scalable ones can produce unreliable rankings and item stats with small or nonnormal model sets.",
+    "Reliability depends heavily on how many models are evaluated and how their ability scores are distributed, not just how many test items exist."
+  ],
+  "content_html": "\u003cp\u003eBenchmarks increasingly use item response theory (IRT) — a statistical framework built for human standardized tests — to rank AI models, pick informative test items, and flag bad benchmark questions. This paper asks whether that borrowed machinery actually holds up when the \u0026quot;test-takers\u0026quot; are LLMs instead of people.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eHan Jiang, Sunbeom Kwon, and colleagues note that AI benchmarks look nothing like the human-testing data IRT was calibrated for: thousands of items but only a handful of evaluated models, with ability scores that can bunch up or skew rather than spreading out normally. Using item parameters drawn from six widely used LLM benchmarks, they simulated response data under three IRT models and compared four estimation methods — classical maximum likelihood, MCMC, variational inference, and a neural pseudo-Siamese estimator — across 18,000 conditions.\u003c/p\u003e\n\u003cp\u003eThe pattern that emerges is a trade-off rather than a clean winner: classical estimators can become computationally infeasible once a benchmark gets large, while the faster, more scalable estimators can quietly produce unreliable model rankings and item-quality estimates when the pool of evaluated models is small or unevenly distributed. The authors, from Johns Hopkins, frame this as a call for diagnostics — knowing what sample sizes and checks a benchmark needs before trusting IRT-derived claims about model capability. Source: arXiv, arxiv.org/abs/2607.15190.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Han Jiang",
+      "Sunbeom Kwon",
+      "Jinwen Luo",
+      "Ziang Xiao",
+      "Susu Zhang"
+    ],
+    "url": "https://arxiv.org/abs/2607.15190",
+    "published_at": "2026-07-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-16",
+  "related": [
+    {
+      "id": "card_17d07c",
+      "slug": "predictive-validity-agent-evals",
+      "type": "paper",
+      "title": "Beyond Static Leaderboards for Agents",
+      "hook": "Topping an agent leaderboard doesn't mean it'll work when deployed: aggregate-score rankings don't transfer out-of-distribution. Rank by predictive validity instead.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    },
+    {
+      "id": "card_780660",
+      "slug": "feature-importance-can-mislead",
+      "type": "blog",
+      "title": "When Your Top Feature Makes Predictions Worse",
+      "hook": "A feature can top your model's importance ranking and still hurt accuracy. The only way to be sure it helps: delete it, retrain, and compare on held-out data.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_35a936#0",
+      "format": "flip",
+      "prompt": "Why might item response theory (IRT) not transfer cleanly from human testing to AI benchmarks?",
+      "back_html": "\u003cp\u003eAI benchmarks flip the usual ratio: far more test items than models evaluated, plus capability distributions that can be skewed or clustered — a regime IRT's estimation tools weren't designed for.\u003c/p\u003e"
+    },
+    {
+      "id": "card_35a936#1",
+      "format": "quiz",
+      "prompt": "What did the study find about classical vs. scalable IRT estimators at benchmark scale?",
+      "choices": [
+        {
+          "text": "Classical estimators can become infeasible; scalable ones can instead give unreliable rankings with small/nonnormal model sets",
+          "correct": true
+        },
+        {
+          "text": "All four estimators agreed closely in every one of the 18,000 conditions",
+          "correct": false
+        },
+        {
+          "text": "Classical MLE was the only estimator that worked at any scale",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAcross 18,000 simulated conditions, the paper found a trade-off: classical methods struggle to even run at scale, while faster alternatives can distort item- and ranking-level inferences.\u003c/p\u003e"
+    },
+    {
+      "id": "card_35a936#2",
+      "format": "flip",
+      "prompt": "What two properties of the model set most affect whether IRT inferences can be trusted?",
+      "back_html": "\u003cp\u003eHow many models are being evaluated, and how their ability scores are distributed (e.g., skewed or multimodal vs. roughly normal).\u003c/p\u003e"
+    }
+  ]
+}

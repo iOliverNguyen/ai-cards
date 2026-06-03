@@ -1,0 +1,115 @@
+{
+  "id": "card_a1a9e5",
+  "slug": "trust-truth-separability-llm-judge",
+  "type": "paper",
+  "title": "LLM Judges Can't Separate Trust from Truth",
+  "hook": "Ask a judge model for a trust score and a correctness verdict and you get two numbers — but they're not two pieces of evidence. Change the source label and both move.",
+  "key_points": [
+    "LLM-as-Judge setups often emit trustworthiness, reliability and factuality scores treated as independent signals.",
+    "On correctness-controlled QA, judges align trust scores with truth verdicts more tightly than a human behavioral reference does.",
+    "Stress test: hold the QA identical and change only the source cue — labeled Human vs. labeled AI.",
+    "That relabeling shifts trust scores, truth verdicts, and logit-derived correct-side probabilities alike.",
+    "Conclusion: trust scores should not be read as independent evidence for a truth judgment."
+  ],
+  "content_html": "\u003cp\u003eA common evaluation pattern asks a judge model for several ratings at once — is this trustworthy, is this factually correct — and then treats them as independent readings. Xin Sun and colleagues check whether that holds for the most common pair: a continuous trust score and a binary truth classification. On correctness-controlled QA, the judges bind the two together more tightly than a human behavioral reference does.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe stress test makes the coupling concrete. Keeping the QA pair identical and varying only whether the answer is attributed to a human or to an AI, the authors find that source attribution moves not just trust scores but the truth verdicts themselves, and the logit-derived probability mass on the correct side with them. Their recommendation for anyone building evaluation harnesses: do not treat a judge's trust score as independent evidence for its factuality call. Paper on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xin Sun",
+      "Di Wu",
+      "Yuchen Guo",
+      "Jiahuan Pei",
+      "Isao Echizen",
+      "Abdallah El Ali",
+      "Saku Sugawara"
+    ],
+    "url": "https://arxiv.org/abs/2608.21097",
+    "published_at": "2026-08-21",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "alignment",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-24",
+  "date": "2026-08-21",
+  "related": [
+    {
+      "id": "card_f3fb1d",
+      "slug": "inside-the-unfair-judge-bias-subspace",
+      "type": "paper",
+      "title": "Inside the Unfair Judge: A Mechanistic Account of LLM-as-Judge Bias",
+      "hook": "LLM judge bias isn't just noisy scoring — it has a geometric signature in hidden states you can find, steer, and use to predict failures on benchmarks you've never tested.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-13"
+    },
+    {
+      "id": "card_2e794c",
+      "slug": "can-llms-judge-better-than-generate",
+      "type": "paper",
+      "title": "Can LLMs Judge Better Than They Generate?",
+      "hook": "LLM-as-a-Judge assumes evaluation is easier than generation — a controlled test finds the opposite on 3 of 4 benchmarks, and attention analysis shows why.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-26"
+    },
+    {
+      "id": "card_686595",
+      "slug": "vlm-source-credibility-bias",
+      "type": "paper",
+      "title": "Brand as Memory: VLMs Trust the Masthead, Not the Evidence",
+      "hook": "Show a VLM the same article under a trusted outlet's logo versus an unknown one, and its verdict swings by 1.8x — a bias localized to three specific layers and steerable away.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-03"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a1a9e5#0",
+      "format": "flip",
+      "prompt": "What assumption about multi-dimensional LLM-as-Judge output does this paper test?",
+      "back_html": "\u003cp\u003eThat separate scores — trustworthiness, reliability, factuality — constitute independent evidence, rather than one underlying judgment reported several ways.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a1a9e5#1",
+      "format": "quiz",
+      "prompt": "What happened when the researchers changed only the source cue (Human vs. AI) on identical QA?",
+      "choices": [
+        {
+          "text": "Trust scores, truth verdicts, and logit-derived correct-side probabilities all shifted",
+          "correct": true
+        },
+        {
+          "text": "Trust scores shifted but truth verdicts stayed stable",
+          "correct": false
+        },
+        {
+          "text": "Nothing changed, since the content was identical",
+          "correct": false
+        },
+        {
+          "text": "Only the logit probabilities moved, not the stated verdicts",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSource attribution leaked into the factual judgment itself, not just the perceived trustworthiness — which is why the two scores can't be treated as independent.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a1a9e5#2",
+      "format": "flip",
+      "prompt": "How did LLM judges compare to the human behavioral reference on trust–truth coupling?",
+      "back_html": "\u003cp\u003eThe models coupled trust scores and truth verdicts more tightly than humans did — weaker separation between the two kinds of judgment.\u003c/p\u003e"
+    }
+  ]
+}

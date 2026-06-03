@@ -1,0 +1,148 @@
+{
+  "id": "card_ad5b9e",
+  "slug": "claim-level-reliability-assessment",
+  "type": "paper",
+  "title": "Refute, Don't Resample: Claim-Level Reliability Assessment",
+  "hook": "Refuting a wrong claim needs one decisive flaw; building a right answer needs a flawless path. CLR spends test-time compute on that asymmetry instead of on more samples.",
+  "key_points": [
+    "Whole-trace scoring dilutes the signal: decisive errors get lost among routine tokens.",
+    "CLR condenses each reasoning trace into a compact set of decision-critical claims.",
+    "It then hunts for negative evidence — refuting a claim needs just one flaw, not a full solution.",
+    "A nonlinear reliability score suppresses confidently-wrong traces that would otherwise win a vote.",
+    "Training-free; reallocates budget from extra solution samples to targeted verification.",
+    "Reported to beat self-consistency on GPT-OSS-20B/CMIMC25 (77.5% to 82.2%) with 37% fewer tokens."
+  ],
+  "content_html": "\u003cp\u003eThe standard way to spend extra compute at inference is to sample more solutions and vote — self-consistency. CLR argues that's the wrong ledger. Once a model's capability is fixed, generating an entirely correct solution is hard; but \u003cem\u003ecatching\u003c/em\u003e a wrong one only takes finding a single decisive flaw. So spend the budget on falsification instead.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eCLR condenses each reasoning trace into a compact set of \u003cstrong\u003edecision-critical claims\u003c/strong\u003e — its logical anchors — rather than scoring the trace as a whole, which the authors argue dilutes decisive errors among routine tokens. It then searches for negative evidence against those claims. Because refutation is asymmetrically cheap compared to construction, this systematically shrinks the survival space of high-confidence-but-wrong traces. A nonlinear reliability score turns those refutations into weights, which suppresses the \u0026quot;erroneous consensus\u0026quot; failure mode where several traces agree on the same wrong answer.\u003c/p\u003e\n\u003ch2\u003eResults\u003c/h2\u003e\n\u003cp\u003eThe framework is training-free and evaluated across four LLMs and four reasoning benchmarks under matched budgets, generally improving on both pass@1 and self-consistency. The headline example: on GPT-OSS-20B with CMIMC25, the authors report exceeding pass@1 by 27.15 points and lifting self-consistency accuracy from 77.50% to 82.19% while using 37% fewer tokens. The broader lesson is that majority voting treats confidence as evidence, and a cheap adversarial pass is often a better use of the same tokens.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Sen Xu",
+      "Wei Wang",
+      "Shixi Liu",
+      "Jixin Min",
+      "Yingwei Dai",
+      "Zhibin Yin",
+      "Yirong Chen",
+      "Junlin Zhang"
+    ],
+    "url": "https://arxiv.org/abs/2608.11994",
+    "published_at": "2026-08-12",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "prompting",
+    "papers-this-week"
+  ],
+  "tags": [
+    "reasoning",
+    "inference",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-17",
+  "date": "2026-08-12",
+  "related": [
+    {
+      "id": "card_812537",
+      "slug": "self-consistency",
+      "type": "paper",
+      "title": "Self-Consistency Improves Chain-of-Thought Reasoning",
+      "hook": "Sample the model many times, let each run reason its own way, then take the majority answer - diverse reasoning paths vote out individual errors.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-03-21"
+    },
+    {
+      "id": "card_1f00c3",
+      "slug": "test-time-compute-scaling",
+      "type": "paper",
+      "title": "Scaling LLM Test-Time Compute",
+      "hook": "A new scaling axis: instead of a bigger model, let a model think longer at inference — often a better use of compute, and the principle behind o1 and R1.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-08-06"
+    },
+    {
+      "id": "card_f4c73d",
+      "slug": "llm-as-a-verifier",
+      "type": "paper",
+      "title": "LLM-as-a-Verifier: Verification as a New Scaling Axis",
+      "hook": "Everyone scales pretraining, post-training, and test-time compute. This paper argues verification — checking if a solution is correct — is its own scaling axis, and hits SOTA on four agentic benchmarks.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_6845d0",
+      "slug": "power-sampling-coverage-mismatch",
+      "type": "paper",
+      "title": "More Correct Mass, Worse Answers: Where Power Sampling Breaks",
+      "hook": "Sharpening a model's distribution can push more probability onto correct reasoning paths and still make the final answer worse — by up to 18.5 points. The culprit is coverage, not correctness.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-08-14"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_812537",
+      "slug": "self-consistency",
+      "type": "paper",
+      "title": "Self-Consistency Improves Chain-of-Thought Reasoning",
+      "hook": "Sample the model many times, let each run reason its own way, then take the majority answer - diverse reasoning paths vote out individual errors.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-03-21"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_ad5b9e#0",
+      "format": "flip",
+      "prompt": "What asymmetry does CLR exploit to spend test-time compute better?",
+      "back_html": "\u003cp\u003eConstructing a valid solution requires a flawless reasoning path, but refuting an incorrect claim requires finding only a single decisive flaw — so falsification is cheaper than construction.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ad5b9e#1",
+      "format": "quiz",
+      "prompt": "Why does CLR score claims rather than whole reasoning traces?",
+      "choices": [
+        {
+          "text": "Whole-trace evaluation dilutes decisive errors among routine tokens",
+          "correct": true
+        },
+        {
+          "text": "Whole traces exceed the verifier's context window",
+          "correct": false
+        },
+        {
+          "text": "Claims are cheaper to generate than traces",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper argues signal dilution from routine tokens obscures decisive errors, so CLR condenses a trace into its decision-critical claims — its logical anchors.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ad5b9e#2",
+      "format": "quiz",
+      "prompt": "Where does CLR take its compute budget from?",
+      "choices": [
+        {
+          "text": "From drawing additional solution samples, redirecting it to targeted verification",
+          "correct": true
+        },
+        {
+          "text": "From the model's pretraining budget",
+          "correct": false
+        },
+        {
+          "text": "From fine-tuning a dedicated verifier model",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eCLR is training-free and reallocates test-time compute away from more solution sampling toward verifying decision-critical claims.\u003c/p\u003e"
+    }
+  ]
+}

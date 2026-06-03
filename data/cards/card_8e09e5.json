@@ -1,0 +1,101 @@
+{
+  "id": "card_8e09e5",
+  "slug": "muon-saddle-to-saddle-dynamics",
+  "type": "paper",
+  "title": "Why Muon Skips Gradient Descent's Slow Start",
+  "hook": "Small-init gradient descent crawls through a 'saddle-to-saddle' bottleneck — Muon skips it, learning every mode at once and staying stable past where gradient descent blows up.",
+  "key_points": [
+    "From small init, gradient descent learns matrix-factorization modes one at a time in slow 'saddle-to-saddle' jumps; Muon learns them all at once.",
+    "Muon remains stable even past the learning rate that would destabilize gradient descent, decoupling speed from the problem's condition number.",
+    "Muon and gradient flow conserve different matrix quantities, yet both still converge to the same 'balanced' solution from small initialization.",
+    "The analysis yields a two-step learning-rate schedule that reaches near-perfect weight alignment almost immediately."
+  ],
+  "content_html": "\u003cp\u003eMuon is already known for training faster than AdamW in practice. This paper digs into a simpler setting — matrix factorization — to explain mechanistically why, by comparing its parameter trajectories directly against plain gradient descent.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eMatrix factorization is a minimal problem that still shows both nonlinear parameter dynamics and representation learning, making it a clean testbed. The authors find three main differences: first, Muon avoids the slow saddle-to-saddle dynamics that gradient descent shows from small initialization, instead learning all the top modes of the target matrix at similar rates, with smaller modes converging first. Second, Muon stays stable even when the learning rate exceeds the critical threshold set by local loss sharpness, freeing convergence speed from the problem's condition number and enabling rapid convergence via exponential learning-rate annealing. Third, once the two factor matrices align with each other and the target, Muon's flow conserves a different matrix quantity than gradient flow does — yet both still reach the same \u0026quot;balanced\u0026quot; solution from small random initialization, aligning spontaneously early in training. The authors derive the alignment rates theoretically and use Muon's structure to build a learning-rate schedule that reaches near-perfect alignment in just two optimization steps. Mark Rhee, Jamie Simon, and Dhruva Karkada, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Mark Rhee",
+      "Jamie Simon",
+      "Dhruva Karkada"
+    ],
+    "url": "https://arxiv.org/abs/2606.30509",
+    "published_at": "2026-06-29",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "optimization",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-02",
+  "date": "2026-06-29",
+  "related": [
+    {
+      "id": "card_f399a5",
+      "slug": "muon-optimizer",
+      "type": "blog",
+      "title": "Muon: An Optimizer for Hidden Layers",
+      "hook": "Muon orthogonalizes each gradient update before applying it — and trained networks faster than AdamW, the first serious challenger to Adam's reign in years.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-12-08"
+    },
+    {
+      "id": "card_7d420c",
+      "slug": "async-pipeline-parallel-gradient-delay",
+      "type": "paper",
+      "title": "One-Step Gradient Delay Isn't a Barrier — With the Right Optimizer",
+      "hook": "Asynchronous pipeline parallelism kills GPU idle time during pretraining — the field avoided it fearing instability, but that turns out to be an AdamW problem, not a fundamental one.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-29"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_f399a5",
+      "slug": "muon-optimizer",
+      "type": "blog",
+      "title": "Muon: An Optimizer for Hidden Layers",
+      "hook": "Muon orthogonalizes each gradient update before applying it — and trained networks faster than AdamW, the first serious challenger to Adam's reign in years.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-12-08"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_8e09e5#0",
+      "format": "flip",
+      "prompt": "What is 'saddle-to-saddle' dynamics, and how does Muon avoid it?",
+      "back_html": "\u003cp\u003eIt's the slow, one-mode-at-a-time learning pattern gradient descent shows from small initialization; Muon instead learns all top modes of the target at comparable rates, skipping the slow crawl.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8e09e5#1",
+      "format": "quiz",
+      "prompt": "What lets Muon use a much higher learning rate than gradient descent in this setting?",
+      "choices": [
+        {
+          "text": "Muon stays stable past the learning rate threshold set by local loss sharpness, decoupling speed from the problem's condition number",
+          "correct": true
+        },
+        {
+          "text": "Muon uses a smaller model so any learning rate is safe",
+          "correct": false
+        },
+        {
+          "text": "Muon avoids using a learning rate schedule entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBecause Muon doesn't destabilize at the sharpness-set critical learning rate the way gradient descent does, it can use aggressive, exponentially annealed rates for rapid convergence.\u003c/p\u003e"
+    }
+  ]
+}

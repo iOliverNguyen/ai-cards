@@ -1,0 +1,80 @@
+{
+  "id": "card_effcd4",
+  "slug": "engrams-ngram-embedding-tables",
+  "type": "blog",
+  "title": "What an Engram Actually Is",
+  "hook": "The n-gram tables in new open models are not a trick for running 1T parameters off an SSD — they are an embedding table with a longer key, and that is a more interesting idea.",
+  "key_points": [
+    "An engram is an embedding table indexed by the last 2-3 tokens (an n-gram) instead of a single token ID.",
+    "The n-gram is hashed, the stored vector is fetched, and it is fed into the model alongside the normal token embedding.",
+    "Common phrases get their own memorized vector — 'New York' is looked up as a unit, not composed from two tokens.",
+    "This moves rote factual and phrasal memorization out of the dense weights and into cheap, sparsely-accessed lookup.",
+    "It does not let you stream 980B parameters from disk: the win is a bigger memory of surface patterns, not free capacity."
+  ],
+  "content_html": "\u003cp\u003eWhen Qwen3.8-Flash-Next appeared with a large n-gram component, a story spread that engram tables would let people run trillion-parameter models with almost everything offloaded to SSD. A widely-read r/LocalLLaMA post pushed back: that is not what engrams do, and the actual mechanism is more useful than the myth.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe mechanism\u003c/h2\u003e\n\u003cp\u003eAn engram is an embedding table with a longer key. A standard embedding table maps one token ID to one vector. An engram table hashes the last two or three tokens and looks up a vector for that n-gram, which is then fed into the model alongside the ordinary token embedding. \u0026quot;New York\u0026quot; gets its own memorized vector; so does \u0026quot;the United\u0026quot;. The model no longer has to reconstruct common phrases from single-token pieces every time.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThis is a capacity trade, not a compression trick. Rote memorization of surface patterns is expensive to store in dense transformer weights, because every parameter is read for every token. A hash table is read once per position, which makes it a natural candidate for cheaper memory — system RAM rather than VRAM. That is why the tables can be offloaded while the dense weights cannot, and why the post's framing is that engrams buy a bigger phrase memory rather than free parameters. The claims here are a community explainer rather than a vendor architecture document.\u003c/p\u003e",
+  "source": {
+    "name": "r/LocalLLaMA",
+    "authors": [
+      "/u/chocolateUI"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1w0198r/no_engrams_wont_let_you_run_1t_models_locally_it",
+    "published_at": "2026-08-27",
+    "license": "Reddit (community post)"
+  },
+  "topic_ids": [
+    "context-memory",
+    "tokenization"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "open-source",
+    "nlp"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_7e0a67",
+      "slug": "qwen3-8-flash-next",
+      "type": "news",
+      "title": "Qwen3.8-Flash-Next: MoE Plus an N-Gram Table",
+      "hook": "An imminent Qwen release pairs a sparse ~125B-A6B mixture-of-experts with a 51B n-gram component — an unusual hybrid the local community thinks will fit on one machine.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-25"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_effcd4#0",
+      "format": "flip",
+      "prompt": "How does an engram table differ from a normal token embedding table?",
+      "back_html": "\u003cp\u003eThe key is longer. A normal table indexes a vector by one token ID; an engram table hashes the last 2-3 tokens and indexes a vector by that n-gram, so a phrase gets its own memorized vector.\u003c/p\u003e"
+    },
+    {
+      "id": "card_effcd4#1",
+      "format": "quiz",
+      "prompt": "What is the real benefit of engram tables for local inference?",
+      "choices": [
+        {
+          "text": "Rote memorization moves into a cheap, sparsely-read lookup table instead of dense weights",
+          "correct": true
+        },
+        {
+          "text": "The full parameter count can be streamed from SSD during generation",
+          "correct": false
+        },
+        {
+          "text": "Attention becomes linear in sequence length",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe table is touched only for the current n-gram, so it costs little per token. What it buys is capacity for surface patterns — not a way to run arbitrarily large dense models off disk.\u003c/p\u003e"
+    }
+  ]
+}

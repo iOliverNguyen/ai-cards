@@ -1,0 +1,120 @@
+{
+  "id": "card_73f262",
+  "slug": "llm-forecasters-internal-probes-calibration",
+  "type": "paper",
+  "title": "What LLM Forecasters Know but Don't Say",
+  "hook": "A forecasting model's chain-of-thought can look untouched by evidence that actually flipped its answer — but its hidden activations give the real story away.",
+  "key_points": [
+    "Probes on Eternis-Forecaster 8B activations (validated on GLM-4.7-Flash/GLM-4.5-Air) beat the model's own stated confidence at calibration.",
+    "Evidence ablation and diversionary injection show removing an influential source often flips the forecast while the CoT stays unchanged.",
+    "The same probes work as 'lie detectors,' predicting the direction of a forecast change in 84% of cases, even when the CoT hides the cause.",
+    "Forced-answering tests show forecasts are largely fixed before reasoning starts — one pre-reasoning pass recovers the committed answer.",
+    "Routing on that pre-reasoning signal saves 30-47% of generated tokens with no loss in accuracy."
+  ],
+  "content_html": "\u003cp\u003eForecasting models fine-tuned to predict future events can be accurate and still badly calibrated — and worse, their chain-of-thought can quietly misrepresent what actually drove the forecast. This paper looks past the reasoning trace, straight at the model's internal activations, to see what it really knows.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eWorking with Eternis-Forecaster 8B on the OpenForesight benchmark (with results holding for GLM-4.7-Flash and GLM-4.5-Air), the authors train probes on intermediate activations that beat the model's own stated confidence at calibration. To test whether the chain-of-thought is faithful, they use evidence ablation and diversionary injection: removing an influential source from the prompt often changes the forecast while leaving the reasoning trace untouched, showing the CoT doesn't always reflect the real cause. The same probes double as lie detectors, predicting the direction of a forecast change in 84% of cases — including when the CoT conceals what actually moved it. A forced-answering experiment adds a further twist: forecasts are largely locked in before reasoning even starts, since a single pre-reasoning pass already recovers the committed answer and confidence. Routing questions by how spread out that pre-reasoning answer distribution is saves 30-47% of generated tokens with no accuracy loss — turning internal probing into a practical tool for calibrating, auditing, and triaging forecasting and reasoning models. Raphaël Sarfati and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Raphaël Sarfati",
+      "Pratyush Ranjan Tiwari",
+      "Siddharth Boppana",
+      "Christopher J. Earls",
+      "Srikar Varadaraj",
+      "Eric Ho"
+    ],
+    "url": "https://arxiv.org/abs/2607.08046",
+    "published_at": "2026-07-09",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-16",
+  "date": "2026-07-09",
+  "related": [
+    {
+      "id": "card_fda922",
+      "slug": "llms-encode-remaining-output-length",
+      "type": "paper",
+      "title": "How Much Is Left? LLMs Linearly Encode Their Remaining Output Length",
+      "hook": "Before an LLM writes a single token of its answer, its hidden state already seems to know roughly how long the answer will be — and the estimate jumps when it restarts a draft.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_d9c6e9",
+      "slug": "reading-between-the-dots",
+      "type": "paper",
+      "title": "Reading Between the Dots: Hidden Computation in Filler Tokens",
+      "hook": "Frontier models can solve multi-step problems while outputting nothing but dots — no visible reasoning at all. This paper shows that 'hidden' computation is still legible, just not in the output.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-03"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_73f262#0",
+      "format": "flip",
+      "prompt": "What do the probes in this paper reveal that the model's own stated confidence hides?",
+      "back_html": "\u003cp\u003eProbes on intermediate activations achieve substantially better calibration than the model's stated confidence — the hidden state \u0026quot;knows\u0026quot; more than it says.\u003c/p\u003e"
+    },
+    {
+      "id": "card_73f262#1",
+      "format": "quiz",
+      "prompt": "What does evidence ablation reveal about the chain-of-thought in these forecasting models?",
+      "choices": [
+        {
+          "text": "Removing an influential source often changes the forecast while the reasoning trace stays the same",
+          "correct": true
+        },
+        {
+          "text": "Removing evidence always changes both the forecast and the reasoning trace together",
+          "correct": false
+        },
+        {
+          "text": "The chain-of-thought perfectly tracks every piece of evidence used",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDiversionary injection and evidence ablation show the forecast can shift for reasons the CoT never mentions, exposing a faithfulness gap.\u003c/p\u003e"
+    },
+    {
+      "id": "card_73f262#2",
+      "format": "flip",
+      "prompt": "What does 'forced answering' show about when a forecast is actually decided?",
+      "back_html": "\u003cp\u003eForecasts are largely fixed before reasoning even begins — a single pre-reasoning pass already recovers the committed answer and confidence.\u003c/p\u003e"
+    },
+    {
+      "id": "card_73f262#3",
+      "format": "quiz",
+      "prompt": "How much generation cost do the authors save by routing on the pre-reasoning signal, and at what accuracy cost?",
+      "choices": [
+        {
+          "text": "30-47% fewer generated tokens, with no loss of accuracy",
+          "correct": true
+        },
+        {
+          "text": "About 5-10% fewer tokens, with a small accuracy drop",
+          "correct": false
+        },
+        {
+          "text": "No token savings, only better calibration",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRouting questions by the spread of the pre-reasoning answer distribution cuts generation cost substantially while preserving accuracy.\u003c/p\u003e"
+    }
+  ]
+}

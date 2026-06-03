@@ -1,0 +1,119 @@
+{
+  "id": "card_87aaac",
+  "slug": "grpo-synthetic-speech-asr",
+  "type": "paper",
+  "title": "When Real Speech Is Off-Limits, RL Beats Fine-Tuning on Synthetic Audio",
+  "hook": "Banks can't just collect real customer speech to adapt voice AI. Trained only on synthetic TTS audio, GRPO cuts word-error rate 40% more than supervised fine-tuning alone.",
+  "key_points": [
+    "In regulated domains like banking, real speech is costly and legally constrained to collect, making synthetic text-to-speech (TTS) audio an attractive but acoustically-mismatched substitute for adapting LLM-based ASR.",
+    "Prior work on this synthetic-to-real gap stayed within supervised fine-tuning (SFT); this paper turns to reinforcement learning instead.",
+    "GRPO (Group Relative Policy Optimization) — critic-free RL that rewards low-WER hypotheses — extracts far more value from the same synthetic-only speech than SFT.",
+    "GRPO alone cuts word-error rate 40% relative to SFT (36.71% to 22.09%); an SFT-then-GRPO combination pushes the reduction to 45%.",
+    "The gain traces to behavior change — better stopping calibration and tighter audio-text attention alignment — not to any change in early-layer representations."
+  ],
+  "content_html": "\u003cp\u003eVoice AI in regulated industries like banking faces an awkward catch: real customer speech is exactly the data you'd want to adapt a model on, and exactly the data you're most restricted from collecting. Synthetic text-to-speech is the obvious workaround, but it doesn't sound quite like real audio — and prior work trying to close that gap stuck to ordinary supervised fine-tuning (SFT).\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eShashi Kumar, Andreas Stolcke, and colleagues instead adapt an LLM-based ASR model with reinforcement learning, using GRPO (Group Relative Policy Optimization) — a critic-free method that rewards hypotheses with lower word-error rate. Trained on the exact same synthetic-only speech, GRPO cuts WER by 40% relative to SFT (36.71% down to 22.09%), and running SFT first followed by GRPO pushes the reduction to 45%. Digging into why, the authors trace the gain to behavior rather than representation: GRPO improves the model's stopping calibration (avoiding insertion errors) and sharpens how its attention aligns audio to text, while early-layer representations stay essentially unchanged. Their takeaway for anyone stuck adapting ASR on synthetic speech alone: reach for reinforcement learning over supervised fine-tuning.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Shashi Kumar",
+      "Yanis Labrak",
+      "Hasindri Watawana",
+      "Sergio Burdisso",
+      "Esaú Villatoro-Tello",
+      "Kadri Hacioğlu",
+      "Petr Motlicek",
+      "Andreas Stolcke"
+    ],
+    "url": "https://arxiv.org/abs/2607.08409",
+    "published_at": "2026-07-09",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "video-audio",
+    "rlhf",
+    "papers-this-week"
+  ],
+  "tags": [
+    "speech",
+    "alignment",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-09",
+  "related": [
+    {
+      "id": "card_8a4426",
+      "slug": "whisper",
+      "type": "paper",
+      "title": "Whisper: Robust Speech Recognition at Scale",
+      "hook": "Train a plain encoder-decoder transformer on 680,000 hours of weakly-labeled multilingual audio and you get near-human transcription robustness without task-specific fine-tuning.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-06"
+    },
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_87aaac#0",
+      "format": "flip",
+      "prompt": "Why is synthetic TTS speech attractive but flawed for adapting ASR in domains like banking?",
+      "back_html": "\u003cp\u003eReal speech is costly and legally constrained to collect there, so synthetic speech is an accessible substitute — but it stays acoustically mismatched with real recordings, limiting how well models trained on it generalize.\u003c/p\u003e"
+    },
+    {
+      "id": "card_87aaac#1",
+      "format": "quiz",
+      "prompt": "What result did GRPO training on synthetic-only speech achieve versus SFT in this paper?",
+      "choices": [
+        {
+          "text": "40% relative WER reduction versus SFT alone (36.71% to 22.09%), and 45% with an SFT-then-GRPO combination",
+          "correct": true
+        },
+        {
+          "text": "GRPO performed identically to SFT since both use the same synthetic data",
+          "correct": false
+        },
+        {
+          "text": "GRPO only matched SFT when real speech was added to the training set",
+          "correct": false
+        },
+        {
+          "text": "SFT outperformed GRPO by a wide margin on synthetic-only data",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eUsing the same synthetic-only speech, GRPO — a critic-free RL method rewarding low-WER hypotheses — cut WER 40% relative to SFT, and combining SFT with GRPO pushed the reduction to 45%.\u003c/p\u003e"
+    },
+    {
+      "id": "card_87aaac#2",
+      "format": "flip",
+      "prompt": "Where does GRPO's improvement over SFT actually come from, according to the paper's analysis?",
+      "back_html": "\u003cp\u003eFrom behavior change, not representation change: GRPO improves stopping calibration and strengthens audio-to-text attention alignment, while leaving early-layer representations largely intact.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "id": "card_92855b",
+  "slug": "probabilistic-safety-bounds-llms",
+  "type": "paper",
+  "title": "Sound Probabilistic Safety Bounds for Large Language Models",
+  "hook": "How do you put a rigorous, provable number on how often an LLM will produce harmful output? Borrow a century-old statistics tool and steer the search toward where harm hides.",
+  "key_points": [
+    "Frames LLM safety as bounding the probability that a model produces harmful output for a given prompt, with probably-approximately-correct (PAC) guarantees.",
+    "Uses Clopper–Pearson confidence intervals — a classical statistics tool — to obtain those PAC bounds.",
+    "Core algorithm uses latent-space features to steer exploration of the autoregressive generation tree toward branches likely to be harmful.",
+    "This makes it feasible to compute useful lower bounds even when the true harm probability is extremely small.",
+    "The lower bounds are sound — formally proven to be below the actual harm probability — enabling statistical certification of state-of-the-art LLMs."
+  ],
+  "content_html": "\u003cp\u003eMost LLM safety evaluation is empirical: run some prompts, count the bad outputs. This paper asks for something stronger — a \u003cem\u003eprovable\u003c/em\u003e bound on how likely a model is to produce harmful output for a given prompt.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eCertifying, not just estimating\u003c/h2\u003e\n\u003cp\u003eThe framework applies Clopper–Pearson confidence intervals to yield probably-approximately-correct (PAC) bounds on harm probability. The main technical contribution is an algorithm that uses features in the model's latent space to prioritize exploring the branches of the autoregressive generation tree most likely to produce harmful outputs — the key to finding rare failures without exhaustive sampling.\u003c/p\u003e\n\u003ch2\u003eSound lower bounds\u003c/h2\u003e\n\u003cp\u003eThis makes it possible to compute useful lower bounds even when the true harm probability is extremely small, and — crucially — those lower bounds are \u003cem\u003esound\u003c/em\u003e: formally proven to be less than the actual harmfulness probability rather than a potentially optimistic estimate. The experiments compute non-trivial lower bounds on state-of-the-art LLMs, opening a path to statistical certification of model safety. Nazeri, Schmuck, Soudjani, and Abate, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Mahdi Nazeri",
+      "Anne-Kathrin Schmuck",
+      "Sadegh Soudjani",
+      "Alessandro Abate"
+    ],
+    "url": "https://arxiv.org/abs/2607.20286",
+    "published_at": "2026-07-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "risks-policy",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "alignment",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-23",
+  "date": "2026-07-22",
+  "related": [
+    {
+      "id": "card_395956",
+      "slug": "red-teaming-lms",
+      "type": "paper",
+      "title": "Red Teaming Language Models with Language Models",
+      "hook": "Finding the prompts that make a model misbehave is slow if humans do it by hand. So use another language model to generate those attacks automatically — at scale.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-02-07"
+    },
+    {
+      "id": "card_91493e",
+      "slug": "correlated-verifier-cascades",
+      "type": "paper",
+      "title": "Partially Correlated Verifier Cascades: Concave Log-Odds and Blind-Spot Ceilings",
+      "hook": "Chain enough independent verifier checks and failure should vanish exponentially. In practice, treating correlated verifiers as independent underestimates failure by 20x at 5 checks — and 3000x at 10.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-15"
+    },
+    {
+      "id": "card_490028",
+      "slug": "model-evaluation-for-extreme-risks",
+      "type": "paper",
+      "title": "Model Evaluation for Extreme Risks",
+      "hook": "General-purpose AI tends to pick up dangerous capabilities alongside useful ones. So test for those capabilities directly — before you ship, not after.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_92855b#0",
+      "format": "flip",
+      "prompt": "What does it mean that the paper's harm-probability lower bounds are 'sound'?",
+      "back_html": "\u003cp\u003eThey're formally proven to be less than the true probability that the model emits harmful output — a certified floor, not just an empirical estimate that might be optimistic.\u003c/p\u003e"
+    },
+    {
+      "id": "card_92855b#1",
+      "format": "quiz",
+      "prompt": "How does the method make bounding rare harmful outputs tractable?",
+      "choices": [
+        {
+          "text": "It uses latent-space features to prioritize exploring generation-tree branches likely to be harmful",
+          "correct": true
+        },
+        {
+          "text": "It samples prompts uniformly at random until harmful output appears",
+          "correct": false
+        },
+        {
+          "text": "It first fine-tunes the model to remove harmful behavior",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eNaive sampling almost never hits rare harmful branches; guiding the search with latent-space features lets the method find them efficiently and still keep the bound sound.\u003c/p\u003e"
+    },
+    {
+      "id": "card_92855b#2",
+      "format": "flip",
+      "prompt": "Which classical statistical tool does the framework adapt for LLM safety bounds?",
+      "back_html": "\u003cp\u003eClopper–Pearson confidence intervals, used here to obtain probably-approximately-correct (PAC) bounds on an LLM's harmful-output probability.\u003c/p\u003e"
+    }
+  ]
+}

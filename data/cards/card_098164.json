@@ -1,0 +1,115 @@
+{
+  "id": "card_098164",
+  "slug": "cyberfactory-aegis",
+  "type": "paper",
+  "title": "CyberFactory: Turning Real CVEs Into Training Data",
+  "hook": "Open security models lag closed ones partly for lack of data. CyberFactory converts public vulnerability artifacts into executable, verifiable tasks — and trains an open model on the trajectories.",
+  "key_points": [
+    "Open-source cybersecurity efforts lack reproducible training recipes and scalable agentic data; closed models hold the lead.",
+    "CyberFactory turns public vulnerability artifacts, including CVEs from the wild, into executable and verifiable task instances.",
+    "It covers proof-of-concept generation, vulnerability patching, and cybersecurity question answering in one pipeline.",
+    "A reusable vulnerability-analysis skill guides the teacher through source inspection, solving with domain prior, and evidence-based validation.",
+    "Supervision is agentic: the model uses tools against real target environments and revises from execution feedback.",
+    "The released model, Aegis, reports 52.4% Pass@1 on CyberGym under a one-hour budget, +22.8 points over its Qwen 3.5 base."
+  ],
+  "content_html": "\u003cp\u003eLanguage models keep getting better at code, and security work is code work, so the capability gap between closed and open models shows up sharply in cybersecurity. Yang and colleagues diagnose the open-source shortfall as a data and pipeline problem: frontier open-weight models ship no reproducible security training recipe, existing open efforts target isolated tasks, and scaling agentic rollouts in this domain needs strong priors that a generic model lacks.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eBuilding the factory\u003c/h2\u003e\n\u003cp\u003eCyberFactory connects data construction, trajectory synthesis, and training across three task families — proof-of-concept generation, vulnerability patching, and cybersecurity question answering. Public vulnerability artifacts, including CVEs collected from the wild, are transformed into executable and verifiable task instances, so success is something you run rather than something you grade by resemblance. A reusable vulnerability-analysis skill walks the teacher model through source inspection, solving with domain prior, and evidence-based validation.\u003c/p\u003e\n\u003ch2\u003eThe resulting model\u003c/h2\u003e\n\u003cp\u003eBecause supervision is agentic — the model calls tools, touches the target environment, and revises from execution feedback — the student learns the procedure rather than the answers, and the authors report it internalizing the skill so it is not needed at inference. Their released model, Aegis, reaches 52.4% Pass@1 on CyberGym under a one-hour budget, +22.8 points over its Qwen 3.5 base and ahead of the general-purpose backbones they evaluated in the same scaffold. Defensive framing aside, this is dual-use tooling, and the paper's openness cuts both ways.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jian Yang",
+      "Haau-Sing Li",
+      "Shawn Guo",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.23181",
+    "published_at": "2026-08-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "safety",
+    "open-source",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-24",
+  "related": [
+    {
+      "id": "card_a3d02e",
+      "slug": "ethics-offensive-security-agents",
+      "type": "paper",
+      "title": "The Ethics of Autonomous AI Agents for Offensive Security",
+      "hook": "Autonomous AI agents drop the skill floor for cyberattacks and blur who's to blame. This paper maps three kinds of 'indeterminacy' that break existing dual-use ethics frameworks.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-22"
+    },
+    {
+      "id": "card_081601",
+      "slug": "daybreak-gpt-5-6-cyber",
+      "type": "news",
+      "title": "OpenAI Ships a Cyber-Specific Model — Behind a Gate",
+      "hook": "GPT-5.6-Cyber is built for vulnerability research and exploit validation. OpenAI won't sell it openly: access runs through Daybreak, a vetted-partner program, because the defense window is closing.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-08-10"
+    },
+    {
+      "id": "card_8aab1f",
+      "slug": "resource2skill",
+      "type": "paper",
+      "title": "RESOURCE2SKILL: Distilling Executable Agent Skills from Human-Created Multimodal Resources",
+      "hook": "Most agent skill libraries are hand-written text. This framework mines skills straight out of the tutorial videos, repos, and articles humans already made for each other.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-16"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_098164#0",
+      "format": "flip",
+      "prompt": "What makes CyberFactory's task instances 'verifiable'?",
+      "back_html": "\u003cp\u003ePublic vulnerability artifacts such as CVEs are converted into executable environments, so a proposed exploit or patch can be run and checked rather than judged by similarity.\u003c/p\u003e"
+    },
+    {
+      "id": "card_098164#1",
+      "format": "quiz",
+      "prompt": "What happens to the vulnerability-analysis skill after training?",
+      "choices": [
+        {
+          "text": "The trained model internalizes the procedure and no longer needs the skill at inference",
+          "correct": true
+        },
+        {
+          "text": "It is shipped alongside the model as a required prompt",
+          "correct": false
+        },
+        {
+          "text": "It is discarded because it made the teacher worse",
+          "correct": false
+        },
+        {
+          "text": "It is fine-tuned separately as a second model",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe skill guides the teacher when generating trajectories; the student trained on those trajectories absorbs the procedure and runs without the scaffold.\u003c/p\u003e"
+    },
+    {
+      "id": "card_098164#2",
+      "format": "flip",
+      "prompt": "Why does agentic supervision matter for security tasks specifically?",
+      "back_html": "\u003cp\u003eThe model interacts with tools and target environments and revises its solution from execution feedback — the same loop a human analyst uses, and one that static Q\u0026amp;A data cannot teach.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "id": "card_a4302e",
+  "slug": "swe-prime-trajectory-selection",
+  "type": "paper",
+  "title": "SWE-Prime: 10% of the Trajectories, Better Results",
+  "hook": "A successful agent trajectory can still be full of wasted and risky steps. Filter down to the best 10% and fine-tuning beats training on everything that worked.",
+  "key_points": [
+    "Task success does not guarantee good supervision — successful trajectories still contain ineffective, redundant, or risky steps.",
+    "Training on them teaches the model to imitate undesirable problem-solving behavior.",
+    "Stage 1 screens whole trajectories on process quality, result quality, and representativeness.",
+    "Stage 2 groups consecutive steps into semantic segments and scores each on contribution, learnability, and risk.",
+    "All segments stay in the sequence to preserve context; only selected segments contribute to the loss.",
+    "Training on the selected 10% subset beats training on the full resolved dataset — up to 12.2% relative gain on SWE-Bench Pro and 24.2% on SWE-Bench Verified."
+  ],
+  "content_html": "\u003cp\u003eThe recipe for training coding agents has been: run a lot of trajectories, keep the ones that resolved the issue, fine-tune on those. Zheng and colleagues point out the flaw. Success is an outcome signal, and a trajectory that reached the right patch may have flailed to get there — dead ends, redundant edits, risky commands. SFT does not distinguish; it imitates all of it.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe method\u003c/h2\u003e\n\u003cp\u003eSWE-Prime filters in two granularities. \u003cstrong\u003eTrajectory level\u003c/strong\u003e screens whole runs on process quality, result quality, and data representativeness, producing a high-quality and still-representative subset of successful trajectories. \u003cstrong\u003eSegment level\u003c/strong\u003e then groups consecutive steps into semantic segments and scores each on its contribution to the final solution, its learnability, and its potential risk.\u003c/p\u003e\n\u003cp\u003eThe implementation detail that makes this work: during SFT, \u003cem\u003eall\u003c/em\u003e segments remain in the sequence so context is preserved, but only selected segments contribute to the loss. You cannot delete a bad step without breaking the story of the ones that follow — so you keep it visible and refuse to learn from it.\u003c/p\u003e\n\u003ch2\u003eResults\u003c/h2\u003e\n\u003cp\u003eTraining on the 10% trajectory subset that SWE-Prime selects outperforms training on the full resolved dataset, with relative gains of up to 12.2% on SWE-Bench Pro and 24.2% on SWE-Bench Verified.\u003c/p\u003e\n\u003cp\u003eThe general lesson applies well beyond code: when your supervision comes from a verifier, the verifier tells you the answer was right, not that the reasoning was worth copying.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Dewu Zheng",
+      "Ruizhe Ye",
+      "Yanlin Wang",
+      "Yang Ye",
+      "Hongyu Zhang",
+      "Ensheng Shi",
+      "Xilin Liu",
+      "Yuchi Ma",
+      "Jianxing Yu",
+      "Zibin Zheng"
+    ],
+    "url": "https://arxiv.org/abs/2608.27449",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "finetuning",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "training",
+    "dataset",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_7433b9",
+      "slug": "pilot-live-self-improvement",
+      "type": "paper",
+      "title": "PILOT: Self-Improvement While the Run Is Still Going",
+      "hook": "Most agent self-improvement happens after the run ends, too late to save it. PILOT gives a supervisor the power to redirect or abort a live worker — and cuts output tokens by nearly half.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-27"
+    },
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a4302e#0",
+      "format": "flip",
+      "prompt": "Why is 'the task succeeded' a weak filter for training data?",
+      "back_html": "\u003cp\u003eSuccess is an outcome, not a process judgment. A trajectory can reach the right answer through redundant, ineffective, or risky steps — and SFT will happily teach all of them.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a4302e#1",
+      "format": "quiz",
+      "prompt": "Why does SWE-Prime keep unselected segments in the sequence?",
+      "choices": [
+        {
+          "text": "To preserve context, while excluding them from the loss computation",
+          "correct": true
+        },
+        {
+          "text": "Because removing them would break tokenization",
+          "correct": false
+        },
+        {
+          "text": "To let the model learn from them with a lower learning rate",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLater steps only make sense given earlier ones, so the text must stay visible. Masking the loss is how you avoid imitating a step without deleting its context.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a4302e#2",
+      "format": "flip",
+      "prompt": "What are the three criteria for segment-level selection?",
+      "back_html": "\u003cp\u003eA segment's contribution to the final solution, its learnability, and its potential risk.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "id": "card_cc8dca",
+  "slug": "qlora-learning-rate-small-datasets",
+  "type": "blog",
+  "title": "Why QLoRA's 2e-4 Default Learning Rate Overfits Small Datasets",
+  "hook": "Every QLoRA tutorial says start at 2e-4. That number comes from Alpaca's 52k samples — and on the 5-10k-sample datasets most people actually fine-tune on, it can overfit before epoch one ends.",
+  "key_points": [
+    "The ubiquitous QLoRA learning-rate default of 2e-4 traces back to the Alpaca paper's 52k-sample fine-tuning run.",
+    "On smaller, self-collected datasets (roughly under 10k samples), that rate can push the model to overfit within the first epoch.",
+    "Symptom: training loss keeps falling smoothly while eval loss stalls or climbs — a classic overfitting signature, not a data-quality bug.",
+    "The poster spent weeks re-cleaning data and rewriting prompt templates before suspecting the learning rate itself."
+  ],
+  "content_html": "\u003cp\u003eA widely-shared Reddit post argues that one of the most copy-pasted numbers in fine-tuning — QLoRA's 2e-4 learning rate — is quietly wrong for a lot of use cases. Every tutorial, from Unsloth's docs to Hugging Face examples to the original paper, uses it. But that number was tuned on Alpaca's 52,000-sample dataset, and most practitioners are fine-tuning on datasets they scraped and labeled themselves — often 5,000 to 10,000 samples.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eAt that smaller scale, the poster found the model overfitting inside the first epoch: training loss looked great while eval loss sat flat or climbed. They describe burning close to three weeks chasing the wrong culprits — re-cleaning the dataset twice, rewriting the prompt template twice — before landing on the learning rate itself as the likely cause. The practical takeaway for anyone fine-tuning on a small custom dataset: don't treat 2e-4 as gospel, and treat overfitting inside epoch one as a hyperparameter signal rather than a data problem. Posted to r/MachineLearning, July 2026 — see the thread for the original writeup.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit r/MachineLearning",
+    "authors": [
+      "/u/Pretty-Ad774"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1uy1z8b/the_qlora_2e4_default_is_wrong_under_10k_samples",
+    "published_at": "2026-07-16",
+    "license": "Reddit post (link-out)"
+  },
+  "topic_ids": [
+    "finetuning"
+  ],
+  "tags": [
+    "training",
+    "efficiency",
+    "open-source"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-16",
+  "related": [
+    {
+      "id": "card_2e95ee",
+      "slug": "qlora",
+      "type": "paper",
+      "title": "QLoRA: Fine-tuning Quantized LLMs",
+      "hook": "Fine-tune a model with tens of billions of parameters on a single GPU. QLoRA squeezes the frozen base to 4-bit, then trains LoRA adapters on top — without losing quality.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-23"
+    },
+    {
+      "id": "card_cae140",
+      "slug": "lora",
+      "type": "paper",
+      "title": "LoRA: Low-Rank Adaptation",
+      "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-06-17"
+    },
+    {
+      "id": "card_be0137",
+      "slug": "learning-rate-and-schedules",
+      "type": "concept",
+      "title": "Learning Rate \u0026 Schedules",
+      "hook": "The single most important hyperparameter: set it too high and training diverges, too low and it crawls — so we warm it up, then decay it.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-03"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_2e95ee",
+      "slug": "qlora",
+      "type": "paper",
+      "title": "QLoRA: Fine-tuning Quantized LLMs",
+      "hook": "Fine-tune a model with tens of billions of parameters on a single GPU. QLoRA squeezes the frozen base to 4-bit, then trains LoRA adapters on top — without losing quality.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-23"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_cc8dca#0",
+      "format": "flip",
+      "prompt": "Where does the widely-copied QLoRA default learning rate of 2e-4 actually come from?",
+      "back_html": "\u003cp\u003eIt comes from the Alpaca paper's fine-tuning run on 52,000 samples — a dataset size much larger than most custom fine-tuning jobs.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cc8dca#1",
+      "format": "quiz",
+      "prompt": "What's the telltale sign that the 2e-4 rate is too high for your small dataset?",
+      "choices": [
+        {
+          "text": "Training loss keeps dropping smoothly while eval loss stalls or rises",
+          "correct": true
+        },
+        {
+          "text": "Training loss oscillates wildly and never decreases",
+          "correct": false
+        },
+        {
+          "text": "The model refuses to produce any output at all",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThat pattern — smooth training loss, flat or worsening eval loss — is the classic signature of overfitting, which is what happens when a too-high learning rate memorizes a small dataset fast.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cc8dca#2",
+      "format": "quiz",
+      "prompt": "Roughly what dataset size does the poster flag as the danger zone for the 2e-4 default?",
+      "choices": [
+        {
+          "text": "Under about 10,000 samples",
+          "correct": true
+        },
+        {
+          "text": "Over 100,000 samples",
+          "correct": false
+        },
+        {
+          "text": "Exactly 52,000 samples",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003e52k-sample Alpaca is where 2e-4 was tuned; the poster argues datasets well below 10k samples overfit at that rate because there's so much less data to absorb the same step size.\u003c/p\u003e"
+    }
+  ]
+}

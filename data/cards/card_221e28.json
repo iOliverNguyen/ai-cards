@@ -1,0 +1,124 @@
+{
+  "id": "card_221e28",
+  "slug": "referential-dangling-prompt-compression",
+  "type": "paper",
+  "title": "Referential Dangling: How Prompt Compression Quietly Breaks Multi-Hop Answers",
+  "hook": "Compressors score chunks independently, so they can keep the sentence holding the answer and delete the one defining who it's about — leaving text that reads fine and answers wrong.",
+  "key_points": [
+    "Hard prompt compression scores tokens, sentences, or chunks independently and keeps the top-ranked ones under a budget.",
+    "Independent selection can split a dependent evidence pair — the authors call the survivor a 'referential dangling' reference.",
+    "At compression ratio 0.30, all six compressors tested show dangling on HotpotQA bridge examples, at rates up to 60%.",
+    "Every document in LongBench-v2 Single-Document QA contained at least one dangling reference.",
+    "Reinserting the missing supporting paragraph within the same token budget improved accuracy 29–34 points on dangling examples.",
+    "A compact classifier that reranks omitted sentences by referential need recovered 4.7 points with almost no budget increase."
+  ],
+  "content_html": "\u003cp\u003eLong-context inference is expensive, so a common trick is hard prompt compression: score the pieces of a document for relevance and keep only the best ones that fit a token budget. This paper identifies a structural bug in that procedure — not a tuning problem, a paradigm one.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe failure\u003c/h2\u003e\n\u003cp\u003eBecause units are scored independently, a compressor can retain a sentence that states the answer while deleting the sentence that defines the entity the answer refers to. The surviving text still reads as relevant; it just no longer means anything determinate. The authors call this \u003cem\u003ereferential dangling\u003c/em\u003e, and it hits multi-hop questions hardest, where the evidence is a chain by construction.\u003c/p\u003e\n\u003cp\u003eThe measurements are blunt. At a compression ratio of 0.30, Beaver — which ranks coherent chunks with Qwen3-0.6B embeddings — leaves the answer path incomplete in 34–54% of bridge examples across three multi-hop QA datasets. On a shared HotpotQA bridge set, all six hard compressors tested show dangling, at rates up to 60%, and every document in LongBench-v2 Single-Document QA contained at least one dangling reference.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eIt isn't something a better answer model papers over: on MuSiQue, GPT-5.5 is 8.8 points less accurate on compressed contexts than on contexts retaining both supporting paragraphs. Meanwhile, swapping the missing supporting paragraph back in — while removing a nonsupporting one to hold the budget fixed — recovers 29–34 points, so the information was affordable all along, just badly chosen. The authors train a small classifier to spot omitted sentences that retained text depends on and reinsert them automatically, gaining 4.7 points on HotpotQA with Qwen3-8B while the compression ratio moves only from 0.30 to 0.31. The takeaway they push: compressors should optimize relevance \u003cem\u003eand\u003c/em\u003e referential completeness, not relevance alone.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zhengpei Hu",
+      "Kai Li",
+      "Dapeng Fu",
+      "Xuechao Zou",
+      "Yuanhao Tang",
+      "Yue Li",
+      "Tengfei Cao",
+      "Jianqiang Huang"
+    ],
+    "url": "https://arxiv.org/abs/2608.04569",
+    "published_at": "2026-08-05",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rag",
+    "context-memory",
+    "papers-this-week"
+  ],
+  "tags": [
+    "paper",
+    "rag",
+    "efficiency"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-10",
+  "date": "2026-08-05",
+  "related": [
+    {
+      "id": "card_ce3099",
+      "slug": "compactionrl-context-compaction",
+      "type": "paper",
+      "title": "CompactionRL: Reinforcement Learning with Context Compaction for Long-Horizon Agents",
+      "hook": "Long-running coding agents eventually run out of context before finishing the job. CompactionRL trains them to summarize their own history mid-task, as part of the RL objective itself.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_b43f8e",
+      "slug": "what-is-rag",
+      "type": "concept",
+      "title": "Why RAG? Grounding LLMs in Your Data",
+      "hook": "An LLM only knows what it was trained on — until it's stale, private, or just wrong. RAG bolts on a search step so the model answers from your data and can cite it.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_221e28#0",
+      "format": "flip",
+      "prompt": "What is 'referential dangling' in prompt compression?",
+      "back_html": "\u003cp\u003eRetained text contains the answer, but the deleted text defined the entity needed to interpret it — the compressor kept one half of a dependent evidence pair and dropped the other.\u003c/p\u003e"
+    },
+    {
+      "id": "card_221e28#1",
+      "format": "quiz",
+      "prompt": "Why does independent scoring cause this failure?",
+      "choices": [
+        {
+          "text": "Each unit is judged on its own relevance, so a pair of mutually dependent passages is never evaluated as a pair",
+          "correct": true
+        },
+        {
+          "text": "The scoring model has too small a context window to read the document",
+          "correct": false
+        },
+        {
+          "text": "Compression ratios below 0.30 are mathematically impossible to satisfy",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eHard compressors rank tokens/sentences/chunks independently under a budget. Relevance is scored per unit, so nothing in the objective preserves the link between an answer and the text that defines its referent.\u003c/p\u003e"
+    },
+    {
+      "id": "card_221e28#2",
+      "format": "quiz",
+      "prompt": "Did a stronger answer model absorb the damage?",
+      "choices": [
+        {
+          "text": "No — on MuSiQue, GPT-5.5 was 8.8 points less accurate on compressed contexts than on ones keeping both supporting paragraphs",
+          "correct": true
+        },
+        {
+          "text": "Yes — frontier models reconstructed the missing referent from parametric knowledge",
+          "correct": false
+        },
+        {
+          "text": "The paper only tested small open models, so the question is open",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors report the gap persists at the frontier: the missing referent is information the model cannot recover, not a reasoning deficit it can out-think.\u003c/p\u003e"
+    },
+    {
+      "id": "card_221e28#3",
+      "format": "flip",
+      "prompt": "What fix do the authors propose, and what does it cost?",
+      "back_html": "\u003cp\u003eA compact classifier ranks omitted sentences by whether they're needed to interpret retained text and reinserts the top candidates — no support annotations needed. On HotpotQA with Qwen3-8B: +4.7 points, compression ratio moving only 0.30 → 0.31.\u003c/p\u003e"
+    }
+  ]
+}

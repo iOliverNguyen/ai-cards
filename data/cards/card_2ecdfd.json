@@ -1,0 +1,134 @@
+{
+  "id": "card_2ecdfd",
+  "slug": "looped-language-models-tool-calling",
+  "type": "paper",
+  "title": "Looped Language Models Improve Compositional Tool Calling",
+  "hook": "Recurrent depth helps most where tool use is actually hard: chaining calls, holding intermediate state, keeping dependencies straight. Single API calls barely notice.",
+  "key_points": [
+    "Looped models reuse layers at inference to add recurrent depth; the gains had been shown on reasoning, not agentic tool use.",
+    "Evaluated native and retrofitted looped models on API-Bank, BFCL and NESTful against matched non-looped SFT recipes.",
+    "Recurrent computation generally helps compositional, dependency-aware tool use.",
+    "Gains on isolated single-API invocation are smaller and more model-dependent.",
+    "Multi-step accuracy generally rises with recurrent depth — but adaptive inference gets a better compute-performance trade-off."
+  ],
+  "content_html": "\u003cp\u003eLooped language models — reusing layers to add depth at inference rather than stacking more parameters — have been pitched mainly as a reasoning trick. This paper asks whether the same recurrence buys anything for agents, where the work is coordinating several API calls, carrying intermediate state between them, and not losing track of what depends on what.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe authors evaluate both natively looped and retrofitted looped models on API-Bank, BFCL and NESTful, comparing against non-looped models trained under matched supervised fine-tuning recipes, and varying recurrent depth at inference time. That matched-recipe control is what makes the result readable: any difference is the looping, not the data.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eIn their controlled experiments, recurrent computation generally benefits compositional and dependency-aware tool use, while doing much less for isolated single-API calls — a sensible split, since it's the multi-step coordination that needs extra internal processing per token. Multi-step accuracy generally increases with recurrent depth, but the more practical finding is that \u003cem\u003eadaptive\u003c/em\u003e inference, allocating extra computation only when needed, lands on a better compute-performance trade-off than simply looping more. The authors read this as evidence that looped architectures are a promising fit for agentic systems that have to plan, coordinate and execute compositional workflows.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Andrei Cristian Popescu",
+      "Haitz Sáez de Ocáriz Borde",
+      "Pietro Liò"
+    ],
+    "url": "https://arxiv.org/abs/2608.18171",
+    "published_at": "2026-08-17",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "transformers",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "architecture",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-20",
+  "date": "2026-08-17",
+  "related": [
+    {
+      "id": "card_058e15",
+      "slug": "loopie",
+      "type": "paper",
+      "title": "Loop the Loopies!",
+      "hook": "Looping a Transformer instead of growing it usually loses to just adding more parameters — Loopie is the looped MoE model that finally breaks that pattern, with IMO/IPhO gold-level reasoning.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-17"
+    },
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    },
+    {
+      "id": "card_e283b9",
+      "slug": "model-context-protocol",
+      "type": "news",
+      "title": "Model Context Protocol (MCP): A Standard for Connecting LLMs to Tools",
+      "hook": "MCP is an open protocol that standardizes how AI applications expose tools, data, and resources to models - think USB-C for AI tool integrations.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-11-25"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_2ecdfd#0",
+      "format": "flip",
+      "prompt": "Where does recurrent depth help tool-calling models most, and where does it barely help?",
+      "back_html": "\u003cp\u003eIt helps on compositional, dependency-aware multi-step tool use. Gains on isolated single-API invocation are smaller and depend on the model.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2ecdfd#1",
+      "format": "quiz",
+      "prompt": "If accuracy rises with recurrent depth, why do the authors prefer adaptive inference?",
+      "choices": [
+        {
+          "text": "It spends extra recurrent compute only when needed, giving a better compute-performance trade-off",
+          "correct": true
+        },
+        {
+          "text": "It reaches strictly higher peak accuracy than any fixed depth",
+          "correct": false
+        },
+        {
+          "text": "Fixed depth cannot be used at inference time without retraining",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMore depth costs compute on every token. Allocating it conditionally keeps most of the benefit at a fraction of the cost.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2ecdfd#2",
+      "format": "quiz",
+      "prompt": "How did the authors isolate the effect of looping?",
+      "choices": [
+        {
+          "text": "Compared looped and non-looped models trained under matched supervised fine-tuning recipes",
+          "correct": true
+        },
+        {
+          "text": "Compared published leaderboard scores across model families",
+          "correct": false
+        },
+        {
+          "text": "Fine-tuned only the looped models and used the base weights as the control",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMatched SFT recipes across looped and non-looped variants is what makes the comparison controlled rather than confounded by training differences.\u003c/p\u003e"
+    }
+  ]
+}

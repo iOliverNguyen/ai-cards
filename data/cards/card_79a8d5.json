@@ -1,0 +1,104 @@
+{
+  "id": "card_79a8d5",
+  "slug": "gemini-1-5",
+  "type": "paper",
+  "title": "Gemini 1.5: Multimodal Understanding Across Long Context",
+  "hook": "Gemini 1.5 Pro processes up to a million tokens in context - enough for entire codebases, hours of video, or book-length documents - in a single multimodal model.",
+  "key_points": [
+    "Context window extended to up to 1 million tokens, far beyond any contemporary model at release, enabling long-document and long-video understanding.",
+    "Natively multimodal: handles text, images, audio, and video in one model without separate encoders stitched together.",
+    "Uses a Mixture-of-Experts architecture to achieve strong performance while managing compute cost at scale.",
+    "Near-perfect recall on long-context retrieval tasks (needle-in-a-haystack tests) even at maximum context length."
+  ],
+  "content_html": "\u003cp\u003eGoogle's Gemini team published the Gemini 1.5 technical report in March 2024, describing a family of multimodal models built around an unusually large context window. Gemini 1.5 Pro supports up to one million tokens of context — later extended further in deployment — enabling it to reason over entire codebases, multi-hour videos, or very long documents in a single call.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eGemini 1.5 is a natively multimodal model: text, image, audio, and video tokens are all processed within the same transformer, trained together from the start rather than combined post-hoc. The model uses a sparse Mixture-of-Experts design to maintain high capacity while keeping per-token compute tractable. The long context window is enabled by efficient attention mechanisms that don't degrade in quality at extreme lengths.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eA million-token context window is qualitatively different from previous 32K or 128K windows: it shifts what counts as \u0026quot;too long to fit.\u0026quot; Tasks like debugging a full codebase, summarizing a day's worth of meeting transcripts, or searching through hours of video become feasible within a single prompt. Read the technical report on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Gemini Team, Google"
+    ],
+    "url": "https://arxiv.org/abs/2403.05530",
+    "published_at": "2024-03-08",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "vlms",
+    "releases"
+  ],
+  "tags": [
+    "multimodal",
+    "nlp",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2024-03-08",
+  "related": [
+    {
+      "id": "card_ee605b",
+      "slug": "gpt-4o",
+      "type": "news",
+      "title": "GPT-4o: One Model for Text, Audio, and Vision",
+      "hook": "GPT-4o is a single model that natively processes text, audio, and images end-to-end - no separate speech pipeline - cutting voice response latency to near human conversational speed.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2024-05-13"
+    },
+    {
+      "id": "card_31ff4e",
+      "slug": "mixtral",
+      "type": "paper",
+      "title": "Mixtral of Experts",
+      "hook": "Mixtral packs 8 experts per layer but routes each token through only 2, so you get the capacity of a ~47B model at the compute cost of a ~13B one - open weights included.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-01-08"
+    },
+    {
+      "id": "card_5a34c4",
+      "slug": "flamingo",
+      "type": "paper",
+      "title": "Flamingo: a Visual Language Model for Few-Shot Learning",
+      "hook": "Interleave images and text in a prompt, use cross-attention to inject visual features into a frozen LLM, and get few-shot image understanding without retraining the language model.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-04-29"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_79a8d5#0",
+      "format": "flip",
+      "prompt": "What makes Gemini 1.5 Pro's context window notable, and what does it enable?",
+      "back_html": "\u003cp\u003eUp to ~1 million tokens — far beyond contemporary models — enough to reason over entire codebases, multi-hour videos, or book-length documents in one call.\u003c/p\u003e"
+    },
+    {
+      "id": "card_79a8d5#1",
+      "format": "quiz",
+      "prompt": "How does Gemini 1.5 keep per-token compute tractable at high capacity?",
+      "choices": [
+        {
+          "text": "A sparse Mixture-of-Experts architecture",
+          "correct": true
+        },
+        {
+          "text": "Quantizing all weights to 8-bit integers",
+          "correct": false
+        },
+        {
+          "text": "Discarding older tokens from the context",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGemini 1.5 uses a sparse Mixture-of-Experts design to keep high capacity while limiting per-token compute.\u003c/p\u003e"
+    },
+    {
+      "id": "card_79a8d5#2",
+      "format": "flip",
+      "prompt": "What does 'natively multimodal' mean for Gemini 1.5?",
+      "back_html": "\u003cp\u003eText, image, audio, and video tokens are all processed in the same transformer, trained together from the start rather than stitched together from separate encoders post-hoc.\u003c/p\u003e"
+    }
+  ]
+}

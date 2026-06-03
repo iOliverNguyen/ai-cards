@@ -1,0 +1,124 @@
+{
+  "id": "card_a4d8b0",
+  "slug": "automedbench",
+  "type": "paper",
+  "title": "AutoMedBench: Medical AutoResearch with Agentic AI",
+  "hook": "Can an AI agent run a whole medical-imaging research project end to end? AutoMedBench scores each stage — and finds agents can build pipelines but can't tell when they're broken.",
+  "key_points": [
+    "A workflow-aware benchmark for autonomous medical-AI research, not just final-answer accuracy.",
+    "Organizes each run into five stages — Plan, Setup, Validate, Inference, Submit — across long-horizon tasks (~33 turns each).",
+    "Covers segmentation, image enhancement, VQA, report generation, and lesion detection at two difficulty tiers.",
+    "Validate is the weakest stage; verification and submission failures dominate errors, while task-understanding errors are rare (0.9%)."
+  ],
+  "content_html": "\u003cp\u003eAs AI agents are pushed toward running real research workflows rather than answering one-off questions, we need ways to evaluate the \u003cem\u003eprocess\u003c/em\u003e, not just the final output. AutoMedBench does this for medical-AI research, where an agent must take a task brief and carry it all the way through to a submitted artifact.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eEach task is decomposed into a unified five-stage workflow — Plan, Setup, Validate, Inference, and Submit (S1–S5) — and runs are long-horizon, averaging about 33 agent turns. The benchmark spans five research tracks: segmentation, image enhancement, visual question answering, report generation, and lesion detection, each at a \u0026quot;Lite\u0026quot; and a \u0026quot;Standard\u0026quot; tier that share data and metrics but differ in how much scaffolding the brief provides. Crucially, every run is scored both on final task performance \u003cem\u003eand\u003c/em\u003e on per-stage scores, enabling stage-level diagnosis from brief to submission.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe stage-level view is what makes the findings interesting. Across thousands of runs, \u003cstrong\u003eValidate\u003c/strong\u003e is the weakest stage and \u003cstrong\u003eSetup\u003c/strong\u003e the strongest — current agents are better at making a pipeline executable than at checking whether it's reliable. Post-run analysis backs this up: verification and submission failures dominate tagged errors (37.7% and 38.1%), while task-understanding errors are rare at 0.9%. The lesson generalizes well beyond medicine: today's research agents tend to fail not because they misunderstand the goal, but because they don't verify their own work.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Junqi Liu",
+      "Salena Song",
+      "Yuhan Wang",
+      "Jiawei Mao",
+      "Yuyin Zhou",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.01961",
+    "published_at": "2026-06-01",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-science",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-04",
+  "date": "2026-06-01",
+  "related": [
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    },
+    {
+      "id": "card_c38a80",
+      "slug": "alphafold",
+      "type": "paper",
+      "title": "AlphaFold: Protein Structure Prediction",
+      "hook": "Predicting a protein's 3D shape from its sequence stumped biology for ~50 years. AlphaFold cracked it at near-experimental accuracy — and then released the structures to everyone.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2021-07-15"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_a4d8b0#0",
+      "format": "flip",
+      "prompt": "What does AutoMedBench evaluate that final-answer accuracy alone misses?",
+      "back_html": "\u003cp\u003eThe research process: it scores each run across five workflow stages (Plan, Setup, Validate, Inference, Submit), enabling stage-level diagnosis from brief to submission.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a4d8b0#1",
+      "format": "quiz",
+      "prompt": "What was AutoMedBench's headline finding about where research agents fail?",
+      "choices": [
+        {
+          "text": "Validate is the weakest stage — agents build pipelines but don't verify their own work",
+          "correct": true
+        },
+        {
+          "text": "Agents most often misunderstand the task brief",
+          "correct": false
+        },
+        {
+          "text": "Agents fail mainly at the initial planning stage",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSetup was strongest and Validate weakest; verification/submission failures dominated errors while task-understanding errors were rare (0.9%).\u003c/p\u003e"
+    },
+    {
+      "id": "card_a4d8b0#2",
+      "format": "quiz",
+      "prompt": "What lesson does AutoMedBench say generalizes beyond medicine?",
+      "choices": [
+        {
+          "text": "Today's agents fail by not verifying their work, not by misunderstanding the goal",
+          "correct": true
+        },
+        {
+          "text": "Longer task horizons always improve agent reliability",
+          "correct": false
+        },
+        {
+          "text": "Medical tasks are uniquely too hard for agents",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe stage-level view shows verification, not comprehension, is the bottleneck — a lesson that applies to research agents broadly.\u003c/p\u003e"
+    }
+  ]
+}

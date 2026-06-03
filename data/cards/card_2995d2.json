@@ -1,0 +1,116 @@
+{
+  "id": "card_2995d2",
+  "slug": "gigaworld-1-robot-policy-evaluation",
+  "type": "paper",
+  "title": "GigaWorld-1: World Models as Robot Policy Evaluators",
+  "hook": "Testing a robot policy for real means slow, costly rollouts. GigaWorld-1 asks whether a video world model can judge a policy instead — and finds visual realism is the wrong thing to optimize for.",
+  "key_points": [
+    "Systematic study of video world models as surrogate evaluators for robot policies, avoiding costly real-world rollouts.",
+    "Introduces WMBench, a benchmark built from real-robot teleoperation data and matched policy rollouts, for controlled comparisons.",
+    "Analyzes 7 world models and 4 action-representation schemes across 324,000+ simulated rollouts checked against real robot executions.",
+    "Key finding: evaluator quality tracks long-horizon, action-faithful rollout consistency — not short-term visual realism.",
+    "Pretraining gains come from balancing general world knowledge with robot-specific controllability, not data scale alone.",
+    "Releases GigaWorld-1, a world model optimized for policy evaluation, plus code, datasets, and toolkits."
+  ],
+  "content_html": "\u003cp\u003eRobot foundation models are hard to evaluate: unlike language models, which can be scored on digital benchmarks, robotic policies need slow, costly, hardware-limited real-world rollouts. That bottleneck has pushed interest toward using video world models as surrogate evaluators — but nobody had systematically checked what makes one trustworthy for the job.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eGigaWorld-1's team builds WMBench, a benchmark constructed from real-robot teleoperation data and matched policy rollouts, enabling controlled comparisons across model families, action encodings, rollout horizons, and evaluation metrics. Using it, they analyze 7 video world models, 4 action-representation schemes, and more than 324,000 simulated rollouts checked against real robot executions — further enriched with community submissions from the CVPR 2026 GigaBrain Challenge and over 12,000 hours of curated training video. Three findings stand out: evaluator quality is dominated by long-horizon, action-faithful rollout consistency rather than short-term visual realism; pretraining gains come from balancing general world knowledge against robot-specific controllability, not data scale alone; and architectural choices — action encoding, memory design, evaluator-focused post-training — strongly determine how well a world model aligns with real robot behavior. The team turns these findings into a design roadmap and realizes it in GigaWorld-1, a world model purpose-built for policy evaluation, releasing code, models, datasets, and toolkits. GigaWorld Team and colleagues, arXiv 2026 (31 HF community upvotes).\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "GigaWorld Team",
+      "Angyuan Ma",
+      "Boyuan Wang",
+      "Bohan Li",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.02642",
+    "published_at": "2026-07-02",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "dataset",
+    "open-source",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-02",
+  "related": [
+    {
+      "id": "card_b9d1db",
+      "slug": "world-action-models-survey",
+      "type": "paper",
+      "title": "World Action Models: A Survey",
+      "hook": "Robots are learning to imagine the future before acting. This survey untangles 'world action models' from video generators and VLA policies — and finds them converging on one idea.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    },
+    {
+      "id": "card_08a765",
+      "slug": "rynnworld-4d-embodied-world-models",
+      "type": "paper",
+      "title": "RynnWorld-4D: RGB-Depth-Flow World Models for Robot Manipulation",
+      "hook": "A robot needs to know how a scene's 3D structure will move, not just what it looks like. This world model predicts RGB, depth, and optical flow together, then hands the result straight to a policy.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-07"
+    },
+    {
+      "id": "card_c3d320",
+      "slug": "rynnworld-teleop",
+      "type": "paper",
+      "title": "RynnWorld-Teleop: Digital Teleoperation for Robot Data",
+      "hook": "Collecting robot demonstrations means binding an operator's time to one physical robot. RynnWorld-Teleop swaps in a world model: move your hands, and it generates the footage instead.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-07"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_2995d2#0",
+      "format": "flip",
+      "prompt": "Why do the authors want a world model to serve as a robot policy evaluator?",
+      "back_html": "\u003cp\u003eEvaluating robot policies normally requires slow, costly, hardware-limited real-world rollouts. A reliable world-model evaluator could substitute for many of them, making evaluation faster and cheaper.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2995d2#1",
+      "format": "quiz",
+      "prompt": "According to GigaWorld-1's WMBench analysis, what actually predicts whether a world model is a good policy evaluator?",
+      "choices": [
+        {
+          "text": "Long-horizon, action-faithful rollout consistency — not short-term visual realism",
+          "correct": true
+        },
+        {
+          "text": "How photorealistic individual frames look",
+          "correct": false
+        },
+        {
+          "text": "How many parameters the world model has",
+          "correct": false
+        },
+        {
+          "text": "How fast the model renders each frame",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAcross 7 world models and 324,000+ matched rollouts, the strongest predictor of evaluator reliability was staying action-faithful over long horizons, not producing visually realistic frames.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2995d2#2",
+      "format": "flip",
+      "prompt": "Besides rollout consistency, what other factor did the study find shapes a good policy-evaluator world model?",
+      "back_html": "\u003cp\u003ePretraining gains depend not just on data scale but on balancing general world knowledge with robot-specific controllability — plus architectural choices like action encoding and memory design.\u003c/p\u003e"
+    }
+  ]
+}

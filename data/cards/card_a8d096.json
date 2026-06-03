@@ -1,0 +1,122 @@
+{
+  "id": "card_a8d096",
+  "slug": "anchoring-bias-llm-judges",
+  "type": "paper",
+  "title": "Anchoring Bias in LLM-as-a-Judge Systems",
+  "hook": "Show an LLM judge a previous score as mere context metadata and its rating drifts toward that number. Judgments you assumed were independent are quietly anchored to each other.",
+  "key_points": [
+    "Three prompt conditions tested: no metadata, revision framing, and anchored metadata carrying revision, attempt, and prior-score fields.",
+    "185,271 successful evaluations; 7 of 8 models showed a total anchored-metadata effect whose 95% bootstrap interval sat below zero.",
+    "Effect size reaches |Cohen's d| = 0.71 — large enough to move scores across decision thresholds.",
+    "Token-level probes suggest a threshold-like response: adding an anchor shifts the score distribution sharply; varying its value changes little.",
+    "On categorical industry data the anchor blocked 48% of error corrections and flipped 10.18% of correct judgments to a wrong label.",
+    "Neither chain-of-thought nor an explicit 'ignore the metadata' warning removed the effect."
+  ],
+  "content_html": "\u003cp\u003eLLM judges now score outputs, filter content, and gate iterative refinement in production pipelines — and those pipelines usually assume each judgment stands on its own. Kapetanovic and colleagues test that assumption and find it doesn't hold: a \u003cstrong\u003eprior score included only as context metadata anchors the next judgment\u003c/strong\u003e, pulling ratings toward its value.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe experiment\u003c/h2\u003e\n\u003cp\u003eThree prompt conditions were compared — no metadata, revision framing, and anchored metadata containing revision, attempt, and prior-score fields — across 192,000 attempted evaluations (185,271 successful) on 20 fixed texts. Seven of the eight evaluated models had 95% task-stratified bootstrap intervals below zero for the total anchored-metadata effect, with a standardized effect size reaching |Cohen's d| = 0.71. Token-level analysis of selected model-task probes suggests a \u003cstrong\u003ethreshold-like\u003c/strong\u003e pattern: introducing anchored metadata markedly redistributes the output-score probabilities, while changing the anchor value within the tested below-threshold range adds comparatively little variation.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe bias isn't confined to numeric scoring. On categorical industry data with human-labeled ground truth, anchored metadata blocked 48% of error corrections and flipped 10.18% of correct judgments toward an assigned wrong label. The obvious defenses fail: neither chain-of-thought nor an explicit warning to disregard the metadata reduced the total effect, though the warning did improve the paired accuracy effect relative to baseline in the industry setting. The authors' conclusion is a design rule — reliable LLM evaluation demands careful context engineering rather than an assumption of impartiality, and any mitigation must be validated for the specific model, task, and domain. arXiv, 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ante Kapetanovic",
+      "Kemal Altwlkany",
+      "Andro Mercep",
+      "Tomislav Duricic",
+      "Emanuel Lacic"
+    ],
+    "url": "https://arxiv.org/abs/2608.25869",
+    "published_at": "2026-08-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "alignment",
+    "safety",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_69173c",
+      "slug": "llm-judges-too-generous-without-reference",
+      "type": "paper",
+      "title": "LLM Judges Can Be Too Generous When There's No Reference Answer",
+      "hook": "Grade without an answer key and an LLM judge tends to wave wrong answers through — hand it the reference, and up to 85% of those verdicts flip to incorrect.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-14"
+    },
+    {
+      "id": "card_a1a9e5",
+      "slug": "trust-truth-separability-llm-judge",
+      "type": "paper",
+      "title": "LLM Judges Can't Separate Trust from Truth",
+      "hook": "Ask a judge model for a trust score and a correctness verdict and you get two numbers — but they're not two pieces of evidence. Change the source label and both move.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-21"
+    },
+    {
+      "id": "card_f3fb1d",
+      "slug": "inside-the-unfair-judge-bias-subspace",
+      "type": "paper",
+      "title": "Inside the Unfair Judge: A Mechanistic Account of LLM-as-Judge Bias",
+      "hook": "LLM judge bias isn't just noisy scoring — it has a geometric signature in hidden states you can find, steer, and use to predict failures on benchmarks you've never tested.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-13"
+    },
+    {
+      "id": "card_2e794c",
+      "slug": "can-llms-judge-better-than-generate",
+      "type": "paper",
+      "title": "Can LLMs Judge Better Than They Generate?",
+      "hook": "LLM-as-a-Judge assumes evaluation is easier than generation — a controlled test finds the opposite on 3 of 4 benchmarks, and attention analysis shows why.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a8d096#0",
+      "format": "flip",
+      "prompt": "What assumption about LLM-as-a-judge pipelines does this paper break?",
+      "back_html": "\u003cp\u003eThat each judgment is independent of earlier ones. Including a prior score as context metadata systematically shifts the new rating toward that value, even though the text being judged is unchanged.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a8d096#1",
+      "format": "quiz",
+      "prompt": "Which mitigation did the authors find removed the anchoring effect?",
+      "choices": [
+        {
+          "text": "None — neither chain-of-thought nor a metadata-disregard warning eliminated the total effect",
+          "correct": true
+        },
+        {
+          "text": "Chain-of-thought reasoning fully eliminated it",
+          "correct": false
+        },
+        {
+          "text": "An explicit instruction to ignore the metadata fully eliminated it",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBoth were tested and neither removed the total effect, though the warning did improve the paired accuracy effect in the industry experiment. The authors argue mitigation must be validated per model and domain.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a8d096#2",
+      "format": "flip",
+      "prompt": "Why does 'threshold-like response' matter for anyone designing judge prompts?",
+      "back_html": "\u003cp\u003eToken-level probes suggest the damage comes from the anchor being present at all, not from its exact value — so sanitizing metadata beats trying to pick a harmless anchor number.\u003c/p\u003e"
+    }
+  ]
+}

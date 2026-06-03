@@ -1,0 +1,113 @@
+{
+  "id": "card_68eabc",
+  "slug": "transforming-rank-spectral-pathologies",
+  "type": "paper",
+  "title": "Transforming Rank: How Architecture Navigates the Spectral Pathologies of Depth",
+  "hook": "Skip connections and normalization are usually explained as controlling magnitude. Reframe them as controlling how much rank survives depth, and Pre-Norm's edge over Post-Norm falls out.",
+  "key_points": [
+    "Reinterprets skip connections and normalization placement as mechanisms for preserving gradient rank across depth, not just magnitude, since matrix multiplications and nonlinearities both destroy rank as they add expressiveness.",
+    "Skip connections trade rank collapse against ensemble-like behavior, set by the relative scale of the residual branch versus the skip path.",
+    "Normalization placement sets that same branch-to-skip ratio across depth, explaining why rank collapses under Post-Norm but plateaus under Pre-Norm.",
+    "The feedforward block's expand-then-contract structure (two matrices) uses its extra parameters to preserve Jacobian rank: the second matrix decorrelates a coherent mean spike that a single matrix would let grow across blocks.",
+    "The width expansion between those two matrices keeps the branch Jacobian full rank at a width following a Marchenko-Pastur law, so the rank-reducing activation still leaves enough directions to span the original space.",
+    "Initialization-time rank of the input-output Jacobian predicts which network configurations actually train successfully on CIFAR-10."
+  ],
+  "content_html": "\u003cp\u003eSkip connections and where you place normalization layers are usually explained as ways to control the magnitude of activations flowing through a deep network. This paper argues that's only half the story — the same design choices are really about how much \u003cem\u003erank\u003c/em\u003e survives as depth grows, since the matrix multiplications and nonlinear activations that make a network expressive are exactly what destroy rank.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eKatie Everett shows that skip connections trade off rank collapse against ensemble-like behavior, controlled by the relative scale between the residual branch (where rank gets lost) and the skip path that routes gradients around it, encouraging shallower effective computation over deep composition. Normalization placement turns out to set that exact same branch-to-skip ratio across depth — which is why, in one unified account, rank collapses under Post-Norm but merely plateaus under Pre-Norm, tying together much of the existing normalization-placement and depth-scaling literature. Other architectural choices get the same treatment: the feedforward block's expand-then-contract, two-matrix structure spends its extra parameters preserving rank, with the second matrix decorrelating a coherent mean spike the first would otherwise let grow across blocks, and the intervening width expansion keeping the branch Jacobian full rank at a width following a Marchenko-Pastur law.\u003c/p\u003e\n\u003cp\u003eThe practical payoff: the initialization-time rank of a network's input-output Jacobian predicts which configurations actually train successfully on CIFAR-10. Everett frames the whole exercise as recasting deep-network architecture design as navigating an intrinsic tradeoff among rank collapse, ensemble-like behavior, and parameter count — rather than a grab-bag of separately-motivated tricks. Katie Everett, arXiv, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Katie Everett"
+    ],
+    "url": "https://arxiv.org/abs/2607.14018",
+    "published_at": "2026-07-15",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "optimization",
+    "neural-nets",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "training",
+    "foundational",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-20",
+  "date": "2026-07-15",
+  "related": [
+    {
+      "id": "card_e778b2",
+      "slug": "resnet",
+      "type": "paper",
+      "title": "Deep Residual Learning (ResNet)",
+      "hook": "Stacking more layers used to make networks worse, not better. ResNet's fix — let each layer learn a tweak to its input — unlocked nets over 100 layers deep.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-12-10"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_e778b2",
+      "slug": "resnet",
+      "type": "paper",
+      "title": "Deep Residual Learning (ResNet)",
+      "hook": "Stacking more layers used to make networks worse, not better. ResNet's fix — let each layer learn a tweak to its input — unlocked nets over 100 layers deep.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-12-10"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_68eabc#0",
+      "format": "flip",
+      "prompt": "What's the reframing this paper applies to skip connections and normalization, beyond the usual 'controls magnitude' story?",
+      "back_html": "\u003cp\u003eIt treats them as mechanisms for preserving gradient rank across depth — since the very matrix multiplications and nonlinearities that make a network expressive also destroy rank as depth grows.\u003c/p\u003e"
+    },
+    {
+      "id": "card_68eabc#1",
+      "format": "quiz",
+      "prompt": "According to the paper, why does rank collapse under Post-Norm but plateau under Pre-Norm?",
+      "choices": [
+        {
+          "text": "Normalization placement sets the branch-to-skip scale ratio across depth, and that ratio governs the rank-collapse-vs-ensemble-behavior tradeoff",
+          "correct": true
+        },
+        {
+          "text": "Post-Norm uses fewer parameters than Pre-Norm",
+          "correct": false
+        },
+        {
+          "text": "Pre-Norm networks are always trained for fewer steps",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe placement of the normalization layer controls the relative scale between the residual branch and the skip path across depth — the same knob that skip connections themselves tune — which is why it determines whether rank collapses or plateaus.\u003c/p\u003e"
+    },
+    {
+      "id": "card_68eabc#2",
+      "format": "quiz",
+      "prompt": "What role does the feedforward block's second matrix play, per this paper?",
+      "choices": [
+        {
+          "text": "It decorrelates a coherent mean spike that a single matrix would let grow across blocks, preventing the residual representation from collapsing",
+          "correct": true
+        },
+        {
+          "text": "It doubles the model's parameter count purely to increase capacity",
+          "correct": false
+        },
+        {
+          "text": "It applies the nonlinear activation function",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe expand-then-contract, two-matrix structure uses its extra parameters specifically to preserve rank: the second matrix removes a coherent mean spike the first matrix's output would otherwise accumulate across blocks.\u003c/p\u003e"
+    }
+  ]
+}

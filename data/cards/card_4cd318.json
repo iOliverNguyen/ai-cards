@@ -1,0 +1,111 @@
+{
+  "id": "card_4cd318",
+  "slug": "envharness",
+  "type": "paper",
+  "title": "EnvHarness: Awakening Static Worlds for Agent Learning",
+  "hook": "Agents outgrow the environments we hand-build for them. Instead of writing new worlds, wrap the old one in a programmable layer that reshapes it around the agent's current weaknesses.",
+  "key_points": [
+    "Hand-built agent environments are static: blind to an agent's flaws and obsolete once it improves.",
+    "EnvHarness is a layer of plug-in components wrapping a static environment through standard interfaces, without touching its logic.",
+    "Because the underlying environment is untouched, every reshaped variant keeps its original verifier — no new reward model needed.",
+    "EnvRigger automates the loop: watch a black-box policy's trajectories, synthesize components targeting diagnosed flaws, validate by fresh rollouts.",
+    "Across five benchmarks in four domains, the authors report up to +9.0 points on held-out instances with 9.8% fewer execution steps.",
+    "They also report it gives a better RL signal, letting policy and environment co-evolve continuously."
+  ],
+  "content_html": "\u003cp\u003eLLM agents learn by acting in environments, but those environments are hand-built and frozen — they can't see where a particular agent is weak, and they go stale as soon as it improves. Huang and colleagues propose Environment Harness (EnvHarness): rather than generating new environments, you wrap an existing one in a programmable layer of plug-in components that reshape its behavior through standard interfaces, leaving the underlying logic untouched.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eBecause the wrapped environment is unmodified, it keeps its original verifier — the thing that says whether a task was actually solved. That sidesteps the usual weakness of automatic environment generation, which needs an expensive or unreliable new verifier for every synthesized world. To make the process automatic, the authors add EnvRigger: it treats the target policy as a black box, watches its execution trajectories, synthesizes harness components aimed at the flaws it diagnoses, and validates them with fresh rollouts.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAcross five benchmarks in four domains, the authors report EnvHarness beating both the original environments and domain-specific generation pipelines — up to 9.0 points better on held-out instances while using 9.8% fewer execution steps — and providing a stronger reinforcement-learning signal. The framing is the interesting part: environment design becomes a per-agent, continuously updated artifact rather than a one-time engineering cost.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Chengsong Huang",
+      "Zifeng Wang",
+      "Rujun Han",
+      "Jun Yan",
+      "Yanfei Chen",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.19880",
+    "published_at": "2026-08-20",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "training",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-24",
+  "date": "2026-08-20",
+  "related": [
+    {
+      "id": "card_1b799b",
+      "slug": "agentic-environment-engineering-survey",
+      "type": "paper",
+      "title": "Agentic Environment Engineering: A Survey",
+      "hook": "Agents only get as good as the worlds they practice in. This survey maps the full lifecycle of agent environments — how we model, synthesize, evaluate, and grow them.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-06-10"
+    },
+    {
+      "id": "card_439589",
+      "slug": "skill-self-play",
+      "type": "paper",
+      "title": "Skill Self-Play: Pushing the Frontier of LLM Capability with Co-Evolving Skills",
+      "hook": "Self-evolving models face a dilemma: verifiable environments are narrow, open-ended task generation is unreliable. This uses agent skills as the middle ground.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    },
+    {
+      "id": "card_971f11",
+      "slug": "self-improving-agents-survey",
+      "type": "paper",
+      "title": "Self-Improvements in Modern Agentic Systems: A Survey",
+      "hook": "Self-improving agents are leaving the lab for production. This survey, co-authored by Jürgen Schmidhuber, gives the field a shared vocabulary for what an agent can update about itself, and what drives that update.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-07-14"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_4cd318#0",
+      "format": "flip",
+      "prompt": "Why does wrapping an environment beat generating a new one from scratch?",
+      "back_html": "\u003cp\u003eThe wrapper leaves the underlying logic — and therefore the original verifier — intact, so you get reshaped tasks without building a new, possibly unreliable, reward signal.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4cd318#1",
+      "format": "quiz",
+      "prompt": "What does EnvRigger use to decide how to reshape an environment?",
+      "choices": [
+        {
+          "text": "The target policy's own execution trajectories, treating it as a black box",
+          "correct": true
+        },
+        {
+          "text": "Human annotations of which tasks are too easy",
+          "correct": false
+        },
+        {
+          "text": "The environment's source code, rewritten per domain",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEnvRigger observes rollouts of the policy it is training against, diagnoses flaws from them, then synthesizes and validates harness components.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4cd318#2",
+      "format": "flip",
+      "prompt": "What problem with static environments does 'co-evolution' solve?",
+      "back_html": "\u003cp\u003eA fixed environment stops providing signal once the agent saturates it. Reshaping it as the policy improves keeps the difficulty tracking the agent's current frontier.\u003c/p\u003e"
+    }
+  ]
+}

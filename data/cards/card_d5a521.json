@@ -1,0 +1,105 @@
+{
+  "id": "card_d5a521",
+  "slug": "direct-preference-optimization",
+  "type": "paper",
+  "title": "Direct Preference Optimization (DPO)",
+  "hook": "RLHF works but is fiddly: a separate reward model and a finicky RL loop. DPO reaches the same goal with one simple loss — and became a popular default.",
+  "key_points": [
+    "Aligns a model directly on preference pairs with a single classification-style loss.",
+    "No separate reward model and no reinforcement-learning loop to tune.",
+    "Derived to optimize the same objective RLHF targets, but in closed form.",
+    "More stable and simpler to run, while matching RLHF-level quality."
+  ],
+  "content_html": "\u003cp\u003eRafael Rafailov, Archit Sharma, and colleagues at Stanford asked whether you really need reinforcement learning to align a model to human preferences. DPO shows you don't. They rederive the RLHF objective so the language model itself implicitly acts as the reward model, collapsing the whole pipeline into a single supervised loss over preference pairs — simpler, more stable, and competitive in quality.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eRLHF first fits a reward model to preference data, then runs RL to maximize that reward with a penalty for drifting from the reference model. DPO observes that this objective has a closed-form relationship between the optimal policy and the reward, so the reward can be expressed in terms of the policy itself. Substituting that in turns the problem into a simple binary classification loss: increase the model's relative likelihood of the preferred response over the rejected one in each pair, weighted against a frozen reference. No reward model, no sampling, no RL loop.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe RL stage of RLHF is the hardest part to get working — it needs careful tuning and is sensitive to instability. DPO removes that stage entirely while targeting the same goal, so teams can align models with familiar supervised training. Because it is easier to run and reproduces RLHF-level results, it became a widely used default for preference alignment.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Rafael Rafailov",
+      "Archit Sharma",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2305.18290",
+    "published_at": "2023-05-29",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf"
+  ],
+  "tags": [
+    "alignment",
+    "training"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-02",
+  "date": "2023-05-29",
+  "related": [
+    {
+      "id": "card_1098fc",
+      "slug": "instructgpt",
+      "type": "paper",
+      "title": "InstructGPT: Aligning LMs with Human Feedback (RLHF)",
+      "hook": "A smaller model people actually like beats a bigger one they don't. InstructGPT used human preferences to make a model follow instructions — the recipe behind ChatGPT.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-03-04"
+    },
+    {
+      "id": "card_40de42",
+      "slug": "ppo",
+      "type": "paper",
+      "title": "PPO: Proximal Policy Optimization",
+      "hook": "Reinforcement learning is notoriously unstable. PPO's fix is simple: never let a single update move the policy too far. That restraint made it the field's workhorse.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2017-07-20"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_1098fc",
+      "slug": "instructgpt",
+      "type": "paper",
+      "title": "InstructGPT: Aligning LMs with Human Feedback (RLHF)",
+      "hook": "A smaller model people actually like beats a bigger one they don't. InstructGPT used human preferences to make a model follow instructions — the recipe behind ChatGPT.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-03-04"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_d5a521#0",
+      "format": "flip",
+      "prompt": "What does DPO eliminate from the RLHF pipeline?",
+      "back_html": "\u003cp\u003eThe separate reward model and the reinforcement-learning loop — it collapses everything into a single supervised loss over preference pairs.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d5a521#1",
+      "format": "quiz",
+      "prompt": "What insight lets DPO drop the explicit reward model?",
+      "choices": [
+        {
+          "text": "A closed-form link between the optimal policy and the reward, so the model implicitly acts as the reward model",
+          "correct": true
+        },
+        {
+          "text": "Preference data is unnecessary if the model is large enough",
+          "correct": false
+        },
+        {
+          "text": "The reward can be hand-specified as a fixed function",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDPO rederives the RLHF objective so the policy itself implicitly is the reward model, turning it into a binary classification loss.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d5a521#2",
+      "format": "flip",
+      "prompt": "Why did DPO become a widely used default for preference alignment?",
+      "back_html": "\u003cp\u003eIt removes the hardest-to-tune RL stage while targeting the same goal, so teams align models with familiar supervised training and match RLHF-level results.\u003c/p\u003e"
+    }
+  ]
+}

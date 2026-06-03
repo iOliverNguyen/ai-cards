@@ -1,0 +1,126 @@
+{
+  "id": "card_07dccf",
+  "slug": "color-bias-vision-language-models",
+  "type": "paper",
+  "title": "Seeing Red, Thinking Bad: Color Bias in VLMs",
+  "hook": "Render the same sentence with the positive words in green and a vision-language model reads it more positively. The text didn't change — only its styling did.",
+  "key_points": [
+    "VLMs increasingly read text that arrives as an image — screenshots, documents, slides.",
+    "Stealth Visual Prompts alter visual styling (color, contrast) while leaving semantic content intact.",
+    "Coloring positive words green consistently shifts sentiment predictions in the positive direction.",
+    "Under that shift, models often fail to properly account for negative words in the same text.",
+    "Lower text–background contrast increases reliance on visually salient cues and produces more VQA errors.",
+    "The authors correlate the effect with color-induced changes in the vision encoder's latent representations."
+  ],
+  "content_html": "\u003cp\u003eVision-language models are ending up in decision-making pipelines — recruitment support, recommendations — and a lot of what they read arrives as pixels rather than tokens: screenshots, PDFs, slides. That raises a question nobody asks of a plain text model. Does it matter what the text \u003cem\u003elooks like\u003c/em\u003e?\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eStealth Visual Prompts\u003c/h2\u003e\n\u003cp\u003eThe authors introduce \u003cstrong\u003eStealth Visual Prompts\u003c/strong\u003e: perturbations that change the visual styling of rendered text — colour, contrast — while preserving its semantic content exactly. Then they systematically vary the styling of individual words and measure what the model concludes.\u003c/p\u003e\n\u003cp\u003eColouring positive words \u003cstrong\u003egreen\u003c/strong\u003e consistently shifted sentiment predictions in the positive direction. The revealing part is the follow-on effect: under that shift, models often failed to properly account for negative words present in the same text. Separately, reducing text–background \u003cstrong\u003econtrast\u003c/strong\u003e increased reliance on visually salient cues and produced more incorrect visual question answering outputs.\u003c/p\u003e\n\u003ch2\u003eWhere it comes from\u003c/h2\u003e\n\u003cp\u003eProbing the vision encoder, the authors find the behaviour correlates with colour-induced changes in its latent representations — the styling isn't being ignored and then recovered at the language stage; it perturbs the representation the language model reasons over.\u003c/p\u003e\n\u003cp\u003eThe practical warning is direct: if a VLM screens rendered documents, whoever formats those documents holds a channel of influence that never appears in the text.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Kohsuke Ide",
+      "Ryousuke Yamada",
+      "Yoshihiro Fukuhara",
+      "Hirokatsu Kataoka",
+      "Yutaka Satoh"
+    ],
+    "url": "https://arxiv.org/abs/2608.14286",
+    "published_at": "2026-08-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "vlms",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "vision",
+    "safety",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-17",
+  "date": "2026-08-14",
+  "related": [
+    {
+      "id": "card_896f54",
+      "slug": "multimodal-cot-limits",
+      "type": "paper",
+      "title": "Look Light, Think Heavy: The Limits of Multimodal Chain-of-Thought",
+      "hook": "Chain-of-thought should make models think harder. For vision-language tasks this study finds it's no free lunch — it can hurt perception, and models keep talking while they stop looking.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-21"
+    },
+    {
+      "id": "card_892cbb",
+      "slug": "vlm-condition-encoder-localization-gap",
+      "type": "paper",
+      "title": "Where VLM Localization Signal Actually Hides in Editing Pipelines",
+      "hook": "VLMs are great at pointing to objects on their own — but bolt one onto a diffusion image editor and that skill seems to vanish. It didn't leave, it just hid somewhere editing pipelines don't look.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-07"
+    },
+    {
+      "id": "card_a763c5",
+      "slug": "activevision-benchmark",
+      "type": "paper",
+      "title": "An Exam for Active Observers",
+      "hook": "Human vision is a loop — look, form a hypothesis, look again. A new benchmark for that loop leaves frontier MLLMs scoring single digits, while humans average 96%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-17"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_07dccf#0",
+      "format": "flip",
+      "prompt": "What is a Stealth Visual Prompt?",
+      "back_html": "\u003cp\u003eA change to the visual styling of text rendered as an image — colour, contrast — that preserves the semantic content while measurably shifting how a VLM interprets it.\u003c/p\u003e"
+    },
+    {
+      "id": "card_07dccf#1",
+      "format": "quiz",
+      "prompt": "What happened when positive words were coloured green?",
+      "choices": [
+        {
+          "text": "Sentiment predictions shifted positive, and models often failed to account for negative words present",
+          "correct": true
+        },
+        {
+          "text": "Models refused to answer, flagging the input as manipulated",
+          "correct": false
+        },
+        {
+          "text": "Sentiment predictions were unchanged but confidence dropped",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eColouring positive words green consistently pushed sentiment in the positive direction, with the model under-weighting the negative words in the same text.\u003c/p\u003e"
+    },
+    {
+      "id": "card_07dccf#2",
+      "format": "quiz",
+      "prompt": "What effect did reducing text–background contrast have?",
+      "choices": [
+        {
+          "text": "It increased reliance on visually salient cues and produced more incorrect VQA outputs",
+          "correct": true
+        },
+        {
+          "text": "It made the model fall back to pure text reasoning and improved accuracy",
+          "correct": false
+        },
+        {
+          "text": "It had no measurable effect once the text was still legible",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLower contrast pushed the model toward whatever was visually salient, leading to more incorrect answers on visual question answering.\u003c/p\u003e"
+    }
+  ]
+}

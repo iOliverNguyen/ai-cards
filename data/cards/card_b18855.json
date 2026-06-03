@@ -1,0 +1,107 @@
+{
+  "id": "card_b18855",
+  "slug": "concise-output-vs-prompt-compression",
+  "type": "blog",
+  "title": "Does Telling an LLM to Be Concise Save Money?",
+  "hook": "Two ways to spend fewer tokens: shorten what you send, or shorten what you ask for back. Measured across nine models, only one of them actually saves you money.",
+  "key_points": [
+    "The study compares two levers on the same questions: compressing the input prompt versus instructing shorter output.",
+    "Both were tested at five reduction levels, scored on cost, accuracy, and fidelity to the unconstrained answer.",
+    "Result: compressing the output saves money while holding accuracy; compressing the input prompt does not save money.",
+    "Nine models were evaluated, including GPT-4o, GPT-5.4, and Claude Haiku 4.5.",
+    "Fidelity matters as much as accuracy — a shorter answer that no longer matches what the model would have said is a silent change, not a saving.",
+    "Practical read: output-length control (like a concise output style) is the lever with evidence behind it."
+  ],
+  "content_html": "\u003cp\u003eWith a black-box model, the only two dials you really control are what goes in and how you ask for the answer back. This post reports a study that turns both dials on the same set of questions — shortening the input prompt versus instructing the model to answer more briefly — at five reduction levels each, scoring cost, accuracy, and whether the shortened text still matched what the model would have produced unconstrained.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe finding\u003c/h2\u003e\n\u003cp\u003eThe two channels are not symmetric. Compressing the output saves money and holds accuracy; compressing the input prompt does not deliver the savings. The evaluation spans nine models, including GPT-4o, GPT-5.4, and Claude Haiku 4.5. The authors frame it as timely because concise output styles are now shipping as product features — Claude Code added one — which makes it worth knowing which lever the evidence supports.\u003c/p\u003e\n\u003ch2\u003eReading it carefully\u003c/h2\u003e\n\u003cp\u003eThe fidelity check is the part worth internalizing. Accuracy can stay flat while the content of an answer shifts, so \u0026quot;shorter and still scores the same\u0026quot; and \u0026quot;shorter and still says the same thing\u0026quot; are different claims. See the linked post for the full methodology and the paper.\u003c/p\u003e",
+  "source": {
+    "name": "r/MachineLearning",
+    "authors": [
+      "/u/ibubbles34"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1vulfei/does_telling_an_llm_to_be_concise_actually_save",
+    "published_at": "2026-08-21",
+    "license": "Reddit (user post)"
+  },
+  "topic_ids": [
+    "prompting",
+    "inference",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-08-24",
+  "date": "2026-08-21",
+  "related": [
+    {
+      "id": "card_1f00c3",
+      "slug": "test-time-compute-scaling",
+      "type": "paper",
+      "title": "Scaling LLM Test-Time Compute",
+      "hook": "A new scaling axis: instead of a bigger model, let a model think longer at inference — often a better use of compute, and the principle behind o1 and R1.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-08-06"
+    },
+    {
+      "id": "card_f184ec",
+      "slug": "learning-when-to-think",
+      "type": "paper",
+      "title": "Learning When to Think: Adaptive Test-Time Compute",
+      "hook": "Let the model pick its own thinking budget with its very first token. On MATH500 that cut response length 41% while accuracy barely moved.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-20"
+    },
+    {
+      "id": "card_221e28",
+      "slug": "referential-dangling-prompt-compression",
+      "type": "paper",
+      "title": "Referential Dangling: How Prompt Compression Quietly Breaks Multi-Hop Answers",
+      "hook": "Compressors score chunks independently, so they can keep the sentence holding the answer and delete the one defining who it's about — leaving text that reads fine and answers wrong.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-05"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b18855#0",
+      "format": "quiz",
+      "prompt": "Which compression channel actually reduced cost in this study?",
+      "choices": [
+        {
+          "text": "Asking for shorter output",
+          "correct": true
+        },
+        {
+          "text": "Shortening the input prompt",
+          "correct": false
+        },
+        {
+          "text": "Both channels equally",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOutput compression saved money while keeping accuracy; compressing the input prompt did not produce savings.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b18855#1",
+      "format": "flip",
+      "prompt": "Besides cost and accuracy, what third thing did the authors score?",
+      "back_html": "\u003cp\u003eWhether the shortened text still matched what the model would have said unconstrained — a shorter answer that quietly diverges isn't the same answer.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b18855#2",
+      "format": "flip",
+      "prompt": "Why is 'accuracy held steady' not enough to call a compression safe?",
+      "back_html": "\u003cp\u003eAccuracy is a coarse aggregate. Content can shift while the score stays flat, which is why fidelity to the unconstrained response was measured separately.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "id": "card_3ce408",
+  "slug": "helm",
+  "type": "paper",
+  "title": "HELM: Holistic Evaluation of Language Models",
+  "hook": "A single accuracy number hides a lot. HELM evaluates language models across many scenarios and many metrics at once — and reports it all in the open.",
+  "key_points": [
+    "Evaluates models over a broad set of scenarios rather than one task or dataset.",
+    "Measures multiple metrics together — accuracy, robustness, fairness, bias, toxicity, efficiency.",
+    "Runs models under standardized conditions so comparisons are apples-to-apples.",
+    "Publishes results transparently, replacing a single leaderboard score with a fuller picture."
+  ],
+  "content_html": "\u003cp\u003ePercy Liang, Rishi Bommasani, and a large Stanford-led team built HELM to evaluate language models the way you'd review a product — across many dimensions, not just one. It runs models over a wide range of scenarios and scores each on several metrics, including accuracy, robustness, fairness, bias, toxicity, and efficiency. Everything is standardized and reported openly, so the goal is a transparent, multi-faceted picture of a model rather than a single headline number.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eHELM defines a structured grid: many scenarios (tasks and use cases) crossed with many metrics. Every model is evaluated under the same conditions on each scenario, and the framework records how it does on accuracy plus other qualities like calibration, robustness to perturbations, and bias. Because the setup and prompts are fixed and documented, results are comparable across models. The outputs are published as living, browsable results rather than buried in a paper appendix.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eReducing a model to one accuracy score can mislead — a model can be accurate yet brittle, biased, or expensive to run. HELM made it normal to ask about those trade-offs side by side and to demand transparency about how numbers were produced. That holistic, reproducible framing influenced how the field reports evaluations and gave practitioners a richer basis for choosing models. It pairs naturally with focused benchmarks like MMLU, adding breadth around any single score.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Percy Liang",
+      "Rishi Bommasani",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2211.09110",
+    "published_at": "2022-11-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety"
+  ],
+  "tags": [
+    "benchmark",
+    "nlp"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2022-11-16",
+  "related": [
+    {
+      "id": "card_063597",
+      "slug": "mmlu",
+      "type": "paper",
+      "title": "MMLU: Measuring Massive Multitask Language Understanding",
+      "hook": "Want one number for how broadly an LLM 'knows stuff'? MMLU is a 57-subject exam spanning history, law, medicine, and math — and it became a default yardstick.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-09-07"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_3ce408#0",
+      "format": "flip",
+      "prompt": "How does HELM structure its evaluation?",
+      "back_html": "\u003cp\u003eA grid of many scenarios crossed with many metrics — accuracy, robustness, fairness, bias, toxicity, efficiency — with every model run under the same standardized conditions.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3ce408#1",
+      "format": "quiz",
+      "prompt": "What problem with a single accuracy score does HELM address?",
+      "choices": [
+        {
+          "text": "A model can be accurate yet brittle, biased, or expensive to run",
+          "correct": true
+        },
+        {
+          "text": "Accuracy scores are always inflated",
+          "correct": false
+        },
+        {
+          "text": "Accuracy can only be measured on one task",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eReducing a model to one accuracy number can mislead; HELM surfaces trade-offs like robustness and bias side by side.\u003c/p\u003e"
+    }
+  ]
+}

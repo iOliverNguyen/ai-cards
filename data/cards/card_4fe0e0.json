@@ -1,0 +1,120 @@
+{
+  "id": "card_4fe0e0",
+  "slug": "predictive-coding-vs-backprop-deepity",
+  "type": "blog",
+  "title": "Predictive Coding as a Backprop Alternative (Deepity)",
+  "hook": "Backprop isn't the only way to assign credit in a neural net. A hobby C++ library reports predictive coding matching it on MNIST — once you make the slow part fast.",
+  "key_points": [
+    "Predictive coding networks replace the backward pass with local error signals that settle through iterative inference.",
+    "They appeal to researchers for biological plausibility and continual learning, but naive implementations are painfully slow.",
+    "Deepity's author reports 97.73% on MNIST in about 60 seconds of CPU training, closing the gap with backpropagation.",
+    "The speedup comes from Direct Kolen-Pollack feedback alignment plus caching to skip redundant forward projections during settling.",
+    "Single-author, MNIST-only evidence — treat it as a demonstration of feasibility, not a benchmark result."
+  ],
+  "content_html": "\u003cp\u003eBackpropagation is so standard that it's easy to forget it's one choice among several ways to assign credit in a network. Predictive coding networks are another: instead of a global backward pass, each layer maintains a local prediction error and the network settles iteratively until those errors are small. The idea draws interest for biological plausibility and continual learning, but the settling loop has historically made it far slower than backprop.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat the project claims\u003c/h2\u003e\n\u003cp\u003eDeepity is a local C++ library its author built over a month to test predictive coding in practice. Two changes do the work: Direct Kolen-Pollack feedback alignment, from recent work on accelerated PCNs, and algorithmic caching that avoids recomputing forward projections during the settling phase. With those in place the author reports 97.73% accuracy on MNIST after roughly 60 seconds of CPU training — close enough to backprop, on that task, to call the performance gap closed.\u003c/p\u003e\n\u003ch2\u003eHow to read it\u003c/h2\u003e\n\u003cp\u003eThis is a single-author project evaluated on one small dataset, so it doesn't tell you predictive coding scales. What it does illustrate is that the usual reason to dismiss these methods — \u0026quot;too slow to bother\u0026quot; — is an implementation property, not a law. The interesting question the write-up leaves open is whether the same tricks hold up on harder problems.\u003c/p\u003e",
+  "source": {
+    "name": "r/MachineLearning",
+    "authors": [
+      "/u/Important-Home4431"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1w5fuhm/deepity_a_c_library_showing_predictive_coding",
+    "published_at": "2026-09-02",
+    "license": "Reddit post (author-submitted)"
+  },
+  "topic_ids": [
+    "training-intuition",
+    "optimization"
+  ],
+  "tags": [
+    "training",
+    "open-source",
+    "foundational"
+  ],
+  "importance": 2,
+  "difficulty": "deep",
+  "created_at": "2026-09-03",
+  "date": "2026-09-02",
+  "related": [
+    {
+      "id": "card_fbbf2c",
+      "slug": "backpropagation",
+      "type": "paper",
+      "title": "Learning Representations by Back-Propagating Errors",
+      "hook": "The 1986 paper that made deep learning possible: run the error backward through the network with the chain rule, and you get every weight's gradient in one sweep.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "1986-10-09"
+    },
+    {
+      "id": "card_7921e0",
+      "slug": "gradient-descent",
+      "type": "concept",
+      "title": "Gradient Descent",
+      "hook": "Lost in fog on a hillside, you'd feel for the steepest downhill step and take it, again and again. That's how models learn.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_fbbf2c",
+      "slug": "backpropagation",
+      "type": "paper",
+      "title": "Learning Representations by Back-Propagating Errors",
+      "hook": "The 1986 paper that made deep learning possible: run the error backward through the network with the chain rule, and you get every weight's gradient in one sweep.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "1986-10-09"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_4fe0e0#0",
+      "format": "flip",
+      "prompt": "What makes predictive coding networks appealing as an alternative to backpropagation?",
+      "back_html": "\u003cp\u003eCredit assignment uses local error signals rather than a global backward pass, which is more biologically plausible and suits continual learning.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4fe0e0#1",
+      "format": "quiz",
+      "prompt": "Why are naive predictive coding implementations so slow?",
+      "choices": [
+        {
+          "text": "Inference has to settle iteratively, repeating forward projections many times",
+          "correct": true
+        },
+        {
+          "text": "They need far more parameters than an equivalent backprop network",
+          "correct": false
+        },
+        {
+          "text": "They can only be trained one example at a time",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe settling phase repeats forward projections; Deepity caches them to skip the redundant work.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4fe0e0#2",
+      "format": "quiz",
+      "prompt": "How much should you read into the 97.73% MNIST result?",
+      "choices": [
+        {
+          "text": "It shows the approach is feasible, but MNIST from one author is weak evidence",
+          "correct": true
+        },
+        {
+          "text": "It establishes predictive coding as superior to backpropagation",
+          "correct": false
+        },
+        {
+          "text": "It is meaningless because MNIST accuracy cannot be measured reliably",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA single-author, single-dataset demonstration is a feasibility signal, not a benchmark that generalizes.\u003c/p\u003e"
+    }
+  ]
+}

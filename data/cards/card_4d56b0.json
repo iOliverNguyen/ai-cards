@@ -1,0 +1,119 @@
+{
+  "id": "card_4d56b0",
+  "slug": "experiential-abstractions-llms",
+  "type": "paper",
+  "title": "Notes to Self: Can LLMs Benefit from Experiential Abstractions?",
+  "hook": "Let an LLM write itself 'notes to self' — reusable strategies distilled from its own solution attempts — and its math and logic reasoning improves, with self-written notes as good as a teacher's.",
+  "key_points": [
+    "The idea: distill an LLM's own solution traces into natural-language abstractions — strategies and cautionary reminders — stored in a retrievable library.",
+    "Two ways to use them: retrieve relevant abstractions at inference time, or fold them into training prompts for reinforcement learning.",
+    "Both modes improve performance on mathematical and logical reasoning benchmarks.",
+    "Self-extracted abstractions match those extracted by a stronger teacher model.",
+    "The framework transfers across datasets and models — evidence LLMs can leverage distilled experience much as humans do."
+  ],
+  "content_html": "\u003cp\u003ePeople get better at a task by distilling experience into reusable lessons — \u0026quot;try this strategy,\u0026quot; \u0026quot;watch out for that trap\u0026quot; — and applying them next time. This paper asks whether LLMs can do the same with their own work.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eA library the model writes for itself\u003c/h2\u003e\n\u003cp\u003eStarting from an LLM's solution traces on the MATH training set, a stronger teacher (or the model itself) extracts natural-language abstractions — strategies and cautionary reminders — into a retrievable library. The authors then test two usage modes: retrieving relevant abstractions at inference time, and reinforcement learning with abstraction-augmented training prompts.\u003c/p\u003e\n\u003ch2\u003eWhat it buys you\u003c/h2\u003e\n\u003cp\u003eBoth modes improve performance on mathematical and logical reasoning benchmarks, and self-extracted abstractions match teacher-extracted ones — the model doesn't need a smarter tutor to benefit. The framework also transfers to other datasets and models, suggesting that \u0026quot;learning from experience\u0026quot; through distilled, reusable notes is a general capability LLMs can exploit, not a one-off trick. Liu, Li, and Dubrawski, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Chang Liu",
+      "Xinyu Li",
+      "Artur Dubrawski"
+    ],
+    "url": "https://arxiv.org/abs/2607.20372",
+    "published_at": "2026-07-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "prompting",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "reasoning",
+    "rag",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-23",
+  "date": "2026-07-22",
+  "related": [
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    },
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    },
+    {
+      "id": "card_971f11",
+      "slug": "self-improving-agents-survey",
+      "type": "paper",
+      "title": "Self-Improvements in Modern Agentic Systems: A Survey",
+      "hook": "Self-improving agents are leaving the lab for production. This survey, co-authored by Jürgen Schmidhuber, gives the field a shared vocabulary for what an agent can update about itself, and what drives that update.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-07-14"
+    },
+    {
+      "id": "card_13953d",
+      "slug": "in-context-learning",
+      "type": "concept",
+      "title": "In-Context Learning",
+      "hook": "Paste a few examples into a prompt and a large language model performs the task - no gradient updates, no fine-tuning, the prompt is the program.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-31"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_4d56b0#0",
+      "format": "flip",
+      "prompt": "What are 'experiential abstractions' in this work?",
+      "back_html": "\u003cp\u003eReusable natural-language notes — strategies and cautionary reminders — distilled from an LLM's own solution traces and stored in a retrievable library for later reuse.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4d56b0#1",
+      "format": "quiz",
+      "prompt": "How does self-extraction of abstractions compare to using a stronger teacher model?",
+      "choices": [
+        {
+          "text": "Self-extracted abstractions match teacher-extracted ones",
+          "correct": true
+        },
+        {
+          "text": "Self-extraction performs far worse than the teacher",
+          "correct": false
+        },
+        {
+          "text": "Only teacher extraction gives any measurable benefit",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe model can distill useful abstractions from its own traces without a stronger teacher, and those self-extracted notes perform on par with teacher-extracted ones.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4d56b0#2",
+      "format": "flip",
+      "prompt": "What two ways did the authors use the abstraction library?",
+      "back_html": "\u003cp\u003eInference-time retrieval of relevant abstractions, and reinforcement learning with abstraction-augmented training prompts — both improved reasoning.\u003c/p\u003e"
+    }
+  ]
+}

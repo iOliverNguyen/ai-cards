@@ -1,0 +1,105 @@
+{
+  "id": "card_085057",
+  "slug": "multi-agent-coordination-benchmark",
+  "type": "paper",
+  "title": "A Benchmark for Open-Ended Multi-Agent Coordination",
+  "hook": "13 LLMs try to explore, trade, craft, and build together in an open world — and most manage only ~6% of normalized return. Communication, not raw capability, turns out to be the biggest lever.",
+  "key_points": [
+    "Tests LLM agents on open-ended multi-agent coordination: exploring, communicating, trading, crafting, building, fighting mobs together.",
+    "Across 13 modern LLMs, most agents average only around 6% normalized return.",
+    "On the hardest setting, zero-shot Gemini 3.1 Pro performs comparably to the best MARL agent trained for 1 billion environment steps.",
+    "Coordination emerges as a distinct bottleneck separate from long-horizon task competence.",
+    "Communication has the largest measured effect on performance in this harness."
+  ],
+  "content_html": "\u003cp\u003eCan LLM agents actually coordinate with each other in an open-ended world, not just follow a script? A new benchmark drops 13 modern LLMs into a shared environment where they must explore, communicate, trade resources, craft tools, build structures, and fight mobs together — and finds most of them still struggle badly.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003ePer the author's summary on r/MachineLearning, agents average only around 6% normalized return across the benchmark, but the results aren't uniformly bleak: on the hardest setting, zero-shot Gemini 3.1 Pro performs comparably to the best multi-agent RL policy trained for a full billion environment steps — no task-specific training needed. The authors argue this shows coordination is a bottleneck distinct from an agent's raw long-horizon competence, and that communication between agents has the single largest effect on performance in their harness. Full details via the source link.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit r/MachineLearning",
+    "authors": [
+      "/u/ktessera"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1uwc6ni/new_llm_coordination_benchmark_benchmarking",
+    "published_at": "2026-07-14",
+    "license": "Reddit post (link-out)"
+  },
+  "topic_ids": [
+    "agents",
+    "evaluation"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "reasoning"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-14",
+  "related": [
+    {
+      "id": "card_553800",
+      "slug": "multi-agent-llms-fail-to-explore",
+      "type": "paper",
+      "title": "Multi-Agent LLMs Fail to Explore Each Other",
+      "hook": "Drop LLM agents into a room together and they don't probe each other's abilities — they lock into narrow, polarized patterns that tank coordination and inflate regret.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-13"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_085057#0",
+      "format": "flip",
+      "prompt": "What kind of task does this new benchmark test LLM agents on?",
+      "back_html": "\u003cp\u003eOpen-ended, long-horizon multi-agent coordination in a shared world — exploring, communicating, trading resources, crafting tools, building structures, and fighting mobs together.\u003c/p\u003e"
+    },
+    {
+      "id": "card_085057#1",
+      "format": "quiz",
+      "prompt": "How did most of the 13 evaluated LLMs perform on the benchmark?",
+      "choices": [
+        {
+          "text": "Averaging only around 6% normalized return",
+          "correct": true
+        },
+        {
+          "text": "Averaging around 60% normalized return",
+          "correct": false
+        },
+        {
+          "text": "Achieving near-perfect scores across all settings",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMost agents struggled badly, averaging roughly 6% normalized return across the benchmark's tasks.\u003c/p\u003e"
+    },
+    {
+      "id": "card_085057#2",
+      "format": "flip",
+      "prompt": "What surprising result did zero-shot Gemini 3.1 Pro achieve on the hardest setting?",
+      "back_html": "\u003cp\u003eIt performed comparably to the best MARL (multi-agent reinforcement learning) agent — one trained for 1 billion environment steps — despite no task-specific training.\u003c/p\u003e"
+    },
+    {
+      "id": "card_085057#3",
+      "format": "quiz",
+      "prompt": "What does the benchmark identify as the single biggest lever for performance?",
+      "choices": [
+        {
+          "text": "Communication between agents",
+          "correct": true
+        },
+        {
+          "text": "Model parameter count",
+          "correct": false
+        },
+        {
+          "text": "Longer context windows",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors found communication had the largest measured effect on coordination performance in their harness.\u003c/p\u003e"
+    }
+  ]
+}

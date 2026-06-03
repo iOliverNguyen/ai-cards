@@ -1,0 +1,121 @@
+{
+  "id": "card_d25747",
+  "slug": "2d-rope-text-copying",
+  "type": "paper",
+  "title": "Frontier Language Models Struggle to Copy: Text Can Be Better Viewed in 2D",
+  "hook": "LLMs can solve hard reasoning problems in seconds but fumble at exactly copying text in their own context. The culprit: positional encodings biased toward shortcuts, fixed by laying text out in 2D.",
+  "key_points": [
+    "Even frontier LLMs fail to exactly copy an input string that fits comfortably in their context window.",
+    "Cause: standard positional encodings bias models toward copying via local-context matching instead of precise position lookup.",
+    "2D-RoPE arranges text as a grid, giving each token a row and column ID, so copying becomes a fixed column-offset lookup.",
+    "Shallow Transformers with 2D-RoPE copy perfectly at input lengths hundreds of times longer than their training lengths.",
+    "The copying advantage holds up in large-scale pretraining on DCLM at model sizes up to 1.4B parameters."
+  ],
+  "content_html": "\u003cp\u003eIt's a strange failure mode: an LLM can chain together multi-step reasoning in seconds, yet asked to exactly reproduce a string that's sitting right there in its context, it slips up. This paper traces that failure to something structural — how Transformers encode position.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eHaodong Wen, Kaifeng Lyu, and colleagues argue standard positional encodings give Transformers an inductive bias toward copying via a shortcut: matching local context patterns rather than precisely locating the corresponding position in the input. Their fix, 2D-RoPE, lays text out on a 2D grid instead of a 1D sequence, assigning each token a row ID and a column ID. Under that view, copying becomes simply reading off tokens at a fixed column offset — a far easier pattern to learn than tracking absolute 1D position.\u003c/p\u003e\n\u003cp\u003eIn synthetic copy experiments, shallow Transformers using 2D-RoPE achieve perfect copying at input lengths hundreds of times longer than anything seen in training, while standard positional encodings fall far behind. The advantage isn't just a synthetic-task artifact either: it persists in large-scale pretraining on the DCLM dataset at model sizes up to 1.4B parameters. The authors frame this as a broader case for exploring 2D positional encodings in language modeling. arXiv, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Haodong Wen",
+      "Yiran Zhang",
+      "Yingfa Chen",
+      "Kaifeng Lyu"
+    ],
+    "url": "https://arxiv.org/abs/2607.16072",
+    "published_at": "2026-07-17",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "attention-mechanisms",
+    "transformers",
+    "papers-this-week"
+  ],
+  "tags": [
+    "attention",
+    "architecture",
+    "nlp",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-17",
+  "related": [
+    {
+      "id": "card_832133",
+      "slug": "rotary-position-embedding",
+      "type": "paper",
+      "title": "RoPE: Rotary Position Embedding",
+      "hook": "Encode position by rotating query/key vectors - relative distances then fall out of the dot product for free, no extra tokens or additive embeddings needed.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2021-04-20"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_832133",
+      "slug": "rotary-position-embedding",
+      "type": "paper",
+      "title": "RoPE: Rotary Position Embedding",
+      "hook": "Encode position by rotating query/key vectors - relative distances then fall out of the dot product for free, no extra tokens or additive embeddings needed.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2021-04-20"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_d25747#0",
+      "format": "flip",
+      "prompt": "What surprising failure do frontier LLMs show, per this paper?",
+      "back_html": "\u003cp\u003eThey fail to exactly copy an input string even when it fits well within their context window — a much simpler task than the reasoning problems they can solve.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d25747#1",
+      "format": "quiz",
+      "prompt": "Why do the authors say this copying failure happens?",
+      "choices": [
+        {
+          "text": "Positional encodings bias the model toward a local-context-matching shortcut instead of precise position lookup",
+          "correct": true
+        },
+        {
+          "text": "The model's vocabulary is too small to represent rare tokens",
+          "correct": false
+        },
+        {
+          "text": "Copying requires more parameters than reasoning does",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThey attribute it to Transformer positional encodings whose inductive bias favors matching local context over locating the exact corresponding input position.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d25747#2",
+      "format": "flip",
+      "prompt": "How does 2D-RoPE change what 'copying' means for the model?",
+      "back_html": "\u003cp\u003eIt gives each token a row and column ID on a 2D grid, so copying reduces to retrieving tokens at a fixed column offset — an easy pattern to learn.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d25747#3",
+      "format": "quiz",
+      "prompt": "How well did 2D-RoPE generalize to longer inputs than seen in training?",
+      "choices": [
+        {
+          "text": "Shallow Transformers achieved perfect copying at input lengths hundreds of times longer than training length",
+          "correct": true
+        },
+        {
+          "text": "It matched standard RoPE exactly, with no extrapolation advantage",
+          "correct": false
+        },
+        {
+          "text": "It only worked up to 2x the training length",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIn synthetic experiments, 2D-RoPE models copied perfectly at lengths hundreds of times beyond training, far outperforming standard positional encodings.\u003c/p\u003e"
+    }
+  ]
+}

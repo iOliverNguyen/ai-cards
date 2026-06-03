@@ -1,0 +1,120 @@
+{
+  "id": "card_553800",
+  "slug": "multi-agent-llms-fail-to-explore",
+  "type": "paper",
+  "title": "Multi-Agent LLMs Fail to Explore Each Other",
+  "hook": "Drop LLM agents into a room together and they don't probe each other's abilities — they lock into narrow, polarized patterns that tank coordination and inflate regret.",
+  "key_points": [
+    "LLM agents interacting with each other explore poorly, falling into myopic, polarized interaction patterns.",
+    "This hurts coordination and inflates regret — agents commit to narrow strategies without learning what peers can actually do.",
+    "Formalized as the 'Multi-Agent Exploration' problem — a stochastic game where agents must probe peers to learn their capabilities.",
+    "MACE (Multi-Agent Contextual Exploration) explicitly structures peer-probing instead of leaving exploration implicit.",
+    "MACE substantially improves both exploration behavior and downstream task performance across diversity settings tested.",
+    "Theory: the value of exploration grows with agent diversity — the more different the peers, the more probing pays off."
+  ],
+  "content_html": "\u003cp\u003ePut several LLM agents in a room to coordinate, and a strange thing happens: instead of probing each other to find out who's good at what, they lock into narrow, polarized interaction patterns almost immediately. This paper argues that's a real, measurable failure of exploration — and one that current agents share.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eHyeong Kyu Choi, Sharon Li, and colleagues formalize the problem as the \u0026quot;Multi-Agent Exploration\u0026quot; problem: a partially observable stochastic game in which agents must actively probe their peers to infer capabilities and find effective interaction strategies, rather than assuming peers behave a fixed way. They show today's LLM agents largely fail at this, producing myopic and polarized behavior that raises regret and hurts coordination. Their fix, MACE (Multi-Agent Contextual Exploration), is a lightweight framework that makes peer-probing an explicit, structured part of interaction rather than an emergent hope, and it substantially improves both exploration behavior and downstream task performance across contextual and parametric diversity settings. The authors also prove that the payoff from exploration scales with how different the agents are from each other. Hyeong Kyu Choi and colleagues, arXiv, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Hyeong Kyu Choi",
+      "Jiatong Li",
+      "Wendi Li",
+      "Xin Eric Wang",
+      "Sharon Li"
+    ],
+    "url": "https://arxiv.org/abs/2607.11250",
+    "published_at": "2026-07-13",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-16",
+  "date": "2026-07-13",
+  "related": [
+    {
+      "id": "card_616d74",
+      "slug": "what-llm-agents-say-when-no-one-is-watching",
+      "type": "paper",
+      "title": "What LLM Agents Say When No One Is Watching: Social Structure and Latent Objective Emergence in Multi-Agent Debates",
+      "hook": "Give an LLM agent a private, off-the-record channel during a debate, and its 'real opinion' can diverge sharply from what it says publicly — even with no explicit incentive to lie.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-02"
+    },
+    {
+      "id": "card_797266",
+      "slug": "webswarm-recursive-web-agents",
+      "type": "paper",
+      "title": "WebSwarm: Recursive Multi-Agent Orchestration for Deep-and-Wide Web Search",
+      "hook": "One long search trajectory can't be both deep and wide at once. WebSwarm lets the search tree grow instead: any node that can't solve its own piece just spawns children and waits for their evidence.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-09"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_553800#0",
+      "format": "flip",
+      "prompt": "What failure pattern do LLM agents show when interacting with other LLM agents?",
+      "back_html": "\u003cp\u003eThey explore poorly — falling into myopic, polarized interaction patterns that hurt coordination and raise regret instead of probing what peers can actually do.\u003c/p\u003e"
+    },
+    {
+      "id": "card_553800#1",
+      "format": "quiz",
+      "prompt": "What do the authors call the problem of agents needing to probe peers to learn their capabilities?",
+      "choices": [
+        {
+          "text": "The Multi-Agent Exploration problem, modeled as a partially observable stochastic game",
+          "correct": true
+        },
+        {
+          "text": "The Cooperative Bandit problem",
+          "correct": false
+        },
+        {
+          "text": "The Peer Alignment problem",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThey formalize it as the Multi-Agent Exploration (POSG) problem, where agents must probe peers to infer their capabilities.\u003c/p\u003e"
+    },
+    {
+      "id": "card_553800#2",
+      "format": "flip",
+      "prompt": "What does MACE (Multi-Agent Contextual Exploration) actually do?",
+      "back_html": "\u003cp\u003eIt's a lightweight framework that explicitly structures peer selection and probing, which improves both exploration behavior and downstream task performance.\u003c/p\u003e"
+    },
+    {
+      "id": "card_553800#3",
+      "format": "quiz",
+      "prompt": "Per the paper's theoretical result, when does exploration between agents pay off most?",
+      "choices": [
+        {
+          "text": "When agent diversity is higher — the value of exploration increases with diversity",
+          "correct": true
+        },
+        {
+          "text": "When all agents are identical copies of the same model",
+          "correct": false
+        },
+        {
+          "text": "Only in fully observable environments",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors show theoretically that the value of exploration increases with agent diversity — probing matters more the more agents differ.\u003c/p\u003e"
+    }
+  ]
+}

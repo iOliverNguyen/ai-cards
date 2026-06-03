@@ -1,0 +1,108 @@
+{
+  "id": "card_4f9539",
+  "slug": "vgi-bench",
+  "type": "paper",
+  "title": "VGI-Bench: Can Video Models Reason by Generating?",
+  "hook": "Video generators appear to do zero-shot visual reasoning in their frames. Held to a benchmark that demands a valid evolving process, the best model — Seedance 2.0 — scores 51%.",
+  "key_points": [
+    "Tests the claim that video generation models exhibit zero-shot visual reasoning through their generated frames.",
+    "Design principles: inputs aligned with current models' visual priors, valid evolving processes rather than only plausible final states, and difficulty that is challenging yet partly feasible.",
+    "27 tasks, 810 instances, organized by a two-level taxonomy of task domains and skill tags.",
+    "Current systems solve a subset of visually grounded reasoning tasks but are far from reliable — the strongest, Seedance 2.0, reaches 51.0%.",
+    "Analysis covers output failure modes, input condition sensitivity, and the transfer boundary from synthetic fine-tuning.",
+    "The denoising trajectory shows limited self-correction: later steps mainly refine early hypotheses rather than fix reasoning errors."
+  ],
+  "content_html": "\u003cp\u003eThere's a tempting claim in recent work: video generation models can do zero-shot visual reasoning, and you can read the reasoning out of the frames they produce. He and colleagues take the claim seriously enough to build a benchmark that could falsify it.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eDesign\u003c/h2\u003e\n\u003cp\u003eThree principles shape VGI-Bench. Inputs must align with the visual priors current video models actually have, so failures are about reasoning rather than about an unfamiliar input format. Tasks must require a \u003cem\u003evalid evolving process\u003c/em\u003e rather than only a plausible final state — otherwise a model can pattern-match its way to a correct-looking last frame. And difficulty must be calibrated to stay challenging yet partly feasible, so the benchmark has headroom in both directions.\u003c/p\u003e\n\u003cp\u003eThe result is 27 tasks and 810 instances, organized by a two-level taxonomy of task domains and skill tags for fine-grained analysis.\u003c/p\u003e\n\u003ch2\u003eFindings\u003c/h2\u003e\n\u003cp\u003eCurrent generative systems solve a subset of visually grounded reasoning tasks but remain far from reliable: the strongest model tested, Seedance 2.0, reaches 51.0% under the benchmark's criteria. The analysis goes further than a leaderboard, covering output failure modes, sensitivity to input conditions, and how far performance from synthetic fine-tuning transfers.\u003c/p\u003e\n\u003cp\u003eThe most interesting diagnostic is internal. Looking at the denoising process, the authors find limited self-correction: later steps mainly refine early hypotheses rather than correcting reasoning errors. The reasoning is committed early and then rendered beautifully — which is exactly the failure mode that makes plausible-looking video an unreliable window into a model's understanding.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv (Hugging Face Daily Papers)",
+    "authors": [
+      "Xuan He",
+      "Cong Wei",
+      "Yuhao Cheng",
+      "Linrui Ma",
+      "Yuxuan Zhang",
+      "Zuojun Li",
+      "Kelsey R Allen",
+      "Michel Galley",
+      "Jianfeng Gao",
+      "ChengXiang Zhai"
+    ],
+    "url": "https://arxiv.org/abs/2608.19583",
+    "published_at": "2026-08-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evaluation",
+    "video-audio",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "generative",
+    "reasoning",
+    "vision",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_af8ce6",
+      "slug": "magpie-generative-game-renderer",
+      "type": "paper",
+      "title": "Magpie: Let the Engine Run the Game, Let the Model Render It",
+      "hook": "Games need reproducible rules, which generative video cannot promise. Magpie splits the difference: the engine resolves gameplay on white-box frames, a render server paints them in real time.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-27"
+    },
+    {
+      "id": "card_e2c5f9",
+      "slug": "clap-cross-embodiment-world-models",
+      "type": "paper",
+      "title": "CLAP: One World Model, Many Bodies",
+      "hook": "Action-conditioned video models are usually locked to one robot, which locks them out of internet video. CLAP unifies action spaces so human footage and robot logs can train the same world model.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-08-27"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_4f9539#0",
+      "format": "flip",
+      "prompt": "Why does VGI-Bench require a valid *evolving process*, not just a plausible final frame?",
+      "back_html": "\u003cp\u003eA model can produce a correct-looking end state by pattern-matching without simulating the intermediate steps. Requiring a valid process is what distinguishes reasoning from plausible output.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4f9539#1",
+      "format": "quiz",
+      "prompt": "What did the denoising-trajectory analysis reveal?",
+      "choices": [
+        {
+          "text": "Limited self-correction — later steps refine early hypotheses rather than fixing reasoning errors",
+          "correct": true
+        },
+        {
+          "text": "Reasoning errors are consistently repaired in the final denoising steps",
+          "correct": false
+        },
+        {
+          "text": "Denoising order has no relationship to reasoning quality",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe reasoning commitment happens early. Later steps sharpen the image, not the logic — which is why a wrong hypothesis stays wrong at high fidelity.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4f9539#2",
+      "format": "flip",
+      "prompt": "How well does the strongest tested model do on VGI-Bench?",
+      "back_html": "\u003cp\u003eSeedance 2.0 reaches 51.0% under the benchmark's evaluation criteria — able to solve a subset of tasks, far from reliable.\u003c/p\u003e"
+    }
+  ]
+}

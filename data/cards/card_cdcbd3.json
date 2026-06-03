@@ -1,0 +1,130 @@
+{
+  "id": "card_cdcbd3",
+  "slug": "partition-prompt-aggregate-self-consistency",
+  "type": "paper",
+  "title": "Partition, Prompt, Aggregate: Statistical Self-Consistency in Language Models",
+  "hook": "If an LLM's answer is a real probability estimate, slicing a population into subgroups and recombining should match asking about the whole. It usually doesn't — finer-grained is more accurate.",
+  "key_points": [
+    "Tests whether LLM in-context estimates obey the law of total probability: prior-weighted conditional estimates over any partition should aggregate back to the same population-level marginal.",
+    "Uses binary trees to recursively split a population into finer subpopulations, prompts the LLM with each verbalized subgroup, and compares aggregated estimates across partition granularities.",
+    "Finds widespread violations of this self-consistency principle across problem domains and frontier models.",
+    "The 'macro fallacy': estimates rebuilt from fine-grained subpopulation prompts often match human reference data better than asking about the whole population directly, a pattern that persists across tree structures and can be partly recovered via implicit prompting."
+  ],
+  "content_html": "\u003cp\u003eIn-context learning is often described as a form of conditional inference — the prompt sets a context, and the model's answer stands in for the conditional probability given that context. If that's really what's happening, LLM estimates should obey basic probability rules, like the law of total probability: split a population into subgroups any way you like, weight and recombine the subgroup estimates, and you should get back the same population-level answer.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003ePatrik Wolf and colleagues test this directly using a binary-tree scaffold that recursively partitions a population into ever finer subpopulations, prompts the model with each verbalized subgroup, and aggregates the resulting estimates back up. Comparing aggregated estimates across different partition depths, they find widespread violations of this self-consistency principle across problem domains and current frontier models.\u003c/p\u003e\n\u003cp\u003eA closer look at persona prompting turns up what they call the macro fallacy: estimates rebuilt from finer-grained subpopulation prompts frequently line up with human reference data better than asking about the whole population in one shot — a pattern that holds across different tree structures and tasks, and that implicit prompting only partly fixes. The authors' takeaway is that these models hold relevant subpopulation knowledge but don't reliably combine it into consistent aggregate answers, which they propose as a new, reference-free way to evaluate LLMs. Source: arXiv, arxiv.org/abs/2607.15277.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Patrik Wolf",
+      "Thomas Kleine Buening",
+      "Andreas Krause",
+      "Celestine Mendler-Dünner"
+    ],
+    "url": "https://arxiv.org/abs/2607.15277",
+    "published_at": "2026-07-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "prompting",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "reasoning",
+    "benchmark",
+    "nlp",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-20",
+  "date": "2026-07-16",
+  "related": [
+    {
+      "id": "card_812537",
+      "slug": "self-consistency",
+      "type": "paper",
+      "title": "Self-Consistency Improves Chain-of-Thought Reasoning",
+      "hook": "Sample the model many times, let each run reason its own way, then take the majority answer - diverse reasoning paths vote out individual errors.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-03-21"
+    },
+    {
+      "id": "card_13953d",
+      "slug": "in-context-learning",
+      "type": "concept",
+      "title": "In-Context Learning",
+      "hook": "Paste a few examples into a prompt and a large language model performs the task - no gradient updates, no fine-tuning, the prompt is the program.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-31"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_13953d",
+      "slug": "in-context-learning",
+      "type": "concept",
+      "title": "In-Context Learning",
+      "hook": "Paste a few examples into a prompt and a large language model performs the task - no gradient updates, no fine-tuning, the prompt is the program.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-31"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_cdcbd3#0",
+      "format": "flip",
+      "prompt": "What probabilistic identity does this paper use to test LLM self-consistency?",
+      "back_html": "\u003cp\u003eThe law of total probability: prior-weighted conditional distributions over any valid partition of a population should aggregate into the same population-level marginal, if in-context outputs are truly conditional estimates.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cdcbd3#1",
+      "format": "quiz",
+      "prompt": "How did the authors test this identity in practice?",
+      "choices": [
+        {
+          "text": "By recursively partitioning a population with binary trees, prompting the LLM with each verbalized subpopulation, and comparing aggregated estimates across partition granularities",
+          "correct": true
+        },
+        {
+          "text": "By fine-tuning the model separately on each subpopulation and comparing weights",
+          "correct": false
+        },
+        {
+          "text": "By asking the model to state its own confidence interval once",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe binary-tree scaffold lets them compare the same population estimated at different levels of partition granularity, which is what exposes the inconsistency.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cdcbd3#2",
+      "format": "flip",
+      "prompt": "What is the 'macro fallacy' the paper describes in persona prompting?",
+      "back_html": "\u003cp\u003eEstimates reconstructed from more fine-grained subpopulation responses are often better aligned with human reference data than estimates from prompting about the whole population directly.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cdcbd3#3",
+      "format": "quiz",
+      "prompt": "What does the paper conclude LLMs are missing, given that finer-grained prompts often produce better estimates?",
+      "choices": [
+        {
+          "text": "A reliable way to propagate subpopulation knowledge into consistent aggregate (whole-population) estimates",
+          "correct": true
+        },
+        {
+          "text": "Any knowledge at all about subpopulations",
+          "correct": false
+        },
+        {
+          "text": "The ability to answer in-context questions about any population",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors argue models possess relevant subpopulation knowledge but fail to combine it consistently, which is why aggregate self-consistency is proposed as a reference-free evaluation criterion.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "id": "card_6cb117",
+  "slug": "shaper-skill-harness-evolution",
+  "type": "paper",
+  "title": "SHAPER: Adapting Embodied Agents by Evolving Skills and Harness, Not Weights",
+  "hook": "When a robot agent fails in a new environment, the reflex is to fine-tune. SHAPER freezes the model and instead evolves the skills and harness wrapped around it — no data, no rewards, no training run.",
+  "key_points": [
+    "An embodied agent's performance depends on its skills, context, action interfaces, and execution harness — not just the foundation model's weights.",
+    "Fine-tuning and RL both need extra data, reward signals, and training compute; SHAPER needs none of them.",
+    "Many train-free alternatives assume programmable robot APIs, which don't exist in fixed-interface settings — SHAPER targets those too.",
+    "The frozen model plays two roles: planner during rollouts, and optimizer that rewrites its own reusable skills and context-code harness.",
+    "Improvement comes from target-environment rollouts, so the agent adapts where it will actually be deployed.",
+    "Evaluated on VLABench and ESI-Bench against pure execution, supervised fine-tuning, and test-time-scaling baselines like verifier-free selection and voting."
+  ],
+  "content_html": "\u003cp\u003eEmbodied agents are less and less a single model and more a system: a foundation model surrounded by a library of skills, some context, an action interface, and the harness code that executes it all. Peidong Wang and colleagues at Microsoft Research make that framing the lever. Their framework, SHAPER, adapts an agent to a new environment without touching a single weight — instead it evolves the skills and the context-code harness by running the agent in the target environment and letting it rewrite its own scaffolding.\u003c/p\u003e\n\u003cp\u003eThe trick is that one frozen model plays both parts. As planner it attempts the tasks; as optimizer it reads what happened and revises the reusable skills and harness that shaped the attempt. Nothing needs labelled data, a reward model, or a training run. The authors evaluate on VLABench and ESI-Bench — covering agents with different low-level action interfaces — against pure execution, supervised fine-tuning, and test-time-scaling baselines such as verifier-free selection and voting, and report that skill-and-harness optimization is a practical route to self-evolving agents when training is expensive, unavailable, or simply not an option.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTwo things make this worth knowing beyond robotics. First, it names the right unit of optimization: if capability lives in the system, then the system — not only the network — is what you tune. Second, it sidesteps a common trap in train-free work, which quietly assumes you can write arbitrary code against a programmable robot API; SHAPER is tested where the action interface is fixed. Read it next to the frozen-weight learning and harness-engineering work for the same idea arriving from different directions. Full setup and numbers are in the paper linked via the source.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Peidong Wang",
+      "Zhiming Ma",
+      "Ying Chang",
+      "Xufang Luo",
+      "Xiaocui Yang",
+      "Shi Feng",
+      "Yuqing Yang",
+      "Dongsheng Li"
+    ],
+    "url": "https://arxiv.org/abs/2608.11350",
+    "published_at": "2026-08-11",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-13",
+  "date": "2026-08-11",
+  "related": [
+    {
+      "id": "card_b9fac2",
+      "slug": "learning-on-the-job-frozen-weight-agents",
+      "type": "paper",
+      "title": "Agents That Learn on the Job Without Weight Updates",
+      "hook": "An agent that cracks a hard request today starts from zero tomorrow. Distil each episode into a retrievable rule and a frozen model gets 2.6x better — no fine-tuning.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    },
+    {
+      "id": "card_c24f1d",
+      "slug": "harness-handbook",
+      "type": "paper",
+      "title": "Harness Handbook: Making Evolving Agent Harnesses Readable, Navigable, and Editable",
+      "hook": "An agent is only as good as its harness — the code that builds prompts, manages state, calls tools. The real bottleneck isn't editing that code, it's finding where a behavior lives in a huge codebase.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-14"
+    },
+    {
+      "id": "card_07b0f9",
+      "slug": "capek-0-5-execution-centric-vlm",
+      "type": "paper",
+      "title": "Capek 0.5: Organizing an Embodied VLM Around Execution",
+      "hook": "Robot execution keeps changing what needs perceiving. Capek 0.5 groups embodied skills by their role in that loop, trains a specialist for each, then merges them into one model.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-07"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_6cb117#0",
+      "format": "flip",
+      "prompt": "What does SHAPER change to adapt an embodied agent to a new environment, if not the model weights?",
+      "back_html": "\u003cp\u003eThe non-parametric parts of the agent system: its library of reusable skills and its context-code harness. The model stays frozen; only the scaffolding around it evolves.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6cb117#1",
+      "format": "quiz",
+      "prompt": "Why does SHAPER's approach appeal when you can't fine-tune an embodied agent?",
+      "choices": [
+        {
+          "text": "It needs no extra training data, rewards, or training runs — it improves from target-environment rollouts",
+          "correct": true
+        },
+        {
+          "text": "It compresses the model so it fits on the robot's onboard hardware",
+          "correct": false
+        },
+        {
+          "text": "It replaces the foundation model with a smaller policy trained from scratch",
+          "correct": false
+        },
+        {
+          "text": "It reuses reward models borrowed from a similar simulated environment",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSupervised fine-tuning and RL each require additional data, rewards, and compute. SHAPER keeps parameters frozen and improves the surrounding system from rollouts in the target environment.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6cb117#2",
+      "format": "flip",
+      "prompt": "In SHAPER, the same frozen model fills two distinct roles — which ones?",
+      "back_html": "\u003cp\u003ePlanner, which drives the rollouts, and optimizer, which refines the agent's external skills and context-code harness based on what those rollouts reveal.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6cb117#3",
+      "format": "quiz",
+      "prompt": "What limitation of earlier train-free, code-centric embodied approaches does SHAPER set out to avoid?",
+      "choices": [
+        {
+          "text": "They rely on programmable robot APIs that may be unavailable when the action interface is fixed",
+          "correct": true
+        },
+        {
+          "text": "They require the foundation model to be open-weights",
+          "correct": false
+        },
+        {
+          "text": "They only work in simulation and never transfer to real hardware",
+          "correct": false
+        },
+        {
+          "text": "They need a human to hand-write every skill in advance",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper notes those methods assume programmable robot APIs. SHAPER is evaluated across agents with different low-level action interfaces, including fixed ones.\u003c/p\u003e"
+    }
+  ]
+}

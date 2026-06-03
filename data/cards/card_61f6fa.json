@@ -1,0 +1,84 @@
+{
+  "id": "card_61f6fa",
+  "slug": "ziptok3d-token-prefixes",
+  "type": "paper",
+  "title": "ZipTok3D: A 3D Tokenizer Where the First Token Already Says a Lot",
+  "hook": "Most 3D tokenizers fall apart when squeezed to a handful of tokens. ZipTok3D trains the leading tokens to carry the essential geometry — matching a 32-token baseline with one token.",
+  "key_points": [
+    "Existing 3D tokenizers organize latents over spatial regions or fixed-size global sets; both degrade sharply at very low token budgets.",
+    "ZipTok3D organizes object geometry into progressively informative global-token prefixes.",
+    "Nested dropout randomly truncates the latent sequence during training and asks every retained prefix to reconstruct the whole object.",
+    "The decoder repeatedly applies one parameter-shared Transformer block to unfold fine geometry — no separate generative sampling stage.",
+    "At equal token dimension it matches the 32-token COD-VAE baseline with one token on ShapeNet and four on TRELLIS (32x and 8x shorter)."
+  ],
+  "content_html": "\u003cp\u003eGenerating 3D objects efficiently means representing them in few tokens, but existing 3D tokenizers — whether they lay latents out over spatial regions or keep a fixed-size set of global tokens — lose reconstruction quality fast as the budget shrinks. Lin and colleagues attack this by making the \u003cem\u003eorder\u003c/em\u003e of tokens meaningful.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eZipTok3D organizes an object's geometry into progressively informative global-token prefixes: read the first token and you get the coarse shape; read more and you refine it. That ordering is trained in with nested dropout, which randomly truncates the latent sequence after encoding and requires whatever prefix remains to reconstruct the full object. Decoding is iterative rather than generative: one parameter-shared Transformer block applied repeatedly recovers fine-grained geometry from each prefix, with no separate sampling stage.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAt the same token dimension, the authors report reconstruction quality comparable to the 32-token COD-VAE baseline using just one token on ShapeNet and four on TRELLIS — 32x and 8x shorter sequences. The idea generalizes beyond 3D: if you train a representation so that truncating it is always a valid, graceful degradation, you get a whole family of compression rates from one model.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Mingda Lin",
+      "Weijie Wang",
+      "Zeyu Zhang",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2609.01740",
+    "published_at": "2026-09-01",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "tokenization",
+    "multimodal-vision",
+    "papers-this-week"
+  ],
+  "tags": [
+    "paper",
+    "generative",
+    "vision",
+    "efficiency"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-09-03",
+  "date": "2026-09-01",
+  "related": [
+    {
+      "id": "card_7bdd52",
+      "slug": "rate-utility-tokens-bytes-pixels",
+      "type": "paper",
+      "title": "Rate-Utility Frontiers for Language Encodings: Comparing Tokens, Bytes, and Pixels",
+      "hook": "Tokens, bytes, or pixels — which encodes language best? A controlled head-to-head across 13 languages finds no single winner: each encoding trades off differently by task.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-17"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_61f6fa#0",
+      "format": "flip",
+      "prompt": "What does nested dropout do during ZipTok3D's training, and what behavior does it induce?",
+      "back_html": "\u003cp\u003eIt randomly truncates the latent sequence after encoding and requires each retained prefix to reconstruct the complete object — forcing the leading tokens to carry the essential geometry.\u003c/p\u003e"
+    },
+    {
+      "id": "card_61f6fa#1",
+      "format": "quiz",
+      "prompt": "How does ZipTok3D's decoder recover fine geometry from a very short prefix?",
+      "choices": [
+        {
+          "text": "It repeatedly applies one parameter-shared Transformer block, iteratively unfolding the representation",
+          "correct": true
+        },
+        {
+          "text": "It runs a separate diffusion sampling stage on the prefix",
+          "correct": false
+        },
+        {
+          "text": "It retrieves the nearest shape from a codebook of training meshes",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDecoding is iterative but not generative — a single shared block applied repeatedly, with no separate sampling stage.\u003c/p\u003e"
+    }
+  ]
+}

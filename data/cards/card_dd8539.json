@@ -1,0 +1,117 @@
+{
+  "id": "card_dd8539",
+  "slug": "rt-2",
+  "type": "paper",
+  "title": "RT-2: Vision-Language-Action Models",
+  "hook": "Treat a robot's actions as just more text tokens, and a vision-language model can learn to act — carrying its web knowledge into the physical world.",
+  "key_points": [
+    "Co-fine-tunes internet-pretrained vision-language models jointly on robot trajectories and vision-language tasks.",
+    "Expresses robot actions as text tokens, so language and action share one model.",
+    "Improves generalization to novel objects and commands not seen in training.",
+    "Enables multi-stage semantic reasoning via chain-of-thought — the 'VLA' idea."
+  ],
+  "content_html": "\u003cp\u003eAnthony Brohan, Noah Brown, Justice Carbajal, and colleagues introduce RT-2, which co-fine-tunes vision-language models — pretrained on internet-scale data — jointly on robot trajectory data and ordinary vision-language tasks. The trick: robot actions are expressed as text tokens, so a single model handles both language and action. This is the vision-language-action, or \u0026quot;VLA,\u0026quot; model idea.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eRather than bolting a separate controller onto a perception model, RT-2 folds action directly into the same vocabulary the model already uses for text. Actions become token sequences, and training mixes robot trajectories with web vision-language data so the model never forgets what it learned from the internet. Because one model carries both kinds of knowledge, web-scale understanding flows into how the robot decides what to do.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eSharing a model between language and action pays off in generalization. RT-2 handles objects it never saw during robot training, interprets commands outside its demonstration set, and can chain multi-stage reasoning through chain-of-thought before acting. By turning a vision-language model into an actor, it shows how internet-scale knowledge can transfer into physical control — extending the scaling story RT-1 started.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Anthony Brohan",
+      "Noah Brown",
+      "Justice Carbajal",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2307.15818",
+    "published_at": "2023-07-28",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics"
+  ],
+  "tags": [
+    "agent",
+    "multimodal",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2023-07-28",
+  "related": [
+    {
+      "id": "card_30356a",
+      "slug": "rt-1",
+      "type": "paper",
+      "title": "RT-1: Robotics Transformer at Scale",
+      "hook": "What if a robot's controller was trained like a language model — on huge, diverse, task-agnostic data? Performance starts scaling with model size and data.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-12-13"
+    },
+    {
+      "id": "card_837a7b",
+      "slug": "llava",
+      "type": "paper",
+      "title": "LLaVA: Visual Instruction Tuning",
+      "hook": "Connect a CLIP vision encoder to an LLM with just a linear projection, fine-tune on GPT-4-generated image dialogues, and get a capable open chat-with-images model for under a day of training.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-04-17"
+    },
+    {
+      "id": "card_3d7d44",
+      "slug": "clip",
+      "type": "paper",
+      "title": "CLIP: Learning Visual Models from Language",
+      "hook": "Skip the fixed label list. Train on image–caption pairs so pictures and text share one space, and you can classify images from plain-text labels you make up on the spot.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-02-26"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_30356a",
+      "slug": "rt-1",
+      "type": "paper",
+      "title": "RT-1: Robotics Transformer at Scale",
+      "hook": "What if a robot's controller was trained like a language model — on huge, diverse, task-agnostic data? Performance starts scaling with model size and data.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-12-13"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_dd8539#0",
+      "format": "flip",
+      "prompt": "What is the key trick that lets RT-2's vision-language model learn to act?",
+      "back_html": "\u003cp\u003eRobot actions are expressed as text tokens, so a single model shares one vocabulary for both language and action.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dd8539#1",
+      "format": "quiz",
+      "prompt": "How does RT-2 keep its internet-scale knowledge during training?",
+      "choices": [
+        {
+          "text": "It co-fine-tunes on robot trajectories and vision-language tasks together",
+          "correct": true
+        },
+        {
+          "text": "It freezes the vision-language model and trains only a controller",
+          "correct": false
+        },
+        {
+          "text": "It re-pretrains from scratch on robot data",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMixing robot trajectories with web vision-language data means the model never forgets what it learned from the internet.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dd8539#2",
+      "format": "flip",
+      "prompt": "What payoff does sharing one model between language and action give RT-2?",
+      "back_html": "\u003cp\u003eBetter generalization — handling unseen objects and commands, and chaining multi-stage reasoning via chain-of-thought before acting.\u003c/p\u003e"
+    }
+  ]
+}

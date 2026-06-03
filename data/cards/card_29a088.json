@@ -1,0 +1,116 @@
+{
+  "id": "card_29a088",
+  "slug": "gpt-4",
+  "type": "paper",
+  "title": "GPT-4 Technical Report",
+  "hook": "GPT-4 clears the bar on a wide range of professional and academic benchmarks - passing the bar exam near the top of the score range, for instance - while accepting both text and images as input.",
+  "key_points": [
+    "A large multimodal model: accepts text and image inputs, produces text, with performance rivaling human experts on standardized tests.",
+    "Passes challenging exams (bar exam, USMLE, AP tests) at levels prior GPT models could not reach.",
+    "The technical report deliberately withholds architecture size, training compute, and data details, citing competitive reasons.",
+    "RLHF and rule-based reward models were used to align the model, building on InstructGPT's approach."
+  ],
+  "content_html": "\u003cp\u003eOpenAI released GPT-4 in March 2023, a large multimodal model that takes text and images as input and produces text. The technical report focuses on capability evaluations rather than architecture, deliberately omitting details on model size and training compute. Across a broad suite of professional and academic benchmarks, GPT-4 substantially outperformed its predecessors.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eGPT-4 follows the transformer-based autoregressive language model design of the GPT family, extended to accept image inputs through a vision encoder. It was trained with reinforcement learning from human feedback (RLHF) and rule-based reward models to improve instruction-following and safety, extending the InstructGPT alignment approach.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe benchmark results — passing the bar exam in roughly the top 10% of test-takers, strong performance across AP exams and the USMLE — made GPT-4 a concrete demonstration that scale and alignment together produce qualitatively new capability. The deliberate opacity of the report also signaled a shift in how frontier labs communicate their work. Read the technical report on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "OpenAI"
+    ],
+    "url": "https://arxiv.org/abs/2303.08774",
+    "published_at": "2023-03-15",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining",
+    "papers-this-week"
+  ],
+  "tags": [
+    "nlp",
+    "multimodal",
+    "landmark",
+    "paper"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2023-03-15",
+  "related": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    },
+    {
+      "id": "card_1098fc",
+      "slug": "instructgpt",
+      "type": "paper",
+      "title": "InstructGPT: Aligning LMs with Human Feedback (RLHF)",
+      "hook": "A smaller model people actually like beats a bigger one they don't. InstructGPT used human preferences to make a model follow instructions — the recipe behind ChatGPT.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-03-04"
+    },
+    {
+      "id": "card_85f66a",
+      "slug": "scaling-laws",
+      "type": "paper",
+      "title": "Scaling Laws for Neural Language Models",
+      "hook": "Loss doesn't drop randomly as models grow — it follows a smooth power law in size, data, and compute. That predictability is what made betting on bigger models rational.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2020-01-23"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_29a088#0",
+      "format": "flip",
+      "prompt": "What did the GPT-4 technical report deliberately withhold, and why?",
+      "back_html": "\u003cp\u003eArchitecture size, training compute, and data details — omitted citing competitive reasons, signaling a shift in how frontier labs communicate.\u003c/p\u003e"
+    },
+    {
+      "id": "card_29a088#1",
+      "format": "quiz",
+      "prompt": "How was GPT-4 extended to handle image inputs?",
+      "choices": [
+        {
+          "text": "Through a vision encoder added to the autoregressive transformer",
+          "correct": true
+        },
+        {
+          "text": "By replacing the transformer with a diffusion model",
+          "correct": false
+        },
+        {
+          "text": "By generating images as output",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGPT-4 follows the GPT-family autoregressive design, extended to accept images via a vision encoder; it produces text.\u003c/p\u003e"
+    },
+    {
+      "id": "card_29a088#2",
+      "format": "flip",
+      "prompt": "What alignment approach did GPT-4 build on?",
+      "back_html": "\u003cp\u003eRLHF and rule-based reward models, extending InstructGPT's approach to improve instruction-following and safety.\u003c/p\u003e"
+    }
+  ]
+}

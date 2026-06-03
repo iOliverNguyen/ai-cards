@@ -1,0 +1,103 @@
+{
+  "id": "card_9624de",
+  "slug": "agent-optimizers-compound-continual-learning",
+  "type": "paper",
+  "title": "Do Agent Optimizers Compound? A Continual-Learning Evaluation",
+  "hook": "Most agent-optimization papers report a one-shot gain and stop. Rerun the optimizer on new tasks and two of three popular methods actually make the agent worse than doing nothing.",
+  "key_points": [
+    "Tests whether agent-harness optimizers (GEPA, Meta Harness, RELAI-VCL) keep improving across two rounds of new tasks, not just one fixed benchmark.",
+    "All three beat the baseline in the standard single-phase setup — the gap only shows up once new tasks arrive.",
+    "GEPA's optimized agent transfers below the unoptimized baseline; Meta Harness transfers fine but stalls on the second round.",
+    "RELAI-VCL is the only method that transfers positively and keeps improving after folding new tasks into the objective.",
+    "Lifelong average pass rate on hard Terminal-Bench 2.0 tasks: 76.4% (RELAI-VCL) vs. 66.0% (GEPA) vs. 64.6% (Meta Harness) vs. 58.7% (baseline).",
+    "The authors trace the difference to regression control built into the optimization loop, which discourages shortcut fixes that don't generalize."
+  ],
+  "content_html": "\u003cp\u003ePapers about agent-optimization methods usually report one number: how much better the agent got after being optimized against a fixed benchmark. That's not the situation a deployed agent actually faces, where optimization gets applied again and again as new failures and new tasks show up. This paper asks the harder question: do those gains actually stack up over multiple rounds, or do they erode?\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eWenxiao Wang, Priyatham Kattakinda, and Soheil Feizi built a two-phase continual-learning evaluation from hard Terminal-Bench 2.0 tasks and compared three agent-harness optimizers — GEPA, Meta Harness, and RELAI's Verifiable Continual Learning (RELAI-VCL) — under identical budgets. All three beat the baseline in the conventional single-phase test. But once a second batch of tasks arrived, they diverged sharply: GEPA's optimized agent fell below the unoptimized baseline, Meta Harness held its transfer gains but couldn't improve further, and only RELAI-VCL both transferred well and kept improving once the new tasks were folded into its objective, ending with the highest lifelong average pass rate (76.4% vs. 66.0%, 64.6%, and 58.7% for the others).\u003c/p\u003e\n\u003cp\u003eThe authors attribute the split to regression control baked into RELAI-VCL's optimization loop — an inductive bias against shortcut fixes that happen to work on the current benchmark but don't generalize. Their takeaway for the field: agent-optimizer papers should report continual, not just one-shot, results, since a method's static-benchmark win says little about whether it survives repeated real-world updates.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Wenxiao Wang",
+      "Priyatham Kattakinda",
+      "Soheil Feizi"
+    ],
+    "url": "https://arxiv.org/abs/2607.14004",
+    "published_at": "2026-07-15",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-15",
+  "related": [
+    {
+      "id": "card_488a94",
+      "slug": "long-horizon-terminal-bench",
+      "type": "paper",
+      "title": "Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks",
+      "hook": "46 terminal tasks that take hours, not minutes — and today's best agent still only nails 15% of them, with the average model managing barely 4%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-09"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_9624de#0",
+      "format": "flip",
+      "prompt": "Why isn't a single-round optimization gain enough evidence that an agent optimizer works?",
+      "back_html": "\u003cp\u003eDeployed agents get optimized repeatedly as new tasks arrive. A method can win the standard one-shot benchmark and still fail to compound — or even regress — once a second round of optimization is applied.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9624de#1",
+      "format": "quiz",
+      "prompt": "What happened to GEPA's optimized agent once new tasks were introduced?",
+      "choices": [
+        {
+          "text": "It transferred below the unoptimized baseline agent",
+          "correct": true
+        },
+        {
+          "text": "It kept improving at the same rate as before",
+          "correct": false
+        },
+        {
+          "text": "It matched RELAI-VCL's lifelong pass rate",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGEPA's gains didn't hold up: on the new tasks its optimized agent actually underperformed the plain, unoptimized baseline.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9624de#2",
+      "format": "quiz",
+      "prompt": "What did the authors credit for RELAI-VCL being the only method that kept compounding?",
+      "choices": [
+        {
+          "text": "Regression control built into the optimization loop, discouraging shortcuts that don't generalize",
+          "correct": true
+        },
+        {
+          "text": "Using a much larger optimization budget than the other methods",
+          "correct": false
+        },
+        {
+          "text": "Training on Terminal-Bench 2.0 tasks ahead of time",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAll three methods used identical optimization budgets; RELAI-VCL's edge came from an inductive bias against shortcut solutions, not extra compute or data.\u003c/p\u003e"
+    }
+  ]
+}

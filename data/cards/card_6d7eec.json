@@ -1,0 +1,127 @@
+{
+  "id": "card_6d7eec",
+  "slug": "regularization-ridge-lasso",
+  "type": "concept",
+  "title": "Regularization: Ridge \u0026 Lasso",
+  "hook": "Add a penalty for large weights during training and your model learns to generalize instead of memorizing - Ridge shrinks, Lasso cuts.",
+  "key_points": [
+    "Regularization adds a penalty term to the loss so the optimizer prefers smaller weights.",
+    "Ridge (L2) penalizes the sum of squared weights - all weights shrink but rarely reach zero.",
+    "Lasso (L1) penalizes the sum of absolute weights - pushes some weights to exactly zero, selecting features.",
+    "The penalty strength is a hyperparameter; too high underfits, too low overfits.",
+    "Elastic net combines both L1 and L2, capturing benefits of each."
+  ],
+  "content_html": "\u003cp\u003eWhen a model has too many free parameters and not enough data, it memorizes the training set instead of learning a general pattern - this is overfitting. Regularization fights back by adding a penalty to the training loss that discourages the model from using very large weights.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eRidge regression adds the sum of squared weights to the loss (scaled by a tunable constant lambda). This pulls all weights toward zero proportionally, which reduces variance without eliminating any feature entirely. Lasso, introduced by Robert Tibshirani in 1996, adds the sum of absolute values instead. Because of the geometry of the L1 penalty, its solutions tend to have many weights sitting exactly at zero - effectively dropping those features from the model. This makes Lasso a built-in feature selector.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eRegularization is one of the first tools you reach for when a linear model fits training data well but fails on validation data. It also generalizes far beyond linear models - weight decay in neural networks is Ridge regularization by another name. The Wikipedia article on regularization covers the mathematics and the broader applications across model types.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/Regularization_(mathematics)",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "linear-models"
+  ],
+  "tags": [
+    "classic-ml",
+    "training"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2026-06-03",
+  "related": [
+    {
+      "id": "card_897073",
+      "slug": "linear-regression",
+      "type": "concept",
+      "title": "Linear Regression",
+      "hook": "Predict a number by fitting a straight line through your data - the simplest model in ML and the mental blueprint for almost everything that came after.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-03"
+    },
+    {
+      "id": "card_a4574e",
+      "slug": "overfitting-and-regularization",
+      "type": "concept",
+      "title": "Overfitting \u0026 Regularization",
+      "hook": "A model that aces its training data but flops on anything new hasn't learned — it has memorized. Regularization is the cure.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_9cb2a0",
+      "slug": "bias-variance-tradeoff",
+      "type": "concept",
+      "title": "The Bias–Variance Tradeoff",
+      "hook": "Too simple and your model misses the pattern; too flexible and it chases noise. Generalization lives between the two.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_897073",
+      "slug": "linear-regression",
+      "type": "concept",
+      "title": "Linear Regression",
+      "hook": "Predict a number by fitting a straight line through your data - the simplest model in ML and the mental blueprint for almost everything that came after.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-03"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_6d7eec#0",
+      "format": "quiz",
+      "prompt": "What distinguishes Lasso (L1) from Ridge (L2) regularization?",
+      "choices": [
+        {
+          "text": "Lasso pushes some weights to exactly zero, selecting features",
+          "correct": true
+        },
+        {
+          "text": "Lasso shrinks all weights proportionally but never to zero",
+          "correct": false
+        },
+        {
+          "text": "Lasso adds no penalty to the loss",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLasso penalizes absolute weights and drives some to exactly zero (feature selection); Ridge shrinks all weights but rarely to zero.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6d7eec#1",
+      "format": "flip",
+      "prompt": "How does regularization fight overfitting?",
+      "back_html": "\u003cp\u003eIt adds a penalty term to the loss so the optimizer prefers smaller weights, discouraging the model from memorizing the training set.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6d7eec#2",
+      "format": "quiz",
+      "prompt": "What happens if the penalty strength hyperparameter is set too high?",
+      "choices": [
+        {
+          "text": "The model underfits",
+          "correct": true
+        },
+        {
+          "text": "The model overfits",
+          "correct": false
+        },
+        {
+          "text": "Some weights are selected for removal",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe penalty strength is a hyperparameter: too high underfits, too low overfits.\u003c/p\u003e"
+    }
+  ]
+}

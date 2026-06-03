@@ -1,0 +1,117 @@
+{
+  "id": "card_5d2914",
+  "slug": "latent-context-language-models",
+  "type": "paper",
+  "title": "Latent Context Language Models: Compressing the Prompt, Not the Cache",
+  "hook": "Instead of shrinking the KV cache, compress the prompt itself: a small encoder folds a long context into a few latent embeddings that a bigger decoder reads — letting agents skim and expand on demand.",
+  "key_points": [
+    "Long-context inference is bottlenecked by the KV cache, which grows with context length; KV-cache compression either hurts quality or is too slow.",
+    "LCLMs instead use a 0.6B encoder to map a long token sequence into a much shorter sequence of latent embeddings consumed by a 4B decoder.",
+    "Trained from scratch via architecture search, then continually pre-trained on 350B+ tokens per model at 1:4, 1:8, and 1:16 compression ratios.",
+    "Improves the accuracy–speed–memory Pareto frontier and acts as a backbone for long-horizon agents that skim compressed context and expand relevant parts on demand."
+  ],
+  "content_html": "\u003cp\u003eLong-context LLM inference is bottlenecked by memory: the KV cache grows with the context length. Existing fixes that compress the KV cache fall short — they either degrade quality substantially or take a lot of time and compute to compress a single long prompt, and many require the input to fit the model's context window and don't play well with production inference engines.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe idea\u003c/h2\u003e\n\u003cp\u003eThe authors revisit \u003cstrong\u003eencoder–decoder compression\u003c/strong\u003e: map a long token sequence into a shorter sequence of latent embeddings that a decoder consumes. Earlier attempts weren't competitive, so the team first ran an architecture search, pre-training many variants from scratch to learn how best to design and train such compressors. Guided by that, they continually pre-trained a family of 0.6B-encoder, 4B-decoder models on over 350B tokens each, at compression ratios of 1:4, 1:8, and 1:16. The result is \u003cstrong\u003eLatent Context Language Models (LCLMs)\u003c/strong\u003e.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eLCLMs push the Pareto frontier across general-task performance, compression speed, and peak memory at once — the three axes earlier methods had to trade off. The authors also show LCLMs make efficient backbones for long-horizon agents: the agent skims a compressed long context and adaptively expands the segments it actually needs, rather than paying full memory cost up front.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ang Li",
+      "Sean McLeish",
+      "Haozhe Chen",
+      "Nimit Kalra",
+      "Zaiqian Chen",
+      "Artem Gazizov",
+      "Bhavya Kailkhura",
+      "Harshitha Menon",
+      "Zhuang Liu",
+      "Brian R. Bartoldson",
+      "Tom Goldstein",
+      "Sanae Lotfi",
+      "Micah Goldblum",
+      "Pavel Izmailov"
+    ],
+    "url": "https://arxiv.org/abs/2606.09659",
+    "published_at": "2026-06-08",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "context-memory",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-11",
+  "date": "2026-06-08",
+  "related": [
+    {
+      "id": "card_958844",
+      "slug": "ring-attention",
+      "type": "paper",
+      "title": "Ring Attention for Near-Infinite Context",
+      "hook": "Spread one long sequence across many devices and compute attention blockwise - the context length you can handle grows with the number of devices, all with exact attention and no extra overhead.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2023-10-03"
+    },
+    {
+      "id": "card_e8632a",
+      "slug": "position-interpolation",
+      "type": "paper",
+      "title": "Extending Context Windows via Positional Interpolation",
+      "hook": "Don't extrapolate to positions the model never saw - squeeze the position indices back inside the trained range, and a short fine-tune stretches the context window many times over.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-06-27"
+    },
+    {
+      "id": "card_2f4185",
+      "slug": "longformer",
+      "type": "paper",
+      "title": "Longformer: The Long-Document Transformer",
+      "hook": "Most tokens only need to look at their neighbors, so swap full attention for a sliding window plus a few global tokens and the cost goes from quadratic to linear in sequence length.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2020-04-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_5d2914#0",
+      "format": "flip",
+      "prompt": "How do Latent Context Language Models cut long-context memory cost?",
+      "back_html": "\u003cp\u003eA small encoder compresses the input token sequence into a much shorter sequence of latent embeddings (e.g. 1:8) that a larger decoder consumes — compressing the prompt itself rather than the KV cache.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5d2914#1",
+      "format": "quiz",
+      "prompt": "Why did the authors revisit encoder–decoder compression instead of compressing the KV cache?",
+      "choices": [
+        {
+          "text": "KV-cache methods either degrade quality or are slow, often need the input to fit the context window, and don't fit production engines",
+          "correct": true
+        },
+        {
+          "text": "Encoder–decoder compression requires no training at all",
+          "correct": false
+        },
+        {
+          "text": "KV-cache compression only works for image inputs",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eExisting KV-cache compression falls short on the accuracy–efficiency frontier and is hard to deploy; the paper revisits encoder–decoder compression to close that gap.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5d2914#2",
+      "format": "flip",
+      "prompt": "What advantage do LCLMs give long-horizon agents?",
+      "back_html": "\u003cp\u003eThey let an agent skim a compressed long context cheaply and adaptively expand the relevant segments on demand, instead of holding the full context in memory.\u003c/p\u003e"
+    }
+  ]
+}

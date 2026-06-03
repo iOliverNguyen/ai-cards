@@ -1,0 +1,104 @@
+{
+  "id": "card_ce155a",
+  "slug": "what-is-machine-learning",
+  "type": "concept",
+  "title": "What Is Machine Learning?",
+  "hook": "Instead of hand-coding rules, you show a program examples and let it find the patterns — then it handles inputs it has never seen.",
+  "key_points": [
+    "ML learns patterns from data rather than following rules a human wrote out by hand.",
+    "You train on labeled or raw examples, and the model builds an internal mapping from input to output.",
+    "The real goal is generalization: doing well on new, unseen data, not just the training set.",
+    "It shines where rules are too messy to spell out — vision, speech, language, recommendations."
+  ],
+  "content_html": "\u003cp\u003eMachine learning is the idea of getting a computer to improve at a task by learning from data instead of by following explicit instructions a programmer typed out. You feed it examples, it fits a model to them, and then it can make predictions or decisions about inputs it has never encountered.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eA traditional program is a fixed recipe: you write the rules, the computer follows them. ML flips that. You pick a flexible model with adjustable knobs (parameters), then use an algorithm to tune those knobs so the model's outputs match the examples you've shown it. Once tuned, the same model generalizes the pattern to fresh inputs.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eFor many problems — recognizing a cat in a photo, transcribing speech, flagging spam — nobody can write down rules that cover every case. Learning from data sidesteps that. This single idea underpins recommendation feeds, fraud detection, translation, and the large language models everyone now uses, which is why it's worth understanding before anything else.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/Machine_learning",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "ml-basics"
+  ],
+  "tags": [
+    "foundational"
+  ],
+  "importance": 5,
+  "difficulty": "intro",
+  "created_at": "2026-06-02",
+  "date": "2026-06-02",
+  "related": [
+    {
+      "id": "card_6147d2",
+      "slug": "supervised-vs-unsupervised",
+      "type": "concept",
+      "title": "Supervised vs Unsupervised Learning",
+      "hook": "Do your examples come with answer keys? That one question splits machine learning into two very different jobs.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_dd14c6",
+      "slug": "how-neural-networks-learn",
+      "type": "concept",
+      "title": "How Neural Networks Learn: Backpropagation",
+      "hook": "A neural net learns by asking, for every weight, 'how much did you contribute to my mistake?' Backprop answers all of them at once.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2017-10-05"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_ce155a#0",
+      "format": "quiz",
+      "prompt": "What is the real goal of machine learning beyond fitting the examples?",
+      "choices": [
+        {
+          "text": "Generalization: doing well on new, unseen data",
+          "correct": true
+        },
+        {
+          "text": "Memorizing the training set perfectly",
+          "correct": false
+        },
+        {
+          "text": "Writing explicit rules for every case",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe real goal is generalization, doing well on fresh inputs, not just the training set.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ce155a#1",
+      "format": "flip",
+      "prompt": "How does ML differ from a traditional program?",
+      "back_html": "\u003cp\u003eA traditional program follows rules a human wrote; ML tunes a model's adjustable parameters so its outputs match examples, then generalizes.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ce155a#2",
+      "format": "quiz",
+      "prompt": "Where does machine learning shine compared to hand-written rules?",
+      "choices": [
+        {
+          "text": "Problems too messy to spell out, like vision, speech, language",
+          "correct": true
+        },
+        {
+          "text": "Simple arithmetic with fixed formulas",
+          "correct": false
+        },
+        {
+          "text": "Tasks where every case can be enumerated by hand",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eML shines where nobody can write rules covering every case, such as vision, speech, language, and recommendations.\u003c/p\u003e"
+    }
+  ]
+}

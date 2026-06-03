@@ -1,0 +1,120 @@
+{
+  "id": "card_047809",
+  "slug": "generative-adversarial-networks",
+  "type": "paper",
+  "title": "Generative Adversarial Networks (GANs)",
+  "hook": "Pit two networks against each other — a forger making fakes and a detective catching them — and the forger gets so good its fakes look real.",
+  "key_points": [
+    "Two networks train in competition: a generator creates samples, a discriminator judges real vs. fake.",
+    "The generator improves by trying to fool the discriminator; the discriminator improves by catching it.",
+    "Training is framed as a minimax game between the two networks.",
+    "At equilibrium, generated samples become hard to distinguish from real data.",
+    "Adversarial training became a broadly influential idea across machine learning."
+  ],
+  "content_html": "\u003cp\u003eIan Goodfellow and colleagues proposed training two networks in opposition: a generator that produces fake samples and a discriminator that tries to tell fakes from real data. As they compete, the generator learns to produce samples convincing enough to fool the discriminator — a simple, powerful idea for learning to generate realistic data.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe setup is a game. The discriminator is trained to output high scores for real samples and low scores for generated ones. The generator is trained to make samples that push the discriminator's score toward \u0026quot;real,\u0026quot; so it learns from the discriminator's mistakes. The two improve in lockstep; in theory, the process reaches an equilibrium where the generator's output matches the real data distribution and the discriminator can do no better than guessing.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eGANs showed you could learn to generate sharp, realistic images without explicitly modeling probabilities, and they dominated image synthesis for years and inspired countless variants. Beyond images, adversarial training — using one network to critique another — became a general tool. GANs can be tricky to train and prone to instability, which later motivated alternatives like diffusion models.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ian Goodfellow",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/1406.2661",
+    "published_at": "2014-06-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "gans"
+  ],
+  "tags": [
+    "vision",
+    "architecture",
+    "landmark"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2014-06-10",
+  "related": [
+    {
+      "id": "card_69d7e0",
+      "slug": "stylegan",
+      "type": "paper",
+      "title": "StyleGAN: Controllable Image Synthesis",
+      "hook": "A GAN that generates photorealistic faces of people who don't exist — and lets you dial features at different scales, from face shape down to freckles.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2018-12-12"
+    },
+    {
+      "id": "card_2b95b6",
+      "slug": "denoising-diffusion-probabilistic-models",
+      "type": "paper",
+      "title": "Denoising Diffusion Probabilistic Models (DDPM)",
+      "hook": "Wreck an image into pure static one tiny step at a time, then train a network to undo it. Run the undo from random noise and you get a brand-new image.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2020-06-19"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_dd14c6",
+      "slug": "how-neural-networks-learn",
+      "type": "concept",
+      "title": "How Neural Networks Learn: Backpropagation",
+      "hook": "A neural net learns by asking, for every weight, 'how much did you contribute to my mistake?' Backprop answers all of them at once.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2017-10-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_047809#0",
+      "format": "flip",
+      "prompt": "What are the two competing networks in a GAN, and what does each do?",
+      "back_html": "\u003cp\u003eA generator that creates fake samples and a discriminator that tries to tell fakes from real data; they improve in competition.\u003c/p\u003e"
+    },
+    {
+      "id": "card_047809#1",
+      "format": "quiz",
+      "prompt": "What happens at the theoretical equilibrium of GAN training?",
+      "choices": [
+        {
+          "text": "The generator's output matches the real data distribution and the discriminator can do no better than guessing",
+          "correct": true
+        },
+        {
+          "text": "The discriminator perfectly identifies every fake",
+          "correct": false
+        },
+        {
+          "text": "The generator stops producing any output",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAt equilibrium generated samples become hard to distinguish from real, so the discriminator is reduced to guessing.\u003c/p\u003e"
+    },
+    {
+      "id": "card_047809#2",
+      "format": "quiz",
+      "prompt": "What practical drawback of GANs later motivated alternatives like diffusion models?",
+      "choices": [
+        {
+          "text": "They can be tricky to train and prone to instability",
+          "correct": true
+        },
+        {
+          "text": "They cannot generate images",
+          "correct": false
+        },
+        {
+          "text": "They require explicitly modeling probabilities",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGANs avoid explicit probability modeling, but their training instability helped motivate later approaches like diffusion.\u003c/p\u003e"
+    }
+  ]
+}

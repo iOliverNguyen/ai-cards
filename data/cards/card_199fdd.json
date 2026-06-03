@@ -1,0 +1,69 @@
+{
+  "id": "card_199fdd",
+  "slug": "karpathy-zero-to-hero",
+  "type": "resource",
+  "title": "Neural Networks: Zero to Hero (Karpathy)",
+  "hook": "Andrej Karpathy builds neural nets from nothing — line by line in code — until you've coded your own working GPT. Free.",
+  "key_points": [
+    "A free video course by Andrej Karpathy that builds neural networks from scratch in code.",
+    "It starts with micrograd, a tiny autograd engine, so you truly see backprop work.",
+    "It climbs step by step up to building a working GPT-style language model.",
+    "Hands-on and code-first — the best practical path for learning by doing, not just watching."
+  ],
+  "content_html": "\u003cp\u003e\u0026quot;Neural Networks: Zero to Hero\u0026quot; is a free video course by Andrej Karpathy that teaches deep learning by building it from scratch in code. It opens with micrograd, a minimal automatic-differentiation engine, so you implement backpropagation yourself, and it progresses all the way to constructing a working GPT-style model.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eEach lesson writes code live, starting small and adding one idea at a time. By first coding a tiny autograd engine, you internalize how gradients flow before touching any framework. Later videos build language models character by character, layering in the components that make up a transformer, so the abstractions never feel like black boxes.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eWatching explanations only gets you so far; implementing the pieces yourself is what makes them stick. Karpathy's course is widely recommended precisely because it bridges intuition and real code, taking you from \u0026quot;I sort of get backprop\u0026quot; to \u0026quot;I built a GPT.\u0026quot; It's an ideal next step after grasping how networks learn.\u003c/p\u003e",
+  "source": {
+    "name": "Andrej Karpathy",
+    "authors": [
+      "Andrej Karpathy"
+    ],
+    "url": "https://karpathy.ai/zero-to-hero.html",
+    "published_at": "2022-08-16",
+    "license": "free educational"
+  },
+  "topic_ids": [
+    "neural-nets"
+  ],
+  "tags": [
+    "foundational",
+    "tutorial"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-06-02",
+  "date": "2022-08-16",
+  "related": [
+    {
+      "id": "card_dd14c6",
+      "slug": "how-neural-networks-learn",
+      "type": "concept",
+      "title": "How Neural Networks Learn: Backpropagation",
+      "hook": "A neural net learns by asking, for every weight, 'how much did you contribute to my mistake?' Backprop answers all of them at once.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2017-10-05"
+    },
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_dd14c6",
+      "slug": "how-neural-networks-learn",
+      "type": "concept",
+      "title": "How Neural Networks Learn: Backpropagation",
+      "hook": "A neural net learns by asking, for every weight, 'how much did you contribute to my mistake?' Backprop answers all of them at once.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2017-10-05"
+    }
+  ]
+}

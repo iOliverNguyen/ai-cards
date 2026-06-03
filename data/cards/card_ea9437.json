@@ -1,0 +1,91 @@
+{
+  "id": "card_ea9437",
+  "slug": "critique-of-agent-model",
+  "type": "paper",
+  "title": "Critique of Agent Model: Agentic vs. Agentive Systems",
+  "hook": "When is a system really an 'agent' and not just a clever workflow? This paper draws the line at whether agency is internalized or scaffolded — and sketches an architecture for the former.",
+  "key_points": [
+    "Argues we need to clarify where automation ends and genuine agency begins — both to build capable systems and to reason about risk.",
+    "Analyzes agent architectures along five dimensions: goal, identity, decision-making, self-regulation, and learning.",
+    "Distinguishes agentic systems (competence lives in engineered, external scaffolding) from agentive systems (capabilities arise endogenously, internalized).",
+    "Genuine agency, the authors argue, requires these structures to be internalized within the system, not assembled by external orchestration.",
+    "Proposes a Goal-Identity-Configurator (GIC) architecture: hierarchical goals, identity evolution, world-model-grounded reasoning, learned self-regulation, and self-directed learning."
+  ],
+  "content_html": "\u003cp\u003eThe word \u0026quot;agent\u0026quot; now stretches from coding assistants to existential-risk scenarios, often in the same breath. \u003cstrong\u003eCritique of Agent Model\u003c/strong\u003e steps back to ask what agency actually means — and where automation stops and genuine autonomy begins.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eDrawing the line\u003c/h2\u003e\n\u003cp\u003eBorrowing from Descartes' grounding of agency in independent thought (and from how science fiction portrays autonomous beings), the authors survey today's AI agents and analyze their architectures along five dimensions: \u003cstrong\u003egoal, identity, decision-making, self-regulation, and learning\u003c/strong\u003e. Their key distinction: \u003cem\u003eagentic\u003c/em\u003e systems, whose competence is assembled through engineered external scaffolding, versus \u003cem\u003eagentive\u003c/em\u003e systems, whose capabilities — including social interaction — arise endogenously. Genuine agency, they argue, requires these structures to be internalized within the system rather than bolted on from outside.\u003c/p\u003e\n\u003ch2\u003eA proposed architecture\u003c/h2\u003e\n\u003cp\u003eBuilding on that, they sketch a \u003cstrong\u003eGoal-Identity-Configurator (GIC)\u003c/strong\u003e architecture for a general-purpose agent: hierarchical goal decomposition, identity evolution, simulative reasoning grounded in a separately trained world model, learned self-regulation, and self-directed learning from real and simulated experience. The framing doubles as a lens on safety — more autonomous \u0026quot;agentive\u0026quot; systems raise sharper questions of auditability and control, even when kept under human oversight. The full argument is in the paper, linked as the source.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Eric Xing",
+      "Mingkai Deng",
+      "Jinyu Hou"
+    ],
+    "url": "https://arxiv.org/abs/2606.23991",
+    "published_at": "2026-06-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-29",
+  "date": "2026-06-22",
+  "related": [
+    {
+      "id": "card_9a9bd2",
+      "slug": "world-models-meet-language-models",
+      "type": "paper",
+      "title": "World Models Meet Language Models",
+      "hook": "A world model can imagine what happens next; an LLM can reason about it. The hard part is knowing when to trust the daydream — and when the simulation is just plausible nonsense.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_1b799b",
+      "slug": "agentic-environment-engineering-survey",
+      "type": "paper",
+      "title": "Agentic Environment Engineering: A Survey",
+      "hook": "Agents only get as good as the worlds they practice in. This survey maps the full lifecycle of agent environments — how we model, synthesize, evaluate, and grow them.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-06-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_ea9437#0",
+      "format": "quiz",
+      "prompt": "How does the paper distinguish 'agentic' from 'agentive' systems?",
+      "choices": [
+        {
+          "text": "Agentic systems get competence from engineered external scaffolding; agentive systems have capabilities that arise endogenously, internalized within the system",
+          "correct": true
+        },
+        {
+          "text": "Agentic systems are larger models; agentive ones are smaller",
+          "correct": false
+        },
+        {
+          "text": "Agentic systems use tools; agentive ones never use tools",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe boundary is where competence lives: in the surrounding workflow (agentic) versus inside the system itself (agentive) — the latter being the authors' bar for genuine autonomy.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ea9437#1",
+      "format": "flip",
+      "prompt": "Along which five dimensions does the paper analyze agent architectures?",
+      "back_html": "\u003cp\u003eGoal, identity, decision-making, self-regulation, and learning.\u003c/p\u003e"
+    }
+  ]
+}

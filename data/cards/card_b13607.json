@@ -1,0 +1,139 @@
+{
+  "id": "card_b13607",
+  "slug": "wrong-but-useful-messages",
+  "type": "paper",
+  "title": "Wrong but Useful: Bad Answers That Still Help",
+  "hook": "Multi-agent systems filter messages by how likely they are to be correct. But a wrong answer can carry a good decomposition — and in every model and benchmark tested, wrong-helpful messages showed up.",
+  "key_points": [
+    "Multi-agent pipelines filter messages by agreement, confidence, or automated scores — assuming correct means useful.",
+    "Diverse Hypothesis Deliberation caches five messages and replays the same solver with each one visible or hidden.",
+    "That replay measures a message's trajectory value: does exposing it help or hurt the downstream reasoning?",
+    "Wrong-helpful messages appeared in every benchmark-model combination tested.",
+    "Among wrong-answer messages that flipped final correctness, over four in ten flips were helpful.",
+    "Passing the complete message worked best; keeping its reasoning beat keeping only its answer."
+  ],
+  "content_html": "\u003cp\u003eWhen several model instances deliberate, something has to decide which messages shape the final answer. The usual filters — agreement, confidence, automated scores — all encode the same assumption: a message likely to be \u003cem\u003ecorrect\u003c/em\u003e is a message worth \u003cem\u003ekeeping\u003c/em\u003e. This paper separates those two things and finds they come apart routinely.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe measurement\u003c/h2\u003e\n\u003cp\u003e\u003cstrong\u003eDiverse Hypothesis Deliberation (DHD)\u003c/strong\u003e is a controlled protocol: cache five independently generated messages, then replay the same downstream solver — the \u0026quot;integrator\u0026quot; — with each message either available or hidden. The difference in outcome is that message's \u003cstrong\u003etrajectory value\u003c/strong\u003e: whether exposing it helped or hurt the reasoning that followed. It's a cleaner instrument than asking a judge, because it measures effect rather than perceived quality.\u003c/p\u003e\n\u003ch2\u003eWhat they found\u003c/h2\u003e\n\u003cp\u003eAcross five mathematics and science benchmarks and two openly available model families (gpt-oss-120b and gemma-4-31B-it), \u003cstrong\u003ewrong-helpful messages appeared in every benchmark-model combination\u003c/strong\u003e. Among wrong-answer messages that changed final correctness, more than four in ten of those changes were helpful. Controlled repeats indicate the effects aren't replay noise (p=0.0002).\u003c/p\u003e\n\u003cp\u003eIntervening on the repeatable wrong-helpful cases, the complete message worked best, and retaining its reasoning preserved more success than retaining only its answer — though the authors leave the source of that advantage open. The practical implication is uncomfortable for standard pipelines: a filter that drops everything with a wrong final answer is throwing away decompositions, constraints, and principles the integrator could have used.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Chih-Hsuan Yang",
+      "Anjir Ahmed Chowdhury",
+      "Cheng-Hau Yang",
+      "Weijian Zheng",
+      "Fernando Llorente",
+      "Xiaolong Ma",
+      "Xinyang Li",
+      "Eliu A. Huerta",
+      "Ian T. Foster",
+      "Rajeev Thakur"
+    ],
+    "url": "https://arxiv.org/abs/2608.14375",
+    "published_at": "2026-08-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-17",
+  "date": "2026-08-14",
+  "related": [
+    {
+      "id": "card_813970",
+      "slug": "multi-agent-information-bottleneck",
+      "type": "paper",
+      "title": "When Do Multi-Agent Systems Help? An Information Bottleneck Perspective",
+      "hook": "Multi-agent LLM setups help sometimes and hurt other times, with no clear pattern — until you view them as an information bottleneck problem: compressing context helps only when it loses less than it saves.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-17"
+    },
+    {
+      "id": "card_553800",
+      "slug": "multi-agent-llms-fail-to-explore",
+      "type": "paper",
+      "title": "Multi-Agent LLMs Fail to Explore Each Other",
+      "hook": "Drop LLM agents into a room together and they don't probe each other's abilities — they lock into narrow, polarized patterns that tank coordination and inflate regret.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-13"
+    },
+    {
+      "id": "card_812537",
+      "slug": "self-consistency",
+      "type": "paper",
+      "title": "Self-Consistency Improves Chain-of-Thought Reasoning",
+      "hook": "Sample the model many times, let each run reason its own way, then take the majority answer - diverse reasoning paths vote out individual errors.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-03-21"
+    },
+    {
+      "id": "card_f4c73d",
+      "slug": "llm-as-a-verifier",
+      "type": "paper",
+      "title": "LLM-as-a-Verifier: Verification as a New Scaling Axis",
+      "hook": "Everyone scales pretraining, post-training, and test-time compute. This paper argues verification — checking if a solution is correct — is its own scaling axis, and hits SOTA on four agentic benchmarks.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b13607#0",
+      "format": "flip",
+      "prompt": "What assumption does this paper challenge about filtering multi-agent messages?",
+      "back_html": "\u003cp\u003eThat a message likely to be correct is also the message worth keeping. A wrong answer can still contain a useful decomposition, constraint, or scientific principle.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b13607#1",
+      "format": "quiz",
+      "prompt": "How does Diverse Hypothesis Deliberation measure a message's 'trajectory value'?",
+      "choices": [
+        {
+          "text": "It caches messages and replays the same solver with each message available or hidden, comparing outcomes",
+          "correct": true
+        },
+        {
+          "text": "It asks a judge model to rate each message's helpfulness",
+          "correct": false
+        },
+        {
+          "text": "It measures how often other agents cite the message",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDHD is a controlled replay protocol: the same integrator solves the problem with a given message visible or hidden, and the difference is that message's trajectory value.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b13607#2",
+      "format": "quiz",
+      "prompt": "Which form of a wrong-helpful message worked best downstream?",
+      "choices": [
+        {
+          "text": "The complete message — and keeping its reasoning preserved more success than keeping only its answer",
+          "correct": true
+        },
+        {
+          "text": "Just the final answer, stripped of reasoning",
+          "correct": false
+        },
+        {
+          "text": "A one-line summary generated by a separate model",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe focused intervention found the complete message works best; retaining its reasoning preserves more success than retaining only its answer, though the source of that advantage remains open.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "card_26ff49",
+  "slug": "pask-parser-aware-kv-persistence",
+  "type": "paper",
+  "title": "Your Parser Already Knows Which Tokens Matter",
+  "hook": "Constrained decoding tracks grammar state to keep JSON valid. PASK reuses that same signal to decide what to keep in the KV cache — and a wrong field is a failed tool call, not a stylistic blemish.",
+  "key_points": [
+    "Structured generation (JSON, SQL, function calls) already runs a parser to enforce formal validity during decoding.",
+    "Parser transitions reveal which tokens carry schema-critical decisions: required fields, arguments, structural boundaries.",
+    "PASK turns that structure into layer-group-specific KV persistence decisions, which prior compression ignored.",
+    "Task-error sensitivity sets minimum protection floors; attention-output distortion allocates the remaining KV budget.",
+    "At a 0.33 KV budget on Qwen3-4B it beats the strongest compressed baseline by 17.4 points across eight BFCL subcategories.",
+    "End-to-end serving: up to 2.2x throughput, 3.3x lower time-per-output-token, at 0.53x the peak memory of full KV."
+  ],
+  "content_html": "\u003cp\u003eLLM agents live or die on structured output: JSON payloads, SQL, function calls. One wrong field and the downstream action fails. Constrained decoding already handles formal validity by running a grammar parser alongside generation. Wu and Chen noticed that the parser is also emitting a signal nobody was using — it knows which tokens are deciding required fields, argument values, and structural boundaries.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe method\u003c/h2\u003e\n\u003cp\u003ePASK (Parser-Aware Structural KV Persistence) turns those parser transitions into per-layer-group decisions about which KV entries to keep. Two signals drive the allocation: task-error sensitivity sets minimum protection floors for positions where a mistake breaks the call, and attention-output distortion distributes whatever cache budget is left. An offline calibration stage compiles this into a persistence policy, so the runtime cost is a lightweight structure-conditioned lookup rather than online analysis.\u003c/p\u003e\n\u003ch2\u003eResults\u003c/h2\u003e\n\u003cp\u003eOn Qwen3-4B at a 0.33 total KV budget, PASK reports a 17.4-point average gain over the strongest compressed baseline across eight BFCL non-live and Live subcategories. In end-to-end serving the authors report up to 2.2x higher throughput and 3.3x lower time-per-output-token while using about half the peak GPU memory of full KV.\u003c/p\u003e\n\u003cp\u003eThe broader idea is worth keeping: when a task has structure the system is already computing, that structure is a better compression prior than generic attention statistics.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Linze Wu",
+      "Xinrui Chen"
+    ],
+    "url": "https://arxiv.org/abs/2608.28276",
+    "published_at": "2026-08-28",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "agent",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-31",
+  "date": "2026-08-28",
+  "related": [
+    {
+      "id": "card_e8e6f5",
+      "slug": "probabilistic-kv-cache-eviction",
+      "type": "paper",
+      "title": "KV Cache Eviction, Formalized",
+      "hook": "Everyone drops KV cache entries with clever heuristics. Formalize the problem properly and it turns into expectation estimation — which finally lets you correct for what you threw away.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-08-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_26ff49#0",
+      "format": "flip",
+      "prompt": "What free signal does PASK exploit that ordinary KV compression ignores?",
+      "back_html": "\u003cp\u003eThe parser state from constrained decoding. It is already being tracked to enforce grammar validity, and it says which tokens participate in schema-critical decisions.\u003c/p\u003e"
+    },
+    {
+      "id": "card_26ff49#1",
+      "format": "quiz",
+      "prompt": "Why is structure-aware KV compression especially valuable for agents?",
+      "choices": [
+        {
+          "text": "One wrong field in a function call makes the downstream action fail outright",
+          "correct": true
+        },
+        {
+          "text": "Agents generate far longer outputs than chat models",
+          "correct": false
+        },
+        {
+          "text": "Tool calls cannot be produced with a compressed cache at all",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eStructured output is brittle in a way prose is not — errors are not graded, they are execution failures. So compression should protect schema-critical positions preferentially.\u003c/p\u003e"
+    }
+  ]
+}

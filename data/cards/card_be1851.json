@@ -1,0 +1,148 @@
+{
+  "id": "card_be1851",
+  "slug": "evirank-structured-relevance-evidence",
+  "type": "paper",
+  "title": "EviRank: Turning Image Re-ranking Into a Checklist",
+  "hook": "\"Find this shirt in pink\" hides three instructions: keep the entity, change the attribute, ignore the background. EviRank makes each one an explicit, checkable criterion.",
+  "key_points": [
+    "Recasts multimodal image re-ranking as constraint satisfaction instead of an opaque embedding score or free-form chain-of-thought.",
+    "Parses any query — text, image, or composed — into typed criteria across six semantic slots (entities, attributes, relations, and others).",
+    "Each criterion is labelled required, forbidden, or ignorable, so the re-ranker verifies evidence rather than guessing an overall vibe.",
+    "Scoring combines deterministic rubric checks with evidence-grounded listwise comparison, and needs no training.",
+    "Reports state-of-the-art results across five text-to-image, image-to-image, and composed-retrieval benchmarks.",
+    "The evidence packages double as supervision: a distilled student keeps over 90% of the teacher's capability at much lower cost."
+  ],
+  "content_html": "\u003cp\u003eReal image searches are rarely one clean intent. \u0026quot;Find this shirt in pink\u0026quot; tells the system to keep an entity, change an attribute, and ignore the surrounding context all at once — and most re-rankers flatten that into a single similarity score you can't inspect or debug.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eEviRank, from Enjun Du, Siyi Liu, and colleagues (arXiv, August 2026), borrows the rubric- and checklist-based evaluation style that has become common in NLP judging and applies it to retrieval. Any query — text-only, image-only, or composed — gets parsed into a unified \u0026quot;evidence package\u0026quot;: typed criteria spread over six semantic slots such as entities, attributes, and relations, with each criterion marked required, forbidden, or ignorable. Re-ranking then becomes evidence-conditioned verification, mixing deterministic rubric scoring with an evidence-grounded listwise comparison, in a single procedure that needs no training.\u003c/p\u003e\n\u003cp\u003eThe authors report state-of-the-art results across five benchmarks spanning text-to-image, image-to-image, and composed image retrieval. A nice side effect: because the evidence is explicit rather than latent, it can serve as structured supervision — a distilled student model preserves more than 90% of the teacher's capability at substantially lower cost.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Enjun Du",
+      "Siyi Liu",
+      "Zirong Chen",
+      "Xinyu Zuo",
+      "Jinwen Luo",
+      "Ruiwen Tao",
+      "Lisheng Duan",
+      "Haijin Liang",
+      "Jin Ma",
+      "Junfu Pu",
+      "Yongqi Zhang"
+    ],
+    "url": "https://arxiv.org/abs/2608.20886",
+    "published_at": "2026-08-21",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rag",
+    "vlms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "rag",
+    "multimodal",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-24",
+  "date": "2026-08-21",
+  "related": [
+    {
+      "id": "card_667a26",
+      "slug": "dense-passage-retrieval",
+      "type": "paper",
+      "title": "Dense Passage Retrieval (DPR)",
+      "hook": "Keyword search misses answers that use different words. DPR embeds questions and passages into one vector space and retrieves by meaning — the backbone of modern vector search.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-04-10"
+    },
+    {
+      "id": "card_02ad74",
+      "slug": "retrieval-augmented-generation",
+      "type": "paper",
+      "title": "Retrieval-Augmented Generation (RAG)",
+      "hook": "Why force a model to memorize everything? RAG lets it look things up — fetch relevant documents, then answer from that evidence instead of frozen weights alone.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-22"
+    },
+    {
+      "id": "card_7f35b4",
+      "slug": "signed-maxsim-late-interaction-capacity",
+      "type": "paper",
+      "title": "Why ColBERT-Style Retrieval Fails on Negation — and the Fix",
+      "hook": "Late-interaction retrieval (MaxSim, as in ColBERT) is provably as expressive as vector search for ordinary matches — but provably can't handle negation. Signed MaxSim closes that exact gap.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-07"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_667a26",
+      "slug": "dense-passage-retrieval",
+      "type": "paper",
+      "title": "Dense Passage Retrieval (DPR)",
+      "hook": "Keyword search misses answers that use different words. DPR embeds questions and passages into one vector space and retrieves by meaning — the backbone of modern vector search.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-04-10"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_be1851#0",
+      "format": "flip",
+      "prompt": "What problem does EviRank identify with existing multimodal re-rankers?",
+      "back_html": "\u003cp\u003eThey either compress multifaceted relevance into one opaque embedding, or lean on free-form chain-of-thought that quietly omits or hallucinates fine-grained constraints.\u003c/p\u003e"
+    },
+    {
+      "id": "card_be1851#1",
+      "format": "quiz",
+      "prompt": "How does EviRank represent a query before re-ranking?",
+      "choices": [
+        {
+          "text": "As typed criteria across six semantic slots, each labelled required, forbidden, or ignorable",
+          "correct": true
+        },
+        {
+          "text": "As a single dense embedding fine-tuned on the target benchmark",
+          "correct": false
+        },
+        {
+          "text": "As a free-form chain-of-thought explanation of what the user wants",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe explicit, typed evidence package is the whole point — it turns re-ranking into verification of named constraints instead of an unauditable score.\u003c/p\u003e"
+    },
+    {
+      "id": "card_be1851#2",
+      "format": "flip",
+      "prompt": "Besides scoring, what second use do EviRank's evidence packages have?",
+      "back_html": "\u003cp\u003eThey act as structured supervision for distillation — the authors report a lightweight student keeping over 90% of the teacher's capability at substantially lower cost.\u003c/p\u003e"
+    },
+    {
+      "id": "card_be1851#3",
+      "format": "quiz",
+      "prompt": "What does it mean that EviRank's re-ranking procedure is training-free?",
+      "choices": [
+        {
+          "text": "The rubric scoring and listwise comparison run on an existing model with no task-specific training pass",
+          "correct": true
+        },
+        {
+          "text": "The retrieval index is built without any embeddings",
+          "correct": false
+        },
+        {
+          "text": "The distilled student also requires no training data",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eTraining is optional and only enters when distilling a cheaper student; the base procedure works by prompting an existing model to verify the parsed evidence.\u003c/p\u003e"
+    }
+  ]
+}

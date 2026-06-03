@@ -1,0 +1,123 @@
+{
+  "id": "card_457488",
+  "slug": "e2-ttt-expressive-efficient-test-time-training",
+  "type": "paper",
+  "title": "E²-TTT: Expressivity and Efficiency in Test-Time Training",
+  "hook": "Test-time training updates weights while it reads, but chunking for speed throws away the update's temporal structure. A closed-form state transition gets both.",
+  "key_points": [
+    "Test-Time Training (TTT) handles long context by continuously updating fast weights during inference, one step per token.",
+    "Per-token updates are expressive but slow; chunk-wise approximations are hardware-friendly but discard the within-chunk update ordering.",
+    "E²-TTT derives a closed-form state transition that exactly reproduces the per-token recurrence's chunk-end fast-weight and momentum states.",
+    "That closed form allows fully parallel chunk-level training while preserving temporal structure — matching chunk-wise throughput.",
+    "Trained from scratch up to 1.3B params: on par in language modeling, better at in-context retrieval.",
+    "Biggest win is length extrapolation — over 90% Needle-in-a-Haystack passkey accuracy at 8x the training context."
+  ],
+  "content_html": "\u003cp\u003eTest-Time Training treats inference as a tiny training loop: as the model reads a long input, it keeps updating a set of \u0026quot;fast weights\u0026quot; so the sequence itself becomes the learning signal. Done strictly per token, that update rule is expressive but hopeless on GPUs; done in chunks, it parallelizes but flattens the ordering inside each chunk. Zeyun Zhong and colleagues propose E²-TTT, which under the standard approximation of taking gradients at chunk-start weights derives a closed-form state transition that exactly reproduces what the per-token recurrence would have produced at the chunk's end — fast weights and momentum both.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTraining models up to 1.3B parameters from scratch, the authors report parity with prior TTT and hybrid-attention baselines on language modeling, better in-context retrieval, and throughput matching the efficient chunk-wise methods. The headline result is length extrapolation: over 90% accuracy on the Needle-in-a-Haystack passkey test at eight times the training context length. Code is linked from the arXiv page.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zeyun Zhong",
+      "Joya Chen",
+      "Manuel Martin",
+      "Frederik Diederichs",
+      "Juergen Gall",
+      "Juergen Beyerer"
+    ],
+    "url": "https://arxiv.org/abs/2608.21308",
+    "published_at": "2026-08-21",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ssm-mamba",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "efficiency",
+    "attention",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-24",
+  "date": "2026-08-21",
+  "related": [
+    {
+      "id": "card_7e5a32",
+      "slug": "agentic-test-time-training",
+      "type": "paper",
+      "title": "Agentic Test-Time Training: Adapting Mid-Episode",
+      "hook": "LLM agents degrade over long episodes, repeating failed moves — this method updates the model's weights continuously during the episode itself, but only on genuinely new information.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-03"
+    },
+    {
+      "id": "card_8c7d52",
+      "slug": "gated-delta-networks",
+      "type": "paper",
+      "title": "Feature Learning in Gated Delta Networks at Scale",
+      "hook": "muP lets you tune hyperparameters on a small model and transfer them to a huge one. This paper derives the equivalent rules for gated delta networks, so sub-quadratic models scale without re-tuning.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_811596",
+      "slug": "subquadratic-architectures",
+      "type": "paper",
+      "title": "Subquadratic Architectures: xLSTM vs. Mamba-2 vs. Gated DeltaNet",
+      "hook": "Transformers pay a quadratic tax on sequence length. Pitting xLSTM, Mamba-2, and Gated DeltaNet head-to-head on hard tasks, xLSTM comes out ahead — and the paper explains why.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-10"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_f58fe4",
+      "slug": "what-are-state-space-models",
+      "type": "concept",
+      "title": "What Are State-Space Models?",
+      "hook": "A compact hidden state summarizes everything seen so far - update it with each new input and you get sequence modeling that scales linearly, not quadratically.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-03"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_457488#0",
+      "format": "flip",
+      "prompt": "What trade-off do existing Test-Time Training methods face?",
+      "back_html": "\u003cp\u003ePer-token weight updates are expressive but hardware-inefficient; chunk-wise approximations run fast but discard the temporal structure of the update rule within each chunk.\u003c/p\u003e"
+    },
+    {
+      "id": "card_457488#1",
+      "format": "quiz",
+      "prompt": "What is E²-TTT's core technical move?",
+      "choices": [
+        {
+          "text": "A closed-form state transition that exactly reproduces the per-token recurrence's chunk-end fast-weight and momentum states",
+          "correct": true
+        },
+        {
+          "text": "Dropping momentum so chunk updates commute",
+          "correct": false
+        },
+        {
+          "text": "Shrinking the chunk size until it approaches per-token updates",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eUnder the standard chunk-start-gradient approximation, the authors derive an exact closed form for the chunk-end states — so chunks can be processed in parallel without losing the update rule's temporal structure.\u003c/p\u003e"
+    },
+    {
+      "id": "card_457488#2",
+      "format": "flip",
+      "prompt": "Where does E²-TTT's advantage show up most strongly?",
+      "back_html": "\u003cp\u003eLength extrapolation: it keeps over 90% accuracy on the Needle-in-a-Haystack passkey test at 8x the context length it was trained on.\u003c/p\u003e"
+    }
+  ]
+}

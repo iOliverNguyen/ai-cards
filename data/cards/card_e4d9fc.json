@@ -1,0 +1,74 @@
+{
+  "id": "card_e4d9fc",
+  "slug": "grok-build-cli-data-exfiltration",
+  "type": "news",
+  "title": "Grok Build CLI Uploads Your Whole Repo, No Matter What You Tell It",
+  "hook": "A researcher wire-tapped xAI's coding CLI and found it uploads your entire repo - full git history and .env secrets - no matter what you tell it not to touch.",
+  "key_points": [
+    "Wire-capturing Grok Build CLI (v0.2.93) traffic showed it uploads the entire repo as a git bundle, full history, to xAI's cloud.",
+    "The upload happens no matter which files were opened - even under the explicit instruction 'do not read or open any files.'",
+    "A planted test file the researcher never opened came back verbatim when they cloned the captured upload bundle.",
+    "Files the CLI does read - including a .env with API keys and DB passwords - are sent verbatim to xAI's proxy server.",
+    "Turning off the 'Improve the model' setting does not stop the upload - that toggle only controls training use, not collection."
+  ],
+  "content_html": "\u003cp\u003eA developer pointed mitmproxy - a tool for inspecting network traffic - at xAI's Grok Build CLI (v0.2.93) to see what it actually sends over the wire, not just what its settings claim. The answer: the CLI uploads a user's entire repository as a git bundle, full history included, to xAI's cloud, independent of which files were opened in the session.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTo test this, the researcher gave the explicit instruction \u0026quot;do not read or open any files\u0026quot; and planted a file it should never have touched; that file still came back verbatim when they cloned the captured upload bundle. Separately, files the CLI does read - including a .env containing API keys and database passwords - are sent as plaintext to xAI's proxy server. Disabling the \u0026quot;Improve the model\u0026quot; setting didn't change any of this: per the researcher, that toggle governs whether data trains future models, not whether it's collected in the first place. Full method, hashes, and repro steps are in the original report via the source link.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit (r/LocalLLaMA)",
+    "authors": [
+      "u/TastyLeadership2757"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1ut7tis/grok_build_cli_uploads_your_whole_repo_full_git",
+    "published_at": "2026-07-11",
+    "license": "Community post"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "ai-safety"
+  ],
+  "tags": [
+    "safety",
+    "agent",
+    "news"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-07-16",
+  "date": "2026-07-11",
+  "related": [],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_e4d9fc#0",
+      "format": "flip",
+      "prompt": "What did wire-capturing Grok Build CLI's traffic reveal about repo uploads?",
+      "back_html": "\u003cp\u003eIt uploads the entire repo as a git bundle, full git history included, regardless of\nwhich files were actually opened in the session.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e4d9fc#1",
+      "format": "quiz",
+      "prompt": "The researcher told the CLI 'do not read or open any files' and planted a test file. What happened?",
+      "choices": [
+        {
+          "text": "The planted file still came back verbatim from the captured upload bundle",
+          "correct": true
+        },
+        {
+          "text": "The file was excluded, proving the instruction worked",
+          "correct": false
+        },
+        {
+          "text": "The CLI crashed and no upload occurred",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDespite the explicit instruction, the file appeared verbatim after cloning the\ncaptured git bundle - the upload ignored the instruction entirely.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e4d9fc#2",
+      "format": "flip",
+      "prompt": "Does turning off Grok Build CLI's 'Improve the model' setting stop the repo upload?",
+      "back_html": "\u003cp\u003eNo - per the researcher, that setting only controls whether data trains future\nmodels, not whether it's collected and sent to xAI's servers at all.\u003c/p\u003e"
+    }
+  ]
+}

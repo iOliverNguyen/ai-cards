@@ -1,0 +1,97 @@
+{
+  "id": "card_7e5a32",
+  "slug": "agentic-test-time-training",
+  "type": "paper",
+  "title": "Agentic Test-Time Training: Adapting Mid-Episode",
+  "hook": "LLM agents degrade over long episodes, repeating failed moves — this method updates the model's weights continuously during the episode itself, but only on genuinely new information.",
+  "key_points": [
+    "LLM agents on long trajectories revisit explored states and repeat failed actions, losing strategies that worked earlier.",
+    "aTTT reweights the training loss token-by-token: tokens that repeat across prior updates get downweighted, novel tokens stay fully weighted.",
+    "Repeated n-grams in update text signal the agent is stuck and training on them would amplify drift, not fix it.",
+    "Runs inside live episodes via vLLM's runtime LoRA API, at 1.9x the cost of not doing test-time training.",
+    "Improves success up to 5.0 points on ALFWorld and 4.9 points on SWE-bench Lite — mostly by preserving competence the model already had over long trajectories."
+  ],
+  "content_html": "\u003cp\u003eLong-running LLM agents have a quiet failure mode: as an episode stretches on, they start repeating actions that already failed, or forget approaches that worked minutes earlier. Test-time training (TTT) — updating weights on the fly — sounds like a fix, but naively retraining on a stuck agent's own repetitive output just reinforces the rut.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe authors study \u003cem\u003econtinuous\u003c/em\u003e TTT inside multi-turn agent episodes, where each update reshapes the policy that generates all later training text — a self-training loop that helps when genuinely new trajectory information shows up, but can spiral when the agent is stuck and keeps training on similar text. Their fix, Agentic Test-Time Training (aTTT), reweights the loss at the token level: tokens that recur across a window of prior updates get downweighted, while novel tokens keep full weight, since update-text repetition is exactly the signal that distinguishes \u0026quot;learning something new\u0026quot; from \u0026quot;amplifying drift.\u0026quot; To make this practical inside a live episode, they built a concurrent serving system on vLLM's runtime LoRA API, adding only 1.9x overhead. The result: up to 5.0 points on ALFWorld and 4.9 on SWE-bench Lite, concentrated in cases where the model already had the competence but drifted away from using it over a long trajectory. Yanbo Wang and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yanbo Wang",
+      "Jinhua Hao",
+      "Yuze Shi",
+      "Kun Yuan",
+      "Ming Sun"
+    ],
+    "url": "https://arxiv.org/abs/2607.03441",
+    "published_at": "2026-07-03",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-03",
+  "related": [
+    {
+      "id": "card_9c1f76",
+      "slug": "plans-dont-persist-context",
+      "type": "paper",
+      "title": "Plans Don't Persist: Context Management Is Load-Bearing for Agents",
+      "hook": "An agent writes a plan, then context compression evicts it. This paper shows the plan never became internal state — once it leaves the window, the agent forgets it and task success craters.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-22"
+    },
+    {
+      "id": "card_63374b",
+      "slug": "osworld-2-computer-use-agents",
+      "type": "paper",
+      "title": "OSWorld 2.0: Long-Horizon Computer Use, Stress-Tested",
+      "hook": "108 realistic computer-use workflows averaging 1.6 human-hours each expose how far agents are from professional-grade computer use — the best model completes only 20.6%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_7e5a32#0",
+      "format": "flip",
+      "prompt": "What failure mode does agentic test-time training (aTTT) target?",
+      "back_html": "\u003cp\u003eLLM agents drifting over long episodes — revisiting explored states, repeating failed actions, and losing strategies that worked earlier in the trajectory.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7e5a32#1",
+      "format": "quiz",
+      "prompt": "How does aTTT decide which tokens to downweight during its continuous mid-episode updates?",
+      "choices": [
+        {
+          "text": "Tokens that appear in repeated n-grams from prior updates are downweighted, since repetition signals the agent is stuck",
+          "correct": true
+        },
+        {
+          "text": "It downweights the most recent tokens to avoid overfitting to the last action",
+          "correct": false
+        },
+        {
+          "text": "It randomly drops half the tokens in every update",
+          "correct": false
+        },
+        {
+          "text": "It downweights tokens the model is most confident about",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRepeated n-grams across updates signal the agent revisiting the same failed text, so training fully on it would amplify drift. Novel tokens — genuinely new trajectory information — stay fully weighted.\u003c/p\u003e"
+    }
+  ]
+}

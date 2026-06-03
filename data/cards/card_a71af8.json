@@ -1,0 +1,109 @@
+{
+  "id": "card_a71af8",
+  "slug": "multiplayer-interactive-world-models",
+  "type": "paper",
+  "title": "MIRA: A Multiplayer World Model for Rocket League",
+  "hook": "Single-player world models treat other agents as scenery. This one, trained on 10,000 hours of Rocket League, tracks four players' independent actions at once — and stays coherent for hours.",
+  "key_points": [
+    "First world model for multiplayer environments with complex physical interaction — it conditions on the action streams of multiple agents, not just one.",
+    "5-billion-parameter latent diffusion model generates four-player Rocket League matches in real time: 20 frames per second on a single Nvidia B200 GPU.",
+    "Trained on 10,000 hours of bot-vs-bot gameplay; rollouts stay distributionally stable to at least five minutes, and often run stably for hours.",
+    "A collaboration between Kyutai, Epic Games, and General Intuition, released as MIRA — open demo, dataset, and full training/inference code.",
+    "The team studies which design choices matter most: video codec, generative objective, and how multiplayer conditioning is structured."
+  ],
+  "content_html": "\u003cp\u003eMost \u0026quot;world models\u0026quot; quietly assume a single protagonist: everything else — other characters, other players — gets folded into \u0026quot;the environment.\u0026quot; MIRA, a collaboration between Kyutai, Epic Games, and General Intuition, drops that assumption for a setting where it clearly doesn't hold: four-player Rocket League, where players compete and cooperate under fast, tightly coupled physics.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eInstead of treating other agents as environment, MIRA conditions on the action streams of all four players, learning to attribute changes in the scene to the correct player and to stay coherent under any combination of their actions. Trained on 10,000 hours of gameplay from publicly available bots, the 5-billion-parameter latent diffusion model generates real-time four-player matches at 20 frames per second on a single Nvidia B200 GPU. Despite training only on short clips, rollouts hold distributional quality steady out to five minutes — the longest horizon the team measured — and in practice keep running for hours with no sign of collapse. The paper systematically studies what matters most: the video codec, the generative objective, and how multiplayer conditioning is structured, plus how capabilities and failure modes shift with model and data scale. The team released the dataset, full training and inference codebase, and a live playable demo — a rare fully open release for a capability jump like this. Anthony Hu and colleagues, arXiv 2026 (also announced as MIRA in the r/MachineLearning community).\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Anthony Hu",
+      "Václav Volhejn",
+      "Adrien Ramanana Rahary",
+      "Chris Mulder",
+      "Aditya Makkar",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.05352",
+    "published_at": "2026-07-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "releases",
+    "papers-this-week"
+  ],
+  "tags": [
+    "generative",
+    "open-source",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-06",
+  "related": [
+    {
+      "id": "card_7e087b",
+      "slug": "world-models-persistent-state",
+      "type": "paper",
+      "title": "World Models Lack a Persistent State",
+      "hook": "Today's video world models render great frames but treat the world like a tracking shot: look away and back, and off-screen events freeze instead of running on — the moon keeps orbiting unwatched.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    },
+    {
+      "id": "card_296943",
+      "slug": "dreamerv3",
+      "type": "paper",
+      "title": "DreamerV3: Mastering Domains through World Models",
+      "hook": "Instead of learning only from real experience, DreamerV3 builds a world model and practices inside its own imagination — one fixed config, 150+ tasks.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2023-01-10"
+    },
+    {
+      "id": "card_162a5c",
+      "slug": "mop-jepa-hard-assigned-predictors",
+      "type": "paper",
+      "title": "MoP-JEPA: Fixing JEPA's Blind Spot for Branching Futures",
+      "hook": "A single deterministic predictor can't represent a fork in the road — it averages the branches into a state that matches nowhere. This paper proves it, then fixes it with one head per future.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a71af8#0",
+      "format": "flip",
+      "prompt": "What makes this world model different from prior single-player world models?",
+      "back_html": "\u003cp\u003eIt conditions on the action streams of multiple independent agents at once, learning to attribute scene changes to the correct player and stay coherent under any combination of their actions — instead of treating other agents as part of the environment.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a71af8#1",
+      "format": "quiz",
+      "prompt": "How long do MIRA's generated Rocket League rollouts stay distributionally stable?",
+      "choices": [
+        {
+          "text": "At least five minutes, the longest horizon measured — and often hours in practice with no collapse",
+          "correct": true
+        },
+        {
+          "text": "About two seconds before visible artifacts appear",
+          "correct": false
+        },
+        {
+          "text": "Exactly the length of the training clips, no longer",
+          "correct": false
+        },
+        {
+          "text": "It's unstable from the very first frame",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDespite training only on short clips, the 5B-parameter model's rollouts hold steady distributional quality out to five minutes (the longest horizon tested) and in practice keep going for hours without collapsing.\u003c/p\u003e"
+    }
+  ]
+}

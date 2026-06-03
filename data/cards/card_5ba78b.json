@@ -1,0 +1,121 @@
+{
+  "id": "card_5ba78b",
+  "slug": "agent-memory-dosing",
+  "type": "blog",
+  "title": "Agent Memory Is a Dose, Not a Switch",
+  "hook": "IBM Research tested how much extracted guideline memory to give an agent. The right amount depends on the model: strong ones absorb everything, weaker ones do better with curated retrieval.",
+  "key_points": [
+    "Compares three regimes: no memory, the full guideline set injected at every step, and curated retrieval of a compact core plus task-relevant guidelines.",
+    "Evaluated on AppWorld — 585 multi-step tasks across nine simulated apps like calendars, messaging and payments.",
+    "Strong, high-capacity models benefit from the full set: DeepSeek-V3.2 gained +9.5 points of task completion.",
+    "Weaker models do better with selective retrieval: gpt-oss-120b gained +16.1 points at only +5% tokens.",
+    "Saturated models show no measurable gain — GLM-5 was unchanged.",
+    "The authors' framing: memory is a dose you calibrate to the model, not a feature you switch on."
+  ],
+  "content_html": "\u003cp\u003e\u0026quot;Give the agent memory\u0026quot; is usually treated as a binary upgrade. This IBM Research write-up runs the experiment properly and finds it isn't one: the useful amount of memory scales with the model's capacity to use it, and overshooting costs both accuracy and tokens.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThree regimes are compared on AppWorld — 585 multi-step tasks across nine simulated applications including calendars, messaging and payments. The baseline has no memory. The second injects the full set of extracted guidelines at every reasoning step. The third does curated retrieval: a compact core plus the guidelines relevant to the task at hand. Performance is reported as TGC (task goal completion) and SGC, a stricter metric that requires success across every variant of a scenario.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAcross eight models three patterns fall out. Strong models with headroom benefit from the full guideline set — DeepSeek-V3.2 gained 9.5 percentage points of task completion. Weaker models do better with selection: gpt-oss-120b gained 16.1 points at only a 5% token increase, which is the rare case of cheaper \u003cem\u003eand\u003c/em\u003e better. And saturated models gain nothing measurable at all; GLM-5 didn't move. The design lesson is to treat memory volume as a tuned parameter per model, not a capability you enable and forget.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face Blog (IBM Research)",
+    "authors": [
+      "IBM Research"
+    ],
+    "url": "https://huggingface.co/blog/ibm-research/altk-evolve-hmm",
+    "published_at": "2026-08-18",
+    "license": "Hugging Face blog"
+  },
+  "topic_ids": [
+    "context-memory",
+    "agents"
+  ],
+  "tags": [
+    "agent",
+    "efficiency",
+    "rag",
+    "tutorial"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-20",
+  "date": "2026-08-18",
+  "related": [
+    {
+      "id": "card_0612bf",
+      "slug": "automem-memory-as-cognitive-skill",
+      "type": "paper",
+      "title": "AutoMem: Automated Learning of Memory as a Cognitive Skill",
+      "hook": "AutoMem treats knowing what to remember and when to retrieve it — metamemory — as a trainable skill, and tuning memory alone roughly doubles to quadruples performance on long-horizon games.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-01"
+    },
+    {
+      "id": "card_42f624",
+      "slug": "agent-token-budget-overruns",
+      "type": "paper",
+      "title": "Token Budgets: When Agents Burn Money",
+      "hook": "A single retry loop can spend thousands of dollars before anyone notices. This paper catalogs 63 real budget-overrun incidents — and asks the type system to make over-spending a compile error.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_ce3099",
+      "slug": "compactionrl-context-compaction",
+      "type": "paper",
+      "title": "CompactionRL: Reinforcement Learning with Context Compaction for Long-Horizon Agents",
+      "hook": "Long-running coding agents eventually run out of context before finishing the job. CompactionRL trains them to summarize their own history mid-task, as part of the RL objective itself.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_5ba78b#0",
+      "format": "flip",
+      "prompt": "What does it mean to say agentic memory is 'a dose you calibrate to the model'?",
+      "back_html": "\u003cp\u003eHow much extracted guideline memory helps depends on the model's capacity. The same memory that lifts a strong model can overwhelm a weaker one, which does better with a curated subset.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5ba78b#1",
+      "format": "quiz",
+      "prompt": "Which model in the study benefited most from *selective* retrieval rather than the full guideline set?",
+      "choices": [
+        {
+          "text": "gpt-oss-120b — +16.1 points task completion at only +5% tokens",
+          "correct": true
+        },
+        {
+          "text": "DeepSeek-V3.2, which gained +9.5 points",
+          "correct": false
+        },
+        {
+          "text": "GLM-5, which showed no measurable change",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDeepSeek-V3.2 had the capacity to absorb the full set. GLM-5 was saturated. gpt-oss-120b is the case where curated retrieval bought both accuracy and cost.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5ba78b#2",
+      "format": "quiz",
+      "prompt": "What is the difference between the TGC and SGC metrics used here?",
+      "choices": [
+        {
+          "text": "TGC is per-task success; SGC is stricter, requiring success across all variants of a scenario",
+          "correct": true
+        },
+        {
+          "text": "TGC measures token cost; SGC measures goal completion",
+          "correct": false
+        },
+        {
+          "text": "TGC is human-rated; SGC is model-rated",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eScenario Goal Completion only credits an agent that handles every variant, so it penalizes brittle successes that TGC would count.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "id": "card_80c974",
+  "slug": "persistent-recursive-worlds-genesis",
+  "type": "paper",
+  "title": "Persistent Recursive Worlds Enable Autonomous Software Evolution",
+  "hook": "Instead of keeping the agent alive across a long project, keep the project alive and let agents be disposable — enough to grow a 250k-line Rust C compiler for $44.",
+  "key_points": [
+    "Most agentic coding systems chase continuity through persistent sessions, memory, or manager agents holding shared context.",
+    "Genesis flips it: the software project is the persistent object; individual agents are finite-lived and replaceable.",
+    "A project is a recursive 'world' — each local world is an accepted version plus a repo path; only accepted changes advance history.",
+    "Recursive delegation moves work across paths, so no single agent has to hold the whole codebase in context.",
+    "From an empty repo, Genesis (on DeepSeek V4 Flash) built a ~250k-line Rust C compiler over 120+ hours and 1,000+ agent episodes for US$44 in tokens.",
+    "The authors report it passed the full c-testsuite and most LLVM/Csmith tests, and separately ported 13 MESA modules to Rust with 1.55–6.87x median speedups."
+  ],
+  "content_html": "\u003cp\u003eLong-running software projects outlive any individual coding agent. The usual fix is to make the \u003cem\u003eagent\u003c/em\u003e durable — long sessions, memory stores, a manager agent holding shared context. Beichen Huang and colleagues (arXiv, August 2026) argue for the opposite arrangement: make the \u003cem\u003eproject\u003c/em\u003e durable and let agents be short-lived and disposable.\u003c/p\u003e\n\u003cp\u003eTheir system, EvoX Genesis, represents a codebase as a persistent recursive world. Each local world is pinned to an accepted version and a repository path; finite-lived agents propose local changes, recursive delegation pushes work down into sub-paths, and only accepted consequences advance the version history.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe headline demonstration: starting from a repository with no compiler at all, Genesis used DeepSeek V4 Flash to build a Rust-based C compiler of roughly 250k tracked lines. The run spanned over 120 hours and more than 1,000 archived agent episodes, and the authors report it cost about US$44 in model tokens — with the result passing the complete c-testsuite plus most LLVM and Csmith tests.\u003c/p\u003e\n\u003cp\u003eTwo further experiments probe the claim. In a separate compiler world built with GLM 5.2, development kept going through repeated agent replacement while retaining full test performance — the point being that no single agent was load-bearing. And Genesis reimplemented 13 MESA modules (100k+ lines of Fortran) as a ~90k-line Rust workspace, reporting median speedups of 1.55–6.87x across six numerical workloads.\u003c/p\u003e\n\u003cp\u003eThese are the authors' own reported results on self-chosen tasks, not a shared benchmark, so treat the numbers as an existence proof rather than a comparison. The transferable idea is the architectural one: for long-horizon agentic work, durable, accepted, versioned state may be a better place to put continuity than an agent's context.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Beichen Huang",
+      "Zhenyu Liang",
+      "Bowen Zheng",
+      "Ran Cheng"
+    ],
+    "url": "https://arxiv.org/abs/2608.10450",
+    "published_at": "2026-08-12",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "paper",
+    "open-source"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-13",
+  "date": "2026-08-12",
+  "related": [
+    {
+      "id": "card_000849",
+      "slug": "govern-the-repository-not-the-agent",
+      "type": "paper",
+      "title": "Govern the Repository, Not the Agent",
+      "hook": "Across 930,000+ agent-authored pull requests, half the friction of merging code traces to the repository, not the agent — and AI contributions concentrate that risk 2x more than human ones.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-26"
+    },
+    {
+      "id": "card_b9fac2",
+      "slug": "learning-on-the-job-frozen-weight-agents",
+      "type": "paper",
+      "title": "Agents That Learn on the Job Without Weight Updates",
+      "hook": "An agent that cracks a hard request today starts from zero tomorrow. Distil each episode into a retrievable rule and a frozen model gets 2.6x better — no fine-tuning.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    },
+    {
+      "id": "card_488a94",
+      "slug": "long-horizon-terminal-bench",
+      "type": "paper",
+      "title": "Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks",
+      "hook": "46 terminal tasks that take hours, not minutes — and today's best agent still only nails 15% of them, with the average model managing barely 4%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-09"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_80c974#0",
+      "format": "flip",
+      "prompt": "What does Genesis make persistent instead of the agent?",
+      "back_html": "\u003cp\u003eThe software project itself. Each local \u0026quot;world\u0026quot; is an accepted version plus a repository path; finite-lived agents come and go, and only accepted changes advance the shared version history.\u003c/p\u003e"
+    },
+    {
+      "id": "card_80c974#1",
+      "format": "quiz",
+      "prompt": "Why does making the project (not the agent) persistent help on long-horizon software work?",
+      "choices": [
+        {
+          "text": "Projects outlive any one agent's context or session, so continuity lives in accepted state rather than in memory an agent must carry",
+          "correct": true
+        },
+        {
+          "text": "It removes the need for tests, since accepted versions are correct by construction",
+          "correct": false
+        },
+        {
+          "text": "It lets a single agent hold the entire codebase in its context window",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eComplex systems develop over timescales longer than any coding agent's lifespan. Genesis stores continuity in the versioned project, so agents can be replaced without losing progress — the paper reports development continuing through repeated agent replacement with test performance retained.\u003c/p\u003e"
+    },
+    {
+      "id": "card_80c974#2",
+      "format": "flip",
+      "prompt": "What does 'recursive delegation' do in Genesis?",
+      "back_html": "\u003cp\u003eIt moves work across repository paths — a world can spawn sub-worlds at deeper paths — so responsibility is scoped locally instead of one agent reasoning over the whole repo.\u003c/p\u003e"
+    }
+  ]
+}

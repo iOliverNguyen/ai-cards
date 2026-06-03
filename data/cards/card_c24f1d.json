@@ -1,0 +1,138 @@
+{
+  "id": "card_c24f1d",
+  "slug": "harness-handbook",
+  "type": "paper",
+  "title": "Harness Handbook: Making Evolving Agent Harnesses Readable, Navigable, and Editable",
+  "hook": "An agent is only as good as its harness — the code that builds prompts, manages state, calls tools. The real bottleneck isn't editing that code, it's finding where a behavior lives in a huge codebase.",
+  "key_points": [
+    "An agent's capability depends as much on its harness (prompting, state, tool invocation, execution coordination) as on the foundation model underneath it.",
+    "Harnesses evolve constantly, but finding every code location that implements a target behavior is hard — production harnesses are large, tightly coupled, and behaviorally distributed.",
+    "Introduces the Harness Handbook: a behavior-centric map synthesized automatically via static analysis plus LLM-assisted structuring, linking each behavior to its source code.",
+    "Pairs it with Behavior-Guided Progressive Disclosure (BGPD), which walks agents from high-level behaviors down to implementation details and verifies candidate locations against current source.",
+    "On modification requests across two open-source harnesses, Handbook-assisted planning improves localization and edit-plan quality while using fewer planner tokens — largest gains on scattered, rarely-run, or cross-module behaviors."
+  ],
+  "content_html": "\u003cp\u003eAn AI agent's capability comes from two things: its foundation model, and its harness — the surrounding code that builds prompts, tracks state, invokes tools, and coordinates execution. Harnesses have to keep changing as models, APIs, and requirements evolve, but this paper zeroes in on a step that happens \u003cem\u003ebefore\u003c/em\u003e any edit: figuring out where in a large, tightly-coupled codebase a given behavior actually lives.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eRuhan Wang and colleagues call this behavior localization, and argue it's a central bottleneck in harness evolution — code search and long-context reading still leave the mapping from \u0026quot;what the system should do\u0026quot; to \u0026quot;which files implement it\u0026quot; for a human or agent to reconstruct by hand. Their fix is the Harness Handbook: a behavior-centric representation built automatically from a harness codebase via static analysis and LLM-assisted structuring, which links each behavior directly to its implementing source. Alongside it, Behavior-Guided Progressive Disclosure (BGPD) walks an agent from high-level behaviors down to relevant implementation details, checking candidate locations against the current source as it goes.\u003c/p\u003e\n\u003cp\u003eTested on real modification requests against two open-source harnesses, Handbook-assisted planning improves both localization accuracy and edit-plan quality while spending fewer planner tokens — with the biggest wins on behaviors that are scattered across files, rarely exercised, or crossing module boundaries. The paper's framing: evolving a complex agentic system isn't just about generating good edits, it's about knowing where those edits belong. Wang and colleagues, arXiv 2026 (157 HF community upvotes).\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ruhan Wang",
+      "Yucheng Shi",
+      "Zongxia Li",
+      "Zhongzhi Li",
+      "Yue Yu",
+      "Junyao Yang",
+      "Kishan Panaganti",
+      "Haitao Mi",
+      "Dongruo Zhou",
+      "Leoweiliang"
+    ],
+    "url": "https://arxiv.org/abs/2607.13285",
+    "published_at": "2026-07-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "training",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-14",
+  "related": [
+    {
+      "id": "card_b2c4ec",
+      "slug": "harness-1-search-agents",
+      "type": "paper",
+      "title": "Harness-1: RL for Search Agents with State-Externalizing Harnesses",
+      "hook": "Stop making the policy remember everything. Harness-1 moves a search agent's bookkeeping into the environment, so RL only has to learn the decisions that matter.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-01"
+    },
+    {
+      "id": "card_1b799b",
+      "slug": "agentic-environment-engineering-survey",
+      "type": "paper",
+      "title": "Agentic Environment Engineering: A Survey",
+      "hook": "Agents only get as good as the worlds they practice in. This survey maps the full lifecycle of agent environments — how we model, synthesize, evaluate, and grow them.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-06-10"
+    },
+    {
+      "id": "card_11253d",
+      "slug": "shippy-lessons-building-agents",
+      "type": "blog",
+      "title": "What Building Shippy Taught Us About Building Agents",
+      "hook": "When a wrong answer can send a patrol boat miles off course, Ai2's maritime agent Shippy leans on deterministic tools and sandboxed sessions instead of hoping the model behaves.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_c24f1d#0",
+      "format": "flip",
+      "prompt": "According to this paper, why is 'behavior localization' a central bottleneck in evolving an agent harness?",
+      "back_html": "\u003cp\u003eModification requests describe what the system should do, but harnesses are organized by files and modules, are large and tightly coupled, and spread a given behavior across many code locations — so finding all the right places to edit is hard.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c24f1d#1",
+      "format": "quiz",
+      "prompt": "What is the Harness Handbook?",
+      "choices": [
+        {
+          "text": "A behavior-centric representation, synthesized via static analysis and LLM-assisted structuring, that links each behavior to its source code",
+          "correct": true
+        },
+        {
+          "text": "A manually-written style guide for harness contributors",
+          "correct": false
+        },
+        {
+          "text": "A benchmark dataset of harness bugs",
+          "correct": false
+        },
+        {
+          "text": "A replacement foundation model for agent harnesses",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIt's an automatically-generated map from behaviors to the code that implements them, built to make an evolving harness navigable.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c24f1d#2",
+      "format": "flip",
+      "prompt": "Where did Handbook-Assisted planning show its largest gains?",
+      "back_html": "\u003cp\u003eOn scattered code sites, rarely executed paths, and cross-module interactions — the cases where behavior-to-code mapping is hardest to do by hand.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c24f1d#3",
+      "format": "quiz",
+      "prompt": "Besides improving localization and edit-plan quality, what resource did Handbook-Assisted planning save?",
+      "choices": [
+        {
+          "text": "Planner tokens — it used fewer of them",
+          "correct": true
+        },
+        {
+          "text": "Wall-clock training time for the foundation model",
+          "correct": false
+        },
+        {
+          "text": "The number of open-source harnesses needed for evaluation",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper reports the Handbook approach improves outcomes while using fewer planner tokens, not just better accuracy at any cost.\u003c/p\u003e"
+    }
+  ]
+}

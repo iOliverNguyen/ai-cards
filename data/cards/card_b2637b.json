@@ -1,0 +1,106 @@
+{
+  "id": "card_b2637b",
+  "slug": "k-nearest-neighbors",
+  "type": "concept",
+  "title": "k-Nearest Neighbors",
+  "hook": "The laziest classifier: to label a new point, just find its k closest neighbors in the training set and take a vote - no training required at all.",
+  "key_points": [
+    "No explicit training phase - the entire dataset is the model, stored in memory.",
+    "At prediction time, find the k most similar training points (by distance) and aggregate their labels.",
+    "k controls the bias-variance tradeoff: small k is flexible and noisy, large k is smooth but coarser.",
+    "Prediction is slow on large datasets - computing distances to all training points takes time.",
+    "A great sanity-check baseline and a clean way to build intuition about decision boundaries."
+  ],
+  "content_html": "\u003cp\u003ek-Nearest Neighbors (kNN) is about as simple as ML gets: to classify a new example, find the k training points most similar to it, and let them vote. The class with the most votes wins. There is no fitting step - the algorithm just memorizes the training data.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eSimilarity is usually measured by Euclidean distance, though other distance functions work too. With k=1 you always label the new point with the class of its single nearest neighbor. Increasing k smooths the decision boundary by consulting more neighbors - reducing sensitivity to noise but making the boundary less flexible. For regression, replace the vote with an average of the neighbors' values.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003ekNN builds intuition about how local structure in data determines predictions, and it makes the bias-variance tradeoff with k tangible and visual. It is also a useful baseline: if your sophisticated model cannot beat kNN, something is wrong. Its main practical limit is that it scales poorly - prediction time grows with the size of the training set. The Wikipedia article covers variants and distance metrics in more depth.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "svm-kernels"
+  ],
+  "tags": [
+    "classic-ml",
+    "foundational"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-06-03",
+  "date": "2026-06-03",
+  "related": [
+    {
+      "id": "card_dafe4a",
+      "slug": "k-means-clustering",
+      "type": "concept",
+      "title": "k-Means Clustering",
+      "hook": "Pick k cluster centers, assign every point to the nearest one, move each center to the mean of its points, repeat - clusters emerge without any labels.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-03"
+    },
+    {
+      "id": "card_cc73e9",
+      "slug": "support-vector-machines",
+      "type": "paper",
+      "title": "Support-Vector Networks (SVMs)",
+      "hook": "An SVM draws the decision boundary that maximizes the gap to the nearest training points - the wider the margin, the better it generalizes to new data.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "1995-09-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b2637b#0",
+      "format": "flip",
+      "prompt": "Why is kNN called a 'lazy' classifier?",
+      "back_html": "\u003cp\u003eThere is no training phase - it just memorizes the dataset, then at prediction time finds the k closest points and votes.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b2637b#1",
+      "format": "quiz",
+      "prompt": "How does the choice of k affect kNN's bias-variance tradeoff?",
+      "choices": [
+        {
+          "text": "Small k is flexible but noisy; large k is smoother but coarser",
+          "correct": true
+        },
+        {
+          "text": "Small k is smoother; large k is more flexible",
+          "correct": false
+        },
+        {
+          "text": "k has no effect on the decision boundary",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIncreasing k consults more neighbors, smoothing the boundary and reducing noise sensitivity at the cost of flexibility.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b2637b#2",
+      "format": "quiz",
+      "prompt": "What is kNN's main practical limitation?",
+      "choices": [
+        {
+          "text": "Prediction is slow - it must compute distances to all training points",
+          "correct": true
+        },
+        {
+          "text": "It requires a long, expensive training phase",
+          "correct": false
+        },
+        {
+          "text": "It cannot be used for regression",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSince the whole dataset is the model, prediction time grows with the training set size. Regression works by averaging neighbors.\u003c/p\u003e"
+    }
+  ]
+}

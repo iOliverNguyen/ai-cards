@@ -1,0 +1,139 @@
+{
+  "id": "card_6db282",
+  "slug": "probe-direction-property-of-prompt",
+  "type": "paper",
+  "title": "A Probe Direction Is a Property of Its Prompt",
+  "hook": "Two published studies disagree about whether bigger models better sense they're being evaluated. Both trends are reproducible from one design — by changing only the prompt.",
+  "key_points": [
+    "Probes for 'the model knows it's being tested' contrast activations on evaluation-announcing prompts against ordinary ones, then report separation on held-out cases.",
+    "The method has an undisclosed free parameter: which prompt counts as 'announcing an evaluation' is a choice among many, and holding task text fixed while varying it moves the score.",
+    "Two published studies that disagree about the direction of the scaling trend are both reproducible from a single design by prompt choice alone.",
+    "The model under study accounts for only a small share of variance in the number reported about it; most lies in model-prompt interaction.",
+    "Consequence: collecting more evaluation items cannot repair the measurement, but varying prompts can.",
+    "A control finds the scored split is largely separable from surface form alone — a direction carrying no evaluation information still reproduces a substantial fraction of each published score."
+  ],
+  "content_html": "\u003cp\u003eIf a model behaves differently when it senses it's being tested, our evaluations are compromised — so a line of work tries to read that sense straight off the activations. The recipe is standard: contrast activations on prompts that announce an evaluation against prompts that don't, extract a direction, report how well it separates held-out cases, and compare that number across models and against scale.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eNoël's observation is that the instrument has a dial its readings don't report. \u0026quot;A prompt that announces an evaluation\u0026quot; isn't a prompt; it's a choice among many, and nothing in the method pins it down. Hold the task text fixed, vary only that choice, and the reported score moves — and so does the direction in which it trends with model size. Two published studies that disagree about the \u003cem\u003esign\u003c/em\u003e of that trend are both reproducible from a single design, by prompt choice alone.\u003c/p\u003e\n\u003cp\u003eReframed as a measurement-design problem, the variance decomposition is damning: the model under study accounts for a small share of the variance in the number reported about it, and most of the rest is how each model responds to each prompt. That has a sharp practical corollary — adding evaluation items cannot repair the measurement, because item noise isn't the problem; varying prompts can. A further control lands harder still: the scored split is largely separable from surface form alone, so a direction carrying no evaluation information whatsoever still reproduces a substantial fraction of each published score. The paper concludes single-prompt designs can't support cross-model comparison, and gives a target number of prompts for one that can.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Valentin Noël"
+    ],
+    "url": "https://arxiv.org/abs/2608.13329",
+    "published_at": "2026-08-13",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "papers-this-week",
+    "evals-safety"
+  ],
+  "tags": [
+    "interpretability",
+    "paper",
+    "benchmark",
+    "safety"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-17",
+  "date": "2026-08-13",
+  "related": [
+    {
+      "id": "card_6e175b",
+      "slug": "internal-state-probes-misalignment-monitoring",
+      "type": "paper",
+      "title": "Internal-State Probes Read the Situation, Not the Action",
+      "hook": "Probes that seem to detect an LLM's harmful intent before it acts mostly just detect the prompt's topic — three careful tests find they don't predict future misbehavior.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-29"
+    },
+    {
+      "id": "card_e2857d",
+      "slug": "sae-interventions-unreliable",
+      "type": "paper",
+      "title": "SAE Interventions Are Unreliable",
+      "hook": "Clamping a 'harmful' sparse-autoencoder feature looks like it stops bad behavior — but this paper recovers it 95.8% of the time, exposing the gap between feature-level and real control.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-16"
+    },
+    {
+      "id": "card_73f262",
+      "slug": "llm-forecasters-internal-probes-calibration",
+      "type": "paper",
+      "title": "What LLM Forecasters Know but Don't Say",
+      "hook": "A forecasting model's chain-of-thought can look untouched by evidence that actually flipped its answer — but its hidden activations give the real story away.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-09"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_6e175b",
+      "slug": "internal-state-probes-misalignment-monitoring",
+      "type": "paper",
+      "title": "Internal-State Probes Read the Situation, Not the Action",
+      "hook": "Probes that seem to detect an LLM's harmful intent before it acts mostly just detect the prompt's topic — three careful tests find they don't predict future misbehavior.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-29"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_6db282#0",
+      "format": "quiz",
+      "prompt": "What hidden free parameter does this paper identify in evaluation-awareness probing?",
+      "choices": [
+        {
+          "text": "Which specific prompt is used to 'announce an evaluation' — a choice the method never fixes",
+          "correct": true
+        },
+        {
+          "text": "Which layer of the network activations are read from",
+          "correct": false
+        },
+        {
+          "text": "The regularization strength of the linear probe",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003e\u0026quot;A prompt that announces an evaluation\u0026quot; is not one prompt but a family of them. Holding task text fixed and varying only that choice moves the reported score and even the sign of its scaling trend.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6db282#1",
+      "format": "flip",
+      "prompt": "Why can't you fix this measurement by collecting more evaluation items?",
+      "back_html": "\u003cp\u003eThe variance lives in model-prompt interaction, not in item sampling noise. More items shrink the wrong error bar; varying prompts is what addresses the actual source.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6db282#2",
+      "format": "flip",
+      "prompt": "What does the surface-form control show?",
+      "back_html": "\u003cp\u003eThe scored split is largely separable from surface form alone, so a direction carrying no information about evaluation at all still reproduces a substantial fraction of each published score.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6db282#3",
+      "format": "quiz",
+      "prompt": "What is the paper's conclusion about comparing models with these probes?",
+      "choices": [
+        {
+          "text": "A single-prompt design cannot support model-to-model comparison",
+          "correct": true
+        },
+        {
+          "text": "The probes are valid, but only for models above a certain scale",
+          "correct": false
+        },
+        {
+          "text": "Activation probing should be abandoned in favor of behavioral evaluation",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper treats the prompt as a facet of measurement design rather than an implementation detail, and gives the number of prompts a defensible comparison requires.\u003c/p\u003e"
+    }
+  ]
+}

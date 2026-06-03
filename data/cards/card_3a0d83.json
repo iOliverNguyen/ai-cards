@@ -1,0 +1,102 @@
+{
+  "id": "card_3a0d83",
+  "slug": "gui-vs-cli-computer-use-agents",
+  "type": "paper",
+  "title": "GUI vs. CLI: Where Computer-Use Agents Get Stuck",
+  "hook": "Should an agent click buttons or type commands? A matched benchmark giving both the same 440 tasks finds GUI agents win by default — but CLI agents leap ahead once their skill library is filled in.",
+  "key_points": [
+    "Computer-use agents can act through graphical interfaces (clicking) or command-line interfaces (typing commands).",
+    "Prior comparisons confound modality with different tasks, states, and verifiers; this work matches all of them across 440 desktop tasks, 18 apps, 12 categories.",
+    "The strongest screen-only GUI agent reaches 59.1% full pass vs 48.2% for the strongest original-skill CLI agent.",
+    "Adding verifier-guided skill coverage lifts the CLI agent to 69.3% — so most of its deficit was missing skills, not weak reasoning.",
+    "Different bottlenecks: GUI agents struggle with reliable grounded interaction over long workflows; CLI agents with skill coverage and scalability."
+  ],
+  "content_html": "\u003cp\u003eWhen an AI agent operates a computer, it can work like a person — looking at the screen and clicking — or like a developer, issuing commands through a CLI. \u003cstrong\u003eThis paper builds a fair fight between the two\u003c/strong\u003e and finds the answer is less about modality than about what's been built around each.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eA matched benchmark\u003c/h2\u003e\n\u003cp\u003ePast comparisons mixed up the interaction modality with everything else: different tasks, starting states, verifiers, and allowed actions. The authors instead give screen-only GUI agents and skill-mediated CLI agents the \u003cem\u003esame\u003c/em\u003e 440 desktop tasks across 18 applications and 12 workflow categories, with identical goals, states, and final-state verifiers — each restricted to its native actions.\u003c/p\u003e\n\u003ch2\u003eThe findings\u003c/h2\u003e\n\u003cp\u003eBy default the strongest GUI agent wins, hitting a 59.1% full pass rate versus 48.2% for the best original-skill CLI agent. But that gap is misleading: when the CLI agent's skill library is expanded with verifier-guided augmentation, its success jumps to \u003cstrong\u003e69.3%\u003c/strong\u003e, overtaking the GUI agent. The deficit was mostly \u003cem\u003emissing skills\u003c/em\u003e, not weaker reasoning. The two modalities expose different failure modes — GUI agents are bottlenecked by reliable grounded interaction over long workflows, while CLI agents are bottlenecked by how completely and scalably their skill interfaces cover the task space.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xiao Zhou",
+      "Siyue Zhang",
+      "Yilun Zhao",
+      "Jinbiao Wei",
+      "Tingyu Song",
+      "Arman Cohan",
+      "Chen Zhao"
+    ],
+    "url": "https://arxiv.org/abs/2606.24551",
+    "published_at": "2026-06-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-29",
+  "date": "2026-06-22",
+  "related": [
+    {
+      "id": "card_72286a",
+      "slug": "gemini-3-5-flash-computer-use",
+      "type": "news",
+      "title": "Computer Use in Gemini 3.5 Flash",
+      "hook": "DeepMind put computer-use agents — reading the screen, then clicking, typing, and scrolling through real UIs — into its fast, low-cost Flash tier.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-24"
+    },
+    {
+      "id": "card_2e50ab",
+      "slug": "claude-agent-skills",
+      "type": "news",
+      "title": "Claude Agent Skills",
+      "hook": "Agent Skills package instructions, scripts, and resources into folders an agent loads on demand — composable, portable expertise, later opened as a standard like MCP.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2025-10-16"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_3a0d83#0",
+      "format": "flip",
+      "prompt": "Why did this benchmark match tasks, states, and verifiers across GUI and CLI agents?",
+      "back_html": "\u003cp\u003eBecause earlier comparisons confounded interaction modality with differences in tasks, initial states, verifiers, and permitted actions — so you couldn't tell whether the modality or the setup drove the result.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3a0d83#1",
+      "format": "quiz",
+      "prompt": "What did adding verifier-guided skill coverage reveal about CLI agents?",
+      "choices": [
+        {
+          "text": "Much of the CLI deficit came from incomplete skill coverage, not weaker model capability — success rose from 48.2% to 69.3%",
+          "correct": true
+        },
+        {
+          "text": "CLI agents are fundamentally incapable of these tasks",
+          "correct": false
+        },
+        {
+          "text": "Skill coverage made no difference to CLI performance",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eWith augmented skills, the CLI agent jumped past the best GUI agent, showing the gap was largely about the coverage and scalability of its skill interface.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3a0d83#2",
+      "format": "flip",
+      "prompt": "What distinct bottleneck limits GUI agents vs CLI agents?",
+      "back_html": "\u003cp\u003eGUI agents are limited by reliable grounded interaction over long-horizon workflows; CLI agents are limited by the coverage and scalability of their skill interfaces.\u003c/p\u003e"
+    }
+  ]
+}

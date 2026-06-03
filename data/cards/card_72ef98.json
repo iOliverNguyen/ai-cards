@@ -1,0 +1,109 @@
+{
+  "id": "card_72ef98",
+  "slug": "illusion-of-equivalency-quantization",
+  "type": "paper",
+  "title": "The Illusion of Equivalency: Why 'Same Accuracy' Doesn't Mean 'Same Model'",
+  "hook": "Two quantized models can score identically on accuracy while disagreeing on which individual examples they get right — a gap standard benchmarks are structurally blind to.",
+  "key_points": [
+    "Introduces 'correctness agreement': a decision-level metric measuring how much a quantized model's per-example correct/incorrect pattern overlaps with the base model's, independent of overall accuracy.",
+    "Across models and quantization schemes from 8-bit down to 2-bit, behavioral divergence shows up under moderate quantization even when aggregate accuracy looks preserved.",
+    "Analyzing quantization as a structural operator on attention weights reveals non-linear breakpoints at low bit-widths, not a smooth degradation curve.",
+    "Query and key projections are consistently more sensitive to quantization distortion than value and output projections.",
+    "Conclusion: accuracy and perplexity alone create an 'illusion of equivalence' between base and quantized models; evaluation needs a behavioral, decision-level lens too."
+  ],
+  "content_html": "\u003cp\u003eA quantized model can post the same accuracy score as its full-precision counterpart and still be a meaningfully different model underneath — getting different individual examples right and wrong.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eStandard quantization evaluation leans almost entirely on accuracy and perplexity, aggregate numbers that can't see this. The authors introduce \u003cstrong\u003ecorrectness agreement\u003c/strong\u003e, a decision-level metric that checks how much a quantized model's per-example correct/incorrect pattern overlaps with the base model's, regardless of whether overall accuracy matches. Testing multiple models and quantization schemes from 8-bit down to 2-bit, they find real behavioral divergence emerges under moderate quantization even when task performance appears preserved. Digging into why, they analyze quantization as a structural operator on attention weights and find \u003cstrong\u003enon-linear breakpoints\u003c/strong\u003e at low bit-widths — sudden jumps in distortion rather than a smooth decline — with \u003cstrong\u003equery and key projections consistently more sensitive\u003c/strong\u003e than value and output projections. The takeaway: accuracy and perplexity alone create an illusion of equivalence between a base model and its quantized variant, and evaluation needs a behavioral, per-example lens as well. From arXiv, 2026-07-09.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Baha Rababah",
+      "Cuneyt Gurcan Akcora",
+      "Carson K. Leung"
+    ],
+    "url": "https://arxiv.org/abs/2607.08734",
+    "published_at": "2026-07-09",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "quantization",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "interpretability",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-13",
+  "date": "2026-07-09",
+  "related": [
+    {
+      "id": "card_20b368",
+      "slug": "qwen3-6-nvfp4-unsloth-quants",
+      "type": "news",
+      "title": "Unsloth's NVFP4 Qwen3.6 Quants Beat NVIDIA's Own — by Actually Using 4-bit Math",
+      "hook": "Unsloth's NVFP4 quants for Qwen3.6 run up to 2.5x faster than NVIDIA's official NVFP4 release, with no measured accuracy loss — by quantizing activations too, not just weights.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-10"
+    },
+    {
+      "id": "card_d01b1d",
+      "slug": "gptq",
+      "type": "paper",
+      "title": "GPTQ: Accurate Post-Training Quantization",
+      "hook": "Already trained a giant LLM? GPTQ squeezes its weights down to 3–4 bits afterward — no retraining — with surprisingly little quality loss.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-10-31"
+    },
+    {
+      "id": "card_9d933c",
+      "slug": "awq-quantization",
+      "type": "paper",
+      "title": "AWQ: Activation-Aware Weight Quantization",
+      "hook": "Not all weights are equal - protect the 1% that matter most (flagged by activation magnitude) and quantize the rest to 4-bit with minimal quality loss.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2023-06-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_72ef98#0",
+      "format": "flip",
+      "prompt": "What is 'correctness agreement' and why does it catch something accuracy misses?",
+      "back_html": "\u003cp\u003eA decision-level metric measuring how much a quantized model's per-example correct/incorrect pattern overlaps with the base model's — independent of overall accuracy. Two models can match on aggregate accuracy while disagreeing on which specific examples they get right.\u003c/p\u003e"
+    },
+    {
+      "id": "card_72ef98#1",
+      "format": "quiz",
+      "prompt": "What did the authors find about how quantization distortion scales with bit-width?",
+      "choices": [
+        {
+          "text": "Non-linear breakpoints appear at low bit-widths, rather than a smooth, gradual degradation",
+          "correct": true
+        },
+        {
+          "text": "Distortion increases perfectly linearly as bit-width drops",
+          "correct": false
+        },
+        {
+          "text": "Distortion is identical across all bit-widths from 8-bit to 2-bit",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAnalyzing quantization as a structural operator on attention weights, the paper reports non-linear breakpoints — sudden jumps in distortion at certain low bit-widths — rather than steady, predictable decline.\u003c/p\u003e"
+    },
+    {
+      "id": "card_72ef98#2",
+      "format": "flip",
+      "prompt": "Which attention projections are more sensitive to quantization: query/key, or value/output?",
+      "back_html": "\u003cp\u003eQuery and key projections are consistently more sensitive to quantization-induced distortion than value and output projections.\u003c/p\u003e"
+    }
+  ]
+}

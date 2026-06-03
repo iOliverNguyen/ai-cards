@@ -1,0 +1,123 @@
+{
+  "id": "card_62ba4a",
+  "slug": "video-generation-models-general-purpose-vision-learners",
+  "type": "paper",
+  "title": "Video Generation Models Are General-Purpose Vision Learners",
+  "hook": "Next-token prediction turned NLP into a generalist. This paper argues text-to-video generation can do the same for vision — one backbone, many tasks, beating specialists.",
+  "key_points": [
+    "Argues text-to-video generation is vision's equivalent of next-token prediction: one pretraining paradigm, generalist visual intelligence.",
+    "GenCeption turns a pretrained video-diffusion backbone into one feed-forward model that performs many vision tasks steered by text instructions.",
+    "Matches or beats specialists (DepthAnything3, SAM3, VGGT-Omega, Sapiens, David) on depth, normals, camera pose, segmentation, 3D keypoints.",
+    "Outperforms alternative video-pretraining objectives (V-JEPA, VideoMAE) under matched settings.",
+    "Strikingly data-efficient: matches leading specialist models using 7-500x less training data.",
+    "Trained only on synthetic human videos, yet generalizes to real footage and out-of-distribution categories like animals and robots."
+  ],
+  "content_html": "\u003cp\u003eNLP's leap into generalist foundation models rode on one simple, scalable idea: predict the next token. This paper, from a team including Kaiming He, Andrew Zisserman, and Joao Carreira, argues computer vision has its own equivalent — large-scale text-to-video generation — and backs it with GenCeption, which turns a pretrained video-diffusion backbone into a single feed-forward perception system steerable by text instructions.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eAcross depth estimation, surface normals, camera pose, expression-referring segmentation, and 3D keypoint prediction, GenCeption matches or beats specialized systems like DepthAnything3, SAM3, VGGT-Omega, Sapiens, and David — despite being one general model doing all of it. The video-generative backbone also beats alternative pretraining objectives such as V-JEPA and VideoMAE, and needs 7-500x less training data than leading task-specific models to reach comparable results. Most strikingly, a version trained only on synthetic human videos still generalizes to real footage and unfamiliar categories like animals and robots — evidence, the authors argue, that video generation is a foundational path to generalist vision intelligence, not just a synthesis tool.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Letian Wang",
+      "Chuhan Zhang",
+      "Andrew Zisserman",
+      "Joao Carreira",
+      "Kaiming He",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.09024",
+    "published_at": "2026-07-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "multimodal-vision",
+    "video-audio",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "vision",
+    "generative",
+    "paper"
+  ],
+  "importance": 5,
+  "difficulty": "deep",
+  "created_at": "2026-07-16",
+  "date": "2026-07-10",
+  "related": [
+    {
+      "id": "card_963731",
+      "slug": "vision-as-unified-multimodal-generation",
+      "type": "paper",
+      "title": "Vision as Unified Multimodal Generation",
+      "hook": "Detection, segmentation, depth, pose — each normally needs its own architecture. This model does all of them as text-and-image generation from one multimodal model, no task-specific heads.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-07"
+    },
+    {
+      "id": "card_c84948",
+      "slug": "flex-forcing-unified-video-diffusion",
+      "type": "paper",
+      "title": "Flex-Forcing: One Video Diffusion Model, Two Inference Modes",
+      "hook": "Video diffusion models used to force a choice: globally coherent but slow, or fast streaming that drifts apart. Flex-Forcing chunks time and denoising steps together so one model does both.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-03"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_62ba4a#0",
+      "format": "flip",
+      "prompt": "What is GenCeption?",
+      "back_html": "\u003cp\u003eA feed-forward perception model built by repurposing a pretrained text-to-video diffusion backbone, steerable by text to perform many distinct vision tasks.\u003c/p\u003e"
+    },
+    {
+      "id": "card_62ba4a#1",
+      "format": "quiz",
+      "prompt": "How does GenCeption's data efficiency compare to specialist models like D4RT and VGGT-Omega?",
+      "choices": [
+        {
+          "text": "It matches their performance using 7-500x less training data",
+          "correct": true
+        },
+        {
+          "text": "It needs roughly the same amount of training data",
+          "correct": false
+        },
+        {
+          "text": "It requires 10x more training data but trains faster",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGenCeption's video-generative pretraining is exceptionally data-efficient, reaching comparable results with far less training data than specialist models.\u003c/p\u003e"
+    },
+    {
+      "id": "card_62ba4a#2",
+      "format": "flip",
+      "prompt": "What surprising generalization did a GenCeption model trained only on synthetic human videos show?",
+      "back_html": "\u003cp\u003eIt generalized to real-world footage and out-of-distribution object categories it never saw in training, like animals and robots.\u003c/p\u003e"
+    },
+    {
+      "id": "card_62ba4a#3",
+      "format": "quiz",
+      "prompt": "What did GenCeption's video-generative backbone outperform under matched pretraining settings?",
+      "choices": [
+        {
+          "text": "Alternative video pretraining paradigms like V-JEPA and VideoMAE",
+          "correct": true
+        },
+        {
+          "text": "Only pure image classification pretraining",
+          "correct": false
+        },
+        {
+          "text": "Only text-based language model pretraining",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eUnder comparable settings, the video-generative pretrained backbone beat V-JEPA and VideoMAE, supporting generation as a stronger perception prior.\u003c/p\u003e"
+    }
+  ]
+}

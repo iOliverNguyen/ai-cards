@@ -1,0 +1,101 @@
+{
+  "id": "card_8e6883",
+  "slug": "wikiskill-agent-experience-wiki",
+  "type": "paper",
+  "title": "WikiSkill: Give the Agent a Wiki, Not Just Skills",
+  "hook": "Auto-discovered agent skills work, but the insight behind them gets lost. WikiSkill keeps a persistent wiki alongside the skills — and skills borrowed from other models beat self-evolved ones.",
+  "key_points": [
+    "Problem: the insights guiding skill development stay scattered across optimization histories and are not systematically reused.",
+    "WikiSkill co-evolves skills with a persistent knowledge base (a wiki).",
+    "It separates three things: raw execution experience, accumulated knowledge, and executable skills.",
+    "Experience is continuously consolidated into the wiki, which later skill updates build on.",
+    "Skill evolution complements scaling: larger models benefit more, but small models with skills can beat much larger models without them.",
+    "Skills transfer across models and families — and skills evolved by other models can beat self-evolved ones."
+  ],
+  "content_html": "\u003cp\u003eAgent skills — packaged workflows and specialized knowledge an agent can call on — can now be discovered automatically from an agent's own experience. Tang and colleagues identify what that loop loses: the \u003cem\u003einsights\u003c/em\u003e that motivated a skill stay buried in the optimization history, so each iteration rediscovers them.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe design\u003c/h2\u003e\n\u003cp\u003eWikiSkill co-evolves skills with a persistent knowledge base, structured as a wiki. The framework keeps three levels apart: raw execution experience, accumulated knowledge, and executable skills. Experience is continuously consolidated into the wiki, and subsequent skill updates build on that accumulated knowledge rather than on raw traces.\u003c/p\u003e\n\u003ch2\u003eResults\u003c/h2\u003e\n\u003cp\u003eAcross diverse benchmarks and models, WikiSkill consistently beats state-of-the-art skill-evolution methods and improves on no-skill baselines in most model-benchmark settings. Ablations confirm the wiki is doing the work: persistent knowledge accumulation is critical, not incidental.\u003c/p\u003e\n\u003cp\u003eTwo findings are worth remembering beyond the method. Skill evolution \u003cem\u003ecomplements\u003c/em\u003e scaling — larger models generally benefit more from evolved skills, yet smaller models with skills can outperform substantially larger models without them. And skills transfer across models and model families, with skills evolved by other models sometimes outperforming self-evolved ones. That makes a skill library look like a portable artifact rather than something each model has to grow for itself.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Liyan Tang",
+      "Cyrus Rashtchian",
+      "Chun-Sung Ferng",
+      "Andrew Tomkins",
+      "Da-Cheng Juan",
+      "Tu Vu"
+    ],
+    "url": "https://arxiv.org/abs/2608.27454",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_7433b9",
+      "slug": "pilot-live-self-improvement",
+      "type": "paper",
+      "title": "PILOT: Self-Improvement While the Run Is Still Going",
+      "hook": "Most agent self-improvement happens after the run ends, too late to save it. PILOT gives a supervisor the power to redirect or abort a live worker — and cuts output tokens by nearly half.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-27"
+    },
+    {
+      "id": "card_8aab1f",
+      "slug": "resource2skill",
+      "type": "paper",
+      "title": "RESOURCE2SKILL: Distilling Executable Agent Skills from Human-Created Multimodal Resources",
+      "hook": "Most agent skill libraries are hand-written text. This framework mines skills straight out of the tutorial videos, repos, and articles humans already made for each other.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-16"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_8e6883#0",
+      "format": "flip",
+      "prompt": "What three things does WikiSkill deliberately keep separate?",
+      "back_html": "\u003cp\u003eRaw execution experience, accumulated knowledge (the wiki), and executable skills. Consolidating experience into knowledge is what lets later skill updates build on earlier insight.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8e6883#1",
+      "format": "quiz",
+      "prompt": "What is the surprising transfer result?",
+      "choices": [
+        {
+          "text": "Skills evolved by other models can outperform a model's own self-evolved skills",
+          "correct": true
+        },
+        {
+          "text": "Skills only transfer between models in the same family",
+          "correct": false
+        },
+        {
+          "text": "Transferred skills always underperform no-skill baselines",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSkills transfer across models and families, and borrowed skills sometimes beat self-evolved ones — so skill libraries look like a shareable artifact, not a per-model asset.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8e6883#2",
+      "format": "flip",
+      "prompt": "How does skill evolution interact with model scale?",
+      "back_html": "\u003cp\u003eThey complement each other: larger models generally benefit more from evolved skills, yet smaller models with skills can outperform substantially larger models without them.\u003c/p\u003e"
+    }
+  ]
+}

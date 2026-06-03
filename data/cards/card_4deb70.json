@@ -1,0 +1,125 @@
+{
+  "id": "card_4deb70",
+  "slug": "smoothquant",
+  "type": "paper",
+  "title": "SmoothQuant: Accurate Post-Training Quantization for LLMs",
+  "hook": "Activations are hard to quantize; weights are easy. SmoothQuant shifts that difficulty from activations into weights with a simple rescaling, enabling clean 8-bit inference.",
+  "key_points": [
+    "LLM activations contain large per-channel outliers that break naive quantization; weights do not.",
+    "Applies a per-channel scaling factor to smooth activation magnitudes, absorbing the inverse into the weight matrix.",
+    "The transformation is mathematically equivalent - no retraining or accuracy drop from the reparameterization itself.",
+    "Enables simultaneous W8A8 (8-bit weight and 8-bit activation) quantization with hardware-efficient INT8 kernels."
+  ],
+  "content_html": "\u003cp\u003eXiao et al. identified a fundamental asymmetry in LLM quantization: weights have smooth, easy-to-quantize distributions, but activations contain large outlier values in specific channels that cause significant error when quantized to 8 bits. SmoothQuant exploits this asymmetry by migrating the quantization difficulty - mathematically - from activations onto weights before quantizing either.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eFor each channel, SmoothQuant divides the activation by a smoothing factor s and multiplies the corresponding weight row by the same s. The net effect on the linear layer's output is zero: it is a reparameterization, not an approximation. After smoothing, activations no longer have extreme outliers, so both activations and weights can be cleanly quantized to INT8. The smoothing factors are calibrated from a small dataset of real inputs.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003ePrior approaches either quantized only weights (leaving activations in FP16) or required expensive fine-tuning. SmoothQuant enables true W8A8 quantization - both multiplied operands in INT8 - which lets models run on commodity hardware with full use of INT8 matrix-multiply throughput. The authors report significant inference speedups on large models with minimal accuracy degradation. Full details are on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Guangxuan Xiao",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2211.10438",
+    "published_at": "2022-11-18",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "quantization"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2022-11-18",
+  "related": [
+    {
+      "id": "card_5bd418",
+      "slug": "llm-int8",
+      "type": "paper",
+      "title": "LLM.int8(): 8-bit Inference for Transformers",
+      "hook": "Big transformers usually run in 16-bit. LLM.int8() halves that to 8-bit integers without losing accuracy — by treating a few rare 'outlier' features with care.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-08-15"
+    },
+    {
+      "id": "card_d01b1d",
+      "slug": "gptq",
+      "type": "paper",
+      "title": "GPTQ: Accurate Post-Training Quantization",
+      "hook": "Already trained a giant LLM? GPTQ squeezes its weights down to 3–4 bits afterward — no retraining — with surprisingly little quality loss.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-10-31"
+    },
+    {
+      "id": "card_9d933c",
+      "slug": "awq-quantization",
+      "type": "paper",
+      "title": "AWQ: Activation-Aware Weight Quantization",
+      "hook": "Not all weights are equal - protect the 1% that matter most (flagged by activation magnitude) and quantize the rest to 4-bit with minimal quality loss.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2023-06-01"
+    },
+    {
+      "id": "card_96f5dc",
+      "slug": "nunchaku-4bit-diffusion",
+      "type": "blog",
+      "title": "Nunchaku: 4-bit Diffusion Inference in Diffusers",
+      "hook": "Diffusion models hate 4-bit — activation outliers wreck image quality. SVDQuant peels the hardest weights into a tiny 16-bit low-rank branch, and Nunchaku now runs it inside Diffusers.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-23"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_5bd418",
+      "slug": "llm-int8",
+      "type": "paper",
+      "title": "LLM.int8(): 8-bit Inference for Transformers",
+      "hook": "Big transformers usually run in 16-bit. LLM.int8() halves that to 8-bit integers without losing accuracy — by treating a few rare 'outlier' features with care.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-08-15"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_4deb70#0",
+      "format": "flip",
+      "prompt": "What asymmetry in LLM quantization does SmoothQuant exploit?",
+      "back_html": "\u003cp\u003eWeights have smooth, easy-to-quantize distributions, while activations contain large per-channel outliers that cause big error at 8 bits.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4deb70#1",
+      "format": "quiz",
+      "prompt": "Why is SmoothQuant's per-channel rescaling not an approximation?",
+      "choices": [
+        {
+          "text": "Dividing the activation by s and multiplying the weight row by s leaves the layer output unchanged",
+          "correct": true
+        },
+        {
+          "text": "It rounds activations to the nearest representable value",
+          "correct": false
+        },
+        {
+          "text": "It fine-tunes the model to recover any lost accuracy",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe scaling is a mathematically equivalent reparameterization with zero net effect on the output, so it introduces no accuracy drop itself.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4deb70#2",
+      "format": "flip",
+      "prompt": "What deployment capability does SmoothQuant enable that weight-only methods don't?",
+      "back_html": "\u003cp\u003eTrue W8A8 — both the weight and activation operands in INT8 — letting models use hardware-efficient INT8 matrix-multiply throughput.\u003c/p\u003e"
+    }
+  ]
+}

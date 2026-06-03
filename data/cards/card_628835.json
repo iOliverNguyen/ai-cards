@@ -1,0 +1,114 @@
+{
+  "id": "card_628835",
+  "slug": "easel-dexterous-visual-tool-use",
+  "type": "paper",
+  "title": "Paint What You See: A Benchmark for Dexterous Visual Tool Use",
+  "hook": "Ask a multimodal agent to repaint a reference image stroke by stroke and it stalls at roughly half-right — then gets worse the longer it works.",
+  "key_points": [
+    "Names a capability existing agent benchmarks miss: fine-grained, closed-loop visual action where tool parameters come from visual evidence.",
+    "EASEL's proxy task is reference-guided reconstruction — the agent incrementally paints a canvas to match a target image.",
+    "Also covers semantic tasks: region annotation, handwriting, and path planning.",
+    "Across 25 evaluated models, reconstruction similarity bottlenecks at 0.40–0.54 — no model gets close to matching the reference.",
+    "Trajectory diagnostics show closed-loop instability: models saturate early or degrade after an early peak.",
+    "EASEL-Data, a 440k-sample two-stage curriculum, trains EASEL-9B to a 6.3% relative gain over its base and third place overall."
+  ],
+  "content_html": "\u003cp\u003eAgent benchmarks mostly test discrete choices: click this, navigate there, edit that file. Liu and colleagues argue a whole capability slips through that net — what they call dexterous visual tool use, where a model must infer continuous tool parameters from what it sees, and those parameters directly govern the outcome. Their benchmark, EASEL, makes the setting concrete: give the agent a reference image and a blank canvas, and have it paint its way to a match, stroke by stroke.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat 25 models showed\u003c/h2\u003e\n\u003cp\u003eReconstruction similarity bottlenecks in the 0.40–0.54 range across every model evaluated — roughly halfway to the reference and no further. More telling than the ceiling is the shape of the attempts: trajectory diagnostics show models saturating early or peaking and then degrading, rather than tightening toward the target. That's a closed-loop control problem, not a perception problem. EASEL's semantic tasks — region annotation, handwriting, path planning — expose similarly sharp boundaries in precision annotation and planning.\u003c/p\u003e\n\u003ch2\u003eCan training fix it?\u003c/h2\u003e\n\u003cp\u003eThe authors ship EASEL-Data, a 440k-sample two-stage curriculum for trajectory supervision, and train EASEL-9B on it. It beats its base model by a relative 6.3% and lands third among all models evaluated — a real gain from targeted supervision, and also a measure of how far the frontier still is from the task. Details and per-task breakdowns in the paper.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Shudong Liu",
+      "Dongyang Chen",
+      "Enci Zhang",
+      "Jinwei Liang",
+      "Zheng Ma",
+      "Lewei Lu"
+    ],
+    "url": "https://arxiv.org/abs/2608.25417",
+    "published_at": "2026-08-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "multimodal",
+    "vision",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_63374b",
+      "slug": "osworld-2-computer-use-agents",
+      "type": "paper",
+      "title": "OSWorld 2.0: Long-Horizon Computer Use, Stress-Tested",
+      "hook": "108 realistic computer-use workflows averaging 1.6 human-hours each expose how far agents are from professional-grade computer use — the best model completes only 20.6%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-28"
+    },
+    {
+      "id": "card_a763c5",
+      "slug": "activevision-benchmark",
+      "type": "paper",
+      "title": "An Exam for Active Observers",
+      "hook": "Human vision is a loop — look, form a hypothesis, look again. A new benchmark for that loop leaves frontier MLLMs scoring single digits, while humans average 96%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-17"
+    },
+    {
+      "id": "card_a9cdbe",
+      "slug": "visual-scaffolds-vlm-spatial-reasoning",
+      "type": "paper",
+      "title": "Visual Scaffolds Reveal What VLM Benchmarks Measure",
+      "hook": "Redraw the same spatial puzzle to make its structure legible and accuracy jumps up to 34 points — so was the benchmark ever testing reasoning?",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-21"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_628835#0",
+      "format": "flip",
+      "prompt": "What does the paper mean by \"dexterous visual tool use\"?",
+      "back_html": "\u003cp\u003eFine-grained, closed-loop parameterized visual action: the model reads tool parameters off visual evidence, and those parameters directly determine the result.\u003c/p\u003e"
+    },
+    {
+      "id": "card_628835#1",
+      "format": "quiz",
+      "prompt": "Why does EASEL use reference-guided painting rather than web or GUI navigation as its proxy task?",
+      "choices": [
+        {
+          "text": "It tightly couples visual evidence to execution precision, which navigation benchmarks rarely test",
+          "correct": true
+        },
+        {
+          "text": "Painting is the only visual task where correctness can be scored automatically",
+          "correct": false
+        },
+        {
+          "text": "GUI benchmarks are already saturated by frontier models",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eExisting benchmarks cover web navigation, GUI operation, and software engineering but rarely target the coupling between what the model sees and how precisely it must act.\u003c/p\u003e"
+    },
+    {
+      "id": "card_628835#2",
+      "format": "flip",
+      "prompt": "What failure pattern did EASEL's trajectory diagnostics reveal?",
+      "back_html": "\u003cp\u003eClosed-loop instability — models typically saturate early in a trajectory, or peak and then degrade instead of steadily converging on the reference.\u003c/p\u003e"
+    }
+  ]
+}

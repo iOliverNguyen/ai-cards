@@ -1,0 +1,119 @@
+{
+  "id": "card_203675",
+  "slug": "adamw",
+  "type": "paper",
+  "title": "AdamW: Decoupled Weight Decay",
+  "hook": "L2 regularization and weight decay are the same thing for plain SGD - but not for Adam. Decoupling them fixes Adam's generalization and makes the best decay value independent of the learning rate.",
+  "key_points": [
+    "Shows L2 regularization equals weight decay for SGD, but the equivalence breaks down for adaptive optimizers like Adam.",
+    "Proposes decoupling weight decay from the gradient-based update step - the AdamW algorithm.",
+    "Decoupling makes the optimal weight-decay factor independent of the learning rate, simplifying tuning.",
+    "Substantially improves Adam's generalization, letting it compete with SGD-with-momentum."
+  ],
+  "content_html": "\u003cp\u003eIlya Loshchilov and Frank Hutter pointed out a subtle bug in how almost everyone was regularizing Adam: people added an L2 penalty to the loss assuming it acts like weight decay, which is true for plain SGD but quietly false for adaptive optimizers. Their fix, AdamW, decouples weight decay from the gradient update and has since become the default optimizer for most large language models.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eFor SGD, adding an L2 term to the loss and shrinking the weights by a fixed factor each step are mathematically equivalent. Adam breaks that equivalence: because it rescales each gradient by a running estimate of its magnitude, the L2 penalty gets rescaled too, so weights with large gradients are effectively decayed less. AdamW separates the two operations - the gradient-based step happens as usual, and weight decay is applied directly to the weights afterward. A useful side effect is that the best weight-decay factor no longer drifts when you change the learning rate, so the two hyperparameters can be tuned independently.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe decoupling substantially improves Adam's generalization, closing much of the gap that had made SGD-with-momentum the better choice for final accuracy. That combination of Adam's fast, robust convergence with proper regularization is why AdamW is now the standard optimizer behind most large language models.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ilya Loshchilov",
+      "Frank Hutter"
+    ],
+    "url": "https://arxiv.org/abs/1711.05101",
+    "published_at": "2017-11-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "optimization"
+  ],
+  "tags": [
+    "training",
+    "foundational",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2017-11-14",
+  "related": [
+    {
+      "id": "card_e41b8a",
+      "slug": "adam-optimizer",
+      "type": "paper",
+      "title": "Adam: The Default Optimizer",
+      "hook": "Adam gives every parameter its own adaptive step size by tracking the gradient's recent average and spread — and it mostly just works.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2014-12-22"
+    },
+    {
+      "id": "card_7921e0",
+      "slug": "gradient-descent",
+      "type": "concept",
+      "title": "Gradient Descent",
+      "hook": "Lost in fog on a hillside, you'd feel for the steepest downhill step and take it, again and again. That's how models learn.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_e41b8a",
+      "slug": "adam-optimizer",
+      "type": "paper",
+      "title": "Adam: The Default Optimizer",
+      "hook": "Adam gives every parameter its own adaptive step size by tracking the gradient's recent average and spread — and it mostly just works.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2014-12-22"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_203675#0",
+      "format": "quiz",
+      "prompt": "Why does adding an L2 penalty to the loss behave differently in Adam than in SGD?",
+      "choices": [
+        {
+          "text": "Adam rescales each gradient by its magnitude, so the L2 penalty gets rescaled too — weights with large gradients decay less",
+          "correct": true
+        },
+        {
+          "text": "Adam ignores the L2 term entirely",
+          "correct": false
+        },
+        {
+          "text": "L2 only works with momentum, which Adam lacks",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eL2 = weight decay for SGD, but Adam's per-gradient rescaling distorts the penalty, breaking the equivalence.\u003c/p\u003e"
+    },
+    {
+      "id": "card_203675#1",
+      "format": "flip",
+      "prompt": "What does AdamW change, and what tuning benefit does it bring?",
+      "back_html": "\u003cp\u003eIt decouples weight decay from the gradient update — applying decay directly to the weights afterward. As a side effect, the best decay factor no longer drifts with the learning rate, so the two tune independently.\u003c/p\u003e"
+    },
+    {
+      "id": "card_203675#2",
+      "format": "quiz",
+      "prompt": "What practical improvement did decoupling weight decay deliver?",
+      "choices": [
+        {
+          "text": "Substantially better generalization, letting Adam compete with SGD-with-momentum",
+          "correct": true
+        },
+        {
+          "text": "Faster per-step computation",
+          "correct": false
+        },
+        {
+          "text": "Lower memory usage during training",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eProper regularization closed much of the generalization gap, which is why AdamW is now standard for large language models.\u003c/p\u003e"
+    }
+  ]
+}

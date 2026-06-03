@@ -1,0 +1,124 @@
+{
+  "id": "card_710184",
+  "slug": "recgpt-v3",
+  "type": "paper",
+  "title": "RecGPT-V3 Technical Report",
+  "hook": "Taobao's recommender now reasons about intent, not just click history. V3's trick: do that reasoning in compact latent tokens instead of long chain-of-thought, cutting output-token cost 200x at production scale.",
+  "key_points": [
+    "RecGPT-V1 and V2 moved Taobao's recommender from behavior-pattern matching toward reasoning about user intent; V3 targets three scaling pains: stateless reprocessing, a lossy tag-to-item bottleneck, and slow explicit reasoning.",
+    "A Memory Hub keeps structured, continually-updated user memory instead of reprocessing full history each request, cutting user-modeling compute by 55.8%.",
+    "A Hybrid-modal Foundation Model reasons jointly over natural-language tags and Semantic IDs (SIDs), giving a higher-bandwidth channel from language into concrete items.",
+    "Latent Intent Reasoning compresses verbose chain-of-thought into compact, learnable latent tokens that stay decodable into readable explanations — cutting output-token cost 200x.",
+    "Deployed in Taobao's 'Guess What You Like' feed, online A/B tests report IPV +1.28%, CTR +1.00%, GMV +3.97%, and 52.4% lower end-to-end serving resource use."
+  ],
+  "content_html": "\u003cp\u003eRecGPT started as Taobao's bet on recommendation-by-reasoning: instead of just matching co-occurrence patterns in past clicks, model what the user actually wants. V1 proved the idea; V2 scaled it with coordinated multi-agent reasoning. Running that at real production scale, per this report from Bowen Zheng and a large Taobao team, surfaced three separate pain points — recomputing a user's whole history on every request, a natural-language \u0026quot;tag\u0026quot; layer that loses information on the way to actual items, and chain-of-thought reasoning too slow and expensive to run at scale.\u003c/p\u003e\n\u003cp\u003eRecGPT-V3's answer to each: a Memory Hub that maintains condensed, continually-updated user memory instead of reprocessing everything from scratch (55.8% less user-modeling compute); a hybrid-modal foundation model that reasons over both text tags and Semantic IDs so item grounding isn't squeezed through a lossy tag bottleneck; and Latent Intent Reasoning, which compresses the model's reasoning into compact latent tokens instead of long written-out chains of thought, while keeping those tokens decodable back into human-readable explanations. The authors report a 200x cut in output-token cost from that last piece. Deployed in Taobao's \u0026quot;Guess What You Like\u0026quot; feed, they report consistent online A/B gains — including GMV up 3.97% — alongside a 52.4% drop in end-to-end serving resource use.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eWhat stands out is less any single technique than the combination being validated at Taobao's production scale rather than on a benchmark — a rare public look at how a major e-commerce recommender is re-architecting around LLM-style reasoning without paying LLM-style inference costs. Full report linked via the source.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Bowen Zheng",
+      "Chao Yi",
+      "Dian Chen",
+      "Gaoyang Guo",
+      "Han Zhu",
+      "Jiakai Tang",
+      "Jian Wu",
+      "Mao Zhang",
+      "Wen Chen",
+      "Yifan Lu",
+      "Yujie Luo",
+      "Yuning Jiang",
+      "Zhujin Gao",
+      "Bo Zheng",
+      "Dixuan Wang",
+      "Hao Fang",
+      "Jiancai Liu",
+      "Jing Yu",
+      "Ke Chen",
+      "Kewei Zhu",
+      "Mingke Xu",
+      "Wenjun Yang",
+      "Xunke Xi",
+      "Zile Zhou"
+    ],
+    "url": "https://arxiv.org/abs/2607.15591",
+    "published_at": "2026-07-17",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "distillation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "agent",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-17",
+  "related": [
+    {
+      "id": "card_d9c6e9",
+      "slug": "reading-between-the-dots",
+      "type": "paper",
+      "title": "Reading Between the Dots: Hidden Computation in Filler Tokens",
+      "hook": "Frontier models can solve multi-step problems while outputting nothing but dots — no visible reasoning at all. This paper shows that 'hidden' computation is still legible, just not in the output.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-03"
+    },
+    {
+      "id": "card_4fbed7",
+      "slug": "shadow-price-of-reasoning",
+      "type": "paper",
+      "title": "The Shadow Price of Reasoning",
+      "hook": "When you can't afford to let every query think as long as it wants, who gets the compute? Treat reasoning tokens like a scarce resource and economics gives a clean answer.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_710184#0",
+      "format": "flip",
+      "prompt": "What three scaling problems does RecGPT-V3 target that V1/V2 didn't solve?",
+      "back_html": "\u003cp\u003eStateless behavior modeling (reprocessing full user history every request), a lossy tag-to-item information bottleneck, and inefficient explicit reasoning with high latency and compute cost.\u003c/p\u003e"
+    },
+    {
+      "id": "card_710184#1",
+      "format": "quiz",
+      "prompt": "How does Latent Intent Reasoning cut RecGPT-V3's output-token cost by 200x?",
+      "choices": [
+        {
+          "text": "It internalizes verbose reasoning into compact learnable latent tokens that remain decodable into explanations, instead of writing out long chain-of-thought",
+          "correct": true
+        },
+        {
+          "text": "It skips reasoning entirely and returns cached recommendations",
+          "correct": false
+        },
+        {
+          "text": "It shrinks the model's parameter count to speed up decoding",
+          "correct": false
+        },
+        {
+          "text": "It batches many users' requests into a single forward pass",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRather than generating lengthy explicit chain-of-thought text, RecGPT-V3 reasons in a small set of learnable latent tokens that still decode back into readable rationale when needed, avoiding the token cost of verbose reasoning.\u003c/p\u003e"
+    },
+    {
+      "id": "card_710184#2",
+      "format": "flip",
+      "prompt": "What does RecGPT-V3's Memory Hub replace, and what compute saving does it report?",
+      "back_html": "\u003cp\u003eIt replaces reprocessing a user's full history on every request with structured, continually-updated user memory, cutting user-modeling computation by 55.8%.\u003c/p\u003e"
+    }
+  ]
+}

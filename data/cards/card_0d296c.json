@@ -1,0 +1,105 @@
+{
+  "id": "card_0d296c",
+  "slug": "cross-validation",
+  "type": "concept",
+  "title": "Cross-Validation",
+  "hook": "One lucky or unlucky split can flatter or sink your model. Rotate the holdout and average — that's cross-validation.",
+  "key_points": [
+    "k-fold splits the data into k parts, holding out each in turn as the validation set.",
+    "Every example gets used for both training and validation, just never at the same time.",
+    "Averaging across folds gives a more stable, less luck-dependent performance estimate.",
+    "It's especially valuable when data is limited and a single holdout would be noisy."
+  ],
+  "content_html": "\u003cp\u003eCross-validation gives you a sturdier estimate of how a model will perform when you don't have enough data to spare a big, reliable validation set. In k-fold cross-validation you slice the data into k parts, then train k times, each time holding out a different part to validate on, and average the results.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eSplit the data into k roughly equal folds. For each round, train on k−1 of them and evaluate on the one left out, rotating until every fold has served as the holdout exactly once. Averaging the k scores smooths out the noise you'd get from any single arbitrary split, and the spread across folds also hints at how stable your model is.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eWith a small dataset, a single train/validation split can hand you a misleadingly rosy or grim number purely by chance. Cross-validation wrings more signal out of limited data and is the standard way to compare models or tune settings fairly. The cost is compute: you're training the model k times instead of once.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/Cross-validation_(statistics)",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "evaluation"
+  ],
+  "tags": [
+    "foundational"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2026-06-02",
+  "related": [
+    {
+      "id": "card_0a4806",
+      "slug": "train-validation-test-split",
+      "type": "concept",
+      "title": "Train / Validation / Test Splits",
+      "hook": "If you tune and grade on the same data, you'll fool yourself. Keep a test set you never touch until the very end.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_0a4806",
+      "slug": "train-validation-test-split",
+      "type": "concept",
+      "title": "Train / Validation / Test Splits",
+      "hook": "If you tune and grade on the same data, you'll fool yourself. Keep a test set you never touch until the very end.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_0d296c#0",
+      "format": "flip",
+      "prompt": "How does k-fold cross-validation use every example for both training and validation?",
+      "back_html": "\u003cp\u003eIt splits data into k folds and trains k times, each time holding out a different fold to validate on, so each fold serves once as holdout.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0d296c#1",
+      "format": "quiz",
+      "prompt": "Why is cross-validation especially valuable with limited data?",
+      "choices": [
+        {
+          "text": "A single holdout split would be noisy and luck-dependent",
+          "correct": true
+        },
+        {
+          "text": "It eliminates the need for a training set",
+          "correct": false
+        },
+        {
+          "text": "It guarantees the model won't overfit",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eWith small data a single split can hand you a misleadingly rosy or grim number; averaging folds gives a more stable estimate.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0d296c#2",
+      "format": "quiz",
+      "prompt": "What is the main cost of cross-validation?",
+      "choices": [
+        {
+          "text": "Compute: you train the model k times instead of once",
+          "correct": true
+        },
+        {
+          "text": "It requires labeled data, unlike a single split",
+          "correct": false
+        },
+        {
+          "text": "It always produces a biased estimate",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe cost is compute, since you train k times rather than once.\u003c/p\u003e"
+    }
+  ]
+}

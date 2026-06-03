@@ -1,0 +1,108 @@
+{
+  "id": "card_df9c22",
+  "slug": "batch-normalization",
+  "type": "paper",
+  "title": "Batch Normalization",
+  "hook": "Re-center and re-scale each layer's activations on every minibatch, and deep nets suddenly train faster and tolerate much higher learning rates.",
+  "key_points": [
+    "Normalizes each layer's activations using the mean and variance of the current minibatch.",
+    "Lets you use higher learning rates and makes training more stable.",
+    "Reduces sensitivity to weight initialization.",
+    "Has a mild regularizing effect, sometimes reducing the need for dropout.",
+    "Became a standard layer in deep convolutional networks."
+  ],
+  "content_html": "\u003cp\u003eIoffe and Szegedy introduced a layer that normalizes the activations flowing through a network using statistics computed over each minibatch. The result: training converges faster, tolerates higher learning rates, and is far less fussy about initialization — which is why batch norm quickly became a standard ingredient in deep networks.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eFor each minibatch, the layer subtracts the batch's mean and divides by its standard deviation, keeping activations in a well-behaved range. It then applies two learned parameters, a scale and a shift, so the network can recover any distribution it actually needs. At inference time, running averages collected during training stand in for the per-batch statistics.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eBefore batch norm, the distribution of inputs to deep layers shifted constantly during training, forcing tiny learning rates and careful tuning. Stabilizing those distributions made deep networks dramatically easier and faster to train, and the technique paired naturally with architectures like ResNet. It also has a side benefit of mild regularization, which can reduce overfitting.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Sergey Ioffe",
+      "Christian Szegedy"
+    ],
+    "url": "https://arxiv.org/abs/1502.03167",
+    "published_at": "2015-02-11",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "optimization"
+  ],
+  "tags": [
+    "training"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2015-02-11",
+  "related": [
+    {
+      "id": "card_e778b2",
+      "slug": "resnet",
+      "type": "paper",
+      "title": "Deep Residual Learning (ResNet)",
+      "hook": "Stacking more layers used to make networks worse, not better. ResNet's fix — let each layer learn a tweak to its input — unlocked nets over 100 layers deep.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-12-10"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_dd14c6",
+      "slug": "how-neural-networks-learn",
+      "type": "concept",
+      "title": "How Neural Networks Learn: Backpropagation",
+      "hook": "A neural net learns by asking, for every weight, 'how much did you contribute to my mistake?' Backprop answers all of them at once.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2017-10-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_df9c22#0",
+      "format": "flip",
+      "prompt": "What does a batch norm layer do to a layer's activations, and what restores flexibility?",
+      "back_html": "\u003cp\u003eIt subtracts the minibatch mean and divides by its standard deviation, then applies two learned parameters (a scale and a shift) so the network can recover any distribution it needs.\u003c/p\u003e"
+    },
+    {
+      "id": "card_df9c22#1",
+      "format": "quiz",
+      "prompt": "What does batch norm use at inference time, when there's no minibatch?",
+      "choices": [
+        {
+          "text": "Running averages of mean and variance collected during training",
+          "correct": true
+        },
+        {
+          "text": "The statistics of the single test example",
+          "correct": false
+        },
+        {
+          "text": "Fixed values of 0 and 1",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAt inference, running averages gathered during training stand in for the per-batch statistics.\u003c/p\u003e"
+    },
+    {
+      "id": "card_df9c22#2",
+      "format": "quiz",
+      "prompt": "What training benefits did batch norm provide?",
+      "choices": [
+        {
+          "text": "Faster convergence, tolerance of higher learning rates, and less sensitivity to initialization",
+          "correct": true
+        },
+        {
+          "text": "Guaranteed elimination of all overfitting",
+          "correct": false
+        },
+        {
+          "text": "Reduced model size at inference",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eStabilizing layer-input distributions let nets use higher learning rates and care less about init, with mild regularization as a bonus.\u003c/p\u003e"
+    }
+  ]
+}

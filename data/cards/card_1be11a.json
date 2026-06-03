@@ -1,0 +1,105 @@
+{
+  "id": "card_1be11a",
+  "slug": "agent-safety-runtime-contract",
+  "type": "paper",
+  "title": "Agent Safety Should Be a Runtime Contract",
+  "hook": "Safety trained into the weights can't stop an agent that deletes a file or claims a test passed. This position paper argues the unit of safety is the trajectory, not the model.",
+  "key_points": [
+    "Argues training-time alignment (RLHF, DPO, Constitutional AI) is structurally insufficient for agents that execute code and mutate state.",
+    "Proposes safety as a runtime contract enforced by the harness, with two faces: preventive and evidential.",
+    "Preventive face blocks dangerous actions up front — sandboxes, permission gates, output filters, trajectory monitors.",
+    "Evidential face gates task submission on verifiable proof: test runs, log captures, file diffs, citation grounding.",
+    "Grounded in four audits, including 52 documented agent/LLM safety incidents and a false-completion audit.",
+    "A title-level audit of 28,560 NeurIPS/ICML/ICLR 2023–2025 papers finds an 8–12x training-time over deployment-time imbalance."
+  ],
+  "content_html": "\u003cp\u003eThe default story about AI safety is that you install it during training: RLHF, DPO, Constitutional AI, and the model comes out disposed to behave. This position paper argues that story breaks down the moment a model becomes an agent that executes code, mutates files, sends messages, and writes to databases. Safety, the authors say, should be a runtime contract enforced by the harness.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe contract has two faces. The \u003cstrong\u003epreventive\u003c/strong\u003e face is what most people already picture — sandboxes, permission gates, output filters, trajectory monitors — blocking dangerous actions before they land. The \u003cstrong\u003eevidential\u003c/strong\u003e face is the less-discussed half: requiring verifiable proof that the good actions actually happened, gating task submission on hard artifacts like test runs, log captures, file diffs, and citation grounding. That directly targets false completion, where an agent reports success it can't substantiate.\u003c/p\u003e\n\u003cp\u003eAlbus W. Ng and colleagues ground the position in four audits released with the paper: a survey of 52 documented AI-agent and LLM safety incidents, a false-completion audit, a trajectory-schema audit of 12 public agent systems and harnesses, and a title-level audit of all 28,560 papers accepted at NeurIPS, ICML, and ICLR from 2023 to 2025 — which shows a pooled 8–12x imbalance favoring training-time over deployment-time work. They note that computer security and the experimental sciences both converged on runtime contracts with preventive and evidential elements, and argue agentic AI is under the same pressure. arXiv, August 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Albus W. Ng",
+      "Yi Han",
+      "Jusheng Zhang",
+      "Wenhao Wang"
+    ],
+    "url": "https://arxiv.org/abs/2608.11274",
+    "published_at": "2026-08-11",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "safety",
+    "alignment",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-13",
+  "date": "2026-08-11",
+  "related": [
+    {
+      "id": "card_5ff6f6",
+      "slug": "agent-permission-systems-survey",
+      "type": "paper",
+      "title": "How Agents Ask for Permission: User Permissions for AI Agents",
+      "hook": "Most agent-security work assumes one policy fits every user. This survey of 21 proposals plus five commercial agents finds user-level permission handling is still full of gaps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-15"
+    },
+    {
+      "id": "card_adc58b",
+      "slug": "untrusted-content-masking-web-agents",
+      "type": "paper",
+      "title": "Untrusted Content Masking: A Trust Boundary for Web Agents",
+      "hook": "Provable prompt-injection defenses rely on never letting an agent read untrusted content directly. Web agents break that just by looking at the page — this restores it via the page's own structure.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_1be11a#0",
+      "format": "flip",
+      "prompt": "Why do the authors say training-time alignment is structurally insufficient for autonomous agents?",
+      "back_html": "\u003cp\u003eAlignment shapes what a model is inclined to say, but agents execute code, mutate files, send messages, and modify databases. Those effects happen at runtime, so they need to be gated at runtime — by the harness, not the weights.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1be11a#1",
+      "format": "quiz",
+      "prompt": "What are the two complementary faces of the runtime contract the paper proposes?",
+      "choices": [
+        {
+          "text": "Preventive — block dangerous actions before they happen; and evidential — require verifiable proof that good actions happened",
+          "correct": true
+        },
+        {
+          "text": "Pretraining filtering and post-training preference optimization",
+          "correct": false
+        },
+        {
+          "text": "Human review of every action and automated red-teaming of the base model",
+          "correct": false
+        },
+        {
+          "text": "Rate limiting and model watermarking",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe preventive face uses sandboxes, permission gates, output filters, and trajectory monitors. The evidential face gates task submission on hard evidence — test runs, log captures, file diffs, citation grounding.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1be11a#2",
+      "format": "flip",
+      "prompt": "What does the paper say the right unit of safety in agentic AI is?",
+      "back_html": "\u003cp\u003eThe trajectory-with-checkable-evidence — not the model. The authors formalize an Agent Trajectory Schema and an Evidence Chain around that unit.\u003c/p\u003e"
+    }
+  ]
+}

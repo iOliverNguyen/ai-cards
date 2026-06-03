@@ -1,0 +1,87 @@
+{
+  "id": "card_5c8d75",
+  "slug": "chatgpt-critical-thinking-training-rct",
+  "type": "news",
+  "title": "A Randomized Trial on ChatGPT in the Classroom",
+  "hook": "Most claims about AI and student learning come from anecdote. OpenAI ran the other kind of study: over 1,000 students, randomized, on a real university assignment.",
+  "key_points": [
+    "A randomized controlled trial with more than 1,000 students, not a survey or a lab task.",
+    "The assignment was real coursework at a university, so results carry more weight than a toy exercise.",
+    "Two levers are studied together: access to ChatGPT, and explicit critical-thinking training.",
+    "Outcomes measured include answer quality, breadth of thinking, and originality of the work.",
+    "OpenAI frames the headline result as 'better answers, broader thinking' for students who got both.",
+    "Worth reading as vendor-run research: the company studying its own product sets the design and the framing."
+  ],
+  "content_html": "\u003cp\u003eAlmost everything said about AI and student learning is anecdote — a professor's impression, a viral thread, a survey of self-reported habits. OpenAI published something harder to wave away: a randomized study of more than 1,000 students working a real university assignment, looking at what ChatGPT does to the quality, breadth, and originality of their work.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat the design buys you\u003c/h2\u003e\n\u003cp\u003eRandomization matters here. If you simply compare students who use ChatGPT with those who don't, you learn as much about \u003cem\u003ewhich students reach for the tool\u003c/em\u003e as about the tool. Assigning conditions at random breaks that link. Running it on genuine coursework rather than a contrived exercise adds the other half: the stakes, the time pressure, and the messiness are the ones students actually face.\u003c/p\u003e\n\u003cp\u003eThe study pairs two levers rather than one — access to the assistant, and explicit critical-thinking training. That pairing is the interesting part, because it lets you ask whether the tool helps on its own or only helps students who have been taught how to interrogate what it hands them. OpenAI's summary, per its title, is \u0026quot;better answers, broader thinking.\u0026quot;\u003c/p\u003e\n\u003ch2\u003eRead it the way you'd read any vendor study\u003c/h2\u003e\n\u003cp\u003eThis is OpenAI studying OpenAI's product; the company picked the outcome measures and wrote the headline. That doesn't make the trial wrong, and a randomized design is a real commitment. It does mean the framing deserves the same scrutiny the study is teaching students to apply. See the source for the full write-up and methodology.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "authors": [
+      "OpenAI"
+    ],
+    "url": "https://openai.com/index/what-students-gain-from-chatgpt-critical-thinking-training",
+    "published_at": "2026-08-27",
+    "license": "OpenAI blog"
+  },
+  "topic_ids": [
+    "evaluation",
+    "risks-policy",
+    "lab-updates"
+  ],
+  "tags": [
+    "benchmark",
+    "news",
+    "alignment"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-08-27",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_bf9760",
+      "slug": "ai-assistants-overassist",
+      "type": "paper",
+      "title": "AI Tutors Jump In Too Soon",
+      "hook": "Put an LLM in the tutor's seat and it interrupts sooner and more often than a human would — and hands over the whole solution where a person would have offered a hint.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-23"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_5c8d75#0",
+      "format": "quiz",
+      "prompt": "What makes this study stronger evidence than the usual claims about AI and student learning?",
+      "choices": [
+        {
+          "text": "It randomized over 1,000 students on a real university assignment",
+          "correct": true
+        },
+        {
+          "text": "It surveyed students about how helpful they found ChatGPT",
+          "correct": false
+        },
+        {
+          "text": "It compared exam scores before and after ChatGPT was released",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRandomization plus a real coursework task is what separates a controlled trial from self-report or a before/after comparison, where other changes could explain the difference.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5c8d75#1",
+      "format": "flip",
+      "prompt": "The study varies two things at once. What are they?",
+      "back_html": "\u003cp\u003eAccess to ChatGPT, and explicit critical-thinking training — so the design can ask what the tool adds, what the training adds, and whether they need each other.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5c8d75#2",
+      "format": "flip",
+      "prompt": "Why read this result with some caution even though the design is sound?",
+      "back_html": "\u003cp\u003eIt is vendor-run research: OpenAI chose the outcome measures and the framing for a study of its own product. Good design and interested framing can coexist.\u003c/p\u003e"
+    }
+  ]
+}

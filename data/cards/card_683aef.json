@@ -1,0 +1,106 @@
+{
+  "id": "card_683aef",
+  "slug": "constitutional-ai",
+  "type": "paper",
+  "title": "Constitutional AI",
+  "hook": "What if a model could critique and improve its own answers against a written set of principles, instead of relying on humans to label every harmful case?",
+  "key_points": [
+    "Aligns a model using AI-generated feedback guided by a written set of principles — a constitution.",
+    "Cuts the need for large amounts of human labels on harmful content.",
+    "Model critiques and revises its own responses, then learns from those revisions.",
+    "A preference phase (RLAIF) uses AI-generated comparisons in place of human ones for harmlessness."
+  ],
+  "content_html": "\u003cp\u003eYuntao Bai, Saurav Kadavath, and colleagues at Anthropic looked for a way to make a model harmless without humans hand-labeling mountains of toxic examples. Constitutional AI replaces much of that labeling with AI feedback steered by an explicit, written set of principles — a \u0026quot;constitution.\u0026quot; The model critiques and revises its own answers against those principles, then learns from comparisons it generates itself.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eTraining has two phases. In the supervised phase, the model responds to prompts, then critiques its own response against a constitutional principle and rewrites it to be more harmless; it is fine-tuned on these revised answers. In the reinforcement phase — reinforcement learning from AI feedback, or RLAIF — the model generates pairs of responses and uses the constitution to judge which is better, producing preference data without human harmlessness labels. A reward model trained on those AI preferences then guides RL fine-tuning.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eHuman labeling of harmful content is slow, costly, and taxing for the people doing it. By shifting much of the harmlessness signal to AI feedback grounded in stated principles, Constitutional AI makes the rules explicit and auditable rather than buried in opaque labels. It pointed toward a scalable path for alignment where supervision comes partly from the model itself.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yuntao Bai",
+      "Saurav Kadavath",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2212.08073",
+    "published_at": "2022-12-15",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "evals-safety"
+  ],
+  "tags": [
+    "alignment",
+    "safety"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2022-12-15",
+  "related": [
+    {
+      "id": "card_1098fc",
+      "slug": "instructgpt",
+      "type": "paper",
+      "title": "InstructGPT: Aligning LMs with Human Feedback (RLHF)",
+      "hook": "A smaller model people actually like beats a bigger one they don't. InstructGPT used human preferences to make a model follow instructions — the recipe behind ChatGPT.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-03-04"
+    },
+    {
+      "id": "card_395956",
+      "slug": "red-teaming-lms",
+      "type": "paper",
+      "title": "Red Teaming Language Models with Language Models",
+      "hook": "Finding the prompts that make a model misbehave is slow if humans do it by hand. So use another language model to generate those attacks automatically — at scale.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-02-07"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_1098fc",
+      "slug": "instructgpt",
+      "type": "paper",
+      "title": "InstructGPT: Aligning LMs with Human Feedback (RLHF)",
+      "hook": "A smaller model people actually like beats a bigger one they don't. InstructGPT used human preferences to make a model follow instructions — the recipe behind ChatGPT.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-03-04"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_683aef#0",
+      "format": "flip",
+      "prompt": "What does the 'constitution' in Constitutional AI do?",
+      "back_html": "\u003cp\u003eIt is an explicit written set of principles the model uses to critique and revise its own answers, replacing much human harmfulness labeling.\u003c/p\u003e"
+    },
+    {
+      "id": "card_683aef#1",
+      "format": "quiz",
+      "prompt": "What does RLAIF use in place of human comparisons for harmlessness?",
+      "choices": [
+        {
+          "text": "AI-generated preference comparisons judged against the constitution",
+          "correct": true
+        },
+        {
+          "text": "A larger pool of human annotators",
+          "correct": false
+        },
+        {
+          "text": "Rule-based keyword filters",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIn the reinforcement phase (RLAIF), the model judges its own response pairs using the constitution, producing preference data without human harmlessness labels.\u003c/p\u003e"
+    },
+    {
+      "id": "card_683aef#2",
+      "format": "flip",
+      "prompt": "Why is grounding harmlessness in a written constitution advantageous?",
+      "back_html": "\u003cp\u003eIt makes the rules explicit and auditable rather than buried in opaque labels, and points toward scalable alignment supervised partly by the model itself.\u003c/p\u003e"
+    }
+  ]
+}

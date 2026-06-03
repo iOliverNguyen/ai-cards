@@ -1,0 +1,88 @@
+{
+  "id": "card_b42ac2",
+  "slug": "openai-cursor-wind-down",
+  "type": "news",
+  "title": "OpenAI Cuts Off Cursor After the SpaceX Acquisition",
+  "hook": "OpenAI is winding down the contract that supplied its models to Cursor — a reminder that a product built on someone else's API is one corporate deal away from losing it.",
+  "key_points": [
+    "OpenAI announced it will wind down the contract providing its models to the coding tool Cursor.",
+    "The trigger was Cursor's acquisition by SpaceX, not any change in the product itself.",
+    "Model access for an application layer built on a rival's infrastructure is contractual, not guaranteed.",
+    "Illustrates concentration risk: a single-supplier dependency is a business risk, not just an engineering one.",
+    "OpenAI's notice is brief and gives no detail beyond the decision itself."
+  ],
+  "content_html": "\u003cp\u003eOpenAI published a short note on 28 August 2026 saying it will wind down the contract that provided its models to Cursor, following Cursor's acquisition by SpaceX. The product did not change. Its owner did.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eMost AI applications are a thin layer of product over someone else's model API, and that dependency is usually treated as an engineering choice — latency, price, quality. This is a reminder that it is also a commercial one. Access can be withdrawn because of who bought you, who you compete with, or where the supplier's strategy moves next, on a timeline you do not control.\u003c/p\u003e\n\u003cp\u003eThe practical takeaways are the obvious ones, freshly illustrated: keep the model boundary abstracted, know what the fallback is, and understand that \u0026quot;multi-provider support\u0026quot; is a business continuity feature and not just a nice-to-have. OpenAI's statement is a single sentence and offers no further reasoning, so the analysis here is inference from the announced facts.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "authors": [
+      "OpenAI"
+    ],
+    "url": "https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex",
+    "published_at": "2026-08-28",
+    "license": "OpenAI blog"
+  },
+  "topic_ids": [
+    "lab-updates",
+    "ai-for-code"
+  ],
+  "tags": [
+    "news",
+    "agent"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-08-31",
+  "date": "2026-08-28",
+  "related": [
+    {
+      "id": "card_fc42c9",
+      "slug": "nvidia-acquires-hugging-face",
+      "type": "news",
+      "title": "Nvidia Buys Hugging Face",
+      "hook": "The default public home for open-weight models is being bought by the company that sells the chips to run them — reported at roughly $13 billion.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-08-27"
+    },
+    {
+      "id": "card_aea630",
+      "slug": "handoff-tax-agent-model-switching",
+      "type": "paper",
+      "title": "The Handoff Tax: Swapping Models Mid-Run in Coding Agents",
+      "hook": "Escalating a struggling coding agent to a stronger model recovers less than half the quality gap while costing a premium. Downshifting, oddly, is the good deal.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-25"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b42ac2#0",
+      "format": "flip",
+      "prompt": "Why did OpenAI wind down its contract with Cursor?",
+      "back_html": "\u003cp\u003eBecause of Cursor's acquisition by SpaceX — the decision follows the change of ownership, not any change in how the product used the models.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b42ac2#1",
+      "format": "quiz",
+      "prompt": "What general risk does this episode illustrate for AI applications?",
+      "choices": [
+        {
+          "text": "Model access from a single supplier is contractual and can be withdrawn for business reasons",
+          "correct": true
+        },
+        {
+          "text": "Coding agents cannot be built without training your own model",
+          "correct": false
+        },
+        {
+          "text": "Open-weight models are always cheaper than API models",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe product did not change; its owner did. Any application whose core capability comes from one external API inherits that supplier's commercial decisions.\u003c/p\u003e"
+    }
+  ]
+}

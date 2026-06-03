@@ -1,0 +1,106 @@
+{
+  "id": "card_d3603e",
+  "slug": "principal-component-analysis",
+  "type": "concept",
+  "title": "Principal Component Analysis (PCA)",
+  "hook": "Find the directions your data varies most, then keep only the top few - you compress many correlated features into a handful while retaining most of the signal.",
+  "key_points": [
+    "Computes principal components: orthogonal directions of maximum variance in the data.",
+    "Projecting onto the top k components reduces dimensionality while preserving as much variance as possible.",
+    "Requires centering (and usually scaling) the data first.",
+    "Explained variance ratio tells you how much information each component carries.",
+    "Works best when features are correlated; uncorrelated features have nothing to compress."
+  ],
+  "content_html": "\u003cp\u003ePrincipal Component Analysis finds the axes of greatest spread in a dataset and lets you describe each data point using only the most informative of those axes. When many of your original features move together, PCA can capture nearly all of the variation with far fewer numbers.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eAfter centering the data (subtracting the mean), PCA computes a covariance matrix and finds its eigenvectors - the principal components. The first component points in the direction of greatest variance, the second in the direction of greatest remaining variance orthogonal to the first, and so on. Keeping the top k components and discarding the rest gives a low-dimensional representation that minimizes reconstruction error. In practice this is done efficiently with singular value decomposition (SVD).\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003ePCA is a fundamental preprocessing tool for removing redundant features, speeding up downstream models, and visualizing high-dimensional data by plotting the first two or three components. It also underpins many other techniques in signal processing and machine learning. The Wikipedia article covers the linear algebra in detail and is a solid reference for the different computational approaches.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/Principal_component_analysis",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "clustering-dimred"
+  ],
+  "tags": [
+    "classic-ml",
+    "foundational"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2026-06-03",
+  "related": [
+    {
+      "id": "card_dafe4a",
+      "slug": "k-means-clustering",
+      "type": "concept",
+      "title": "k-Means Clustering",
+      "hook": "Pick k cluster centers, assign every point to the nearest one, move each center to the mean of its points, repeat - clusters emerge without any labels.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-03"
+    },
+    {
+      "id": "card_a11395",
+      "slug": "tsne-and-umap",
+      "type": "concept",
+      "title": "t-SNE \u0026 UMAP: Visualizing High-Dimensional Data",
+      "hook": "t-SNE and UMAP squeeze thousands of dimensions into two so you can see whether your model's internal representations form meaningful clusters.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2008-11-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_d3603e#0",
+      "format": "flip",
+      "prompt": "What are principal components?",
+      "back_html": "\u003cp\u003eOrthogonal directions of maximum variance in the data; the first points along greatest spread, each next along the greatest remaining variance.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d3603e#1",
+      "format": "quiz",
+      "prompt": "When does PCA have little to compress?",
+      "choices": [
+        {
+          "text": "When features are uncorrelated",
+          "correct": true
+        },
+        {
+          "text": "When many features move together",
+          "correct": false
+        },
+        {
+          "text": "When the data has been centered",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePCA works best when features are correlated; uncorrelated features have nothing to compress.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d3603e#2",
+      "format": "quiz",
+      "prompt": "What preprocessing step does PCA require before computing components?",
+      "choices": [
+        {
+          "text": "Centering the data (subtracting the mean)",
+          "correct": true
+        },
+        {
+          "text": "Converting features to categories",
+          "correct": false
+        },
+        {
+          "text": "Adding random noise to each feature",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePCA requires centering (and usually scaling) the data first, then computes the covariance matrix and its eigenvectors.\u003c/p\u003e"
+    }
+  ]
+}

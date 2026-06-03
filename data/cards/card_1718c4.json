@@ -1,0 +1,110 @@
+{
+  "id": "card_1718c4",
+  "slug": "mixed-precision-training",
+  "type": "paper",
+  "title": "Mixed Precision Training",
+  "hook": "Store weights, activations, and gradients in 16-bit floats to roughly halve memory - but keep a 32-bit master copy of the weights and scale the loss so tiny gradients don't vanish.",
+  "key_points": [
+    "Stores weights, activations, and gradients in IEEE half-precision (FP16) to cut memory use by nearly 2x.",
+    "Keeps a single-precision (FP32) master copy of the weights that accumulates gradients to preserve accuracy.",
+    "Introduces loss scaling to stop small gradient values from underflowing in FP16.",
+    "Works across CNNs, RNNs, and GANs with 100M+ parameters, matching full-precision accuracy."
+  ],
+  "content_html": "\u003cp\u003ePaulius Micikevicius and colleagues showed you can train large networks almost entirely in 16-bit floating point without losing accuracy, as long as you guard against the two ways FP16 bites you: rounding errors in weight updates and tiny gradients that underflow to zero. Their two fixes - an FP32 master copy of the weights and loss scaling - made mixed precision a standard part of training.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe forward and backward passes run in IEEE half-precision (FP16), where weights, activations, and gradients all take half the bytes. The catch is that a small weight update can be too tiny to register against a larger weight in FP16, so the optimizer keeps a single-precision (FP32) master copy of the weights and accumulates gradients into it, then casts back to FP16 for the next pass. To handle gradients so small they would underflow FP16's range, the method scales the loss up before backpropagation and unscales the gradients afterward, shifting those values into a representable range.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe payoff is nearly 2x less memory, leaving room for larger models or batches, with the technique demonstrated across CNNs, RNNs, and GANs at 100M+ parameters and no loss of accuracy versus full-precision training. That reliability is why mixed precision became the default for training modern deep networks on hardware with fast half-precision support.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Paulius Micikevicius",
+      "Sharan Narang",
+      "Jonah Alben",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/1710.03740",
+    "published_at": "2017-10-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "optimization"
+  ],
+  "tags": [
+    "efficiency",
+    "training",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2017-10-10",
+  "related": [
+    {
+      "id": "card_203675",
+      "slug": "adamw",
+      "type": "paper",
+      "title": "AdamW: Decoupled Weight Decay",
+      "hook": "L2 regularization and weight decay are the same thing for plain SGD - but not for Adam. Decoupling them fixes Adam's generalization and makes the best decay value independent of the learning rate.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-11-14"
+    },
+    {
+      "id": "card_5bd418",
+      "slug": "llm-int8",
+      "type": "paper",
+      "title": "LLM.int8(): 8-bit Inference for Transformers",
+      "hook": "Big transformers usually run in 16-bit. LLM.int8() halves that to 8-bit integers without losing accuracy — by treating a few rare 'outlier' features with care.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-08-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_1718c4#0",
+      "format": "quiz",
+      "prompt": "Why does mixed precision keep an FP32 master copy of the weights?",
+      "choices": [
+        {
+          "text": "A small update can be too tiny to register against a larger weight in FP16",
+          "correct": true
+        },
+        {
+          "text": "FP32 weights train faster than FP16 ones",
+          "correct": false
+        },
+        {
+          "text": "It halves the memory needed for weights",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eTiny weight updates would be lost in FP16, so gradients accumulate into an FP32 master copy, then cast back for the next pass.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1718c4#1",
+      "format": "flip",
+      "prompt": "What problem does loss scaling solve in mixed precision training?",
+      "back_html": "\u003cp\u003eGradients so small they would underflow FP16's range; scaling the loss up before backprop (and unscaling after) shifts those values into a representable range.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1718c4#2",
+      "format": "quiz",
+      "prompt": "What is the main payoff of mixed precision training?",
+      "choices": [
+        {
+          "text": "Nearly 2x less memory at no loss of accuracy versus full precision",
+          "correct": true
+        },
+        {
+          "text": "Guaranteed faster convergence in fewer steps",
+          "correct": false
+        },
+        {
+          "text": "Eliminating the need for an optimizer state",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eFP16 halves the bytes for weights, activations, and gradients, leaving room for larger models/batches, demonstrated at 100M+ params.\u003c/p\u003e"
+    }
+  ]
+}

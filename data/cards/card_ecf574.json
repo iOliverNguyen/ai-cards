@@ -1,0 +1,107 @@
+{
+  "id": "card_ecf574",
+  "slug": "pace-agentic-capability-proxy",
+  "type": "paper",
+  "title": "PACE: A Proxy for Agentic Capability Evaluation",
+  "hook": "Full agentic evals like SWE-Bench and GAIA can cost thousands of dollars and days to run — PACE predicts those scores from a tiny, cheap subset of ordinary benchmarks, at under 1% of the cost.",
+  "key_points": [
+    "Agentic benchmarks (SWE-Bench, GAIA) are accurate but expensive — a single full evaluation can cost thousands of dollars and take days.",
+    "PACE builds a proxy benchmark by selecting non-agentic evaluation instances whose scores best predict performance on a target agentic benchmark, via regression.",
+    "Instance selection blends two strategies: target-relevance (locally similar instances) and global informativeness.",
+    "Across 14 models, 4 agentic benchmarks, and 19 non-agentic benchmarks: leave-one-out MAE under 4%, Spearman correlation above 0.80, ~85% pairwise model-ranking accuracy — all under 1% of full agentic-eval cost.",
+    "Also reveals which atomic skills each agentic benchmark actually demands, since the proxy instances selected differ by benchmark."
+  ],
+  "content_html": "\u003cp\u003eEvaluating an LLM agent on SWE-Bench or GAIA is the gold standard for measuring agentic capability, but it's slow and expensive — a single run can cost thousands of dollars and take days. Non-agentic benchmarks testing individual capabilities are cheap and fast by comparison. PACE asks whether the cheap ones can stand in for the expensive ones.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003ePredicting an expensive score from a cheap subset\u003c/h2\u003e\n\u003cp\u003ePACE constructs a proxy benchmark by picking instances from existing non-agentic evaluations whose aggregate scores most reliably predict a model's performance on a target agentic benchmark, fitting a regression from the compact subset's scores to the full agentic score. The instance pool is curated by combining two complementary strategies: selecting instances locally relevant to the target benchmark, and selecting instances that are globally informative across many models. Applying this to four target agentic benchmarks yields PACE-Bench, the concrete proxy the authors evaluate.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAcross 14 models, 4 agentic benchmarks, and 19 non-agentic source benchmarks, PACE-Bench predicts agentic scores with leave-one-out mean absolute error under 4%, Spearman correlation above 0.80, and roughly 85% pairwise model-ranking accuracy — all for well under 1% of the cost of running the full agentic evaluation. Beyond the cost savings, examining which proxy instances get selected for each benchmark reveals which underlying atomic skills that benchmark is actually testing, which is useful for anyone trying to understand what a headline agentic score is really measuring.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yueqi Song",
+      "Lintang Sutawika",
+      "Jiarui Liu",
+      "Lindia Tjuatja",
+      "Jiayi Geng",
+      "Yunze Xiao",
+      "Daniel Lee",
+      "Aditya Bharat Soni",
+      "Vincent Lo",
+      "Xiang Yue",
+      "Graham Neubig"
+    ],
+    "url": "https://arxiv.org/abs/2607.02032",
+    "published_at": "2026-07-02",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "agent",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-06",
+  "date": "2026-07-02",
+  "related": [
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_ecf574#0",
+      "format": "flip",
+      "prompt": "What problem does PACE solve for teams evaluating agentic models?",
+      "back_html": "\u003cp\u003eFull agentic benchmarks like SWE-Bench and GAIA are accurate but can cost thousands of dollars and days to run; PACE predicts those scores cheaply from a small proxy set of instances.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ecf574#1",
+      "format": "quiz",
+      "prompt": "How accurate was PACE-Bench at predicting agentic benchmark scores?",
+      "choices": [
+        {
+          "text": "Leave-one-out MAE under 4%, Spearman correlation above 0.80, and ~85% pairwise model-ranking accuracy, at under 1% of full eval cost",
+          "correct": true
+        },
+        {
+          "text": "It matched full agentic evaluation exactly but took the same amount of time",
+          "correct": false
+        },
+        {
+          "text": "It was accurate only for the single benchmark it was originally tuned on",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAcross 14 models, 4 agentic benchmarks, and 19 non-agentic source benchmarks, PACE-Bench's predictions stayed close to ground truth while running at a fraction of the cost.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ecf574#2",
+      "format": "flip",
+      "prompt": "Besides cost savings, what extra insight does PACE's proxy-instance selection reveal?",
+      "back_html": "\u003cp\u003eWhich atomic skills (from non-agentic benchmarks) each agentic benchmark actually demands — visible from which instances get selected as informative proxies for that benchmark.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "id": "card_2b912a",
+  "slug": "retrievalrouter-query-aware-pipeline-selection",
+  "type": "paper",
+  "title": "RetrievalRouter: Pick the Retrieval Pipeline Per Query",
+  "hook": "Retrieval forces a choice between accurate-but-slow and fast-but-blind. A router reading only the query text claims both: 2.5% more accurate, 12.4x faster than the best static pipeline.",
+  "key_points": [
+    "Retrieval pipelines vary in modality (text or multimodal) and architecture (dense or late-interaction).",
+    "The strongest combinations are too slow and costly at scale; the fastest miss evidence buried in complex documents.",
+    "Across financial and scientific benchmarks, no single static pipeline dominated — the right choice is query-dependent.",
+    "RetrievalRouter learns from the query text alone which pipeline to use, adding little overhead of its own.",
+    "One tunable parameter sweeps the whole accuracy-latency frontier, beating every static baseline on both axes at some operating point.",
+    "Reported: 2.5% more accurate and 12.4 times faster than the best static baseline; code and data are public."
+  ],
+  "content_html": "\u003cp\u003eDocument retrieval underpins high-stakes search in finance, healthcare, and law, and modern pipelines differ along two axes: modality (text-only or multimodal) and architecture (dense single-vector or late-interaction). The usual framing treats this as a hard compromise — the most effective pipelines are too slow and expensive to run at scale, while the fastest ones miss evidence hiding in complex documents.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eKuru, Keskin, Farahbakhsh, and Crespi argue that compromise is an artifact of choosing one pipeline for every query. Across benchmarks over financial and scientific corpora they find no static pipeline dominates, which leaves room for \u003cstrong\u003eRetrievalRouter\u003c/strong\u003e: a lightweight router that predicts, from the query text alone, which pipeline best fits that query. A single tunable parameter exposes the full accuracy-latency frontier, and the authors report that for every static baseline there is a router operating point that is both more accurate and faster — against the best static baseline, 2.5% more accurate and 12.4 times faster. They also report higher nDCG@5 than prior adaptive strategy-selection methods in accuracy-oriented settings. Code and data are linked from the paper.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Emre Kuru",
+      "Mehmet Onur Keskin",
+      "Reza Farahbakhsh",
+      "Noel Crespi"
+    ],
+    "url": "https://arxiv.org/abs/2608.25625",
+    "published_at": "2026-08-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rag",
+    "papers-this-week"
+  ],
+  "tags": [
+    "rag",
+    "efficiency",
+    "inference",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_d9524a",
+      "slug": "multi-vector-late-interaction-sentence-transformers",
+      "type": "blog",
+      "title": "Multi-Vector Retrieval: One Vector Per Token, Scored Late",
+      "hook": "Squeezing a document into one vector throws away where the match was. Late interaction keeps a vector per token and defers scoring — better recall, 42x the index.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-18"
+    },
+    {
+      "id": "card_667a26",
+      "slug": "dense-passage-retrieval",
+      "type": "paper",
+      "title": "Dense Passage Retrieval (DPR)",
+      "hook": "Keyword search misses answers that use different words. DPR embeds questions and passages into one vector space and retrieves by meaning — the backbone of modern vector search.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-04-10"
+    },
+    {
+      "id": "card_faf5cb",
+      "slug": "trace-router-task-level-routing",
+      "type": "paper",
+      "title": "Route the Task, Not the Call",
+      "hook": "Agent quality only reveals itself at the end of a long workflow — so a router deciding per LLM call can never tell which decision earned the reward. Decide once, at admission.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_2b912a#0",
+      "format": "quiz",
+      "prompt": "What does RetrievalRouter use to decide which retrieval pipeline to run?",
+      "choices": [
+        {
+          "text": "The query text alone",
+          "correct": true
+        },
+        {
+          "text": "A first-pass retrieval over the corpus, then a re-rank",
+          "correct": false
+        },
+        {
+          "text": "Document-level metadata about the target corpus",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIt is a lightweight query-aware router: it learns from the query text itself which pipeline fits,\nbefore any retrieval happens.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2b912a#1",
+      "format": "flip",
+      "prompt": "Why do the authors argue the accuracy-versus-latency compromise in retrieval is unnecessary?",
+      "back_html": "\u003cp\u003eBecause no static pipeline dominates across benchmarks — not every query needs the expensive\npipeline, so routing per query can be both more accurate and faster than any fixed choice.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2b912a#2",
+      "format": "quiz",
+      "prompt": "What role does RetrievalRouter's single tunable parameter play?",
+      "choices": [
+        {
+          "text": "It exposes the full accuracy-latency frontier, letting you pick an operating point",
+          "correct": true
+        },
+        {
+          "text": "It sets how many documents each pipeline returns",
+          "correct": false
+        },
+        {
+          "text": "It fixes the ratio of dense to late-interaction training data",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOne parameter sweeps the frontier, and for every static baseline there is a setting that is\nsimultaneously more accurate and faster.\u003c/p\u003e"
+    }
+  ]
+}

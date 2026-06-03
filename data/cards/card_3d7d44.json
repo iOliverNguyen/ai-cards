@@ -1,0 +1,116 @@
+{
+  "id": "card_3d7d44",
+  "slug": "clip",
+  "type": "paper",
+  "title": "CLIP: Learning Visual Models from Language",
+  "hook": "Skip the fixed label list. Train on image–caption pairs so pictures and text share one space, and you can classify images from plain-text labels you make up on the spot.",
+  "key_points": [
+    "Trains on huge sets of image–caption pairs with a contrastive objective.",
+    "Puts images and text in a shared embedding space so they can be compared directly.",
+    "Classifies images zero-shot from arbitrary text labels, no task-specific training.",
+    "Its text–image alignment underpins text-to-image systems like later diffusion models."
+  ],
+  "content_html": "\u003cp\u003eAlec Radford, Jong Wook Kim, and colleagues at OpenAI trained CLIP on a huge collection of image–caption pairs scraped from the web, using a contrastive objective that pulls matching image and text embeddings together and pushes mismatched ones apart. The result is a shared space where you can compare a picture to any text. That lets CLIP classify images zero-shot from plain-language labels and gives generative models a way to align images with words.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eCLIP has two encoders, one for images and one for text, trained together. For a batch of image–caption pairs, it computes embeddings for every image and every caption, then trains so each image is closest to its own caption and far from the others — a contrastive loss over all pairs in the batch. To classify a new image with no extra training, you embed candidate labels as short phrases like \u0026quot;a photo of a cat,\u0026quot; embed the image, and pick the label whose text embedding is nearest.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eTraditional image classifiers are locked to the categories they were trained on. CLIP breaks that by learning from natural language, so its vocabulary is open-ended and you can specify classes at test time just by typing them. Beyond classification, its joint image–text space became a key building block for text-to-image generation, where a text prompt needs to steer what an image should contain.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Alec Radford",
+      "Jong Wook Kim",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2103.00020",
+    "published_at": "2021-02-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "vision-transformers"
+  ],
+  "tags": [
+    "vision",
+    "multimodal",
+    "landmark"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2021-02-26",
+  "related": [
+    {
+      "id": "card_4aba44",
+      "slug": "vision-transformer-vit",
+      "type": "paper",
+      "title": "An Image is Worth 16x16 Words (ViT)",
+      "hook": "Chop an image into patches, treat each like a word, and feed them to a plain Transformer. With enough pretraining data, it matches or beats convolutional networks.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-10-22"
+    },
+    {
+      "id": "card_7e3221",
+      "slug": "latent-diffusion-models",
+      "type": "paper",
+      "title": "High-Resolution Image Synthesis with Latent Diffusion (Stable Diffusion)",
+      "hook": "Running diffusion on raw pixels is brutally expensive. Do it in a compressed latent space instead, and high-res text-to-image becomes cheap enough to run on a consumer GPU.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-12-20"
+    },
+    {
+      "id": "card_95ce18",
+      "slug": "dalle-2",
+      "type": "paper",
+      "title": "DALL·E 2 (unCLIP): Text-to-Image with CLIP Latents",
+      "hook": "Turn a prompt into a CLIP image embedding first, then diffusion-decode that embedding into a picture. A two-stage path from words to vivid, editable images.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-04-13"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7ed03d",
+      "slug": "what-is-attention",
+      "type": "concept",
+      "title": "What Is Attention?",
+      "hook": "Attention lets a model decide what to focus on: it scores how relevant each piece of input is to the current question, then blends them by those scores.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2018-06-24"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_3d7d44#0",
+      "format": "flip",
+      "prompt": "Why can CLIP classify images from labels you invent at test time?",
+      "back_html": "\u003cp\u003eIt learns a shared image-text embedding space, so you can embed any text label as a phrase and pick the one nearest the image — no task-specific training.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3d7d44#1",
+      "format": "quiz",
+      "prompt": "What training objective does CLIP use on image-caption pairs?",
+      "choices": [
+        {
+          "text": "A contrastive loss pulling matching image-text embeddings together and pushing mismatches apart",
+          "correct": true
+        },
+        {
+          "text": "Predicting each masked word in the caption",
+          "correct": false
+        },
+        {
+          "text": "Reconstructing the original image pixels from the caption",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eCLIP trains a contrastive objective over a batch so each image is closest to its own caption and far from the others.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3d7d44#2",
+      "format": "flip",
+      "prompt": "Why are traditional image classifiers more limited than CLIP?",
+      "back_html": "\u003cp\u003eThey are locked to the fixed categories they were trained on, while CLIP learns from natural language, giving it an open-ended vocabulary set at test time.\u003c/p\u003e"
+    }
+  ]
+}

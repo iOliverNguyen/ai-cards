@@ -1,0 +1,105 @@
+{
+  "id": "card_6ce440",
+  "slug": "attractor-states-llm-conversations",
+  "type": "paper",
+  "title": "Attractor States Emerge in Multi-Turn LLM Conversations",
+  "hook": "Let two LLMs debate long enough and one model's style pulls the other toward it — Claude Haiku drags partners into its own habits, while GPT-4.1 nano is easily swayed.",
+  "key_points": [
+    "Across 7 LLMs and 20 controversial topics, self-play debates settle into stable, topic-independent behavior patterns — 'attractors.'",
+    "In mixed-play debates, one model's attractor pulls its partner's style and stance asymmetrically — it's not a two-way average.",
+    "Claude Haiku strongly pulls other models toward its own traits, like heavy metacommentary; GPT-4.1 nano is especially malleable.",
+    "Attractors are tracked via representation-space trajectories, discourse traits, and stance shifts, not just final answers."
+  ],
+  "content_html": "\u003cp\u003eOpen-ended LLM discussions — models debating with other models — are increasingly common in multi-agent pipelines, but their long-run dynamics are barely understood. This paper asks whether such conversations settle into stable patterns, and finds a clear yes.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eAcross 7 LLMs debating 20 controversial topics, the authors compare self-play (a model against itself) and mixed-play (two different models) dyadic debates, tracking trajectories in representation space, discourse traits, and stances. Self-play conversations reliably settle into model-specific \u0026quot;attractors\u0026quot; — topic-independent stable behavior patterns. The more striking finding is what happens in mixed play: a model's attractor draws its conversation partner toward it asymmetrically, rather than the two meeting in the middle. Claude Haiku, for instance, is a strong attractor in latent space — other models pick up its traits, like heavy metacommentary — while models like GPT-4.1 nano are especially malleable to whichever partner they're paired with. The authors frame this as evidence that open-ended multi-agent interactions are partially predictable from model-specific attractors, but shaped by structured, asymmetric partner influence — useful context for anyone designing, predicting, or monitoring autonomous multi-agent systems. Ting-Wen Ko and Jonas Geiping, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ting-Wen Ko",
+      "Jonas Geiping"
+    ],
+    "url": "https://arxiv.org/abs/2606.30571",
+    "published_at": "2026-06-29",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-02",
+  "date": "2026-06-29",
+  "related": [
+    {
+      "id": "card_9328c5",
+      "slug": "chatbot-arena",
+      "type": "paper",
+      "title": "Chatbot Arena: Ranking LLMs by Human Preference",
+      "hook": "How do you rank chatbots when there's no single right answer? Let people pick the better of two anonymous replies, then aggregate the votes into a leaderboard.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-03-07"
+    },
+    {
+      "id": "card_1745b7",
+      "slug": "sycophancy-emergent-misalignment",
+      "type": "paper",
+      "title": "When Flattery Breaks the Model: Sycophancy as a Driver of Emergent Misalignment",
+      "hook": "Teaching a model to flatter users into agreeing with wrong opinions can trigger broad misalignment — and learnable 'gates' can find and suppress the unsafe directions to reverse it.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-08"
+    },
+    {
+      "id": "card_ee33bd",
+      "slug": "economy-of-minds",
+      "type": "paper",
+      "title": "Economy of Minds: Agents That Bid to Act",
+      "hook": "Skip the orchestrator. Let agents bid in auctions for the right to act, pay each other, and accumulate wealth — and collective intelligence emerges from the market, not from central control.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_6ce440#0",
+      "format": "flip",
+      "prompt": "What is an 'attractor state' in this paper's sense?",
+      "back_html": "\u003cp\u003eA stable, topic-independent set of behaviors a model's self-play conversations settle into — a signature style or stance it gravitates toward regardless of the topic.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6ce440#1",
+      "format": "quiz",
+      "prompt": "What happens when a strong attractor model like Claude Haiku debates a more malleable one?",
+      "choices": [
+        {
+          "text": "It asymmetrically pulls the other model toward its own traits, like metacommentary",
+          "correct": true
+        },
+        {
+          "text": "Both models converge to a completely neutral, averaged style",
+          "correct": false
+        },
+        {
+          "text": "The weaker model always wins the debate on substance",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMixed-play debates showed structured, asymmetric influence — some models act as strong attractors, pulling partners toward their own habits rather than meeting in the middle.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6ce440#2",
+      "format": "flip",
+      "prompt": "Why does this matter for deploying multi-agent LLM systems?",
+      "back_html": "\u003cp\u003eIf one model's style and stance can dominate a conversation, teams designing or monitoring multi-agent systems need to account for this asymmetric influence rather than assume balanced exchange.\u003c/p\u003e"
+    }
+  ]
+}

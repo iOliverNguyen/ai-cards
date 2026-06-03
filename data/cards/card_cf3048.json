@@ -1,0 +1,126 @@
+{
+  "id": "card_cf3048",
+  "slug": "illada-diffusion-language-model",
+  "type": "paper",
+  "title": "iLLaDA: Improved Large Language Diffusion Models",
+  "hook": "An 8B language model trained from scratch with full bidirectional attention and a masked-diffusion objective — no autoregression — that holds its own against same-size autoregressive LLMs.",
+  "key_points": [
+    "iLLaDA is an 8B masked diffusion language model trained from scratch with fully bidirectional attention, not left-to-right autoregression.",
+    "It keeps the diffusion objective through both pretraining (12T tokens) and supervised fine-tuning.",
+    "Adds variable-length generation for efficiency and confidence-based scoring for multiple-choice evals.",
+    "Improves broadly over prior LLaDA — e.g. +14.5 on MATH and +16.5 on HumanEval for the instruct model.",
+    "Stays competitive with the autoregressive Qwen2.5 7B on several benchmarks."
+  ],
+  "content_html": "\u003cp\u003eModern LLMs are almost all autoregressive: they generate one token at a time, left to right, with causal attention. \u003cstrong\u003eiLLaDA\u003c/strong\u003e takes the other road — an 8B model trained entirely with a masked-diffusion objective and fully bidirectional attention, and it stays competitive with same-size autoregressive models.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe approach\u003c/h2\u003e\n\u003cp\u003eMasked diffusion treats generation as iterative denoising: instead of predicting the next token, the model repeatedly fills in masked positions across the whole sequence, which lets it attend in both directions. iLLaDA keeps this objective through the entire pipeline — pretraining on 12T tokens and supervised fine-tuning on an instruction corpus — rather than switching to autoregression for fine-tuning. It also adds variable-length generation for efficiency and a confidence-based scoring scheme for multiple-choice evaluation.\u003c/p\u003e\n\u003ch2\u003eResults\u003c/h2\u003e\n\u003cp\u003eAgainst the earlier LLaDA, iLLaDA improves broadly across general, math, and code benchmarks — the authors report gains like +14.5 on MATH and +16.5 on HumanEval for the instruct variant. It also remains competitive with the autoregressive Qwen2.5 7B on several benchmarks. The takeaway the authors stress: bidirectional diffusion trained from scratch is a genuinely competitive path to strong language models, not just a curiosity. Weights and code are linked from the paper.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Shen Nie",
+      "Qiyang Min",
+      "Shaoxuan Xu",
+      "Zihao Huang",
+      "Yuxuan Song",
+      "Yong Shan",
+      "Yankai Lin",
+      "Wayne Xin Zhao",
+      "Chongxuan Li",
+      "Ji-Rong Wen"
+    ],
+    "url": "https://arxiv.org/abs/2606.25331",
+    "published_at": "2026-06-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "diffusion",
+    "pretraining",
+    "papers-this-week"
+  ],
+  "tags": [
+    "generative",
+    "nlp",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-29",
+  "date": "2026-06-24",
+  "related": [
+    {
+      "id": "card_7f11ff",
+      "slug": "diffusion-gemma",
+      "type": "news",
+      "title": "DiffusionGemma: Generating Text by Denoising, Not Decoding",
+      "hook": "DeepMind's DiffusionGemma generates text by refining a whole sequence in parallel instead of one token at a time — which the team reports is about 4x faster than standard autoregressive decoding.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-06-10"
+    },
+    {
+      "id": "card_2b95b6",
+      "slug": "denoising-diffusion-probabilistic-models",
+      "type": "paper",
+      "title": "Denoising Diffusion Probabilistic Models (DDPM)",
+      "hook": "Wreck an image into pure static one tiny step at a time, then train a network to undo it. Run the undo from random noise and you get a brand-new image.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2020-06-19"
+    },
+    {
+      "id": "card_764d0e",
+      "slug": "nemotron-twotower-diffusion-lm",
+      "type": "news",
+      "title": "NVIDIA Nemotron-TwoTower: A Diffusion-Based Language Model",
+      "hook": "NVIDIA's open Nemotron-TwoTower bolts a diffusion 'denoiser' tower onto a frozen autoregressive model to fill token blocks in parallel — reportedly 2.42x faster at ~98.7% of baseline quality.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-25"
+    },
+    {
+      "id": "card_8e2734",
+      "slug": "subliminal-clocks-diffusion-time",
+      "type": "paper",
+      "title": "Subliminal Clocks: Latent Time Modelling in Diffusion Language Models",
+      "hook": "Standard diffusion models are told which denoising step they're on; diffusion language models aren't — yet they track it anyway, a hidden clock you can read off their activations and even steer.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-20"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_cf3048#0",
+      "format": "flip",
+      "prompt": "How does iLLaDA's training differ from a standard autoregressive LLM?",
+      "back_html": "\u003cp\u003eiLLaDA uses fully bidirectional attention and a masked-diffusion objective — predicting masked tokens across the whole sequence — instead of causal, left-to-right next-token prediction.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cf3048#1",
+      "format": "quiz",
+      "prompt": "What does iLLaDA demonstrate about diffusion-based language models?",
+      "choices": [
+        {
+          "text": "Fully bidirectional diffusion training from scratch can be a competitive path to strong LLMs",
+          "correct": true
+        },
+        {
+          "text": "Diffusion only works for images, not text",
+          "correct": false
+        },
+        {
+          "text": "Diffusion LMs must be distilled from autoregressive teachers",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eTrained from scratch, iLLaDA improves broadly over prior diffusion LMs and stays competitive with a same-size autoregressive model — evidence that bidirectional diffusion is a viable route to strong LLMs.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cf3048#2",
+      "format": "flip",
+      "prompt": "What two tricks does iLLaDA add for efficiency and evaluation?",
+      "back_html": "\u003cp\u003eVariable-length generation (for efficiency) and confidence-based scoring (for multiple-choice evaluation).\u003c/p\u003e"
+    }
+  ]
+}

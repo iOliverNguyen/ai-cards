@@ -1,0 +1,129 @@
+{
+  "id": "card_957955",
+  "slug": "agentic-code-review-developer-feedback",
+  "type": "paper",
+  "title": "Is Agentic Code Review Helpful? Mining Developers' Feedback to CodeRabbit Reviews in the Wild",
+  "hook": "CodeRabbit leaves review comments on hundreds of thousands of real pull requests. A large-scale study of how developers actually respond finds more than half get rejected outright.",
+  "key_points": [
+    "Mined 31,073 review-comment/developer-feedback pairs from 10,191 pull requests across 239 GitHub repositories.",
+    "Only 36.4% of comments were accepted, 7.3% sparked discussion, and 56.3% were rejected outright.",
+    "Rejections mostly trace to invalid suggestions (false positives, redundant, out of scope) or misalignment with dev intent.",
+    "Reviews skew toward functional concerns over evolvability (maintainability/design) ones, yet are more often wrong on the latter.",
+    "A lightweight learned classifier predicts whether a review will be rejected with up to 76% F1."
+  ],
+  "content_html": "\u003cp\u003e\u003cstrong\u003eCodeRabbit\u003c/strong\u003e leaves automated review comments on hundreds of thousands of real pull requests. A large-scale study of how developers actually respond finds more than half get rejected outright.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat they measured\u003c/h2\u003e\n\u003cp\u003eThe authors mined 31,073 review-comment/developer-feedback pairs from 10,191 pull requests across 239 GitHub repositories. Only 36.4% of CodeRabbit's comments were accepted, 7.3% sparked further discussion, and 56.3% were rejected, mostly because the suggestion was invalid (a false positive, redundant, or out of scope) or misaligned with what the developer actually intended or how the project usually does things. The reviews also skewed toward functional correctness over longer-term evolvability concerns like maintainability and design, yet were more often wrong specifically on the evolvability side.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe authors trained lightweight learning-based classifiers to predict, from the comment and its context, whether a review would be rejected, reaching up to 76% F1 — meaning rejection isn't random noise; there are learnable patterns in when agentic review comments miss the mark. That's a concrete lever: teams, or the tool itself, could use such a predictor to suppress low-value comments before they ever reach a developer. Lin, Liang, and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Hong Yi Lin",
+      "Mingzhao Liang",
+      "Kla Tantithamthavorn",
+      "Patanamon Thongtanunam"
+    ],
+    "url": "https://arxiv.org/abs/2607.03316",
+    "published_at": "2026-07-03",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-03",
+  "related": [
+    {
+      "id": "card_000849",
+      "slug": "govern-the-repository-not-the-agent",
+      "type": "paper",
+      "title": "Govern the Repository, Not the Agent",
+      "hook": "Across 930,000+ agent-authored pull requests, half the friction of merging code traces to the repository, not the agent — and AI contributions concentrate that risk 2x more than human ones.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-26"
+    },
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    },
+    {
+      "id": "card_b84fb1",
+      "slug": "anchored-self-play-code-repair",
+      "type": "paper",
+      "title": "Anchored Self-Play for Code Repair",
+      "hook": "Let a model train itself by writing bugs and fixing them, and you get a free difficulty curriculum — until it invents bugs no real codebase would produce. Anchored Self-Play keeps it honest.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-03"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_957955#0",
+      "format": "flip",
+      "prompt": "What fraction of CodeRabbit's automated review comments were accepted vs. rejected, per this study?",
+      "back_html": "\u003cp\u003e36.4% were accepted (7.3% sparked discussion) while 56.3% were rejected outright, across 31,073 review/feedback pairs from 239 repos.\u003c/p\u003e"
+    },
+    {
+      "id": "card_957955#1",
+      "format": "quiz",
+      "prompt": "Why were most CodeRabbit comments rejected?",
+      "choices": [
+        {
+          "text": "They were invalid (false positives, redundant, out of scope) or misaligned with developer intent and project conventions",
+          "correct": true
+        },
+        {
+          "text": "Developers rejected almost all comments regardless of content, out of principle",
+          "correct": false
+        },
+        {
+          "text": "CodeRabbit only ever commented on trivial whitespace issues",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRejections traced mainly to invalid suggestions and misalignment with what the developer actually wanted or how the codebase normally works.\u003c/p\u003e"
+    },
+    {
+      "id": "card_957955#2",
+      "format": "flip",
+      "prompt": "What did the study find about functional vs. evolvability-focused review comments?",
+      "back_html": "\u003cp\u003eComments skewed toward functional concerns over evolvability (maintainability/design) concerns, yet were more often wrong specifically on the evolvability side.\u003c/p\u003e"
+    },
+    {
+      "id": "card_957955#3",
+      "format": "quiz",
+      "prompt": "What's significant about the classifier reaching 76% F1 at predicting review rejection?",
+      "choices": [
+        {
+          "text": "It shows rejection isn't random — a lightweight model can learn patterns in which review comments developers will reject",
+          "correct": true
+        },
+        {
+          "text": "It proves CodeRabbit's suggestions are correct 76% of the time",
+          "correct": false
+        },
+        {
+          "text": "It means 76% of all pull requests in the study got rejected",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe F1 score belongs to a separate classifier predicting rejection, not to CodeRabbit's own suggestion accuracy — it shows learnable structure in what makes developers reject a comment.\u003c/p\u003e"
+    }
+  ]
+}

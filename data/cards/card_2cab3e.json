@@ -1,0 +1,116 @@
+{
+  "id": "card_2cab3e",
+  "slug": "gpt-3",
+  "type": "paper",
+  "title": "GPT-3: Language Models are Few-Shot Learners",
+  "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+  "key_points": [
+    "A 175B-parameter decoder-only language model trained to predict the next token.",
+    "Learns new tasks from a handful of examples placed in the prompt — in-context learning.",
+    "No fine-tuning or weight updates needed to take on a new task.",
+    "Showed many capabilities improve smoothly as you scale model size.",
+    "Launched the prompting era that shapes how people use LLMs today."
+  ],
+  "content_html": "\u003cp\u003eGPT-3, from Brown, Mann, and colleagues at OpenAI in 2020, is a 175-billion-parameter decoder-only language model. Its headline finding: you can teach it a new task simply by showing a few examples inside the prompt, with no fine-tuning. The paper demonstrated that this \u0026quot;in-context learning\u0026quot; gets stronger as models grow larger.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eGPT-3 is trained on one objective — predict the next token — over a huge text corpus. At use time, you describe the task and optionally include a few worked examples in the prompt itself (\u0026quot;few-shot\u0026quot;). The model conditions on those examples and continues the pattern, effectively learning the task on the fly without any change to its weights.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eBefore GPT-3, adapting a model to a new task usually meant collecting labeled data and fine-tuning. GPT-3 showed that a big enough model can just be prompted, which made building with LLMs far faster and more flexible. That shift kicked off the prompting era and reframed \u0026quot;programming\u0026quot; an AI as writing good instructions and examples rather than training a new model.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Tom B. Brown",
+      "Benjamin Mann",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2005.14165",
+    "published_at": "2020-05-28",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining"
+  ],
+  "tags": [
+    "nlp",
+    "landmark"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2020-05-28",
+  "related": [
+    {
+      "id": "card_32f3c7",
+      "slug": "bert",
+      "type": "paper",
+      "title": "BERT: Pretraining Deep Bidirectional Transformers",
+      "hook": "What if a model read a sentence both directions at once? BERT did, by masking words and predicting them — and made pretrain-then-fine-tune the default recipe in NLP.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2018-10-11"
+    },
+    {
+      "id": "card_46fd66",
+      "slug": "chinchilla-scaling-laws",
+      "type": "paper",
+      "title": "Chinchilla: Compute-Optimal Scaling",
+      "hook": "Most giant models were starved of data. Chinchilla showed that for a fixed compute budget you should grow parameters and tokens together — and a smaller, longer-trained model won.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2022-03-29"
+    },
+    {
+      "id": "card_1098fc",
+      "slug": "instructgpt",
+      "type": "paper",
+      "title": "InstructGPT: Aligning LMs with Human Feedback (RLHF)",
+      "hook": "A smaller model people actually like beats a bigger one they don't. InstructGPT used human preferences to make a model follow instructions — the recipe behind ChatGPT.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-03-04"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_2cab3e#0",
+      "format": "flip",
+      "prompt": "What is 'in-context learning' as GPT-3 demonstrated it?",
+      "back_html": "\u003cp\u003eYou teach the model a new task by placing a few worked examples in the prompt; it continues the pattern with no fine-tuning or weight updates.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2cab3e#1",
+      "format": "quiz",
+      "prompt": "How did GPT-3 change how people adapt a model to a new task?",
+      "choices": [
+        {
+          "text": "Prompt it with instructions/examples instead of collecting labeled data and fine-tuning",
+          "correct": true
+        },
+        {
+          "text": "Retrain the full model from scratch each time",
+          "correct": false
+        },
+        {
+          "text": "Swap in a new architecture per task",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBefore GPT-3, adapting usually meant labeled data and fine-tuning; a big enough model can just be prompted, kicking off the prompting era.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2cab3e#2",
+      "format": "flip",
+      "prompt": "What single training objective is GPT-3 trained on?",
+      "back_html": "\u003cp\u003ePredicting the next token over a huge text corpus — one objective, from which in-context learning emerges at scale.\u003c/p\u003e"
+    }
+  ]
+}

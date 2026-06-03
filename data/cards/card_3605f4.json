@@ -1,0 +1,109 @@
+{
+  "id": "card_3605f4",
+  "slug": "rubse-rubric-guided-ui-to-code",
+  "type": "paper",
+  "title": "RubSE: Why Self-Fixing UI Code Keeps Breaking What It Just Fixed",
+  "hook": "A model told to make its screenshot match the design fixes one region and quietly wrecks another. RubSE names that failure — visual repair coupling — and fences each edit in with a rubric.",
+  "key_points": [
+    "Visual repair coupling: one local code edit propagates through layout, style, and component dependencies, degrading regions that were already faithful.",
+    "That coupling makes naive test-time self-evolution unstable — later rounds can be worse than earlier ones.",
+    "RubSE turns visual feedback into a structured repair context: typed candidate rubrics, generated fresh each round.",
+    "Each round it picks one prioritized repair target and keeps past rubrics as history, discouraging repeated or over-broad rewrites.",
+    "Across six VLMs and three UI-to-code benchmarks it beat naive self-evolution in both final-round and best-round settings.",
+    "Analysis credits the gain to better recovery from severe regressions; stronger rubric generators can also guide weaker code improvers."
+  ],
+  "content_html": "\u003cp\u003eVision-language models can turn a screenshot into working UI code, but letting them iterate on their own output is oddly fragile: round three is often worse than round two. Tianyi Xiong and colleagues (arXiv, August 2026) put a name to why. They call it \u003cem\u003evisual repair coupling\u003c/em\u003e — because a page's layout, styling, and components are entangled, an edit aimed at one mismatched region ripples outward and breaks regions that already looked right.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTheir fix, RubSE, refuses to let the model free-associate about what to change. Each refinement round generates typed candidate rubrics from the visual feedback, selects a single prioritized repair target, and stores the rubrics already used as history — so revisions stay well-scoped and don't churn over the same ground. Across six VLMs and three UI-to-code benchmarks, the authors report it outperforming naive self-evolution in both final-round and best-round scoring, with steadier refinement trajectories. Their analysis attributes much of the gain to avoiding trajectory collapse: RubSE recovers from severe visual regressions where plain self-refinement spirals. A related finding is that a strong rubric generator can steer a weaker code improver, hinting the structured feedback, not just the editor model, is doing the work. Full paper and numbers at the arXiv link.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Tianyi Xiong",
+      "Zhengyuan Yang",
+      "Xiaofei Wang",
+      "Chung-Ching Lin",
+      "Ruichun Ma",
+      "Kevin Lin",
+      "Zhendong Wang",
+      "Linjie Li",
+      "Chenxi Liu",
+      "Ruibo Chen",
+      "Ramani Duraiswami",
+      "Heng Huang",
+      "Lijuan Wang"
+    ],
+    "url": "https://arxiv.org/abs/2608.24138",
+    "published_at": "2026-08-25",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "vlms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "generative",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-25",
+  "related": [
+    {
+      "id": "card_65914a",
+      "slug": "v-rubrics-visual-faithfulness",
+      "type": "paper",
+      "title": "V-Rubrics: Grading a VLM's Answer Fact by Fact",
+      "hook": "A single ungrounded object or misread chart value can sink an otherwise good answer — and a pass/fail reward can't tell you which part broke. V-Rubrics hands out partial credit per visual claim.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-26"
+    },
+    {
+      "id": "card_b84fb1",
+      "slug": "anchored-self-play-code-repair",
+      "type": "paper",
+      "title": "Anchored Self-Play for Code Repair",
+      "hook": "Let a model train itself by writing bugs and fixing them, and you get a free difficulty curriculum — until it invents bugs no real codebase would produce. Anchored Self-Play keeps it honest.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-03"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_3605f4#0",
+      "format": "flip",
+      "prompt": "What is visual repair coupling?",
+      "back_html": "\u003cp\u003eA local code edit propagates through layout, style, and component dependencies — so fixing one visual mismatch degrades regions of the render that were previously faithful.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3605f4#1",
+      "format": "quiz",
+      "prompt": "How does RubSE keep an iterative UI-to-code fix from sprawling?",
+      "choices": [
+        {
+          "text": "It generates typed rubrics, commits to one prioritized repair target per round, and keeps prior rubrics as history",
+          "correct": true
+        },
+        {
+          "text": "It regenerates the whole page from scratch each round and keeps the best render",
+          "correct": false
+        },
+        {
+          "text": "It freezes the CSS and only allows edits to the component tree",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRubrics act as a structured visual-repair context: one scoped target per round, with history to discourage repeating or over-broadening edits.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3605f4#2",
+      "format": "flip",
+      "prompt": "What does the paper's transfer result suggest about where the rubrics matter?",
+      "back_html": "\u003cp\u003eA stronger rubric generator can hand effective visual-repair guidance to a weaker code improver — the feedback structure carries value independently of the model doing the editing.\u003c/p\u003e"
+    }
+  ]
+}

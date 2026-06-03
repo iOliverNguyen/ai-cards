@@ -1,0 +1,75 @@
+{
+  "id": "card_233637",
+  "slug": "local-llm-inference-guide",
+  "type": "resource",
+  "title": "Local LLM Inference Optimization: The Complete Guide",
+  "hook": "A year of llama.cpp experiments, distilled: how to actually fit a model in your VRAM, tune the KV cache, and stop hitting out-of-memory walls.",
+  "key_points": [
+    "A practical llama.cpp optimization guide compiled from a year of hands-on local-inference experiments.",
+    "Covers VRAM fitting — choosing quantization and offload so a model fits the memory you have.",
+    "Explains KV-cache sizing, MoE expert placement, and multi-token prediction (MTP) for speed.",
+    "Includes CPU tuning and a tour of common out-of-memory (OOM) traps and how to avoid them."
+  ],
+  "content_html": "\u003cp\u003eA hands-on guide to running LLMs locally with llama.cpp, compiled from a year of experiments. It walks through the practical levers — VRAM fitting, KV-cache sizing, mixture-of-experts layer placement, multi-token prediction, CPU tuning — and the out-of-memory traps that bite newcomers. This is a reference card; follow the link out for the full write-up.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat it covers\u003c/h2\u003e\n\u003cp\u003eThe guide is organized around the real questions you hit when serving a model on your own hardware: how to choose quantization and offloading so the weights fit your VRAM, how the KV cache grows with context and batch size, where to place MoE experts, and how to use techniques like multi-token prediction to speed up generation. It closes with a catalog of common OOM failure modes.\u003c/p\u003e\n\u003ch2\u003eWhy it's useful\u003c/h2\u003e\n\u003cp\u003eMost inference theory assumes a datacenter; this is the opposite — squeezing usable speed and context out of a single consumer GPU (or none). It's a good companion to the deck's inference cards, turning abstract ideas like the KV cache and quantization into concrete knobs you can turn. See the linked write-up for the details.\u003c/p\u003e",
+  "source": {
+    "name": "r/LocalLLaMA (carteakey)",
+    "authors": [
+      "carteakey"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1uc3wg9/local_llm_inference_optimization_the_complete",
+    "published_at": "2026-06-21",
+    "license": "Community blog post"
+  },
+  "resources": [
+    {
+      "title": "Local LLM Optimization (carteakey.dev)",
+      "url": "https://carteakey.dev/blog/local-inference/local-llm-optimization/"
+    }
+  ],
+  "topic_ids": [
+    "inference"
+  ],
+  "tags": [
+    "inference",
+    "efficiency",
+    "open-source"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-25",
+  "date": "2026-06-21",
+  "related": [
+    {
+      "id": "card_688904",
+      "slug": "kv-cache-and-batching",
+      "type": "concept",
+      "title": "The KV Cache \u0026 Continuous Batching",
+      "hook": "Generating one token reuses every prior key and value - that growing cache is why LLM inference is memory-bound, and continuous batching is how servers fight back.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-11-09"
+    },
+    {
+      "id": "card_5bd418",
+      "slug": "llm-int8",
+      "type": "paper",
+      "title": "LLM.int8(): 8-bit Inference for Transformers",
+      "hook": "Big transformers usually run in 16-bit. LLM.int8() halves that to 8-bit integers without losing accuracy — by treating a few rare 'outlier' features with care.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-08-15"
+    },
+    {
+      "id": "card_ef8b5f",
+      "slug": "paged-attention-vllm",
+      "type": "paper",
+      "title": "PagedAttention / vLLM: Efficient LLM Serving",
+      "hook": "LLM serving wastes huge amounts of GPU memory on the attention cache. PagedAttention borrows an OS trick — paging — to recover it and serve many more requests at once.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-09-12"
+    }
+  ],
+  "prereqs": []
+}

@@ -1,0 +1,99 @@
+{
+  "id": "card_9e170d",
+  "slug": "spatialclaw",
+  "type": "paper",
+  "title": "SpatialClaw: Code as the Action Interface for Spatial Reasoning",
+  "hook": "Give a vision-language agent a live Python kernel instead of a fixed tool menu, and let it write one cell at a time. That flexibility lifts 3D/4D spatial reasoning by 11 points.",
+  "key_points": [
+    "Spatial reasoning — where objects are, how they relate and move in 3D — is hard for vision-language models (VLMs).",
+    "Tool-augmented spatial agents are bounded by their action interface: single-pass code commits to a plan up front; rigid tool-calls limit composition.",
+    "SpatialClaw is training-free: a stateful Python kernel preloaded with input frames plus perception and geometry primitives.",
+    "The VLM writes one executable cell per step, conditioned on all prior outputs, so it can compose operations and adapt to intermediate text and visuals.",
+    "Across 20 spatial benchmarks it hits 59.9% average accuracy, +11.2 over a recent spatial agent, consistent across six VLM backbones."
+  ],
+  "content_html": "\u003cp\u003eSpatial reasoning — determining where objects are, how they relate, and how they move in 3D — remains hard for vision-language models. A common fix is to make the VLM a \u003cem\u003etool-augmented agent\u003c/em\u003e that calls specialist perception modules, but the authors argue the agent's ceiling is set by the \u003cem\u003eaction interface\u003c/em\u003e through which it invokes those tools. Existing spatial agents either run single-pass code (committing to a full analysis before seeing any intermediate result) or rely on a structured tool-call interface (which limits freely composing operations) — both inflexible for open-ended 3D/4D reasoning.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eSpatialClaw, a training-free framework, instead adopts \u003cem\u003ecode as the action interface\u003c/em\u003e. It maintains a stateful Python kernel preloaded with the input frames and a suite of perception and geometry primitives; at each step the VLM-backed agent writes one executable cell, conditioned on all prior outputs. That lets it compose and manipulate perception results and adapt to both intermediate text and visual observations and the demands of each problem. Evaluated across 20 static and dynamic 3D/4D spatial-reasoning benchmarks, the authors report 59.9% average accuracy — +11.2 points over a recent spatial agent — with consistent gains across six VLM backbones from two model families and no benchmark- or model-specific tuning. The transferable idea: a code-cell loop is a more expressive action space than a fixed tool menu.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Seokju Cho",
+      "Ryo Hachiuma",
+      "Abhishek Badki",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.13673",
+    "published_at": "2026-06-11",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "vlms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "vision",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-15",
+  "date": "2026-06-11",
+  "related": [
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    },
+    {
+      "id": "card_200002",
+      "slug": "toolformer",
+      "type": "paper",
+      "title": "Toolformer: Language Models That Use Tools",
+      "hook": "Instead of hand-scripting when to call a calculator or search, Toolformer lets the model teach itself — try API calls during training, keep the ones that actually help.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-02-09"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_9e170d#0",
+      "format": "flip",
+      "prompt": "What is SpatialClaw's 'action interface,' and why does it help spatial reasoning?",
+      "back_html": "\u003cp\u003eA stateful Python kernel where the agent writes one executable cell per step. Code lets it freely compose perception and geometry primitives and adapt to intermediate results, unlike a fixed tool-call menu.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9e170d#1",
+      "format": "quiz",
+      "prompt": "What makes SpatialClaw notable beyond its accuracy gain?",
+      "choices": [
+        {
+          "text": "It's training-free and works across multiple VLM backbones",
+          "correct": true
+        },
+        {
+          "text": "It requires retraining each VLM it runs on",
+          "correct": false
+        },
+        {
+          "text": "It only handles static 2D images",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSpatialClaw is a training-free framework; it improves spatial reasoning consistently across six VLM backbones from two model families without per-model adaptation.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9e170d#2",
+      "format": "flip",
+      "prompt": "Why is single-pass code a weak action interface for spatial reasoning?",
+      "back_html": "\u003cp\u003eIt commits to a full analysis strategy before observing any intermediate result, so the agent can't adapt its approach as new text and visual observations arrive.\u003c/p\u003e"
+    }
+  ]
+}

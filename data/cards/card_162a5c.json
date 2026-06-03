@@ -1,0 +1,108 @@
+{
+  "id": "card_162a5c",
+  "slug": "mop-jepa-hard-assigned-predictors",
+  "type": "paper",
+  "title": "MoP-JEPA: Fixing JEPA's Blind Spot for Branching Futures",
+  "hook": "A single deterministic predictor can't represent a fork in the road — it averages the branches into a state that matches nowhere. This paper proves it, then fixes it with one head per future.",
+  "key_points": [
+    "JEPA world models predict the next latent state with one deterministic predictor trained by regression — which, at a stochastic branching point, collapses to the conditional mean of the possible next states: a point between them that matches no real state.",
+    "Proven mathematically for both deterministic and gated mixture-of-expert predictors — the collapse isn't a training bug, it's structural.",
+    "MoP-JEPA's hard-assigned predictors instead converge to a quantizer of the transition distribution — one head per successor mode, enumerable in a single forward pass.",
+    "On OGBench, planning over single-predictor rollouts succeeds 2-9% of the time; planning over MoP-JEPA's predicted modes reaches up to 85%.",
+    "Ships a verification protocol (codebook control, shuffled-context test, transition-precision guards) specifically to rule out the model getting credit for routes through transitions that don't actually exist."
+  ],
+  "content_html": "\u003cp\u003eWorld models built on JEPA predict the future by regressing to the next latent state. That works fine when the future is predictable — but real environments branch, and this paper proves that a single deterministic predictor mathematically \u003cem\u003ecannot\u003c/em\u003e represent a fork: it converges to the conditional mean of the possible outcomes, a point that corresponds to no actual state.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe authors prove this collapse holds for both plain deterministic predictors and gated mixture-of-experts predictors — it's not a training artifact, it's structural. Their fix, MoP-JEPA, hard-assigns predictor heads to distinct successor modes instead of blending them, so the model converges to a quantizer of the transition distribution: one head per branch, all enumerable in a single forward pass, which is exactly the interface a planner needs. On OGBench's offline maze data, planning over single-predictor rollouts succeeds only 2-9% of the time; planning over MoP-JEPA's predicted modes reaches up to 85%, beating deterministic, gated-MoE, and variational alternatives on every task. Because multi-prediction setups can look good by accident — crediting routes through transitions that don't actually exist — the paper also ships a verification protocol (codebook controls, shuffled-context tests, transition-precision guards) to rule that out. The takeaway: a world model's ability to plan hinges on correctly representing multimodal futures, and a hard-assigned mixture of predictors is a minimal, verifiable way to do it. Zhi Song and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zhi Song",
+      "Ximing Xing",
+      "Zhenchao Tang",
+      "Hanbo Huang",
+      "Tianxu Lv",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.05238",
+    "published_at": "2026-07-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "papers-this-week"
+  ],
+  "tags": [
+    "generative",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-09",
+  "date": "2026-07-06",
+  "related": [
+    {
+      "id": "card_7e087b",
+      "slug": "world-models-persistent-state",
+      "type": "paper",
+      "title": "World Models Lack a Persistent State",
+      "hook": "Today's video world models render great frames but treat the world like a tracking shot: look away and back, and off-screen events freeze instead of running on — the moon keeps orbiting unwatched.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    },
+    {
+      "id": "card_296943",
+      "slug": "dreamerv3",
+      "type": "paper",
+      "title": "DreamerV3: Mastering Domains through World Models",
+      "hook": "Instead of learning only from real experience, DreamerV3 builds a world model and practices inside its own imagination — one fixed config, 150+ tasks.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2023-01-10"
+    },
+    {
+      "id": "card_b9d1db",
+      "slug": "world-action-models-survey",
+      "type": "paper",
+      "title": "World Action Models: A Survey",
+      "hook": "Robots are learning to imagine the future before acting. This survey untangles 'world action models' from video generators and VLA policies — and finds them converging on one idea.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_162a5c#0",
+      "format": "flip",
+      "prompt": "Why does a single deterministic JEPA predictor fail at a stochastic branching transition?",
+      "back_html": "\u003cp\u003eTrained by latent regression, it converges to the conditional mean of the possible successor states — a point between the true branches that corresponds to no real state at all, so it can't represent the fork.\u003c/p\u003e"
+    },
+    {
+      "id": "card_162a5c#1",
+      "format": "quiz",
+      "prompt": "How does MoP-JEPA's hard-assigned predictor mixture avoid this collapse?",
+      "choices": [
+        {
+          "text": "Each predictor head is assigned to one successor mode, converging to a quantizer of the transition distribution rather than an average",
+          "correct": true
+        },
+        {
+          "text": "It adds more layers to the same single deterministic predictor",
+          "correct": false
+        },
+        {
+          "text": "It removes the predictor entirely and plans over raw pixels",
+          "correct": false
+        },
+        {
+          "text": "It trains predictors with a higher learning rate",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eInstead of one predictor regressing to an average, MoP-JEPA hard-assigns each predictor head to a distinct successor mode — one head per branch, enumerable in a single forward pass, which a planner can consume directly.\u003c/p\u003e"
+    }
+  ]
+}

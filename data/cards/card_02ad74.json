@@ -1,0 +1,96 @@
+{
+  "id": "card_02ad74",
+  "slug": "retrieval-augmented-generation",
+  "type": "paper",
+  "title": "Retrieval-Augmented Generation (RAG)",
+  "hook": "Why force a model to memorize everything? RAG lets it look things up — fetch relevant documents, then answer from that evidence instead of frozen weights alone.",
+  "key_points": [
+    "Pairs a retriever that fetches documents with a generator that conditions on them.",
+    "The model answers from looked-up evidence, not only its parameters.",
+    "Knowledge lives in an external index you can update without retraining.",
+    "Retriever and generator are trained together end-to-end.",
+    "Strong on knowledge-intensive tasks like open-domain question answering."
+  ],
+  "content_html": "\u003cp\u003eRAG, from Lewis, Perez, and colleagues at Facebook AI in 2020, combines two pieces: a retriever that pulls relevant documents from a large collection, and a generator that writes an answer conditioned on those documents. Instead of relying solely on what's baked into its weights, the model grounds its output in retrieved evidence — and the whole system is trained end-to-end.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eGiven a query, the retriever finds the most relevant passages from an indexed corpus, usually by comparing vector embeddings. Those passages are handed to the generator, a sequence-to-sequence model, which produces the final answer while attending to them. Crucially, training propagates signal back through both components, so the retriever learns to fetch documents that actually help the generator.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003ePacking all knowledge into model weights is expensive and goes stale the moment facts change. RAG separates knowledge from reasoning: the index holds the facts and you can update it without retraining the model. That makes answers more current and easier to ground in real sources. This retrieve-then-generate pattern underpins most modern systems that answer questions over private or fresh data.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Patrick Lewis",
+      "Ethan Perez",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2005.11401",
+    "published_at": "2020-05-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rag"
+  ],
+  "tags": [
+    "nlp",
+    "rag",
+    "landmark"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2020-05-22",
+  "related": [
+    {
+      "id": "card_667a26",
+      "slug": "dense-passage-retrieval",
+      "type": "paper",
+      "title": "Dense Passage Retrieval (DPR)",
+      "hook": "Keyword search misses answers that use different words. DPR embeds questions and passages into one vector space and retrieves by meaning — the backbone of modern vector search.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-04-10"
+    },
+    {
+      "id": "card_b43f8e",
+      "slug": "what-is-rag",
+      "type": "concept",
+      "title": "Why RAG? Grounding LLMs in Your Data",
+      "hook": "An LLM only knows what it was trained on — until it's stale, private, or just wrong. RAG bolts on a search step so the model answers from your data and can cite it.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_02ad74#0",
+      "format": "flip",
+      "prompt": "What two components make up a RAG system and how do they connect?",
+      "back_html": "\u003cp\u003eA retriever pulls relevant documents from a collection, and a generator writes an answer conditioned on those documents — trained together end-to-end.\u003c/p\u003e"
+    },
+    {
+      "id": "card_02ad74#1",
+      "format": "quiz",
+      "prompt": "Why does RAG keep knowledge in an external index instead of model weights?",
+      "choices": [
+        {
+          "text": "You can update the index when facts change without retraining the model",
+          "correct": true
+        },
+        {
+          "text": "External indexes train faster than transformer weights",
+          "correct": false
+        },
+        {
+          "text": "It removes the need for a generator model entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRAG separates knowledge from reasoning — update the index, not the model — keeping answers current and groundable.\u003c/p\u003e"
+    },
+    {
+      "id": "card_02ad74#2",
+      "format": "flip",
+      "prompt": "Why does end-to-end training matter in RAG?",
+      "back_html": "\u003cp\u003eSignal propagates back through both parts, so the retriever learns to fetch documents that actually help the generator answer.\u003c/p\u003e"
+    }
+  ]
+}

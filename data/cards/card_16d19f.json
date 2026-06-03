@@ -1,0 +1,113 @@
+{
+  "id": "card_16d19f",
+  "slug": "stateflow-3d-world-state-previsualization",
+  "type": "paper",
+  "title": "StateFlow: A Persistent 3D World State for Previsualization",
+  "hook": "One-shot video generation re-invents the whole scene for every edit. StateFlow keeps an editable 3D world as the working state and regenerates only what changed.",
+  "key_points": [
+    "Targets previsualization — the iterative layer between an idea and production in film, games, architecture, and urban design.",
+    "Argues one-shot image/video synthesis controls scene, action, and camera through a single prompt, giving weak controllability and poor iterative editing.",
+    "Core claim: the missing component is an explicit, persistent working state — a structured 3D world of scene elements and cameras.",
+    "State construction lifts generated 2D content into 3D via prior-guided, conflict-aware dual-view initialization.",
+    "State evolution turns user intent into structured state transitions, preserving world memory instead of regenerating the whole scene per edit.",
+    "State access uses render-feedback reflection to turn camera plans into feasible trajectories; off-the-shelf video models add fidelity on top."
+  ],
+  "content_html": "\u003cp\u003ePrevisualization is the rough draft of a shot: the stage where a director, game designer, or architect iterates on scene layout, action, and camera before anything expensive gets made. Generative video is an obvious fit, except that one-shot synthesis controls all of those factors through a single prompt — so every tweak means regenerating the world, and control is weak.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eStateFlow's argument is that a world is made of elements with geometry, appearance, and attributes, plus cameras, and that successive frames are mostly local modifications of that shared structure. So the framework keeps an explicit, persistent 3D state as the working representation and moves through three stages. \u003cstrong\u003eConstruction\u003c/strong\u003e lifts generated 2D content into a coherent 3D world using prior-guided, conflict-aware dual-view initialization. \u003cstrong\u003eEvolution\u003c/strong\u003e translates user intent into structured state transitions while preserving world memory, so an edit doesn't trigger full-scene regeneration. \u003cstrong\u003eAccess\u003c/strong\u003e applies render-feedback reflection to turn camera plans into visually feasible trajectories rather than relying on a VLM's semantic reading of the shot. Off-the-shelf video models are brought in on top when higher fidelity is wanted.\u003c/p\u003e\n\u003cp\u003eYuyang Yin and colleagues report that the approach produces high-quality 3D worlds usable for video creation and game-like prototyping. arXiv, August 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yuyang Yin",
+      "Zixiang Li",
+      "Longxuan Deng",
+      "Hongkai Li",
+      "Shifang Zhao",
+      "Junnan Liu",
+      "Weirong Huang",
+      "Mengyu Wang",
+      "Tianxiao Fu",
+      "Yikai Wang",
+      "Peng-Shuai Wang",
+      "Xiaojie Jin",
+      "Yao Zhao",
+      "Yunchao Wei"
+    ],
+    "url": "https://arxiv.org/abs/2608.12314",
+    "published_at": "2026-08-12",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "video-audio",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "generative",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-13",
+  "date": "2026-08-12",
+  "related": [
+    {
+      "id": "card_381680",
+      "slug": "syncity-3000-scene-scale-3d-diffusion",
+      "type": "paper",
+      "title": "SynCity 3000: Scene-Scale 3D Generation from One Prompt",
+      "hook": "3D generators are great at single objects but fall apart at scene scale. SynCity 3000 turns an image-to-3D generator into a convolution you can slide across an entire scene.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_4ac6bc",
+      "slug": "liveedit-streaming-video-editing",
+      "type": "paper",
+      "title": "LiveEdit: Real-Time Streaming Video Editing",
+      "hook": "A three-stage distillation pipeline turns a slow, bidirectional video editor into a causal, frame-by-frame one fast enough for live AR — 12.66 FPS with stable backgrounds.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-25"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_16d19f#0",
+      "format": "flip",
+      "prompt": "What does StateFlow argue is missing from one-shot generative previsualization?",
+      "back_html": "\u003cp\u003eAn explicit, persistent working state. Frames of a scene mostly reuse a shared world; without storing it, every edit forces a full regeneration and controllability suffers.\u003c/p\u003e"
+    },
+    {
+      "id": "card_16d19f#1",
+      "format": "quiz",
+      "prompt": "How does StateFlow handle a user's edit to an already-built scene?",
+      "choices": [
+        {
+          "text": "State evolution translates the intent into structured transitions on the persistent 3D state, preserving world memory",
+          "correct": true
+        },
+        {
+          "text": "It re-runs the text-to-video model from scratch with an updated prompt",
+          "correct": false
+        },
+        {
+          "text": "It fine-tunes the video diffusion model on the edited frames",
+          "correct": false
+        },
+        {
+          "text": "It asks a VLM to redraw each affected frame independently",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBecause the scene elements and cameras live in an editable 3D state, an edit is a local modification of that state — avoiding full-scene regeneration for every change.\u003c/p\u003e"
+    },
+    {
+      "id": "card_16d19f#2",
+      "format": "flip",
+      "prompt": "Why does StateFlow use render-feedback reflection for camera planning?",
+      "back_html": "\u003cp\u003eTo refine camera plans into trajectories that are actually visually feasible in the built world, rather than trusting a VLM's semantic judgment about the shot alone.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "id": "card_13953d",
+  "slug": "in-context-learning",
+  "type": "concept",
+  "title": "In-Context Learning",
+  "hook": "Paste a few examples into a prompt and a large language model performs the task - no gradient updates, no fine-tuning, the prompt is the program.",
+  "key_points": [
+    "The model adapts to a new task by reading examples in its context window, not by changing its weights.",
+    "GPT-3 popularized three regimes: zero-shot (task description only), one-shot (one example), and few-shot (a handful).",
+    "Performance scales with model size - small models barely benefit from examples, large ones improve substantially.",
+    "ICL is not fully understood: models may be pattern-matching on format rather than learning the underlying rule."
+  ],
+  "content_html": "\u003cp\u003eWhen Brown and colleagues at OpenAI released GPT-3 in 2020, they highlighted a surprising capability: the model could perform tasks it had never been explicitly trained on, given just a few labeled examples in the prompt. They called this \u0026quot;in-context learning\u0026quot; (ICL), and it reframed how practitioners think about deploying large language models.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe model's weights are frozen at inference time. Instead, you format a handful of (input, output) pairs as plain text and prepend them to your query. The model, having learned statistical patterns across a huge corpus during pre-training, infers the task from the examples and generates an appropriate continuation. No gradient steps occur - the \u0026quot;learning\u0026quot; is entirely in the forward pass over the context window.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eICL turned prompting from a curiosity into a practical tool: you can adapt a single model to translation, classification, parsing, or almost any structured task by writing good examples rather than collecting labeled datasets for fine-tuning. It also raised deep questions about what large models are actually doing at inference time - questions still being actively studied. GPT-3 (Brown et al., 2020) introduced the term; for a fuller tour of the methods and open puzzles, see Dong et al.'s survey on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Qingxiu Dong",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2301.00234",
+    "published_at": "2022-12-31",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "prompting"
+  ],
+  "tags": [
+    "nlp",
+    "foundational"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2022-12-31",
+  "related": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    },
+    {
+      "id": "card_b693b7",
+      "slug": "zero-shot-cot",
+      "type": "paper",
+      "title": "Large Language Models Are Zero-Shot Reasoners",
+      "hook": "Appending 'Let's think step by step' to a prompt unlocks multi-step reasoning with zero examples - chain-of-thought without the example-writing overhead.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-05-24"
+    },
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_13953d#0",
+      "format": "flip",
+      "prompt": "How does a model 'learn' a task through in-context learning?",
+      "back_html": "\u003cp\u003eIts weights stay frozen; you prepend example (input, output) pairs as text and the model infers the task in its forward pass over the context — no gradient steps.\u003c/p\u003e"
+    },
+    {
+      "id": "card_13953d#1",
+      "format": "quiz",
+      "prompt": "How does in-context learning performance relate to model size?",
+      "choices": [
+        {
+          "text": "It scales with size — small models barely benefit, large ones improve substantially",
+          "correct": true
+        },
+        {
+          "text": "All model sizes benefit roughly equally from examples",
+          "correct": false
+        },
+        {
+          "text": "Smaller models benefit more because they overfit examples faster",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe card notes performance scales with model size: small models barely benefit while large ones improve a lot.\u003c/p\u003e"
+    },
+    {
+      "id": "card_13953d#2",
+      "format": "flip",
+      "prompt": "Why is in-context learning considered not fully understood?",
+      "back_html": "\u003cp\u003eModels may be pattern-matching on the example format rather than truly learning the underlying rule.\u003c/p\u003e"
+    }
+  ]
+}

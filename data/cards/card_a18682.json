@@ -1,0 +1,114 @@
+{
+  "id": "card_a18682",
+  "slug": "openeurollm-lr-batch-scaling-laws",
+  "type": "paper",
+  "title": "Scaling Laws for Learning Rate and Batch Size",
+  "hook": "Chinchilla told you how many tokens. This tells you what learning rate and batch size to use as you get there — including whether the optimum survives the decay phase.",
+  "key_points": [
+    "Studies how optimal learning rate and batch size scale when pretraining dense LLMs on English-prevalent corpora.",
+    "Goes beyond jointly optimal values to model their marginal evolution with model capacity and data scale.",
+    "Uses a Warmup-Stable-Decay schedule, and measures the gains from learning-rate annealing across many hyperparameter, model, and data-budget settings.",
+    "Tests whether the optimal learning rate and batch size transfer between the stable phase and the decay phase.",
+    "Characterizes how loss depends on model capacity and dataset size, evaluating scaling forms that explicitly model their interaction.",
+    "Those interaction-aware forms capture both undertraining and overtraining regimes well."
+  ],
+  "content_html": "\u003cp\u003eScaling laws usually get discussed as a compute-allocation question: given a budget, how big a model on how many tokens. Ajroldi and colleagues attack the less glamorous half — the optimizer hyperparameters you have to pick to actually spend that budget well.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat they study\u003c/h2\u003e\n\u003cp\u003eLearning rate and batch size when pretraining dense LLMs on English-prevalent corpora. Beyond fitting the \u003cem\u003ejointly optimal\u003c/em\u003e pair at each scale, they model the \u003cstrong\u003emarginal\u003c/strong\u003e evolution of each with model capacity and data scale, which is the form a practitioner needs when extrapolating to the next run.\u003c/p\u003e\n\u003cp\u003eBecause they use a Warmup-Stable-Decay schedule, two additional questions become answerable. How much does learning-rate annealing actually buy, across a broad range of hyperparameters, models, and data budgets? And do the optimal learning rate and batch size \u003cem\u003etransfer\u003c/em\u003e between the stable phase and the decay phase — a practical concern, since WSD's appeal is that you can branch a decay off any stable checkpoint.\u003c/p\u003e\n\u003cp\u003eFinally they characterize how loss depends on capacity and dataset size, evaluating recently proposed scaling forms that explicitly model the interaction between the two. These, they report, are particularly effective at capturing both undertraining and overtraining regimes.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe paper is positioned as establishing a first baseline and scaling protocol for OpenEuroLLM. That framing is the useful one: hyperparameter scaling laws are infrastructure. Publishing them openly is how a public-model effort avoids re-buying knowledge that closed labs already have.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Niccolò Ajroldi",
+      "Diana Alexandra Onutu",
+      "Haider Al-Tahan",
+      "Jörg Franke",
+      "Sampo Pyysalo",
+      "Jenia Jitsev",
+      "Aaron Klein"
+    ],
+    "url": "https://arxiv.org/abs/2608.28308",
+    "published_at": "2026-08-28",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining",
+    "optimization",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "efficiency",
+    "open-source",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-31",
+  "date": "2026-08-28",
+  "related": [
+    {
+      "id": "card_46fd66",
+      "slug": "chinchilla-scaling-laws",
+      "type": "paper",
+      "title": "Chinchilla: Compute-Optimal Scaling",
+      "hook": "Most giant models were starved of data. Chinchilla showed that for a fixed compute budget you should grow parameters and tokens together — and a smaller, longer-trained model won.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2022-03-29"
+    },
+    {
+      "id": "card_85f66a",
+      "slug": "scaling-laws",
+      "type": "paper",
+      "title": "Scaling Laws for Neural Language Models",
+      "hook": "Loss doesn't drop randomly as models grow — it follows a smooth power law in size, data, and compute. That predictability is what made betting on bigger models rational.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2020-01-23"
+    },
+    {
+      "id": "card_d38949",
+      "slug": "puro-2b-consumer-gpu-pretraining",
+      "type": "paper",
+      "title": "Puro-2B: Pretraining a Real LLM for $6,900",
+      "hook": "Reproducing SmolLM3-3B costs over $700K. This team pretrained a 2B model on 1.4T tokens using consumer RTX 5090s for under $6.9K — and released the whole recipe.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-27"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a18682#0",
+      "format": "flip",
+      "prompt": "What is a Warmup-Stable-Decay learning rate schedule?",
+      "back_html": "\u003cp\u003eThree phases: warm the learning rate up, hold it at a constant value for most of training, then anneal it down at the end. The stable phase is what makes mid-run checkpoints reusable.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a18682#1",
+      "format": "quiz",
+      "prompt": "Why does the paper study 'marginal' evolution of learning rate and batch size, not just the joint optimum?",
+      "choices": [
+        {
+          "text": "To describe how each moves with model capacity and data scale individually, which is what a practitioner extrapolates",
+          "correct": true
+        },
+        {
+          "text": "Because the joint optimum cannot be measured empirically",
+          "correct": false
+        },
+        {
+          "text": "Because batch size has no effect on the optimal learning rate",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA single joint optimum at one scale does not tell you which direction to move when you grow the model or the dataset. The marginal relationships are the transferable part.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a18682#2",
+      "format": "flip",
+      "prompt": "Which scaling forms did the authors find most effective?",
+      "back_html": "\u003cp\u003eForms that explicitly model the interaction between model capacity and dataset size — they captured both undertraining and overtraining regimes in the authors' experiments.\u003c/p\u003e"
+    }
+  ]
+}

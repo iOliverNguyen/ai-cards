@@ -1,0 +1,107 @@
+{
+  "id": "card_a83dd3",
+  "slug": "danus-fact-graph-math-agents",
+  "type": "paper",
+  "title": "Danus: Orchestrating Mathematical Reasoning Agents with Fact-Graph Memory",
+  "hook": "Parallel proof-search agents can generate claims faster than anyone can keep straight. Danus fixes that with a shared fact graph that only admits claims a stateless verifier has checked.",
+  "key_points": [
+    "Danus splits math reasoning into a main planning agent plus multiple parallel worker agents doing proof search.",
+    "A stateless verifier checks every proposed claim before it enters a shared 'fact graph' with its proof and dependencies.",
+    "The main agent periodically summarizes the proof state, redirects workers, and reports progress to a human mathematician.",
+    "Evaluated on six research-level case studies in algebraic geometry, singularity theory, and combinatorics.",
+    "Fact-graph memory lets Danus build long, detailed proofs incrementally instead of losing coherence across many steps."
+  ],
+  "content_html": "\u003cp\u003eScaling math reasoning agents past textbook problems means coordinating many parallel provers without losing track of what's actually been proven. \u003cstrong\u003eDanus\u003c/strong\u003e tackles that coordination problem with a shared fact graph that only admits claims a stateless verifier has checked.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it's built\u003c/h2\u003e\n\u003cp\u003eDanus splits work between a main agent that plans, coordinates, and periodically summarizes progress, and multiple worker agents that search for proofs in parallel. Every claim a worker proposes passes through a stateless verifier before it's stored in the shared fact graph alongside its proof and logical dependencies — so partial results accumulate into a reliable, growing base the whole team can build on, and the main agent can redirect workers or report progress to a human mathematician.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe authors test Danus on six research-level case studies spanning algebraic geometry, singularity theory, and combinatorics, showing the fact-graph mechanism lets it construct long, detailed proofs rather than losing coherence over many steps. It's a system-design answer to a specific failure mode: multi-agent proof search generating claims faster than anyone, human or model, can verify and keep organized. Danus is open source. Liu, Gao, and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jihao Liu",
+      "Guoxiong Gao",
+      "Zeming Sun",
+      "Bin Wu",
+      "Shurui Liu",
+      "Jiedong Jiang",
+      "Haocheng Ju",
+      "Leheng Chen",
+      "Ronnie Cheng",
+      "Xiping Zhang",
+      "Bin Dong"
+    ],
+    "url": "https://arxiv.org/abs/2607.06447",
+    "published_at": "2026-07-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "ai-for-science",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "reasoning",
+    "paper",
+    "open-source"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-07",
+  "related": [
+    {
+      "id": "card_3600df",
+      "slug": "alphageometry",
+      "type": "paper",
+      "title": "AlphaGeometry: Olympiad Geometry Without Human Demonstrations",
+      "hook": "Pair a language model with a symbolic deduction engine, train on millions of synthetic proofs, and you get a system that solves Olympiad geometry near gold-medalist level.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2024-01-17"
+    },
+    {
+      "id": "card_b2c4ec",
+      "slug": "harness-1-search-agents",
+      "type": "paper",
+      "title": "Harness-1: RL for Search Agents with State-Externalizing Harnesses",
+      "hook": "Stop making the policy remember everything. Harness-1 moves a search agent's bookkeeping into the environment, so RL only has to learn the decisions that matter.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a83dd3#0",
+      "format": "flip",
+      "prompt": "What problem does Danus's fact-graph memory solve for multi-agent math reasoning?",
+      "back_html": "\u003cp\u003eParallel proof-search workers can generate claims faster than they can be checked and organized. The fact graph only admits claims a stateless verifier has confirmed, keeping the shared proof state reliable as it grows.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a83dd3#1",
+      "format": "quiz",
+      "prompt": "What are the three components in Danus's architecture?",
+      "choices": [
+        {
+          "text": "A main planning/coordinating agent, multiple parallel worker agents doing proof search, and a stateless verifier gating the shared fact graph",
+          "correct": true
+        },
+        {
+          "text": "A single agent that both proposes and verifies every claim itself",
+          "correct": false
+        },
+        {
+          "text": "A human mathematician who manually verifies every step",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDanus separates coordination (main agent), parallel search (workers), and gating (verifier) so no single component both proposes and blesses its own claims.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a83dd3#2",
+      "format": "flip",
+      "prompt": "What did the six case studies actually demonstrate about Danus?",
+      "back_html": "\u003cp\u003eThat the fact-graph mechanism lets Danus construct long, detailed proofs across algebraic geometry, singularity theory, and combinatorics — a demonstration of proof-building capability, not a claim of resolving previously open research problems.\u003c/p\u003e"
+    }
+  ]
+}

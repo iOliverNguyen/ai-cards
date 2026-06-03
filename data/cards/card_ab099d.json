@@ -1,0 +1,124 @@
+{
+  "id": "card_ab099d",
+  "slug": "knowact-guiclaw",
+  "type": "paper",
+  "title": "KnowAct-GUIClaw: Know Deeply, Act Perfectly, Personal GUI Assistant with Self-Evolving Memory and Skill",
+  "hook": "A GUI agent framework that treats every finished task as a lesson: it banks the experience into memory and skills, then reuses them across Android, iOS, HarmonyOS, and Windows.",
+  "key_points": [
+    "Targets a gap in the OpenClaw agent framework: weak cross-platform GUI interaction and no real self-evolution mechanism.",
+    "Introduces a Know-Route-Act-Reflect framework: a host agent decomposes long-horizon tasks using accumulated experience (Know), then routes them to a pluggable GUI subagent.",
+    "The GUI subagent pairs an experience-attributable memory system with a self-evolving skill library, letting it migrate across platforms and reuse fast paths (Act).",
+    "Continuously stores user profiles and feedback to sharpen task decomposition and tool-call accuracy over time.",
+    "With open-source Kimi-2.6 as the base model, reaches 64.1% on the long-horizon MobileWorld benchmark, ahead of other agent frameworks and closed models like Seed-2.0-Pro and GPT-5.5; the memory/skill layer transfers across base models, adding +8.5% with Kimi-2.6."
+  ],
+  "content_html": "\u003cp\u003eOpenClaw has become a go-to framework for automating complex tasks with agents, but the paper points at two real gaps: it struggles across different device GUIs, and it has no solid way to actually get better from experience. KnowAct-GUIClaw is built to close both.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eYunxin Li and colleagues propose a \u0026quot;Know Deeply, Act Perfectly\u0026quot; paradigm: accumulated user interaction and task-running experience should directly sharpen execution accuracy and efficiency, unifying understanding and action rather than treating them separately. Their Know-Route-Act-Reflect framework puts a host agent in charge of long-horizon task decomposition, drawing on accumulated experience and task-relevant knowledge, then routes work to a pluggable GUI subagent. That subagent carries an experience-attributable memory system and a self-evolving skill library, which is what lets it move across Android, iOS, HarmonyOS, and Windows without relearning from scratch — and the framework keeps banking user profiles and feedback to keep improving decomposition and tool-call accuracy.\u003c/p\u003e\n\u003cp\u003eAcross all four platforms, the authors report KnowAct-GUIClaw ahead on efficiency, accuracy, and cross-platform adaptability; with the open-source Kimi-2.6 model as its base, it hits 64.1% on the long-horizon MobileWorld benchmark, beating other agent frameworks and closed models including Seed-2.0-Pro and GPT-5.5. They also report the memory-and-skill layer transfers across different base models, adding 8.5% when paired with Kimi-2.6. Li and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yunxin Li",
+      "Jinchao Li",
+      "Shibo Su",
+      "Zhenran Xu",
+      "Chenrui Zhao",
+      "Tongshu Bian",
+      "Xiaoman Liang",
+      "Meishan Zhang",
+      "Baotian Hu",
+      "Min Zhang"
+    ],
+    "url": "https://arxiv.org/abs/2607.12625",
+    "published_at": "2026-07-15",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-15",
+  "related": [
+    {
+      "id": "card_f47711",
+      "slug": "ui-mopd-multi-platform-gui-distillation",
+      "type": "paper",
+      "title": "UI-MOPD: Teaching One GUI Agent Many Platforms Without Forgetting",
+      "hook": "Train a GUI agent on a new platform and it often forgets the old ones. UI-MOPD picks a different teacher per platform on the fly, so cross-platform learning stops fighting itself.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-05"
+    },
+    {
+      "id": "card_3a0d83",
+      "slug": "gui-vs-cli-computer-use-agents",
+      "type": "paper",
+      "title": "GUI vs. CLI: Where Computer-Use Agents Get Stuck",
+      "hook": "Should an agent click buttons or type commands? A matched benchmark giving both the same 440 tasks finds GUI agents win by default — but CLI agents leap ahead once their skill library is filled in.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_ab099d#0",
+      "format": "flip",
+      "prompt": "What two gaps in the OpenClaw agent framework does KnowAct-GUIClaw target?",
+      "back_html": "\u003cp\u003eWeak cross-platform GUI interaction support, and the lack of a well-built self-evolution mechanism for improving from execution experience.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ab099d#1",
+      "format": "quiz",
+      "prompt": "What does the 'Know-Route-Act-Reflect' framework's host agent do?",
+      "choices": [
+        {
+          "text": "Uses accumulated interaction experience and task-relevant knowledge to decompose and route long-horizon tasks",
+          "correct": true
+        },
+        {
+          "text": "Directly executes every low-level GUI click itself, with no subagents",
+          "correct": false
+        },
+        {
+          "text": "Only handles Windows-platform tasks, delegating everything else",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe host agent's job is long-horizon task decomposition and allocation, drawing on accumulated experience — the actual GUI manipulation is handled by a pluggable subagent.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ab099d#2",
+      "format": "flip",
+      "prompt": "How does KnowAct-GUIClaw's GUI subagent support moving to a new platform without starting over?",
+      "back_html": "\u003cp\u003eIt pairs an experience-attributable memory system with a self-evolving skill library, enabling cross-platform migration and reuse of fast paths already learned.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ab099d#3",
+      "format": "quiz",
+      "prompt": "What result on the MobileWorld benchmark does the paper highlight for the Kimi-2.6-based GUIClaw?",
+      "choices": [
+        {
+          "text": "64.1% task success, ahead of other agent frameworks and closed models like Seed-2.0-Pro and GPT-5.5",
+          "correct": true
+        },
+        {
+          "text": "100% task success, solving every MobileWorld task",
+          "correct": false
+        },
+        {
+          "text": "It underperformed closed-source models on MobileWorld",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper reports 64.1% as the best result on the long-horizon MobileWorld benchmark among the agent frameworks and models it compares against.\u003c/p\u003e"
+    }
+  ]
+}

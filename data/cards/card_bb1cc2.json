@@ -1,0 +1,102 @@
+{
+  "id": "card_bb1cc2",
+  "slug": "graphrag",
+  "type": "blog",
+  "title": "GraphRAG",
+  "hook": "GraphRAG builds a knowledge graph from your documents first, then answers over its structure — so it can reason across many sources, not just retrieve the nearest few chunks.",
+  "key_points": [
+    "Microsoft Research technique (2024) that combines knowledge graphs with RAG.",
+    "Extracts entities and relationships into a graph, then summarizes graph 'communities'.",
+    "Answers global, multi-hop questions that flat vector retrieval handles poorly.",
+    "Trades extra indexing cost for better synthesis across a whole corpus."
+  ],
+  "content_html": "\u003cp\u003eGraphRAG, introduced by Microsoft Research in 2024, addresses a weakness of ordinary retrieval-augmented generation: vector search finds the chunks most similar to a query, but struggles with questions that require connecting information spread across many documents. GraphRAG instead builds a knowledge graph from the corpus up front and uses that structure to answer.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eIn an indexing phase, an LLM extracts entities and the relationships between them from the raw text, assembling a knowledge graph. It then detects \u0026quot;communities\u0026quot; of densely connected entities and generates summaries for each, building a hierarchy from local clusters up to the whole corpus. At query time, GraphRAG can draw on these community summaries to answer broad, global questions (\u0026quot;what are the main themes?\u0026quot;) as well as drill into specific multi-hop ones — tasks where retrieving a handful of nearby chunks falls short.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eGraphRAG shows that the retrieval half of RAG is itself a rich design space: how you structure and index knowledge shapes which questions the system can answer. The cost is heavier, LLM-driven indexing, but for narrative or analytical queries over private data, reasoning over an explicit graph beats nearest-neighbor lookup — a key pattern as RAG matured beyond simple vector search.\u003c/p\u003e",
+  "source": {
+    "name": "Microsoft Research",
+    "authors": [
+      "Microsoft Research"
+    ],
+    "url": "https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/",
+    "published_at": "2024-02-13",
+    "license": "Microsoft Research blog"
+  },
+  "topic_ids": [
+    "rag"
+  ],
+  "tags": [
+    "rag",
+    "nlp"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2024-02-13",
+  "related": [
+    {
+      "id": "card_b43f8e",
+      "slug": "what-is-rag",
+      "type": "concept",
+      "title": "Why RAG? Grounding LLMs in Your Data",
+      "hook": "An LLM only knows what it was trained on — until it's stale, private, or just wrong. RAG bolts on a search step so the model answers from your data and can cite it.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_02ad74",
+      "slug": "retrieval-augmented-generation",
+      "type": "paper",
+      "title": "Retrieval-Augmented Generation (RAG)",
+      "hook": "Why force a model to memorize everything? RAG lets it look things up — fetch relevant documents, then answer from that evidence instead of frozen weights alone.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-22"
+    },
+    {
+      "id": "card_667a26",
+      "slug": "dense-passage-retrieval",
+      "type": "paper",
+      "title": "Dense Passage Retrieval (DPR)",
+      "hook": "Keyword search misses answers that use different words. DPR embeds questions and passages into one vector space and retrieves by meaning — the backbone of modern vector search.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-04-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_bb1cc2#0",
+      "format": "flip",
+      "prompt": "What weakness of ordinary RAG does GraphRAG address?",
+      "back_html": "\u003cp\u003eVector search finds chunks similar to a query but struggles with questions needing information connected across many documents; GraphRAG builds a graph to handle them.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bb1cc2#1",
+      "format": "quiz",
+      "prompt": "What does GraphRAG do during its indexing phase?",
+      "choices": [
+        {
+          "text": "An LLM extracts entities and relationships into a graph, then summarizes communities",
+          "correct": true
+        },
+        {
+          "text": "It embeds each chunk and stores only nearest-neighbor links",
+          "correct": false
+        },
+        {
+          "text": "It fine-tunes the generator on the corpus",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGraphRAG builds a knowledge graph, detects densely-connected communities, and generates hierarchical summaries for them.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bb1cc2#2",
+      "format": "flip",
+      "prompt": "What tradeoff does GraphRAG make for better cross-corpus synthesis?",
+      "back_html": "\u003cp\u003eIt pays a heavier, LLM-driven indexing cost up front in exchange for answering global, multi-hop questions that flat vector retrieval handles poorly.\u003c/p\u003e"
+    }
+  ]
+}

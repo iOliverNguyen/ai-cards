@@ -1,0 +1,122 @@
+{
+  "id": "card_13e146",
+  "slug": "cross-tokenizer-byte-prefix-distillation",
+  "type": "paper",
+  "title": "Distilling Across Different Tokenizers",
+  "hook": "On-policy distillation usually assumes teacher and student share a tokenizer. Map both into byte space and you can finally distil from a teacher whose vocabulary is nothing like yours.",
+  "key_points": [
+    "Full-vocabulary on-policy distillation assumes a shared tokenizer; prior cross-tokenizer methods drop teacher probability mass or park it on unrelated student tokens.",
+    "Byte-Prefix Marginalization re-expresses the teacher's next-token distribution over the student vocabulary in a shared byte space.",
+    "Each teacher token's probability goes to the longest student token whose bytes are a prefix of the teacher token's bytes; mass on the same student token is summed.",
+    "Whatever stays unmatched lands in an explicit residual category, so the target is vocabulary-complete and mass-preserving.",
+    "It exactly recovers the byte-prefix marginal when the prefix doesn't span multiple teacher tokens — true at over 99% of training positions.",
+    "With Qwen3-32B, GLM-Z1-9B-0414, and MiniMax-M2.7 as teachers, it beats the strongest cross-tokenizer baselines by 3.7-6.6 points on six math and programming benchmarks."
+  ],
+  "content_html": "\u003cp\u003eOpen-weight language models from different families are good at different things, which makes it tempting to consolidate several teachers into one compact student via on-policy distillation. The obstacle is mundane and severe: dense, full-vocabulary distillation assumes teacher and student share a tokenizer. Wang and colleagues note that existing cross-tokenizer workarounds either throw away teacher probability mass or hand it to student tokens whose content has nothing to do with the teacher's.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eByte space as the common ground\u003c/h2\u003e\n\u003cp\u003e\u003cstrong\u003eByte-Prefix Marginalization (BPM)\u003c/strong\u003e re-expresses the teacher's next-token distribution over the student's vocabulary in a shared byte space — the one representation both tokenizers ultimately decode to. Each teacher token's probability is assigned to the longest student token whose byte representation is a prefix of the teacher token's bytes; mass landing on the same student token is aggregated; and anything otherwise unmatched is placed in an explicit residual category. The result is a target that is vocabulary-complete, byte-aligned, and mass-preserving, which is what a dense on-policy objective needs.\u003c/p\u003e\n\u003ch2\u003eHow exact it is\u003c/h2\u003e\n\u003cp\u003eThe authors show the target exactly recovers the teacher-induced byte-prefix marginal whenever the relevant prefix does not span multiple teacher tokens — a condition they report holds at more than 99% of training positions — and otherwise falls back to a mass-preserving, chain-factorized lower bound. Using Qwen3-32B, GLM-Z1-9B-0414, and MiniMax-M2.7 as teachers, BPM improves six-benchmark avg@8 by 3.7–6.6 points over the strongest cross-tokenizer baselines on mathematics and programming.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Hao Wang",
+      "Kun Yuan",
+      "Wenlin Zhong",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.22334",
+    "published_at": "2026-07-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "distillation",
+    "tokenization",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "efficiency",
+    "nlp",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-27",
+  "date": "2026-07-24",
+  "related": [
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    },
+    {
+      "id": "card_63a204",
+      "slug": "direct-on-policy-distillation",
+      "type": "paper",
+      "title": "Weak-to-Strong Generalization via Direct On-Policy Distillation",
+      "hook": "RL post-training gets pricier as models scale, since it needs the strong model's own rollouts. Direct-OPD reuses a cheap RL run on a small model instead, transferring the direction RL moved it.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_a2690e",
+      "slug": "byte-pair-encoding",
+      "type": "paper",
+      "title": "Subword Tokenization with Byte-Pair Encoding",
+      "hook": "Whole words make a giant vocabulary; single characters make long sequences. Subwords split the difference — and let models read words they've never seen.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2015-08-31"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_13e146#0",
+      "format": "flip",
+      "prompt": "Why does a mismatched tokenizer break ordinary on-policy distillation?",
+      "back_html": "\u003cp\u003eThe dense objective needs the teacher's full next-token distribution expressed over the student's vocabulary. With different vocabularies there's no direct correspondence, so methods either discard teacher probability mass or assign it to student tokens whose content is unrelated.\u003c/p\u003e"
+    },
+    {
+      "id": "card_13e146#1",
+      "format": "quiz",
+      "prompt": "How does Byte-Prefix Marginalization decide where a teacher token's probability goes?",
+      "choices": [
+        {
+          "text": "To the longest student token whose byte representation is a prefix of the teacher token's bytes",
+          "correct": true
+        },
+        {
+          "text": "To whichever student token has the closest embedding vector to the teacher token",
+          "correct": false
+        },
+        {
+          "text": "Split evenly across every student token that shares any byte with the teacher token",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBytes are the common ground both vocabularies decode to, so a longest-byte-prefix match aligns mass by actual content; anything unmatched goes to an explicit residual category so no mass is lost.\u003c/p\u003e"
+    },
+    {
+      "id": "card_13e146#2",
+      "format": "flip",
+      "prompt": "What makes the BPM target 'mass-preserving', and why care?",
+      "back_html": "\u003cp\u003eUnmatched probability is kept in an explicit residual category rather than dropped, so the target stays a proper distribution over the student vocabulary — the condition for a well-behaved dense distillation objective.\u003c/p\u003e"
+    }
+  ]
+}

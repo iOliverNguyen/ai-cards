@@ -1,0 +1,128 @@
+{
+  "id": "card_b98529",
+  "slug": "intruder-threshold-lora",
+  "type": "paper",
+  "title": "A Spectral Threshold That Predicts When LoRA Will Forget",
+  "hook": "LoRA sometimes injects 'intruder dimensions' that trigger catastrophic forgetting. This paper predicts the per-layer update strength where they appear, from the pretrained spectrum alone.",
+  "key_points": [
+    "Intruder dimensions are new leading singular vectors of W+BA that are nearly orthogonal to every pretrained singular vector, and they drive catastrophic forgetting.",
+    "The paper derives a per-layer critical update strength from the measured spectrum of W alone, via the rectangular spiked-deformation transform, with no fitted parameters.",
+    "Across four dense Transformer families, a state-space model, an MoE, and an encoder-decoder — 18 adapters, 9,840 layer scans — it localizes the empirical threshold within a factor of two on 82% of layers.",
+    "It separates intruder-bearing from intruder-free layers at deployment with mean AUC 0.89, and holds unchanged on six third-party adapters.",
+    "It resolves the LoRA-vs-full-fine-tuning asymmetry: full fine-tuning disperses its update far below every layer's threshold.",
+    "Norm-matched interventions show threshold-crossing layers, not update magnitude, carry the forgetting; a spike-budget rule needing one SVD cuts forgetting 62% on the most fragile model at no task cost."
+  ],
+  "content_html": "\u003cp\u003eLoRA's failure mode has a name and a cause. Fine-tuning with a low-rank update can produce \u003cem\u003eintruder dimensions\u003c/em\u003e — new leading singular vectors of the updated weight matrix W+BA that sit nearly orthogonal to every pretrained singular vector — and those are what tip a model into catastrophic forgetting. Since that discovery, nobody could predict, layer by layer, when they would show up. This paper does.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe law\u003c/h2\u003e\n\u003cp\u003eXie derives a per-layer critical update strength computed from the measured spectrum of W alone, using the rectangular spiked-deformation transform, together with an exact secular-equation characterization of the updated spectrum. There are no fitted parameters — it's a prediction from the pretrained weights, not a curve fit to observed failures.\u003c/p\u003e\n\u003cp\u003eThe validation is pre-specified and broad: four dense Transformer families, a state-space model, a mixture-of-experts model, and an encoder-decoder, spanning 18 adapters and 9,840 layer scans. The law localizes the empirical threshold within a factor of two on 82% of layers, separates intruder-bearing from intruder-free layers with a mean AUC of 0.89, holds unchanged on six third-party adapters, and predicts where WikiText-2 perplexity starts degrading.\u003c/p\u003e\n\u003ch2\u003eWhy LoRA and full fine-tuning differ\u003c/h2\u003e\n\u003cp\u003eThe framework also explains the asymmetry people have observed for years: full fine-tuning disperses its update far below the threshold of every layer, so it never crosses. Norm-matched interventions confirm that it's threshold-crossing rather than update magnitude that carries the forgetting. That yields a cheap fix — a spike-budget rule derived from the thresholds, requiring a single SVD and no validation sweeps, which reduced forgetting by 62% on the most fragile model at no cost to task performance.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Peng Xie"
+    ],
+    "url": "https://arxiv.org/abs/2607.23711",
+    "published_at": "2026-07-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "finetuning",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "efficiency",
+    "interpretability",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-10",
+  "date": "2026-07-26",
+  "related": [
+    {
+      "id": "card_cae140",
+      "slug": "lora",
+      "type": "paper",
+      "title": "LoRA: Low-Rank Adaptation",
+      "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-06-17"
+    },
+    {
+      "id": "card_2e2448",
+      "slug": "kappa-lora-condition-numbers",
+      "type": "paper",
+      "title": "Not Every LoRA Matrix Is Worth Updating",
+      "hook": "LoRA trains every matrix equally hard. A matrix's condition number reveals which ones actually drive adaptation — tune the top half and you keep the accuracy for half the parameters.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    },
+    {
+      "id": "card_2e95ee",
+      "slug": "qlora",
+      "type": "paper",
+      "title": "QLoRA: Fine-tuning Quantized LLMs",
+      "hook": "Fine-tune a model with tens of billions of parameters on a single GPU. QLoRA squeezes the frozen base to 4-bit, then trains LoRA adapters on top — without losing quality.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-23"
+    },
+    {
+      "id": "card_5f10e6",
+      "slug": "adapter-capacity-in-bits",
+      "type": "paper",
+      "title": "How Many Bits Can a LoRA Adapter Write?",
+      "hook": "Everyone treats a LoRA adapter as a skill, not a record of its training data. Weighed in bits, it stores a couple per trainable parameter — and where you put them matters more than how many.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-23"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_cae140",
+      "slug": "lora",
+      "type": "paper",
+      "title": "LoRA: Low-Rank Adaptation",
+      "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-06-17"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_b98529#0",
+      "format": "flip",
+      "prompt": "What is an 'intruder dimension' in a LoRA-tuned model?",
+      "back_html": "\u003cp\u003eA new leading singular vector of the updated matrix W+BA that is nearly orthogonal to all of the pretrained singular vectors. Their appearance is what drives catastrophic forgetting.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b98529#1",
+      "format": "quiz",
+      "prompt": "Why does full fine-tuning avoid the forgetting that LoRA can cause, per this paper?",
+      "choices": [
+        {
+          "text": "It disperses its update across directions, staying far below every layer's critical threshold",
+          "correct": true
+        },
+        {
+          "text": "It uses a much smaller effective learning rate than LoRA does",
+          "correct": false
+        },
+        {
+          "text": "It updates the singular values but never the singular vectors",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe threshold is about concentration, not size. LoRA's low-rank update can concentrate enough strength in one direction to cross a layer's critical value; a full-rank update spreads the same magnitude out and never does.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b98529#2",
+      "format": "flip",
+      "prompt": "What did norm-matched interventions establish about the source of forgetting?",
+      "back_html": "\u003cp\u003eThat crossing the threshold, not the raw magnitude of the update, is what carries the forgetting — layers matched on update norm behaved very differently depending on whether they crossed.\u003c/p\u003e"
+    }
+  ]
+}

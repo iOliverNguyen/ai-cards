@@ -1,0 +1,117 @@
+{
+  "id": "card_504b03",
+  "slug": "vlact-representation-centric-vla-pretraining",
+  "type": "paper",
+  "title": "When Robot Data Can't Scale, Scale the Representation Instead",
+  "hook": "Web images scale; robot trajectories don't. VLAct argues the fix isn't more teleoperation but better use of it — and beats full-data baselines on an unseen humanoid using 20% of the trajectories.",
+  "key_points": [
+    "Embodied data collection is costly and covers the physical world sparsely, so representation quality — not data volume — becomes the binding constraint.",
+    "VLAct is a VLA-oriented VLM backbone given continued pre-training on broad, heterogeneous, multi-embodiment robot data before task-specific fine-tuning.",
+    "Three ingredients: preserving the VLM prior, multi-head continuous action co-supervision, and a partially unified cross-embodiment action layout.",
+    "Task-specific action heads are still allowed during fine-tuning, so the shared layout doesn't force one output space on every robot.",
+    "Reports 82.6% on LIBERO-Plus and 92.5% on RoboTwin 2.0, above industrial systems including ABot-M0 and LingBot-VLA.",
+    "On RoboCasa-GR1, an unseen humanoid, VLAct with 20% of downstream trajectories beat the full-data GR00T-N1.6 baseline — trained on open data with 16 GPUs."
+  ],
+  "content_html": "\u003cp\u003eThe scaling story that worked for language models does not transfer cleanly to robots. Image-text pairs are lying around on the web; robot trajectories have to be collected one arm at a time, and even a large collection covers the physical world thinly. Yang and colleagues take that as a premise rather than a problem to out-collect: if the data budget is fixed, the question is whether continued pre-training extracts transferable visual-action knowledge or just memorizes the actions in front of it.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eA separate axis from data scaling\u003c/h2\u003e\n\u003cp\u003eVLAct is a VLM backbone given continued pre-training on broad, heterogeneous, multi-embodiment robot data before any task-specific fine-tuning. Three choices carry the weight: the broad VLM prior is explicitly preserved rather than overwritten, continuous actions are co-supervised through multiple heads, and the action layout is \u003cem\u003epartially\u003c/em\u003e unified across embodiments so shared semantics can form without pretending a humanoid and a two-arm rig have the same output space. Task-specific heads are still permitted downstream.\u003c/p\u003e\n\u003cp\u003eThe reported numbers span simulation, real hardware, and unseen embodiments: 82.6% on LIBERO-Plus and 92.5% on RoboTwin 2.0, ahead of industrial systems including ABot-M0 and LingBot-VLA, plus sixth place among all RoboDojo policies while beating every entry designated a world-action model. The result the authors emphasize is on RoboCasa-GR1, an unseen humanoid, where 20% of the downstream trajectories was enough to beat the full-data GR00T-N1.6 baseline. All of it on fully open-source data with 16 GPUs — their argument that representation-centric pre-training is an independent axis of VLA progress, not a substitute for scale but orthogonal to it.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Senqiao Yang",
+      "Chengyao Wang",
+      "Yuxin Chen",
+      "Hengshuang Zhao",
+      "Jiaya Jia",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.27550",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "pretraining",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "training",
+    "open-source",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_e2c5f9",
+      "slug": "clap-cross-embodiment-world-models",
+      "type": "paper",
+      "title": "CLAP: One World Model, Many Bodies",
+      "hook": "Action-conditioned video models are usually locked to one robot, which locks them out of internet video. CLAP unifies action spaces so human footage and robot logs can train the same world model.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-08-27"
+    },
+    {
+      "id": "card_0dc810",
+      "slug": "pi-zero",
+      "type": "paper",
+      "title": "π0: A Vision-Language-Action Model",
+      "hook": "π0 is a generalist robot policy: it takes camera images, joint angles, and a plain-language instruction, and outputs smooth action sequences — folding laundry, bussing tables, bagging groceries.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-10-31"
+    },
+    {
+      "id": "card_da23fd",
+      "slug": "robottt-context-scaling-robot-policies",
+      "type": "paper",
+      "title": "RoboTTT: Context Scaling for Robot Policies",
+      "hook": "Robot policies mostly look at the last step or two. NVIDIA's RoboTTT pushes visuomotor context to 8,000 timesteps without slowing inference — and finds performance keeps climbing the whole way.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-16"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_504b03#0",
+      "format": "flip",
+      "prompt": "Why does the paper treat representation quality, rather than data volume, as the central bottleneck for VLA models?",
+      "back_html": "\u003cp\u003eRobot trajectories can't be scaled like web image-text data — collection is costly and sparsely covers the physical world. Under a fixed data budget, what matters is whether continued pre-training turns those trajectories into transferable knowledge or merely fits the actions.\u003c/p\u003e"
+    },
+    {
+      "id": "card_504b03#1",
+      "format": "quiz",
+      "prompt": "Which combination describes VLAct's continued pre-training recipe?",
+      "choices": [
+        {
+          "text": "Preserve the VLM prior, co-supervise with multiple continuous action heads, and partially unify the action layout across embodiments",
+          "correct": true
+        },
+        {
+          "text": "Discard the VLM prior and train an action-only transformer from scratch on pooled robot data",
+          "correct": false
+        },
+        {
+          "text": "Freeze the whole backbone and train a separate LoRA adapter per embodiment",
+          "correct": false
+        },
+        {
+          "text": "Distill several single-robot expert policies into one student network",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAll three pieces aim at transferable representation: keeping the broad VLM prior intact, supervising continuous actions through multiple heads, and sharing enough of the action layout that semantics carry across embodiments.\u003c/p\u003e"
+    },
+    {
+      "id": "card_504b03#2",
+      "format": "flip",
+      "prompt": "What is the strongest data-efficiency result reported for VLAct?",
+      "back_html": "\u003cp\u003eOn RoboCasa-GR1, an unseen humanoid embodiment, VLAct using only 20% of the downstream trajectories outperformed the full-data GR00T-N1.6 baseline — with fully open-source data and a 16-GPU setup.\u003c/p\u003e"
+    }
+  ]
+}

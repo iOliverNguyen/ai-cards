@@ -1,0 +1,105 @@
+{
+  "id": "card_74906c",
+  "slug": "activation-functions",
+  "type": "concept",
+  "title": "Activation Functions: ReLU \u0026 Friends",
+  "hook": "Stack linear layers and you still just have one linear layer. The nonlinearity between them is what gives a network its power.",
+  "key_points": [
+    "Without a nonlinearity, stacked layers collapse into a single linear transformation.",
+    "ReLU, max(0, x), is the cheap, fast default that made deep networks practical.",
+    "Sigmoid and tanh squash outputs into a range but can saturate and stall gradients.",
+    "GELU and other variants trade a little cost for smoother behavior, common in transformers."
+  ],
+  "content_html": "\u003cp\u003eAn activation function is the nonlinear step applied to each neuron's output, and it's the ingredient that lets neural networks model complex relationships. Without it, no matter how many layers you stack, the whole thing reduces to a single linear function. ReLU is the popular default, with sigmoid, tanh, and GELU as common alternatives.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eEach layer computes a weighted sum, then passes it through an activation. ReLU simply zeroes out negatives and keeps positives — cheap to compute and resistant to the vanishing-gradient problem that plagues sigmoid and tanh, whose flat tails can choke the gradients that training relies on. Smoother functions like GELU are widely used in transformer models where their shape helps.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe choice of activation affects how easily and how deeply a network trains. ReLU's simplicity was a big reason very deep networks became trainable at all. Knowing why nonlinearity is non-negotiable — and what each option's tradeoffs are — is foundational to understanding why architectures look the way they do.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/Activation_function",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "neural-nets"
+  ],
+  "tags": [
+    "foundational"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2026-06-02",
+  "related": [
+    {
+      "id": "card_dd14c6",
+      "slug": "how-neural-networks-learn",
+      "type": "concept",
+      "title": "How Neural Networks Learn: Backpropagation",
+      "hook": "A neural net learns by asking, for every weight, 'how much did you contribute to my mistake?' Backprop answers all of them at once.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2017-10-05"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_dd14c6",
+      "slug": "how-neural-networks-learn",
+      "type": "concept",
+      "title": "How Neural Networks Learn: Backpropagation",
+      "hook": "A neural net learns by asking, for every weight, 'how much did you contribute to my mistake?' Backprop answers all of them at once.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2017-10-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_74906c#0",
+      "format": "flip",
+      "prompt": "Why is a nonlinear activation non-negotiable in a deep network?",
+      "back_html": "\u003cp\u003eWithout it, no matter how many layers you stack, the whole network collapses into a single linear transformation.\u003c/p\u003e"
+    },
+    {
+      "id": "card_74906c#1",
+      "format": "quiz",
+      "prompt": "What makes ReLU resistant to the problem that plagues sigmoid and tanh?",
+      "choices": [
+        {
+          "text": "It doesn't saturate, so it avoids the vanishing-gradient problem",
+          "correct": true
+        },
+        {
+          "text": "It squashes outputs into a bounded range",
+          "correct": false
+        },
+        {
+          "text": "It is more expensive but smoother to compute",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSigmoid and tanh have flat tails that choke gradients; ReLU simply zeroes negatives and keeps positives, resisting vanishing gradients.\u003c/p\u003e"
+    },
+    {
+      "id": "card_74906c#2",
+      "format": "quiz",
+      "prompt": "Which activation is commonly used in transformer models for its smoother shape?",
+      "choices": [
+        {
+          "text": "GELU",
+          "correct": true
+        },
+        {
+          "text": "Sigmoid",
+          "correct": false
+        },
+        {
+          "text": "A plain linear function",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSmoother functions like GELU trade a little cost for smoother behavior and are widely used in transformers.\u003c/p\u003e"
+    }
+  ]
+}

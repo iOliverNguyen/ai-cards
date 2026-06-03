@@ -1,0 +1,104 @@
+{
+  "id": "card_63d7de",
+  "slug": "rnns-and-lstms",
+  "type": "concept",
+  "title": "RNNs, LSTMs \u0026 Sequences",
+  "hook": "To read a sequence, a network can loop over it one step at a time, carrying a memory of what came before. Plain RNNs forget fast; LSTMs add gates so they remember longer.",
+  "key_points": [
+    "RNNs process sequences step by step, passing a hidden state forward as memory.",
+    "Plain RNNs struggle with long-range dependencies due to vanishing gradients.",
+    "LSTMs use gates to decide what to keep, forget, and output, retaining info over longer spans.",
+    "Karpathy's essay shows character-level RNNs generating surprisingly coherent text.",
+    "Transformers later replaced RNNs for most language tasks, but the intuitions carry over."
+  ],
+  "content_html": "\u003cp\u003eRecurrent neural networks handle sequences — text, audio, time series — by stepping through them one element at a time and carrying a hidden state that acts as memory. In a widely read essay, Andrej Karpathy showed how even simple character-level RNNs can generate strikingly plausible text, making the idea click for many learners.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eAt each step, an RNN combines the current input with its hidden state from the previous step to produce a new hidden state and an output. That loop lets information flow forward through time. The catch is the vanishing gradient problem: signals from far-back steps shrink as they propagate, so plain RNNs forget long-range context. LSTMs fix this with gates — small learned controllers that decide what to add to memory, what to erase, and what to read out — letting useful information persist across many steps.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eRNNs and LSTMs were the backbone of sequence modeling for years, powering translation, speech, and text generation. Although Transformers have since taken over most of these tasks with their attention mechanism, understanding recurrence and the memory bottleneck makes it clear why attention was such a leap forward.\u003c/p\u003e",
+  "source": {
+    "name": "Andrej Karpathy",
+    "authors": [
+      "Andrej Karpathy"
+    ],
+    "url": "https://karpathy.github.io/2015/05/21/rnn-effectiveness/",
+    "published_at": "2015-05-21",
+    "license": "free educational"
+  },
+  "topic_ids": [
+    "rnns"
+  ],
+  "tags": [
+    "foundational",
+    "nlp"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2015-05-21",
+  "related": [
+    {
+      "id": "card_9cee40",
+      "slug": "seq2seq",
+      "type": "paper",
+      "title": "Sequence to Sequence Learning",
+      "hook": "Translate a sentence by reading it into one vector, then writing a new sentence out of that vector. This encoder–decoder recipe powered early neural machine translation.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2014-09-10"
+    },
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_dd14c6",
+      "slug": "how-neural-networks-learn",
+      "type": "concept",
+      "title": "How Neural Networks Learn: Backpropagation",
+      "hook": "A neural net learns by asking, for every weight, 'how much did you contribute to my mistake?' Backprop answers all of them at once.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2017-10-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_63d7de#0",
+      "format": "flip",
+      "prompt": "Why do plain RNNs struggle with long-range dependencies?",
+      "back_html": "\u003cp\u003eThe vanishing gradient problem: signals from far-back steps shrink as they propagate, so the network forgets long-range context.\u003c/p\u003e"
+    },
+    {
+      "id": "card_63d7de#1",
+      "format": "quiz",
+      "prompt": "How do LSTMs retain information over longer spans than plain RNNs?",
+      "choices": [
+        {
+          "text": "Gates that decide what to keep, forget, and read out",
+          "correct": true
+        },
+        {
+          "text": "Processing the whole sequence at once in parallel",
+          "correct": false
+        },
+        {
+          "text": "Removing the hidden state entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLSTMs add learned gates controlling what to add to memory, what to erase, and what to read out, letting information persist across many steps.\u003c/p\u003e"
+    },
+    {
+      "id": "card_63d7de#2",
+      "format": "flip",
+      "prompt": "What does an RNN's hidden state act as while processing a sequence?",
+      "back_html": "\u003cp\u003eA memory: it carries information forward, combined with each new input to produce the next hidden state and output.\u003c/p\u003e"
+    }
+  ]
+}

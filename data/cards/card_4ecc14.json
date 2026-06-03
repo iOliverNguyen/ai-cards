@@ -1,0 +1,70 @@
+{
+  "id": "card_4ecc14",
+  "slug": "the-illustrated-transformer",
+  "type": "resource",
+  "title": "The Illustrated Transformer",
+  "hook": "Before you tackle the Transformer paper, watch a sentence flow through one — query, key, value, and all — in clear pictures.",
+  "key_points": [
+    "A visual, step-by-step walkthrough of how a Transformer processes a sentence.",
+    "Explains query, key, and value attention with diagrams instead of dense math.",
+    "Traces the encoder-decoder flow so you see how information moves through the model.",
+    "A great on-ramp to read before the original 'Attention Is All You Need' paper."
+  ],
+  "content_html": "\u003cp\u003eJay Alammar's \u0026quot;The Illustrated Transformer\u0026quot; is a famous visual walkthrough that follows a sentence step by step as a Transformer processes it. With clear diagrams, it explains query/key/value attention and the encoder-decoder flow, turning the architecture's dense math into pictures you can follow. It's a popular first stop before reading the original paper.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe guide builds intuition incrementally. It starts with how words become vectors, shows how self-attention compares each word's query against the keys of all other words to produce attention weights, and then how those weights combine the values. From there it layers in multi-head attention, the stacked encoder and decoder, and how the decoder attends back to the encoder's output to generate text. Each idea gets its own annotated diagram so the moving parts stay visible.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eTransformers are central to modern AI, but the original paper assumes a lot of background. This illustrated version meets you where you are, making the architecture approachable without sacrificing accuracy. Working through it first means the paper and code-level resources land far more easily afterward.\u003c/p\u003e",
+  "source": {
+    "name": "Jay Alammar",
+    "authors": [
+      "Jay Alammar"
+    ],
+    "url": "https://jalammar.github.io/illustrated-transformer/",
+    "published_at": "2018-06-27",
+    "license": "free educational"
+  },
+  "topic_ids": [
+    "transformers"
+  ],
+  "tags": [
+    "architecture",
+    "nlp",
+    "tutorial"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-06-02",
+  "date": "2018-06-27",
+  "related": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    },
+    {
+      "id": "card_7ed03d",
+      "slug": "what-is-attention",
+      "type": "concept",
+      "title": "What Is Attention?",
+      "hook": "Attention lets a model decide what to focus on: it scores how relevant each piece of input is to the current question, then blends them by those scores.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2018-06-24"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7ed03d",
+      "slug": "what-is-attention",
+      "type": "concept",
+      "title": "What Is Attention?",
+      "hook": "Attention lets a model decide what to focus on: it scores how relevant each piece of input is to the current question, then blends them by those scores.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2018-06-24"
+    }
+  ]
+}

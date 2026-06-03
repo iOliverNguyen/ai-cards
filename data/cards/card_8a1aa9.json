@@ -1,0 +1,106 @@
+{
+  "id": "card_8a1aa9",
+  "slug": "evolution-strategies-vs-grpo",
+  "type": "paper",
+  "title": "Evolution Strategies Beat GRPO on Reasoning Coverage",
+  "hook": "GRPO sharpens one answer and collapses entropy. Evolution strategies keep the population diverse — improving pass@1 while also raising pass@k, which GRPO gives up.",
+  "key_points": [
+    "Evolution Strategies (ES) had been treated as a memory-efficient but weaker alternative to GRPO for reasoning post-training.",
+    "The paper shows ES yields broader reasoning coverage, better exploiting what the pretrained model already knows.",
+    "Theory: verifier-projected Jensen-Shannon diversity across the ES population helps pass@K.",
+    "Empirically ES improves pass@1 while attaining higher pass@K, whereas GRPO shows entropy collapse.",
+    "A sequential GRPO-then-ES recipe combines GRPO's pass@1 strength with ES's pass@K gains.",
+    "Gains come from a sparse subset of large-magnitude updates despite huge whole-model parameter drift — and without catastrophic forgetting."
+  ],
+  "content_html": "\u003cp\u003eEvolution Strategies — perturb the weights, keep what scores better, no backprop through the reward — reappeared recently as a memory-cheap way to post-train LLMs for reasoning. The assumption was that you pay for the memory saving in quality. Ba and colleagues argue the trade is not what people thought.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe finding\u003c/h2\u003e\n\u003cp\u003eES gives \u003cem\u003ebroader\u003c/em\u003e reasoning coverage than GRPO. Theoretically, the authors tie pass@K to verifier-projected Jensen-Shannon diversity across the ES population: a spread-out population explores more distinct solution paths. Empirically, GRPO exhibits the familiar entropy collapse — the policy narrows, pass@1 goes up, pass@K stalls or drops — while ES improves pass@1 \u003cem\u003eand\u003c/em\u003e attains higher pass@K. Since pass@K is the honest measure of what a model can find when allowed multiple attempts, that matters for anything with a verifier in the loop.\u003c/p\u003e\n\u003cp\u003eTwo secondary results are interesting on their own. Sequential GRPO-then-ES gets both properties. And although ES drifts a large fraction of the model's parameters, the task gains are carried by a sparse subset of larger-magnitude updates — held-out evaluations show no catastrophic forgetting. Big parameter movement, it turns out, need not mean big functional change.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eIt repositions ES as a distinct post-training paradigm with its own advantage scope, rather than a budget substitute for policy-gradient RL. The authors also note a practical scaling quirk: larger models need \u003cem\u003esmaller\u003c/em\u003e ES populations.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yunpeng Ba",
+      "Zhi Zheng",
+      "Yue Xie",
+      "Jiaqing Li",
+      "Xialiang Tong",
+      "Tao Zhong",
+      "Mingxuan Yuan",
+      "Zhichao Lu",
+      "Xuyang Wu",
+      "Zhenkun Wang"
+    ],
+    "url": "https://arxiv.org/abs/2608.27351",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "reasoning",
+    "alignment",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    },
+    {
+      "id": "card_e09498",
+      "slug": "weak-model-prefix-exploration-rlvr",
+      "type": "paper",
+      "title": "Use a Weak Model to Stop Your Strong One Getting Stuck",
+      "hook": "RLVR collapses a model's entropy until it only knows one way to think. Feeding it half-finished reasoning from a smaller, worse model breaks the rut — no reward engineering required.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-08-27"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_8a1aa9#0",
+      "format": "flip",
+      "prompt": "What is entropy collapse, and why does it hurt pass@k?",
+      "back_html": "\u003cp\u003eThe policy's output distribution narrows during RL training. Pass@1 can improve, but the model stops producing varied attempts, so drawing k samples no longer explores k different reasoning paths.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8a1aa9#1",
+      "format": "quiz",
+      "prompt": "What does the paper report about where ES's performance gains come from?",
+      "choices": [
+        {
+          "text": "A sparse subset of large-magnitude updates, despite drift across most parameters",
+          "correct": true
+        },
+        {
+          "text": "Uniform small updates spread evenly across all layers",
+          "correct": false
+        },
+        {
+          "text": "Changes confined entirely to the final output projection",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eWhole-model parameter drift is substantial, but task gains trace to a small set of larger updates — large parameter movement does not imply widespread functional change.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8a1aa9#2",
+      "format": "flip",
+      "prompt": "How do the authors propose combining ES and GRPO?",
+      "back_html": "\u003cp\u003eSequentially: train with GRPO for its pass@1 strength, then with ES to recover the reasoning coverage that raises pass@K.\u003c/p\u003e"
+    }
+  ]
+}

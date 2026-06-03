@@ -1,0 +1,98 @@
+{
+  "id": "card_855db0",
+  "slug": "openai-broadcom-jalapeno",
+  "type": "news",
+  "title": "Jalapeño: OpenAI and Broadcom's Inference Chip",
+  "hook": "OpenAI co-designed a custom chip — Jalapeño — built only for running LLMs, betting that inference-specific silicon beats general GPUs on cost and scale.",
+  "key_points": [
+    "Jalapeño is purpose-built for inference — serving trained models — not for training them.",
+    "It was co-designed with Broadcom, signaling frontier labs moving toward custom silicon.",
+    "The stated goals are better performance, energy efficiency, and scale for deploying large models.",
+    "Specializing the chip to the inference workload is what lets it target lower cost per token than a general-purpose GPU."
+  ],
+  "content_html": "\u003cp\u003eOpenAI and Broadcom unveiled Jalapeño, a custom AI chip built specifically for LLM inference. Unlike a general-purpose GPU that handles both training and serving, Jalapeño targets only the inference workload — running already-trained models — with the goal of improving performance, energy efficiency, and scale.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat it is\u003c/h2\u003e\n\u003cp\u003eJalapeño is an inference accelerator co-designed by OpenAI and Broadcom. Inference is the act of serving a model to users — every chat reply or completion. By narrowing the chip's job to that one workload, the design can be tuned for it more aggressively than a chip that must also support the flexibility training requires.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eFor a lab serving models to hundreds of millions of users, the cumulative cost of inference can dominate the budget far more than one-time training runs. A frontier lab co-designing its own inference silicon is a bet on controlling that cost, efficiency, and supply rather than depending entirely on general-purpose GPUs. See OpenAI's announcement for details.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "authors": [
+      "OpenAI"
+    ],
+    "url": "https://openai.com/index/openai-broadcom-jalapeno-inference-chip",
+    "published_at": "2026-06-24",
+    "license": "OpenAI blog"
+  },
+  "topic_ids": [
+    "hardware",
+    "lab-updates"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "news"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-25",
+  "date": "2026-06-24",
+  "related": [
+    {
+      "id": "card_242035",
+      "slug": "blackwell-gpu",
+      "type": "news",
+      "title": "NVIDIA Blackwell (B200 / GB200)",
+      "hook": "Blackwell is the chip the 2025 frontier ran on: a two-die GPU with an FP4 transformer engine, built to train and serve trillion-parameter models.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2024-03-18"
+    },
+    {
+      "id": "card_b185fa",
+      "slug": "tpu",
+      "type": "paper",
+      "title": "In-Datacenter Performance Analysis of a TPU",
+      "hook": "Google built a custom chip whose heart is a 256x256 grid of 8-bit multiply-accumulate units - and in production it ran neural-net inference roughly 15-30x faster than the GPUs and CPUs of its day.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2017-04-16"
+    },
+    {
+      "id": "card_27a1ab",
+      "slug": "the-hardware-lottery",
+      "type": "paper",
+      "title": "The Hardware Lottery",
+      "hook": "A research idea can win not because it is genuinely better, but because it happens to fit the hardware and software we already have. Sara Hooker calls this the hardware lottery.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2020-09-14"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_855db0#0",
+      "format": "flip",
+      "prompt": "How does an inference-optimized chip like Jalapeño differ in purpose from a training GPU?",
+      "back_html": "\u003cp\u003eIt specializes in serving trained models — running forward passes cheaply and at scale — rather than the heavier, more flexible workload of training them.\u003c/p\u003e"
+    },
+    {
+      "id": "card_855db0#1",
+      "format": "quiz",
+      "prompt": "What does a frontier lab co-designing its own inference chip signal?",
+      "choices": [
+        {
+          "text": "A push to control inference cost, efficiency, and hardware supply instead of relying solely on general-purpose GPUs",
+          "correct": true
+        },
+        {
+          "text": "That training models no longer requires any GPUs",
+          "correct": false
+        },
+        {
+          "text": "That model architectures have stopped changing",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eCustom silicon tuned for one workload trades flexibility for efficiency — a bet that pays off when you run that workload at enormous scale, as labs serving models do.\u003c/p\u003e"
+    }
+  ]
+}

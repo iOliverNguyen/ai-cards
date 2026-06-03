@@ -1,0 +1,109 @@
+{
+  "id": "card_7bdd52",
+  "slug": "rate-utility-tokens-bytes-pixels",
+  "type": "paper",
+  "title": "Rate-Utility Frontiers for Language Encodings: Comparing Tokens, Bytes, and Pixels",
+  "hook": "Tokens, bytes, or pixels — which encodes language best? A controlled head-to-head across 13 languages finds no single winner: each encoding trades off differently by task.",
+  "key_points": [
+    "Controls for content and downstream capacity together, using a shared bottleneck swept in width to trace rate-utility frontiers.",
+    "Tested across 13 languages and 5 scripts, on 3 utilities: surface-form preservation, cross-lingual alignment, and topic classification.",
+    "Pixels preserve surface form best; bytes preserve cross-lingual alignment best (especially within the same script); tokens win at topic prediction.",
+    "No single encoding dominates across tasks or capacity regimes — the tradeoff is real, not an artifact of sequence length.",
+    "Short inputs can lose useful meaning while long inputs can still compress well, so length alone doesn't explain the differences."
+  ],
+  "content_html": "\u003cp\u003eLanguage models can represent text as subword tokens, raw bytes, or even rendered pixels — but comparisons between these choices are usually confounded, since each exposes a different amount of linguistic content per language. This paper strips that confound out.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eIngo Ziegler, Desmond Elliott, and Martin Krebs use verified parallel sentences across thirteen languages and five scripts, passing tokens, bytes, and pixels through a shared bottleneck whose width is swept to trace out rate-utility frontiers. That setup separates three things normally conflated: how many input positions an encoding creates, how much latent capacity survives encoding, and how much task-relevant information survives compression. They then score three utilities — surface-form preservation, cross-lingual sentence alignment, and topic classification.\u003c/p\u003e\n\u003cp\u003eThe headline finding is that no encoding wins everywhere: pixels are best at preserving exact surface form, bytes are best at cross-lingual alignment (especially within the same script), and tokens are best for topic prediction. The authors stress this isn't just about sequence length — short inputs can lose meaning while long ones can still compress well — so choosing an encoding is a genuine rate-utility tradeoff shaped by task, language mix, capacity, and compute budget. arXiv, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ingo Ziegler",
+      "Martin Krebs",
+      "Desmond Elliott"
+    ],
+    "url": "https://arxiv.org/abs/2607.16117",
+    "published_at": "2026-07-17",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "tokenization",
+    "papers-this-week"
+  ],
+  "tags": [
+    "nlp",
+    "benchmark",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-17",
+  "related": [
+    {
+      "id": "card_a2690e",
+      "slug": "byte-pair-encoding",
+      "type": "paper",
+      "title": "Subword Tokenization with Byte-Pair Encoding",
+      "hook": "Whole words make a giant vocabulary; single characters make long sequences. Subwords split the difference — and let models read words they've never seen.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2015-08-31"
+    },
+    {
+      "id": "card_9ff16f",
+      "slug": "sentencepiece",
+      "type": "paper",
+      "title": "SentencePiece: Language-Independent Tokenization",
+      "hook": "Most tokenizers assume you can split on spaces first. SentencePiece drops that assumption and tokenizes raw text directly — in any language.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2018-08-19"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_a2690e",
+      "slug": "byte-pair-encoding",
+      "type": "paper",
+      "title": "Subword Tokenization with Byte-Pair Encoding",
+      "hook": "Whole words make a giant vocabulary; single characters make long sequences. Subwords split the difference — and let models read words they've never seen.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2015-08-31"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_7bdd52#0",
+      "format": "flip",
+      "prompt": "What does it mean to compare encodings 'under a shared bottleneck'?",
+      "back_html": "\u003cp\u003eThe authors route tokens, bytes, and pixels through a compression bottleneck of swept width, separating input length, latent capacity, and task-relevant information — quantities usually conflated.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7bdd52#1",
+      "format": "quiz",
+      "prompt": "Which encoding won on which utility, per the paper?",
+      "choices": [
+        {
+          "text": "Pixels best for surface form, bytes best for cross-lingual alignment, tokens best for topic classification",
+          "correct": true
+        },
+        {
+          "text": "Tokens dominated every utility tested",
+          "correct": false
+        },
+        {
+          "text": "Bytes dominated every utility tested",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eNo encoding dominates overall — pixels preserve surface form best, bytes preserve cross-lingual sentence alignment best, and tokens best support topic prediction.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7bdd52#2",
+      "format": "flip",
+      "prompt": "Why can't you explain the encoding differences by sequence length alone?",
+      "back_html": "\u003cp\u003eShort inputs can discard useful meaning, while longer inputs can still compress well and preserve information — length alone doesn't predict which encoding wins.\u003c/p\u003e"
+    }
+  ]
+}

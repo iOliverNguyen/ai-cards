@@ -1,0 +1,104 @@
+{
+  "id": "card_3c9052",
+  "slug": "multimodal-speaker-verification-anonymization",
+  "type": "paper",
+  "title": "Anonymized Speech Still Leaks Who You Are — If You Keep Talking",
+  "hook": "Voice anonymization disguises how you sound. Stack five anonymized utterances and add what you actually said, and a verifier picks you out anyway.",
+  "key_points": [
+    "Speaker verification is usually tested one utterance at a time, but real interactions hand an attacker many — and the evidence accumulates.",
+    "Anonymization mostly disguises vocal characteristics, leaving prosodic and linguistic cues — rhythm, phrasing, word choice — largely intact.",
+    "Audio-only aggregation over multiple anonymized utterances steadily improves verification as more speech becomes available.",
+    "Adding prosody and text beats audio alone: with just five anonymized utterances, EER drops over 15% relative to audio-only aggregation.",
+    "Among the strategies compared, frame-level aggregation yielded the lowest equal error rates."
+  ],
+  "content_html": "\u003cp\u003eVoice anonymization is supposed to let you release speech without releasing the speaker. Ashi Garg, Nicholas Andrews, and colleagues at Johns Hopkins point out that we usually grade it under unrealistically favorable conditions: automatic speaker verification (ASV) is benchmarked on single utterances, while a real attacker gets a whole conversation. Give the attacker that conversation — and let it read the words, not just hear the voice — and much of the protection evaporates.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe authors study ASV in a multi-utterance, multimodal setting. First, audio only: aggregating across several anonymized utterances improves verification consistently as more speech accumulates. Then they fold in prosodic and linguistic information, and the multimodal systems beat the unimodal ones. With just five anonymized utterances, combining audio and text reduces equal error rate (EER — the operating point where false accepts and false rejects balance; lower is better) by over 15% relative to audio-only aggregation. Comparing aggregation strategies, frame-level aggregation came out lowest.\u003c/p\u003e\n\u003cp\u003eThe lesson generalizes past speech. Anonymization schemes are typically built and evaluated against the channel they were designed to scramble — here, vocal characteristics — while identity keeps leaking through the channels nobody scrubbed: how you pace a sentence, which words you reach for. If your threat model assumes one short clip, you're measuring the wrong attacker.\n\u003c!-- raw HTML omitted --\u003e\n\u003c!-- raw HTML omitted --\u003e\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ashi Garg",
+      "Cristina Aggazzotti",
+      "Leibny Paola García-Perera",
+      "Nicholas Andrews"
+    ],
+    "url": "https://arxiv.org/abs/2607.19636",
+    "published_at": "2026-07-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "video-audio",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "speech",
+    "safety",
+    "multimodal",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-27",
+  "date": "2026-07-22",
+  "related": [
+    {
+      "id": "card_8a4426",
+      "slug": "whisper",
+      "type": "paper",
+      "title": "Whisper: Robust Speech Recognition at Scale",
+      "hook": "Train a plain encoder-decoder transformer on 680,000 hours of weakly-labeled multilingual audio and you get near-human transcription robustness without task-specific fine-tuning.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-06"
+    },
+    {
+      "id": "card_4e9f3d",
+      "slug": "linear-ensembles-wash-watermarks",
+      "type": "paper",
+      "title": "Linear Ensembles Wash Away Watermarks",
+      "hook": "Text watermarks survive paraphrasing — but not arithmetic. Averaging the outputs of 3–5 different models cancels the signal almost entirely, and improves quality while doing it.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-05-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_3c9052#0",
+      "format": "flip",
+      "prompt": "Why does testing speaker anonymization one utterance at a time overstate how much privacy it gives?",
+      "back_html": "\u003cp\u003eReal interactions supply many utterances, and speaker evidence accumulates across them — aggregating anonymized speech steadily improves a verifier's accuracy as more of it arrives.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3c9052#1",
+      "format": "quiz",
+      "prompt": "What happened when the attack combined audio with prosodic and linguistic cues?",
+      "choices": [
+        {
+          "text": "With five anonymized utterances, audio plus text cut EER by over 15% relative to audio-only aggregation",
+          "correct": true
+        },
+        {
+          "text": "Nothing — anonymization already strips prosody and word choice along with voice",
+          "correct": false
+        },
+        {
+          "text": "It helped only once the attacker had dozens of utterances to work with",
+          "correct": false
+        },
+        {
+          "text": "It hurt accuracy, because textual cues conflicted with the acoustic ones",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMultimodal systems outperformed unimodal ones: even at five anonymized utterances, combining audio and text reduced equal error rate by more than 15% relative to aggregating audio alone.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3c9052#2",
+      "format": "flip",
+      "prompt": "Which speaker cues tend to survive typical voice anonymization?",
+      "back_html": "\u003cp\u003eProsodic and linguistic ones. Anonymization primarily targets vocal characteristics, so rhythm, phrasing, and word choice keep carrying speaker-discriminative information.\u003c/p\u003e"
+    }
+  ]
+}

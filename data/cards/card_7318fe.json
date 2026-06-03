@@ -1,0 +1,96 @@
+{
+  "id": "card_7318fe",
+  "slug": "camodocs-rag-poisoning",
+  "type": "paper",
+  "title": "CamoDocs: Poisoning RAG Without Leaving Fingerprints",
+  "hook": "Existing RAG poisoning attacks paste the target query into the malicious document, which is exactly what makes them easy to filter. CamoDocs hides the payload inside plausible benign text instead.",
+  "key_points": [
+    "RAG systems reading public or user-editable sources can be poisoned by injected documents that steer answers.",
+    "Prior attacks include the target query verbatim to boost retrieval, creating lexical and embedding artifacts defenders can detect.",
+    "CamoDocs avoids query inclusion by camouflaging adversarial content among benign content.",
+    "It chunks synthesized benign and adversarial drafts, then replaces selected tokens in benign chunks with dispersion tokens that spread the poisoned embeddings.",
+    "Reported average attack success of 61.80% on GPT-5.4-mini and 55.09% on Claude-Haiku-4.5, across seven defenses and three benchmarks.",
+    "Erasure-heavy clustering defenses like TrustRAG cut success but at substantial utility cost on retrieval-dependent benchmarks."
+  ],
+  "content_html": "\u003cp\u003eRetrieval-augmented generation gives an LLM external documents, which means anyone who can edit those sources can try to steer its answers. The standard poisoning recipe inserts the target query into the malicious document so it retrieves reliably — and that is precisely the tell defenders look for.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe attack\u003c/h2\u003e\n\u003cp\u003eCamoDocs drops query inclusion entirely and camouflages the adversarial content instead. It synthesizes both benign and adversarial drafts, chunks them, and replaces selected tokens in the benign chunks with \u003cem\u003edispersion tokens\u003c/em\u003e that spread the poisoned document's embeddings across the space. A coherence filter then limits how much readability degrades, so the result still reads like a real document. The effect is a document that retrieves for the target query without carrying the query's fingerprint.\u003c/p\u003e\n\u003ch2\u003eResults\u003c/h2\u003e\n\u003cp\u003eAcross seven RAG defenses, three open-weight LLMs, and three benchmarks, the authors report strong average attack success while evading query-overlap detection, including 61.80% on GPT-5.4-mini and 55.09% on Claude-Haiku-4.5. Erasure-heavy clustering defenses such as TrustRAG do reduce success — but only alongside substantial utility drops on retrieval-dependent benchmarks like NeoQA.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThis is offensive research with a defensive lesson: defenses that key on the \u003cem\u003eartifacts of a technique\u003c/em\u003e rather than the \u003cem\u003egoal of the attack\u003c/em\u003e are one refinement away from failing, and the honest cost of the strongest available defense is measured in lost retrieval quality. Code is public, which cuts both ways.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jaewon Jung",
+      "Haizhong Zheng",
+      "Hongsun Jang",
+      "Jaeyong Song",
+      "Beidi Chen",
+      "Jinho Lee"
+    ],
+    "url": "https://arxiv.org/abs/2608.28389",
+    "published_at": "2026-08-28",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rag",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "rag",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-28",
+  "related": [
+    {
+      "id": "card_4fbe16",
+      "slug": "sara-tool-outputs-as-commands",
+      "type": "paper",
+      "title": "When Tool Outputs Become Commands",
+      "hook": "Prompt injection into agents is really one confusion: the thing that suggests an action and the thing that authorizes it are treated as the same thing.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-27"
+    },
+    {
+      "id": "card_04a0f9",
+      "slug": "longpibench-long-context-prompt-injection",
+      "type": "paper",
+      "title": "Prompt Injection Defenses Fall Apart in Long Context",
+      "hook": "Injection benchmarks are all short-context, which has been flattering the defenses. Stretch the input to tens of thousands of tokens and even naive attacks walk through state-of-the-art protections.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_7318fe#0",
+      "format": "flip",
+      "prompt": "Why does including the target query make a poisoned document easier to catch?",
+      "back_html": "\u003cp\u003eIt leaves lexical and embedding-space artifacts — unusually high overlap with the query — that a simple query-overlap filter can flag without understanding the content.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7318fe#1",
+      "format": "quiz",
+      "prompt": "What is the defender's dilemma the paper surfaces?",
+      "choices": [
+        {
+          "text": "Erasure-heavy clustering defenses reduce attack success but cost significant utility on retrieval-dependent tasks",
+          "correct": true
+        },
+        {
+          "text": "Detecting poisoning requires access to the model's training data",
+          "correct": false
+        },
+        {
+          "text": "Poisoned documents can only be removed by disabling retrieval entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eTrustRAG-style defenses work by aggressively discarding suspicious retrievals, which also discards genuinely useful ones — measured as large drops on benchmarks like NeoQA.\u003c/p\u003e"
+    }
+  ]
+}

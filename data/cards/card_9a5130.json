@@ -1,0 +1,95 @@
+{
+  "id": "card_9a5130",
+  "slug": "equilibrium-thermodynamic-computing",
+  "type": "paper",
+  "title": "A Blueprint for Equilibrium-Based Differentiable Thermodynamic Computing",
+  "hook": "Instead of fighting thermal noise in chips, this blueprint puts it to work — training ML models directly on physical stochastic hardware to cut the energy cost of machine learning.",
+  "key_points": [
+    "Proposes thermodynamic computing: hardware whose stochastic (Langevin) dynamics natively samples energy-based models.",
+    "Tunable analog energy potentials let the chip generate and sample from parameterized probabilistic models directly.",
+    "Casts training in the language of probabilistic graphical models, so popular ML model classes map onto the hardware.",
+    "Built a preliminary physical prototype: stochastic analog superconducting circuits driven by real thermal noise.",
+    "Theoretical and numerical analysis projects large runtime and energy savings over digital hardware for these workloads."
+  ],
+  "content_html": "\u003cp\u003eTraining large ML models burns a lot of energy partly because digital chips have to painstakingly emulate randomness that nature produces for free. This paper sketches a computing stack that flips that around: build hardware where thermal noise itself is the computation.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eOwen Lockwood, Guillaume Verdon, and colleagues describe energy-based thermodynamic computing, where a physical process well-modeled by Langevin dynamics runs on tunable analog energy potentials, letting the hardware directly generate and sample from parameterized energy-based models. They show how popular classes of ML models can be constructed and trained on top of this substrate using the framework of probabilistic graphical models, and back their theoretical runtime and energy analysis with a first physical prototype: stochastic analog superconducting circuits driven by real thermal noise.\u003c/p\u003e\n\u003cp\u003eThe paper is explicitly a blueprint rather than a finished product — the experimental piece is described as preliminary. Its interest is in outlining a concrete path toward energy-efficient hardware purpose-built for probabilistic machine learning, at a moment when the energy and latency costs of digital ML training are becoming a bottleneck in their own right.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Owen Lockwood",
+      "Jérémy Béjanin",
+      "Joost Bus",
+      "Christopher Chamberland",
+      "Patrick Huembeli",
+      "Frank Schäfer",
+      "Guillaume Verdon"
+    ],
+    "url": "https://arxiv.org/abs/2607.16183",
+    "published_at": "2026-07-17",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "hardware",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-20",
+  "date": "2026-07-17",
+  "related": [
+    {
+      "id": "card_27a1ab",
+      "slug": "the-hardware-lottery",
+      "type": "paper",
+      "title": "The Hardware Lottery",
+      "hook": "A research idea can win not because it is genuinely better, but because it happens to fit the hardware and software we already have. Sara Hooker calls this the hardware lottery.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2020-09-14"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_9a5130#0",
+      "format": "flip",
+      "prompt": "What's the core idea of thermodynamic computing in this paper?",
+      "back_html": "\u003cp\u003eUse a physical substrate's own stochastic (Langevin) dynamics to natively sample from energy-based models, instead of simulating randomness on digital chips.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9a5130#1",
+      "format": "quiz",
+      "prompt": "What did the authors actually build as a first physical test of this idea?",
+      "choices": [
+        {
+          "text": "Stochastic analog superconducting circuits driven by thermal noise",
+          "correct": true
+        },
+        {
+          "text": "A digital ASIC that emulates Langevin dynamics in software",
+          "correct": false
+        },
+        {
+          "text": "A GPU cluster with injected random noise",
+          "correct": false
+        },
+        {
+          "text": "A quantum annealer",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eTheir preliminary experimental realization is analog superconducting circuits whose randomness comes from real thermal noise, not simulation.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9a5130#2",
+      "format": "flip",
+      "prompt": "Why frame training in terms of probabilistic graphical models here?",
+      "back_html": "\u003cp\u003eIt gives a shared language connecting popular ML model classes to hardware-native energy-based models, so existing training ideas can map onto the thermodynamic substrate.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "id": "card_067034",
+  "slug": "laion-bvd",
+  "type": "dataset",
+  "title": "LAION-BVD: 10 Million Hours of Open Video",
+  "hook": "1.3 billion video URLs mined from CommonCrawl, 80 million downloaded, synthetically captioned for video, audio, and image pretraining — and released openly.",
+  "key_points": [
+    "1.3B platform-specific video URLs collected from CommonCrawl; 80M videos actually downloaded, totalling 10 million hours.",
+    "Built for multimodal pretraining across video, audio, and image modalities at once.",
+    "Content-aware scene detection splits videos into clips, which get synthetically generated video and audio captions.",
+    "Models trained on it are competitive on video-text and audio-text benchmarks, improving consistently with training and model scale.",
+    "Scene-changing frames form an image-text corpus with a visual distribution unlike standard web images, and train strong image-text retrieval."
+  ],
+  "content_html": "\u003cp\u003eOpen multimodal research has long had a data problem on the video side: image-text pairs are abundant and public, but the video corpora behind frontier models are not. Hochlehnert, Nezhurina, and colleagues at LAION address that with LAION-BVD, assembled by mining CommonCrawl for 1.3 billion platform-specific video URLs, then downloading 80 million videos — 10 million hours in total.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it is built\u003c/h2\u003e\n\u003cp\u003eContent-aware scene detection splits the videos into clips, and both video and audio captions are generated synthetically for each. That gives a corpus usable for video, audio, and image pretraining from a single pipeline. The authors report models trained on it performing competitively on standard video-text and audio-text benchmarks, with gains that keep coming as training or model scale increases — the property you want from a pretraining corpus.\u003c/p\u003e\n\u003ch2\u003eAn unexpected byproduct\u003c/h2\u003e\n\u003cp\u003eThey also test video frames as a substitute for web image-text data, extracting scene-changing frames. Those frames sit in a visibly different distribution from the usual scraped-image corpora, yet models trained on them reach strong image-text retrieval — suggesting video is a viable and largely untapped source of image supervision. The dataset is released to the community.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Andreas Hochlehnert",
+      "Marianna Nezhurina",
+      "Mehdi Cherti",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.24845",
+    "published_at": "2026-08-25",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "data",
+    "video-audio",
+    "papers-this-week"
+  ],
+  "tags": [
+    "dataset",
+    "multimodal",
+    "open-source",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-08-27",
+  "date": "2026-08-25",
+  "related": [
+    {
+      "id": "card_621b11",
+      "slug": "laion-5b",
+      "type": "dataset",
+      "title": "LAION-5B: Open Image-Text at Scale",
+      "hook": "CLIP and DALL-E showed huge, noisy image-text data is gold. LAION-5B made that public — billions of CLIP-filtered pairs anyone can train open models on.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-16"
+    },
+    {
+      "id": "card_7a5e17",
+      "slug": "the-pile",
+      "type": "dataset",
+      "title": "The Pile: 800GB of Diverse Text",
+      "hook": "Web text alone leaves gaps. The Pile stitches together 22 curated sources — academic and professional — so a language model picks up knowledge plain web crawls miss.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-12-31"
+    },
+    {
+      "id": "card_9237d7",
+      "slug": "deduplicating-training-data",
+      "type": "paper",
+      "title": "Deduplicating Training Data Makes LMs Better",
+      "hook": "Training corpora are full of copies — one 61-word sentence shows up 60,000+ times in C4. Strip the duplicates and models memorize far less and evaluate more honestly.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2021-07-14"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_067034#0",
+      "format": "flip",
+      "prompt": "How does LAION-BVD get captions for 80 million videos?",
+      "back_html": "\u003cp\u003eContent-aware scene detection cuts each video into clips, and video and audio captions for those clips are generated synthetically rather than collected from humans.\u003c/p\u003e"
+    },
+    {
+      "id": "card_067034#1",
+      "format": "quiz",
+      "prompt": "Why are scene-changing video frames interesting as image-text training data?",
+      "choices": [
+        {
+          "text": "Their visual distribution differs from standard web image corpora",
+          "correct": true
+        },
+        {
+          "text": "They are higher resolution than web images",
+          "correct": false
+        },
+        {
+          "text": "They come with human-written alt text",
+          "correct": false
+        },
+        {
+          "text": "They require no licensing because they are frames",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors extract scene-changing frames as an alternative image-text source and note the distribution shift; models trained on them still reach strong image-text retrieval.\u003c/p\u003e"
+    }
+  ]
+}

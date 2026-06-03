@@ -1,0 +1,144 @@
+{
+  "id": "card_0f3541",
+  "slug": "contrastive-policy-optimization",
+  "type": "paper",
+  "title": "Beyond Entropy: Correctness-Aware Advantage Shaping via Contrastive Policy Optimization",
+  "hook": "RLVR shapes rewards with entropy, but entropy can't tell useful uncertainty from confusion. CPO swaps in token-level disagreement — and shows on-policy distillation was a special case of it.",
+  "key_points": [
+    "Problem: entropy-based advantage shaping in RLVR can't separate useful uncertainty from detrimental confusion, weakening it as a correctness signal.",
+    "CPO's fix: token-level contrastive disagreement between a reference-guided and a vanilla generation distribution — shown both theoretically and empirically to track token-level correctness.",
+    "Unifying claim: on-policy distillation falls out as a special case of CPO, when an external teacher model instantiates the reference distribution.",
+    "CPO also resolves RLVR's zero-advantage problem, where groups of uniformly right or uniformly wrong rollouts otherwise contribute no learning signal.",
+    "Correct and incorrect responses drive exploitation and exploration respectively; balancing both gives CPO's best results, beating entropy-based RLVR on in- and out-of-domain benchmarks."
+  ],
+  "content_html": "\u003cp\u003eReinforcement learning with verifiable rewards (RLVR) typically uses entropy to decide which tokens get more or less credit during training — but entropy conflates useful uncertainty with pure confusion, making it a weak correctness signal. Contrastive Policy Optimization (CPO) replaces it with a sharper one: the token-level disagreement between a reference-guided generation distribution and the model's own vanilla one, which the authors show — both theoretically and empirically — reliably tracks whether a token is correct.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eCPO also reframes a familiar technique: on-policy distillation turns out to be a special case of CPO, recovered when the reference distribution is instantiated by an external teacher model. The same signal resolves RLVR's zero-advantage problem, where a group of rollouts that's uniformly right or uniformly wrong normally teaches the model nothing. Across in-domain and out-of-domain benchmarks, CPO substantially outperforms entropy-based RLVR baselines; further analysis shows correct and incorrect responses naturally drive exploitation and exploration respectively, and balancing the two is what makes CPO work best.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Weiwen Xu",
+      "Jia Liu",
+      "Hou Pong Chan",
+      "Long Li",
+      "Deng Cai",
+      "Min Chen",
+      "Hao Zhang"
+    ],
+    "url": "https://arxiv.org/abs/2607.14614",
+    "published_at": "2026-07-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "distillation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "alignment",
+    "training",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-20",
+  "date": "2026-07-16",
+  "related": [
+    {
+      "id": "card_450c0a",
+      "slug": "group-standard-deviation-identity",
+      "type": "paper",
+      "title": "GRPO, Dr. GRPO, and DAPO Are Three Operations on One Number: The Group-Standard-Deviation Identity",
+      "hook": "GRPO, Dr. GRPO, and DAPO look like three separate fixes to reasoning RL — this paper proves they're just three settings of one dial: how much weight to put on a group's disagreement.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2026-06-30"
+    },
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    },
+    {
+      "id": "card_822dbf",
+      "slug": "geometry-of-on-policy-distillation",
+      "type": "paper",
+      "title": "On the Geometry of On-Policy Distillation",
+      "hook": "On-policy distillation isn't a midpoint between fine-tuning and RL — it carves its own narrow path through parameter space, locking into a low-dimensional subspace early in training.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-05"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_0f3541#0",
+      "format": "flip",
+      "prompt": "What signal does CPO use instead of entropy for advantage shaping in RLVR?",
+      "back_html": "\u003cp\u003eToken-level contrastive disagreement between a reference-guided generation distribution and the model's own vanilla distribution — shown to reliably track token-level correctness where entropy can't.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0f3541#1",
+      "format": "quiz",
+      "prompt": "How does CPO relate to on-policy distillation?",
+      "choices": [
+        {
+          "text": "On-policy distillation is a special case of CPO, when the reference distribution comes from an external teacher model",
+          "correct": true
+        },
+        {
+          "text": "On-policy distillation is an alternative used only when no reference model is available",
+          "correct": false
+        },
+        {
+          "text": "CPO is a preprocessing step that must run before on-policy distillation can start",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eCPO's contrastive-disagreement framework is general; plugging in an external teacher as the reference distribution recovers on-policy distillation as one instance of it.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0f3541#2",
+      "format": "flip",
+      "prompt": "What is RLVR's 'zero-advantage problem', which CPO resolves?",
+      "back_html": "\u003cp\u003eWhen a group of sampled rollouts is uniformly right or uniformly wrong, standard advantage estimates collapse to zero and the group contributes no learning signal.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0f3541#3",
+      "format": "quiz",
+      "prompt": "According to the paper, what roles do correct and incorrect responses play during CPO training?",
+      "choices": [
+        {
+          "text": "Correct responses support exploitation and incorrect responses support exploration; balancing both gives the best performance",
+          "correct": true
+        },
+        {
+          "text": "Correct responses are discarded and only incorrect responses drive learning",
+          "correct": false
+        },
+        {
+          "text": "Both play identical roles and can be weighted equally with no tradeoff",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eCorrect and incorrect rollouts naturally specialize — correct ones reinforce exploitation, incorrect ones fuel exploration — and CPO's gains come from balancing the two.\u003c/p\u003e"
+    }
+  ]
+}

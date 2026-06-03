@@ -1,0 +1,115 @@
+{
+  "id": "card_5eb077",
+  "slug": "secopd-token-level-injection-defense",
+  "type": "paper",
+  "title": "SecOPD: Token-Level Feedback Against Prompt Injection",
+  "hook": "Defensive fine-tuning keeps failing because DPO and GRPO grade a whole answer at once. Score each token instead and adaptive-injection success drops from 94% to 9%.",
+  "key_points": [
+    "Prompt injection is the top threat to tool-using agents: attacker text hidden in a web page, file, or email hijacks the agent's instructions.",
+    "Prior defensive fine-tuning uses sequence-level signals (DPO, GRPO), so the model never learns which specific tokens went wrong.",
+    "SecOPD scores each token of an injected-input rollout against what the initialization model would produce from the clean input.",
+    "On the PISmith adaptive attack, the defended Qwen3.6-27B reports 9.0% attack success versus 94.0% for prior SoTA Meta-SecAlign.",
+    "The defense transfers to unseen domains: 4.7% attack success on agentic tool calling.",
+    "Code and the defended model are released openly."
+  ],
+  "content_html": "\u003cp\u003ePrompt injection sits at the top of most agent threat lists: an agent reads a web page, file, or email, and the attacker's text inside says \u0026quot;ignore all prior instructions.\u0026quot; Defenders have tried fine-tuning models to resist it, but Peng, Lian, Wagner, and Chen note that against \u003cem\u003eadaptive\u003c/em\u003e attacks — ones tuned against the defense — the best defended models still fall over at close to 100% attack success.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhy the training signal was too coarse\u003c/h2\u003e\n\u003cp\u003eTheir diagnosis is the feedback granularity. Recipes built on DPO or GRPO reward or punish an entire output. Treating every token in that output equally means the model never learns which specific tokens crossed the line from following the user to following the injected text.\u003c/p\u003e\n\u003ch2\u003eSecure on-policy distillation\u003c/h2\u003e\n\u003cp\u003eSecOPD makes the signal token-level. The model under training sees an injected sample and generates a rollout; the initialization model, given the \u003cem\u003eclean\u003c/em\u003e version of that same input, scores the rollout token by token. The mismatch pinpoints the insecure tokens. The authors report their defended Qwen3.6-27B holding the SoTA PISmith adaptive attack to a 9.0% success rate, against 94.0% for the previous best, Meta-SecAlign — and the robustness carries into agentic tool calling, a domain not in the training mix. Model and code are public.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yibo Peng",
+      "Long Lian",
+      "David Wagner",
+      "Sizhe Chen"
+    ],
+    "url": "https://arxiv.org/abs/2608.21500",
+    "published_at": "2026-08-21",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "alignment",
+    "agent",
+    "paper"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-21",
+  "related": [
+    {
+      "id": "card_adc58b",
+      "slug": "untrusted-content-masking-web-agents",
+      "type": "paper",
+      "title": "Untrusted Content Masking: A Trust Boundary for Web Agents",
+      "hook": "Provable prompt-injection defenses rely on never letting an agent read untrusted content directly. Web agents break that just by looking at the page — this restores it via the page's own structure.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_d4400d",
+      "slug": "toolhazard-adversarial-agent-environments",
+      "type": "paper",
+      "title": "ToolHazard: Synthesizing Adversarial Environments for Agent Security",
+      "hook": "Prompt-injection benchmarks are hand-built, so they cover the domains someone had time to write. ToolHazard generates the environments — and the attacks inside them — instead.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-12"
+    },
+    {
+      "id": "card_63a204",
+      "slug": "direct-on-policy-distillation",
+      "type": "paper",
+      "title": "Weak-to-Strong Generalization via Direct On-Policy Distillation",
+      "hook": "RL post-training gets pricier as models scale, since it needs the strong model's own rollouts. Direct-OPD reuses a cheap RL run on a small model instead, transferring the direction RL moved it.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_5eb077#0",
+      "format": "flip",
+      "prompt": "Why do DPO- and GRPO-based injection defenses generalize poorly to adaptive attacks?",
+      "back_html": "\u003cp\u003eThey give feedback on the whole output sequence at once, so the model cannot tell which particular tokens were the insecure ones — it never learns a precise boundary.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5eb077#1",
+      "format": "quiz",
+      "prompt": "Where does SecOPD's token-level training signal come from?",
+      "choices": [
+        {
+          "text": "The initialization model scoring the rollout's tokens given the corresponding clean input",
+          "correct": true
+        },
+        {
+          "text": "Human annotators labeling each unsafe token in the rollout",
+          "correct": false
+        },
+        {
+          "text": "A separate classifier trained to detect injected instructions",
+          "correct": false
+        },
+        {
+          "text": "Gradient norms measured on the injected span",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe defended model produces a rollout from the injected sample; the original model, shown the clean input, scores those tokens — that gap is the fine-grained supervision.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5eb077#2",
+      "format": "flip",
+      "prompt": "What does SecOPD's transfer to agentic tool calling show?",
+      "back_html": "\u003cp\u003eSecurity learned on injection training data carried into a domain absent from training — 4.7% attack success rate — suggesting the model learned a general instruction boundary, not memorized attacks.\u003c/p\u003e"
+    }
+  ]
+}

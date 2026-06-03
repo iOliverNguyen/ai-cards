@@ -1,0 +1,116 @@
+{
+  "id": "card_e3235e",
+  "slug": "adversarial-attacks-for-good",
+  "type": "paper",
+  "title": "Adversarial Attacks for Good: Turning Perturbations into Owner-Side Protection",
+  "hook": "The perturbations that fool vision models can be applied by the content's owner instead — to block recognition, poison scrapers, or break unauthorized edits. Five communities invented this separately.",
+  "key_points": [
+    "Once visual content enters an AI pipeline, its owner keeps little technical control; protection has to be applied at release or access time.",
+    "Perturbations long studied as attacks are inverted into defenses by creators, platforms, and auditors.",
+    "Five families, one per lifecycle stage: privacy filters, unlearnable examples, generative safeguards, adversarial CAPTCHAs, and provenance mechanisms.",
+    "All five exploit persistent gaps between human perception, semantic interpretation, and machine inference.",
+    "The survey scores them on shared axes: transferability, adaptability, and deployment readiness.",
+    "Main finding: most protections are validated only against static or weakly adaptive adversaries, with little evidence outside controlled benchmarks."
+  ],
+  "content_html": "\u003cp\u003eOnce an image is online, its owner has little technical say in what models do with it. Law can address misuse after the fact; the technical interventions have to happen earlier, at the moment content is released or accessed. This survey names and organizes the research paradigm that grew around that moment.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe inversion\u003c/h2\u003e\n\u003cp\u003eAdversarial perturbations — carefully computed signals that are near-invisible to people but derail a model — have mostly been studied as attacks. Here they're applied by the data owner. Zhang and colleagues find five research communities that arrived at this inversion largely independently, each guarding a different stage of a visual asset's lifecycle: privacy filters against unwanted recognition at sharing time, unlearnable examples against unauthorized training, generative safeguards against malicious editing or style imitation, adversarial CAPTCHAs for access control against automated agents, and provenance mechanisms for attribution after circulation.\u003c/p\u003e\n\u003ch2\u003eWhat the comparison shows\u003c/h2\u003e\n\u003cp\u003eBecause these grew up in separate venues with incompatible success criteria, the survey's real work is re-scoring them on shared axes — transferability, adaptability, and deployment readiness. The verdict is sobering: most protections are validated mainly against static or weakly adaptive adversaries, and evidence beyond controlled benchmarks is thin. The authors argue the paradigm still has legs, since all five families exploit durable gaps between human perception, semantic interpretation, and machine inference — but that owner-side protection needs to be robust, composable, and actually deployable before those gaps matter in practice.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jiaming Zhang",
+      "Boyang Chen",
+      "Zherui Li",
+      "Fuyao Zhang",
+      "Xinyu Yan",
+      "Hong Xi Tae",
+      "Wenwen He",
+      "Xuan Wang",
+      "Siqi Guo",
+      "Junhao Dong",
+      "Kun Wang",
+      "Hanxun Huang",
+      "Yige Li",
+      "Xingjun Ma",
+      "Yang Cao",
+      "Lingjuan Lyu",
+      "Wei Yang Bryan Lim"
+    ],
+    "url": "https://arxiv.org/abs/2608.04314",
+    "published_at": "2026-08-05",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "papers-this-week"
+  ],
+  "tags": [
+    "paper",
+    "safety",
+    "vision"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-10",
+  "date": "2026-08-05",
+  "related": [
+    {
+      "id": "card_f22c85",
+      "slug": "watermark-evidence-forensic-readiness",
+      "type": "paper",
+      "title": "AI Watermark Evidence Fails Forensic Readiness",
+      "hook": "Laws like the EU AI Act and California's SB 942 assume watermark detection can hold up in court. Tested against forensic and legal admissibility standards, three leading methods collapse.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-17"
+    },
+    {
+      "id": "card_4e9f3d",
+      "slug": "linear-ensembles-wash-watermarks",
+      "type": "paper",
+      "title": "Linear Ensembles Wash Away Watermarks",
+      "hook": "Text watermarks survive paraphrasing — but not arithmetic. Averaging the outputs of 3–5 different models cancels the signal almost entirely, and improves quality while doing it.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-05-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_e3235e#0",
+      "format": "flip",
+      "prompt": "What is the inversion behind 'adversarial attacks for good'?",
+      "back_html": "\u003cp\u003ePerturbations studied as attacks on learned models are applied instead by data owners, platforms, or auditors — to disrupt unauthorized automation on their own content or to support later accountability.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e3235e#1",
+      "format": "quiz",
+      "prompt": "Which is NOT one of the five protective families the survey identifies?",
+      "choices": [
+        {
+          "text": "Differentially private model training",
+          "correct": true
+        },
+        {
+          "text": "Unlearnable examples that resist unauthorized training",
+          "correct": false
+        },
+        {
+          "text": "Adversarial CAPTCHAs for access control against automated agents",
+          "correct": false
+        },
+        {
+          "text": "Provenance mechanisms for post-circulation attribution",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe five are privacy filters, unlearnable examples, generative safeguards, adversarial CAPTCHAs, and provenance mechanisms — all applied to the content itself, not to the training procedure.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e3235e#2",
+      "format": "flip",
+      "prompt": "What weakness do these protections share, per the survey?",
+      "back_html": "\u003cp\u003eThey're mostly validated against static or weakly adaptive adversaries, and evidence beyond controlled benchmarks is scarce — so transferability and real deployment readiness remain open.\u003c/p\u003e"
+    }
+  ]
+}

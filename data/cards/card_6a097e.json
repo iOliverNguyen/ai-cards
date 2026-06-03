@@ -1,0 +1,128 @@
+{
+  "id": "card_6a097e",
+  "slug": "humanitys-last-exam",
+  "type": "paper",
+  "title": "Humanity's Last Exam",
+  "hook": "Humanity's Last Exam is a 3,000-question expert benchmark built to be the hardest closed-ended test there is — designed to outlast frontier models as MMLU saturated.",
+  "key_points": [
+    "Released January 2025 by the Center for AI Safety (CAIS) and Scale AI.",
+    "3,000 expert-written questions (2,500 public) spanning 100+ academic disciplines.",
+    "Built to combat saturation after top models exceeded 90% on tests like MMLU.",
+    "At launch, leading models answered well under 10% correctly."
+  ],
+  "content_html": "\u003cp\u003eHumanity's Last Exam (HLE), released in January 2025 by the Center for AI Safety and Scale AI, is a benchmark deliberately built to be the hardest closed-ended academic test of its kind. It collects 3,000 expert-level questions across more than a hundred disciplines — math, the sciences, the humanities — written and vetted by specialists, with a private subset held back to detect overfitting.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe motivation was benchmark saturation: by early 2025, frontier models were scoring above 90% on established tests like MMLU, so those tests no longer separated the best systems. HLE's creators crowdsourced and filtered tens of thousands of candidate questions — offering prizes for the best — down to a final set hard enough that, at launch, leading models answered fewer than 10% correctly. The benchmark is multi-modal and spans expert frontiers of human knowledge.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eA useful benchmark has to be hard enough to leave headroom; once models ace it, it stops measuring progress. HLE was an attempt to build a test that would stay meaningful as capabilities climbed — its very name a wry bet that it might be among the last purely academic exams models can't trivially pass. Tracking movement on HLE became a way to gauge genuine expert-level reasoning rather than recall.\u003c/p\u003e",
+  "source": {
+    "name": "CAIS \u0026 Scale AI",
+    "authors": [
+      "Center for AI Safety",
+      "Scale AI"
+    ],
+    "url": "https://agi.safe.ai/",
+    "published_at": "2025-01-23",
+    "license": "CAIS / Scale AI"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "reasoning"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2025-01-23",
+  "related": [
+    {
+      "id": "card_063597",
+      "slug": "mmlu",
+      "type": "paper",
+      "title": "MMLU: Measuring Massive Multitask Language Understanding",
+      "hook": "Want one number for how broadly an LLM 'knows stuff'? MMLU is a 57-subject exam spanning history, law, medicine, and math — and it became a default yardstick.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-09-07"
+    },
+    {
+      "id": "card_ae53ac",
+      "slug": "gpqa",
+      "type": "paper",
+      "title": "GPQA: A Graduate-Level Google-Proof Q\u0026A Benchmark",
+      "hook": "What makes a question hard for a model? GPQA's are hard even for skilled people with Google: non-experts reach only 34% after 30+ minutes of searching.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-11-20"
+    },
+    {
+      "id": "card_e9af36",
+      "slug": "on-the-measure-of-intelligence",
+      "type": "paper",
+      "title": "On the Measure of Intelligence (ARC)",
+      "hook": "Is a high benchmark score the same as intelligence? Chollet argues no — intelligence is how efficiently you acquire new skills, not how well you perform known ones.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2019-11-05"
+    },
+    {
+      "id": "card_eb1147",
+      "slug": "agents-last-exam",
+      "type": "paper",
+      "title": "Agents' Last Exam: Benchmarking Agents on Real Economic Work",
+      "hook": "Frontier agents ace academic benchmarks but flop on real jobs — Agents' Last Exam scores them on 1,000+ economically valuable workflows, where the hardest tier sees just a 2.6% pass rate.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-03"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_6a097e#0",
+      "format": "flip",
+      "prompt": "What motivated building Humanity's Last Exam?",
+      "back_html": "\u003cp\u003eBenchmark saturation: top models exceeded 90% on tests like MMLU, so those tests no longer separated the best systems.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6a097e#1",
+      "format": "quiz",
+      "prompt": "How did leading models perform on HLE at launch?",
+      "choices": [
+        {
+          "text": "They answered well under 10% correctly",
+          "correct": true
+        },
+        {
+          "text": "They scored above 90%",
+          "correct": false
+        },
+        {
+          "text": "They matched human experts",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe set was filtered to be hard enough that leading models answered fewer than 10% correctly at launch.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6a097e#2",
+      "format": "quiz",
+      "prompt": "Why does HLE hold back a private subset of questions?",
+      "choices": [
+        {
+          "text": "To detect overfitting",
+          "correct": true
+        },
+        {
+          "text": "To sell it to labs separately",
+          "correct": false
+        },
+        {
+          "text": "To make the public set easier",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA private subset is held back to detect overfitting to the benchmark.\u003c/p\u003e"
+    }
+  ]
+}

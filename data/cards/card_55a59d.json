@@ -1,0 +1,126 @@
+{
+  "id": "card_55a59d",
+  "slug": "dynamicrubric-co-evolving-evaluators",
+  "type": "paper",
+  "title": "DynamicRubric: Co-Evolving LLM Evaluators and Policies",
+  "hook": "As a model improves, its candidate answers get so close in quality that the reward model can't tell them apart. DynamicRubric fixes the bottleneck by evolving the evaluator alongside the policy.",
+  "key_points": [
+    "Post-training bottleneck: as a policy improves, its sampled responses converge in quality, collapsing the evaluator's score gaps and weakening supervision.",
+    "Probability-allocation view: the gain from shifting probability mass between two responses equals the evaluator's score gap — so relative gaps are the real training signal.",
+    "DynamicRubric conditions on the candidate set, generating weighted binary rubric items per set and aggregating them into response-level scores.",
+    "With 8B backbones it beat a 70B reward model and a 235B static rubric generator, improving verifiable reasoning and coding.",
+    "Deployed in WeChat Search's AI answering, serving tens of millions of requests a day — evaluators should co-evolve with the policies they judge."
+  ],
+  "content_html": "\u003cp\u003eReinforcement-style post-training improves an LLM by sampling responses from the current policy and scoring them with an evaluator. The catch: as the policy gets good, its samples get good — and similar — so the evaluator struggles to rank them.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhy score gaps are the signal\u003c/h2\u003e\n\u003cp\u003eThe authors formalize this with a probability-allocation view: the directional gain from shifting probability mass from one response to another is \u003cem\u003eexactly\u003c/em\u003e the evaluator's score gap between them. When those relative gaps collapse, policy supervision becomes weak or misleading, no matter how accurate the evaluator is in absolute terms.\u003c/p\u003e\n\u003ch2\u003eEvaluators that grow with the policy\u003c/h2\u003e\n\u003cp\u003e\u003cstrong\u003eDynamicRubric\u003c/strong\u003e is a response-set-conditioned evaluator–policy co-evolution framework. For each candidate set it generates weighted binary rubric items and aggregates the resulting judgments into response-level scores — so the evaluator sharpens exactly where the policy is now competing. With 8B backbones it delivered stronger supervision than a 70B reward model and a 235B static rubric generator, and its optimized policies improved on verifiable reasoning and coding. The team reports it fully deployed in WeChat Search's AI answering, serving all online traffic across tens of millions of daily requests. The principle: evaluators should evolve with the policies they supervise. Wang et al., arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Beining Wang",
+      "Weihang Su",
+      "Hongtao Tian",
+      "Hao Kong",
+      "Tao Yang",
+      "Ting Yao",
+      "Qingyi Pan",
+      "Yueyue Wu",
+      "Qingyao Ai",
+      "Min Zhang",
+      "Yiqun Liu"
+    ],
+    "url": "https://arxiv.org/abs/2607.20083",
+    "published_at": "2026-07-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "alignment",
+    "training",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-23",
+  "date": "2026-07-22",
+  "related": [
+    {
+      "id": "card_2e794c",
+      "slug": "can-llms-judge-better-than-generate",
+      "type": "paper",
+      "title": "Can LLMs Judge Better Than They Generate?",
+      "hook": "LLM-as-a-Judge assumes evaluation is easier than generation — a controlled test finds the opposite on 3 of 4 benchmarks, and attention analysis shows why.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-26"
+    },
+    {
+      "id": "card_d5a521",
+      "slug": "direct-preference-optimization",
+      "type": "paper",
+      "title": "Direct Preference Optimization (DPO)",
+      "hook": "RLHF works but is fiddly: a separate reward model and a finicky RL loop. DPO reaches the same goal with one simple loss — and became a popular default.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2023-05-29"
+    },
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    },
+    {
+      "id": "card_f4c73d",
+      "slug": "llm-as-a-verifier",
+      "type": "paper",
+      "title": "LLM-as-a-Verifier: Verification as a New Scaling Axis",
+      "hook": "Everyone scales pretraining, post-training, and test-time compute. This paper argues verification — checking if a solution is correct — is its own scaling axis, and hits SOTA on four agentic benchmarks.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_55a59d#0",
+      "format": "flip",
+      "prompt": "Why does a fixed evaluator give weaker supervision as the policy improves?",
+      "back_html": "\u003cp\u003eBetter policies produce candidate responses that are close in quality; the evaluator's relative score gaps between them collapse, and those gaps are exactly the signal that drives policy updates.\u003c/p\u003e"
+    },
+    {
+      "id": "card_55a59d#1",
+      "format": "quiz",
+      "prompt": "What is DynamicRubric's core idea?",
+      "choices": [
+        {
+          "text": "Co-evolve the evaluator with the policy, generating candidate-set-conditioned rubric items",
+          "correct": true
+        },
+        {
+          "text": "Freeze one very large reward model and reuse it throughout training",
+          "correct": false
+        },
+        {
+          "text": "Replace the evaluator with human labels at every step",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDynamicRubric conditions on the current response set, generating weighted binary rubric items and aggregating them into scores, so the evaluator keeps discriminating as the policy improves.\u003c/p\u003e"
+    },
+    {
+      "id": "card_55a59d#2",
+      "format": "flip",
+      "prompt": "What efficiency result did DynamicRubric demonstrate?",
+      "back_html": "\u003cp\u003eWith 8B backbones it provided stronger policy supervision than a 70B reward model and a 235B static rubric generator, and was deployed serving tens of millions of requests a day.\u003c/p\u003e"
+    }
+  ]
+}

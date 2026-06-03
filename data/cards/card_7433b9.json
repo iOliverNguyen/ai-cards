@@ -1,0 +1,106 @@
+{
+  "id": "card_7433b9",
+  "slug": "pilot-live-self-improvement",
+  "type": "paper",
+  "title": "PILOT: Self-Improvement While the Run Is Still Going",
+  "hook": "Most agent self-improvement happens after the run ends, too late to save it. PILOT gives a supervisor the power to redirect or abort a live worker — and cuts output tokens by nearly half.",
+  "key_points": [
+    "Existing self-improvement methods process experience only after execution ends, so they cannot redirect the active run.",
+    "PILOT is a supervisor-worker harness with two coupled mechanisms: live steering and live self-evolution.",
+    "Live steering lets a separate supervisor redirect or abort the active worker mid-execution.",
+    "Live self-evolution distils procedures and failure modes found during execution into reusable skills and memory.",
+    "On Terminal-Bench 2.0 it beats counterpart harnesses by up to 9.8 percentage points; +14.6 with GLM-5.1, +12.4 with Kimi-K2.6 in the self-improvement setting.",
+    "Mean output tokens fall 42.9% and 47.4%, so successful evaluations per million output tokens rise 110% and 134%."
+  ],
+  "content_html": "\u003cp\u003eA long-horizon agent run generates a lot of experience, and most of it is wasted. Self-improvement methods harvest it after the run finishes — which means they cannot rescue the run that produced it. Xiao and colleagues argue self-improvement should instead be \u003cem\u003elive\u003c/em\u003e, using emerging experience both to redirect the active run and to update the persistent harness.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhy existing architectures don't do this\u003c/h2\u003e\n\u003cp\u003eSingle-agent self-correction puts execution and trajectory assessment in the same context, so the reasoning that is drifting is also the reasoning supposed to notice. Subagent delegation separates execution from assessment, but typically cannot reach in and redirect a subagent that is already running.\u003c/p\u003e\n\u003ch2\u003eThe design\u003c/h2\u003e\n\u003cp\u003ePILOT is a supervisor-worker harness with two coupled mechanisms. \u003cstrong\u003eLive steering\u003c/strong\u003e: a separate supervisor can redirect or abort the active worker mid-execution. \u003cstrong\u003eLive self-evolution\u003c/strong\u003e: procedures and failure modes revealed during execution are distilled into reusable skills and memory, so the harness improves too.\u003c/p\u003e\n\u003ch2\u003eResults\u003c/h2\u003e\n\u003cp\u003eAcross two frozen backbones and three benchmarks, PILOT ranks first in five of six configurations. On Terminal-Bench 2.0 it outperforms counterpart harnesses by up to 9.8 percentage points. In the self-improvement setting it gains 14.6 points with GLM-5.1 and 12.4 with Kimi-K2.6.\u003c/p\u003e\n\u003cp\u003eThe efficiency numbers are the quiet headline: mean output tokens fall 42.9% and 47.4%, and successful evaluations per million output tokens rise 110.3% and 134.0%. Killing a doomed run early is worth as much as finishing a good one faster.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv (Hugging Face Daily Papers)",
+    "authors": [
+      "Yang Xiao",
+      "Yusong Sun",
+      "Haoyi Wu",
+      "Wenyang Hui",
+      "Wen Da",
+      "Zhaokai Luo",
+      "Mu Chuan",
+      "Yao Hu",
+      "Wenjie Li",
+      "Chengyue Jiang"
+    ],
+    "url": "https://arxiv.org/abs/2608.26530",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "reasoning",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_8e6883",
+      "slug": "wikiskill-agent-experience-wiki",
+      "type": "paper",
+      "title": "WikiSkill: Give the Agent a Wiki, Not Just Skills",
+      "hook": "Auto-discovered agent skills work, but the insight behind them gets lost. WikiSkill keeps a persistent wiki alongside the skills — and skills borrowed from other models beat self-evolved ones.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-27"
+    },
+    {
+      "id": "card_a75120",
+      "slug": "jit-agent-harness-generation",
+      "type": "paper",
+      "title": "JIT-Agent: Scaling Harness Intelligence via Just-in-Time Harness Evolution",
+      "hook": "If the harness matters as much as the model, why is it still hand-written? JIT-Agent trains a model whose whole job is to synthesize a fresh harness for whatever task shows up.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_7433b9#0",
+      "format": "flip",
+      "prompt": "Why can't single-agent self-correction do what PILOT's live steering does?",
+      "back_html": "\u003cp\u003eIt combines task execution and trajectory assessment in one context, so the same reasoning that is going astray is also the reasoning meant to catch it. PILOT puts the assessor in a separate supervisor.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7433b9#1",
+      "format": "quiz",
+      "prompt": "What are PILOT's two coupled mechanisms?",
+      "choices": [
+        {
+          "text": "Live steering (redirect or abort the active worker) and live self-evolution (distil skills and memory during execution)",
+          "correct": true
+        },
+        {
+          "text": "Post-hoc trajectory replay and reward model retraining",
+          "correct": false
+        },
+        {
+          "text": "Parallel rollout sampling and majority voting",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOne acts on the current run, the other updates the persistent harness — the paper's argument is that self-improvement should do both, live.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7433b9#2",
+      "format": "flip",
+      "prompt": "Why does the token-efficiency result matter as much as the accuracy result?",
+      "back_html": "\u003cp\u003eAborting doomed runs early means fewer wasted tokens: mean output tokens fell 42.9% and 47.4%, so successful evaluations per million output tokens more than doubled.\u003c/p\u003e"
+    }
+  ]
+}

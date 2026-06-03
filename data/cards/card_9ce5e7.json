@@ -1,0 +1,125 @@
+{
+  "id": "card_9ce5e7",
+  "slug": "lingbot-world-2",
+  "type": "paper",
+  "title": "LingBot-World 2.0: An Agent-Piloted Infinite World Model",
+  "hook": "Interactive world models usually run out of road — quality degrades, or the action set stays thin. LingBot-World 2.0 stays coherent forever and puts an agent inside to invent what's next.",
+  "key_points": [
+    "Generates an unbounded interactive video world in real time, holding output quality steady via a causal pretraining paradigm.",
+    "Distills a real-time variant fast enough to stream 720p video at 60fps.",
+    "Expands the action/event vocabulary over prior LingBot-World: attacking, archery, spell-casting, shooting, plus richer text-driven events.",
+    "Pioneers an agentic harness inside the world model: a pilot agent runs characters, a director agent invents new environment content live.",
+    "Ships a 14B primary model plus a lightweight 1.3B variant, with a shared-session interface for multiple simultaneous players."
+  ],
+  "content_html": "\u003cp\u003eInteractive video world models tend to run out of road: either quality drifts the longer you play, or the world only supports a handful of scripted actions. LingBot-World 2.0 — also called LingBot-World-Infinity — pushes on both limits, and adds something new: an agent living inside the world it generates.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eFour upgrades define this version. A causal pretraining paradigm lets the model run an unbounded interaction horizon while holding output quality steady, rather than degrading session over session. A distilled real-time variant streams 720p video at 60fps, fast enough to feel live. The action and event vocabulary grows substantially — attacking, archery, spell-casting, shooting, and a richer set of text-driven events beyond the original LingBot-World. And most notably, the team builds an agentic harness directly into the world model: a pilot agent plans and executes character behavior, while a separate director agent synthesizes new environmental content as the scene plays out — the world authors itself while someone (or something) is inside it. The team pairs a 14B primary model with a lightweight 1.3B counterpart for single-GPU deployment, and adds an interface so multiple players can share the same generated world simultaneously. Zelin Gao and colleagues, arXiv 2026 (21 HF community upvotes).\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zelin Gao",
+      "Qiuyu Wang",
+      "Jiapeng Zhu",
+      "Jingye Chen",
+      "Zichen Liu",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.07534",
+    "published_at": "2026-07-08",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "video-audio",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "generative",
+    "agent",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-08",
+  "related": [
+    {
+      "id": "card_212864",
+      "slug": "lingbot-video",
+      "type": "paper",
+      "title": "LingBot-Video: A Sparse-MoE Video Diffusion World Model",
+      "hook": "Video diffusion models are usually dense — every parameter fires on every frame. LingBot-Video swaps in a sparse Mixture-of-Experts, then grades its own physics with a VLM judge.",
+      "importance": 2,
+      "difficulty": "core",
+      "date": "2026-07-08"
+    },
+    {
+      "id": "card_7e087b",
+      "slug": "world-models-persistent-state",
+      "type": "paper",
+      "title": "World Models Lack a Persistent State",
+      "hook": "Today's video world models render great frames but treat the world like a tracking shot: look away and back, and off-screen events freeze instead of running on — the moon keeps orbiting unwatched.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    },
+    {
+      "id": "card_a71af8",
+      "slug": "multiplayer-interactive-world-models",
+      "type": "paper",
+      "title": "MIRA: A Multiplayer World Model for Rocket League",
+      "hook": "Single-player world models treat other agents as scenery. This one, trained on 10,000 hours of Rocket League, tracks four players' independent actions at once — and stays coherent for hours.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_6519a8",
+      "slug": "alayaworld-playable-video-world-generation",
+      "type": "paper",
+      "title": "AlayaWorld: An Open-Source Framework for Playable Video Worlds",
+      "hook": "Building a game world the old way means authoring every asset by hand. AlayaWorld generates it live instead — combat, spell-casting, monster summoning — and open-sources the whole pipeline.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-07"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_9ce5e7#0",
+      "format": "flip",
+      "prompt": "What's new about how LingBot-World 2.0 uses agents, compared to a typical interactive world model?",
+      "back_html": "\u003cp\u003eIt runs an agentic harness inside the world model: a pilot agent plans and executes character behavior, while a director agent invents new environmental content as the scene unfolds.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9ce5e7#1",
+      "format": "quiz",
+      "prompt": "What lets LingBot-World 2.0 sustain an unbounded interaction horizon without degrading?",
+      "choices": [
+        {
+          "text": "A causal pretraining paradigm designed specifically to keep output quality consistent over an unbounded horizon",
+          "correct": true
+        },
+        {
+          "text": "It caps every session at a fixed short length to avoid degradation",
+          "correct": false
+        },
+        {
+          "text": "It re-renders the entire world from scratch every few seconds",
+          "correct": false
+        },
+        {
+          "text": "It relies on a human operator to manually patch quality drops",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe unbounded, consistent-quality horizon comes from a dedicated causal pretraining paradigm — a separate step from the real-time distillation that enables 60fps/720p streaming.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9ce5e7#2",
+      "format": "flip",
+      "prompt": "How does LingBot-World 2.0 achieve real-time 720p video at 60fps?",
+      "back_html": "\u003cp\u003eBy distilling a dedicated real-time variant from the base model — a separate step from the causal pretraining that handles the unbounded horizon.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "id": "card_c10ab5",
+  "slug": "video-ifbench",
+  "type": "paper",
+  "title": "Video-IFBench: Can a Video Model Follow the Instruction, Not Just Watch?",
+  "hook": "Video benchmarks mostly ask whether the model got the answer right. This one asks whether it did what you told it to — and more than 20 recent multimodal LLMs still struggle.",
+  "key_points": [
+    "Existing video benchmarks score task accuracy, leaving instruction adherence largely unmeasured.",
+    "Video-IFBench tests constraints grounded in the video's visual and audio content, not just text formatting.",
+    "Its taxonomy has four instruction templates: single-task, multi-task, selection, and nested.",
+    "Coverage spans 32 task types and 39 hand-designed constraint categories, semantic and format alike.",
+    "A semi-automatic pipeline — MLLMs plus programmatic processing plus human verification — yields 1.5K samples at lower annotation cost.",
+    "Across 20+ recent MLLMs, failures cluster on many-constraint prompts, semantic constraints, and nested conditionals that require picking a branch from what the video shows."
+  ],
+  "content_html": "\u003cp\u003eMultimodal LLMs have gotten good at video understanding — but \u0026quot;understanding\u0026quot; is scored generously. Hongbo Liu and colleagues (arXiv, August 2026) point out that real requests come wrapped in constraints: answer in this form, only about this segment, and if the person on screen is holding a tool, do this instead. Existing benchmarks measure whether the answer is right, not whether those conditions were honored.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eVideo-IFBench is built to score adherence. The authors define four instruction templates — single-task, multi-task, selection, and nested — spanning 32 task types and 39 manually designed constraint categories, covering both semantic requirements and output-format ones, and importantly including constraints grounded in what's visible or audible in the clip. To make that affordable, they built the 1.5K-sample set with a semi-automatic pipeline combining MLLMs, programmatic processing, and human verification. Evaluating more than 20 recent MLLMs, they find video instruction following still broadly unsolved: performance drops as constraints pile up, semantic constraints prove harder than format ones, and nested conditionals — where the model must select a branch based on what the video shows — are the sharpest failure mode. Details and per-model results at the arXiv link.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Hongbo Liu",
+      "Peixian Chen",
+      "Sihan Liu",
+      "Peiyuan Zhang",
+      "Kai Zou",
+      "Dian Zheng",
+      "Xiaoxing Hu",
+      "Yuhao Dong",
+      "Mengdan Zhang",
+      "Yunhang Shen",
+      "Haoyu Cao",
+      "Wei Liu",
+      "Weibo Gu",
+      "Xing Sun",
+      "Shengjie Zhao"
+    ],
+    "url": "https://arxiv.org/abs/2608.25529",
+    "published_at": "2026-08-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "vlms",
+    "video-audio",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "multimodal",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_cbb026",
+      "slug": "semcomp-bench-video-task-completion",
+      "type": "paper",
+      "title": "SemComp-Bench: Judge the Video by the Outcome, Not the Frames",
+      "hook": "Most video-generation benchmarks grade appearance consistency. SemComp-Bench asks a blunter question: did the task in the prompt actually get done?",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-18"
+    },
+    {
+      "id": "card_65914a",
+      "slug": "v-rubrics-visual-faithfulness",
+      "type": "paper",
+      "title": "V-Rubrics: Grading a VLM's Answer Fact by Fact",
+      "hook": "A single ungrounded object or misread chart value can sink an otherwise good answer — and a pass/fail reward can't tell you which part broke. V-Rubrics hands out partial credit per visual claim.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_c10ab5#0",
+      "format": "flip",
+      "prompt": "What gap in existing video benchmarks does Video-IFBench target?",
+      "back_html": "\u003cp\u003eThey measure task accuracy — did the model understand the video — but not instruction adherence: whether it satisfied the user's stated constraints while answering.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c10ab5#1",
+      "format": "quiz",
+      "prompt": "Which instruction types did models find hardest in Video-IFBench?",
+      "choices": [
+        {
+          "text": "Prompts with many constraints, semantic constraints, or nested conditionals needing a branch chosen from video content",
+          "correct": true
+        },
+        {
+          "text": "Short single-task prompts with a strict output format",
+          "correct": false
+        },
+        {
+          "text": "Prompts about audio content only",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eConstraint count, semantic (rather than format) constraints, and complex conditional structures were the main failure modes across the 20+ MLLMs evaluated.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c10ab5#2",
+      "format": "flip",
+      "prompt": "How did the authors keep annotation cost down while building 1.5K samples?",
+      "back_html": "\u003cp\u003eA semi-automatic pipeline: MLLMs and programmatic processing generate candidates, with human verification as the final gate.\u003c/p\u003e"
+    }
+  ]
+}

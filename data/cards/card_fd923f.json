@@ -1,0 +1,101 @@
+{
+  "id": "card_fd923f",
+  "slug": "hourglass-reasoning-context-isolation",
+  "type": "paper",
+  "title": "Hourglass Reasoning: Context Isolation for Rigorous Induction",
+  "hook": "Telling a model to state its inferred rule barely helps it self-refine. Forcing only a compressed rule — not the full trace — through a bottleneck nearly doubles a benchmark score.",
+  "key_points": [
+    "Self-refinement rarely strengthens few-shot inductive reasoning alone — verbalizing the inferred rule does little by itself.",
+    "Hourglass reasoning enforces strict isolation between stages: only a compressed symbolic rule, never the full trace, crosses stage boundaries.",
+    "Pipeline: Induction compresses examples into a schema; Deduction derives a rule and discards scratch state; Implementer builds artifacts; Refiner rebuilds on error.",
+    "Raises ARC-AGI-2 best-of-5 accuracy by up to 14 points over an iterative-refinement baseline.",
+    "Nearly doubles GPT-5.5's Verilog synthesis accuracy, from 31% to 58%; ablations trace the gain to stage isolation, not prompt wording."
+  ],
+  "content_html": "\u003cp\u003eAsk a large language model to self-refine a few-shot inductive guess — restate the rule you think fits, then try again — and it usually barely moves the needle. This paper traces the failure to something structural: it's not what the model says about its reasoning that matters, it's how much of that reasoning is allowed to leak between attempts.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eHourglass reasoning forces a narrow bottleneck between stages, like the neck of an hourglass: a frozen LLM acts as a meta-constructor, building a symbolic encoder-decoder pipeline for each task. An Induction module compresses the support examples into a schema and a transient scaffold; a Deduction module derives a rule from those and throws the scaffold away; an Implementer compiles the schema and rule into concrete artifacts; and an error-driven Refiner revises the schema and rule, then regenerates the artifacts completely from scratch. Crucially, only the compressed schema-and-rule pair ever crosses a stage boundary — never the raw reasoning trace — so every refinement stays anchored to an explicit rule instead of drifting through accumulated scratch text. Tested with GPT-5.5 and Gemini 3.1 Pro across visual abstraction (ARC-AGI-2), hardware synthesis (ChipBench), and textual rule induction (BBEH-Linguini), it lifts ARC-AGI-2 best-of-5 accuracy by up to 14 points and nearly doubles GPT-5.5's Verilog synthesis accuracy, from 31% to 58%. Ablations pin the gains on the stage isolation and initial induction quality, not on how the rule is phrased. Huan Zhu, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Huan Zhu"
+    ],
+    "url": "https://arxiv.org/abs/2607.11696",
+    "published_at": "2026-07-13",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "prompting",
+    "language-models",
+    "papers-this-week"
+  ],
+  "tags": [
+    "reasoning",
+    "benchmark",
+    "paper",
+    "nlp"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-16",
+  "date": "2026-07-13",
+  "related": [
+    {
+      "id": "card_cda7aa",
+      "slug": "arc-agi-2",
+      "type": "paper",
+      "title": "ARC-AGI-2",
+      "hook": "ARC-AGI-2 rebuilt the abstraction benchmark to defeat brute-force search — frontier models that aced version 1 initially scored near zero, while humans still solve it.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-05-19"
+    },
+    {
+      "id": "card_812537",
+      "slug": "self-consistency",
+      "type": "paper",
+      "title": "Self-Consistency Improves Chain-of-Thought Reasoning",
+      "hook": "Sample the model many times, let each run reason its own way, then take the majority answer - diverse reasoning paths vote out individual errors.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-03-21"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_fd923f#0",
+      "format": "flip",
+      "prompt": "What does Hourglass reasoning allow to cross between reasoning stages, and what is explicitly discarded?",
+      "back_html": "\u003cp\u003eOnly a compressed symbolic rule (schema + derived rule) crosses stage boundaries. The full reasoning trace and any transient scaffold used to derive it are discarded.\u003c/p\u003e"
+    },
+    {
+      "id": "card_fd923f#1",
+      "format": "quiz",
+      "prompt": "What did ablations show actually drives Hourglass reasoning's gains on inductive reasoning?",
+      "choices": [
+        {
+          "text": "The structural isolation between stages, not prompt wording or the symbolic form used",
+          "correct": true
+        },
+        {
+          "text": "Using a larger frozen LLM as the meta-constructor",
+          "correct": false
+        },
+        {
+          "text": "Verbalizing more reasoning steps in natural language",
+          "correct": false
+        },
+        {
+          "text": "A hand-tuned prompt template unique to each benchmark",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAblations confirm the gains trace to context isolation between stages and the quality of the initial induction — not to how the rule is phrased or represented.\u003c/p\u003e"
+    },
+    {
+      "id": "card_fd923f#2",
+      "format": "flip",
+      "prompt": "By how much did Hourglass reasoning move GPT-5.5's accuracy on Verilog hardware synthesis (ChipBench)?",
+      "back_html": "\u003cp\u003eNearly doubled it, from 31% to 58%.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "id": "card_39d91b",
+  "slug": "gemini-3-pro",
+  "type": "news",
+  "title": "Gemini 3 Pro",
+  "hook": "Gemini 3 Pro was Google's late-2025 frontier leap — a natively multimodal reasoning model that shipped to billions of Search and Gemini users on day one.",
+  "key_points": [
+    "Released November 2025, Google's flagship Gemini 3 generation model.",
+    "Natively multimodal: text, images, audio, video, and PDFs in a 1M-token context.",
+    "Strong gains in reasoning and coding over the Gemini 2.5 line.",
+    "Deployed day-one across Search (AI Mode), the Gemini app, and Vertex AI."
+  ],
+  "content_html": "\u003cp\u003eGoogle released Gemini 3 Pro in November 2025, the flagship of its third Gemini generation and a clear step up over the 2.5 line in reasoning and coding. True to the Gemini lineage, it is natively multimodal — text, images, audio, video, and PDFs are first-class inputs within a million-token context window — and it launched with Google's signature day-one reach across its product surface.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's new\u003c/h2\u003e\n\u003cp\u003eThe headline is reasoning on hard problems alongside stronger coding and multimodal understanding. Rather than a staged rollout, Google pushed Gemini 3 Pro across Search's AI Mode, the Gemini app, and Vertex AI on launch day, putting it in front of an enormous user base immediately. It became the baseline that the later Gemini 3.1 Pro would build on.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eGemini 3 Pro is the reference point for Google's late-2025 frontier and the foundation of the 3.x family already represented in the library by Gemini 3.1 Pro. Its instant ecosystem-wide deployment is itself the story: Google's distribution advantage means a model upgrade reaches billions of people at once, a different competitive lever than API access alone. See Google's announcement for details.\u003c/p\u003e",
+  "source": {
+    "name": "Google",
+    "authors": [
+      "Google DeepMind"
+    ],
+    "url": "https://blog.google/products/gemini/gemini-3/",
+    "published_at": "2025-11-18",
+    "license": "Google blog"
+  },
+  "topic_ids": [
+    "vlms",
+    "releases"
+  ],
+  "tags": [
+    "multimodal",
+    "reasoning",
+    "nlp"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2025-11-18",
+  "related": [
+    {
+      "id": "card_421ee9",
+      "slug": "gemini-2-5-pro",
+      "type": "news",
+      "title": "Gemini 2.5 Pro: A Thinking Model",
+      "hook": "Gemini 2.5 Pro reasons through its own thoughts before it answers - and the first experimental release of it debuted at the top of the LMArena leaderboard.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-03-25"
+    },
+    {
+      "id": "card_24717f",
+      "slug": "gemini-3-1-pro",
+      "type": "news",
+      "title": "Gemini 3.1 Pro: Frontier Reasoning (2026)",
+      "hook": "Gemini 3.1 Pro pushes core reasoning past the Gemini 3 Pro baseline, scoring 77.1% verified on ARC-AGI-2 - a benchmark built to resist the memorization that inflates other scores.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-02-19"
+    },
+    {
+      "id": "card_e9af36",
+      "slug": "on-the-measure-of-intelligence",
+      "type": "paper",
+      "title": "On the Measure of Intelligence (ARC)",
+      "hook": "Is a high benchmark score the same as intelligence? Chollet argues no — intelligence is how efficiently you acquire new skills, not how well you perform known ones.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2019-11-05"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_39d91b#0",
+      "format": "quiz",
+      "prompt": "What competitive lever did Gemini 3 Pro's launch highlight, per the card?",
+      "choices": [
+        {
+          "text": "Day-one distribution reaching billions across Search, the Gemini app, and Vertex AI",
+          "correct": true
+        },
+        {
+          "text": "Being the cheapest model per token on the market",
+          "correct": false
+        },
+        {
+          "text": "Being released as fully open weights",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe card stresses Google's distribution advantage: a model upgrade instantly reaches billions, a different lever than API access alone.\u003c/p\u003e"
+    },
+    {
+      "id": "card_39d91b#1",
+      "format": "flip",
+      "prompt": "What inputs does Gemini 3 Pro treat as first-class within its context window?",
+      "back_html": "\u003cp\u003eText, images, audio, video, and PDFs — natively multimodal within a million-token context window.\u003c/p\u003e"
+    }
+  ]
+}

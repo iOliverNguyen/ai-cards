@@ -1,0 +1,137 @@
+{
+  "id": "card_cd71ab",
+  "slug": "synthetic-persona-pretraining",
+  "type": "paper",
+  "title": "Synthetic Persona Pretraining: Alignment From Token Zero",
+  "hook": "Alignment is normally a coat of paint applied after pretraining. This work installs the assistant's values from the first token — and finds that the earlier you start, the deeper they hold.",
+  "key_points": [
+    "Standard practice introduces the assistant identity and its values only after pretraining, making values a thin overlay on already-formed behavioral priors.",
+    "SPP annotates pretraining documents with value-aligned first-person reflections derived from a normative value constitution.",
+    "Those reflections are trained on alongside the ordinary documents with the same cross-entropy loss, installing the desired persona among many others.",
+    "Post-training on dialogue data then performs 'persona binding': tying that persona to the assistant identity.",
+    "At up to 3B parameters and 500B tokens, the authors report better constitution following, better jailbreak robustness, and lower misalignment on out-of-distribution moral dilemmas, with capabilities preserved.",
+    "Timing matters: applying SPP only at the end of pretraining gives weaker adherence and fails to shift value priorities — and the early-start advantage grows with pretraining budget."
+  ],
+  "content_html": "\u003cp\u003eThe usual pipeline builds a model's behavioral priors first and introduces the assistant identity and its values afterward, during post-training. Minder, West and colleagues argue this makes values a thin overlay — deployable, but sitting on top of priors that were formed without them, and correspondingly easy to dislodge.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eSynthetic Persona Pretraining moves the intervention to the beginning. Pretraining documents are annotated with value-aligned first-person reflections derived from a normative value constitution, and the model is trained with the ordinary cross-entropy loss on both the documents and the reflections. That installs the desired persona among the multitude of personas a corpus contains. Post-training on user-assistant dialogue then does what the authors call \u003cem\u003epersona binding\u003c/em\u003e — attaching that particular persona to the assistant identity the model presents as.\u003c/p\u003e\n\u003cp\u003ePretraining models up to 3B parameters on 500B tokens, the authors report improved constitution following, better jailbreak robustness, and a reduced misalignment rate on out-of-distribution moral dilemmas, with capabilities preserved. The load-bearing result is about timing: running SPP only at the end of pretraining produces weaker adherence, doesn't shift value priorities, and leads to less aligned choices in dilemmas. And the gap grows with pretraining budget, which is the uncomfortable implication — if it holds, the cost of retrofitting alignment onto a finished base model rises with scale rather than falling. These are 3B-scale results; frontier-scale confirmation is future work.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Julian Minder",
+      "Viktor Moskvoretskii",
+      "Raghav Singhal",
+      "Difan Jiao",
+      "Andy Arditi",
+      "Shaobo Cui",
+      "Yiderigun Borjigin",
+      "Kartik Bali",
+      "Stefan Krsteski",
+      "Harsh Raj",
+      "Huu Nguyen",
+      "Jannik Brinkmann",
+      "Ashton Anderson",
+      "Roland Aydin",
+      "Robert West"
+    ],
+    "url": "https://arxiv.org/abs/2608.13482",
+    "published_at": "2026-08-13",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "training-alignment",
+    "papers-this-week",
+    "pretraining"
+  ],
+  "tags": [
+    "alignment",
+    "paper",
+    "safety",
+    "training"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-17",
+  "date": "2026-08-13",
+  "related": [
+    {
+      "id": "card_683aef",
+      "slug": "constitutional-ai",
+      "type": "paper",
+      "title": "Constitutional AI",
+      "hook": "What if a model could critique and improve its own answers against a written set of principles, instead of relying on humans to label every harmful case?",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-15"
+    },
+    {
+      "id": "card_d00713",
+      "slug": "emergent-misalignment-persona-subspace",
+      "type": "paper",
+      "title": "The Bad Persona Was Already In There",
+      "hook": "Fine-tuning on narrow bad advice doesn't build a misaligned character — it recruits a persona subspace the aligned model was already carrying, visible before the first optimizer step.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-23"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_683aef",
+      "slug": "constitutional-ai",
+      "type": "paper",
+      "title": "Constitutional AI",
+      "hook": "What if a model could critique and improve its own answers against a written set of principles, instead of relying on humans to label every harmful case?",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-15"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_cd71ab#0",
+      "format": "quiz",
+      "prompt": "What is the core intervention in Synthetic Persona Pretraining?",
+      "choices": [
+        {
+          "text": "Training on pretraining documents plus value-aligned first-person reflections about them, from the start",
+          "correct": true
+        },
+        {
+          "text": "Filtering all value-violating documents out of the pretraining corpus",
+          "correct": false
+        },
+        {
+          "text": "Adding a reinforcement-learning stage after pretraining with a constitutional reward model",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSPP augments rather than filters: each document is paired with a first-person reflection derived from a value constitution, and both are trained on with the ordinary cross-entropy loss.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cd71ab#1",
+      "format": "flip",
+      "prompt": "What is 'persona binding' and why is it needed?",
+      "back_html": "\u003cp\u003ePretraining installs the desired persona among many others; post-training on user-assistant dialogue binds that specific persona to the assistant identity. The paper reports the benefits depend on this step.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cd71ab#2",
+      "format": "quiz",
+      "prompt": "What happened when the authors applied SPP only at the end of pretraining instead of from token zero?",
+      "choices": [
+        {
+          "text": "Weaker constitution adherence, no shift in value priorities, and less aligned choices in dilemmas",
+          "correct": true
+        },
+        {
+          "text": "Equivalent alignment at a fraction of the compute cost",
+          "correct": false
+        },
+        {
+          "text": "Stronger alignment but measurable capability loss",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThis is the paper's central claim about timing — early intervention shapes value priorities in a way a late pass does not, and the advantage grows with pretraining budget.\u003c/p\u003e"
+    }
+  ]
+}

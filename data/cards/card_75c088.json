@@ -1,0 +1,95 @@
+{
+  "id": "card_75c088",
+  "slug": "adapters",
+  "type": "paper",
+  "title": "Parameter-Efficient Transfer Learning (Adapters)",
+  "hook": "Don't fine-tune the whole model for every new task — slip in a few tiny trainable modules and freeze the rest. This 2019 idea seeded parameter-efficient fine-tuning.",
+  "key_points": [
+    "Inserts small trainable adapter modules between the layers of a frozen pretrained model.",
+    "Each new task adds only a few parameters instead of a full model copy.",
+    "Reaches near full-fine-tune quality on benchmarks while training a small fraction of weights.",
+    "An early step toward the parameter-efficient methods that LoRA later refined."
+  ],
+  "content_html": "\u003cp\u003eNeil Houlsby and colleagues asked: can you adapt a pretrained model to a new task without retraining all of it? Their answer was the adapter — a small trainable module inserted between a frozen model's layers. Only the adapters and a few normalization parameters learn, so each task adds just a sliver of new weights yet reaches quality close to full fine-tuning.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eAfter each sub-layer of a frozen Transformer, an adapter projects the hidden representation down to a small dimension, applies a nonlinearity, then projects back up, with a skip connection around it. Because the down-then-up projection is narrow, it holds few parameters. Initialized to behave like an identity at the start, the adapter only nudges the frozen model's behavior, and gradients flow only through the adapters and layer-norm parameters during training.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eStoring a full fine-tuned copy of a large model for every task is wasteful. Adapters let you keep one shared backbone and attach a compact task-specific module, which matters when you serve many tasks. The idea proved that you don't need to move most weights to specialize a model — a principle that LoRA and the broader family of parameter-efficient fine-tuning methods carried forward.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Neil Houlsby",
+      "Andrei Giurgiu",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/1902.00751",
+    "published_at": "2019-02-02",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "finetuning"
+  ],
+  "tags": [
+    "efficiency",
+    "training"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2019-02-02",
+  "related": [
+    {
+      "id": "card_cae140",
+      "slug": "lora",
+      "type": "paper",
+      "title": "LoRA: Low-Rank Adaptation",
+      "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-06-17"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_32f3c7",
+      "slug": "bert",
+      "type": "paper",
+      "title": "BERT: Pretraining Deep Bidirectional Transformers",
+      "hook": "What if a model read a sentence both directions at once? BERT did, by masking words and predicting them — and made pretrain-then-fine-tune the default recipe in NLP.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2018-10-11"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_75c088#0",
+      "format": "flip",
+      "prompt": "What does an adapter module do, and what stays frozen?",
+      "back_html": "\u003cp\u003eA small trainable module is inserted between a frozen pretrained model's layers; only the adapters and a few norm parameters learn.\u003c/p\u003e"
+    },
+    {
+      "id": "card_75c088#1",
+      "format": "quiz",
+      "prompt": "Why does an adapter module hold so few parameters?",
+      "choices": [
+        {
+          "text": "It projects the hidden representation down to a small dimension, then back up",
+          "correct": true
+        },
+        {
+          "text": "It replaces the entire Transformer layer with one neuron",
+          "correct": false
+        },
+        {
+          "text": "It shares all its weights with the frozen model",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe narrow down-then-up projection (a bottleneck) is what keeps the adapter's parameter count tiny.\u003c/p\u003e"
+    },
+    {
+      "id": "card_75c088#2",
+      "format": "flip",
+      "prompt": "Why is storing a full fine-tuned copy per task wasteful, and how do adapters help?",
+      "back_html": "\u003cp\u003eEach task would need a full-size model copy; adapters let you keep one shared backbone and attach a compact task-specific module.\u003c/p\u003e"
+    }
+  ]
+}

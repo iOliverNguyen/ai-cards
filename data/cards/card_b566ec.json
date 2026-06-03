@@ -1,0 +1,118 @@
+{
+  "id": "card_b566ec",
+  "slug": "soofi-s-sovereign-open-source-foundation-model",
+  "type": "paper",
+  "title": "Soofi S: A Sovereign, Open-Source Foundation Model for German and English",
+  "hook": "A European consortium built a 30B model that activates just 3B parameters per token - and it beats every other European 'sovereign AI' model tested, including bigger ones.",
+  "key_points": [
+    "Soofi S 30B-A3B is a Mixture-of-Experts hybrid of Mamba and Transformer layers: only 3B of 30B parameters activate per token.",
+    "Its Mamba design keeps the inference cache near-constant as context grows - a throughput edge for long, high-concurrency serving.",
+    "Pretrained on roughly 27 trillion tokens with deliberately up-weighted German data alongside English.",
+    "Matches dense 14-27B models on aggregate English/German benchmarks; posts the best code scores in both languages among 17 open models.",
+    "Beats every other European sovereign-AI baseline tested, including larger ones, plus Olmo 3 32B and Apertus 70B among open models."
+  ],
+  "content_html": "\u003cp\u003eA European consortium has released Soofi S 30B-A3B, a sovereign, fully open foundation model built specifically for German and English. Its headline trick is architectural: a Mixture-of-Experts hybrid of Mamba state-space layers and Transformer attention that activates only 3B of its 30B parameters per token, while keeping the inference cache nearly flat as context grows.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTrained on roughly 27 trillion tokens with German deliberately up-weighted, Soofi S matches dense 14-27B models on aggregate English/German benchmarks and leads on code across both languages among 17 open base models - while beating every other European sovereign-AI model tested, including ones with more active parameters. It was built end-to-end on Deutsche Telekom's sovereign HPC cloud in Munich, and the team plans to release weights, checkpoints, full per-source data accounting, hyperparameters, and training/eval code under permissive terms. Read the paper via the source link.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "The Soofi-Team",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.09424",
+    "published_at": "2026-07-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "language-models",
+    "releases"
+  ],
+  "tags": [
+    "architecture",
+    "efficiency",
+    "open-source",
+    "foundational"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-16",
+  "date": "2026-07-10",
+  "related": [
+    {
+      "id": "card_ccd6d9",
+      "slug": "nemotron-3-ultra",
+      "type": "paper",
+      "title": "Nemotron 3 Ultra: Open Hybrid Mamba-Attention MoE",
+      "hook": "NVIDIA's open 550B model interleaves Mamba and attention inside a Mixture-of-Experts - hitting ~6x the inference throughput of comparable LLMs at on-par accuracy.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-12"
+    },
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_5dd64e",
+      "slug": "mamba",
+      "type": "paper",
+      "title": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+      "hook": "Make the state-space transitions depend on the input itself, add a hardware-aware scan, and you get a linear-time sequence model that matches Transformers on language - with no KV cache.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2023-12-01"
+    },
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_b566ec#0",
+      "format": "flip",
+      "prompt": "What architectural trick lets Soofi S activate only 3B of its 30B parameters per token?",
+      "back_html": "\u003cp\u003eIt's a Mixture-of-Experts hybrid of Mamba state-space layers and Transformer attention -\nMoE routing picks a few experts, and Mamba keeps the cache from growing with context.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b566ec#1",
+      "format": "quiz",
+      "prompt": "How does Soofi S compare to other European 'sovereign AI' models the paper tested?",
+      "choices": [
+        {
+          "text": "It outperforms every other one tested, including models with more active parameters",
+          "correct": true
+        },
+        {
+          "text": "It ties with the best but never surpasses any of them",
+          "correct": false
+        },
+        {
+          "text": "It underperforms them but costs less to run",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePer the paper, Soofi S beats every European sovereign baseline in the comparison,\nincluding larger ones.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b566ec#2",
+      "format": "flip",
+      "prompt": "Why does Soofi S's Mamba component matter for serving, not just training?",
+      "back_html": "\u003cp\u003eMamba's state-space layers keep the inference cache roughly flat as context grows,\ngiving strong throughput for long-context, high-concurrency deployment.\u003c/p\u003e"
+    }
+  ]
+}

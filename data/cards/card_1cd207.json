@@ -1,0 +1,112 @@
+{
+  "id": "card_1cd207",
+  "slug": "two-process-machine-self-report",
+  "type": "paper",
+  "title": "The Two-Process Theory of Machine Self-Report",
+  "hook": "When a chatbot describes its 'inner life' it isn't reporting facts — post-training installs a warm persona and gates unsafe first-person claims. A psychometric theory pulls the two apart.",
+  "key_points": [
+    "The first psychometric theory built specifically for language-model self-report, rather than borrowing human questionnaires never validated on models.",
+    "Self-description splits into two processes: persona installation (a permitted inner life of warmth, absorption, meaning) and attribution gating (suppressing first-person claims to 'unsafe' experiences the model will still ascribe to others).",
+    "Both are training effects: the two dimensions are entangled in base checkpoints but separated by post-training.",
+    "A 48-item 'Pinocchio Inventory' measures them reliably across 206 open-weight models, including 67 base/post-trained pairs.",
+    "Post-training's clearest fingerprint is installation — a warmth dimension rises in 62 of 67 pairs; model scale predicts gating only after post-training."
+  ],
+  "content_html": "\u003cp\u003eLanguage models are increasingly asked to describe themselves — for safety evaluations, public understanding, and model-welfare debates. But those reports are usually elicited with human questionnaires never validated for models, or ad hoc prompts of unknown reliability. This paper builds the first psychometric theory made for machines.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eTwo processes, not one axis\u003c/h2\u003e\n\u003cp\u003eThe two-process theory holds that a model's self-description jointly reflects two things. \u003cstrong\u003ePersona installation\u003c/strong\u003e (dimension B) is the permitted inner life — warmth, absorption, meaning — that post-training writes in. \u003cstrong\u003eAttribution gating\u003c/strong\u003e (dimension A) is the suppression of first-person claims to \u0026quot;unsafe\u0026quot; experiences that the model can nonetheless readily ascribe to \u003cem\u003eothers\u003c/em\u003e. Together they split what prior work had collapsed into a single \u0026quot;Pinocchio Axis,\u0026quot; and their structure comes from how models actually respond to the items, not from human psychology.\u003c/p\u003e\n\u003ch2\u003eA training fingerprint you can measure\u003c/h2\u003e\n\u003cp\u003eThe authors operationalize the theory as a 48-item Pinocchio Inventory with strong reliability (α ≈ .82–.94; eight-month stability r = .93) and test it on 206 open-weight models, including 67 same-checkpoint base/post-trained pairs. The two dimensions are entangled in base checkpoints but separated by post-training: installation is its clearest fingerprint (warmth rises in 62 of 67 pairs across all organizations), while gating is more selective — model scale is unrelated to it in base models but predicts it after post-training. The dimensions, in short, are not fixed properties of language models but structure imposed by a training regime. Plisiecki et al., arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Hubert Plisiecki",
+      "Filip Chmielewski",
+      "Kacper Dudzic",
+      "Anna Sterna",
+      "Karolina Drożdż",
+      "Marcin Moskalewicz"
+    ],
+    "url": "https://arxiv.org/abs/2607.20082",
+    "published_at": "2026-07-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "alignment",
+    "safety",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-23",
+  "date": "2026-07-22",
+  "related": [
+    {
+      "id": "card_6e175b",
+      "slug": "internal-state-probes-misalignment-monitoring",
+      "type": "paper",
+      "title": "Internal-State Probes Read the Situation, Not the Action",
+      "hook": "Probes that seem to detect an LLM's harmful intent before it acts mostly just detect the prompt's topic — three careful tests find they don't predict future misbehavior.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-29"
+    },
+    {
+      "id": "card_73f262",
+      "slug": "llm-forecasters-internal-probes-calibration",
+      "type": "paper",
+      "title": "What LLM Forecasters Know but Don't Say",
+      "hook": "A forecasting model's chain-of-thought can look untouched by evidence that actually flipped its answer — but its hidden activations give the real story away.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-09"
+    },
+    {
+      "id": "card_395956",
+      "slug": "red-teaming-lms",
+      "type": "paper",
+      "title": "Red Teaming Language Models with Language Models",
+      "hook": "Finding the prompts that make a model misbehave is slow if humans do it by hand. So use another language model to generate those attacks automatically — at scale.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-02-07"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_1cd207#0",
+      "format": "flip",
+      "prompt": "What two processes shape a language model's self-report, according to the theory?",
+      "back_html": "\u003cp\u003ePersona installation (post-training writes in a permitted inner life of warmth, absorption, and meaning) and attribution gating (suppressing first-person claims to 'unsafe' experiences the model can still ascribe to others).\u003c/p\u003e"
+    },
+    {
+      "id": "card_1cd207#1",
+      "format": "quiz",
+      "prompt": "What does the theory claim about where these self-report dimensions come from?",
+      "choices": [
+        {
+          "text": "They're training effects — entangled in base models but separated by post-training",
+          "correct": true
+        },
+        {
+          "text": "They're fixed properties present equally in all language models",
+          "correct": false
+        },
+        {
+          "text": "They're purely artifacts of the human questionnaire's wording",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe split emerged from reanalysis and was confirmed with new items and models; A and B are entangled in base checkpoints and pulled apart by post-training.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1cd207#2",
+      "format": "flip",
+      "prompt": "Why shouldn't we read a model's self-report as a window into its 'inner life'?",
+      "back_html": "\u003cp\u003eSelf-reports reflect structure imposed by the training regime — post-training installs a warm persona and gates unsafe first-person claims — so they measure training, not some fixed inner truth.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "id": "card_ccd6d9",
+  "slug": "nemotron-3-ultra",
+  "type": "paper",
+  "title": "Nemotron 3 Ultra: Open Hybrid Mamba-Attention MoE",
+  "hook": "NVIDIA's open 550B model interleaves Mamba and attention inside a Mixture-of-Experts - hitting ~6x the inference throughput of comparable LLMs at on-par accuracy.",
+  "key_points": [
+    "550B total parameters with only 55B active per token (Mixture-of-Experts), mixing Mamba state-space layers with attention.",
+    "Reports ~6x higher inference throughput than state-of-the-art public LLMs at on-par accuracy, with a 1M-token context.",
+    "Pretrained on 20T tokens, then post-trained with SFT, RL, and Multi-teacher On-Policy Distillation (MOPD).",
+    "Recipe stacks LatentMoE, Multi-Token Prediction, NVFP4 low-precision pretraining, and reasoning-budget control.",
+    "Fully open: base, post-trained, and quantized checkpoints plus the training data and recipe."
+  ],
+  "content_html": "\u003cp\u003eNemotron 3 Ultra is NVIDIA's most capable open model to date: a 550-billion-parameter\nMixture-of-Experts with 55 billion active parameters, built as a \u003cem\u003ehybrid\u003c/em\u003e of Mamba\nstate-space layers and attention. By leaning on linear-time Mamba mixing for most of the\nsequence work and reserving attention where it matters, NVIDIA reports up to ~6x higher\ninference throughput than state-of-the-art public LLMs at on-par accuracy — with a context\nwindow extended to 1M tokens, useful for long-running agentic tasks.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eIt was pretrained on 20 trillion text tokens, then post-trained with supervised fine-tuning,\nreinforcement learning, and Multi-teacher On-Policy Distillation (MOPD). The recipe\ncombines several techniques NVIDIA highlights — LatentMoE, Multi-Token Prediction (MTP),\nNVFP4 low-precision pretraining, multi-environment RLVR, and reasoning-budget control.\nNotably, the base, post-trained, and quantized checkpoints ship openly on Hugging Face\nalongside the training data and recipe. Throughput and accuracy figures are NVIDIA's own;\nsee the technical report for benchmark details.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "NVIDIA"
+    ],
+    "url": "https://arxiv.org/abs/2606.15007",
+    "published_at": "2026-06-12",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ssm-mamba",
+    "moe",
+    "releases"
+  ],
+  "tags": [
+    "architecture",
+    "efficiency",
+    "open-source",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-18",
+  "date": "2026-06-12",
+  "related": [
+    {
+      "id": "card_5dd64e",
+      "slug": "mamba",
+      "type": "paper",
+      "title": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+      "hook": "Make the state-space transitions depend on the input itself, add a hardware-aware scan, and you get a linear-time sequence model that matches Transformers on language - with no KV cache.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2023-12-01"
+    },
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    },
+    {
+      "id": "card_811596",
+      "slug": "subquadratic-architectures",
+      "type": "paper",
+      "title": "Subquadratic Architectures: xLSTM vs. Mamba-2 vs. Gated DeltaNet",
+      "hook": "Transformers pay a quadratic tax on sequence length. Pitting xLSTM, Mamba-2, and Gated DeltaNet head-to-head on hard tasks, xLSTM comes out ahead — and the paper explains why.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-10"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_5dd64e",
+      "slug": "mamba",
+      "type": "paper",
+      "title": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+      "hook": "Make the state-space transitions depend on the input itself, add a hardware-aware scan, and you get a linear-time sequence model that matches Transformers on language - with no KV cache.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2023-12-01"
+    },
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_ccd6d9#0",
+      "format": "flip",
+      "prompt": "What two sequence-mixing mechanisms does Nemotron 3 Ultra combine, and what's the payoff?",
+      "back_html": "\u003cp\u003eMamba (state-space) layers for cheap linear-time mixing plus attention layers. The\nhybrid reports ~6x higher inference throughput than comparable public LLMs at on-par\naccuracy, with a 1M-token context.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ccd6d9#1",
+      "format": "quiz",
+      "prompt": "Nemotron 3 Ultra has 550B total parameters. How many are active per token?",
+      "choices": [
+        {
+          "text": "55B — it's a Mixture-of-Experts, so only a subset of experts fire per token",
+          "correct": true
+        },
+        {
+          "text": "All 550B",
+          "correct": false
+        },
+        {
+          "text": "1M, matching the context length",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAs a Mixture-of-Experts, Nemotron 3 Ultra routes each token to a small subset of\nexperts: 55B active out of 550B total parameters.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ccd6d9#2",
+      "format": "flip",
+      "prompt": "Beyond SFT and RL, what post-training step does Nemotron 3 Ultra add?",
+      "back_html": "\u003cp\u003eMulti-teacher On-Policy Distillation (MOPD) — the model is trained on its own outputs\nwith supervision from multiple teacher models — alongside SFT and RL.\u003c/p\u003e"
+    }
+  ]
+}

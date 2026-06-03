@@ -1,0 +1,122 @@
+{
+  "id": "card_e21716",
+  "slug": "swe-bench-science",
+  "type": "paper",
+  "title": "SWE-bench Science: Can Coding Agents Resolve Engineering Tasks in Science?",
+  "hook": "When software is part of the scientific instrument, a bad patch corrupts the evidence. The best agent tested clears under 50% of these repo-level scientific fixes.",
+  "key_points": [
+    "119 repository-level tasks drawn from 98 GitHub repos across 20 scientific domains.",
+    "Tasks split into three paradigms: issue-driven, expert-exploratory, and engineering-integration.",
+    "Best result reported is Claude Code with Opus-5 (max) at pass@1 below 50%.",
+    "Four recurring failure modes: missing scientific knowledge, shallow exploration or surface repair, incomplete repair or integration, and failure to generalize beyond observed cases.",
+    "A paired ablation shows scientific guidance is not uniformly helpful — well-grounded context helps, misaligned context anchors the agent.",
+    "The framing: in science, a wrong patch doesn't just break behavior, it undermines the conclusions built on the code."
+  ],
+  "content_html": "\u003cp\u003eXu and colleagues introduce SWE-bench Science, a repository-level benchmark of 119 tasks pulled from 98 GitHub repositories spanning 20 scientific domains. Each task falls into one of three paradigms — issue-driven, expert-exploratory, or engineering-integration — and the point is diagnosis rather than a leaderboard: existing coding-agent evaluations report aggregate success and say little about why agents fail. Even the strongest configuration tested, Claude Code with Opus-5 (max), lands below 50% pass@1.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat they found\u003c/h2\u003e\n\u003cp\u003eThe authors identify four recurring failure mechanisms: deficits in scientific knowledge or abstraction, misguided exploration and surface-level repair, incomplete repair coverage or system integration, and failure to generalize scientific knowledge beyond the cases actually observed. A paired ablation strips out explicit scientific guidance while preserving the repository and executable context, and the result cuts against intuition — well-grounded information can usefully constrain a repair and improve both average performance and token efficiency, but poorly aligned guidance induces anchoring and doesn't reliably improve exact repair success.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eScientific code sits inside the evidence chain, so the cost of a plausible-but-wrong patch is higher than in ordinary software. The benchmark gives that setting a testbed, and the failure taxonomy is the more transferable contribution: it turns \u0026quot;agents score 47%\u0026quot; into specific, addressable weaknesses.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zhipeng Xu",
+      "Jiahao Lu",
+      "Yining Zheng",
+      "Yuxin Wang",
+      "Xipeng Qiu"
+    ],
+    "url": "https://arxiv.org/abs/2608.19799",
+    "published_at": "2026-08-20",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "agent",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-24",
+  "date": "2026-08-20",
+  "related": [
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    },
+    {
+      "id": "card_021f3b",
+      "slug": "swe-bench-promax",
+      "type": "paper",
+      "title": "SWE-Bench ProMax: Refactoring as the Harder Coding Test",
+      "hook": "Coding benchmarks keep saturating and keep turning out to be broken. ProMax swaps bug-fixing for multi-file refactoring — and the best frontier model still only solves 41.2%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-10"
+    },
+    {
+      "id": "card_05925b",
+      "slug": "naturebench",
+      "type": "paper",
+      "title": "NatureBench: Can Coding Agents Match Published SOTA?",
+      "hook": "Can coding agents reproduce — even beat — published Nature results? The best one surpassed prior SOTA on just 17.8% of 90 real scientific tasks.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-23"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_e21716#0",
+      "format": "flip",
+      "prompt": "Why is a failed patch in scientific software worse than an ordinary bug?",
+      "back_html": "\u003cp\u003eThe software is part of the instrument — a wrong fix can corrupt the evidence underlying published conclusions, not just program behavior.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e21716#1",
+      "format": "quiz",
+      "prompt": "What did the paper's paired ablation find about giving agents explicit scientific guidance?",
+      "choices": [
+        {
+          "text": "It helps when well-grounded, but poorly aligned guidance can anchor the agent",
+          "correct": true
+        },
+        {
+          "text": "It always improves both accuracy and token efficiency",
+          "correct": false
+        },
+        {
+          "text": "It made no measurable difference in any setting",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRemoving guidance while keeping repository and execution context showed scientific knowledge is not uniformly beneficial: good context constrains repair usefully, bad context induces anchoring.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e21716#2",
+      "format": "flip",
+      "prompt": "What does a sub-50% pass@1 for the best agent tell you about aggregate benchmark scores?",
+      "back_html": "\u003cp\u003eAggregate success rates hide the mechanisms — the paper's value is in naming \u003cem\u003ewhy\u003c/em\u003e agents fail (knowledge gaps, shallow repair, integration, generalization), not just how often.\u003c/p\u003e"
+    }
+  ]
+}

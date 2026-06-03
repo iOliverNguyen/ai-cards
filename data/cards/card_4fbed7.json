@@ -1,0 +1,101 @@
+{
+  "id": "card_4fbed7",
+  "slug": "shadow-price-of-reasoning",
+  "type": "paper",
+  "title": "The Shadow Price of Reasoning",
+  "hook": "When you can't afford to let every query think as long as it wants, who gets the compute? Treat reasoning tokens like a scarce resource and economics gives a clean answer.",
+  "key_points": [
+    "Inference-time scaling boosts accuracy but real deployments run under a fixed token budget.",
+    "The paper frames budget allocation as a constrained optimization governed by economic principles.",
+    "A global 'shadow price' equalizes marginal utility across queries, deciding who gets more thinking.",
+    "Their CLEAR policy abandons hopeless queries and reallocates compute to solvable ones near their threshold."
+  ],
+  "content_html": "\u003cp\u003eLetting a model \u0026quot;think\u0026quot; longer at inference time reliably improves accuracy — but you can't give every incoming query unlimited reasoning when you're paying per token. Wan and colleagues take this seriously as an economics problem: how do you allocate a fixed reasoning budget across a stream of queries to maximize total accuracy?\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThey formulate inference budget allocation as a global constrained optimization. Modeling each query's reasoning utility with a \u0026quot;shifted-surge\u0026quot; function, they derive an optimal policy based on a \u003cstrong\u003eshadow price\u003c/strong\u003e — the value of one more reasoning token — that equalizes marginal utility across queries when the resource is scarce. The resulting method, CLEAR (Constrained Latent-utility Equilibrium Allocation for Reasoning), does something a uniform budget can't: it performs \u003cem\u003erational abandonment\u003c/em\u003e, cutting queries unlikely to be solved and reallocating their tokens to queries sitting near the threshold where extra thinking flips them from wrong to right. Across reasoning tasks and traffic patterns, CLEAR improves the Pareto frontier of token cost versus accuracy, reporting up to a 3x global accuracy gain over uniform allocation in resource-scarce regimes. See the arXiv link for the derivation and experiments.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xu Wan",
+      "Speed Zhu",
+      "Jianwei Cai",
+      "Guang Chen",
+      "XiMing Huang",
+      "Wiggin Zhou",
+      "Mingyang Sun"
+    ],
+    "url": "https://arxiv.org/abs/2606.03092",
+    "published_at": "2026-06-02",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "papers-this-week"
+  ],
+  "tags": [
+    "inference",
+    "efficiency",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-08",
+  "date": "2026-06-02",
+  "related": [
+    {
+      "id": "card_1f00c3",
+      "slug": "test-time-compute-scaling",
+      "type": "paper",
+      "title": "Scaling LLM Test-Time Compute",
+      "hook": "A new scaling axis: instead of a bigger model, let a model think longer at inference — often a better use of compute, and the principle behind o1 and R1.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-08-06"
+    },
+    {
+      "id": "card_951958",
+      "slug": "speculative-decoding",
+      "type": "paper",
+      "title": "Speculative Decoding",
+      "hook": "Let a small, fast model guess the next few words, then have the big model check them all in one shot. Same output, fewer slow steps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-30"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_4fbed7#0",
+      "format": "flip",
+      "prompt": "What is the 'shadow price' in this inference-budget framework?",
+      "back_html": "\u003cp\u003eA global price that equilibrates the marginal utility of reasoning across queries under a scarce token budget — it tells you how much extra accuracy one more token buys, so you can allocate fairly.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4fbed7#1",
+      "format": "quiz",
+      "prompt": "How does the CLEAR policy spend a limited reasoning budget?",
+      "choices": [
+        {
+          "text": "It abandons insolvent queries and reallocates compute to solvable ones near their emergence threshold",
+          "correct": true
+        },
+        {
+          "text": "It gives every query an equal, fixed number of tokens",
+          "correct": false
+        },
+        {
+          "text": "It always spends the full budget on the single hardest query",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eCLEAR performs 'rational abandonment' — cutting queries that won't be solved and redirecting that budget to queries close to becoming solvable, which lifts global accuracy.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4fbed7#2",
+      "format": "flip",
+      "prompt": "Why does uniform allocation of reasoning tokens underperform under tight budgets?",
+      "back_html": "\u003cp\u003eIt wastes tokens on hopeless queries and starves nearly-solvable ones; CLEAR's marginal-utility allocation reported up to a 3x global accuracy gain in resource-scarce regimes.\u003c/p\u003e"
+    }
+  ]
+}

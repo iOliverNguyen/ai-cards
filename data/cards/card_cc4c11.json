@@ -1,0 +1,125 @@
+{
+  "id": "card_cc4c11",
+  "slug": "disentangling-a-convolutional-neuron",
+  "type": "paper",
+  "title": "Disentangling a Convolutional Neuron by Clustering What It Actually Detects",
+  "hook": "A single 'car detector' neuron might really be several overlapping detectors wearing one name. Clustering what it responds to pulls apart clean, monosemantic patterns hiding inside.",
+  "key_points": [
+    "Studies a single 1x1 convolutional neuron in InceptionV1, building on the Distill 'circuits' thread.",
+    "Key idea: the Hadamard (elementwise) product of a neuron's receptive field and its weights is what that neuron is actually 'seeing' or detecting.",
+    "Clustering that Hadamard product recovers clean, monosemantic groups of patterns (e.g. cars, cats, dogs) instead of one blurry mixed concept.",
+    "The same clustering method extends to other neurons in the same layer."
+  ],
+  "content_html": "\u003cp\u003eMechanistic interpretability often talks about neurons detecting a single clean concept — a \u0026quot;car detector,\u0026quot; a \u0026quot;curve detector.\u0026quot; An independent researcher's write-up digs into one such neuron in InceptionV1 and finds the truth is messier: what looks like one detector is often several overlapping ones bundled together, and a simple trick can pull them apart.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eBuilding on the Distill \u0026quot;circuits\u0026quot; thread, the author studied a single 1x1 convolutional neuron in InceptionV1 (and extended the method to others in the same layer). The core insight, per their r/MachineLearning post: the Hadamard product of a neuron's receptive field and its weights is what that neuron is actually detecting — a sharper signal than looking at raw activations. Clustering that product recovered clean, monosemantic groups of patterns (cars, cats, dogs) that the neuron was already known to respond to, but which had been blurred together under one label. See the full write-up via the source link.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit r/MachineLearning",
+    "authors": [
+      "/u/narang_27"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1uwya70/mechanistic_interpretability_a_first_paper_on",
+    "published_at": "2026-07-15",
+    "license": "Reddit post (link-out)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "cnns"
+  ],
+  "tags": [
+    "interpretability",
+    "vision",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-20",
+  "date": "2026-07-15",
+  "related": [
+    {
+      "id": "card_346b15",
+      "slug": "circuits-zoom-in",
+      "type": "resource",
+      "title": "Zoom In: An Introduction to Circuits",
+      "hook": "What if neural networks aren't black boxes but circuits you can read? This piece argues their features and weights form algorithms we can reverse-engineer.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2020-03-10"
+    },
+    {
+      "id": "card_0946f0",
+      "slug": "towards-monosemanticity",
+      "type": "paper",
+      "title": "Towards Monosemanticity: Decomposing Models with Dictionary Learning",
+      "hook": "If neurons mean several things at once, can we find cleaner units? A sparse autoencoder pulled 4,000+ single-concept features out of one tiny transformer layer.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2023-10-05"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_346b15",
+      "slug": "circuits-zoom-in",
+      "type": "resource",
+      "title": "Zoom In: An Introduction to Circuits",
+      "hook": "What if neural networks aren't black boxes but circuits you can read? This piece argues their features and weights form algorithms we can reverse-engineer.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2020-03-10"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_cc4c11#0",
+      "format": "flip",
+      "prompt": "What does this work claim a neuron's 'Hadamard product of receptive field and weights' represents?",
+      "back_html": "\u003cp\u003eWhat the neuron is really \u0026quot;seeing\u0026quot; or detecting — a more precise signal than looking at raw activations or weights alone.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cc4c11#1",
+      "format": "quiz",
+      "prompt": "Why might a single convolutional neuron that seems to detect 'cars' actually be doing more than that?",
+      "choices": [
+        {
+          "text": "It may bundle several overlapping detectors (e.g. cars, cats, dogs) under one activation, revealed by clustering",
+          "correct": true
+        },
+        {
+          "text": "Convolutional neurons never detect a single concept in the first place",
+          "correct": false
+        },
+        {
+          "text": "Its weights change at every inference step, so its target concept drifts",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eClustering the neuron's Hadamard product showed it responds to several distinct patterns, not one clean concept.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cc4c11#2",
+      "format": "flip",
+      "prompt": "What method does the author use to pull a neuron's mixed detections apart into clean concepts?",
+      "back_html": "\u003cp\u003eClustering the Hadamard product of the receptive field and the neuron's weights, which separates it into distinct, monosemantic pattern groups.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cc4c11#3",
+      "format": "quiz",
+      "prompt": "What kind of network and neuron does this study focus on?",
+      "choices": [
+        {
+          "text": "A single 1x1 convolutional neuron in InceptionV1",
+          "correct": true
+        },
+        {
+          "text": "A full attention head in a vision transformer",
+          "correct": false
+        },
+        {
+          "text": "An entire ResNet-50 residual block",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe study zooms into one 1x1 convolutional neuron in InceptionV1, the same model studied in the Distill circuits thread.\u003c/p\u003e"
+    }
+  ]
+}

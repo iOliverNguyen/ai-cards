@@ -1,0 +1,116 @@
+{
+  "id": "card_21311f",
+  "slug": "logistic-regression",
+  "type": "concept",
+  "title": "Logistic Regression",
+  "hook": "Take linear regression, squash its output through a sigmoid, and you get a probability - turning a number-predictor into a classifier with one extra step.",
+  "key_points": [
+    "Applies a sigmoid function to a linear weighted sum, converting it to a probability between 0 and 1.",
+    "Trained by maximizing likelihood (or minimizing cross-entropy loss), not least squares.",
+    "Output is a probability score, not just a hard label - useful for ranking and calibration.",
+    "It is literally a single neuron with a sigmoid activation - the atom of neural networks."
+  ],
+  "content_html": "\u003cp\u003eLogistic regression takes the same weighted sum of features as linear regression, but instead of outputting that number directly it passes it through a sigmoid function, which squashes any value into the range 0 to 1. That output is interpreted as the probability the input belongs to a certain class.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe sigmoid turns large positive values into probabilities near 1 and large negative values into probabilities near 0. Training finds the weights that make the true labels as probable as possible - a principle called maximum likelihood. Despite the word \u0026quot;regression\u0026quot; in its name, this is a classification algorithm.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eLogistic regression is still a production workhorse for problems like spam detection and medical risk scoring because its outputs are well-calibrated probabilities and the model is easy to audit. It is also the conceptual bridge to neural networks: stack many logistic units and you have a multilayer perceptron. The Wikipedia article covers the math and the variants in depth.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/Logistic_regression",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "linear-models"
+  ],
+  "tags": [
+    "classic-ml",
+    "foundational"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-06-03",
+  "date": "2026-06-03",
+  "related": [
+    {
+      "id": "card_897073",
+      "slug": "linear-regression",
+      "type": "concept",
+      "title": "Linear Regression",
+      "hook": "Predict a number by fitting a straight line through your data - the simplest model in ML and the mental blueprint for almost everything that came after.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-03"
+    },
+    {
+      "id": "card_9b754f",
+      "slug": "precision-recall-f1",
+      "type": "concept",
+      "title": "Precision, Recall \u0026 F1",
+      "hook": "On rare events, a model can be 99% accurate and still useless. Precision and recall reveal what accuracy hides.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_897073",
+      "slug": "linear-regression",
+      "type": "concept",
+      "title": "Linear Regression",
+      "hook": "Predict a number by fitting a straight line through your data - the simplest model in ML and the mental blueprint for almost everything that came after.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-03"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_21311f#0",
+      "format": "flip",
+      "prompt": "How does logistic regression turn a linear weighted sum into a probability?",
+      "back_html": "\u003cp\u003eIt passes the weighted sum through a sigmoid function, which squashes any value into the range 0 to 1.\u003c/p\u003e"
+    },
+    {
+      "id": "card_21311f#1",
+      "format": "quiz",
+      "prompt": "Despite its name, what kind of algorithm is logistic regression?",
+      "choices": [
+        {
+          "text": "A classification algorithm",
+          "correct": true
+        },
+        {
+          "text": "A regression algorithm for predicting numbers",
+          "correct": false
+        },
+        {
+          "text": "An unsupervised clustering algorithm",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDespite the word \u0026quot;regression,\u0026quot; its sigmoid output is a class probability, making it a classification algorithm.\u003c/p\u003e"
+    },
+    {
+      "id": "card_21311f#2",
+      "format": "quiz",
+      "prompt": "How is logistic regression trained?",
+      "choices": [
+        {
+          "text": "By maximizing likelihood (minimizing cross-entropy)",
+          "correct": true
+        },
+        {
+          "text": "By minimizing squared error (least squares)",
+          "correct": false
+        },
+        {
+          "text": "By maximizing within-cluster variance",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eTraining finds weights that make the true labels most probable, a principle called maximum likelihood, not least squares.\u003c/p\u003e"
+    }
+  ]
+}

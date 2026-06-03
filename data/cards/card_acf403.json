@@ -1,0 +1,97 @@
+{
+  "id": "card_acf403",
+  "slug": "minimax-music3",
+  "type": "news",
+  "title": "MiniMax-Music3: Full Songs From Lyrics Plus a Description",
+  "hook": "A five-minute song with coherent structure and expressive vocals, from an 8B model that plans the arrangement and a 0.6B model that fills in the audio frame by frame.",
+  "key_points": [
+    "Generates complete songs up to five minutes long from lyrics plus a structured music description.",
+    "Hybrid design: an 8B global LLM handles long-range musical structure, a 0.6B local LLM handles frame-level acoustic detail.",
+    "Synthesis uses Flow Matching and a Flow-VAE over continuous hidden states, with eight-layer residual vector quantization (RVQ) tokenization.",
+    "Outputs 32 kHz, 16-bit stereo WAV; prompts are capped at 5,000 tokens.",
+    "Lyrics accept section tags like [Verse] and [Chorus]; descriptions control genre, instrumentation, vocal performance, and arrangement.",
+    "Runs via SGLang-Omni, Diffusers, and ComfyUI, requires CUDA, and is published under a Creative Commons license."
+  ],
+  "content_html": "\u003cp\u003eMiniMax released Music3, a music generation model that takes lyrics plus a structured description and returns a complete song — up to five minutes of 32 kHz stereo audio with expressive vocals and a coherent arrangement.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe architecture is the interesting part, and it's a clean example of splitting a problem by time scale. An 8B global LLM handles long-range structure — where the chorus goes, how the arrangement develops — while a 0.6B local LLM handles frame-level acoustic detail. Waveform synthesis runs through Flow Matching and a Flow-VAE over continuous hidden states, with eight-layer residual vector quantization for tokenization. Control comes from two channels: lyrics that accept section tags like \u003ccode\u003e[Verse]\u003c/code\u003e and \u003ccode\u003e[Chorus]\u003c/code\u003e, and a separate description covering genre, instrumentation, vocal performance, and arrangement.\u003c/p\u003e\n\u003cp\u003ePractically: prompts cap at 5,000 tokens, inference needs CUDA, and it plugs into SGLang-Omni, Diffusers, and ComfyUI. The model card lists a Creative Commons license — worth reading the specific variant before commercial use, since CC terms vary considerably in what they permit.\u003c/p\u003e",
+  "source": {
+    "name": "r/LocalLLaMA",
+    "authors": [
+      "MiniMax"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1vngww3/minimaxmusic3_released",
+    "published_at": "2026-08-13",
+    "license": "Reddit (link post)"
+  },
+  "topic_ids": [
+    "video-audio",
+    "releases"
+  ],
+  "tags": [
+    "generative",
+    "open-source",
+    "news",
+    "speech"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-08-17",
+  "date": "2026-08-13",
+  "related": [
+    {
+      "id": "card_8b2939",
+      "slug": "musicgen",
+      "type": "paper",
+      "title": "MusicGen: Simple and Controllable Music Generation",
+      "hook": "Generate music from a text description or a melody reference using a single autoregressive transformer over discrete audio tokens - no cascade of specialized models required.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-06-08"
+    },
+    {
+      "id": "card_1e4ede",
+      "slug": "audex-unified-audio-text-llm",
+      "type": "paper",
+      "title": "Audex: A Unified Audio-Text LLM That Doesn't Forget How to Think",
+      "hook": "Bolting audio onto a strong text model usually costs some of its reasoning. NVIDIA's Audex treats speech and text as one token stream, reporting top audio skills with little to no loss on text.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_acf403#0",
+      "format": "quiz",
+      "prompt": "Why does MiniMax-Music3 split work between an 8B and a 0.6B model?",
+      "choices": [
+        {
+          "text": "The 8B handles long-range musical structure while the 0.6B handles frame-level acoustic detail",
+          "correct": true
+        },
+        {
+          "text": "The 0.6B is a draft model for speculative decoding of the 8B's output",
+          "correct": false
+        },
+        {
+          "text": "The 8B generates vocals and the 0.6B generates instrumentation",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIt's a division by time scale, not by instrument or by speed: song-level coherence needs capacity, per-frame acoustics need throughput.\u003c/p\u003e"
+    },
+    {
+      "id": "card_acf403#1",
+      "format": "flip",
+      "prompt": "What two inputs does the model take, and what does each control?",
+      "back_html": "\u003cp\u003eLyrics (with optional section tags like [Verse] and [Chorus]) set the words and song structure; a structured music description controls genre, instrumentation, vocal performance, and arrangement.\u003c/p\u003e"
+    },
+    {
+      "id": "card_acf403#2",
+      "format": "flip",
+      "prompt": "What does the model actually output?",
+      "back_html": "\u003cp\u003e32 kHz, 16-bit stereo WAV audio — a complete song up to five minutes long, synthesized via Flow Matching and a Flow-VAE over continuous hidden states.\u003c/p\u003e"
+    }
+  ]
+}

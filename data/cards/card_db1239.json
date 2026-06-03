@@ -1,0 +1,110 @@
+{
+  "id": "card_db1239",
+  "slug": "scireasoner-structural-reasoning",
+  "type": "paper",
+  "title": "SciReasoner: Native Structural Reasoning Across Proteins, Molecules, and Crystals",
+  "hook": "Most scientific AI predicts an answer without showing its structural work. SciReasoner turns 3D structure itself into evidence tokens the model reasons over — and hits SOTA on 67 of 86 benchmarks.",
+  "key_points": [
+    "Discretizes protein, molecule, and crystal structure (coordinates, topology, periodic connectivity) into one shared 'structure-aware' vocabulary.",
+    "Treats these structural tokens as addressable evidence during reasoning, not just opaque input features.",
+    "State-of-the-art on 67 of 86 benchmarks spanning biology, chemistry, and materials science.",
+    "Raises single-step retrosynthesis accuracy from 0.63 to 0.72 while generating inspectable disconnection/precursor-verification traces.",
+    "Improves protein function prediction (Gene Ontology F_max) from 0.42 to 0.55 on low-homology, orphan-like proteins.",
+    "Double-blind expert review rated its reasoning traces preferred or comparable to a frontier LLM's in 98% of cases."
+  ],
+  "content_html": "\u003cp\u003eMost models that predict a protein's function or a molecule's reaction pathway treat 3D structure as a black-box input — useful for the final number, invisible in the reasoning. SciReasoner, a multimodal scientific foundation model, instead turns structure into evidence it can point to.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eBuilt by a large multi-institution team (Shanghai AI Lab and collaborators), SciReasoner discretizes coordinates, bonding topology, and periodic crystal connectivity into a single structure-aware vocabulary shared across proteins, small molecules, and inorganic crystals. That lets the model treat structural tokens as addressable evidence units — citing which piece of geometry justifies which conclusion — rather than compressing structure into an uninterpretable feature vector. Across 86 benchmarks spanning biology, chemistry, and materials science, the authors report state-of-the-art results on 67, including large jumps on protein function prediction for hard, low-homology cases and on single-step retrosynthesis, where the model also emits inspectable disconnection and precursor-verification traces.\u003c/p\u003e\n\u003cp\u003eThe headline claim isn't just accuracy: a double-blind expert evaluation found SciReasoner's reasoning traces preferred or comparable to a frontier general-purpose LLM's in 98% of cases, suggesting structure-native models can produce scientifically legible explanations, not just correct answers.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Chen Tang",
+      "Yizhou Wang",
+      "Jianyu Wu",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.07708",
+    "published_at": "2026-07-08",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-science",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "reasoning",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-13",
+  "date": "2026-07-08",
+  "related": [
+    {
+      "id": "card_c38a80",
+      "slug": "alphafold",
+      "type": "paper",
+      "title": "AlphaFold: Protein Structure Prediction",
+      "hook": "Predicting a protein's 3D shape from its sequence stumped biology for ~50 years. AlphaFold cracked it at near-experimental accuracy — and then released the structures to everyone.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2021-07-15"
+    },
+    {
+      "id": "card_880baf",
+      "slug": "alphafold-3",
+      "type": "paper",
+      "title": "AlphaFold 3: Predicting Biomolecular Interactions",
+      "hook": "AlphaFold 3 extends protein structure prediction to full biomolecular complexes - proteins with DNA, RNA, ligands, and ions - using a diffusion-based architecture.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-05-08"
+    },
+    {
+      "id": "card_0b6e14",
+      "slug": "graphcast",
+      "type": "paper",
+      "title": "GraphCast: Skillful Medium-Range Weather Forecasting",
+      "hook": "A graph neural network predicts 10-day global weather in under a minute on one machine, matching or beating physics-based forecast models on most variables.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_db1239#0",
+      "format": "flip",
+      "prompt": "What does SciReasoner discretize structure into, and why does that matter for reasoning?",
+      "back_html": "\u003cp\u003eCoordinates, topologies, and periodic connectivity (for proteins, molecules, crystals) become a unified structure-aware vocabulary — turning structure into addressable tokens the model can cite as evidence, not just an input to predict from.\u003c/p\u003e"
+    },
+    {
+      "id": "card_db1239#1",
+      "format": "quiz",
+      "prompt": "How did experts judge SciReasoner's reasoning traces against a frontier LLM's?",
+      "choices": [
+        {
+          "text": "Preferred or at least comparable in 98% of double-blind evaluations",
+          "correct": true
+        },
+        {
+          "text": "Rated strictly worse in almost every case",
+          "correct": false
+        },
+        {
+          "text": "Not evaluated by humans at all, only by automated metrics",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA double-blind expert review rated SciReasoner's reasoning traces as preferred or comparable to a frontier large language model's in 98% of cases.\u003c/p\u003e"
+    },
+    {
+      "id": "card_db1239#2",
+      "format": "flip",
+      "prompt": "Give one concrete number showing SciReasoner's gain on a specific scientific task.",
+      "back_html": "\u003cp\u003eSingle-step retrosynthesis accuracy rose from 0.63 to 0.72, alongside fragment-level disconnection and precursor-verification traces explaining each prediction.\u003c/p\u003e"
+    }
+  ]
+}

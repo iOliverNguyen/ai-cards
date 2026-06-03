@@ -1,0 +1,101 @@
+{
+  "id": "card_142fdd",
+  "slug": "qwen3-8-2-4t-a95b",
+  "type": "news",
+  "title": "Qwen3.8-2.4T-A95B Is Out",
+  "hook": "Qwen's next flagship landed after a week of countdown threads — and the name says it all: a sparse mixture-of-experts in the trillions, with under a hundred billion awake per token.",
+  "key_points": [
+    "Qwen3.8-2.4T-A95B was announced on 12 August 2026, after days of release-date speculation on r/LocalLLaMA.",
+    "Qwen's naming convention reads as roughly 2.4T total parameters with about 95B activated per token — a sparse MoE.",
+    "That activation ratio is the design bet: frontier-scale capacity in storage, mid-size compute cost per token.",
+    "A 2.4T-parameter model is out of reach for single-GPU local use regardless of sparsity — the weights still have to live somewhere.",
+    "Community reception on release day treated it as the headline open-weight event of the week."
+  ],
+  "content_html": "\u003cp\u003eQwen3.8-2.4T-A95B was released on 12 August 2026, capping a week in which r/LocalLLaMA ran countdown threads guessing the exact drop time. The name follows Qwen's usual convention — total parameters, then the activated slice — putting it at roughly 2.4 trillion parameters with about 95 billion awake per token.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThat ratio is the whole architectural statement. A sparse mixture-of-experts at this scale buys frontier-level capacity in the weights while keeping the per-token compute in mid-size territory, which is why nearly every frontier open-weight release of the past year has taken the same shape.\u003c/p\u003e\n\u003cp\u003eWorth separating the two constraints, because the local-model community relearns this with every release: sparsity reduces \u003cem\u003ecompute\u003c/em\u003e per token, not \u003cem\u003ememory\u003c/em\u003e. All 2.4T parameters still have to be stored and reachable, so a model like this stays a datacenter artifact no matter how few experts fire. Reported via r/LocalLLaMA, August 2026.\u003c/p\u003e",
+  "source": {
+    "name": "r/LocalLLaMA",
+    "authors": [
+      "/u/de4dee"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1vmgozv/qwen3824ta95b_released",
+    "published_at": "2026-08-12",
+    "license": "Reddit (link post)"
+  },
+  "topic_ids": [
+    "releases",
+    "lab-updates",
+    "moe"
+  ],
+  "tags": [
+    "news",
+    "open-source",
+    "architecture"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-08-13",
+  "date": "2026-08-12",
+  "related": [
+    {
+      "id": "card_2a92eb",
+      "slug": "qwen3-coder",
+      "type": "news",
+      "title": "Qwen3-Coder",
+      "hook": "Qwen3-Coder is an open-weight agentic coding model — a 480B Mixture-of-Experts built for long-horizon, tool-using software tasks, rivaling closed models on agentic coding.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-07-22"
+    },
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_142fdd#0",
+      "format": "quiz",
+      "prompt": "In the name 'Qwen3.8-2.4T-A95B', what does the A95B part indicate?",
+      "choices": [
+        {
+          "text": "About 95B parameters are activated per token, out of 2.4T total",
+          "correct": true
+        },
+        {
+          "text": "The model was trained on 95 billion tokens",
+          "correct": false
+        },
+        {
+          "text": "It supports a 95-billion-character context window",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eQwen's convention puts total parameters first and the activated slice after the A — the signature of a sparse mixture-of-experts.\u003c/p\u003e"
+    },
+    {
+      "id": "card_142fdd#1",
+      "format": "flip",
+      "prompt": "Does a low activation ratio make a 2.4T model runnable locally?",
+      "back_html": "\u003cp\u003eNo. Sparsity cuts compute per token, but all 2.4T parameters still have to be stored and reachable — memory, not FLOPs, is the binding constraint for local use.\u003c/p\u003e"
+    }
+  ]
+}

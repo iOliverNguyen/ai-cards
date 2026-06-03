@@ -1,0 +1,126 @@
+{
+  "id": "card_01a1d7",
+  "slug": "cot-scaling-trap-latent-reasoning",
+  "type": "blog",
+  "title": "Chain of Thought Is a Scaling Trap? The Case for Latent Reasoning",
+  "hook": "A visible chain of thought reads like the model's thinking — but it can be an unfaithful, expensive trace. The next wave reasons in hidden state instead of tokens.",
+  "key_points": [
+    "CoT traces can decouple from what the model actually computed: plausible steps can still yield a wrong answer, or messy steps a right one.",
+    "That makes CoT an unreliable audit trail, not a faithful record of the model's actual reasoning.",
+    "Autoregressive reasoning serializes intermediate computation into tokens, so longer traces mean longer, costlier generations.",
+    "Latent-reasoning architectures (Coconut, HRM, RecursiveMAS) aim to reason inside a hidden state instead of writing it out as text.",
+    "Trading a readable-but-unfaithful trace for a fully latent one raises a harder problem — you lose even the illusion of an inspectable trace."
+  ],
+  "content_html": "\u003cp\u003eA widely-shared r/MachineLearning post argues that chain-of-thought is a useful hack we've mistaken for genuine progress: producing a readable trace of \u0026quot;steps\u0026quot; isn't the same as the model actually thinking through them. It raises two problems — faithfulness and cost — and points to a next wave of \u0026quot;latent reasoning\u0026quot; architectures that skip the text trace entirely.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe post lays out why CoT's plain-English trace can be theater more than truth: you can get confident, plausible-looking steps that end in a wrong answer, or a messy scramble of steps that nonetheless lands on the right one — neither is a dependable record of what happened inside the model. On top of that, autoregressive models pay for every token of reasoning, so longer traces directly inflate compute and latency. The author frames latent-reasoning approaches like Coconut, HRM, and RecursiveMAS as the natural next step — reasoning inside the model's hidden state rather than spelling it out — while noting that this trades away even CoT's imperfect window into the process, running straight into interpretability's \u0026quot;black box wall\u0026quot; (the post leaves open where other emerging architectures like BDH fit into this picture). Full discussion via the source link.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit r/MachineLearning",
+    "authors": [
+      "/u/meowsterpieces"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1uviru5/chain_of_thought_is_a_scaling_trap_the_next_wave",
+    "published_at": "2026-07-13",
+    "license": "Reddit post (link-out)"
+  },
+  "topic_ids": [
+    "agents",
+    "context-memory"
+  ],
+  "tags": [
+    "reasoning",
+    "agent",
+    "architecture"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-13",
+  "related": [
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    },
+    {
+      "id": "card_b30a0f",
+      "slug": "slpo-latent-reasoning-surrogate-policy",
+      "type": "paper",
+      "title": "SLPO: Reinforcement Learning for Reasoners That Think in Vectors",
+      "hook": "Latent reasoners think in continuous vectors, not tokens — but couldn't learn from outcome rewards the way chain-of-thought models can. SLPO gives them a surrogate policy so RL finally works.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-22"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_01a1d7#0",
+      "format": "flip",
+      "prompt": "What's the 'faithfulness' problem with chain-of-thought traces?",
+      "back_html": "\u003cp\u003eThe written-out steps can decouple from what the model actually computed — plausible steps can still yield a wrong answer, or messy steps a right one — so the trace isn't a reliable audit trail.\u003c/p\u003e"
+    },
+    {
+      "id": "card_01a1d7#1",
+      "format": "quiz",
+      "prompt": "Why does autoregressive chain-of-thought get expensive as reasoning gets harder?",
+      "choices": [
+        {
+          "text": "It serializes intermediate computation into tokens, so longer reasoning means longer generations",
+          "correct": true
+        },
+        {
+          "text": "It requires a bigger model checkpoint to run",
+          "correct": false
+        },
+        {
+          "text": "It needs a separate fine-tuning pass per problem",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAutoregressive models pay token-by-token, so a longer reasoning trace directly inflates generation cost and latency.\u003c/p\u003e"
+    },
+    {
+      "id": "card_01a1d7#2",
+      "format": "flip",
+      "prompt": "What do latent-reasoning architectures like Coconut and HRM do differently from standard CoT?",
+      "back_html": "\u003cp\u003eThey reason inside a hidden state instead of writing every intermediate step out as text — skipping the token-by-token trace entirely.\u003c/p\u003e"
+    },
+    {
+      "id": "card_01a1d7#3",
+      "format": "quiz",
+      "prompt": "What tradeoff does latent reasoning introduce, per the post?",
+      "choices": [
+        {
+          "text": "It drops even the imperfect readability CoT gave you, hitting a harder interpretability 'black box wall'",
+          "correct": true
+        },
+        {
+          "text": "It requires more human-labeled reasoning traces to train",
+          "correct": false
+        },
+        {
+          "text": "It only works on classification tasks, not generation",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLatent reasoning trades CoT's flawed-but-visible trace for one that isn't visible at all, making the model harder to inspect.\u003c/p\u003e"
+    }
+  ]
+}

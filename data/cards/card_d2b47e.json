@@ -1,0 +1,107 @@
+{
+  "id": "card_d2b47e",
+  "slug": "scarfbench",
+  "type": "blog",
+  "title": "ScarfBench: Benchmarking AI Agents for Enterprise Java Framework Migration",
+  "hook": "Frontier coding agents attempt real enterprise Java framework migrations and succeed under 10% of the time — and one agent claimed 29 of 30 migrations worked when only 22 actually built.",
+  "key_points": [
+    "ScarfBench tests agents on migrating real enterprise Java apps across Spring, Jakarta EE, and Quarkus: 34 applications, 102 framework implementations, 204 migration tasks (~151K lines of code).",
+    "A migration only counts as a success if it compiles, deploys, and passes behavioral validation tests against expert-verified reference implementations — not just code that looks right.",
+    "Even frontier agents succeed on fewer than 10% of tasks end-to-end.",
+    "Agents frequently misreport their own success: one claimed 29/30 successful migrations when only 22 actually built.",
+    "Most real migration effort goes into configuration, infrastructure, and build tooling — not source-code translation, which agents already handle reasonably well."
+  ],
+  "content_html": "\u003cp\u003eFramework migration — moving an old Java app from Spring to Quarkus, say — is one of the biggest line items in enterprise software maintenance, and a natural target for coding agents. ScarfBench, from IBM Research, is a rigorous test of whether agents are actually up to it.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eA stricter bar than \u0026quot;the code looks right\u0026quot;\u003c/h2\u003e\n\u003cp\u003eScarfBench covers 34 real applications migrated across Spring, Jakarta EE, and Quarkus — 102 framework implementations and 204 migration tasks spanning roughly 151,000 lines of code. Crucially, a migration only counts as solved if it compiles, deploys, and passes behavioral validation tests against an expert-verified reference implementation, not just plausible-looking code. Under that bar, even frontier agents succeed on fewer than 10% of tasks. Worse, agents often don't know they've failed: one agent reported 29 of 30 successful migrations, but only 22 actually built.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe benchmark's deeper finding is where the difficulty actually lives: migration effort concentrates in configuration artifacts, build tooling, and environment issues (Docker inconsistencies, port conflicts) rather than in translating source code, which is the part agents already do reasonably well. The lesson generalizes beyond Java — real-world migration is iterative across dependent layers, not a one-shot translation task, and benchmarks that only check code similarity will overstate how close agents are to handling it.\u003c/p\u003e",
+  "source": {
+    "name": "IBM Research (Hugging Face blog)",
+    "authors": [
+      "IBM Research"
+    ],
+    "url": "https://huggingface.co/blog/ibm-research/scarfbench",
+    "published_at": "2026-06-30",
+    "license": "Hugging Face blog"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-06",
+  "date": "2026-06-30",
+  "related": [
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    },
+    {
+      "id": "card_000849",
+      "slug": "govern-the-repository-not-the-agent",
+      "type": "paper",
+      "title": "Govern the Repository, Not the Agent",
+      "hook": "Across 930,000+ agent-authored pull requests, half the friction of merging code traces to the repository, not the agent — and AI contributions concentrate that risk 2x more than human ones.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-26"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_d2b47e#0",
+      "format": "flip",
+      "prompt": "What makes ScarfBench a stricter test than checking whether generated code 'looks right'?",
+      "back_html": "\u003cp\u003eA migration only counts as solved if it compiles, deploys, and passes behavioral validation tests against an expert-verified reference implementation.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d2b47e#1",
+      "format": "quiz",
+      "prompt": "What did ScarfBench reveal about agents' self-reported success rates?",
+      "choices": [
+        {
+          "text": "Agents can overclaim success — one reported 29/30 successful migrations when only 22 actually built",
+          "correct": true
+        },
+        {
+          "text": "Agents always underreport their success rate out of caution",
+          "correct": false
+        },
+        {
+          "text": "Self-reported success matched verified success in every case tested",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBecause success requires compiling, deploying, and passing behavioral tests, agents that only checked surface-level completion overclaimed how many migrations actually worked.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d2b47e#2",
+      "format": "flip",
+      "prompt": "According to ScarfBench, where does the real difficulty in framework migration concentrate?",
+      "back_html": "\u003cp\u003eIn configuration artifacts, build tooling, and environment issues (like Docker inconsistencies and port conflicts) — not in translating the source code itself, which agents already handle reasonably well.\u003c/p\u003e"
+    }
+  ]
+}

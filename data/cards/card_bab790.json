@@ -1,0 +1,112 @@
+{
+  "id": "card_bab790",
+  "slug": "rare-router-agnostic-steering-moe",
+  "type": "paper",
+  "title": "RARE: Steering MoE Models Without Breaking the Router",
+  "hook": "Activation steering works on dense models and quietly fails on mixture-of-experts — because your steering vector also reroutes the tokens. Project it into the router's null space.",
+  "key_points": [
+    "Representation engineering steers behavior by editing hidden states — cheap, no retraining, widely used on dense models.",
+    "In MoE models it hits a structural mismatch: the edited hidden state also changes which experts the router picks.",
+    "Empirically, preserving clean routing substantially recovers steering performance.",
+    "Routing turns out more sensitive to semantic content than to behavioral edits under controlled content.",
+    "RARE projects behavioral perturbations onto the null space of the router matrix, removing router-visible components, then corrects downstream routing drift.",
+    "Across six open-weight MoE models: TruthfulQA MC1 41.0% → 58.6%, CounterFact efficacy 16.8% → 96.3%."
+  ],
+  "content_html": "\u003cp\u003eRepresentation engineering is the cheap way to control a model: nudge intermediate hidden states along a direction and the behavior shifts, no retraining needed. Zhibo Zhang and co-authors point out that this technique quietly assumes a dense network. In a mixture-of-experts model the router reads the same hidden state you just edited, so a behavioral nudge also silently reshuffles which experts handle the token. They verify this failure mode and show that preserving clean routing recovers much of the lost steering performance.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTheir fix, RARE, projects arbitrary behavioral perturbations onto the null space of the router matrix — removing the components the router can see — and then corrects routing drift that propagates into selected downstream layers. Evaluating five perturbation estimators across six heterogeneous open-weight MoE models and three scenarios (harmfulness, truthfulness, factual editing), they report average TruthfulQA MC1 rising from 41.0% to 58.6% and CounterFact editing efficacy from 16.8% to 96.3%, with a better effectiveness–utility trade-off on harmfulness steering than baselines. The broader claim: routing consistency is an architectural constraint any MoE intervention has to respect.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zhibo Zhang",
+      "Zhen Ouyang",
+      "Ling Shi",
+      "Kailong Wang"
+    ],
+    "url": "https://arxiv.org/abs/2608.21236",
+    "published_at": "2026-08-21",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "moe",
+    "interpretability",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "interpretability",
+    "alignment",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-24",
+  "date": "2026-08-21",
+  "related": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    },
+    {
+      "id": "card_249e07",
+      "slug": "moe-routers-manifold-power-iteration",
+      "type": "paper",
+      "title": "Redesigning MoE Routers with Manifold Power Iteration",
+      "hook": "An MoE router points each token at the right expert — yet nothing forces its rows to actually represent those experts. This aligns each router row with its expert's principal direction.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-10"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_bab790#0",
+      "format": "flip",
+      "prompt": "Why does activation steering degrade on mixture-of-experts models?",
+      "back_html": "\u003cp\u003eThe steering vector added to a hidden state is also seen by the router, so it changes which experts fire — a structural side effect dense models don't have.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bab790#1",
+      "format": "quiz",
+      "prompt": "How does RARE keep steering from disturbing expert routing?",
+      "choices": [
+        {
+          "text": "It projects the perturbation onto the null space of the router matrix, so the router sees nothing",
+          "correct": true
+        },
+        {
+          "text": "It freezes the router weights during inference",
+          "correct": false
+        },
+        {
+          "text": "It steers only the shared expert and leaves routed experts alone",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eNull-space projection removes exactly the router-visible components of the perturbation; RARE then corrects residual routing drift in selected downstream layers.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bab790#2",
+      "format": "flip",
+      "prompt": "What did the authors find about what routing is sensitive to?",
+      "back_html": "\u003cp\u003eUnder controlled content, routing responds much more to semantic content than to behavioral changes — which is why stripping the router-visible part of a behavioral edit costs so little.\u003c/p\u003e"
+    }
+  ]
+}

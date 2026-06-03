@@ -1,0 +1,133 @@
+{
+  "id": "card_8aab1f",
+  "slug": "resource2skill",
+  "type": "paper",
+  "title": "RESOURCE2SKILL: Distilling Executable Agent Skills from Human-Created Multimodal Resources",
+  "hook": "Most agent skill libraries are hand-written text. This framework mines skills straight out of the tutorial videos, repos, and articles humans already made for each other.",
+  "key_points": [
+    "Distills tutorial videos, code repositories, articles, and reference artifacts into executable agent skills, not just hand-written text.",
+    "Organizes skills as a hierarchical 'Skill Wiki' — each entry mixes structured text, code, visual examples, metadata, and provenance.",
+    "Videos supply temporal/visual know-how, code supplies executable tool patterns, articles supply conceptual grounding — each modality fills a gap the others can't.",
+    "At inference, agents retrieve and compose relevant skills from the wiki, and can acquire new ones online when coverage is thin.",
+    "Lifts average score by +11.9 points over no-skill agents and beats strong harness baselines in 26 of 28 model-domain combinations across seven authoring domains."
+  ],
+  "content_html": "\u003cp\u003eAgent skill libraries are usually hand-written text, leaving a huge trove of human know-how — tutorial videos, repos, articles — untapped. RESOURCE2SKILL distills these multimodal resources directly into executable skills, organized as a hierarchical \u0026quot;Skill Wiki\u0026quot; where each entry combines structured text, code, visual examples, metadata, and provenance.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's new\u003c/h2\u003e\n\u003cp\u003eThe framework preserves what each source medium is good at: videos capture temporal operations and visual effects, code captures executable tool patterns, and articles or reference artifacts supply conceptual and stylistic grounding. At inference time, agents retrieve and compose the relevant skills from the wiki; when the wiki's coverage falls short, the same construction operator can acquire a new skill on the fly. Across seven practical authoring domains, RESOURCE2SKILL raised the average overall score by +11.9 percentage points over no-skill agents and beat strong harness baselines in 26 of 28 main-aggregate model-domain cells, per the authors (Fan et al., 2026, arXiv).\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eMost agent-skill work either hand-writes skills or mines them from an agent's own past trajectories. RESOURCE2SKILL instead treats the tutorials and documentation humans already write for each other as a skill source — a plausible path to scaling skill libraries without a human sitting down to author each one.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yijia Fan",
+      "Zonglin Di",
+      "Zimo Wen",
+      "Yifan Yang",
+      "Mingxi Cheng",
+      "Qi Dai",
+      "Bei Liu",
+      "Kai Qiu",
+      "Yue Dong",
+      "Ji Li",
+      "Chong Luo"
+    ],
+    "url": "https://arxiv.org/abs/2606.29538",
+    "published_at": "2026-07-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "multimodal",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-16",
+  "related": [
+    {
+      "id": "card_2e50ab",
+      "slug": "claude-agent-skills",
+      "type": "news",
+      "title": "Claude Agent Skills",
+      "hook": "Agent Skills package instructions, scripts, and resources into folders an agent loads on demand — composable, portable expertise, later opened as a standard like MCP.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2025-10-16"
+    },
+    {
+      "id": "card_1b799b",
+      "slug": "agentic-environment-engineering-survey",
+      "type": "paper",
+      "title": "Agentic Environment Engineering: A Survey",
+      "hook": "Agents only get as good as the worlds they practice in. This survey maps the full lifecycle of agent environments — how we model, synthesize, evaluate, and grow them.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-06-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_8aab1f#0",
+      "format": "flip",
+      "prompt": "What does RESOURCE2SKILL distill agent skills from, that most skill libraries ignore?",
+      "back_html": "\u003cp\u003eHuman-created multimodal resources already lying around — tutorial videos, code repositories, articles, and reference artifacts — rather than only hand-written text.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8aab1f#1",
+      "format": "quiz",
+      "prompt": "Why keep skills organized by modality (video, code, article) instead of collapsing everything into text?",
+      "choices": [
+        {
+          "text": "Each modality captures a signal the others can't — temporal/visual steps, executable patterns, or conceptual grounding",
+          "correct": true
+        },
+        {
+          "text": "Text-only skills are computationally impossible to store",
+          "correct": false
+        },
+        {
+          "text": "Video and code must always be discarded before indexing",
+          "correct": false
+        },
+        {
+          "text": "It has no effect on agent performance",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eVideos capture temporal operations and visual effects, code captures executable tool patterns, and articles give conceptual/stylistic grounding — the paper's ablations confirm losing this diversity hurts.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8aab1f#2",
+      "format": "flip",
+      "prompt": "What happens when the Skill Wiki doesn't already cover what an agent needs?",
+      "back_html": "\u003cp\u003eThe same construction operator that built the wiki can acquire a new skill online at inference time, rather than failing outright.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8aab1f#3",
+      "format": "quiz",
+      "prompt": "Roughly how does RESOURCE2SKILL change agent performance versus a no-skill baseline?",
+      "choices": [
+        {
+          "text": "About +11.9 percentage points on average, winning 26 of 28 model-domain cells against strong harness baselines",
+          "correct": true
+        },
+        {
+          "text": "No measurable change across any domain",
+          "correct": false
+        },
+        {
+          "text": "It only helps on video-based tasks",
+          "correct": false
+        },
+        {
+          "text": "It matches no-skill agents but runs faster",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAcross seven practical authoring domains, the average overall score rose +11.9 points, and RESOURCE2SKILL beat strong harness baselines in 26 of 28 main-aggregate model-domain cells.\u003c/p\u003e"
+    }
+  ]
+}

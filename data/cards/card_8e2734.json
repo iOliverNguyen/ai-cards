@@ -1,0 +1,118 @@
+{
+  "id": "card_8e2734",
+  "slug": "subliminal-clocks-diffusion-time",
+  "type": "paper",
+  "title": "Subliminal Clocks: Latent Time Modelling in Diffusion Language Models",
+  "hook": "Standard diffusion models are told which denoising step they're on; diffusion language models aren't — yet they track it anyway, a hidden clock you can read off their activations and even steer.",
+  "key_points": [
+    "Unlike standard diffusion, diffusion language models (DLMs) get no explicit timestep input — leaving open whether they track denoising progress.",
+    "The paper shows DLMs do encode a latent signal tied to the diffusion timestep in their residual streams.",
+    "Linear probes across layers reliably decode this denoising progress from internal activations.",
+    "Steering the model along a low-dimensional 'timestep' subspace predictably modulates its confidence and output entropy.",
+    "The representation's geometry is structured and interpretable, showing how the signal is processed internally."
+  ],
+  "content_html": "\u003cp\u003eDiffusion language models (DLMs) are emerging as an alternative to autoregressive LLMs, generating text by iterative denoising. But unlike image diffusion models, they aren't handed the current timestep as an input — which raises a question: does a DLM internally know how far along its own denoising is? This paper's answer is yes.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe finding\u003c/h2\u003e\n\u003cp\u003eProbing the residual streams of DLMs, the authors show a latent representation related to the diffusion timestep is present and can be reliably extracted with linear probes across layers — meaning denoising progress is decodable straight from internal activations. They then go further than reading: steering the model along a low-dimensional subspace associated with the inferred timestep systematically shifts its sense of how far the denoising has gone, producing predictable changes in confidence and entropy.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe signal isn't noise — analyzing its geometry reveals structured, interpretable properties in activation space, shedding light on how a DLM processes the notion of denoising progress even without being told it. For an emerging model class whose internals are still poorly understood, this is early evidence that DLMs build an implicit clock, and that it can be read and adjusted. Rulli, Fontanari, and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Maximo Eduardo Rulli",
+      "Thomas Vaitses Fontanari",
+      "Simone Petruzzi",
+      "Federico Alvetreti",
+      "Giorgio Strano",
+      "Donato Crisostomi",
+      "Giorgos Nikolaou",
+      "Tommaso Mencattini",
+      "Andrea Santilli",
+      "Emanuele Rodolà",
+      "Simone Scardapane",
+      "Alessio Devoto"
+    ],
+    "url": "https://arxiv.org/abs/2607.01774",
+    "published_at": "2026-07-20",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "diffusion",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "generative",
+    "nlp",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-23",
+  "date": "2026-07-20",
+  "related": [
+    {
+      "id": "card_cf3048",
+      "slug": "illada-diffusion-language-model",
+      "type": "paper",
+      "title": "iLLaDA: Improved Large Language Diffusion Models",
+      "hook": "An 8B language model trained from scratch with full bidirectional attention and a masked-diffusion objective — no autoregression — that holds its own against same-size autoregressive LLMs.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-24"
+    },
+    {
+      "id": "card_fda922",
+      "slug": "llms-encode-remaining-output-length",
+      "type": "paper",
+      "title": "How Much Is Left? LLMs Linearly Encode Their Remaining Output Length",
+      "hook": "Before an LLM writes a single token of its answer, its hidden state already seems to know roughly how long the answer will be — and the estimate jumps when it restarts a draft.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_6e175b",
+      "slug": "internal-state-probes-misalignment-monitoring",
+      "type": "paper",
+      "title": "Internal-State Probes Read the Situation, Not the Action",
+      "hook": "Probes that seem to detect an LLM's harmful intent before it acts mostly just detect the prompt's topic — three careful tests find they don't predict future misbehavior.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-29"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_8e2734#0",
+      "format": "flip",
+      "prompt": "Why is it surprising that diffusion language models encode a diffusion timestep?",
+      "back_html": "\u003cp\u003eUnlike standard image diffusion, DLMs aren't given the timestep as an input — yet they still form an internal representation of denoising progress in their residual streams.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8e2734#1",
+      "format": "quiz",
+      "prompt": "How did the authors show DLMs track denoising progress internally?",
+      "choices": [
+        {
+          "text": "Linear probes across layers reliably decode a timestep-related signal from the residual streams",
+          "correct": true
+        },
+        {
+          "text": "They read the timestep off the model's explicit conditioning input",
+          "correct": false
+        },
+        {
+          "text": "They retrained the model to output its current denoising step",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDLMs have no explicit timestep input; the signal was found by probing internal activations, showing denoising progress is decodable from them.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8e2734#2",
+      "format": "flip",
+      "prompt": "What happens when the model is steered along the low-dimensional timestep subspace?",
+      "back_html": "\u003cp\u003eIts notion of denoising progress shifts systematically, producing predictable changes in the model's confidence and output entropy.\u003c/p\u003e"
+    }
+  ]
+}

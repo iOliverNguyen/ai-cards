@@ -1,0 +1,108 @@
+{
+  "id": "card_4ac6bc",
+  "slug": "liveedit-streaming-video-editing",
+  "type": "paper",
+  "title": "LiveEdit: Real-Time Streaming Video Editing",
+  "hook": "A three-stage distillation pipeline turns a slow, bidirectional video editor into a causal, frame-by-frame one fast enough for live AR — 12.66 FPS with stable backgrounds.",
+  "key_points": [
+    "Streaming video editing must hold backgrounds and untouched regions steady over time while running in real time — most editors manage only one.",
+    "A three-stage distillation pipeline transfers editing skill from a powerful bidirectional model into an efficient, causal streaming editor.",
+    "An AR-oriented mask cache reuses region-specific computation across frames instead of recomputing it every frame.",
+    "Reaches 12.66 FPS with state-of-the-art visual quality among streaming baselines, on a new dedicated benchmark."
+  ],
+  "content_html": "\u003cp\u003eEditing a video frame-by-frame in real time is harder than generating one from scratch: the background and untouched regions must stay rock-steady while the edit keeps pace with a live feed. LiveEdit is a streaming video editor built for exactly that trade-off.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eMost recent streaming generation methods target pure synthesis and can't be dropped into editing, which demands strict preservation of untouched content plus region-specific control. LiveEdit's key idea is a three-stage distillation pipeline that progressively transfers editing capability from a powerful bidirectional foundation model into an efficient, causal, frame-by-frame streaming editor — enabling stable long-horizon edits without sacrificing visual fidelity. An AR-oriented mask cache reuses region-related computation across frames rather than recomputing it each time, cutting redundant work. On a new dedicated streaming-editing benchmark, the method hits state-of-the-art visual quality among streaming baselines while running at 12.66 FPS — fast enough for interactive and augmented-reality use. Xinyu Wang, Chongbo Zhao, Fangneng Zhan, and Yue Ma, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xinyu Wang",
+      "Chongbo Zhao",
+      "Fangneng Zhan",
+      "Yue Ma"
+    ],
+    "url": "https://arxiv.org/abs/2606.26740",
+    "published_at": "2026-06-25",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "video-audio",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "generative",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-02",
+  "date": "2026-06-25",
+  "related": [
+    {
+      "id": "card_edc166",
+      "slug": "sora-2",
+      "type": "news",
+      "title": "Sora 2",
+      "hook": "OpenAI's Sora 2 added synchronized audio and sharper physical consistency — and shipped inside a TikTok-style social app where you remix each other's generations.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-09-30"
+    },
+    {
+      "id": "card_1ccfb1",
+      "slug": "veo-3",
+      "type": "news",
+      "title": "Veo 3",
+      "hook": "Google's Veo 3 generates video with synchronized native audio — dialogue, sound effects, and ambient noise produced together with the picture, not dubbed on after.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-05-20"
+    },
+    {
+      "id": "card_202003",
+      "slug": "refreekv-threshold-free-kv-cache",
+      "type": "paper",
+      "title": "ReFreeKV: Threshold-Free KV Cache Compression",
+      "hook": "Most KV-cache pruning needs a hand-tuned budget threshold per input — pick wrong and performance craters. ReFreeKV adapts the budget on the fly instead.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_4ac6bc#0",
+      "format": "flip",
+      "prompt": "What are the two things that make streaming video editing hard, per this paper?",
+      "back_html": "\u003cp\u003eKeeping backgrounds and non-edited regions stable over time, and hitting the low latency real-time interaction demands — most methods only manage one of the two.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4ac6bc#1",
+      "format": "quiz",
+      "prompt": "How does LiveEdit turn a slow bidirectional editor into a fast streaming one?",
+      "choices": [
+        {
+          "text": "A three-stage distillation pipeline that progressively transfers editing ability into a causal, unidirectional model",
+          "correct": true
+        },
+        {
+          "text": "Simply reducing the resolution of every frame",
+          "correct": false
+        },
+        {
+          "text": "Skipping every other frame to save compute",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe distillation stages gradually hand off editing capability to a lighter, causal streaming model without sacrificing fidelity.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4ac6bc#2",
+      "format": "flip",
+      "prompt": "What does the AR-oriented mask cache save on?",
+      "back_html": "\u003cp\u003eIt reuses region-related computation across frames instead of recomputing masks from scratch each frame, cutting redundant work and speeding inference.\u003c/p\u003e"
+    }
+  ]
+}

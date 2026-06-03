@@ -1,0 +1,110 @@
+{
+  "id": "card_81e0ae",
+  "slug": "two-hop-generalization",
+  "type": "paper",
+  "title": "It Knows Both Facts and Still Can't Chain Them",
+  "hook": "A model can store 'A is B' and 'B is C' and still fail at 'what is A's C?'. Transformers trained from scratch show why: lower layers build the intermediate, upper layers don't reason over it.",
+  "key_points": [
+    "LLMs solve complex multi-hop problems yet fail puzzlingly on simple two-hop queries whose individual hops they store correctly.",
+    "The authors train transformers from scratch in a controlled symbolic environment to isolate the mechanism.",
+    "The pattern: models generalize reliably when the second hop follows the training distribution, and always fail when it deviates.",
+    "Where it works, success comes from consistent intermediate representations for the same entity across different contexts.",
+    "Where it fails, there's a cross-layer mismatch: lower layers build the intermediate correctly, but upper layers learn to map atomic facts to outputs rather than to reason over intermediates.",
+    "A recurrent-style training strategy lets transformers reuse reasoning circuitry across input forms and substantially improves out-of-distribution two-hop generalization."
+  ],
+  "content_html": "\u003cp\u003eHere is a failure that's hard to square with the usual story about capability: a model reliably answers \u0026quot;who is the composer of X?\u0026quot; and \u0026quot;where was that composer born?\u0026quot;, but fails on the composition of the two. It has both hops. It just doesn't chain them. Zhang and colleagues go looking for the mechanism by training transformers from scratch in a controlled symbolic setting, where they can vary exactly which facts and which forms appear.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe pattern\u003c/h2\u003e\n\u003cp\u003eGeneralization tracks the second hop's distribution. When the second hop matches what was seen in training, the models compose reliably. When it deviates, they always fail — not sometimes, always. That sharpness is what makes the setting worth studying mechanistically.\u003c/p\u003e\n\u003ch2\u003eThe mechanism\u003c/h2\u003e\n\u003cp\u003eIn the successful cases, the models have developed consistent intermediate representations: the same entity is encoded the same way regardless of the context that produced it, so a downstream circuit can pick it up. In the failing cases, the problem is a mismatch across depth. Lower layers still construct that intermediate correctly. Upper layers — even though they were trained on the relevant atomic facts — have learned to map those facts directly to outputs rather than to operate on an intermediate handed up from below. The knowledge is present at both ends; the composition step was never learned as a reusable operation.\u003c/p\u003e\n\u003cp\u003eThat diagnosis suggests its own fix. The authors propose a recurrent-style training strategy that encourages the transformer to reuse reasoning circuitry across input forms, and report a substantial improvement on out-of-distribution two-hop queries.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zili Zhang",
+      "Yilin Wang",
+      "Heng Wang",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.07261",
+    "published_at": "2026-08-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "interpretability"
+  ],
+  "tags": [
+    "reasoning",
+    "interpretability",
+    "nlp",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-10",
+  "date": "2026-08-07",
+  "related": [
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    },
+    {
+      "id": "card_5778c6",
+      "slug": "linear-representations-of-grammaticality",
+      "type": "paper",
+      "title": "Linear representations of grammaticality in neural language models",
+      "hook": "Does a language model 'know' grammar, or just favor familiar-sounding sentences? Probing hidden states finds a clean linear direction for grammaticality that survives even once you strip probability away.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-16"
+    },
+    {
+      "id": "card_01a1d7",
+      "slug": "cot-scaling-trap-latent-reasoning",
+      "type": "blog",
+      "title": "Chain of Thought Is a Scaling Trap? The Case for Latent Reasoning",
+      "hook": "A visible chain of thought reads like the model's thinking — but it can be an unfaithful, expensive trace. The next wave reasons in hidden state instead of tokens.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-13"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_81e0ae#0",
+      "format": "quiz",
+      "prompt": "When do the studied transformers reliably chain two hops together?",
+      "choices": [
+        {
+          "text": "When the second hop follows the training distribution — they always fail when it deviates",
+          "correct": true
+        },
+        {
+          "text": "When both hops appeared together in the same training document",
+          "correct": false
+        },
+        {
+          "text": "Only when chain-of-thought prompting makes the intermediate explicit",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe dividing line the paper reports is the distribution of the \u003cem\u003esecond\u003c/em\u003e hop. In-distribution second hops generalize reliably; out-of-distribution ones fail, even though the model stores the atomic fact.\u003c/p\u003e"
+    },
+    {
+      "id": "card_81e0ae#1",
+      "format": "flip",
+      "prompt": "What cross-layer mismatch explains the two-hop failures?",
+      "back_html": "\u003cp\u003eLower layers do construct the correct intermediate representation. Upper layers, though trained on the corresponding atomic facts, primarily learn to map those facts to outputs rather than to reason over the intermediate — so the answer never gets composed.\u003c/p\u003e"
+    },
+    {
+      "id": "card_81e0ae#2",
+      "format": "flip",
+      "prompt": "What fix did the authors propose, and what is the idea behind it?",
+      "back_html": "\u003cp\u003eA recurrent-style training strategy, so the transformer reuses the same reasoning circuitry across different input forms instead of learning form-specific mappings. It substantially improved out-of-distribution two-hop generalization.\u003c/p\u003e"
+    }
+  ]
+}

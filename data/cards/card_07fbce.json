@@ -1,0 +1,114 @@
+{
+  "id": "card_07fbce",
+  "slug": "beyond-iid-tabular-foundation-models",
+  "type": "paper",
+  "title": "Beyond IID: How General Are Tabular Foundation Models, Really?",
+  "hook": "Tabular foundation models look great on standard IID benchmarks — but on temporal, grouped, high-dimensional, and non-IID data, plain tree-based models still win.",
+  "key_points": [
+    "Standard tabular benchmarks are mostly IID data — exactly where tabular foundation models already shine, hiding their weaknesses elsewhere.",
+    "BeyondArena unifies IID, temporal, and grouped tasks across scale, feature types, and disciplines — 142 curated datasets, 11 models.",
+    "Tabular foundation models dominate on small-to-medium IID data; tree-based and deep models still win on non-IID, large, or high-dimensional data.",
+    "Data Foundry, a companion framework, standardizes how tabular datasets get curated for this kind of evaluation."
+  ],
+  "content_html": "\u003cp\u003eFoundation models for tabular data have started to look like a solved problem — until you check what \u0026quot;solved\u0026quot; was measured against. This paper argues the standard tabular benchmarks are quietly rigged in the models' favor.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eMost task- and discipline-specific tabular evaluations are scattered across incompatible benchmark software, so model researchers fall back on standard benchmarks — which happen to be defined mostly for tasks tabular foundation models already excel at. That leaves out the hardest, most demanding scenarios and biases progress toward marginal gains on IID data. To fix this, the authors build BeyondArena, a unified benchmark spanning IID, temporal, and grouped tasks across sample sizes, feature dimensionality, and disciplines, plus Data Foundry, a framework for curating tabular datasets consistently. Across 11 models and 142 curated datasets, the pattern is clear: tabular foundation models win on small-to-medium IID data, but traditional tree-based and deep-learning models still dominate on non-IID, large, or high-dimensional data — a reminder that a benchmark's structure quietly decides which architectures look \u0026quot;general.\u0026quot; Lennart Purucker and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Lennart Purucker",
+      "Andrej Tschalzev",
+      "Nick Erickson",
+      "Gioia Blayer",
+      "David Holzmüller",
+      "Alan Arazi",
+      "Alexander Pfefferle",
+      "Mustafa Tajjar",
+      "Gaël Varoquaux",
+      "Frank Hutter"
+    ],
+    "url": "https://arxiv.org/abs/2606.30410",
+    "published_at": "2026-06-29",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evaluation",
+    "generalization",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "dataset",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-02",
+  "date": "2026-06-29",
+  "related": [
+    {
+      "id": "card_0a4806",
+      "slug": "train-validation-test-split",
+      "type": "concept",
+      "title": "Train / Validation / Test Splits",
+      "hook": "If you tune and grade on the same data, you'll fool yourself. Keep a test set you never touch until the very end.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_0d296c",
+      "slug": "cross-validation",
+      "type": "concept",
+      "title": "Cross-Validation",
+      "hook": "One lucky or unlucky split can flatter or sink your model. Rotate the holdout and average — that's cross-validation.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_780660",
+      "slug": "feature-importance-can-mislead",
+      "type": "blog",
+      "title": "When Your Top Feature Makes Predictions Worse",
+      "hook": "A feature can top your model's importance ranking and still hurt accuracy. The only way to be sure it helps: delete it, retrain, and compare on held-out data.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_07fbce#0",
+      "format": "flip",
+      "prompt": "Why do tabular foundation models look stronger than they are, per this paper?",
+      "back_html": "\u003cp\u003eMost standard benchmarks are IID data — exactly the regime where these models already excel — so harder non-IID, temporal, and high-dimensional cases go largely untested.\u003c/p\u003e"
+    },
+    {
+      "id": "card_07fbce#1",
+      "format": "quiz",
+      "prompt": "On which kind of tabular data do traditional tree-based and deep models still dominate?",
+      "choices": [
+        {
+          "text": "Non-IID, large-scale, and high-dimensional data",
+          "correct": true
+        },
+        {
+          "text": "Tiny, clean, IID datasets only",
+          "correct": false
+        },
+        {
+          "text": "Every kind of tabular data equally",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBeyondArena's results show tabular foundation models excel on small-to-medium IID data, while trees and deep nets still win on the harder, more realistic cases.\u003c/p\u003e"
+    },
+    {
+      "id": "card_07fbce#2",
+      "format": "flip",
+      "prompt": "What is BeyondArena?",
+      "back_html": "\u003cp\u003eA unified benchmark spanning IID, temporal, and grouped tabular tasks across many scales and disciplines, built to expose where tabular foundation models still fall short.\u003c/p\u003e"
+    }
+  ]
+}

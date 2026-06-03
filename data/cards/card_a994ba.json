@@ -1,0 +1,105 @@
+{
+  "id": "card_a994ba",
+  "slug": "perceptiondlm",
+  "type": "paper",
+  "title": "PerceptionDLM: Parallel Region Perception with Diffusion",
+  "hook": "Captioning ten regions of an image one at a time is slow. PerceptionDLM uses a diffusion language model's parallel decoding to describe them all at once.",
+  "key_points": [
+    "Most multimodal LLMs decode autoregressively, so describing many image regions is slow and sequential.",
+    "PerceptionDLM is a multimodal diffusion language model that exploits parallel decoding for region perception.",
+    "Efficient prompting plus structured attention masking let it caption multiple masked regions simultaneously.",
+    "A new benchmark, ParaDLC-Bench, scores both caption quality and inference efficiency for multi-region tasks.",
+    "It keeps captioning quality competitive while substantially speeding up multi-region perception."
+  ],
+  "content_html": "\u003cp\u003eMultimodal large language models are strong at visual understanding, but most decode autoregressively — one token after another — which is inefficient when a task needs descriptions of many image regions at once. Sun, Wang, Yang, Tong and colleagues propose PerceptionDLM, a multimodal \u003cem\u003ediffusion\u003c/em\u003e language model built to do region perception in parallel.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eDiffusion language models decode many positions at once rather than strictly left to right. PerceptionDLM leverages that with efficient prompting and structured attention masking, so it can perceive multiple masked regions simultaneously and emit their descriptions in parallel at both the sequence and token levels — instead of looping over regions one by one. To measure this, the authors build ParaDLC-Bench, scaling an existing localized-captioning benchmark to include multiple region masks per image and jointly scoring caption quality and inference efficiency.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003ePerceptionDLM keeps region-captioning quality competitive while substantially speeding up multi-region perception. The authors say it's the first to achieve parallel region captioning and perception by exploiting diffusion language models — a concrete example of how the diffusion-vs-autoregressive choice changes what's efficient, not just what's possible.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yueyi Sun",
+      "Yuhao Wang",
+      "Ling Yang",
+      "Yunhai Tong",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.19534",
+    "published_at": "2026-06-17",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "vlms",
+    "diffusion",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "vision",
+    "generative",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-25",
+  "date": "2026-06-17",
+  "related": [
+    {
+      "id": "card_837a7b",
+      "slug": "llava",
+      "type": "paper",
+      "title": "LLaVA: Visual Instruction Tuning",
+      "hook": "Connect a CLIP vision encoder to an LLM with just a linear projection, fine-tune on GPT-4-generated image dialogues, and get a capable open chat-with-images model for under a day of training.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-04-17"
+    },
+    {
+      "id": "card_d20f82",
+      "slug": "qwen2-vl",
+      "type": "paper",
+      "title": "Qwen2-VL: Vision-Language at Any Resolution",
+      "hook": "Qwen2-VL processes images at their native resolution rather than forcing a fixed size, making it significantly better at reading small text and understanding fine-grained visual detail.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2024-09-18"
+    },
+    {
+      "id": "card_2b95b6",
+      "slug": "denoising-diffusion-probabilistic-models",
+      "type": "paper",
+      "title": "Denoising Diffusion Probabilistic Models (DDPM)",
+      "hook": "Wreck an image into pure static one tiny step at a time, then train a network to undo it. Run the undo from random noise and you get a brand-new image.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2020-06-19"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a994ba#0",
+      "format": "quiz",
+      "prompt": "Why can PerceptionDLM caption multiple image regions in parallel?",
+      "choices": [
+        {
+          "text": "It's a diffusion language model, whose parallel decoding isn't locked to left-to-right autoregression",
+          "correct": true
+        },
+        {
+          "text": "It uses a larger KV cache than autoregressive models",
+          "correct": false
+        },
+        {
+          "text": "It still captions one region at a time, just on faster hardware",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAutoregressive MLLMs emit tokens sequentially; a diffusion language model decodes positions in parallel, which PerceptionDLM uses to describe many regions at once.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a994ba#1",
+      "format": "flip",
+      "prompt": "What two techniques let PerceptionDLM perceive several masked regions simultaneously?",
+      "back_html": "\u003cp\u003eEfficient prompting and structured attention masking, which together let it generate region descriptions in parallel at both the sequence and token levels.\u003c/p\u003e"
+    }
+  ]
+}

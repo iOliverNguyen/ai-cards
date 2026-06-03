@@ -1,0 +1,96 @@
+{
+  "id": "card_bfcabe",
+  "slug": "language-models-need-sleep",
+  "type": "paper",
+  "title": "Language Models Need Sleep",
+  "hook": "Humans consolidate the day's memories while sleeping. This paper gives LLMs a 'sleep' phase to distill fragile short-term context into stable long-term weights — and a 'dreaming' phase to rehearse.",
+  "key_points": [
+    "LLMs are good at in-context learning but can't transfer that temporary knowledge into long-term parameters.",
+    "A 'Sleep' paradigm consolidates fragile short-term memories into stable weights via replay.",
+    "Memory Consolidation uses 'Knowledge Seeding' — upward distillation from a smaller self into a larger network.",
+    "A 'Dreaming' phase uses RL to generate a synthetic-data curriculum, self-improving without human supervision."
+  ],
+  "content_html": "\u003cp\u003eToday's LLMs can pick up new information within a conversation through in-context learning, but that knowledge is fragile — it lives in the context window and vanishes when the session ends. The model never folds it back into its long-term parameters. Borrowing from how humans consolidate memories during sleep, this paper proposes giving models an explicit \u0026quot;sleep\u0026quot; phase to do the same.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eSleep has two stages. The first, \u003cstrong\u003eMemory Consolidation\u003c/strong\u003e, is an upward distillation the authors call Knowledge Seeding: the memories of a \u0026quot;smaller self\u0026quot; are distilled into a larger network, adding capacity while preserving what was learned. Their proof-of-concept is a generalized distillation that combines on-policy distillation with RL-based imitation learning. The second stage, \u003cstrong\u003eDreaming\u003c/strong\u003e, is a self-improvement phase where the model uses reinforcement learning to generate a curriculum of synthetic data, rehearsing new knowledge and refining existing skills without human supervision.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eContinual learning — absorbing new knowledge over time without forgetting the old — is one of the open gaps between current LLMs and the way people learn. Framing it as a periodic offline \u0026quot;sleep\u0026quot; that replays and consolidates experience is an evocative way to attack it. The authors report gains on long-horizon, continual-learning, knowledge-incorporation, and few-shot tasks, supporting the idea that models, like us, may benefit from time spent not predicting but consolidating.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ali Behrouz",
+      "Farnoosh Hashemi",
+      "Vahab Mirrokni"
+    ],
+    "url": "https://arxiv.org/abs/2606.03979",
+    "published_at": "2026-06-02",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "context-memory",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-04",
+  "date": "2026-06-02",
+  "related": [
+    {
+      "id": "card_958844",
+      "slug": "ring-attention",
+      "type": "paper",
+      "title": "Ring Attention for Near-Infinite Context",
+      "hook": "Spread one long sequence across many devices and compute attention blockwise - the context length you can handle grows with the number of devices, all with exact attention and no extra overhead.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2023-10-03"
+    },
+    {
+      "id": "card_e8632a",
+      "slug": "position-interpolation",
+      "type": "paper",
+      "title": "Extending Context Windows via Positional Interpolation",
+      "hook": "Don't extrapolate to positions the model never saw - squeeze the position indices back inside the trained range, and a short fine-tune stretches the context window many times over.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-06-27"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_bfcabe#0",
+      "format": "flip",
+      "prompt": "What problem with in-context learning does the 'sleep' paradigm address?",
+      "back_html": "\u003cp\u003eIn-context knowledge is fragile - it lives in the context window and vanishes when the session ends, never folding into long-term parameters.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bfcabe#1",
+      "format": "quiz",
+      "prompt": "What does the 'Dreaming' phase use to self-improve without human supervision?",
+      "choices": [
+        {
+          "text": "RL to generate a curriculum of synthetic data",
+          "correct": true
+        },
+        {
+          "text": "A larger labeled dataset from annotators",
+          "correct": false
+        },
+        {
+          "text": "Direct edits to the context window",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDreaming uses reinforcement learning to generate a synthetic-data curriculum, rehearsing knowledge and refining skills without human supervision.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bfcabe#2",
+      "format": "flip",
+      "prompt": "What is 'Knowledge Seeding' in the Memory Consolidation stage?",
+      "back_html": "\u003cp\u003eAn upward distillation where the memories of a smaller self are distilled into a larger network, adding capacity while preserving what was learned.\u003c/p\u003e"
+    }
+  ]
+}

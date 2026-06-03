@@ -1,0 +1,120 @@
+{
+  "id": "card_820bce",
+  "slug": "gradient-boosting-xgboost",
+  "type": "paper",
+  "title": "XGBoost: Scalable Tree Boosting",
+  "hook": "Boosting builds an ensemble one tree at a time, each tree correcting the mistakes of all the ones before it - XGBoost made this fast enough to dominate competitions.",
+  "key_points": [
+    "Each new tree fits the residual errors of the current ensemble, not the original labels.",
+    "The 'gradient' in gradient boosting: trees fit the gradient of the loss, making it general to any differentiable objective.",
+    "XGBoost adds L1/L2 regularization on tree weights and an efficient split-finding algorithm.",
+    "Dominated Kaggle tabular competitions after its release and is still a top baseline.",
+    "Key hyperparameters: number of trees, learning rate, max depth, and subsampling ratio."
+  ],
+  "content_html": "\u003cp\u003eGradient boosting builds a strong model by sequentially adding weak ones - typically shallow decision trees - where each new tree focuses on the examples the current ensemble gets wrong. XGBoost, introduced by Tianqi Chen and Carlos Guestrin, made this process fast and regularized, turning it into the dominant algorithm for structured tabular data.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eAfter each tree is added, the algorithm computes residuals - the gap between predictions and true values. The next tree tries to predict those residuals. Multiplied by a small learning rate, this correction is added to the ensemble, gradually reducing errors. XGBoost frames this as gradient descent in function space: trees fit the gradient of whatever loss function you choose, which lets the same framework handle regression, classification, ranking, and more. It also adds explicit regularization on leaf weights and a cache-aware algorithm for finding the best splits efficiently on large datasets.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eBefore large neural networks took over, gradient boosting methods - and XGBoost in particular - won a remarkable fraction of machine learning competitions on tabular data. They still do. The original paper by Chen and Guestrin is a readable account of the engineering decisions that made the algorithm practical at scale.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Tianqi Chen",
+      "Carlos Guestrin"
+    ],
+    "url": "https://arxiv.org/abs/1603.02754",
+    "published_at": "2016-03-09",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "trees-ensembles"
+  ],
+  "tags": [
+    "classic-ml",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2016-03-09",
+  "related": [
+    {
+      "id": "card_1d915b",
+      "slug": "decision-trees",
+      "type": "concept",
+      "title": "Decision Trees",
+      "hook": "A decision tree asks a series of yes/no questions about your data and follows the answers to a prediction - it learns which questions to ask from the training set.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-03"
+    },
+    {
+      "id": "card_4ebd4c",
+      "slug": "random-forests",
+      "type": "paper",
+      "title": "Random Forests",
+      "hook": "Grow hundreds of slightly different decision trees and average their votes - the crowd is smarter than any individual tree, and much harder to overfit.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2001-10-01"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_1d915b",
+      "slug": "decision-trees",
+      "type": "concept",
+      "title": "Decision Trees",
+      "hook": "A decision tree asks a series of yes/no questions about your data and follows the answers to a prediction - it learns which questions to ask from the training set.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-03"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_820bce#0",
+      "format": "flip",
+      "prompt": "What does each new tree in gradient boosting try to fit?",
+      "back_html": "\u003cp\u003eThe residual errors of the current ensemble - the gradient of the loss - rather than the original labels.\u003c/p\u003e"
+    },
+    {
+      "id": "card_820bce#1",
+      "format": "quiz",
+      "prompt": "Why is it called 'gradient' boosting?",
+      "choices": [
+        {
+          "text": "Trees fit the gradient of the loss, making it work for any differentiable objective",
+          "correct": true
+        },
+        {
+          "text": "It uses gradient descent to prune branches off each tree",
+          "correct": false
+        },
+        {
+          "text": "The learning rate increases along a gradient over time",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBoosting is framed as gradient descent in function space: trees fit the loss gradient, so one framework handles regression, classification, and ranking.\u003c/p\u003e"
+    },
+    {
+      "id": "card_820bce#2",
+      "format": "quiz",
+      "prompt": "What did XGBoost add over plain gradient boosting?",
+      "choices": [
+        {
+          "text": "L1/L2 regularization on tree weights plus an efficient split-finding algorithm",
+          "correct": true
+        },
+        {
+          "text": "Replacing trees with shallow neural networks",
+          "correct": false
+        },
+        {
+          "text": "Training all trees in parallel and averaging them",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eXGBoost added explicit regularization on leaf weights and a cache-aware, efficient split-finding algorithm for scale.\u003c/p\u003e"
+    }
+  ]
+}

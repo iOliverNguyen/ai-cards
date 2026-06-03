@@ -1,0 +1,100 @@
+{
+  "id": "card_c0986f",
+  "slug": "ultrafast-gpt-5-6-sol",
+  "type": "news",
+  "title": "Ultrafast Mode: A Frontier Model at 750 Tokens/Second",
+  "hook": "OpenAI is previewing a service tier that runs GPT-5.6 Sol up to 14x faster on Cerebras hardware — same model, different silicon, up to 750 output tokens per second.",
+  "key_points": [
+    "Ultrafast is a new OpenAI API service tier, not a new model — it serves GPT-5.6 Sol at up to 14x the standard speed.",
+    "Throughput is quoted at up to 750 output tokens per second.",
+    "The tier is powered by Cerebras, meaning OpenAI is serving a frontier model on non-NVIDIA accelerators.",
+    "Speed at this level changes what's buildable: interactive agent loops and long reasoning traces stop feeling like batch jobs.",
+    "Announced 13 August 2026 as a preview."
+  ],
+  "content_html": "\u003cp\u003eOpenAI is previewing Ultrafast, an API service tier that runs GPT-5.6 Sol at up to 14x its usual speed — quoted at up to 750 output tokens per second. The model itself is unchanged; what changes is the hardware underneath, which OpenAI says is powered by Cerebras.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTwo things make this worth noticing beyond the number. First, latency at this scale is qualitative, not incremental: a reasoning trace or a multi-step agent loop that took a minute of visible waiting becomes something a user can sit through, which shifts what product shapes are viable. Second, a frontier OpenAI model served on Cerebras wafer-scale hardware is a real signal about where inference is heading — the model and the accelerator are increasingly separable, and speed is becoming a purchasable axis alongside capability and price.\u003c/p\u003e\n\u003cp\u003eIt's a preview, so availability, rate limits, and pricing details are best read from OpenAI's post directly.\u003c/p\u003e",
+  "source": {
+    "name": "OpenAI",
+    "authors": [
+      "OpenAI"
+    ],
+    "url": "https://openai.com/index/previewing-ultrafast",
+    "published_at": "2026-08-13",
+    "license": "OpenAI blog (link-out)"
+  },
+  "topic_ids": [
+    "inference",
+    "releases",
+    "hardware"
+  ],
+  "tags": [
+    "inference",
+    "efficiency",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-08-17",
+  "date": "2026-08-13",
+  "related": [
+    {
+      "id": "card_30f481",
+      "slug": "gpt-5-6-sol",
+      "type": "news",
+      "title": "GPT-5.6 Sol Preview",
+      "hook": "OpenAI previewed GPT-5.6 Sol, a next-generation model it says is stronger at coding, science, and cybersecurity — and shipped with its most advanced safety stack yet.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-26"
+    },
+    {
+      "id": "card_e4a022",
+      "slug": "hf-cerebras-gemma4-voice-ai",
+      "type": "news",
+      "title": "Hugging Face and Cerebras Bring Gemma 4 to Real-Time Voice AI",
+      "hook": "Multi-second delays are why voice assistants feel like phone menus. Running Gemma 4 on Cerebras hardware in a modular speech pipeline already powers 9,000+ Reachy Mini robots in production.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-07-01"
+    },
+    {
+      "id": "card_951958",
+      "slug": "speculative-decoding",
+      "type": "paper",
+      "title": "Speculative Decoding",
+      "hook": "Let a small, fast model guess the next few words, then have the big model check them all in one shot. Same output, fewer slow steps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-30"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_c0986f#0",
+      "format": "quiz",
+      "prompt": "What exactly is OpenAI's Ultrafast mode?",
+      "choices": [
+        {
+          "text": "A service tier that serves the existing GPT-5.6 Sol model much faster",
+          "correct": true
+        },
+        {
+          "text": "A smaller, distilled version of GPT-5.6 Sol trained for speed",
+          "correct": false
+        },
+        {
+          "text": "A batching API that trades latency for lower cost per token",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe model is unchanged — Ultrafast is an API tier that runs GPT-5.6 Sol on Cerebras hardware at up to 14x the speed, quoted at up to 750 output tokens per second.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c0986f#1",
+      "format": "flip",
+      "prompt": "Why is the Cerebras detail more than a footnote?",
+      "back_html": "\u003cp\u003eIt means a frontier OpenAI model is being served on non-NVIDIA accelerators — evidence that inference silicon is becoming a real product differentiator, not just a supply-chain concern.\u003c/p\u003e"
+    }
+  ]
+}

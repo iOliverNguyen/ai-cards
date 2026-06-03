@@ -1,0 +1,119 @@
+{
+  "id": "card_725723",
+  "slug": "ce-moe-layer-reconfiguration",
+  "type": "paper",
+  "title": "CE-MoE: Fewer Expert Layers, Same Loss, a Third Less Compute",
+  "hook": "Interleaving an MoE layer after every attention block means paying all-to-all communication over and over. Concentrating experts in a few layers cut GPU-hours by a third at matched quality.",
+  "key_points": [
+    "In expert-parallel MoE training, the all-to-all dispatch and combine collectives can eat a large share of end-to-end training time.",
+    "CE-MoE decouples token-mixing depth from channel-mixing depth instead of alternating them one-for-one.",
+    "Expert capacity is concentrated in a few routed MoE layers; depth is restored with extra token-mixing and dense-FFN layers.",
+    "Tested on a scaling ladder from 2B to 31.5B total parameters at matched total and activated parameter counts.",
+    "At 31.5B, the authors report 33.3% fewer GPU-hours plus better average downstream score and inference throughput."
+  ],
+  "content_html": "\u003cp\u003eMixture-of-Experts models are usually built by dropping an MoE layer after every token-mixing layer — after each attention or Mamba-2 block. Train that with expert parallelism and every one of those layers pays for an all-to-all round trip to dispatch tokens to their experts and combine the results. Sun and Waleffe show that collective can eat a substantial fraction of end-to-end training time, and ask whether the one-for-one interleaving is necessary.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe reconfiguration\u003c/h2\u003e\n\u003cp\u003eCE-MoE decouples token-mixing depth from channel-mixing depth. Expert capacity is concentrated into a few routed MoE layers instead of being spread across all of them, and the depth that removal costs is added back with ordinary token-mixing and dense-FFN layers. Fewer MoE layers means fewer all-to-all collectives, while total and activated parameter counts stay matched to the baseline.\u003c/p\u003e\n\u003ch2\u003eWhat they measured\u003c/h2\u003e\n\u003cp\u003eAcross a scaling ladder from 2B to 31.5B total parameters, CE-MoE models matched validation loss and downstream benchmarks at lower training cost. At 31.5B the authors report 33.3% fewer GPU-hours alongside a better average downstream score and higher inference throughput. See the paper for the layer patterns and the full ladder.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Simeng Sun",
+      "Roger Waleffe"
+    ],
+    "url": "https://arxiv.org/abs/2608.28511",
+    "published_at": "2026-08-28",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "moe",
+    "distributed-training",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "efficiency",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-31",
+  "date": "2026-08-28",
+  "related": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    },
+    {
+      "id": "card_bf9cd2",
+      "slug": "switch-transformer",
+      "type": "paper",
+      "title": "Switch Transformer: Scaling to Trillion-Parameter Models",
+      "hook": "Route every token to exactly one expert instead of many - this single simplification made trillion-parameter MoE models stable enough to train at scale.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2021-01-11"
+    },
+    {
+      "id": "card_f017cf",
+      "slug": "moe-hyperparameter-transfer",
+      "type": "paper",
+      "title": "Compute-Efficient Hyperparameter Transfer for Large MoEs",
+      "hook": "Sweeping learning rates at trillion-token scale is unaffordable. Transfer across width with muP, then extrapolate along tokens with a fitted scaling law — and trust it for the real run.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-08-20"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_725723#0",
+      "format": "flip",
+      "prompt": "What communication cost does expert parallelism add to MoE training?",
+      "back_html": "\u003cp\u003eAll-to-all collectives that dispatch tokens to their experts and combine the results — which can consume a substantial fraction of end-to-end training time.\u003c/p\u003e"
+    },
+    {
+      "id": "card_725723#1",
+      "format": "quiz",
+      "prompt": "How does CE-MoE keep model depth while using fewer MoE layers?",
+      "choices": [
+        {
+          "text": "It adds extra token-mixing and dense-FFN layers around the few routed MoE layers",
+          "correct": true
+        },
+        {
+          "text": "It increases the number of experts activated per token",
+          "correct": false
+        },
+        {
+          "text": "It replicates each MoE layer's weights across every GPU",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDepth and expert capacity are decoupled: experts concentrate in a few layers, and plain layers make up the rest of the depth.\u003c/p\u003e"
+    },
+    {
+      "id": "card_725723#2",
+      "format": "flip",
+      "prompt": "What was the headline saving at the 31.5B-parameter scale?",
+      "back_html": "\u003cp\u003e33.3% fewer GPU-hours than the full-MoE baseline, while matching validation loss and improving average downstream score and inference throughput.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "id": "card_812537",
+  "slug": "self-consistency",
+  "type": "paper",
+  "title": "Self-Consistency Improves Chain-of-Thought Reasoning",
+  "hook": "Sample the model many times, let each run reason its own way, then take the majority answer - diverse reasoning paths vote out individual errors.",
+  "key_points": [
+    "Generates multiple chain-of-thought responses with temperature \u003e 0, then picks the most common final answer by majority vote.",
+    "Consistently outperforms greedy single-path chain-of-thought across arithmetic and commonsense benchmarks.",
+    "No additional training, fine-tuning, or external tools required - just repeated sampling.",
+    "Cost scales linearly with the number of samples; diminishing returns set in after roughly 20-40 samples."
+  ],
+  "content_html": "\u003cp\u003eWang and colleagues at Google Brain (2022) proposed self-consistency: instead of trusting one chain-of-thought answer, sample many reasoning paths and take a majority vote on the final answer. The intuition is that wrong paths tend to disagree with each other while correct paths tend to converge.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eYou prompt the model with chain-of-thought instructions and a non-zero sampling temperature, collect a set of independent responses (each containing its own reasoning chain and final answer), then aggregate by majority vote over just the final answers - ignoring the intermediate reasoning. No specialized decoding or model changes are needed. The diversity of paths effectively marginalizes over reasoning errors that happen to cluster differently from correct solutions.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eSelf-consistency is one of the simplest ways to improve reasoning accuracy on tasks where ground-truth answers are unambiguous: you trade inference compute for reliability. It also highlights that model uncertainty at the reasoning level is real and exploitable - a theme that influenced later work on best-of-n sampling and process reward models. The Wang et al. paper on arXiv reports results across a broad sweep of benchmarks and model sizes.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xuezhi Wang",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2203.11171",
+    "published_at": "2022-03-21",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "prompting",
+    "agents"
+  ],
+  "tags": [
+    "reasoning",
+    "nlp",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2022-03-21",
+  "related": [
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    },
+    {
+      "id": "card_b693b7",
+      "slug": "zero-shot-cot",
+      "type": "paper",
+      "title": "Large Language Models Are Zero-Shot Reasoners",
+      "hook": "Appending 'Let's think step by step' to a prompt unlocks multi-step reasoning with zero examples - chain-of-thought without the example-writing overhead.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-05-24"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_812537#0",
+      "format": "flip",
+      "prompt": "What is the core intuition behind self-consistency?",
+      "back_html": "\u003cp\u003eWrong reasoning paths tend to disagree with each other while correct ones converge, so sampling many paths and taking a majority vote on the final answer beats trusting one.\u003c/p\u003e"
+    },
+    {
+      "id": "card_812537#1",
+      "format": "quiz",
+      "prompt": "When aggregating self-consistency samples, what is the majority vote taken over?",
+      "choices": [
+        {
+          "text": "Only the final answers, ignoring the intermediate reasoning",
+          "correct": true
+        },
+        {
+          "text": "The full reasoning chains, matched token by token",
+          "correct": false
+        },
+        {
+          "text": "The model's logits at each decoding step",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eYou collect independent responses with non-zero temperature and vote over just the final answers, not the chains.\u003c/p\u003e"
+    },
+    {
+      "id": "card_812537#2",
+      "format": "flip",
+      "prompt": "What is the main cost tradeoff of self-consistency?",
+      "back_html": "\u003cp\u003eCost scales linearly with the number of samples, and returns diminish after roughly 20-40 — you trade inference compute for reliability.\u003c/p\u003e"
+    }
+  ]
+}

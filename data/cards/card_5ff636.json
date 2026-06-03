@@ -1,0 +1,106 @@
+{
+  "id": "card_5ff636",
+  "slug": "aria-code-agents-software-verification",
+  "type": "paper",
+  "title": "Aria: Letting a Code Agent Write Its Own Formal Proofs",
+  "hook": "Prior LLM provers force the model into a fixed, human-designed strategy and still prove only a fraction of their targets. A free-roaming Claude Code agent, unconstrained, proves every single one.",
+  "key_points": [
+    "Formal verification gives the strongest correctness guarantee, but writing the proofs by hand doesn't scale even for experts.",
+    "Prior LLM-prover approaches wire in a fixed strategy (retrieve premises, predict tactics step-by-step, or divide-and-conquer) and still prove only a fraction of target theorems.",
+    "Aria instead hands the entire lemma to a general-purpose code agent (Claude Code), free to choose its own approach, wrapped in a harness enforcing soundness, completeness, and termination.",
+    "Proves all 4,257 core lemmas of Iris (the state-of-the-art separation logic for concurrent programs) plus 217 lemmas verifying Rust's standard library, fully automatically.",
+    "On reglang, where prior provers manage barely one in eight, Aria proves all 318 — and the same approach ports 72 not-yet-finished lemmas from Coq to Lean 4, showing it isn't prover-specific."
+  ],
+  "content_html": "\u003cp\u003eAutomating formal proofs has a stubborn pattern: researchers build a system, wire in a proof strategy they designed by hand, and the system still only closes a fraction of its target theorems. Aria's premise is that the strategy itself was the bottleneck.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eInstead of constraining an LLM to retrieve premises and predict tactics step-by-step, or to divide goals by divide-and-conquer, Aria hands the entire lemma to a general-purpose code agent — Claude Code — free to choose its own approach, wrapped in a harness that keeps every proof sound (accepted only when the underlying prover's kernel actually closes it), complete (no obligation silently dropped), and terminating (no divergent tactics allowed). The results are stark: on Iris, the state-of-the-art separation logic for concurrent and memory-manipulating programs, Aria proves all 4,257 lemmas across its four core modules plus all 217 lemmas verifying Rust's standard library built on it — fully automatically, no Coq expert needed. On reglang, where prior LLM provers manage barely one in eight, Aria proves all 318. And to show the approach isn't tied to one proof assistant, the same method ports 72 not-yet-finished lemmas from the Coq version of Iris to its unfinished Lean 4 port. The headline claim: a state-of-the-art model (Claude Opus 4.7), given room to work, can write formally verified proofs fully and automatically — full coverage, no failures, no expert intervention. Shuangxiang Kan, Shuanglong Kan, and Sebastian Ertel, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Shuangxiang Kan",
+      "Shuanglong Kan",
+      "Sebastian Ertel"
+    ],
+    "url": "https://arxiv.org/abs/2607.06341",
+    "published_at": "2026-07-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-07",
+  "related": [
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    },
+    {
+      "id": "card_a2a595",
+      "slug": "verification-horizon-coding-rewards",
+      "type": "paper",
+      "title": "The Verification Horizon: No Silver Bullet for Coding Agent Rewards",
+      "hook": "Checking a solution used to be easier than writing one. For coding agents that's flipped — and this paper argues no fixed reward works forever: verification must co-evolve with the model.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-24"
+    },
+    {
+      "id": "card_5ca3a6",
+      "slug": "steerability-via-constraints",
+      "type": "paper",
+      "title": "Steerability via Constraints: A Substrate for Scalable Oversight of Coding Agents",
+      "hook": "Coding agents are already capable enough that human review is the bottleneck — this paper borrows access control and network policy from engineering-org playbooks to make oversight scale instead.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-02"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_5ff636#0",
+      "format": "flip",
+      "prompt": "What do prior LLM-based theorem provers impose on the model that Aria removes?",
+      "back_html": "\u003cp\u003ePrior approaches wire in a fixed, human-designed proof strategy (like retrieving premises and predicting tactics one step at a time, or dividing goals by divide-and-conquer). Aria instead hands the whole lemma to a general-purpose code agent free to choose its own approach.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5ff636#1",
+      "format": "quiz",
+      "prompt": "What ensures an Aria-generated proof is actually correct, given the agent has no fixed strategy constraining it?",
+      "choices": [
+        {
+          "text": "A verification harness enforces hard constraints: soundness (only accepted if the prover's kernel closes it), completeness, and termination",
+          "correct": true
+        },
+        {
+          "text": "A separate LLM judge reviews each proof for plausibility",
+          "correct": false
+        },
+        {
+          "text": "Nothing — proofs are accepted on the agent's word alone",
+          "correct": false
+        },
+        {
+          "text": "Proofs are only accepted if a human expert manually reviews them",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe agent writes proofs under feedback from a harness that only accepts a proof when the prover's kernel actually closes it (soundness), requires no obligation left unproved (completeness), and disallows divergent tactics (termination) — full freedom in approach, but hard guarantees on the result.\u003c/p\u003e"
+    }
+  ]
+}

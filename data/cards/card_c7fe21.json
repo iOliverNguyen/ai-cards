@@ -1,0 +1,110 @@
+{
+  "id": "card_c7fe21",
+  "slug": "seed-self-evolving-distillation",
+  "type": "paper",
+  "title": "SEED: Self-Evolving On-Policy Distillation for Agentic Reinforcement Learning",
+  "hook": "Outcome-only RL tells an agent whether an episode succeeded, not which step mattered. SEED has the policy mine its own trajectories for hindsight lessons, then distills them back in as dense, token-level signal.",
+  "key_points": [
+    "Agentic RL usually optimizes sparse, trajectory-level outcome rewards, leaving little guidance for which intermediate decisions to reinforce.",
+    "SEED fine-tunes the policy to read its own completed trajectories and write natural-language 'hindsight skills' — reusable workflows, key observations, failure-avoidance rules.",
+    "During RL, the same evolving policy both collects trajectories and analyzes them for skills, so hindsight supervision improves alongside the policy itself.",
+    "Re-scoring sampled actions with vs. without an injected skill turns the resulting probability shift into a dense, token-level on-policy distillation signal.",
+    "That signal is optimized jointly with outcome-based RL, and the authors report consistent gains and better sample efficiency on text- and vision-based agentic tasks."
+  ],
+  "content_html": "\u003cp\u003eTrain an LLM agent with outcome-based RL and you get a blunt instrument: the model learns \u0026quot;that whole episode worked\u0026quot; or \u0026quot;that whole episode failed,\u0026quot; with almost no signal about which specific step in a long trajectory mattered. Jinyang Wu, Shuo Yang, and collaborators tackle that gap with SEED, a framework that has the policy teach itself from its own finished attempts.\u003c/p\u003e\n\u003cp\u003eSEED first trains the policy to look back over a completed trajectory and write out, in plain language, the skills worth keeping — a reusable workflow, an observation that mattered, a rule for avoiding a failure it just made. Then during RL, that same policy does double duty: it acts to collect new trajectories, and it analyzes those trajectories for hindsight skills, so the supervision keeps pace as the policy itself improves. The clever mechanical step is turning a written skill into a training signal: re-score the model's own sampled actions with and without that skill injected into context, and the resulting shift in probability becomes a dense, per-token distillation target, optimized alongside the ordinary outcome reward. Across both text-based and vision-based agentic benchmarks, the authors report consistent performance and sample-efficiency gains, plus better generalization to unseen scenarios.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eSEED extends a line of recent work on mining hindsight skills from an agent's own rollouts to supplement sparse RL rewards — the \u0026quot;self-evolving\u0026quot; twist here is having one evolving policy serve as both actor and skill-analyzer, rather than a fixed external extractor. Code is available via the paper's GitHub link, referenced from the source.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jinyang Wu",
+      "Shuo Yang",
+      "Zhengxi Lu",
+      "Fan Zhang",
+      "Yuhao Shen",
+      "Lang Feng",
+      "Haoran Luo",
+      "Zheng Lian",
+      "Shuai Zhang",
+      "Zhengqi Wen",
+      "Jianhua Tao"
+    ],
+    "url": "https://arxiv.org/abs/2607.14777",
+    "published_at": "2026-07-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "distillation",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-20",
+  "date": "2026-07-16",
+  "related": [
+    {
+      "id": "card_49afeb",
+      "slug": "opid-skill-distillation",
+      "type": "paper",
+      "title": "OPID: On-Policy Skill Distillation for Agentic RL",
+      "hook": "Outcome-only RL tells an agent it failed but not which move was the mistake. OPID mines that lesson from the agent's own finished trajectories — turning hindsight into dense, per-token supervision.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-25"
+    },
+    {
+      "id": "card_2408d6",
+      "slug": "trust-region-on-policy-distillation",
+      "type": "paper",
+      "title": "Trust Region On-Policy Distillation",
+      "hook": "On-policy distillation breaks when teacher and student disagree too much. TrOPD only trusts the teacher where its supervision is reliable — and skips the rest.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-05-31"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_c7fe21#0",
+      "format": "flip",
+      "prompt": "What supervision gap does SEED address in agentic reinforcement learning?",
+      "back_html": "\u003cp\u003eOutcome-based RL only scores whole trajectories, giving sparse feedback with little guidance on which intermediate, token-level decisions were actually good or bad.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c7fe21#1",
+      "format": "quiz",
+      "prompt": "In SEED, what makes the hindsight-skill supervision 'self-evolving' rather than fixed?",
+      "choices": [
+        {
+          "text": "The same policy being trained also serves as the analyzer that extracts skills, so both improve together as RL proceeds",
+          "correct": true
+        },
+        {
+          "text": "A separate, frozen analyzer model extracts skills once before training starts",
+          "correct": false
+        },
+        {
+          "text": "Skills are hand-written by humans and never change",
+          "correct": false
+        },
+        {
+          "text": "Skills are randomly sampled from an external skill library each episode",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSEED fine-tunes the policy itself to analyze its own trajectories and write hindsight skills; as policy updates improve decision-making, they also improve the skill analysis, so supervision evolves with the policy.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c7fe21#2",
+      "format": "flip",
+      "prompt": "How does SEED turn a hindsight skill into a training signal?",
+      "back_html": "\u003cp\u003eIt re-scores sampled actions under ordinary context and skill-augmented context; the shift in probability between the two becomes a dense, token-level on-policy distillation signal, combined with the outcome RL reward.\u003c/p\u003e"
+    }
+  ]
+}

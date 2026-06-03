@@ -1,0 +1,89 @@
+{
+  "id": "card_24717f",
+  "slug": "gemini-3-1-pro",
+  "type": "news",
+  "title": "Gemini 3.1 Pro: Frontier Reasoning (2026)",
+  "hook": "Gemini 3.1 Pro pushes core reasoning past the Gemini 3 Pro baseline, scoring 77.1% verified on ARC-AGI-2 - a benchmark built to resist the memorization that inflates other scores.",
+  "key_points": [
+    "A step up in core reasoning over the Gemini 3 Pro baseline, aimed at complex problem-solving.",
+    "Coding capabilities including animated SVGs, interactive 3D experiences, and web design.",
+    "Google cites a 77.1% verified score on ARC-AGI-2, a benchmark designed to resist memorization.",
+    "Available in preview via the Gemini API, Google AI Studio, Gemini CLI, and Vertex AI / Gemini Enterprise.",
+    "In the Gemini app and NotebookLM for Pro/Ultra subscribers."
+  ],
+  "content_html": "\u003cp\u003eGoogle DeepMind released Gemini 3.1 Pro in February 2026, a step up in core reasoning over the Gemini 3 Pro baseline aimed at complex problem-solving. Google cites a 77.1% verified score on ARC-AGI-2, a benchmark built specifically to resist the memorization that can inflate results elsewhere.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's new\u003c/h2\u003e\n\u003cp\u003eThe focus is reasoning on hard problems, paired with stronger coding - generating animated SVGs, interactive 3D experiences, and web design. The headline number is the 77.1% verified score on ARC-AGI-2; because that benchmark is designed to resist memorization, a high score is meant to reflect genuine generalization rather than recall.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eARC-AGI-2 is constructed so that pattern-matching against training data does not help, so progress there is a closer proxy for the kind of reasoning that transfers to novel problems. Gemini 3.1 Pro is available in preview via the Gemini API, Google AI Studio, Gemini CLI, and Vertex AI / Gemini Enterprise, plus the Gemini app and NotebookLM for Pro/Ultra subscribers. See Google's announcement for details.\u003c/p\u003e",
+  "source": {
+    "name": "Google",
+    "authors": [
+      "Google DeepMind"
+    ],
+    "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/",
+    "published_at": "2026-02-19",
+    "license": "Google blog"
+  },
+  "topic_ids": [
+    "vlms",
+    "releases"
+  ],
+  "tags": [
+    "multimodal",
+    "reasoning",
+    "nlp"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2026-02-19",
+  "related": [
+    {
+      "id": "card_421ee9",
+      "slug": "gemini-2-5-pro",
+      "type": "news",
+      "title": "Gemini 2.5 Pro: A Thinking Model",
+      "hook": "Gemini 2.5 Pro reasons through its own thoughts before it answers - and the first experimental release of it debuted at the top of the LMArena leaderboard.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-03-25"
+    },
+    {
+      "id": "card_e9af36",
+      "slug": "on-the-measure-of-intelligence",
+      "type": "paper",
+      "title": "On the Measure of Intelligence (ARC)",
+      "hook": "Is a high benchmark score the same as intelligence? Chollet argues no — intelligence is how efficiently you acquire new skills, not how well you perform known ones.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2019-11-05"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_24717f#0",
+      "format": "quiz",
+      "prompt": "Why does a high score on ARC-AGI-2 carry more weight than on other benchmarks?",
+      "choices": [
+        {
+          "text": "It is designed to resist memorization, so a high score reflects genuine generalization",
+          "correct": true
+        },
+        {
+          "text": "It is the largest benchmark by number of problems",
+          "correct": false
+        },
+        {
+          "text": "It is graded by human experts rather than automatically",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eARC-AGI-2 is built so pattern-matching against training data doesn't help, making progress a closer proxy for reasoning that transfers.\u003c/p\u003e"
+    },
+    {
+      "id": "card_24717f#1",
+      "format": "flip",
+      "prompt": "What verified ARC-AGI-2 score does Google cite for Gemini 3.1 Pro?",
+      "back_html": "\u003cp\u003e77.1% verified — a step up in core reasoning over the Gemini 3 Pro baseline.\u003c/p\u003e"
+    }
+  ]
+}

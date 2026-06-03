@@ -1,0 +1,95 @@
+{
+  "id": "card_a93179",
+  "slug": "trellis-cpp",
+  "type": "news",
+  "title": "Trellis.cpp Reaches Reference Quality for Open Image-to-3D",
+  "hook": "A GGML-style CPU/non-CUDA port of TRELLIS.2 now produces 3D assets on par with the original reference implementation — no NVIDIA GPU required.",
+  "key_points": [
+    "Trellis.cpp is a GGML/llama.cpp-style port of TRELLIS.2, an open image-to-3D model, part of a broader GGML asset-production pipeline.",
+    "After an extended debugging pass, output asset quality now matches the reference TRELLIS.2 implementation, per the author.",
+    "Runs without CUDA — works on non-NVIDIA GPUs, and even CPU-only for those willing to wait.",
+    "Puts a top-tier open-source image-to-3D pipeline within reach of anyone with a capable GPU (or patience), not just CUDA/NVIDIA users."
+  ],
+  "content_html": "\u003cp\u003eAn open-source, GGML-style port of TRELLIS.2 — an image-to-3D generation model — has reportedly reached reference-quality output, according to its author on r/LocalLLaMA. Trellis.cpp is part of a broader GGML-ported \u0026quot;asset production pipeline\u0026quot; project bringing llama.cpp-style CPU/portable inference to non-LLM generative models.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe author describes a lengthy debugging session (crediting help from a fellow contributor) that fixed enough bugs to bring generated 3D asset quality on par with the original reference implementation. Because it's built on the GGML approach rather than a CUDA-locked pipeline, it runs on non-NVIDIA GPUs and even CPU-only for those willing to wait — meaning a top-tier open-source image-to-3D pipeline is now usable well beyond the usual NVIDIA-GPU crowd. See the r/LocalLLaMA post (2026-07-17) for details and the project links.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit r/LocalLLaMA",
+    "authors": [
+      "/u/ilintar"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1uyw64s/trelliscpp_now_produces_high_quality_assets",
+    "published_at": "2026-07-17",
+    "license": "Reddit post (link-out)"
+  },
+  "topic_ids": [
+    "releases",
+    "inference"
+  ],
+  "tags": [
+    "efficiency",
+    "open-source",
+    "generative",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-17",
+  "related": [
+    {
+      "id": "card_e32d38",
+      "slug": "llamacpp-deepseek-v4-flash-1m-context",
+      "type": "news",
+      "title": "A Hobbyist CUDA Kernel Brings DeepSeek-V4 Flash's Full 1M Context to One GPU",
+      "hook": "Missing CUDA support for DeepSeek-V4 Flash's sparse-attention indexer meant llama.cpp needed ~256GB of VRAM for 1M-token context. One contributor's kernel patch shrinks that to a single RTX 5090.",
+      "importance": 2,
+      "difficulty": "core",
+      "date": "2026-07-02"
+    },
+    {
+      "id": "card_381680",
+      "slug": "syncity-3000-scene-scale-3d-diffusion",
+      "type": "paper",
+      "title": "SynCity 3000: Scene-Scale 3D Generation from One Prompt",
+      "hook": "3D generators are great at single objects but fall apart at scene scale. SynCity 3000 turns an image-to-3D generator into a convolution you can slide across an entire scene.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a93179#0",
+      "format": "flip",
+      "prompt": "What is Trellis.cpp, and what does it do?",
+      "back_html": "\u003cp\u003eA GGML/llama.cpp-style port of TRELLIS.2, an open image-to-3D generation model — part of a broader GGML-ported asset-production pipeline.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a93179#1",
+      "format": "quiz",
+      "prompt": "What changed to make Trellis.cpp's output 'high quality'?",
+      "choices": [
+        {
+          "text": "An extended debugging pass fixed bugs so asset quality now matches the reference TRELLIS.2 implementation",
+          "correct": true
+        },
+        {
+          "text": "The model was retrained from scratch on new 3D data",
+          "correct": false
+        },
+        {
+          "text": "Support for CUDA was added for the first time",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe author reports a debugging session fixed enough bugs that output quality reached parity with the reference implementation — no retraining involved.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a93179#2",
+      "format": "flip",
+      "prompt": "Why does Trellis.cpp not needing CUDA matter?",
+      "back_html": "\u003cp\u003eIt runs on non-NVIDIA GPUs, and even CPU-only, putting top open-source image-to-3D quality within reach of far more hardware.\u003c/p\u003e"
+    }
+  ]
+}

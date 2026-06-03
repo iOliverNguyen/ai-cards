@@ -1,0 +1,120 @@
+{
+  "id": "card_745ca1",
+  "slug": "audio-visual-flamingo",
+  "type": "paper",
+  "title": "Audio-Visual Flamingo: Open Audio-Visual Intelligence for Long and Complex Videos",
+  "hook": "Most audio-visual LLMs only handle short clips. NVIDIA's open AV-Flamingo targets long, real-world video instead — and grounds its reasoning to actual timestamps as it goes.",
+  "key_points": [
+    "Audio-Visual-Skills: ~7M caption and QA training instances from real-world video, built to stress temporal and cross-modal audio-visual reasoning.",
+    "Three-stage curriculum trains from short-range perception up to long-horizon, multi-event reasoning.",
+    "Temporal Audio-Visual Interleaved Chain-of-Thought grounds each reasoning step to a timestamp in the video, improving alignment and interpretability.",
+    "Outperforms similarly-sized open models across 15+ benchmarks and stays competitive with, sometimes beats, much larger open and closed models.",
+    "Transfers well to unseen tasks, suggesting the gains generalize rather than being benchmark-specific."
+  ],
+  "content_html": "\u003cp\u003eAudio-visual LLMs have mostly been tuned for short clips. NVIDIA's Audio-Visual Flamingo (AV-Flamingo) instead targets the harder, more realistic case: long, messy real-world videos where understanding what happens depends on tracking sound and image together over time.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eSreyan Ghosh, Wei Ping, and a large NVIDIA-led team build AV-Flamingo around three contributions: Audio-Visual-Skills, a ~7M-instance caption and QA dataset emphasizing temporal, compositional, and cross-modal reasoning; a three-stage curriculum that progresses from short-range perception to long-horizon, multi-event reasoning; and Temporal Audio-Visual Interleaved Chain-of-Thought, which grounds intermediate reasoning steps to timestamps in the video stream rather than reasoning abstractly.\u003c/p\u003e\n\u003cp\u003eAcross more than 15 audio-visual, omni-modal, audio, and vision benchmarks, AV-Flamingo beats similarly-sized open models by clear margins and holds its own against — occasionally surpasses — much larger open-weight and closed models, especially on long, complex real-world video tasks. The authors also report it transfers well to unseen tasks, a sign the gains aren't just benchmark-fitting. Fully open release, described on arXiv, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Sreyan Ghosh",
+      "Arushi Goel",
+      "Kaousheik Jayakumar",
+      "Lasha Koroshinadze",
+      "Nishit Anand",
+      "Siddharth Gururani",
+      "Hanrong Ye",
+      "Pritam Biswas",
+      "Yuanhang Su",
+      "Ehsan Hosseini-Asl",
+      "Sang-gil Lee",
+      "Zhifeng Kong",
+      "Jaehyeon Kim",
+      "Sungwon Kim",
+      "S Sakshi",
+      "Ramani Duraiswami",
+      "Dinesh Manocha",
+      "Andrew Tao",
+      "Mohammad Shoeybi",
+      "Bryan Catanzaro",
+      "Ming-Yu Liu",
+      "Wei Ping"
+    ],
+    "url": "https://arxiv.org/abs/2607.16107",
+    "published_at": "2026-07-17",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "video-audio",
+    "vlms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "vision",
+    "speech",
+    "open-source",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-17",
+  "related": [
+    {
+      "id": "card_5a34c4",
+      "slug": "flamingo",
+      "type": "paper",
+      "title": "Flamingo: a Visual Language Model for Few-Shot Learning",
+      "hook": "Interleave images and text in a prompt, use cross-attention to inject visual features into a frozen LLM, and get few-shot image understanding without retraining the language model.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-04-29"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_5a34c4",
+      "slug": "flamingo",
+      "type": "paper",
+      "title": "Flamingo: a Visual Language Model for Few-Shot Learning",
+      "hook": "Interleave images and text in a prompt, use cross-attention to inject visual features into a frozen LLM, and get few-shot image understanding without retraining the language model.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-04-29"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_745ca1#0",
+      "format": "flip",
+      "prompt": "What gap does AV-Flamingo target that prior audio-visual LLMs mostly didn't?",
+      "back_html": "\u003cp\u003eLong and complex real-world videos — prior AV-LLMs mostly handled short clips, while AV-Flamingo is built for long-horizon, multi-event understanding.\u003c/p\u003e"
+    },
+    {
+      "id": "card_745ca1#1",
+      "format": "quiz",
+      "prompt": "What does AV-Flamingo's Temporal Audio-Visual Interleaved Chain-of-Thought do?",
+      "choices": [
+        {
+          "text": "Grounds intermediate reasoning steps to specific timestamps in the video",
+          "correct": true
+        },
+        {
+          "text": "Compresses video frames into fewer tokens",
+          "correct": false
+        },
+        {
+          "text": "Translates audio into text before reasoning begins",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIt's a reasoning framework that explicitly ties each reasoning step to a timestamp in the long audio-visual stream, improving temporal alignment and interpretability.\u003c/p\u003e"
+    },
+    {
+      "id": "card_745ca1#2",
+      "format": "flip",
+      "prompt": "How does AV-Flamingo's training curriculum progress?",
+      "back_html": "\u003cp\u003eThree stages, moving from short-range perception up to long-horizon, multi-event reasoning, built on ~7M caption/QA instances from real-world video.\u003c/p\u003e"
+    }
+  ]
+}

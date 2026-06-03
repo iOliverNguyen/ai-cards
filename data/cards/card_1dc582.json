@@ -1,0 +1,99 @@
+{
+  "id": "card_1dc582",
+  "slug": "photoroom-prx-data-strategy",
+  "type": "blog",
+  "title": "Photoroom's Data Lesson: Caption Quality Rivals Architecture",
+  "hook": "Photoroom re-captioned their pretraining set with a VLM — longer, more accurate captions moved image FID from 21 to 13, a bigger jump than most architecture changes deliver.",
+  "key_points": [
+    "Prioritizes data diversity over perfection: assembles public and internal sources, then re-captions everything with a VLM (Qwen3-VL-8B).",
+    "Long, accurate captions that describe everything in the image dramatically improve model quality — Qwen2.5-VL-style captions hit FID ~13 versus ~21 for shorter alternatives.",
+    "Uses Lance for exploratory data work and Mosaic Data Shards for efficient distributed training.",
+    "Practical mechanisms — skip-lists for filtering, perceptual-hash deduplication — let the pipeline stay flexible without destructively rewriting datasets."
+  ],
+  "content_html": "\u003cp\u003eIt's tempting to assume the biggest gains in a training pipeline come from architecture. Photoroom's data-strategy writeup makes a case for the opposite: for their image-generation pretraining, caption quality was the highest-leverage lever they pulled.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe approach prioritizes diversity over perfection: pull together public and internal sources, then re-caption everything with a vision-language model (Qwen3-VL-8B) rather than trusting whatever captions came attached. The headline result is a concrete before/after — long, accurate captions that describe everything in the image moved image-quality FID from around 21 with shorter captions to around 13 with Qwen2.5-VL-style long captions, a swing larger than many architecture tweaks deliver. On the engineering side, the team uses Lance for exploratory data work and Mosaic Data Shards for efficient distributed training, and favors non-destructive filtering mechanisms — skip-lists and perceptual-hash deduplication — over rewriting datasets outright, keeping the pipeline flexible as requirements change. The broader lesson for anyone building a training pipeline: caption/label quality can rival architecture choices as a lever, and it's usually cheaper to pull. Hugging Face Blog (Photoroom), 2026-07-06.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face Blog (Photoroom)",
+    "url": "https://huggingface.co/blog/Photoroom/prx-part4-data",
+    "published_at": "2026-07-06",
+    "license": "Blog post"
+  },
+  "topic_ids": [
+    "data",
+    "lab-updates"
+  ],
+  "tags": [
+    "dataset",
+    "multimodal",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-06",
+  "related": [
+    {
+      "id": "card_621b11",
+      "slug": "laion-5b",
+      "type": "dataset",
+      "title": "LAION-5B: Open Image-Text at Scale",
+      "hook": "CLIP and DALL-E showed huge, noisy image-text data is gold. LAION-5B made that public — billions of CLIP-filtered pairs anyone can train open models on.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-16"
+    },
+    {
+      "id": "card_9237d7",
+      "slug": "deduplicating-training-data",
+      "type": "paper",
+      "title": "Deduplicating Training Data Makes LMs Better",
+      "hook": "Training corpora are full of copies — one 61-word sentence shows up 60,000+ times in C4. Strip the duplicates and models memorize far less and evaluate more honestly.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2021-07-14"
+    },
+    {
+      "id": "card_a86ac1",
+      "slug": "moving-alphabet",
+      "type": "paper",
+      "title": "Moving Alphabet: A Controlled Study of Training Data for Text-to-Video Generation",
+      "hook": "Text-to-video research chases bigger architectures; this controlled study shows the training data decides the outcome — caption quality alone can cap what the model learns.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-21"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_1dc582#0",
+      "format": "flip",
+      "prompt": "What single data change gave Photoroom the biggest quality jump in their pretraining pipeline?",
+      "back_html": "\u003cp\u003eRe-captioning their entire dataset with a VLM using long, accurate captions that describe everything in the image — moving FID from about 21 (short captions) to about 13.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1dc582#1",
+      "format": "quiz",
+      "prompt": "Why does Photoroom avoid destructive operations in their data pipeline (favoring skip-lists and hash-based dedup over rewriting datasets)?",
+      "choices": [
+        {
+          "text": "It keeps the pipeline flexible so it can adapt as requirements evolve, without needing to regenerate the whole dataset each time",
+          "correct": true
+        },
+        {
+          "text": "Destructive operations are technically impossible with their storage format",
+          "correct": false
+        },
+        {
+          "text": "It saves on GPU compute during training, unrelated to flexibility",
+          "correct": false
+        },
+        {
+          "text": "Regulatory requirements mandate keeping all original data untouched",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eNon-destructive filtering (skip-lists, perceptual-hash dedup) lets the team change what's included without rewriting the underlying dataset — a flexibility that pays off as data requirements shift over time.\u003c/p\u003e"
+    }
+  ]
+}

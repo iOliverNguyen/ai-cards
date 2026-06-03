@@ -1,0 +1,97 @@
+{
+  "id": "card_096b24",
+  "slug": "bm25-tool-selection",
+  "type": "blog",
+  "title": "Why One Engineer Dropped Embeddings for BM25 in Tool Selection",
+  "hook": "An engineer running an agent with ~140 tools dropped embedding-based tool selection for plain BM25 — cosine similarity over short tool descriptions was dangerous in production.",
+  "key_points": [
+    "Picking which tools an agent sees by cosine similarity over tool-description embeddings worked in demos but failed in production at ~140 MCP-exposed tools.",
+    "Semantic embeddings shine on paragraph-length, semantically rich chunks — not the short, keyword-heavy text of tool descriptions.",
+    "Switching back to BM25 (lexical keyword matching) gave more reliable per-turn tool selection.",
+    "Transferable lesson: match the retrieval method to the text — semantic search isn't automatically better than keyword search."
+  ],
+  "content_html": "\u003cp\u003eA practitioner who spent a year building agents shares a hard-won production lesson: for an agent exposing roughly 140 tools at peak, choosing which tools the model sees each turn by \u003cstrong\u003ecosine similarity over tool-description embeddings\u003c/strong\u003e looked great in demos but became actively dangerous in production.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe mismatch\u003c/h2\u003e\n\u003cp\u003eIn the typical setup you embed the user query, embed each tool description once, and rank by cosine similarity at runtime. That works for general document retrieval, where chunks are paragraph-length and semantically rich. Tool descriptions are the opposite — short and keyword-heavy — so semantic ranking misfires and the agent ends up with the wrong tools in context. The author's fix was to go back to \u003cstrong\u003eBM25\u003c/strong\u003e, a classic lexical keyword-matching algorithm, which selected tools more reliably.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThis is one engineer's experience, not a controlled study, but the lesson generalizes: retrieval method should match the shape of the text. Semantic embeddings aren't a strict upgrade over keyword search — for short, name-and-keyword-dense items like tool specs, lexical methods like BM25 can be the safer default. As agents juggle more and more tools, how you filter them per turn becomes a real reliability concern.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit r/MachineLearning",
+    "authors": [
+      "/u/AbjectBug5885"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1u07tlm/why_i_stopped_using_semantic_embeddings_for_tool",
+    "published_at": "2026-06-08",
+    "license": "Reddit post (link-out)"
+  },
+  "topic_ids": [
+    "agents",
+    "rag"
+  ],
+  "tags": [
+    "rag",
+    "agent"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-11",
+  "date": "2026-06-08",
+  "related": [
+    {
+      "id": "card_e283b9",
+      "slug": "model-context-protocol",
+      "type": "news",
+      "title": "Model Context Protocol (MCP): A Standard for Connecting LLMs to Tools",
+      "hook": "MCP is an open protocol that standardizes how AI applications expose tools, data, and resources to models - think USB-C for AI tool integrations.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-11-25"
+    },
+    {
+      "id": "card_02ad74",
+      "slug": "retrieval-augmented-generation",
+      "type": "paper",
+      "title": "Retrieval-Augmented Generation (RAG)",
+      "hook": "Why force a model to memorize everything? RAG lets it look things up — fetch relevant documents, then answer from that evidence instead of frozen weights alone.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-22"
+    },
+    {
+      "id": "card_667a26",
+      "slug": "dense-passage-retrieval",
+      "type": "paper",
+      "title": "Dense Passage Retrieval (DPR)",
+      "hook": "Keyword search misses answers that use different words. DPR embeds questions and passages into one vector space and retrieves by meaning — the backbone of modern vector search.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-04-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_096b24#0",
+      "format": "flip",
+      "prompt": "Why did embedding-based tool selection fail where document retrieval usually succeeds?",
+      "back_html": "\u003cp\u003eSemantic embeddings work well on paragraph-length, semantically rich chunks; tool descriptions are short and keyword-heavy, so ranking them by cosine similarity is unreliable.\u003c/p\u003e"
+    },
+    {
+      "id": "card_096b24#1",
+      "format": "quiz",
+      "prompt": "What did the author switch to for selecting which tools an agent sees per turn?",
+      "choices": [
+        {
+          "text": "BM25 lexical keyword matching, which proved more reliable for short tool descriptions",
+          "correct": true
+        },
+        {
+          "text": "A larger embedding model with more dimensions",
+          "correct": false
+        },
+        {
+          "text": "Showing the model all 140 tools every turn",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAfter cosine-similarity ranking proved dangerous in production, the author returned to BM25 keyword retrieval for tool selection.\u003c/p\u003e"
+    }
+  ]
+}

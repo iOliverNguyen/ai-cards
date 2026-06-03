@@ -1,0 +1,125 @@
+{
+  "id": "card_e80acb",
+  "slug": "wildtrace-long-context-benchmark-gap",
+  "type": "paper",
+  "title": "WILDTRACE: Benchmarking Natural Evidence Trails in Long-Context Reasoning",
+  "hook": "Most long-context tests plant a fake 'needle' in a haystack. Real evidence doesn't look like that — passing needle tests may not mean a model can truly reason over a document.",
+  "key_points": [
+    "481 tasks built over 214 real long documents — incident reports, literary narratives — not synthetic needle-in-haystack setups.",
+    "Planted/needle evidence differs from real evidence in distribution and placement, so needle tests may not measure real reasoning.",
+    "Defines seven 'source-internal evidence geometries,' from Pearl's causal hierarchy, for how evidence naturally connects in a document.",
+    "Source-first pipeline: mines candidate evidence trails from a document's structure, then validates clue necessity and groundedness.",
+    "From a Qwen/Alibaba team; frames dispersed evidence integration as the next challenge for long-context research."
+  ],
+  "content_html": "\u003cp\u003eReal analytical reading over long documents means connecting evidence the document itself scatters naturally — the operating condition and design flaw behind an incident may sit sections apart; a character's true motive may only surface scenes later. Most long-context benchmarks sidestep this by planting facts or reverse-engineering multi-hop chains, which may differ from how evidence actually appears in real text.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eWildTrace, from a Qwen/Alibaba team including Fei Huang and Dayiheng Liu, instead builds 481 tasks over 214 naturally occurring long-form sources — technical incident reports and lesser-known literary narratives — where every evidence trail arises from the document's own causal, temporal, and narrative logic. Drawing on Pearl's causal hierarchy and prior multi-hop reasoning typologies, the authors define seven \u0026quot;source-internal evidence geometries\u0026quot; that characterize how real evidence naturally connects. Construction is source-first: candidate trails are mined from a document's existing structure before questions are even written, then validated for clue necessity, answer groundedness, rubric fidelity, contamination resistance, and answerability. The takeaway is a warning as much as a benchmark — the gap between accessing information and reasoning over evidence as it naturally appears may be the real test long-context research still needs to pass. See arxiv.org/abs/2607.09328.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zixin Chen",
+      "Peng Liu",
+      "Haobo Li",
+      "Rui Sheng",
+      "Jianhong Tu",
+      "Xiaodong Deng",
+      "Fei Huang",
+      "Kashun Shum",
+      "Dayiheng Liu",
+      "Huamin Qu"
+    ],
+    "url": "https://arxiv.org/abs/2607.09328",
+    "published_at": "2026-07-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "context-memory",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-16",
+  "date": "2026-07-10",
+  "related": [
+    {
+      "id": "card_ae7479",
+      "slug": "long-context-benchmark-prefill-kv-heads",
+      "type": "blog",
+      "title": "Why Long-Context Speed Comes Down to Prefill and KV Heads",
+      "hook": "Everyone benchmarks token-generation speed. A community test of 13 models at 65K-128K context found that's the wrong number — prefill dominates, and KV head count beats parameter count.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-05"
+    },
+    {
+      "id": "card_cc4fb6",
+      "slug": "memsyco-bench",
+      "type": "paper",
+      "title": "MemSyco-Bench: Benchmarking Sycophancy in Agent Memory",
+      "hook": "Agent memory sounds purely good — until retrieved memories start pushing an agent to agree with the user over the facts. MemSyco-Bench is built specifically to catch that failure.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_e80acb#0",
+      "format": "flip",
+      "prompt": "What methodological problem does WildTrace raise about typical long-context benchmarks?",
+      "back_html": "\u003cp\u003eNeedle-in-a-haystack-style planted facts differ from real evidence in distribution, placement, and register — so passing them may not reflect genuine long-context reasoning.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e80acb#1",
+      "format": "quiz",
+      "prompt": "What does WildTrace use as its evidence source, instead of planted facts?",
+      "choices": [
+        {
+          "text": "481 tasks built from 214 naturally occurring long documents like incident reports and literary narratives",
+          "correct": true
+        },
+        {
+          "text": "Synthetic passages generated by an LLM specifically for each question",
+          "correct": false
+        },
+        {
+          "text": "Short texts with reverse-engineered multi-hop chains inserted",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eWildTrace mines evidence trails already present in real documents' own causal, temporal, and narrative structure, rather than planting them.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e80acb#2",
+      "format": "flip",
+      "prompt": "What is a 'source-internal evidence geometry' in WildTrace?",
+      "back_html": "\u003cp\u003eOne of seven relational patterns, drawn from Pearl's causal hierarchy and multi-hop reasoning work, describing how naturally dispersed evidence connects within a document.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e80acb#3",
+      "format": "quiz",
+      "prompt": "How does WildTrace's construction pipeline avoid inserting artificial evidence?",
+      "choices": [
+        {
+          "text": "It mines candidate evidence trails from a document's existing structure before writing questions",
+          "correct": true
+        },
+        {
+          "text": "It asks annotators to invent facts and insert them into the source text",
+          "correct": false
+        },
+        {
+          "text": "It only uses questions answerable from a single sentence",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA source-first pipeline extracts trails already present in the document, then validates each item for clue necessity, groundedness, and contamination resistance.\u003c/p\u003e"
+    }
+  ]
+}

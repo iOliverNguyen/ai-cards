@@ -1,0 +1,107 @@
+{
+  "id": "card_896f54",
+  "slug": "multimodal-cot-limits",
+  "type": "paper",
+  "title": "Look Light, Think Heavy: The Limits of Multimodal Chain-of-Thought",
+  "hook": "Chain-of-thought should make models think harder. For vision-language tasks this study finds it's no free lunch — it can hurt perception, and models keep talking while they stop looking.",
+  "key_points": [
+    "Evaluates 12 multimodal tasks across perception and reasoning, using 14 non-reasoning and 8 reasoning models.",
+    "CoT is not a free lunch: it can hurt perception tasks like visual grounding and object counting, but helps math, science, and multi-image reasoning.",
+    "Open-source multimodal reasoning models often add only marginal overall gains — seemingly over-tuned for math at the expense of broader skills.",
+    "The 'Look Light, Think Heavy' pattern: verbal reflection rises and falls during reasoning, but visual reflection consistently diminishes.",
+    "Visual reasoning is the key bottleneck — models handle verbal reflection but lose deep visual introspection mid-chain."
+  ],
+  "content_html": "\u003cp\u003eChain-of-thought (CoT) reliably helps text reasoning, so it's tempting to assume it helps vision-language models too. \u003cstrong\u003eLook Light, Think Heavy\u003c/strong\u003e systematically tests that and finds the picture is more nuanced — and revealing about where multimodal models break down.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat they tested\u003c/h2\u003e\n\u003cp\u003eThe authors evaluate 12 multimodal tasks spanning perception and reasoning, across 14 non-reasoning and 8 reasoning models. Three findings stand out. First, \u003cstrong\u003eCoT is not a free lunch\u003c/strong\u003e: it should be used selectively, because while it clearly helps mathematical, scientific, and multi-image reasoning, it can \u003cem\u003ehurt\u003c/em\u003e perception tasks such as visual grounding and object counting. Second, existing open-source multimodal reasoning models often deliver only marginal overall improvements — apparently over-emphasizing mathematical reasoning at the expense of broader capability.\u003c/p\u003e\n\u003ch2\u003eThe core diagnosis\u003c/h2\u003e\n\u003cp\u003eThird, and most telling, is the pattern that names the paper: as reasoning unfolds, \u003cstrong\u003everbal reflection rises and falls, but visual reflection consistently diminishes\u003c/strong\u003e. The models keep \u0026quot;thinking\u0026quot; in words while their grounding in the actual image fades — they look light and think heavy. That makes sustained visual introspection the key bottleneck for current multimodal CoT, and suggests that simply borrowing text-style reasoning isn't enough for tasks that depend on continuing to \u003cem\u003elook\u003c/em\u003e. Details and the task suite are in the paper.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zhuoran Jin",
+      "Kejian Zhu",
+      "Hongbang Yuan",
+      "Yupu Hao",
+      "Pengfei Cao",
+      "Yubo Chen",
+      "Kang Liu",
+      "Jun Zhao"
+    ],
+    "url": "https://arxiv.org/abs/2606.22565",
+    "published_at": "2026-06-21",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "vlms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "reasoning",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-29",
+  "date": "2026-06-21",
+  "related": [
+    {
+      "id": "card_d20f82",
+      "slug": "qwen2-vl",
+      "type": "paper",
+      "title": "Qwen2-VL: Vision-Language at Any Resolution",
+      "hook": "Qwen2-VL processes images at their native resolution rather than forcing a fixed size, making it significantly better at reading small text and understanding fine-grained visual detail.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2024-09-18"
+    },
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    },
+    {
+      "id": "card_f3614a",
+      "slug": "trace-visual-reasoning-environment",
+      "type": "paper",
+      "title": "Trace: A Taxonomy-Guided Environment for Multidomain Visual Reasoning",
+      "hook": "Verifiable-reward training sharpened text reasoning but stalls on vision — exact-answer image tasks are hard to make at scale. Trace generates them procedurally, and it transfers to real benchmarks.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_896f54#0",
+      "format": "quiz",
+      "prompt": "When does chain-of-thought help vs hurt in multimodal tasks, per this study?",
+      "choices": [
+        {
+          "text": "Helps reasoning tasks (math, science, multi-image) but can hurt perception tasks like visual grounding and counting",
+          "correct": true
+        },
+        {
+          "text": "Helps every multimodal task uniformly",
+          "correct": false
+        },
+        {
+          "text": "Hurts every multimodal task uniformly",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eCoT is 'not a free lunch' — it should be applied selectively, since it aids reasoning-heavy tasks but introduces side effects on perception.\u003c/p\u003e"
+    },
+    {
+      "id": "card_896f54#1",
+      "format": "flip",
+      "prompt": "What does the 'Look Light, Think Heavy' pattern describe?",
+      "back_html": "\u003cp\u003eDuring multimodal reasoning, verbal reflection rises and falls, but visual reflection consistently diminishes — models keep reasoning in words while losing deep, sustained attention to the image.\u003c/p\u003e"
+    }
+  ]
+}

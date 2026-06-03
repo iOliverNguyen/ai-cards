@@ -1,0 +1,117 @@
+{
+  "id": "card_3e0124",
+  "slug": "group-relative-policy-optimization",
+  "type": "paper",
+  "title": "GRPO: Group Relative Policy Optimization",
+  "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+  "key_points": [
+    "Introduced in the DeepSeekMath paper as a leaner alternative to PPO for LLMs.",
+    "Removes PPO's separate value/critic model, roughly halving training memory.",
+    "Samples a group of answers per prompt and uses their mean reward as the baseline.",
+    "Became the workhorse RL algorithm behind DeepSeek-R1-style reasoning training."
+  ],
+  "content_html": "\u003cp\u003eGroup Relative Policy Optimization (GRPO), introduced in the DeepSeekMath paper, is a reinforcement-learning method for fine-tuning language models that strips out the most expensive part of PPO. Instead of training a separate value network to estimate how good a state is, it estimates the baseline directly from a group of answers the model samples for the same prompt.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eFor each prompt, the model generates a group of candidate answers, each scored by a reward model. GRPO uses the group's average reward as the baseline, so an answer is reinforced in proportion to how much better (or worse) it is than its siblings. Because there is no critic network to train and store, GRPO uses substantially less memory and compute than PPO, while keeping the stability benefits of a relative advantage.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eGRPO is the RL engine that made large-scale reasoning training affordable. DeepSeek used it to turn base models into strong reasoners (the R1 line) by rewarding correct, well-structured chains of thought. Its efficiency lowered the barrier for others to run reasoning-style RL, and \u0026quot;GRPO\u0026quot; quickly became shorthand for the post-PPO generation of preference and reasoning optimization.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zhihong Shao",
+      "Peiyi Wang",
+      "Qihao Zhu",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2402.03300",
+    "published_at": "2024-02-05",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf"
+  ],
+  "tags": [
+    "alignment",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2024-02-05",
+  "related": [
+    {
+      "id": "card_40de42",
+      "slug": "ppo",
+      "type": "paper",
+      "title": "PPO: Proximal Policy Optimization",
+      "hook": "Reinforcement learning is notoriously unstable. PPO's fix is simple: never let a single update move the policy too far. That restraint made it the field's workhorse.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2017-07-20"
+    },
+    {
+      "id": "card_4cd8fd",
+      "slug": "deepseek-r1",
+      "type": "paper",
+      "title": "DeepSeek-R1: Incentivizing Reasoning via Reinforcement Learning",
+      "hook": "DeepSeek shows strong reasoning can emerge from RL on verifiable rewards with minimal supervised data - and those reasoning traces can be distilled into smaller models.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2025-01-22"
+    },
+    {
+      "id": "card_d5a521",
+      "slug": "direct-preference-optimization",
+      "type": "paper",
+      "title": "Direct Preference Optimization (DPO)",
+      "hook": "RLHF works but is fiddly: a separate reward model and a finicky RL loop. DPO reaches the same goal with one simple loss — and became a popular default.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2023-05-29"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_40de42",
+      "slug": "ppo",
+      "type": "paper",
+      "title": "PPO: Proximal Policy Optimization",
+      "hook": "Reinforcement learning is notoriously unstable. PPO's fix is simple: never let a single update move the policy too far. That restraint made it the field's workhorse.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2017-07-20"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_3e0124#0",
+      "format": "quiz",
+      "prompt": "How does GRPO compute its baseline without PPO's value network?",
+      "choices": [
+        {
+          "text": "From the mean reward of a group of answers sampled for the same prompt",
+          "correct": true
+        },
+        {
+          "text": "From a separately trained critic model",
+          "correct": false
+        },
+        {
+          "text": "From a fixed constant tuned per task",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGRPO samples a group of answers per prompt and uses their average reward as the baseline.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3e0124#1",
+      "format": "flip",
+      "prompt": "Why does GRPO use less memory and compute than PPO?",
+      "back_html": "\u003cp\u003eIt removes PPO's separate value/critic model — there is no critic to train and store — roughly halving training memory.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3e0124#2",
+      "format": "flip",
+      "prompt": "Why did GRPO matter for reasoning models?",
+      "back_html": "\u003cp\u003eIts efficiency made large-scale reasoning-style RL affordable; it became the engine behind DeepSeek-R1-style reasoning training.\u003c/p\u003e"
+    }
+  ]
+}

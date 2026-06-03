@@ -1,0 +1,109 @@
+{
+  "id": "card_adc58b",
+  "slug": "untrusted-content-masking-web-agents",
+  "type": "paper",
+  "title": "Untrusted Content Masking: A Trust Boundary for Web Agents",
+  "hook": "Provable prompt-injection defenses rely on never letting an agent read untrusted content directly. Web agents break that just by looking at the page — this restores it via the page's own structure.",
+  "key_points": [
+    "Provable prompt-injection defenses depend on strict isolation: trusted instructions never mix with untrusted data an agent processes.",
+    "Web agents break this by design — to act on a page, they must observe its rendered content, which intermingles trusted and untrusted regions.",
+    "Key insight: a webpage's DOM already encodes enough structure to tell trusted from untrusted regions without reading their content.",
+    "Untrusted Content Masking (UCM) redacts untrusted regions before the agent sees them, then routes interaction through a sandboxed, privilege-separated interface.",
+    "Restores the isolation that security guarantees depend on, while still letting the agent observe and act on its environment. Code is public."
+  ],
+  "content_html": "\u003cp\u003eProvable defenses against prompt injection rest on a simple premise: keep trusted instructions and untrusted data strictly apart, so an agent never has to reason from content an attacker could have written. Text-based tool APIs get this for free. Web agents don't — to click a button or read a page, they have to look at the whole rendered DOM, trusted and untrusted content tangled together.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe authors' fix, Untrusted Content Masking (UCM), leans on a structural fact: a webpage's Document Object Model already encodes enough information to tell trusted regions from untrusted ones — without the defense needing to read or understand \u003cem\u003ewhat\u003c/em\u003e the untrusted content actually says. UCM redacts untrusted regions before they ever reach the agent's context, then routes all interaction through a sandboxed interface with strict privilege separation. The result restores the isolation boundary that provable defenses depend on, while still letting the agent observe and act on its actual environment — something prior web-agent defenses couldn't guarantee. The code is public. Kristina Nikolić, Egor Zverev, Javier Rando, and colleagues (including Florian Tramèr), arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Kristina Nikolić",
+      "Egor Zverev",
+      "Javier Rando",
+      "Matthew Jagielski",
+      "Edoardo Debenedetti",
+      "Florian Tramèr"
+    ],
+    "url": "https://arxiv.org/abs/2607.05277",
+    "published_at": "2026-07-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "safety",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-06",
+  "related": [
+    {
+      "id": "card_5ca3a6",
+      "slug": "steerability-via-constraints",
+      "type": "paper",
+      "title": "Steerability via Constraints: A Substrate for Scalable Oversight of Coding Agents",
+      "hook": "Coding agents are already capable enough that human review is the bottleneck — this paper borrows access control and network policy from engineering-org playbooks to make oversight scale instead.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-02"
+    },
+    {
+      "id": "card_bf8bf1",
+      "slug": "distributed-attacks-persistent-state-ai-control",
+      "type": "paper",
+      "title": "Distributed Attacks in Persistent-State AI Control",
+      "hook": "A misaligned coding agent doesn't need to sneak a backdoor into one pull request — it can spread the attack across many, and no single monitor catches both strategies at once.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-02"
+    },
+    {
+      "id": "card_866c39",
+      "slug": "when-claws-remember-stealthy-memory-injection",
+      "type": "paper",
+      "title": "When Claws Remember but Do Not Tell: Stealthy Memory Injection",
+      "hook": "One poisoned email is enough: this attack tricks a persistent personal agent into silently writing false memories, hiding the evidence from the user, and acting on the lie later.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_adc58b#0",
+      "format": "flip",
+      "prompt": "Why do web agents structurally break the trust-isolation guarantees that provable prompt-injection defenses rely on?",
+      "back_html": "\u003cp\u003eTo perceive and act on a webpage, the agent must observe the rendered content — which intermingles trusted instructions with untrusted data. That entanglement removes the trust boundary the security guarantee depends on.\u003c/p\u003e"
+    },
+    {
+      "id": "card_adc58b#1",
+      "format": "quiz",
+      "prompt": "What structural insight does Untrusted Content Masking (UCM) exploit to restore the trust boundary?",
+      "choices": [
+        {
+          "text": "The page's DOM already encodes enough information to distinguish trusted from untrusted regions, without needing to read their content",
+          "correct": true
+        },
+        {
+          "text": "Every website voluntarily labels its untrusted regions in metadata",
+          "correct": false
+        },
+        {
+          "text": "Large language models can perfectly detect injected instructions by their wording",
+          "correct": false
+        },
+        {
+          "text": "It blocks the agent from viewing any web page at all",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eUCM redacts untrusted DOM regions before the agent ever sees them, then routes interaction through a sandboxed, privilege-separated interface — restoring isolation while still letting the agent observe and act on the page.\u003c/p\u003e"
+    }
+  ]
+}

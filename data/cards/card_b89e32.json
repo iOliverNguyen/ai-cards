@@ -1,0 +1,121 @@
+{
+  "id": "card_b89e32",
+  "slug": "skaling-law",
+  "type": "paper",
+  "title": "Scaling Laws Break at the Edges — Because They Assume Size and Data Are Independent",
+  "hook": "Chinchilla-style laws mispredict loss when data is scarce or a model is heavily overtrained. Add one interaction exponent coupling capacity and data, and the error drops 1.5–3x.",
+  "key_points": [
+    "Standard scaling laws systematically underestimate loss in data-scarce regimes and overestimate it under heavy overtraining.",
+    "The culprit is the assumption that model size and training data affect loss independently.",
+    "The Skaling law couples capacity and data through a single interaction exponent.",
+    "That one extra term cuts mean absolute percentage error by 1.5–3x, in both interpolation and extrapolation.",
+    "Paired with a sparse grid restricted to low-compute runs, it extrapolates to the full grid using about 10x less compute than uniform sweeps.",
+    "The payoff is practical: reliable prediction of large-run performance from small-scale experiments, for compute-budget allocation."
+  ],
+  "content_html": "\u003cp\u003eScaling laws are how labs decide what to train before they spend the money, so their failure modes are expensive. Videau and colleagues point at a specific one: the standard functional forms systematically underestimate loss when data is scarce and overestimate it when a model is heavily overtrained — the two regimes people increasingly actually operate in.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eOne assumption, one term\u003c/h2\u003e\n\u003cp\u003eTheir diagnosis is that the usual forms treat model capacity and training data as independent contributors to the loss. The proposed \u003cstrong\u003eSkaling law\u003c/strong\u003e generalizes the functional form with a single interaction exponent coupling the two. That is the whole change, and the authors report it reduces mean absolute percentage error by 1.5–3x across both interpolation and extrapolation.\u003c/p\u003e\n\u003cp\u003eThe practical consequence matters more than the fit quality. Because the law extrapolates reliably, it can be fitted on a sparse grid confined to low-compute runs and still predict the full grid — roughly a 10x compute saving over uniform sweeps. That turns small-scale experiments into a trustworthy basis for allocating a frontier-scale training budget, which is the thing scaling laws were always supposed to do.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Mathurin Videau",
+      "Badr Youbi-Idrissi",
+      "David Lopez-Paz",
+      "Kartik Ahuja"
+    ],
+    "url": "https://arxiv.org/abs/2608.07222",
+    "published_at": "2026-08-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "efficiency",
+    "foundational",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-10",
+  "date": "2026-08-07",
+  "related": [
+    {
+      "id": "card_46fd66",
+      "slug": "chinchilla-scaling-laws",
+      "type": "paper",
+      "title": "Chinchilla: Compute-Optimal Scaling",
+      "hook": "Most giant models were starved of data. Chinchilla showed that for a fixed compute budget you should grow parameters and tokens together — and a smaller, longer-trained model won.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2022-03-29"
+    },
+    {
+      "id": "card_85f66a",
+      "slug": "scaling-laws",
+      "type": "paper",
+      "title": "Scaling Laws for Neural Language Models",
+      "hook": "Loss doesn't drop randomly as models grow — it follows a smooth power law in size, data, and compute. That predictability is what made betting on bigger models rational.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2020-01-23"
+    },
+    {
+      "id": "card_b36da4",
+      "slug": "native-multimodal-pretraining-scaling-laws",
+      "type": "paper",
+      "title": "Scaling Native Multimodal Pre-Training From Scratch",
+      "hook": "Chinchilla told you how to split compute between model size and tokens for text. This maps the same frontier for models trained on images and text from day one.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-24"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_46fd66",
+      "slug": "chinchilla-scaling-laws",
+      "type": "paper",
+      "title": "Chinchilla: Compute-Optimal Scaling",
+      "hook": "Most giant models were starved of data. Chinchilla showed that for a fixed compute budget you should grow parameters and tokens together — and a smaller, longer-trained model won.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2022-03-29"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_b89e32#0",
+      "format": "flip",
+      "prompt": "Which assumption in standard scaling laws does the Skaling law reject?",
+      "back_html": "\u003cp\u003eThat model size and training data influence the loss independently. Skaling couples them through a single interaction exponent, which fixes the systematic errors at the data-scarce and overtrained extremes.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b89e32#1",
+      "format": "quiz",
+      "prompt": "Where do standard scaling-law formulations go wrong, according to this paper?",
+      "choices": [
+        {
+          "text": "At the extremes — underestimating loss when data is scarce and overestimating it under heavy overtraining",
+          "correct": true
+        },
+        {
+          "text": "Only in the compute-optimal region, where the two terms are balanced",
+          "correct": false
+        },
+        {
+          "text": "Only for mixture-of-experts models, whose parameter counts are ambiguous",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe reported failure is at the edges of the regime, and it stems from treating size and data as separable — precisely where an interaction term matters most.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b89e32#2",
+      "format": "flip",
+      "prompt": "Why does the Skaling law save compute in practice?",
+      "back_html": "\u003cp\u003eBecause it extrapolates accurately, you can fit it on a sparse grid of low-compute runs and still predict the full grid — roughly 10x less compute than a uniform sweep — then use that to allocate a large training budget.\u003c/p\u003e"
+    }
+  ]
+}

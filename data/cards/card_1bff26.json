@@ -1,0 +1,111 @@
+{
+  "id": "card_1bff26",
+  "slug": "jetspec-speculative-decoding",
+  "type": "paper",
+  "title": "JetSpec: Breaking the Scaling Ceiling of Speculative Decoding",
+  "hook": "Speculative decoding stalls when bigger draft trees stop paying off. JetSpec trains a causal parallel draft head that drafts in one pass yet stays branch-consistent — hitting up to 9.64x speedup.",
+  "key_points": [
+    "Speculative decoding speeds LLMs by drafting several tokens, then verifying them in parallel — but gains plateau as draft budgets grow.",
+    "The dilemma: autoregressive drafters give consistent trees but cost grows with depth; one-pass diffusion drafters are cheap but produce mutually inconsistent candidates.",
+    "JetSpec trains a causal parallel draft head over the frozen target model's fused hidden states, so drafts align with the target's own factorization.",
+    "This turns larger draft budgets into longer accepted prefixes instead of wasted compute.",
+    "Reports up to 9.64x speedup on MATH-500 and 4.58x on open-ended chat on H100 GPUs, with vLLM integration."
+  ],
+  "content_html": "\u003cp\u003eSpeculative decoding makes LLMs faster by having a cheap drafter propose several tokens that the big model verifies in parallel. \u003cstrong\u003eJetSpec\u003c/strong\u003e tackles why throwing more draft budget at the problem eventually stops helping.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe dilemma\u003c/h2\u003e\n\u003cp\u003eBigger draft trees only help if the target model accepts most of them and the drafting itself stays cheap. Prior methods sit on the wrong side of a trade-off. \u003cem\u003eAutoregressive\u003c/em\u003e drafters produce path-conditioned candidates with good acceptance, but their cost grows with tree depth. \u003cem\u003eBidirectional block-diffusion\u003c/em\u003e drafters generate all positions in one pass, but their branch-agnostic predictions can form trees that are individually plausible yet mutually inconsistent — wasting budget and lowering acceptance.\u003c/p\u003e\n\u003ch2\u003eJetSpec's fix\u003c/h2\u003e\n\u003cp\u003eJetSpec trains a \u003cstrong\u003ecausal parallel draft head\u003c/strong\u003e over fused hidden states from the frozen target model. It drafts in a single forward pass (cheap), yet scores candidates so they align with the target model's own autoregressive factorization (consistent). That lets larger draft budgets convert into longer \u003cem\u003eaccepted\u003c/em\u003e prefixes rather than discarded guesses. On H100 GPUs across math, coding, and chat with Qwen3 models, the authors report up to 9.64x speedup on MATH-500 and 4.58x on conversational workloads, plus end-to-end gains under realistic serving via vLLM. Code is linked from the paper.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Lanxiang Hu",
+      "Zhaoxiang Feng",
+      "Yulun Wu",
+      "Haoran Yuan",
+      "Yujie Zhao",
+      "Yu-Yang Qian",
+      "Bojun Wang",
+      "Peng Zhao",
+      "Daxin Jiang",
+      "Yibo Zhu",
+      "Tajana Rosing",
+      "Hao Zhang"
+    ],
+    "url": "https://arxiv.org/abs/2606.18394",
+    "published_at": "2026-06-25",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-29",
+  "date": "2026-06-25",
+  "related": [
+    {
+      "id": "card_951958",
+      "slug": "speculative-decoding",
+      "type": "paper",
+      "title": "Speculative Decoding",
+      "hook": "Let a small, fast model guess the next few words, then have the big model check them all in one shot. Same output, fewer slow steps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-30"
+    },
+    {
+      "id": "card_b570de",
+      "slug": "domino-speculative-decoding",
+      "type": "paper",
+      "title": "Domino: Decoupling Causal Modeling from Autoregressive Drafting",
+      "hook": "Speculative decoding is stuck between fast-but-sloppy parallel drafters and accurate-but-slow autoregressive ones. Domino splits the difference and hits up to 5.8× throughput.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-05-28"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_951958",
+      "slug": "speculative-decoding",
+      "type": "paper",
+      "title": "Speculative Decoding",
+      "hook": "Let a small, fast model guess the next few words, then have the big model check them all in one shot. Same output, fewer slow steps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-30"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_1bff26#0",
+      "format": "flip",
+      "prompt": "What 'scaling ceiling' does JetSpec target in speculative decoding?",
+      "back_html": "\u003cp\u003eIncreasing the draft budget (bigger candidate trees) only helps if acceptance stays high and drafting overhead stays low — prior drafters hit a wall where larger budgets stop paying off.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1bff26#1",
+      "format": "quiz",
+      "prompt": "How does JetSpec resolve the causality–efficiency dilemma between draft types?",
+      "choices": [
+        {
+          "text": "A causal parallel draft head over the target's fused hidden states, so one-pass drafts still align with the target's autoregressive factorization",
+          "correct": true
+        },
+        {
+          "text": "It drops verification and trusts the draft tokens directly",
+          "correct": false
+        },
+        {
+          "text": "It fine-tunes the full target model on every query",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAutoregressive drafters are consistent but slow at depth; diffusion drafters are fast but inconsistent. JetSpec's causal parallel head drafts in one forward pass while keeping branch-wise causal conditioning aligned with the target.\u003c/p\u003e"
+    }
+  ]
+}

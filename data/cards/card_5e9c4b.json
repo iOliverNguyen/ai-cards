@@ -1,0 +1,110 @@
+{
+  "id": "card_5e9c4b",
+  "slug": "multi-query-attention",
+  "type": "paper",
+  "title": "Multi-Query Attention: Faster Decoding",
+  "hook": "Share one key/value head across all query heads - the KV cache shrinks by a factor of H and decoding gets dramatically faster with barely any quality cost.",
+  "key_points": [
+    "Replaces H independent key/value heads with a single shared KV head while keeping H query heads.",
+    "KV cache size drops by a factor of H, cutting memory bandwidth demand at each decoding step.",
+    "Autoregressive decoding is often memory-bandwidth-bound, so smaller KV = directly faster generation.",
+    "Proposed by Shazeer in 2019; later generalized by Grouped-Query Attention."
+  ],
+  "content_html": "\u003cp\u003eIn 2019 Noam Shazeer (then at Google Brain) published a short but influential paper showing that most of the cost of multi-head attention during inference comes from loading keys and values from memory, not from compute. His fix was simple: keep multiple query heads but collapse all key and value projections down to a single shared head, cutting the KV cache by the number of heads.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eStandard multi-head attention projects inputs into H separate query, key, and value matrices. Multi-query attention keeps all H query projections but uses only one key projection and one value projection, shared across every query head. At each decoding step the model must load the entire KV cache; with one KV head instead of H, that memory read shrinks by a factor of H. Compute per head is unchanged; only the memory footprint is reduced.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eFor autoregressive text generation, each new token requires attending to every prior token, which means repeatedly loading a growing KV cache from GPU memory. Shazeer showed this is the binding bottleneck at inference time. Multi-query attention directly addresses it, enabling faster generation and larger effective batch sizes. Grouped-query attention later softened the quality trade-off by allowing multiple shared KV heads. Read the original note on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Noam Shazeer"
+    ],
+    "url": "https://arxiv.org/abs/1911.02150",
+    "published_at": "2019-11-05",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "attention-mechanisms"
+  ],
+  "tags": [
+    "inference",
+    "efficiency",
+    "attention",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2019-11-05",
+  "related": [
+    {
+      "id": "card_a114e8",
+      "slug": "grouped-query-attention",
+      "type": "paper",
+      "title": "Grouped-Query Attention (GQA)",
+      "hook": "Split the difference between multi-head and multi-query attention: share KV heads across groups of query heads and get most of the memory savings with little quality loss.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2023-05-22"
+    },
+    {
+      "id": "card_ef8b5f",
+      "slug": "paged-attention-vllm",
+      "type": "paper",
+      "title": "PagedAttention / vLLM: Efficient LLM Serving",
+      "hook": "LLM serving wastes huge amounts of GPU memory on the attention cache. PagedAttention borrows an OS trick — paging — to recover it and serve many more requests at once.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-09-12"
+    },
+    {
+      "id": "card_688904",
+      "slug": "kv-cache-and-batching",
+      "type": "concept",
+      "title": "The KV Cache \u0026 Continuous Batching",
+      "hook": "Generating one token reuses every prior key and value - that growing cache is why LLM inference is memory-bound, and continuous batching is how servers fight back.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-11-09"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_eb40d3",
+      "slug": "multi-head-attention",
+      "type": "resource",
+      "title": "The Annotated Transformer",
+      "hook": "Want to truly get multi-head attention? Read the Transformer paper line by line — next to runnable PyTorch that implements every equation.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2018-04-03"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_5e9c4b#0",
+      "format": "flip",
+      "prompt": "What does multi-query attention change versus standard multi-head attention?",
+      "back_html": "\u003cp\u003eIt keeps all H query heads but collapses key and value projections to a single shared KV head, cutting the KV cache by a factor of H.\u003c/p\u003e"
+    },
+    {
+      "id": "card_5e9c4b#1",
+      "format": "quiz",
+      "prompt": "Why does shrinking the KV cache speed up decoding?",
+      "choices": [
+        {
+          "text": "Decoding is memory-bandwidth-bound, so loading a smaller cache is faster",
+          "correct": true
+        },
+        {
+          "text": "It reduces the compute per attention head",
+          "correct": false
+        },
+        {
+          "text": "It removes the need to attend to prior tokens",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAutoregressive decoding must load the entire KV cache each step; with one KV head instead of H, that memory read shrinks by a factor of H. Compute per head is unchanged.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "id": "card_439589",
+  "slug": "skill-self-play",
+  "type": "paper",
+  "title": "Skill Self-Play: Pushing the Frontier of LLM Capability with Co-Evolving Skills",
+  "hook": "Self-evolving models face a dilemma: verifiable environments are narrow, open-ended task generation is unreliable. This uses agent skills as the middle ground.",
+  "key_points": [
+    "Names the core tension in self-evolution: environment-bound training verifies well but stays narrow; open-ended generation is broad but unverifiable.",
+    "Agent skills reconcile it — each skill gives deep verifiable execution, routing across skills keeps tasks varied.",
+    "Three co-evolving parts: a proposer writing tasks, a solver attempting them, a controller managing the skill library.",
+    "The proposer conditions on dynamically sampled skills, so difficulty and variety track the solver's frontier.",
+    "The controller collects execution feedback to update and expand the skill library over time.",
+    "Authors report gains on tool-use and reasoning benchmarks, including turnarounds for initially misaligned models."
+  ],
+  "content_html": "\u003cp\u003eLLM training keeps drifting away from hand-written tasks toward models that generate their own. The catch, as Huang and colleagues frame it, is a dilemma: methods bound to a real environment get precise, checkable feedback but only learn whatever that environment covers, while open-ended self-generation invents endless tasks nobody can reliably grade — and bad rewards quietly poison the loop. Their proposal is that agent skills sit exactly in between.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eSkill Self-Play (Skill-SP) runs three components in one reinforcement learning loop. A \u003cstrong\u003eproposer\u003c/strong\u003e generates challenging tasks, conditioned on skills sampled dynamically from a library. A \u003cstrong\u003esolver\u003c/strong\u003e attempts them, exploring candidate solutions to push its own capability boundary. A \u003cstrong\u003eskill controller\u003c/strong\u003e watches execution feedback and uses it to update and expand the library. Because every task is anchored to a concrete skill, it can actually be executed and verified; because the controller keeps sampling and growing the skill set, the task distribution stays open-ended instead of collapsing into a narrow domain. The three co-evolve — as the solver improves, the proposer has to work harder.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe verification problem is the bottleneck in self-improving training: a model that grades its own homework tends to reward what it already does. Anchoring generated tasks to skills is a clean structural answer rather than a bigger reward model. The authors report that Skill-SP consistently raised the ceiling on tool-use and reasoning benchmarks for already-competent backbones, and produced what they describe as striking turnarounds for initially misaligned models. Code is available from the authors.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Siyuan Huang",
+      "Pengyu Cheng",
+      "Haotian Liu",
+      "Tao Chen",
+      "Yihao Liu",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.22529",
+    "published_at": "2026-07-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "synthetic-data",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "agent",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-27",
+  "date": "2026-07-24",
+  "related": [
+    {
+      "id": "card_e51b4a",
+      "slug": "self-instruct",
+      "type": "paper",
+      "title": "Self-Instruct: Aligning LMs with Self-Generated Instructions",
+      "hook": "Instead of paying humans to write instruction data, have the model write its own — bootstrap instructions, inputs, and outputs from its own generations, filter, and fine-tune.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-20"
+    },
+    {
+      "id": "card_c54cf2",
+      "slug": "star",
+      "type": "paper",
+      "title": "STaR: Bootstrapping Reasoning With Reasoning",
+      "hook": "Let the model write its own step-by-step rationales, keep only the ones that reach the right answer, fine-tune on those, and repeat — reasoning data that bootstraps itself.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2022-03-28"
+    },
+    {
+      "id": "card_b84fb1",
+      "slug": "anchored-self-play-code-repair",
+      "type": "paper",
+      "title": "Anchored Self-Play for Code Repair",
+      "hook": "Let a model train itself by writing bugs and fixing them, and you get a free difficulty curriculum — until it invents bugs no real codebase would produce. Anchored Self-Play keeps it honest.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-03"
+    },
+    {
+      "id": "card_8aab1f",
+      "slug": "resource2skill",
+      "type": "paper",
+      "title": "RESOURCE2SKILL: Distilling Executable Agent Skills from Human-Created Multimodal Resources",
+      "hook": "Most agent skill libraries are hand-written text. This framework mines skills straight out of the tutorial videos, repos, and articles humans already made for each other.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-16"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_439589#0",
+      "format": "quiz",
+      "prompt": "What dilemma does Skill Self-Play set out to resolve?",
+      "choices": [
+        {
+          "text": "Environment-bound methods verify reliably but stay narrow; open-ended generation is diverse but unverifiable",
+          "correct": true
+        },
+        {
+          "text": "Larger models reason better but cost more to serve",
+          "correct": false
+        },
+        {
+          "text": "Human annotation is accurate but too slow to collect at scale",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePrecise feedback confines learning to narrow domains, while open-ended self-generation broadens the task space but lets misleading rewards pollute training. Skills are proposed as the middle ground.\u003c/p\u003e"
+    },
+    {
+      "id": "card_439589#1",
+      "format": "flip",
+      "prompt": "Why are agent skills a useful unit for self-play training?",
+      "back_html": "\u003cp\u003eEach skill ensures deep, verifiable execution within a specific scenario, while dynamically routing across skills preserves open-ended task variety — getting both reliability and breadth.\u003c/p\u003e"
+    },
+    {
+      "id": "card_439589#2",
+      "format": "flip",
+      "prompt": "What are the three co-evolving components of Skill-SP?",
+      "back_html": "\u003cp\u003eA proposer that generates challenging tasks conditioned on sampled skills, a solver that explores candidate solutions, and a dynamic skill controller that collects execution feedback to update and expand the skill library.\u003c/p\u003e"
+    },
+    {
+      "id": "card_439589#3",
+      "format": "quiz",
+      "prompt": "Why does the proposer condition on dynamically sampled skills rather than generating tasks freely?",
+      "choices": [
+        {
+          "text": "Grounding tasks in a skill keeps them verifiable while sampling keeps them varied",
+          "correct": true
+        },
+        {
+          "text": "It lets the proposer reuse the solver's weights and save compute",
+          "correct": false
+        },
+        {
+          "text": "Free generation would exceed the model's context window",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA task tied to a concrete skill can be executed and checked, so the reward signal stays trustworthy; sampling across the library is what keeps the task distribution open-ended.\u003c/p\u003e"
+    }
+  ]
+}

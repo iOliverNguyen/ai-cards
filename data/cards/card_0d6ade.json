@@ -1,0 +1,102 @@
+{
+  "id": "card_0d6ade",
+  "slug": "proper-scoring-rules-llm-forecasting",
+  "type": "paper",
+  "title": "Proper Scoring Rules Are Not Interchangeable as Training Objectives",
+  "hook": "Five scoring rules that all reward honest probabilities in theory produced five differently-behaved forecasters in practice — same accuracy, different shape of error.",
+  "key_points": [
+    "Compares five proper scoring rules as reward functions for training LLM forecasters on binary questions about resolved real-world events.",
+    "All five share the same theoretical incentive to report probabilities truthfully, yet the resulting models differ in calibration and probability use.",
+    "The Brier-trained model had the lowest observed Brier score and highest AUC-ROC; the log-trained model the best log score and lowest calibration error.",
+    "Differences in aggregate accuracy and discrimination were smaller than differences in the bias/information/noise decomposition.",
+    "Takeaway: reward choice shapes not only how well a model forecasts but how its errors are structured.",
+    "Caveat the authors flag: each condition used a single seed, so some differences may be training stochasticity."
+  ],
+  "content_html": "\u003cp\u003eA proper scoring rule rewards a forecaster for reporting their honest probability. Several rules share that property, so it is tempting to treat them as interchangeable when picking a training objective. Turtel and colleagues — with Philip Tetlock among the authors — trained LLM forecasters on five proper scoring rules over binary questions about resolved real-world events, and found the resulting models are not the same model.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat differed\u003c/h2\u003e\n\u003cp\u003eAggregate accuracy and discrimination moved relatively little. Calibration, probability use, and the estimated split of error into bias, information, and noise moved a lot. The Brier-trained model had the lowest observed Brier score and highest AUC-ROC; the log-trained model had the highest observed log score and the lowest calibration error. Models with similar headline performance got there through different error structures.\u003c/p\u003e\n\u003ch2\u003eThe caveat\u003c/h2\u003e\n\u003cp\u003eEach condition used a single seed, which the authors note means some differences may reflect training stochasticity. Taken with that caution, the finding is a useful reminder that a reward function's theoretical incentive does not determine the behavior it produces — you get the errors your objective shapes. Full comparison in the paper.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Benjamin Turtel",
+      "Paul Wilczewski",
+      "Kris Skotheim",
+      "Ville A. Satopää",
+      "Philip E. Tetlock"
+    ],
+    "url": "https://arxiv.org/abs/2608.28482",
+    "published_at": "2026-08-28",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evaluation",
+    "rlhf",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "alignment",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-28",
+  "related": [
+    {
+      "id": "card_1052aa",
+      "slug": "hindcast-prediction-market-backtesting",
+      "type": "paper",
+      "title": "Hindcast: Replaying Prediction Markets to Evaluate LLM Forecasters",
+      "hook": "Backtesting an LLM forecaster on past events mostly measures its memory, not its foresight — because it can retrieve after-the-fact reports or was simply trained on data closer to the event.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-15"
+    },
+    {
+      "id": "card_a1a9e5",
+      "slug": "trust-truth-separability-llm-judge",
+      "type": "paper",
+      "title": "LLM Judges Can't Separate Trust from Truth",
+      "hook": "Ask a judge model for a trust score and a correctness verdict and you get two numbers — but they're not two pieces of evidence. Change the source label and both move.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-21"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_0d6ade#0",
+      "format": "flip",
+      "prompt": "What does it mean for a scoring rule to be 'proper'?",
+      "back_html": "\u003cp\u003eIt gives the forecaster a theoretical incentive to report their true probability — any other report scores worse in expectation.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0d6ade#1",
+      "format": "quiz",
+      "prompt": "What surprised the authors about training on five different proper scoring rules?",
+      "choices": [
+        {
+          "text": "Despite sharing the same truthfulness incentive, the trained models differed in calibration and error structure",
+          "correct": true
+        },
+        {
+          "text": "Only one of the five rules produced a model that beat random guessing",
+          "correct": false
+        },
+        {
+          "text": "Aggregate accuracy varied far more than calibration did",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eProperness is a property of the incentive, not a guarantee that two rules shape a trained model the same way.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0d6ade#2",
+      "format": "flip",
+      "prompt": "Which caveat do the authors attach to their comparisons?",
+      "back_html": "\u003cp\u003eEach training condition used a single seed, so some of the observed differences may reflect training stochasticity rather than the scoring rule.\u003c/p\u003e"
+    }
+  ]
+}

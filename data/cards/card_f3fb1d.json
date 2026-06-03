@@ -1,0 +1,103 @@
+{
+  "id": "card_f3fb1d",
+  "slug": "inside-the-unfair-judge-bias-subspace",
+  "type": "paper",
+  "title": "Inside the Unfair Judge: A Mechanistic Account of LLM-as-Judge Bias",
+  "hook": "LLM judge bias isn't just noisy scoring — it has a geometric signature in hidden states you can find, steer, and use to predict failures on benchmarks you've never tested.",
+  "key_points": [
+    "Across 7 judges, 7 bias types, and 9 benchmarks, biased inputs sit displaced along a low-dim, bias-type-specific subspace of hidden states.",
+    "This displacement sharpens with depth and is recovered consistently by three different estimation methods.",
+    "Steering hidden states along the subspace causally drives scoring both ways: inducing bias on clean inputs, or removing it from biased ones.",
+    "Random directions of matched size barely move the score, confirming the effect is specific to this subspace, not generic noise.",
+    "A linear projection onto the bias direction predicts judge failures on three unseen benchmarks, beating text-based bias detectors."
+  ],
+  "content_html": "\u003cp\u003eMost work on LLM-as-judge bias treats it as an input-output problem: perturb the prompt, watch the score move, patch it with better prompting. This paper looks inside the judge instead, and finds the bias has a consistent shape in its hidden states.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eAcross seven judge models, seven bias types, and nine benchmarks, the authors find biased judging inputs occupy a displaced, low-dimensional subspace relative to the tight activation manifold that clean inputs sit on — a subspace specific to each bias type that sharpens in deeper layers, recovered consistently by three different estimation methods. Steering hidden states along this direction is causal: pushing forward reproduces biased scoring on clean inputs, pushing backward restores baseline scoring on biased ones, while random directions of the same size barely move the score at all. Practically, a simple linear projection onto the same bias direction anticipates judge failures on three benchmarks the projection never saw, beating text-based bias-detection baselines. Zixiang Xu and colleagues, arXiv 2026; project page at xzx34.github.io/unfair-judge.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zixiang Xu",
+      "Sixian Li",
+      "Huaxing Liu",
+      "Xiang Wang",
+      "Shuai Li",
+      "Zirui Song",
+      "Xiuying Chen"
+    ],
+    "url": "https://arxiv.org/abs/2607.11871",
+    "published_at": "2026-07-13",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "safety",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-16",
+  "date": "2026-07-13",
+  "related": [
+    {
+      "id": "card_686595",
+      "slug": "vlm-source-credibility-bias",
+      "type": "paper",
+      "title": "Brand as Memory: VLMs Trust the Masthead, Not the Evidence",
+      "hook": "Show a VLM the same article under a trusted outlet's logo versus an unknown one, and its verdict swings by 1.8x — a bias localized to three specific layers and steerable away.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-03"
+    },
+    {
+      "id": "card_2e794c",
+      "slug": "can-llms-judge-better-than-generate",
+      "type": "paper",
+      "title": "Can LLMs Judge Better Than They Generate?",
+      "hook": "LLM-as-a-Judge assumes evaluation is easier than generation — a controlled test finds the opposite on 3 of 4 benchmarks, and attention analysis shows why.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_f3fb1d#0",
+      "format": "flip",
+      "prompt": "Where does LLM-as-judge bias live, according to this paper's 'geometry' finding?",
+      "back_html": "\u003cp\u003eIn a low-dimensional, bias-type-specific subspace of the judge's hidden states — biased inputs are displaced along it, and the displacement sharpens with depth.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f3fb1d#1",
+      "format": "quiz",
+      "prompt": "How do the authors show the bias subspace is causal, not just correlational?",
+      "choices": [
+        {
+          "text": "Steering hidden states along it forces scoring in either direction, while random directions barely move scores",
+          "correct": true
+        },
+        {
+          "text": "They retrain the judge from scratch without any biased examples",
+          "correct": false
+        },
+        {
+          "text": "They ask the judge to explain its own reasoning in plain text",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eForward steering reproduces biased scoring on clean inputs; reverse steering restores baseline scoring on biased inputs — matched-norm random directions shift scores far less.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f3fb1d#2",
+      "format": "flip",
+      "prompt": "What can the bias-direction projection do that text-based bias detectors can't match?",
+      "back_html": "\u003cp\u003ePredict judge failures on three benchmarks never used to build it, substantially outperforming text-based (input-output) bias-detection alternatives.\u003c/p\u003e"
+    }
+  ]
+}

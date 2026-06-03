@@ -1,0 +1,100 @@
+{
+  "id": "card_df814b",
+  "slug": "inflect-v2-tiny-tts",
+  "type": "news",
+  "title": "A Complete Text-to-Speech Stack in 16 MB",
+  "hook": "Text in, 24 kHz speech out — no external vocoder, no hosted API. Inflect v2's smaller model is 3.96M parameters total, counting every stage of the pipeline.",
+  "key_points": [
+    "Two open models: Inflect-Nano-v2 at 3.96M parameters (15.97 MB FP32) and Inflect-Micro-v2 at 9.36M (37.53 MB FP32).",
+    "Those are total inference parameter counts, not the usual acoustic-model-only figure.",
+    "Text processing, timing prediction, speech generation, and the waveform decoder are all included in the count.",
+    "Output is 24 kHz audio with no external vocoder and no hosted API in the loop.",
+    "The author's stated goal was finding where a tiny TTS model stops being a size experiment and becomes genuinely useful."
+  ],
+  "content_html": "\u003cp\u003eSmall text-to-speech models usually come with an asterisk: the impressive parameter count covers the acoustic model, and a separate vocoder plus a text frontend quietly triple the real footprint. \u003cstrong\u003eInflect v2\u003c/strong\u003e is a release built around removing that asterisk.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's in the box\u003c/h2\u003e\n\u003cp\u003eTwo models: \u003cstrong\u003eInflect-Nano-v2\u003c/strong\u003e at 3.96M parameters (15.97 MB in FP32) and \u003cstrong\u003eInflect-Micro-v2\u003c/strong\u003e at 9.36M (37.53 MB). The author is explicit that these are \u003cem\u003etotal inference\u003c/em\u003e parameter counts — text processing, timing prediction, speech generation, and the waveform decoder are all inside the number. Text goes in, 24 kHz speech comes out, with no external vocoder and nothing hosted in the loop.\u003c/p\u003e\n\u003cp\u003eThe framing is the appealing part: the author describes spending a month hunting for the point where an extremely small TTS model stops feeling like a size experiment and starts feeling genuinely useful. At sixteen megabytes, speech synthesis fits comfortably on a phone, a microcontroller-class device, or inside an app bundle — a very different deployment story from streaming audio back from a server. Released by the author on r/LocalLLaMA, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit r/LocalLLaMA",
+    "authors": [
+      "/u/b111ue"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1v5ve6v/i_released_inflect_v2_two_ultratiny_complete_tts",
+    "published_at": "2026-07-25",
+    "license": "Reddit post (link-out)"
+  },
+  "topic_ids": [
+    "video-audio",
+    "releases"
+  ],
+  "tags": [
+    "speech",
+    "efficiency",
+    "open-source",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-07-27",
+  "date": "2026-07-25",
+  "related": [
+    {
+      "id": "card_e4a022",
+      "slug": "hf-cerebras-gemma4-voice-ai",
+      "type": "news",
+      "title": "Hugging Face and Cerebras Bring Gemma 4 to Real-Time Voice AI",
+      "hook": "Multi-second delays are why voice assistants feel like phone menus. Running Gemma 4 on Cerebras hardware in a modular speech pipeline already powers 9,000+ Reachy Mini robots in production.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-07-01"
+    },
+    {
+      "id": "card_8b2939",
+      "slug": "musicgen",
+      "type": "paper",
+      "title": "MusicGen: Simple and Controllable Music Generation",
+      "hook": "Generate music from a text description or a melody reference using a single autoregressive transformer over discrete audio tokens - no cascade of specialized models required.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-06-08"
+    },
+    {
+      "id": "card_8a4426",
+      "slug": "whisper",
+      "type": "paper",
+      "title": "Whisper: Robust Speech Recognition at Scale",
+      "hook": "Train a plain encoder-decoder transformer on 680,000 hours of weakly-labeled multilingual audio and you get near-human transcription robustness without task-specific fine-tuning.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_df814b#0",
+      "format": "flip",
+      "prompt": "Why does the author stress that 3.96M is a *total* inference parameter count?",
+      "back_html": "\u003cp\u003eTTS papers often report only the acoustic model, hiding a separate vocoder and text frontend. Here text processing, timing prediction, generation, and the waveform decoder are all inside the number.\u003c/p\u003e"
+    },
+    {
+      "id": "card_df814b#1",
+      "format": "quiz",
+      "prompt": "What does 'no external vocoder' mean for deploying Inflect v2?",
+      "choices": [
+        {
+          "text": "The model outputs 24 kHz waveform audio directly, so there is no second network to ship and run alongside it",
+          "correct": true
+        },
+        {
+          "text": "It produces text transcripts that another service turns into audio",
+          "correct": false
+        },
+        {
+          "text": "It requires a hosted API call for the final audio rendering step",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eText goes in and 24 kHz speech comes out of one self-contained pipeline — which is why the total footprint stays near 16 MB.\u003c/p\u003e"
+    }
+  ]
+}

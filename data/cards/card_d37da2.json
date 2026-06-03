@@ -1,0 +1,110 @@
+{
+  "id": "card_d37da2",
+  "slug": "hotfixr-targeted-multilingual-data",
+  "type": "paper",
+  "title": "HOTFIXR: Targeted Synthetic Data for Multilingual Weaknesses",
+  "hook": "A model can answer the same question well in English and badly in Turkish. Rather than routing everything through English, probe the student's weak spots and synthesize data for exactly those.",
+  "key_points": [
+    "Language-specific competency: the same semantic query gets different, sometimes wrong, answers depending on the prompt's language.",
+    "Prior fixes both have costs — routing through English limits expressivity; language-balanced training equalizes but lowers overall performance.",
+    "HOTFIXR takes a data-centric route: probe the student model for multilingual weaknesses, then generate synthetic data aimed at them.",
+    "Reported gains: +6.2% average on in-distribution tasks across three tasks.",
+    "It also reduces fine-tuning-induced catastrophic forgetting by 3.7% on out-of-distribution tasks and 7.1% on four unseen languages.",
+    "The transferable idea: target the gap you measured, instead of uniformly rebalancing the whole data mix."
+  ],
+  "content_html": "\u003cp\u003eAsk a model the same question in two languages and you can get two different answers, one of them wrong. Agarwal and colleagues call this language-specific competency, and note that prior work attributes it to misaligned internal semantic representations across languages. The two standard remedies each trade something away: route every query through English and you gain performance but lose expressivity in other languages; train on language-balanced data and you equalize across languages while pulling overall performance down.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe approach\u003c/h2\u003e\n\u003cp\u003eHOTFIXR — Hardness Optimized Training data For Improving X-Lingual Reasoning — is a data-generation framework instead of a training-recipe tweak. Models probe a student model to learn where its multilingual competence actually breaks, then generate synthetic training data aimed at those specific weaknesses. The authors evaluate on three in-distribution tasks, three out-of-distribution tasks, and four out-of-distribution languages, reporting a 6.2% average in-distribution improvement, plus reductions in fine-tuning-induced catastrophic forgetting of 3.7% on OOD tasks and 7.1% on OOD languages. Code is promised on acceptance.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe multilingual result is useful on its own, but the generalizable move is the diagnostic loop: measure the student's failures, synthesize against them, and avoid paying for data the model didn't need. That's the same shape as targeted environment or curriculum generation elsewhere in the self-improvement literature.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ishika Agarwal",
+      "Arkajyoti Charaborty",
+      "Tanner Sorensen",
+      "Neha Gupta",
+      "Andreas Stolcke"
+    ],
+    "url": "https://arxiv.org/abs/2608.15964",
+    "published_at": "2026-08-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "synthetic-data",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "nlp",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-24",
+  "date": "2026-08-16",
+  "related": [
+    {
+      "id": "card_e51b4a",
+      "slug": "self-instruct",
+      "type": "paper",
+      "title": "Self-Instruct: Aligning LMs with Self-Generated Instructions",
+      "hook": "Instead of paying humans to write instruction data, have the model write its own — bootstrap instructions, inputs, and outputs from its own generations, filter, and fine-tune.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-20"
+    },
+    {
+      "id": "card_c54cf2",
+      "slug": "star",
+      "type": "paper",
+      "title": "STaR: Bootstrapping Reasoning With Reasoning",
+      "hook": "Let the model write its own step-by-step rationales, keep only the ones that reach the right answer, fine-tune on those, and repeat — reasoning data that bootstraps itself.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2022-03-28"
+    },
+    {
+      "id": "card_c9d7a9",
+      "slug": "textbooks-are-all-you-need",
+      "type": "paper",
+      "title": "Textbooks Are All You Need (phi-1)",
+      "hook": "Train a 1.3B code model on a few billion tokens of 'textbook quality' data instead of raw web scale, and it scores 50.6% pass@1 on HumanEval — data quality standing in for size.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-06-20"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_d37da2#0",
+      "format": "flip",
+      "prompt": "What is language-specific competency (LSC)?",
+      "back_html": "\u003cp\u003eA model performing better or worse purely because of the language of the prompt — the same semantic query yields different, potentially incorrect, answers across languages.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d37da2#1",
+      "format": "quiz",
+      "prompt": "What is the drawback of fixing LSC with language-balanced training data?",
+      "choices": [
+        {
+          "text": "It equalizes performance across languages but reduces overall performance",
+          "correct": true
+        },
+        {
+          "text": "It confines the model's expressivity to English",
+          "correct": false
+        },
+        {
+          "text": "It requires a separate model per language",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBalancing levels the playing field at the cost of average quality; routing through English is the approach that sacrifices expressivity instead.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d37da2#2",
+      "format": "flip",
+      "prompt": "What does 'hardness optimized' mean in HOTFIXR's approach?",
+      "back_html": "\u003cp\u003eData is generated against weaknesses actually probed in the student model, so the synthetic examples concentrate where that model is failing rather than spreading uniformly.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "id": "card_acfd05",
+  "slug": "vibevoice-asr-streaming",
+  "type": "paper",
+  "title": "VibeVoice-ASR-Streaming: Who Said What, While They're Still Saying It",
+  "hook": "Unified speech-recognition-plus-diarization models beat running the two separately — but only offline. This one emits speaker-attributed transcripts as the audio arrives.",
+  "key_points": [
+    "Traditional systems treat ASR and speaker diarization as separate stages; unified end-to-end models merged them but stayed offline.",
+    "Offline-only is a dealbreaker for real-time voice assistants and agents, which need low latency.",
+    "The approach interleaves fixed-size audio chunks, a small amount of lookahead audio, and previously emitted text.",
+    "That produces 'who said what' incrementally, with no separate diarization stage.",
+    "The 7B model reports the lowest average WER/CER across five evaluation sets and best-or-tied-best speaker attribution on 12 of 13 settings.",
+    "1.5B and 7B weights plus inference code are released."
+  ],
+  "content_html": "\u003cp\u003eGetting a transcript is one problem; knowing who spoke each line is another. Systems traditionally solved them separately — a recognizer plus a diarizer — until end-to-end models like VibeVoice-ASR folded both into one network. The catch was that those unified models ran offline, over complete recordings, which rules out real-time voice assistants and agents.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eTu and colleagues at Microsoft Research present what they describe as one of the first LLM-based end-to-end approaches to \u003cem\u003estreaming\u003c/em\u003e speaker-attributed ASR. The input is interleaved: fixed-size audio chunks, a small amount of lookahead audio, and the text already produced. That structure lets the model emit \u0026quot;who said what\u0026quot; as speech arrives, still with no separate diarization stage.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe authors report their 7B model achieving the lowest average WER/CER across five evaluation sets, and the best or tied-best speaker attribution on 12 of 13 evaluation settings — so the streaming constraint doesn't obviously cost accuracy here. They release 1.5B and 7B weights together with inference code, which makes this directly usable rather than just a result to read about.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yujie Tu",
+      "Zhiliang Peng",
+      "Jianwei Yu",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2609.02812",
+    "published_at": "2026-09-02",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "video-audio",
+    "releases"
+  ],
+  "tags": [
+    "paper",
+    "speech",
+    "inference",
+    "open-source"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-09-03",
+  "date": "2026-09-02",
+  "related": [
+    {
+      "id": "card_8a4426",
+      "slug": "whisper",
+      "type": "paper",
+      "title": "Whisper: Robust Speech Recognition at Scale",
+      "hook": "Train a plain encoder-decoder transformer on 680,000 hours of weakly-labeled multilingual audio and you get near-human transcription robustness without task-specific fine-tuning.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-06"
+    },
+    {
+      "id": "card_737331",
+      "slug": "gemini-3-5-transcribe",
+      "type": "news",
+      "title": "Gemini 3.5 Transcribe",
+      "hook": "Google DeepMind ships a speech-to-text model built on Gemini — pitching transcription that understands what it is hearing, not just what sounds were made.",
+      "importance": 2,
+      "difficulty": "intro",
+      "date": "2026-08-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_acfd05#0",
+      "format": "flip",
+      "prompt": "What does 'speaker-attributed ASR' add over plain speech recognition?",
+      "back_html": "\u003cp\u003eIt answers not just what was said but who said it — traditionally done by a separate diarization stage bolted onto the transcriber.\u003c/p\u003e"
+    },
+    {
+      "id": "card_acfd05#1",
+      "format": "quiz",
+      "prompt": "How does VibeVoice-ASR-Streaming turn an offline unified model into a streaming one?",
+      "choices": [
+        {
+          "text": "It interleaves fixed-size audio chunks, a little lookahead audio, and previously emitted text",
+          "correct": true
+        },
+        {
+          "text": "It runs the offline model repeatedly on a growing prefix of the audio",
+          "correct": false
+        },
+        {
+          "text": "It adds a separate lightweight diarization model in front of the transcriber",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eChunked audio plus a small lookahead window plus prior text lets the model emit transcript and speaker labels incrementally, still without a separate diarization stage.\u003c/p\u003e"
+    }
+  ]
+}

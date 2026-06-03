@@ -1,0 +1,103 @@
+{
+  "id": "card_79d988",
+  "slug": "libribrain100-meg-speech-decoding",
+  "type": "dataset",
+  "title": "LibriBrain100: 100 Hours of MEG Data for Neural Speech Decoding",
+  "hook": "Most brain-decoding datasets go wide across many subjects. This one goes deep — ~80 hours inside a single brain — to test whether depth beats breadth.",
+  "key_points": [
+    "Over 100 hours of MEG recorded while subjects listened to naturalistic continuous speech.",
+    "~80 hours come from one subject — the authors report 8x more within-subject data than the next comparable set.",
+    "Deep single-subject data plus an existing decoder set a new state of the art on a word-classification benchmark.",
+    "Adds ~40 minutes each from 32 more subjects to test the practical case of little data per user.",
+    "Finetuning a pre-trained model on that broad data substantially compensates for thin per-subject recordings.",
+    "Ships fixed train/val/test splits, an open Python loader, and a public-leaderboard competition."
+  ],
+  "content_html": "\u003cp\u003eNon-invasive brain-to-text decoding — reading intended or heard speech from sensors outside the skull — has been held back less by models than by data. MEG recordings are expensive, and most datasets sample a little from many people. LibriBrain100, from Oiwi Parker Jones's group and collaborators (arXiv, August 2026), inverts that: over 100 hours of MEG collected while subjects listened to naturalistic continuous speech, with roughly 80 of those hours from a single subject — by the authors' count, 8x more within-subject data than the next comparable dataset.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe payoff they report is on a word-classification benchmark, an intermediate step toward full brain-to-text: feeding an existing decoding model this much within-subject data yields state-of-the-art performance, which they read as validating both recording quality and the value of depth. Because nobody will sit through 80 hours of scanning to use a real device, they also recorded about 40 minutes from each of 32 additional subjects and show that supervised finetuning of a pre-trained model substantially closes the gap when per-subject data is scarce — the transfer-learning story that would make consumer BCIs plausible.\u003c/p\u003e\n\u003cp\u003eThe release includes standard train/validation/test splits, an open-source Python library for downloading and loading the data into common frameworks, and an accompanying machine-learning competition with a public leaderboard. See the paper for details and the benchmark definition.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Francesco Mantegna",
+      "Dulhan Jayalath",
+      "Gereon Elvers",
+      "Gilad Landau",
+      "Oiwi Parker Jones",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.25204",
+    "published_at": "2026-08-25",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "data",
+    "papers-this-week",
+    "ai-for-science"
+  ],
+  "tags": [
+    "dataset",
+    "benchmark",
+    "speech",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-25",
+  "related": [
+    {
+      "id": "card_7706ce",
+      "slug": "imagenet-dataset",
+      "type": "dataset",
+      "title": "ImageNet: The Dataset That Sparked Deep Learning",
+      "hook": "A hand-labeled hoard of millions of images turned into the contest that, in 2012, lit the fuse on the deep learning era.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2009-06-20"
+    },
+    {
+      "id": "card_7a5e17",
+      "slug": "the-pile",
+      "type": "dataset",
+      "title": "The Pile: 800GB of Diverse Text",
+      "hook": "Web text alone leaves gaps. The Pile stitches together 22 curated sources — academic and professional — so a language model picks up knowledge plain web crawls miss.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-12-31"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_79d988#0",
+      "format": "flip",
+      "prompt": "What does LibriBrain100's \"depth-first\" design mean?",
+      "back_html": "\u003cp\u003eInstead of spreading recording time thinly across many people, it concentrates ~80 of its 100+ hours in a single subject — testing what a lot of data from one brain buys you.\u003c/p\u003e"
+    },
+    {
+      "id": "card_79d988#1",
+      "format": "quiz",
+      "prompt": "Why did the authors also collect ~40 minutes each from 32 extra subjects?",
+      "choices": [
+        {
+          "text": "Because 80 hours per user is impractical in the real world, so they test whether broad multi-subject pretraining can substitute",
+          "correct": true
+        },
+        {
+          "text": "To act as a held-out test set for the single-subject model",
+          "correct": false
+        },
+        {
+          "text": "To measure how MEG hardware drifts between sessions",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eReal deployments get minutes, not days, per person. The broad cohort lets them show that finetuning a pre-trained model largely compensates for limited per-subject data.\u003c/p\u003e"
+    },
+    {
+      "id": "card_79d988#2",
+      "format": "flip",
+      "prompt": "Why do standard splits and an open loader matter as much as the recordings?",
+      "back_html": "\u003cp\u003eThey make results comparable. Neural decoding papers often use bespoke preprocessing and splits, so fixed splits plus a public leaderboard turn scattered claims into a shared benchmark.\u003c/p\u003e"
+    }
+  ]
+}

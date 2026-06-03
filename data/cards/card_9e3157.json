@@ -1,0 +1,114 @@
+{
+  "id": "card_9e3157",
+  "slug": "effective-learning-rate-collapse",
+  "type": "paper",
+  "title": "Effective Learning Rate Governs Loss Dynamics",
+  "hook": "Two pretraining runs with very different learning rates and weight norms trace the same loss curve — if the ratio between them matches. That ratio is the coordinate that matters.",
+  "key_points": [
+    "Effective learning rate (ELR) is the ratio of learning rate to parameter norm.",
+    "Match ELR across runs and their loss trajectories collapse onto one curve despite very different LRs and norms.",
+    "The collapse holds across optimizers, architectures, datasets, and model scales, with errors typically a few x 10^-3 — below measured seed-to-seed variation.",
+    "Normalization design and how fast LR and norm vary relative to each other set how precisely the collapse holds.",
+    "Weight decay and norm-control methods shape loss dynamics mainly through the ELR schedule they induce, not directly.",
+    "Swapping LR for ELR lets a fitted functional scaling law transfer across norm-control methods, and explains delayed acceleration."
+  ],
+  "content_html": "\u003cp\u003eLearning-rate schedules, weight decay, and the various norm-control tricks used in large pretraining runs are usually tuned as separate knobs. Liu and colleagues report that they mostly are not separate: what governs the loss trajectory is the \u003cem\u003eeffective learning rate\u003c/em\u003e, the ratio of learning rate to parameter norm.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe collapse\u003c/h2\u003e\n\u003cp\u003eTheir central empirical result — which they call ELR collapse — is that runs with substantially different learning rates and parameter norms trace essentially the same loss curve throughout training, provided their ELR matches. Across optimizers, architectures, datasets, and model scales the mean collapse error sits at a few times 10^-3, which they note is below the seed-to-seed variation measured in a representative configuration. Ablations identify the normalization design and the timescale over which LR and norm vary as what determines how tightly the collapse holds.\u003c/p\u003e\n\u003ch2\u003eWhy it is useful\u003c/h2\u003e\n\u003cp\u003eControlled interventions show weight decay and norm-control methods acting on loss dynamics through the ELR schedules they induce, rather than directly. That has a practical payoff: replacing LR with ELR lets a fitted functional scaling law transfer across norm-control methods, and the same coordinate explains \u003cem\u003edelayed acceleration\u003c/em\u003e, the recurring effect where norm control shifts when a run speeds up. ELR, in other words, is proposed as the common axis linking scheduling, norm control, and the shape of the loss curve.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zihan Liu",
+      "Ruiheng Zheng",
+      "Shaobo Zhang",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.24814",
+    "published_at": "2026-08-25",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining",
+    "optimization",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "foundational",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-27",
+  "date": "2026-08-25",
+  "related": [
+    {
+      "id": "card_85f66a",
+      "slug": "scaling-laws",
+      "type": "paper",
+      "title": "Scaling Laws for Neural Language Models",
+      "hook": "Loss doesn't drop randomly as models grow — it follows a smooth power law in size, data, and compute. That predictability is what made betting on bigger models rational.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2020-01-23"
+    },
+    {
+      "id": "card_46fd66",
+      "slug": "chinchilla-scaling-laws",
+      "type": "paper",
+      "title": "Chinchilla: Compute-Optimal Scaling",
+      "hook": "Most giant models were starved of data. Chinchilla showed that for a fixed compute budget you should grow parameters and tokens together — and a smaller, longer-trained model won.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2022-03-29"
+    },
+    {
+      "id": "card_203675",
+      "slug": "adamw",
+      "type": "paper",
+      "title": "AdamW: Decoupled Weight Decay",
+      "hook": "L2 regularization and weight decay are the same thing for plain SGD - but not for Adam. Decoupling them fixes Adam's generalization and makes the best decay value independent of the learning rate.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-11-14"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_9e3157#0",
+      "format": "flip",
+      "prompt": "What is the effective learning rate (ELR)?",
+      "back_html": "\u003cp\u003eThe ratio of the learning rate to the parameter norm. The paper finds loss dynamics depend on LR and norm mainly through this single quantity.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9e3157#1",
+      "format": "quiz",
+      "prompt": "According to the paper, how do weight decay and norm control shape the loss curve?",
+      "choices": [
+        {
+          "text": "Indirectly, through the ELR schedule they induce",
+          "correct": true
+        },
+        {
+          "text": "By directly changing the gradient noise scale",
+          "correct": false
+        },
+        {
+          "text": "By altering the data ordering seen during training",
+          "correct": false
+        },
+        {
+          "text": "Only in the final phase of training, after the LR decays",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eControlled interventions showed these mechanisms act on loss dynamics via the ELR schedule, which is why replacing LR with ELR makes scaling laws transfer across them.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9e3157#2",
+      "format": "flip",
+      "prompt": "Why is a 'collapse error of a few x 10^-3' a strong claim?",
+      "back_html": "\u003cp\u003eIt is below the seed-to-seed variation the authors measured in a representative configuration — the ELR-matched runs differ by less than random restarts of the same run do.\u003c/p\u003e"
+    }
+  ]
+}

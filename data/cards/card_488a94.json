@@ -1,0 +1,139 @@
+{
+  "id": "card_488a94",
+  "slug": "long-horizon-terminal-bench",
+  "type": "paper",
+  "title": "Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks",
+  "hook": "46 terminal tasks that take hours, not minutes — and today's best agent still only nails 15% of them, with the average model managing barely 4%.",
+  "key_points": [
+    "46 long-horizon terminal tasks spanning 9 categories — experiment reproduction, software engineering, scientific computing, and more.",
+    "Each task is decomposed into fine-grained graded subtasks, giving dense partial-credit scoring instead of pass/fail-only grading.",
+    "Tasks are genuinely long: typically hundreds of episodes and ~85 minutes of execution, averaging 9.9M tokens per task.",
+    "Best of 15 frontier models tested hits only 15.2% pass@1 at a 0.95 partial-reward threshold, 10.9% at a perfect (1.0) threshold.",
+    "Mean pass rate across all 15 models is just 4.3% (partial) / 1.7% (perfect) — most agents barely dent these tasks."
+  ],
+  "content_html": "\u003cp\u003eMost terminal-agent benchmarks finish in minutes and score only the final outcome. Long-Horizon-Terminal-Bench does neither: its 46 tasks run for hours and are graded on partial progress along the way — and the results show today's best agents still struggle badly with sustained work.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eZongxia Li and colleagues built 46 long-horizon terminal tasks across nine categories — experiment reproduction, software engineering, multimodal analysis, interactive games, and scientific computing among them — each decomposed into fine-grained graded subtasks so evaluation captures how far an agent gets, not just whether it finishes. Tasks demand real endurance: on average, an agent burns 9.9M tokens over roughly 231 episodes and 85.3 minutes per task. Evaluating 15 frontier models, the single best model reaches only 15.2% pass@1 at a 0.95 partial-reward threshold and 10.9% at a perfect 1.0 threshold — while the mean across all 15 models is just 4.3% and 1.7% respectively. The authors also analyze recurring failure modes, arguing there's substantial headroom left before agents can reliably handle long, open-ended terminal work. Zongxia Li and colleagues, arXiv, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zongxia Li",
+      "Zhongzhi Li",
+      "Yucheng Shi",
+      "Ruhan Wang",
+      "Junyao Yang",
+      "Zhichao Liu",
+      "Xiyang Wu",
+      "Anhao Li",
+      "Yue Yu",
+      "Ninghao Liu",
+      "Lichao Sun",
+      "Haotao Mi",
+      "LeoweiLiang"
+    ],
+    "url": "https://arxiv.org/abs/2607.08964",
+    "published_at": "2026-07-09",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "paper",
+    "reasoning"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-16",
+  "date": "2026-07-09",
+  "related": [
+    {
+      "id": "card_48a3f2",
+      "slug": "tua-bench-terminal-agents",
+      "type": "paper",
+      "title": "TUA-Bench: Benchmarking General-Purpose Terminal Agents",
+      "hook": "120 real terminal tasks — from email triage to PhD-level scientific workflows — show even Claude Opus 4.8 tops out around 66%, far from reliable general computer use.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-26"
+    },
+    {
+      "id": "card_f32b73",
+      "slug": "cli-coding-agent-failure-anatomy",
+      "type": "paper",
+      "title": "Failure as a Process: An Anatomy of CLI Coding Agent Trajectories",
+      "hook": "A 3,843-trajectory autopsy of coding agents finds most failures aren't slips — they're wrong beliefs formed in the first few steps, invisible until it's too late to recover.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-10"
+    },
+    {
+      "id": "card_f4c3e0",
+      "slug": "docops-document-operations-benchmark",
+      "type": "paper",
+      "title": "DocOps: Benchmarking Agents That Edit Real Documents",
+      "hook": "Even frontier agents can't reliably edit complex documents: a verifiable benchmark pins the failures on three modes — state-tracking collapse, shallow verification, and destructive metadata edits.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_488a94#0",
+      "format": "flip",
+      "prompt": "Why does Long-Horizon-Terminal-Bench grade tasks differently from prior terminal benchmarks?",
+      "back_html": "\u003cp\u003eIt decomposes each of its 46 tasks into fine-grained graded subtasks, giving dense partial-credit scores instead of only pass/fail on the final outcome.\u003c/p\u003e"
+    },
+    {
+      "id": "card_488a94#1",
+      "format": "quiz",
+      "prompt": "How does the single best of 15 frontier models perform at the strict, perfect-reward (1.0) threshold?",
+      "choices": [
+        {
+          "text": "10.9% pass@1",
+          "correct": true
+        },
+        {
+          "text": "51% pass@1",
+          "correct": false
+        },
+        {
+          "text": "89% pass@1",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEven the strongest tested model reaches only 10.9% pass@1 at the perfect-reward threshold (15.2% at the looser 0.95 partial-reward threshold).\u003c/p\u003e"
+    },
+    {
+      "id": "card_488a94#2",
+      "format": "flip",
+      "prompt": "How demanding are Long-Horizon-Terminal-Bench tasks in practice?",
+      "back_html": "\u003cp\u003eThey typically take hundreds of episodes and about 85 minutes of execution, consuming roughly 9.9M tokens per task on average.\u003c/p\u003e"
+    },
+    {
+      "id": "card_488a94#3",
+      "format": "quiz",
+      "prompt": "What's the mean pass rate across all 15 tested models at the perfect-reward (1.0) threshold?",
+      "choices": [
+        {
+          "text": "1.7%",
+          "correct": true
+        },
+        {
+          "text": "17%",
+          "correct": false
+        },
+        {
+          "text": "41%",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAveraged across all 15 models, the mean pass rate is 4.3% at the partial-reward threshold and just 1.7% at the perfect-reward threshold.\u003c/p\u003e"
+    }
+  ]
+}

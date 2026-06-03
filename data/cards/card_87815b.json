@@ -1,0 +1,111 @@
+{
+  "id": "card_87815b",
+  "slug": "crisp-sparse-prefilling",
+  "type": "paper",
+  "title": "CRISP: Reading the Sparse-Attention Routing Decision Straight Off the Attention Map",
+  "hook": "Long-context prefill is quadratic, so servers route attention heads to sparse patterns. CRISP shows the routing decision is already readable off the attention map's structure.",
+  "key_points": [
+    "Prefill self-attention scales quadratically, making it the bottleneck for long-context inference.",
+    "Dynamic routers pick a sparse pattern per head at runtime, but pay overhead for indirect proxies like JS divergence.",
+    "CRISP replaces JSD routing with C_struct, which measures mass at Vertical-Slash-compatible positions and reproduces the same decisions with no pooled matmul or KL step.",
+    "The authors show strictly cumulative coverage thresholds accumulate O(n) background noise at long contexts — the 'post-softmax mass cliff'.",
+    "A sink-aware threshold grounded in the noise floor fixes it: up to +28.0 pp on retrieval tasks and up to 5.30x attention speedup at 512k tokens."
+  ],
+  "content_html": "\u003cp\u003eServing a long prompt means paying for attention that grows quadratically with its length. The standard mitigation is sparse attention, and the current generation of methods routes each attention head to a sparse pattern dynamically, at runtime. Nguyen and colleagues identify two structural problems with that paradigm and fix both in CRISP.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eFirst, routing: existing methods score a proxy attention map with Jensen-Shannon divergence, which costs a pooled matmul plus a KL computation. The authors show the decision is readable directly from the map's structure, and define \u003ccode\u003eC_struct\u003c/code\u003e — the attention mass sitting at Vertical-Slash-compatible positions — which reproduces JSD's routing decisions without either cost. Second, budget allocation: they formalize a \u0026quot;post-softmax mass cliff\u0026quot; and argue theoretically that strictly cumulative coverage thresholds accumulate O(n) background noise as context grows. CRISP instead uses a sink-aware threshold anchored to the noise floor.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAcross InfiniteBench, RULER, and LongBench on two model families, the authors report CRISP as the strongest sparse method overall, matching or exceeding exact dense attention on retrieval-heavy benchmarks — up to +28.0 percentage points over baselines on retrieval tasks — and up to a 5.30x attention speedup at 512k tokens. The framing worth keeping: in sparse attention, \u003cem\u003ehow you decide what to keep\u003c/em\u003e is as much a source of error as how much you keep.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Huu Huy Nguyen",
+      "Chien Van Nguyen",
+      "Franck Dernoncourt",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2609.01925",
+    "published_at": "2026-09-01",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "context-memory",
+    "papers-this-week"
+  ],
+  "tags": [
+    "paper",
+    "attention",
+    "efficiency",
+    "inference"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-09-03",
+  "date": "2026-09-01",
+  "related": [
+    {
+      "id": "card_1586fa",
+      "slug": "flashprefill-v2",
+      "type": "paper",
+      "title": "FlashPrefill V2: Block-Sparse Prefill Attention for Long-Context Serving",
+      "hook": "Prefill is where long-context inference burns its compute. This turns a sparse-attention prototype into a production backend — and reports up to 47x over FlashAttention-2 at 128K.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-08-20"
+    },
+    {
+      "id": "card_5e9c4b",
+      "slug": "multi-query-attention",
+      "type": "paper",
+      "title": "Multi-Query Attention: Faster Decoding",
+      "hook": "Share one key/value head across all query heads - the KV cache shrinks by a factor of H and decoding gets dramatically faster with barely any quality cost.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2019-11-05"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_87815b#0",
+      "format": "flip",
+      "prompt": "What does CRISP's C_struct proxy measure, and what does it replace?",
+      "back_html": "\u003cp\u003eIt measures attention mass at Vertical-Slash-compatible positions, reproducing JS-divergence routing decisions while eliminating the pooled matmul and the KL divergence computation.\u003c/p\u003e"
+    },
+    {
+      "id": "card_87815b#1",
+      "format": "quiz",
+      "prompt": "According to CRISP, what goes wrong with a strictly cumulative coverage threshold for selecting attention blocks at long context?",
+      "choices": [
+        {
+          "text": "It accumulates O(n) background noise, so the selection drifts as context grows",
+          "correct": true
+        },
+        {
+          "text": "It becomes numerically unstable in bfloat16",
+          "correct": false
+        },
+        {
+          "text": "It always selects too few blocks, hurting throughput",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePast the post-softmax mass cliff, the tail is mostly noise; summing to a fixed coverage fraction sweeps in O(n) of it. CRISP uses a sink-aware threshold grounded in the noise floor instead.\u003c/p\u003e"
+    },
+    {
+      "id": "card_87815b#2",
+      "format": "flip",
+      "prompt": "Why is prefill, not decode, the target of this line of work?",
+      "back_html": "\u003cp\u003ePrefill attention over the whole prompt scales quadratically with sequence length, so at long context it dominates cost — unlike per-token decode.\u003c/p\u003e"
+    }
+  ]
+}

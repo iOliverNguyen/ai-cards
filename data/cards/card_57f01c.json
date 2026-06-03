@@ -1,0 +1,98 @@
+{
+  "id": "card_57f01c",
+  "slug": "claude-opus-4-5",
+  "type": "news",
+  "title": "Claude Opus 4.5",
+  "hook": "Anthropic's Opus 4.5 pushed frontier coding and agentic tool use forward — and cut Opus pricing sharply, making the top tier far cheaper to run at scale.",
+  "key_points": [
+    "Released November 2025, positioned as a leading model for coding, agents, and computer use.",
+    "A major price reduction over earlier Opus models, lowering the cost of frontier-tier work.",
+    "Part of the rapid Claude 4.x cadence between Claude 4 (May 2025) and later 4.x releases.",
+    "Aimed at long-horizon agentic tasks that chain many tool calls together."
+  ],
+  "content_html": "\u003cp\u003eAnthropic released Claude Opus 4.5 in November 2025, advancing its most capable tier with a focus on coding, agentic tool use, and computer use. Alongside the capability gains, Anthropic cut Opus pricing substantially — a notable move, since the Opus line had historically carried a steep premium.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's new\u003c/h2\u003e\n\u003cp\u003eOpus 4.5 continued the fast Claude 4.x cadence, slotting between the original Claude 4 of May 2025 and the later 4.x models. The emphasis was on real-world agentic performance: sustaining long chains of reasoning and tool calls reliably, the kind of workload that powers coding agents and computer-use automation. The price reduction made running the top model at scale far more practical for production deployments.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe combination of a capability bump and a large price cut reflected the competitive dynamic of late 2025: frontier quality was becoming cheaper fast, driven by efficiency gains and pressure from strong open-weight models. For builders, a cheaper Opus changed the calculus of when to reach for the most capable model versus a smaller one. See Anthropic's announcement for specifics.\u003c/p\u003e",
+  "source": {
+    "name": "Anthropic",
+    "authors": [
+      "Anthropic"
+    ],
+    "url": "https://www.anthropic.com/news/claude-opus-4-5",
+    "published_at": "2025-11-24",
+    "license": "Anthropic news"
+  },
+  "topic_ids": [
+    "pretraining",
+    "releases"
+  ],
+  "tags": [
+    "nlp",
+    "reasoning",
+    "agent"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2025-11-24",
+  "related": [
+    {
+      "id": "card_4ec030",
+      "slug": "claude-4",
+      "type": "news",
+      "title": "Claude 4: Opus 4 and Sonnet 4",
+      "hook": "Claude 4 lets a model interleave reasoning with tool calls - thinking, calling a tool, thinking again, and even running tools in parallel - rather than reasoning once and answering.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-05-22"
+    },
+    {
+      "id": "card_b8af81",
+      "slug": "claude-opus-4-7",
+      "type": "news",
+      "title": "Claude Opus 4.7: Frontier Coding (2026)",
+      "hook": "Claude Opus 4.7's gains land hardest on the hardest software-engineering tasks, and it now checks its own work - better self-verification of its outputs alongside the coding boost.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-04-16"
+    },
+    {
+      "id": "card_683aef",
+      "slug": "constitutional-ai",
+      "type": "paper",
+      "title": "Constitutional AI",
+      "hook": "What if a model could critique and improve its own answers against a written set of principles, instead of relying on humans to label every harmful case?",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_57f01c#0",
+      "format": "quiz",
+      "prompt": "Why was Opus 4.5's price cut notable for the Opus line specifically?",
+      "choices": [
+        {
+          "text": "The Opus line had historically carried a steep premium",
+          "correct": true
+        },
+        {
+          "text": "Opus had always been the cheapest tier",
+          "correct": false
+        },
+        {
+          "text": "It was the first Claude model ever priced",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eCutting Opus pricing substantially made running the top tier at scale far more practical, a notable move given Opus's historical premium.\u003c/p\u003e"
+    },
+    {
+      "id": "card_57f01c#1",
+      "format": "flip",
+      "prompt": "What kind of workload was Opus 4.5 aimed at?",
+      "back_html": "\u003cp\u003eLong-horizon agentic tasks that chain many tool calls together — sustaining long chains of reasoning and tool use reliably, for coding and computer-use automation.\u003c/p\u003e"
+    }
+  ]
+}

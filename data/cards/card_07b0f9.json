@@ -1,0 +1,111 @@
+{
+  "id": "card_07b0f9",
+  "slug": "capek-0-5-execution-centric-vlm",
+  "type": "paper",
+  "title": "Capek 0.5: Organizing an Embodied VLM Around Execution",
+  "hook": "Robot execution keeps changing what needs perceiving. Capek 0.5 groups embodied skills by their role in that loop, trains a specialist for each, then merges them into one model.",
+  "key_points": [
+    "Argues embodied capabilities should be organized by functional role in execution, not by dataset or task — a capability taxonomy instead of a task list.",
+    "Four capability families: Spatial Reasoning, Temporal Understanding, Action Guidance, and State Verification.",
+    "Each family is first learned by a dedicated specialist via reinforcement learning with verifiable rewards from a shared backbone.",
+    "Specialists are then folded into one inference-time model by weight-space merging followed by routed policy-space distillation.",
+    "Released at 2B and 35B-A3B scales, with Capek-StateBench introduced to measure state verification specifically.",
+    "The unified checkpoint retains all four specialized capabilities with quantified losses and transfers to closed-loop embodied tasks."
+  ],
+  "content_html": "\u003cp\u003eVision-language models increasingly serve as the reasoning core of robots, but robot execution is a loop: every action changes the scene, which changes what has to be perceived, reasoned about, and verified next. Ying Chen and colleagues argue that the capabilities this demands differ in supervision signal, output format, and how you'd verify them — and that training them against isolated, task-specific objectives leaves the question of how to combine them unanswered.\u003c/p\u003e\n\u003cp\u003eCapek 0.5 answers it with an execution-centric taxonomy of four capability families — Spatial Reasoning, Temporal Understanding, Action Guidance, and State Verification. Each is learned first by a dedicated specialist, trained with reinforcement learning against verifiable rewards from a shared backbone. The specialists are then consolidated into one inference-time model via weight-space merging followed by routed policy-space distillation. The team instantiates the model at 2B and 35B-A3B scales and evaluates on benchmark suites (including a new Capek-StateBench for state verification), a controlled study of how much specialist skill survives consolidation, and closed-loop tasks in simulated embodied environments. Per the paper, the unified model improves on its initialization across most matched benchmark rows, keeps all four capabilities in one checkpoint with the losses quantified, and transfers to closed-loop execution.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe transferable idea here isn't the robot — it's the recipe: when one model needs several skills that resist a single training objective, train specialists separately and then merge-and-distill them back together, measuring what you lose. Full results and benchmark details are in the paper linked via the source.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ying Chen",
+      "Weizhen Li",
+      "Zhe Hu",
+      "Zhenjiang Li",
+      "Rui Jiang",
+      "Zhifeng Gu",
+      "Lihuang Fang",
+      "Jiangping Liu",
+      "Lei Yi",
+      "Jie Chen"
+    ],
+    "url": "https://arxiv.org/abs/2608.06756",
+    "published_at": "2026-08-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "vlms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "training",
+    "agent",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-10",
+  "date": "2026-08-07",
+  "related": [
+    {
+      "id": "card_0dc810",
+      "slug": "pi-zero",
+      "type": "paper",
+      "title": "π0: A Vision-Language-Action Model",
+      "hook": "π0 is a generalist robot policy: it takes camera images, joint angles, and a plain-language instruction, and outputs smooth action sequences — folding laundry, bussing tables, bagging groceries.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-10-31"
+    },
+    {
+      "id": "card_dd8539",
+      "slug": "rt-2",
+      "type": "paper",
+      "title": "RT-2: Vision-Language-Action Models",
+      "hook": "Treat a robot's actions as just more text tokens, and a vision-language model can learn to act — carrying its web knowledge into the physical world.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-07-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_07b0f9#0",
+      "format": "flip",
+      "prompt": "What organizing principle does Capek 0.5 use instead of grouping training by datasets or tasks?",
+      "back_html": "\u003cp\u003eAn execution-centric capability taxonomy: skills are grouped by their functional role during execution — Spatial Reasoning, Temporal Understanding, Action Guidance, and State Verification.\u003c/p\u003e"
+    },
+    {
+      "id": "card_07b0f9#1",
+      "format": "quiz",
+      "prompt": "How does Capek 0.5 get four separately-trained specialists into a single inference-time model?",
+      "choices": [
+        {
+          "text": "Weight-space merging, then routed policy-space distillation",
+          "correct": true
+        },
+        {
+          "text": "Running all four specialists in parallel and voting on their outputs",
+          "correct": false
+        },
+        {
+          "text": "Training a router that calls each specialist as an external tool",
+          "correct": false
+        },
+        {
+          "text": "Averaging their action predictions at every timestep",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe specialists start from a shared backbone, are merged in weight space, and then consolidated by routed policy-space distillation — one checkpoint at inference, not an ensemble.\u003c/p\u003e"
+    },
+    {
+      "id": "card_07b0f9#2",
+      "format": "flip",
+      "prompt": "Why does the paper treat state verification as its own capability, and how is it measured?",
+      "back_html": "\u003cp\u003eBecause each action reshapes the scene, an agent must check what actually happened before continuing. The authors introduce Capek-StateBench as a dedicated benchmark for it.\u003c/p\u003e"
+    }
+  ]
+}

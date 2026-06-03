@@ -1,0 +1,119 @@
+{
+  "id": "card_e87e54",
+  "slug": "umap-knn-graph-sensemaking",
+  "type": "paper",
+  "title": "UMAP's Forgotten Graph: Network Science for Free Sensemaking",
+  "hook": "Everyone uses UMAP for its 2D scatter plot and throws away the graph it builds along the way — a graph that's still faithful to the data manifold, and worth analyzing on its own.",
+  "key_points": [
+    "UMAP builds a k-nearest-neighbor (kNN) graph in the original high-dimensional space before projecting to 2D; typical workflows discard this graph and keep only the projection.",
+    "PageRank on this graph identifies representative data points, without any purpose-built exemplar-selection method.",
+    "k-core decomposition reveals dense core regions versus sparse periphery in the data.",
+    "Clustering coefficient detects tight-knit neighborhoods of highly similar points.",
+    "On MNIST and Fashion-MNIST, these off-the-shelf graph algorithms are competitive with or complementary to purpose-built methods like k-medoids (exemplar selection) and HDBSCAN (density-based clustering)."
+  ],
+  "content_html": "\u003cp\u003eUMAP is one of the most-used tools for visualizing high-dimensional data, but almost everyone only looks at its output: the 2D scatter plot. Along the way, UMAP builds something else — a k-nearest-neighbor graph in the original high-dimensional space — and that graph gets thrown away once the plot is made.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eResearchers from Georgia Tech and Apple argue that graph shouldn't be wasted. Because it's constructed before the distortion that any 2D projection introduces, it's a more faithful encoding of the data manifold than the picture people actually look at. The paper shows three standard network-science algorithms applied directly to this graph do useful sensemaking work: PageRank surfaces representative data points, k-core decomposition separates dense core regions from a sparser periphery, and clustering coefficient flags tight-knit neighborhoods of highly similar points.\u003c/p\u003e\n\u003cp\u003eTested quantitatively and qualitatively on MNIST and Fashion-MNIST, these general-purpose graph analyses turn out to be competitive with, or complementary to, methods purpose-built for the same jobs — k-medoids for picking exemplars, HDBSCAN for density-based clustering. The takeaway for practitioners: if you're already running UMAP, its internal graph is a second, underused source of insight into your data, not just plumbing on the way to a plot.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Duen Horng Chau",
+      "Donghao Ren",
+      "Fred Hohman",
+      "Dominik Moritz"
+    ],
+    "url": "https://arxiv.org/abs/2607.08746",
+    "published_at": "2026-07-09",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "clustering-dimred",
+    "papers-this-week"
+  ],
+  "tags": [
+    "classic-ml",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-09",
+  "related": [
+    {
+      "id": "card_a11395",
+      "slug": "tsne-and-umap",
+      "type": "concept",
+      "title": "t-SNE \u0026 UMAP: Visualizing High-Dimensional Data",
+      "hook": "t-SNE and UMAP squeeze thousands of dimensions into two so you can see whether your model's internal representations form meaningful clusters.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2008-11-01"
+    },
+    {
+      "id": "card_d3603e",
+      "slug": "principal-component-analysis",
+      "type": "concept",
+      "title": "Principal Component Analysis (PCA)",
+      "hook": "Find the directions your data varies most, then keep only the top few - you compress many correlated features into a handful while retaining most of the signal.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-03"
+    },
+    {
+      "id": "card_dafe4a",
+      "slug": "k-means-clustering",
+      "type": "concept",
+      "title": "k-Means Clustering",
+      "hook": "Pick k cluster centers, assign every point to the nearest one, move each center to the mean of its points, repeat - clusters emerge without any labels.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-03"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_a11395",
+      "slug": "tsne-and-umap",
+      "type": "concept",
+      "title": "t-SNE \u0026 UMAP: Visualizing High-Dimensional Data",
+      "hook": "t-SNE and UMAP squeeze thousands of dimensions into two so you can see whether your model's internal representations form meaningful clusters.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2008-11-01"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_e87e54#0",
+      "format": "flip",
+      "prompt": "What part of UMAP's own pipeline does this paper argue gets thrown away, and why does that matter?",
+      "back_html": "\u003cp\u003eUMAP internally builds a kNN graph over the data in its original high-dimensional space before projecting to 2D. That graph is discarded once the 2D embedding is made, even though it's undistorted by the 2D projection and encodes the data manifold directly.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e87e54#1",
+      "format": "quiz",
+      "prompt": "What does applying k-core decomposition to UMAP's internal kNN graph reveal?",
+      "choices": [
+        {
+          "text": "Dense core regions of the data versus its sparse periphery",
+          "correct": true
+        },
+        {
+          "text": "The optimal number of 2D dimensions to project onto",
+          "correct": false
+        },
+        {
+          "text": "Which two data points are most dissimilar",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ek-core decomposition is a network-science technique that separates a graph into progressively denser cores; applied here it surfaces which parts of the data are densely interconnected versus peripheral.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e87e54#2",
+      "format": "flip",
+      "prompt": "How did the graph-based analyses (PageRank, k-core, clustering coefficient) compare to purpose-built methods like k-medoids and HDBSCAN on MNIST/Fashion-MNIST?",
+      "back_html": "\u003cp\u003eCompetitive with or complementary to them — general network-science tools applied to a graph UMAP builds for free rivaled methods designed specifically for exemplar selection and density-based clustering.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "id": "card_d9524a",
+  "slug": "multi-vector-late-interaction-sentence-transformers",
+  "type": "blog",
+  "title": "Multi-Vector Retrieval: One Vector Per Token, Scored Late",
+  "hook": "Squeezing a document into one vector throws away where the match was. Late interaction keeps a vector per token and defers scoring — better recall, 42x the index.",
+  "key_points": [
+    "Multi-vector models keep one embedding per token instead of pooling to a single vector.",
+    "Scoring uses MaxSim: for each query token take its best-matching document token, then sum those maxima.",
+    "Helps most on multi-requirement queries and out-of-domain data; on NanoBEIR the post reports 0.6868 vs 0.6764 NDCG@10.",
+    "The cost is index size: 311.5 MB raw vs 7.5 MB dense for 4,874 passages — about 42x more vectors.",
+    "Token pooling (pool_factor=2) halves vectors with minimal quality loss; PLAID compression brought that index to 92 MB.",
+    "Sentence Transformers v6.0 adds MultiVectorEncoder, unifying what lived in PyLate and colpali-engine."
+  ],
+  "content_html": "\u003cp\u003eDense retrieval compresses a whole passage into one vector, which is fast and loses information — notably \u003cem\u003ewhere\u003c/em\u003e in the document the match happened. Late-interaction (multi-vector) models take the other trade: keep one vector per token, and defer the query-document interaction until scoring. Hugging Face's post is both an explainer and a release note, since Sentence Transformers v6.0 now ships a \u003ccode\u003eMultiVectorEncoder\u003c/code\u003e that unifies checkpoints previously scattered across PyLate and colpali-engine.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eScoring uses MaxSim: for each query token, find its best match among the document's token vectors, then sum those maxima. Because documents are still encoded offline, the retrieval pipeline keeps the efficiency profile of dense search rather than sliding into cross-encoder territory. The practical benefits the post highlights are matching specific regions of a document, handling synonyms, and satisfying queries with several requirements at once — plus better out-of-domain behavior.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe quality gain is real but modest — 0.6868 vs 0.6764 average NDCG@10 on NanoBEIR in the post's comparison — while the storage cost is not modest at all: 311.5 MB of raw index against 7.5 MB dense for the same 4,874 passages, roughly 42x the vectors. That's the whole engineering question, and the post's answer is compression: token pooling at \u003ccode\u003epool_factor=2\u003c/code\u003e halves the vectors with minimal quality loss, PLAID indexing brings the example down to 92 MB, and Flash Attention gives a 2.44x throughput improvement on GPU. Whether late interaction is worth it depends entirely on how much of that gap you can close.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face Blog",
+    "authors": [
+      "Hugging Face"
+    ],
+    "url": "https://huggingface.co/blog/multi-vector-encoder",
+    "published_at": "2026-08-18",
+    "license": "Hugging Face blog"
+  },
+  "topic_ids": [
+    "rag",
+    "tokenization"
+  ],
+  "tags": [
+    "rag",
+    "open-source",
+    "efficiency",
+    "tutorial"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-20",
+  "date": "2026-08-18",
+  "related": [
+    {
+      "id": "card_7f35b4",
+      "slug": "signed-maxsim-late-interaction-capacity",
+      "type": "paper",
+      "title": "Why ColBERT-Style Retrieval Fails on Negation — and the Fix",
+      "hook": "Late-interaction retrieval (MaxSim, as in ColBERT) is provably as expressive as vector search for ordinary matches — but provably can't handle negation. Signed MaxSim closes that exact gap.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-07"
+    },
+    {
+      "id": "card_667a26",
+      "slug": "dense-passage-retrieval",
+      "type": "paper",
+      "title": "Dense Passage Retrieval (DPR)",
+      "hook": "Keyword search misses answers that use different words. DPR embeds questions and passages into one vector space and retrieves by meaning — the backbone of modern vector search.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-04-10"
+    },
+    {
+      "id": "card_02ad74",
+      "slug": "retrieval-augmented-generation",
+      "type": "paper",
+      "title": "Retrieval-Augmented Generation (RAG)",
+      "hook": "Why force a model to memorize everything? RAG lets it look things up — fetch relevant documents, then answer from that evidence instead of frozen weights alone.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-22"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_667a26",
+      "slug": "dense-passage-retrieval",
+      "type": "paper",
+      "title": "Dense Passage Retrieval (DPR)",
+      "hook": "Keyword search misses answers that use different words. DPR embeds questions and passages into one vector space and retrieves by meaning — the backbone of modern vector search.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-04-10"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_d9524a#0",
+      "format": "flip",
+      "prompt": "What is the MaxSim operator in late-interaction retrieval?",
+      "back_html": "\u003cp\u003eFor each query token, find its best-matching document token by similarity, then sum those maxima into the document's score. Interaction is deferred to scoring time rather than baked into one pooled vector.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d9524a#1",
+      "format": "quiz",
+      "prompt": "Why is late interaction still practical despite computing token-level similarities?",
+      "choices": [
+        {
+          "text": "Documents are encoded offline; only the scoring interaction happens at query time",
+          "correct": true
+        },
+        {
+          "text": "The query is truncated to a handful of tokens",
+          "correct": false
+        },
+        {
+          "text": "Similarities are approximated with a single pooled vector at query time",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDeferring interaction to scoring keeps offline document encoding intact — that's what separates late interaction from a full cross-encoder.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d9524a#2",
+      "format": "quiz",
+      "prompt": "What is the main cost of multi-vector retrieval, per the post's numbers?",
+      "choices": [
+        {
+          "text": "Index size — 311.5 MB vs 7.5 MB dense for the same 4,874 passages",
+          "correct": true
+        },
+        {
+          "text": "Query latency, which grows quadratically with corpus size",
+          "correct": false
+        },
+        {
+          "text": "Training cost, since the encoder must be retrained per domain",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eStoring a vector per token is roughly 42x the vectors. Token pooling and PLAID compression pull the index back toward parity (92 MB in the post's example).\u003c/p\u003e"
+    }
+  ]
+}

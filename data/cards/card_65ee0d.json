@@ -1,0 +1,89 @@
+{
+  "id": "card_65ee0d",
+  "slug": "naive-prompt-optimization",
+  "type": "paper",
+  "title": "Naive Prompt Optimization Beats the Fancy Search",
+  "hook": "Prompt optimizers have grown elaborate search machinery. A single-lineage loop that just asks a teacher model to revise the prompt matches or beats GEPA with fewer rollouts.",
+  "key_points": [
+    "Recent work has favoured increasingly complex prompt optimizers; the paper questions whether the complexity earns its keep.",
+    "NPO is a lightweight single-lineage method: iteratively revise the prompt with a teacher model using rollout feedback.",
+    "Matches or beats GEPA with fewer rollouts, and its advantage grows with stronger teacher models.",
+    "Suggests stronger teacher reasoning can partially substitute for optimizer-side search complexity.",
+    "In interactive games NPO stays broadly competitive with GEPA, while GRPO wins on some tasks less amenable to prompt optimization.",
+    "NPO-optimized prompts transfer verbatim to other student models, especially within the same family."
+  ],
+  "content_html": "\u003cp\u003ePrompt optimization is attractive because it can deliver fine-tuning-scale gains without touching weights — cheaper to run and cheaper to serve. In response, the field has produced increasingly sophisticated optimizers with population-based search, reflection trees, and multi-branch exploration. Chang and Chen ask whether the machinery is what's doing the work.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe method\u003c/h2\u003e\n\u003cp\u003eNaive Prompt Optimization is deliberately plain: a single-lineage loop that iteratively revises one prompt using a teacher model and rollout feedback. No population, no branching search.\u003c/p\u003e\n\u003cp\u003eIt matches or beats GEPA with fewer rollouts, and — the informative part — its advantage \u003cem\u003eincreases\u003c/em\u003e with stronger teacher models. The authors read this as a substitution: stronger teacher reasoning can partially replace optimizer-side search complexity. If the model doing the revising is smart enough, you do not need to search over many revisions.\u003c/p\u003e\n\u003ch2\u003eBoundaries\u003c/h2\u003e\n\u003cp\u003eIn interactive games NPO remains broadly competitive with GEPA, but GRPO performs better on some tasks that are simply less amenable to prompt optimization — a useful reminder that the prompt is not always where the missing capability lives. NPO-optimized prompts also transfer verbatim to other student models, with the strongest transfer inside a model family.\u003c/p\u003e\n\u003cp\u003eThe authors call the results preliminary. Taken at that level, the message is the familiar one: check the simple baseline before believing the complexity.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yuan Chang",
+      "Xiaoqi Chen"
+    ],
+    "url": "https://arxiv.org/abs/2608.27266",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "prompting",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "efficiency",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_7ab593",
+      "slug": "sliding-window-beats-linear-attention",
+      "type": "paper",
+      "title": "Sliding Window Beats Linear Attention",
+      "hook": "The cheap baseline nobody bothered to run wins: sliding-window attention with sinks matches or beats retrofitted linear-attention models, and needs no post-training at all.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_65ee0d#0",
+      "format": "flip",
+      "prompt": "What does 'single-lineage' mean in NPO, and why does it matter?",
+      "back_html": "\u003cp\u003eIt keeps one evolving prompt rather than maintaining and searching a population of candidates. That is what makes it cheap in rollouts — and it turns out not to cost much in quality.\u003c/p\u003e"
+    },
+    {
+      "id": "card_65ee0d#1",
+      "format": "quiz",
+      "prompt": "What substitution does the paper's teacher-strength result suggest?",
+      "choices": [
+        {
+          "text": "Stronger teacher reasoning can partially replace optimizer-side search complexity",
+          "correct": true
+        },
+        {
+          "text": "More rollouts can replace a stronger teacher entirely",
+          "correct": false
+        },
+        {
+          "text": "Prompt optimization can fully replace weight-level fine-tuning in all settings",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eNPO's advantage over GEPA grows as the teacher gets stronger — the intelligence doing the revising substitutes for the machinery searching over revisions.\u003c/p\u003e"
+    },
+    {
+      "id": "card_65ee0d#2",
+      "format": "flip",
+      "prompt": "Where does prompt optimization lose to GRPO?",
+      "back_html": "\u003cp\u003eOn interactive-game tasks less amenable to prompt optimization, where changing the weights beats changing the instructions.\u003c/p\u003e"
+    }
+  ]
+}

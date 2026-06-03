@@ -1,0 +1,111 @@
+{
+  "id": "card_cac91a",
+  "slug": "sequential-vs-parallel-test-time-scaling-translation",
+  "type": "paper",
+  "title": "Ladders in Chaos: Sequential Beats Parallel Test-Time Scaling — Up to a Point",
+  "hook": "Revising your own answer beats sampling many independent ones, in translation at least. But push the budget too far and fluency keeps rising while accuracy starts slipping.",
+  "key_points": [
+    "Compares two test-time scaling modes: sequential, where each attempt sees the previous ones, and parallel i.i.d. sampling with reranking.",
+    "Sequential sampling had the higher performance ceiling and gave a more diverse, more effective sample pool — especially at small budgets.",
+    "Manual multidimensional analysis of Best-of-N outputs found sequential sampling substantially improves fluency and naturalness.",
+    "But at large inference budgets that same sequential process can degrade accuracy — a fluency-versus-fidelity trade.",
+    "The authors partly attribute the gain to the model's access to a larger target-side context in later attempts.",
+    "Ablations show robustness across sampling temperatures but sensitivity to how the context is constructed."
+  ],
+  "content_html": "\u003cp\u003eSpending more compute at inference comes in two flavors. Sequential scaling lets each attempt see the ones before it, so the model revises. Parallel scaling draws independent samples and reranks them. Wu and colleagues put both to work on machine translation and find that sequential sampling has the higher performance ceiling, producing a more diverse and more effective pool of candidates — the gap widest at small sampling budgets.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe catch\u003c/h2\u003e\n\u003cp\u003eA multidimensional manual analysis of the Best-of-N translations sharpens the picture: sequential sampling substantially improves fluency and naturalness, but at large inference budgets it can degrade accuracy. More thinking buys better-sounding output, and past a point starts trading away fidelity to the source.\u003c/p\u003e\n\u003ch2\u003eWhy it might work\u003c/h2\u003e\n\u003cp\u003eThe authors partly attribute sequential self-improvement to the model's access to a larger target-side context — later attempts can condition on prior outputs, not only the source sentence. Ablations show the effect is robust across sampling temperatures but sensitive to how that context is constructed, which the authors flag as the direction for improvement. Details in the paper.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Di Wu",
+      "Sergey Troshin",
+      "Christof Monz",
+      "Antske Fokkens",
+      "Vlad Niculae"
+    ],
+    "url": "https://arxiv.org/abs/2608.28496",
+    "published_at": "2026-08-28",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "inference",
+    "reasoning",
+    "nlp",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-28",
+  "related": [
+    {
+      "id": "card_d58b92",
+      "slug": "second-thought-parallel-reasoning",
+      "type": "paper",
+      "title": "Second Thought: Reasoning in Parallel While an Agent Acts",
+      "hook": "Every time a ReAct agent calls a tool and waits, its reasoning sits idle. Second Thought fills that gap with side branches that think ahead — no retraining, fewer turns.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-13"
+    },
+    {
+      "id": "card_7f92e0",
+      "slug": "budget-dependent-rankings",
+      "type": "paper",
+      "title": "Who Thinks Best Depends on How Long You Let Them",
+      "hook": "Change the token budget and the leaderboard changes with it. Model rankings reversed on every benchmark tested — which means a single-budget eval is measuring the budget as much as the model.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-12"
+    },
+    {
+      "id": "card_01a1d7",
+      "slug": "cot-scaling-trap-latent-reasoning",
+      "type": "blog",
+      "title": "Chain of Thought Is a Scaling Trap? The Case for Latent Reasoning",
+      "hook": "A visible chain of thought reads like the model's thinking — but it can be an unfaithful, expensive trace. The next wave reasons in hidden state instead of tokens.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-13"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_cac91a#0",
+      "format": "flip",
+      "prompt": "What distinguishes sequential from parallel test-time scaling?",
+      "back_html": "\u003cp\u003eIn sequential scaling each answer attempt depends on the earlier ones; in parallel scaling you draw i.i.d. samples independently and rerank them.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cac91a#1",
+      "format": "quiz",
+      "prompt": "What happens to translation quality as the sequential sampling budget grows large?",
+      "choices": [
+        {
+          "text": "Fluency and naturalness improve, but accuracy can degrade",
+          "correct": true
+        },
+        {
+          "text": "Both fluency and accuracy plateau at exactly the same budget",
+          "correct": false
+        },
+        {
+          "text": "Accuracy improves while fluency collapses into repetition",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe human analysis found sequential sampling mainly buys fluency and naturalness, and that at large budgets it can trade away accuracy.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cac91a#2",
+      "format": "flip",
+      "prompt": "What mechanism do the authors propose for sequential scaling's advantage?",
+      "back_html": "\u003cp\u003eLater attempts get access to a larger target-side context — the model can see its own prior outputs, not just the source.\u003c/p\u003e"
+    }
+  ]
+}

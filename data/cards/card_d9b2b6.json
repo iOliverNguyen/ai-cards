@@ -1,0 +1,95 @@
+{
+  "id": "card_d9b2b6",
+  "slug": "nemo-automodel-diffusers-finetuning",
+  "type": "news",
+  "title": "Scaling Diffusion Model Fine-Tuning with NVIDIA NeMo Automodel and Hugging Face Diffusers",
+  "hook": "Fine-tuning video and image diffusion models usually means outgrowing single-GPU Diffusers scripts fast. NVIDIA's NeMo Automodel now plugs into Diffusers to take that fine-tuning to multi-GPU scale.",
+  "key_points": [
+    "Integrates NVIDIA NeMo Automodel with Hugging Face Diffusers to fine-tune video and image diffusion models at scale.",
+    "Targets the common pain point of Diffusers-based fine-tuning outgrowing single-GPU or single-node setups as model and dataset size grow.",
+    "Lets practitioners keep the familiar Diffusers workflow while NeMo Automodel handles the distributed-training machinery underneath."
+  ],
+  "content_html": "\u003cp\u003eNVIDIA and Hugging Face announced an integration that lets NeMo Automodel drive Diffusers-based fine-tuning of video and image diffusion models at scale. The pitch is squarely practical: Diffusers is the go-to library for fine-tuning diffusion models, but its standard scripts are built around single-GPU or single-node training, and that stops scaling once models or datasets grow.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eNeMo Automodel slots in as the distributed-training layer underneath the familiar Diffusers workflow, so practitioners fine-tuning video or image generation models don't have to rewrite their pipeline to go multi-GPU. It's a systems-level release rather than a new model — the value is in removing a scaling bottleneck that diffusion-model fine-tuners commonly hit. Published on the Hugging Face blog by NVIDIA, July 2026 — see the source for setup details.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face Blog (NVIDIA)",
+    "url": "https://huggingface.co/blog/nvidia/scale-diffusers-finetuning-nemo-automodel",
+    "published_at": "2026-07-17",
+    "license": "Hugging Face blog"
+  },
+  "topic_ids": [
+    "distributed-training",
+    "text-to-image",
+    "lab-updates"
+  ],
+  "tags": [
+    "training",
+    "efficiency",
+    "generative"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-17",
+  "related": [
+    {
+      "id": "card_09b3a2",
+      "slug": "megatron-lm",
+      "type": "paper",
+      "title": "Megatron-LM: Training LLMs with Model Parallelism",
+      "hook": "Split the big matrices inside attention and MLP layers across GPUs, add a few communication ops, and you can train an 8.3B model on 512 GPUs — no custom compiler needed.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2019-09-17"
+    },
+    {
+      "id": "card_1480e5",
+      "slug": "zero",
+      "type": "paper",
+      "title": "ZeRO: Memory Optimizations for Trillion-Parameter Models",
+      "hook": "Data-parallel training wastes memory by copying optimizer states, gradients, and parameters onto every GPU. ZeRO partitions them instead — fitting 100B+ parameter models.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2019-10-04"
+    },
+    {
+      "id": "card_dd86b0",
+      "slug": "sdxl",
+      "type": "paper",
+      "title": "SDXL: Improving Latent Diffusion for High-Resolution Synthesis",
+      "hook": "A larger UNet, two text encoders, and a refinement diffusion stage gave open-source Stable Diffusion a major quality leap - now the workhorse of community image generation.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-07-04"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_d9b2b6#0",
+      "format": "flip",
+      "prompt": "What two tools does this integration connect to scale diffusion-model fine-tuning?",
+      "back_html": "\u003cp\u003eNVIDIA NeMo Automodel and Hugging Face Diffusers — Diffusers stays the familiar fine-tuning interface, while NeMo Automodel adds the distributed-training scale underneath.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d9b2b6#1",
+      "format": "quiz",
+      "prompt": "What problem is this integration mainly aimed at solving?",
+      "choices": [
+        {
+          "text": "Diffusers fine-tuning scripts outgrowing single-GPU/single-node setups",
+          "correct": true
+        },
+        {
+          "text": "Diffusers models being too small to fit on one GPU",
+          "correct": false
+        },
+        {
+          "text": "A lack of any Python API for diffusion models",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAs video and image diffusion models and datasets grow, standard Diffusers fine-tuning scripts hit a scaling wall; NeMo Automodel is positioned to take that workload multi-GPU.\u003c/p\u003e"
+    }
+  ]
+}

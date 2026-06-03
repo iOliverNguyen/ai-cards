@@ -1,0 +1,122 @@
+{
+  "id": "card_f017cf",
+  "slug": "moe-hyperparameter-transfer",
+  "type": "paper",
+  "title": "Compute-Efficient Hyperparameter Transfer for Large MoEs",
+  "hook": "Sweeping learning rates at trillion-token scale is unaffordable. Transfer across width with muP, then extrapolate along tokens with a fitted scaling law — and trust it for the real run.",
+  "key_points": [
+    "Learning-rate sweeps become computationally prohibitive at extreme model size and token budget.",
+    "Step one: a Maximal Update Parameterization (muP) adaptation for MoE with Multi-head Latent Attention and the Muon optimizer, so optimal LR transfers across width.",
+    "Step two: a predictive scaling law along the token axis, fit by linear regression on small proxy runs.",
+    "Extrapolating to a 10-trillion-token horizon fits with R² = 0.95.",
+    "Validated by pretraining a 155B-total / 17B-active foundation model from scratch with the predicted configuration.",
+    "The claim: small proxy models are enough to set the learning rate for a full-scale MoE run."
+  ],
+  "content_html": "\u003cp\u003eMixture-of-Experts buys capacity without proportional compute, but it doesn't make hyperparameter tuning cheaper — and at extreme model sizes and token budgets, sweeping the learning rate is simply unaffordable. Kim and colleagues propose a two-step transfer framework that answers the question with small proxy runs instead.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe two steps\u003c/h2\u003e\n\u003cp\u003eFirst, they formulate a Maximal Update Parameterization (muP) adaptation for MoE architectures using Multi-head Latent Attention and the Muon optimizer, and show the optimal learning rate transfers consistently as model width scales. Second, they extend transfer along the token axis: fit a linear regression to the optimal values found by small proxy models on limited budgets, and extrapolate to very long horizons — for example 10 trillion tokens — reporting a fit of R² = 0.95.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe conclusion is a practical one for anyone planning a large pretraining run: proxy training on small models is sufficient to determine the learning rate for the full-scale target, turning a prohibitive sweep into a modest ablation budget. The authors back it by pretraining their own foundation model — 155B total parameters, 17B active — from scratch with the predicted configuration, and report stable training and evaluation results.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Nayeon Kim",
+      "Hojin Lee",
+      "Yunju Bak",
+      "Jaesun Park",
+      "Boseop Kim"
+    ],
+    "url": "https://arxiv.org/abs/2608.20061",
+    "published_at": "2026-08-20",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "moe",
+    "pretraining",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-24",
+  "date": "2026-08-20",
+  "related": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    },
+    {
+      "id": "card_46fd66",
+      "slug": "chinchilla-scaling-laws",
+      "type": "paper",
+      "title": "Chinchilla: Compute-Optimal Scaling",
+      "hook": "Most giant models were starved of data. Chinchilla showed that for a fixed compute budget you should grow parameters and tokens together — and a smaller, longer-trained model won.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2022-03-29"
+    },
+    {
+      "id": "card_85f66a",
+      "slug": "scaling-laws",
+      "type": "paper",
+      "title": "Scaling Laws for Neural Language Models",
+      "hook": "Loss doesn't drop randomly as models grow — it follows a smooth power law in size, data, and compute. That predictability is what made betting on bigger models rational.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2020-01-23"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_f017cf#0",
+      "format": "flip",
+      "prompt": "What are the two axes this framework transfers hyperparameters along?",
+      "back_html": "\u003cp\u003eModel width — via a muP adaptation for MoE — and token budget, via a scaling law fit on small proxy runs and extrapolated to long horizons.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f017cf#1",
+      "format": "quiz",
+      "prompt": "What does Maximal Update Parameterization buy you here?",
+      "choices": [
+        {
+          "text": "The optimal learning rate found at small width stays optimal as width scales up",
+          "correct": true
+        },
+        {
+          "text": "It removes the need for an optimizer like Muon entirely",
+          "correct": false
+        },
+        {
+          "text": "It reduces the per-token compute cost of the MoE layers",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003emuP is a parameterization that makes optimal hyperparameters width-invariant, so a cheap small-width sweep answers the question for the large model.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f017cf#2",
+      "format": "flip",
+      "prompt": "How was the method validated beyond curve-fitting?",
+      "back_html": "\u003cp\u003eThe authors pretrained a 155B-total / 17B-active foundation model from scratch using the predicted configuration, reporting stable training and sound evaluations.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "id": "card_ec7996",
+  "slug": "gemma-4-qat",
+  "type": "news",
+  "title": "Gemma 4 QAT: 4-Bit Weights That Keep Their Quality",
+  "hook": "Squeezing a model to 4 bits after training loses quality. Quantization-aware training bakes the rounding into training instead — and Google shipped Gemma 4 checkpoints that do exactly that.",
+  "key_points": [
+    "Quantization-aware training (QAT) simulates low-precision rounding during training so the model learns to tolerate it.",
+    "Result: 4-bit weights with far less quality loss than post-training quantization of the same model.",
+    "Google released Gemma 4 QAT collections, including Q4_0 and mobile-targeted variants.",
+    "Community builders (Unsloth) published their own QAT versions with KL-divergence analysis vs. the full model."
+  ],
+  "content_html": "\u003cp\u003eRunning a large model in 4-bit precision slashes its memory footprint, but the usual route — quantizing a finished model after the fact — throws away quality, sometimes a lot. Quantization-aware training (QAT) takes the opposite approach: it simulates the low-precision rounding \u003cem\u003eduring\u003c/em\u003e training, so the network learns weights that survive being squeezed down.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eGoogle released QAT versions of its open-weights Gemma 4 family, including Q4_0 checkpoints and mobile-targeted variants, so the models run in 4-bit with far less degradation than naive post-training quantization would cause. Because QAT exposes the model to quantization error while it still has a chance to adjust, the 4-bit weights stay much closer to the full-precision model's behavior. The community picked it up quickly: Unsloth published its own QAT builds alongside KL-divergence analysis comparing the quantized outputs to the original. For learners, Gemma 4 QAT is a clean, concrete illustration of why \u003cem\u003ewhen\u003c/em\u003e you quantize matters as much as \u003cem\u003ehow much\u003c/em\u003e — see the linked collections for the specific sizes and formats.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit r/LocalLLaMA",
+    "authors": [
+      "/u/rerri"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1txpeo0/gemma_4_with_quantizationaware_training",
+    "published_at": "2026-06-05",
+    "license": "Reddit post (link-out)"
+  },
+  "topic_ids": [
+    "quantization",
+    "releases"
+  ],
+  "tags": [
+    "efficiency",
+    "open-source",
+    "foundational",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-06-08",
+  "date": "2026-06-05",
+  "related": [
+    {
+      "id": "card_b3d85d",
+      "slug": "gemma-4",
+      "type": "news",
+      "title": "Gemma 4: Google DeepMind's Open Multimodal Models",
+      "hook": "An open-weight multimodal family (2.3B-31B) that now thinks before answering and, at 12B, skips separate vision/audio encoders entirely — still small enough for a 16GB laptop.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-03"
+    },
+    {
+      "id": "card_d01b1d",
+      "slug": "gptq",
+      "type": "paper",
+      "title": "GPTQ: Accurate Post-Training Quantization",
+      "hook": "Already trained a giant LLM? GPTQ squeezes its weights down to 3–4 bits afterward — no retraining — with surprisingly little quality loss.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-10-31"
+    },
+    {
+      "id": "card_9d933c",
+      "slug": "awq-quantization",
+      "type": "paper",
+      "title": "AWQ: Activation-Aware Weight Quantization",
+      "hook": "Not all weights are equal - protect the 1% that matter most (flagged by activation magnitude) and quantize the rest to 4-bit with minimal quality loss.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2023-06-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_ec7996#0",
+      "format": "quiz",
+      "prompt": "How does quantization-aware training (QAT) differ from post-training quantization?",
+      "choices": [
+        {
+          "text": "QAT simulates low-precision rounding during training so the model learns to tolerate it",
+          "correct": true
+        },
+        {
+          "text": "QAT quantizes only after training is fully finished, like other methods",
+          "correct": false
+        },
+        {
+          "text": "QAT keeps the model in full precision and never reduces bit-width",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePost-training quantization rounds a finished model's weights and absorbs whatever quality loss results; QAT bakes the rounding into the training loop so the network adapts to it, preserving more quality at low bit-widths.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ec7996#1",
+      "format": "flip",
+      "prompt": "Why does QAT generally yield better 4-bit quality than post-training quantization?",
+      "back_html": "\u003cp\u003eBecause the model sees the quantization error during training and adjusts its weights to compensate, rather than having precision stripped away after the fact.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ec7996#2",
+      "format": "flip",
+      "prompt": "What did Google release for Gemma 4 under QAT?",
+      "back_html": "\u003cp\u003eQAT checkpoint collections including Q4_0 and mobile-targeted variants, letting the open-weights models run in 4-bit with minimal quality loss.\u003c/p\u003e"
+    }
+  ]
+}

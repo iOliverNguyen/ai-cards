@@ -1,0 +1,95 @@
+{
+  "id": "card_db2e40",
+  "slug": "torchjd-jacobian-descent",
+  "type": "blog",
+  "title": "TorchJD: Stop Averaging Your Losses, Aggregate Their Gradients",
+  "hook": "Multi-task training usually blends losses into one number before taking a gradient step. TorchJD instead keeps every loss's own gradient and combines them so each one actually goes down.",
+  "key_points": [
+    "Training with multiple losses (multi-task heads, constraints, auxiliary or regularization terms) is usually handled by 'scalarization': combine the losses into one number, then run ordinary gradient descent on it.",
+    "TorchJD is an open-source PyTorch library built around an alternative: 'Jacobian descent.'",
+    "It computes the Jacobian of the loss vector — one gradient per individual loss, not one blended gradient — before taking a step.",
+    "Those per-loss gradients are then aggregated into a single update vector chosen to decrease each loss, rather than trading one off against another implicitly.",
+    "Positioned as a drop-in alternative for PyTorch training loops that already juggle multiple objectives."
+  ],
+  "content_html": "\u003cp\u003eMost PyTorch training loops that juggle several losses — a multi-task model, an auxiliary objective, a regularization term — handle it the same way: add them up (maybe with some weights) into one scalar, then call backward on that. TorchJD, an open-source library shared by its author on r/MachineLearning, argues this \u0026quot;scalarization\u0026quot; throws away information you could be using.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe alternative TorchJD implements is \u0026quot;Jacobian descent\u0026quot;: instead of collapsing the loss vector into one number before differentiating, it computes the Jacobian — a separate gradient for each individual loss — and only then aggregates those gradients into a single parameter update. The aggregation is chosen so the update tends to decrease each loss, rather than implicitly trading one off against another the way a weighted sum can. It's presented as a practical drop-in for PyTorch code already training on multiple losses, tasks, or constraints.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit (r/MachineLearning)",
+    "authors": [
+      "/u/Skeylos2"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1upzxk2/torchjd_training_with_multiple_losses_in_pytorch_p",
+    "published_at": "2026-07-07",
+    "license": "Community post"
+  },
+  "topic_ids": [
+    "optimization",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "open-source",
+    "efficiency"
+  ],
+  "importance": 2,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-07",
+  "related": [
+    {
+      "id": "card_e41b8a",
+      "slug": "adam-optimizer",
+      "type": "paper",
+      "title": "Adam: The Default Optimizer",
+      "hook": "Adam gives every parameter its own adaptive step size by tracking the gradient's recent average and spread — and it mostly just works.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2014-12-22"
+    },
+    {
+      "id": "card_203675",
+      "slug": "adamw",
+      "type": "paper",
+      "title": "AdamW: Decoupled Weight Decay",
+      "hook": "L2 regularization and weight decay are the same thing for plain SGD - but not for Adam. Decoupling them fixes Adam's generalization and makes the best decay value independent of the learning rate.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-11-14"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_db2e40#0",
+      "format": "flip",
+      "prompt": "What is 'scalarization' in multi-loss training, and what does TorchJD do instead?",
+      "back_html": "\u003cp\u003eScalarization combines multiple losses into a single number (e.g. a weighted average) before running gradient descent. TorchJD instead keeps each loss's own gradient separate and aggregates them into one update.\u003c/p\u003e"
+    },
+    {
+      "id": "card_db2e40#1",
+      "format": "quiz",
+      "prompt": "What does 'Jacobian descent' compute that plain scalarization skips?",
+      "choices": [
+        {
+          "text": "The Jacobian of the loss vector — one gradient per individual loss — before aggregating into an update",
+          "correct": true
+        },
+        {
+          "text": "A second-order Hessian for every parameter",
+          "correct": false
+        },
+        {
+          "text": "A single averaged loss value with no per-loss gradient info",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eScalarization blends losses first, losing per-loss gradient information. Jacobian descent keeps one gradient per loss (the Jacobian) and aggregates them afterward, aiming to decrease each loss rather than an averaged proxy.\u003c/p\u003e"
+    },
+    {
+      "id": "card_db2e40#2",
+      "format": "flip",
+      "prompt": "In what training scenarios would a library like TorchJD be relevant?",
+      "back_html": "\u003cp\u003eAny setup with multiple objectives trained jointly — multi-task heads, hard constraints, auxiliary losses, or regularization terms — where combining them into one scalar loss can obscure how each one is actually behaving.\u003c/p\u003e"
+    }
+  ]
+}

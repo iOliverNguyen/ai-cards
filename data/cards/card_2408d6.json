@@ -1,0 +1,129 @@
+{
+  "id": "card_2408d6",
+  "slug": "trust-region-on-policy-distillation",
+  "type": "paper",
+  "title": "Trust Region On-Policy Distillation",
+  "hook": "On-policy distillation breaks when teacher and student disagree too much. TrOPD only trusts the teacher where its supervision is reliable — and skips the rest.",
+  "key_points": [
+    "On-policy distillation (OPD) trains a student on its own generations, scored by a teacher — but goes unstable under large distribution mismatch.",
+    "TrOPD restricts learning to a 'trust region' where teacher supervision is reliable, avoiding bad reverse-KL gradients.",
+    "Outlier tokens are handled with gradient clipping, masking, or forward-KL instead of being trusted blindly.",
+    "Off-policy guidance lets the student continue from teacher prefixes, nudging exploration toward reliable regions."
+  ],
+  "content_html": "\u003cp\u003eOn-policy distillation has become a workhorse for cheap post-training: instead of distilling from a fixed dataset, the student generates its own tokens and a teacher supervises them, which keeps training aligned with what the student actually produces. The catch is stability. When the teacher and student distributions differ a lot, the teacher's judgment of student-generated tokens can yield unreliable policy gradients — sometimes derailing optimization entirely. TrOPD targets exactly this failure.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe authors frame the problem as credit assignment: where can the teacher's token-level supervision actually be trusted? TrOPD does on-policy distillation only inside a \u0026quot;trust region\u0026quot; of reliable supervision, which tames the reverse-KL (K1) estimator that misbehaves under distribution mismatch. For outlier regions outside that trust zone, it falls back on gradient clipping, masking, or a forward-KL estimate to blunt the damage from unreliable signals. It also adds off-policy guidance: the student continues generation from teacher prefixes and imitates them with forward KL, encouraging exploration back toward reliable regions.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe authors report that TrOPD consistently beats prior OPD baselines across math reasoning, code generation, and general benchmarks. The broader lesson is transferable: when you train a model on its own outputs judged by another model, the reliability of that judgment is uneven — and treating every token's supervision as equally trustworthy is what makes these methods brittle.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xingrun Xing",
+      "Haoqing Wang",
+      "Boyan Gao",
+      "Ziheng Li",
+      "Yehui Tang"
+    ],
+    "url": "https://arxiv.org/abs/2606.01249",
+    "published_at": "2026-05-31",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "distillation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-04",
+  "date": "2026-05-31",
+  "related": [
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    },
+    {
+      "id": "card_0500e9",
+      "slug": "sequence-level-distillation",
+      "type": "paper",
+      "title": "Sequence-Level Knowledge Distillation",
+      "hook": "Match the teacher's whole output sequence, not just word-by-word probabilities, and the student translation model can drop beam search while running about 10x faster.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2016-06-25"
+    },
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    },
+    {
+      "id": "card_822dbf",
+      "slug": "geometry-of-on-policy-distillation",
+      "type": "paper",
+      "title": "On the Geometry of On-Policy Distillation",
+      "hook": "On-policy distillation isn't a midpoint between fine-tuning and RL — it carves its own narrow path through parameter space, locking into a low-dimensional subspace early in training.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-05"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_2408d6#0",
+      "format": "flip",
+      "prompt": "When does on-policy distillation become unstable, and what does TrOPD do about it?",
+      "back_html": "\u003cp\u003eWhen teacher and student distributions differ a lot the gradients go unreliable; TrOPD learns only inside a 'trust region' of reliable supervision.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2408d6#1",
+      "format": "quiz",
+      "prompt": "How does TrOPD handle outlier tokens outside the trust region?",
+      "choices": [
+        {
+          "text": "With gradient clipping, masking, or forward-KL instead of trusting them blindly",
+          "correct": true
+        },
+        {
+          "text": "By discarding the entire training batch",
+          "correct": false
+        },
+        {
+          "text": "By increasing the learning rate on them",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOutliers fall back on clipping, masking, or a forward-KL estimate to blunt damage from unreliable reverse-KL signals.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2408d6#2",
+      "format": "flip",
+      "prompt": "What is the transferable lesson from TrOPD about training on self-generated outputs?",
+      "back_html": "\u003cp\u003eWhen a model trains on its own outputs judged by another model, the reliability of that judgment is uneven - treating every token as equally trustworthy makes it brittle.\u003c/p\u003e"
+    }
+  ]
+}

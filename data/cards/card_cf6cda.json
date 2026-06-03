@@ -1,0 +1,100 @@
+{
+  "id": "card_cf6cda",
+  "slug": "minimax-sparse-attention",
+  "type": "paper",
+  "title": "MiniMax Sparse Attention (MSA)",
+  "hook": "Quadratic attention chokes at a million tokens. MiniMax runs exact attention over only a Top-k of key-value blocks per query group — cutting per-token attention compute ~28x at 1M context.",
+  "key_points": [
+    "Ultra-long context (agents, repo-scale code, persistent memory) needs attention over hundreds of thousands of tokens, but softmax attention is quadratic.",
+    "MSA is blockwise sparse attention on Grouped-Query Attention: a lightweight Index Branch scores KV blocks and picks a Top-k subset per GQA group.",
+    "The Main Branch then runs exact block-sparse attention over only the selected blocks — sparse retrieval, not a lossy approximation of the attention math.",
+    "A co-designed GPU kernel uses exp-free Top-k selection and KV-outer sparse attention to keep tensor cores busy under block-granular access.",
+    "On a 109B natively-multimodal model: on par with GQA while cutting per-token attention compute 28.4x at 1M context, with 14.2x prefill and 7.6x decode speedups on H800."
+  ],
+  "content_html": "\u003cp\u003eUltra-long context — agentic workflows, repository-scale code reasoning, persistent memory — increasingly needs a model to attend over hundreds of thousands to millions of tokens, but the quadratic cost of softmax attention makes that untenable at deployment scale. MiniMax Sparse Attention (MSA) is a blockwise sparse attention built on Grouped-Query Attention (GQA): a lightweight Index Branch scores key-value blocks and selects a Top-k subset independently for each GQA group, then a Main Branch performs \u003cem\u003eexact\u003c/em\u003e block-sparse attention over only the selected blocks.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe design goal is simplicity and scalability, so MSA stays streamlined enough to deploy across many GPUs. To turn sparsity into real speedups, the authors co-design MSA with a GPU execution path that uses exp-free Top-k selection and KV-outer sparse attention to keep tensor-core utilization high under block-granular memory access. On a 109B-parameter natively-multimodal model, the authors report MSA performing on par with GQA while reducing per-token attention compute by 28.4x at 1M context, with 14.2x prefill and 7.6x decoding wall-clock speedups on an H800. The inference kernel is open-sourced, and MSA powers MiniMax's released MiniMax-M3 model. (An earlier community report flagged the same KV-outer idea; these figures come from the paper itself.)\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xunhao Lai",
+      "Weiqi Xu",
+      "Yufeng Yang",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.13392",
+    "published_at": "2026-06-11",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "attention-mechanisms",
+    "context-memory",
+    "papers-this-week"
+  ],
+  "tags": [
+    "attention",
+    "efficiency",
+    "inference",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-15",
+  "date": "2026-06-11",
+  "related": [
+    {
+      "id": "card_a114e8",
+      "slug": "grouped-query-attention",
+      "type": "paper",
+      "title": "Grouped-Query Attention (GQA)",
+      "hook": "Split the difference between multi-head and multi-query attention: share KV heads across groups of query heads and get most of the memory savings with little quality loss.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2023-05-22"
+    },
+    {
+      "id": "card_958844",
+      "slug": "ring-attention",
+      "type": "paper",
+      "title": "Ring Attention for Near-Infinite Context",
+      "hook": "Spread one long sequence across many devices and compute attention blockwise - the context length you can handle grows with the number of devices, all with exact attention and no extra overhead.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2023-10-03"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_cf6cda#0",
+      "format": "flip",
+      "prompt": "How does MSA decide which key-value blocks each query group attends to?",
+      "back_html": "\u003cp\u003eA lightweight Index Branch scores KV blocks and independently selects a Top-k subset for each GQA group; the Main Branch then runs exact block-sparse attention over only those blocks.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cf6cda#1",
+      "format": "quiz",
+      "prompt": "On a 109B model at 1M-token context, how does MSA compare to full GQA attention?",
+      "choices": [
+        {
+          "text": "Matches GQA quality while cutting per-token attention compute ~28x",
+          "correct": true
+        },
+        {
+          "text": "Beats GQA quality but costs more compute per token",
+          "correct": false
+        },
+        {
+          "text": "Halves quality in exchange for speed",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMSA performs on par with GQA while reducing per-token attention compute by 28.4x at 1M context — the goal is to keep quality, not trade it for speed.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cf6cda#2",
+      "format": "flip",
+      "prompt": "Why co-design a custom GPU kernel for MSA instead of relying on sparsity alone?",
+      "back_html": "\u003cp\u003eBlock-granular sparse access underuses tensor cores. The kernel uses exp-free Top-k selection and KV-outer sparse attention to turn sparsity into real wall-clock gains (14.2x prefill, 7.6x decode on H800).\u003c/p\u003e"
+    }
+  ]
+}

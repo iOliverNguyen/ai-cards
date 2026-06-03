@@ -1,0 +1,123 @@
+{
+  "id": "card_19fd30",
+  "slug": "mars-specialist-relay-competitive-programming",
+  "type": "paper",
+  "title": "MARS: Hand the Problem to the Right Specialist",
+  "hook": "Most multi-agent coding pipelines split work into planner, coder, debugger. MARS splits it by algorithmic topic instead — and gets most of the accuracy of a heavier pipeline at a third of the wall-clock cost.",
+  "key_points": [
+    "Standard multi-agent code pipelines use generic roles and leave the choice of algorithmic technique entirely to the backbone model.",
+    "MARS instead makes each agent a topic specialist — dynamic programming, graphs, strings, geometry — grounded by RAG over an algorithm-theory corpus.",
+    "Retrieval picks a small team of relevant specialists per problem; a starter writes C++17, then each turn tests the draft in a sandbox.",
+    "The active specialist may keep, repair, or hand off the draft, forwarding a structured packet to the next specialist; a final pass normalizes boilerplate.",
+    "On CodeContests with Gemma 4 it reaches a 0.624 pass rate, +14.4 points over direct prompting, in 2.3 pipeline stages per task.",
+    "That trails CodeSIM (0.731) but runs 3.3x cheaper in wall-clock time with much smaller variance in per-task token spend."
+  ],
+  "content_html": "\u003cp\u003eMulti-agent coding pipelines usually cut the work into generic roles — a planner, a coder, a debugger — which means the hard question of \u003cem\u003ewhich algorithm this problem wants\u003c/em\u003e still falls entirely on the backbone model. MARS (Multi-Agent Relay of Specialized LLMs), from Andrei Mikhailov, Mikhail Burtsev and Alsu Sagirova, cuts along a different seam: every agent is a specialist in one algorithmic topic.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow the relay works\u003c/h2\u003e\n\u003cp\u003eRetrieval over an algorithm-theory corpus selects a small team of relevant specialists for the problem at hand. A starter agent writes an initial C++17 solution; each subsequent turn runs the current candidate against the public examples in a sandbox, and the active specialist decides whether to keep it, repair it, or hand it off — passing a structured packet to the next specialist. One infrastructure-fixer pass at the end normalizes boilerplate. The whole thing is prompt-only: no fine-tuning, just routing plus grounding.\u003c/p\u003e\n\u003ch2\u003eWhat it buys\u003c/h2\u003e\n\u003cp\u003eOn the CodeContests test split with Gemma 4, the authors report a 0.624 ± 0.006 pass rate at 2.3 recorded pipeline stages per task — 14.4 percentage points above direct prompting. That doesn't beat CodeSIM (0.731), but it closes most of the gap at 3.3× lower wall-clock cost and with substantially less variance in tokens spent per task. The interesting claim isn't the leaderboard position; it's that \u003cem\u003ewhat\u003c/em\u003e you specialize on matters as much as how many agents you run, and that predictable cost can be worth a few points of accuracy. Code is on GitHub; details and caveats are in the paper.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Andrei Mikhailov",
+      "Mikhail Burtsev",
+      "Alsu Sagirova"
+    ],
+    "url": "https://arxiv.org/abs/2608.23918",
+    "published_at": "2026-08-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "paper",
+    "rag"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-24",
+  "related": [
+    {
+      "id": "card_2137ea",
+      "slug": "alphacode",
+      "type": "paper",
+      "title": "AlphaCode: Competition-Level Code Generation",
+      "hook": "Generate a massive pool of candidate programs for competitive-programming problems, filter by test-case behavior, cluster by output, and reach roughly the level of a median human competitor.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-02-08"
+    },
+    {
+      "id": "card_ac1957",
+      "slug": "multi-livecodebench",
+      "type": "paper",
+      "title": "Multi-LCB: Code Eval Beyond Python",
+      "hook": "LiveCodeBench keeps coding evals contamination-free — but only in Python. Multi-LCB extends it to twelve languages and finds models that look strong are quietly overfit to Python.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    },
+    {
+      "id": "card_813970",
+      "slug": "multi-agent-information-bottleneck",
+      "type": "paper",
+      "title": "When Do Multi-Agent Systems Help? An Information Bottleneck Perspective",
+      "hook": "Multi-agent LLM setups help sometimes and hurt other times, with no clear pattern — until you view them as an information bottleneck problem: compressing context helps only when it loses less than it saves.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-17"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_19fd30#0",
+      "format": "quiz",
+      "prompt": "How does MARS divide labor differently from a typical multi-agent coding pipeline?",
+      "choices": [
+        {
+          "text": "By algorithmic topic — each agent specializes in DP, graphs, strings, geometry, and so on",
+          "correct": true
+        },
+        {
+          "text": "By generic role — planner, coder, and debugger agents",
+          "correct": false
+        },
+        {
+          "text": "By programming language, one agent per target language",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGeneric planner/coder/debugger roles leave technique selection to the backbone model. MARS makes specialization the axis of division and uses retrieval to pick which specialists a problem needs.\u003c/p\u003e"
+    },
+    {
+      "id": "card_19fd30#1",
+      "format": "flip",
+      "prompt": "What happens on each turn of the MARS relay?",
+      "back_html": "\u003cp\u003eThe candidate solution is run against public examples in a sandbox; the active specialist then keeps, repairs, or hands off the draft, forwarding a structured packet to the next specialist. A single infrastructure-fixer pass normalizes boilerplate at the end.\u003c/p\u003e"
+    },
+    {
+      "id": "card_19fd30#2",
+      "format": "quiz",
+      "prompt": "What is MARS's headline trade-off against CodeSIM on CodeContests?",
+      "choices": [
+        {
+          "text": "Slightly lower pass rate (0.624 vs 0.731) at roughly 3.3x lower wall-clock cost",
+          "correct": true
+        },
+        {
+          "text": "Higher pass rate, but far more expensive to run",
+          "correct": false
+        },
+        {
+          "text": "Identical pass rate at identical cost, but simpler to implement",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors report MARS closing most of the gap to CodeSIM while running 3.3x cheaper in wall-clock time, with substantially smaller variance in per-task token spend.\u003c/p\u003e"
+    }
+  ]
+}

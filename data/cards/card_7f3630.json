@@ -1,0 +1,117 @@
+{
+  "id": "card_7f3630",
+  "slug": "inkling-thinking-machines",
+  "type": "news",
+  "title": "Inkling by Thinking Machines",
+  "hook": "Thinking Machines' open-weight multimodal MoE reads image, text, and audio in a 1-million-token context — and skips RoPE for relative position encoding instead.",
+  "key_points": [
+    "Decoder-only Mixture-of-Experts: 975B total parameters, 41B active, routing top-6 of 256 experts plus 2 always-on shared experts.",
+    "Natively multimodal — processes image, text, and audio together, with a 1-million-token context window.",
+    "Hybrid attention alternates global and sliding-window layers 5:1; uses relative, distance-based position encoding instead of RoPE.",
+    "Adds short convolution layers for local representations, kept separate from the attention mechanism.",
+    "Scores 77.6% on SWE-Bench Verified, 87.2% on GPQA Diamond, 91.4% on VoiceBench; strong on vision reasoning and multilingual audio.",
+    "Ships open-weight in full precision (2TB VRAM) and smaller quantized variants, supported across major inference frameworks."
+  ],
+  "content_html": "\u003cp\u003eThinking Machines released Inkling, an open-weight, natively multimodal Mixture-of-Experts model that reads image, text, and audio together in a single 1-million-token context. Structurally, it departs from the now-standard RoPE-and-dense-attention playbook on several fronts.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eInkling activates 41B of its 975B total parameters per token, spread across 256 experts (top-6 routed, plus 2 shared experts always on). Attention alternates global and sliding-window layers in a 5:1 ratio, and swaps RoPE for a relative, distance-based scheme learned directly in the attention logits; short convolution layers add local representation kept separate from attention. Reported scores include 77.6% on SWE-Bench Verified, 87.2% on GPQA Diamond, and 91.4% on VoiceBench, alongside strong vision-reasoning and multilingual audio results. It ships open-weight — full precision needs 2TB of VRAM, with smaller quantized variants available — and is supported across major inference frameworks, per Thinking Machines' release post.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face",
+    "authors": [
+      "Thinking Machines"
+    ],
+    "url": "https://huggingface.co/blog/thinkingmachines-inkling",
+    "published_at": "2026-07-15",
+    "license": "Hugging Face blog"
+  },
+  "topic_ids": [
+    "multimodal-vision",
+    "releases"
+  ],
+  "tags": [
+    "multimodal",
+    "open-source",
+    "news",
+    "efficiency"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-07-16",
+  "date": "2026-07-15",
+  "related": [
+    {
+      "id": "card_31ff4e",
+      "slug": "mixtral",
+      "type": "paper",
+      "title": "Mixtral of Experts",
+      "hook": "Mixtral packs 8 experts per layer but routes each token through only 2, so you get the capacity of a ~47B model at the compute cost of a ~13B one - open weights included.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-01-08"
+    },
+    {
+      "id": "card_39d91b",
+      "slug": "gemini-3-pro",
+      "type": "news",
+      "title": "Gemini 3 Pro",
+      "hook": "Gemini 3 Pro was Google's late-2025 frontier leap — a natively multimodal reasoning model that shipped to billions of Search and Gemini users on day one.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-11-18"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_7f3630#0",
+      "format": "flip",
+      "prompt": "How big is Inkling, and how much of it is active per token?",
+      "back_html": "\u003cp\u003e975B total parameters, but only 41B are active per token — the router picks top-6 of 256 experts plus 2 shared experts that are always on.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7f3630#1",
+      "format": "quiz",
+      "prompt": "What positional encoding does Inkling use instead of the common RoPE approach?",
+      "choices": [
+        {
+          "text": "Relative, distance-based position encoding learned directly in attention logits",
+          "correct": true
+        },
+        {
+          "text": "Standard RoPE, same as most modern LLMs",
+          "correct": false
+        },
+        {
+          "text": "No positional encoding at all",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eInkling learns position directly in attention logits via a relative feature based on distance between query and key, rather than RoPE.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7f3630#2",
+      "format": "flip",
+      "prompt": "What's distinctive about Inkling's attention pattern across layers?",
+      "back_html": "\u003cp\u003eIt alternates full-context (global) attention and sliding-window attention in a 5:1 ratio, mixing long-range and local attention layers.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7f3630#3",
+      "format": "quiz",
+      "prompt": "Besides text and images, what other modality does Inkling natively process?",
+      "choices": [
+        {
+          "text": "Audio",
+          "correct": true
+        },
+        {
+          "text": "3D point clouds",
+          "correct": false
+        },
+        {
+          "text": "Tabular data",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eInkling natively handles image, text, and audio inputs within its 1-million-token context window.\u003c/p\u003e"
+    }
+  ]
+}

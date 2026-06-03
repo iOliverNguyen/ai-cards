@@ -1,0 +1,142 @@
+{
+  "id": "card_1bed6c",
+  "slug": "principles-behind-neural-network-optimizers",
+  "type": "paper",
+  "title": "Why Adam Beats SGD on Transformers: A Hessian Story",
+  "hook": "Adam is the default optimizer for LLMs and nobody could quite say why. This thesis traces it to the shape the Hessian takes during transformer training — and gets Adam-mini out of the explanation.",
+  "key_points": [
+    "Adam's divergence-convergence debate resolves into a problem-dependent phase transition: it converges with properly chosen batch-size-dependent hyperparameters, and can diverge in small-β₂ regimes.",
+    "The Hessian evolves toward a near-block-diagonal form during transformer training, with strong heterogeneity between blocks.",
+    "The thesis proves this structure is what makes Adam's diagonal preconditioner effective — SGD has no equivalent handle.",
+    "That structure is traced to consecutive multiplications of large matrix variables, analysed via random matrix theory.",
+    "The insight yields Adam-mini: 50% less optimizer memory at comparable performance.",
+    "The same framing is offered as a lens on newer optimizers such as Muon."
+  ],
+  "content_html": "\u003cp\u003eEveryone trains LLMs with Adam, and the honest explanation has long been \u0026quot;it works.\u0026quot; Yushun Zhang's thesis goes after the missing theory, and the payoff isn't just a proof — it's a design principle that yields a leaner optimizer.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThree moves. First, the long-running argument about whether Adam converges is recast as a problem-dependent phase transition: with properly chosen, batch-size-dependent hyperparameters Adam converges, while in small-β₂ regimes it can genuinely diverge. Second, the question of why Adam so decisively beats SGD on transformers is answered through the Hessian: it evolves toward a near-block-diagonal form as training proceeds, with strong heterogeneity across blocks, and the thesis proves that this is precisely the structure Adam's diagonal preconditioner can exploit. Third, the origin of that structure is traced to consecutive multiplications of large matrix variables, with a random-matrix-theory analysis behind it.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe theory pays rent. Adam-mini, motivated directly by the block-heterogeneity picture, cuts Adam's memory footprint in half while preserving performance — a real saving at LLM scale, where optimizer state competes with the model for HBM. The author also positions the Hessian-structure lens as a general tool: it reveals local structure in matrix-based nonconvex problems and offers a way to reason about newer optimizers like Muon rather than just benchmarking them.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yushun Zhang"
+    ],
+    "url": "https://arxiv.org/abs/2608.16760",
+    "published_at": "2026-08-17",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "optimization",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "efficiency",
+    "foundational",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-20",
+  "date": "2026-08-17",
+  "related": [
+    {
+      "id": "card_e41b8a",
+      "slug": "adam-optimizer",
+      "type": "paper",
+      "title": "Adam: The Default Optimizer",
+      "hook": "Adam gives every parameter its own adaptive step size by tracking the gradient's recent average and spread — and it mostly just works.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2014-12-22"
+    },
+    {
+      "id": "card_203675",
+      "slug": "adamw",
+      "type": "paper",
+      "title": "AdamW: Decoupled Weight Decay",
+      "hook": "L2 regularization and weight decay are the same thing for plain SGD - but not for Adam. Decoupling them fixes Adam's generalization and makes the best decay value independent of the learning rate.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-11-14"
+    },
+    {
+      "id": "card_f399a5",
+      "slug": "muon-optimizer",
+      "type": "blog",
+      "title": "Muon: An Optimizer for Hidden Layers",
+      "hook": "Muon orthogonalizes each gradient update before applying it — and trained networks faster than AdamW, the first serious challenger to Adam's reign in years.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-12-08"
+    },
+    {
+      "id": "card_a6b294",
+      "slug": "adam-convergence-revisited",
+      "type": "paper",
+      "title": "On the Convergence of Adam, Revisited",
+      "hook": "A 2018 result showed Adam can fail to converge only in a specific hyperparameter regime. This paper shows it can fail for ANY choice — a flaw that spreads to AdamW, RMSProp, even Muon.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-03"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_e41b8a",
+      "slug": "adam-optimizer",
+      "type": "paper",
+      "title": "Adam: The Default Optimizer",
+      "hook": "Adam gives every parameter its own adaptive step size by tracking the gradient's recent average and spread — and it mostly just works.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2014-12-22"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_1bed6c#0",
+      "format": "flip",
+      "prompt": "What structure does the transformer Hessian develop during training, and why does it favour Adam?",
+      "back_html": "\u003cp\u003eIt evolves toward a near-block-diagonal form with strong heterogeneity between blocks. The thesis proves that this is exactly the structure a diagonal preconditioner like Adam's can exploit.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1bed6c#1",
+      "format": "quiz",
+      "prompt": "How does the thesis resolve the question of whether Adam converges?",
+      "choices": [
+        {
+          "text": "There is a problem-dependent phase transition: it converges with properly chosen batch-size-dependent hyperparameters, and can diverge under small β₂",
+          "correct": true
+        },
+        {
+          "text": "Adam always converges once weight decay is decoupled",
+          "correct": false
+        },
+        {
+          "text": "Adam never provably converges on non-convex problems",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe answer isn't yes or no — it depends on the regime, and specifically on choosing hyperparameters that account for batch size.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1bed6c#2",
+      "format": "quiz",
+      "prompt": "Where does the block-heterogeneous Hessian structure come from, per the thesis?",
+      "choices": [
+        {
+          "text": "Consecutive multiplications of large matrix variables, analysed with random matrix theory",
+          "correct": true
+        },
+        {
+          "text": "The layer normalization placed before each attention block",
+          "correct": false
+        },
+        {
+          "text": "The softmax in attention saturating during late training",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe origin is traced to stacking large matrix multiplications, with a rigorous random-matrix-theory argument — which is why it shows up in matrix-based nonconvex problems generally.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "id": "card_7f35b4",
+  "slug": "signed-maxsim-late-interaction-capacity",
+  "type": "paper",
+  "title": "Why ColBERT-Style Retrieval Fails on Negation — and the Fix",
+  "hook": "Late-interaction retrieval (MaxSim, as in ColBERT) is provably as expressive as vector search for ordinary matches — but provably can't handle negation. Signed MaxSim closes that exact gap.",
+  "key_points": [
+    "MaxSim similarity (used in ColBERT-style late-interaction retrieval) can exactly replicate the inner product of any two non-negative, arbitrarily high-dimensional sparse vectors, using only O(k) space.",
+    "But standard MaxSim provably cannot replicate arbitrary signed (positive-and-negative) inner products — the theoretical source of its known weakness on negation queries.",
+    "The paper also shows MaxSim can act as an aggregation of soft-OR operations and evaluate positive Conjunctive Normal Form logical expressions.",
+    "Signed MaxSim, the proposed extension, provably replicates any real-valued inner product, closing the expressiveness gap.",
+    "On negation-only queries, nDCG@10 jumps from 0.008 to 0.788 versus a standard ColBERT/MaxSim baseline; under a vocabulary shift it rises from 0.597 to 1.000."
+  ],
+  "content_html": "\u003cp\u003eColBERT and other late-interaction retrieval models use a similarity function called MaxSim, and it works surprisingly well empirically — but until this paper, no one had pinned down exactly what MaxSim can and can't represent, or why it struggles on certain query types.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe authors prove that MaxSim can exactly replicate the inner product between any two non-negative sparse vectors, even in arbitrarily high dimension, using only compact O(k) representation space — meaning it's at least as expressive as standard vector inner products for that class of queries. They also show MaxSim can express operations vector inner products can't, such as aggregating soft-OR relevance signals or evaluating certain logical (CNF) expressions. But the proof also identifies a hard limit: standard MaxSim cannot exactly replicate inner products between arbitrary signed vectors — vectors with both positive and negative entries, which is exactly what you'd need to represent \u0026quot;this term should count against relevance\u0026quot; as in negation.\u003c/p\u003e\n\u003cp\u003eTo close that gap, the paper introduces Signed MaxSim, proven to replicate any real-valued inner product. Empirically, that theoretical fix translates directly into practice: on a retrieval benchmark with negation-heavy queries, Signed MaxSim lifts nDCG@10 from 0.008 to 0.788 versus a standard ColBERT/MaxSim baseline, and from 0.597 to 1.000 under a vocabulary shift — turning a near-total failure mode into strong retrieval. Julian Killingback, Varad Ingale, Hamed Zamani, and Cameron Musco, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Julian Killingback",
+      "Varad Ingale",
+      "Hamed Zamani",
+      "Cameron Musco"
+    ],
+    "url": "https://arxiv.org/abs/2607.05803",
+    "published_at": "2026-07-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rag",
+    "papers-this-week"
+  ],
+  "tags": [
+    "rag",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-13",
+  "date": "2026-07-07",
+  "related": [
+    {
+      "id": "card_667a26",
+      "slug": "dense-passage-retrieval",
+      "type": "paper",
+      "title": "Dense Passage Retrieval (DPR)",
+      "hook": "Keyword search misses answers that use different words. DPR embeds questions and passages into one vector space and retrieves by meaning — the backbone of modern vector search.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-04-10"
+    },
+    {
+      "id": "card_02ad74",
+      "slug": "retrieval-augmented-generation",
+      "type": "paper",
+      "title": "Retrieval-Augmented Generation (RAG)",
+      "hook": "Why force a model to memorize everything? RAG lets it look things up — fetch relevant documents, then answer from that evidence instead of frozen weights alone.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-22"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_667a26",
+      "slug": "dense-passage-retrieval",
+      "type": "paper",
+      "title": "Dense Passage Retrieval (DPR)",
+      "hook": "Keyword search misses answers that use different words. DPR embeds questions and passages into one vector space and retrieves by meaning — the backbone of modern vector search.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-04-10"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_7f35b4#0",
+      "format": "flip",
+      "prompt": "What can standard MaxSim (as used in ColBERT) exactly replicate, and what can't it replicate?",
+      "back_html": "\u003cp\u003eIt can exactly replicate the inner product between any two non-negative sparse vectors in O(k) space, but it provably cannot replicate arbitrary signed (positive-and-negative) inner products.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7f35b4#1",
+      "format": "quiz",
+      "prompt": "Why does this theoretical gap in MaxSim matter in practice?",
+      "choices": [
+        {
+          "text": "It explains why standard late-interaction retrieval struggles on negation queries, which need signed relationships between terms",
+          "correct": true
+        },
+        {
+          "text": "It means MaxSim is always slower than dense vector search",
+          "correct": false
+        },
+        {
+          "text": "It shows MaxSim can't be used for any retrieval task at all",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eNegation ('not X') requires representing a relationship that can subtract relevance, which non-negative MaxSim structurally cannot express — matching the paper's empirical finding of near-zero nDCG on negation-only queries.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7f35b4#2",
+      "format": "flip",
+      "prompt": "How much did Signed MaxSim improve retrieval on negation-only queries compared to standard ColBERT/MaxSim?",
+      "back_html": "\u003cp\u003enDCG@10 rose from 0.008 to 0.788 on negation-only queries, and from 0.597 to 1.000 under a vocabulary shift — closing the theoretical gap the paper identifies.\u003c/p\u003e"
+    }
+  ]
+}

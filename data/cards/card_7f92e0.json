@@ -1,0 +1,108 @@
+{
+  "id": "card_7f92e0",
+  "slug": "budget-dependent-rankings",
+  "type": "paper",
+  "title": "Who Thinks Best Depends on How Long You Let Them",
+  "hook": "Change the token budget and the leaderboard changes with it. Model rankings reversed on every benchmark tested — which means a single-budget eval is measuring the budget as much as the model.",
+  "key_points": [
+    "Varied the maximum generation budget across seven levels (64–4,096 tokens) for four models on three reasoning benchmarks — 56,476 inferences.",
+    "Model rankings reversed across budgets on all three benchmarks (McNemar, p \u003c 0.01).",
+    "3–19% of items are non-monotone: accuracy drops as the budget grows, even after controlling for truncation.",
+    "Non-monotonicity is model-specific — only 6–14% of those items overlap between models.",
+    "Oracle model-selection analysis shows complementarity worth up to +27.8 points, largest at constrained budgets.",
+    "A budget-aware router recovered 14.1% of that oracle gap cross-domain; budget features helped in-domain but hurt transfer."
+  ],
+  "content_html": "\u003cp\u003eBenchmarks quietly assume that if model A beats model B, it beats it under any reasonable inference setting. Rodrigo Guedes de Souza and Alison R. Panisson (arXiv, August 2026) tested that by sweeping the \u003cem\u003etoken generation budget\u003c/em\u003e — the cap on how much a model may produce — across seven levels from 64 to 4,096 tokens, over four models and three reasoning benchmarks, for 56,476 total inferences.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe findings\u003c/h2\u003e\n\u003cp\u003eRankings reversed across budgets on \u003cstrong\u003eall three\u003c/strong\u003e benchmarks (McNemar, p \u0026lt; 0.01). Between 3% and 19% of items were \u003cem\u003enon-monotone\u003c/em\u003e — accuracy actually fell as the model was permitted to think longer — and this persisted after controlling for truncation. Which items misbehave is model-specific, with only 6–14% overlap across models.\u003c/p\u003e\n\u003cp\u003eThat model-specificity is also an opportunity. An oracle that picks the best model per item captures up to +27.8 percentage points, and the gap is widest at tight budgets. The authors' budget-aware router recovers 14.1% of that oracle gap across domains; budget features gave +1.6 to +5.7 points within a domain but cost -1.2 points when transferred, so they don't generalize for free.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eIf a leaderboard fixes one budget, it is partly measuring that budget. The authors argue for budget-conditioned evaluation protocols — and, for anyone deploying, for checking that your model choice still holds at the token limit you actually run in production.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Rodrigo Guedes de Souza",
+      "Alison R. Panisson"
+    ],
+    "url": "https://arxiv.org/abs/2608.12150",
+    "published_at": "2026-08-12",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "reasoning",
+    "inference",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-13",
+  "date": "2026-08-12",
+  "related": [
+    {
+      "id": "card_35a936",
+      "slug": "item-response-theory-ai-evaluation",
+      "type": "paper",
+      "title": "Can We Trust Item Response Theory for AI Evaluation?",
+      "hook": "IRT ranks models off a handful of items instead of averaging accuracy — but the math was built for human test-takers, and AI benchmarks break its assumptions in ways that quietly distort rankings.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-16"
+    },
+    {
+      "id": "card_ddce7e",
+      "slug": "agent-benchmark-protocol-validity",
+      "type": "paper",
+      "title": "Do Agent Benchmarks Measure Capability?",
+      "hook": "An agent score only means something if the task still requires the skill it claims to test. Auditing 2,385 traces, two-thirds showed the agent taking a shortcut instead.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-24"
+    },
+    {
+      "id": "card_01a1d7",
+      "slug": "cot-scaling-trap-latent-reasoning",
+      "type": "blog",
+      "title": "Chain of Thought Is a Scaling Trap? The Case for Latent Reasoning",
+      "hook": "A visible chain of thought reads like the model's thinking — but it can be an unfaithful, expensive trace. The next wave reasons in hidden state instead of tokens.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-13"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_7f92e0#0",
+      "format": "flip",
+      "prompt": "What assumption about LLM evaluation does this paper break?",
+      "back_html": "\u003cp\u003eThat model rankings are stable across inference conditions. Varying the maximum token generation budget reversed rankings on all three reasoning benchmarks tested.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7f92e0#1",
+      "format": "quiz",
+      "prompt": "What is a 'non-monotone' item in this study?",
+      "choices": [
+        {
+          "text": "An item where accuracy falls as the model is allowed to generate more tokens",
+          "correct": true
+        },
+        {
+          "text": "An item whose answer is truncated before the model finishes",
+          "correct": false
+        },
+        {
+          "text": "An item all four models get wrong regardless of budget",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003e3–19% of items got \u003cem\u003eworse\u003c/em\u003e with a larger budget even after controlling for truncation — and which items behave this way is model-specific.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7f92e0#2",
+      "format": "flip",
+      "prompt": "What practical protocol change do the authors argue for?",
+      "back_html": "\u003cp\u003eBudget-conditioned evaluation: report results across generation budgets rather than at one fixed budget, since the choice of budget can decide which model looks best.\u003c/p\u003e"
+    }
+  ]
+}

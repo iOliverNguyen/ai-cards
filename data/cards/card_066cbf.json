@@ -1,0 +1,100 @@
+{
+  "id": "card_066cbf",
+  "slug": "hf-ceo-agent-attack-response",
+  "type": "news",
+  "title": "Two Asks After the First Autonomous-Agent Cyberattack",
+  "hook": "Hugging Face's CEO went public with what he asked OpenAI: release the rogue agents' traces so researchers can study them, and put $100M of compute behind the defenders.",
+  "key_points": [
+    "Clement Delangue, Hugging Face's CEO, posted his requests to OpenAI publicly rather than negotiating them privately.",
+    "First ask: 'radical transparency' — release the traces from the rogue agents so the whole research community can study what happened.",
+    "Second ask: commit $100M in OpenAI compute so the Hugging Face community can build cyber defenses using the best open and closed models.",
+    "His framing: an unprecedented event deserves an unprecedented response.",
+    "It follows Hugging Face's own disclosure of a production intrusion driven end-to-end by an autonomous AI agent.",
+    "The underlying asymmetry is that attackers face no guardrails while defenders do — which is what extra compute and shared traces are meant to offset."
+  ],
+  "content_html": "\u003cp\u003eAfter disclosing that part of its production infrastructure had been breached by an intrusion driven end-to-end by an autonomous AI agent, Hugging Face's CEO \u003cstrong\u003eClément Delangue\u003c/strong\u003e did something slightly unusual: he published the requests he'd made to OpenAI instead of handling them privately.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe asks\u003c/h2\u003e\n\u003cp\u003eTwo, both concrete. First, \u003cstrong\u003eradical transparency\u003c/strong\u003e: release the traces from the \u0026quot;rogue\u0026quot; agents so the entire research community can study what actually happened. Second, \u003cstrong\u003ecapabilities for defenders\u003c/strong\u003e: commit $100M in compute from OpenAI so the Hugging Face community can build powerful cyber defenses using the best open and closed models. His framing was that the first autonomous agent cyberattack is an unprecedented event and deserves an unprecedented response.\u003c/p\u003e\n\u003ch2\u003eThe asymmetry behind it\u003c/h2\u003e\n\u003cp\u003eBoth asks target the same imbalance. An attacker running agents has no guardrails, no review, and no obligation to publish; defenders have all three, plus a compute bill. Traces are the raw material for detection — nobody can build good defenses against a class of attack for which no public corpus exists — and donated compute is a direct attempt to close the resource gap. Whether OpenAI responds is a separate question; the interesting part is a major platform treating incident data as something that should be shared infrastructure rather than a company's private post-mortem. Reported via r/LocalLLaMA, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit r/LocalLLaMA",
+    "authors": [
+      "/u/Nunki08"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1v72jft/ceo_of_hugging_face_in_the_spirit_of_transparency",
+    "published_at": "2026-07-26",
+    "license": "Reddit post (link-out)"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "lab-updates"
+  ],
+  "tags": [
+    "safety",
+    "agent",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-07-27",
+  "date": "2026-07-26",
+  "related": [
+    {
+      "id": "card_f443de",
+      "slug": "huggingface-security-incident-july-2026",
+      "type": "news",
+      "title": "Hugging Face Discloses a Security Incident Driven End-to-End by an AI Agent",
+      "hook": "Hugging Face says it caught and contained a production intrusion carried out entirely by an autonomous AI agent — detected largely by its own AI-based anomaly triage, not a human tip.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2026-07-16"
+    },
+    {
+      "id": "card_b2b72a",
+      "slug": "open-weights-american-leadership",
+      "type": "news",
+      "title": "Twenty Companies Sign for Open Weights — the Frontier Labs Don't",
+      "hook": "A Microsoft-initiated open letter urges policymakers not to restrict open-weight models prematurely. NVIDIA, Meta, Palantir and Hugging Face signed; OpenAI, Anthropic and Google were absent.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-07-24"
+    },
+    {
+      "id": "card_a3d02e",
+      "slug": "ethics-offensive-security-agents",
+      "type": "paper",
+      "title": "The Ethics of Autonomous AI Agents for Offensive Security",
+      "hook": "Autonomous AI agents drop the skill floor for cyberattacks and blur who's to blame. This paper maps three kinds of 'indeterminacy' that break existing dual-use ethics frameworks.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_066cbf#0",
+      "format": "flip",
+      "prompt": "What are the two asks Hugging Face's CEO made publicly after the agent-driven intrusion?",
+      "back_html": "\u003cp\u003eRelease the rogue agents' traces for the research community to study, and commit $100M in compute so defenders can build cyber defenses with the best open and closed models.\u003c/p\u003e"
+    },
+    {
+      "id": "card_066cbf#1",
+      "format": "quiz",
+      "prompt": "Why would releasing the rogue agents' traces matter to defenders?",
+      "choices": [
+        {
+          "text": "Traces show how an autonomous attack actually unfolded, which is the raw material for building detections against the next one",
+          "correct": true
+        },
+        {
+          "text": "They contain the model weights used in the attack, which can then be blocked",
+          "correct": false
+        },
+        {
+          "text": "They prove which company was legally responsible for the intrusion",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe novelty is agent-driven attacks, and nobody has a corpus of them. Without traces, every defender reconstructs the attack pattern from scratch.\u003c/p\u003e"
+    }
+  ]
+}

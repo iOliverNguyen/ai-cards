@@ -1,0 +1,100 @@
+{
+  "id": "card_bf55a6",
+  "slug": "lerobot-v0-6-0",
+  "type": "news",
+  "title": "LeRobot v0.6.0: World-Model Policies for Robot Learning",
+  "hook": "Hugging Face's open robotics library adds policies that imagine the future before acting, five new vision-language-action models, and a CLI for human-in-the-loop data collection.",
+  "key_points": [
+    "Adds world-model policies that learn to imagine the future as part of training, alongside five new vision-language-action (VLA) models.",
+    "New unified reward-models API for success detection, plus six new simulation benchmarks and depth-camera support.",
+    "A new deployment CLI enables DAgger-style human-in-the-loop corrections for more efficient data collection.",
+    "Technical upgrades: FSDP multi-GPU training, cloud training via Hugging Face Jobs, and up to 2x faster dataset loading.",
+    "Lighter installation footprint and simplified APIs aim to make the framework more accessible to robotics newcomers."
+  ],
+  "content_html": "\u003cp\u003eRobot learning has historically meant stitching together separate tools for data collection, training, and evaluation. LeRobot v0.6.0 pushes toward a more complete, single pipeline.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe release adds world-model policies — which learn to imagine the future as part of training rather than reacting only to the current frame — alongside five new vision-language-action models and a unified reward-models API for automatic success detection. Six new simulation benchmarks and comprehensive depth-camera support round out the evaluation side, while a new deployment CLI supports DAgger-style human-in-the-loop corrections, letting a human step in to correct a policy during deployment for more sample-efficient data collection than pure demonstrations. Under the hood, the release adds FSDP multi-GPU training, cloud training via Hugging Face Jobs, and up to 2x faster dataset loading, alongside a lighter installation footprint and simplified APIs meant to lower the barrier for newcomers exploring embodied AI. Hugging Face Blog, 2026-07-07.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face Blog",
+    "url": "https://huggingface.co/blog/lerobot-release-v060",
+    "published_at": "2026-07-07",
+    "license": "Blog post"
+  },
+  "topic_ids": [
+    "robotics",
+    "releases",
+    "lab-updates"
+  ],
+  "tags": [
+    "open-source",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-07-09",
+  "date": "2026-07-07",
+  "related": [
+    {
+      "id": "card_0dc810",
+      "slug": "pi-zero",
+      "type": "paper",
+      "title": "π0: A Vision-Language-Action Model",
+      "hook": "π0 is a generalist robot policy: it takes camera images, joint angles, and a plain-language instruction, and outputs smooth action sequences — folding laundry, bussing tables, bagging groceries.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-10-31"
+    },
+    {
+      "id": "card_dd8539",
+      "slug": "rt-2",
+      "type": "paper",
+      "title": "RT-2: Vision-Language-Action Models",
+      "hook": "Treat a robot's actions as just more text tokens, and a vision-language model can learn to act — carrying its web knowledge into the physical world.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-07-28"
+    },
+    {
+      "id": "card_b9d1db",
+      "slug": "world-action-models-survey",
+      "type": "paper",
+      "title": "World Action Models: A Survey",
+      "hook": "Robots are learning to imagine the future before acting. This survey untangles 'world action models' from video generators and VLA policies — and finds them converging on one idea.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_bf55a6#0",
+      "format": "flip",
+      "prompt": "What kind of policy does LeRobot v0.6.0 newly add, and what does it do differently?",
+      "back_html": "\u003cp\u003eWorld-model policies, which learn to imagine the future as part of training — rather than reacting only to the current observation, they build an internal model of how the world will unfold.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bf55a6#1",
+      "format": "quiz",
+      "prompt": "What does LeRobot v0.6.0's new deployment CLI enable for data collection?",
+      "choices": [
+        {
+          "text": "DAgger-style human-in-the-loop corrections, for more efficient data collection",
+          "correct": true
+        },
+        {
+          "text": "Fully autonomous data collection with zero human involvement",
+          "correct": false
+        },
+        {
+          "text": "Only simulation-based data collection, no real robots",
+          "correct": false
+        },
+        {
+          "text": "Data collection restricted to a single supported robot model",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe CLI supports DAgger-style corrections, where a human can step in to correct a policy's actions during deployment, making data collection more sample-efficient than pure demonstration collection.\u003c/p\u003e"
+    }
+  ]
+}

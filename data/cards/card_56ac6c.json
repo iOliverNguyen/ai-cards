@@ -1,0 +1,104 @@
+{
+  "id": "card_56ac6c",
+  "slug": "minimax-m1",
+  "type": "paper",
+  "title": "MiniMax-M1",
+  "hook": "MiniMax-M1 is an open-weight reasoning model with a million-token context and 'lightning attention' — and a hybrid design that made full RL training cost about $0.5M.",
+  "key_points": [
+    "Open-weight hybrid-attention reasoning model from MiniMax, June 2025.",
+    "456B-parameter MoE (45.9B active) with a native 1M-token context — 8× DeepSeek-R1.",
+    "Lightning attention scales test-time compute efficiently for long inputs and long thinking.",
+    "Trained with the CISPO RL algorithm; full RL run finished in ~3 weeks on 512 H800s."
+  ],
+  "content_html": "\u003cp\u003eMiniMax-M1 is an open-weight, large-scale hybrid-attention reasoning model released by MiniMax in mid-2025. Built on a 456-billion-parameter Mixture-of-Experts backbone (about 45.9 billion active per token), its headline feature is a native one-million-token context window — eight times that of DeepSeek-R1 — supported by an efficient \u0026quot;lightning attention\u0026quot; mechanism.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eStandard attention costs grow quadratically with sequence length, which is what makes very long contexts and very long reasoning chains expensive. MiniMax-M1 mixes lightning attention with a Mixture-of-Experts design so that both the long inputs and the extended \u0026quot;thinking\u0026quot; needed for reasoning scale efficiently. Training used a new RL algorithm, CISPO, which clips importance-sampling weights rather than token updates; combined with the efficient architecture, the full reinforcement-learning run completed in roughly three weeks on 512 H800 GPUs at a reported rental cost around $535K — strikingly cheap for a frontier-style reasoning model.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eM1 is two trends in one model: open-weight frontier reasoning, and architectural efficiency aimed squarely at the cost of long-context, long-thinking inference. The economics are the story — demonstrating that competitive RL-trained reasoning need not require a nine-figure budget pushes the open ecosystem forward.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "MiniMax"
+    ],
+    "url": "https://arxiv.org/abs/2506.13585",
+    "published_at": "2025-06-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining",
+    "releases"
+  ],
+  "tags": [
+    "open-source",
+    "reasoning",
+    "efficiency"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2025-06-16",
+  "related": [
+    {
+      "id": "card_4cd8fd",
+      "slug": "deepseek-r1",
+      "type": "paper",
+      "title": "DeepSeek-R1: Incentivizing Reasoning via Reinforcement Learning",
+      "hook": "DeepSeek shows strong reasoning can emerge from RL on verifiable rewards with minimal supervised data - and those reasoning traces can be distilled into smaller models.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2025-01-22"
+    },
+    {
+      "id": "card_1f00c3",
+      "slug": "test-time-compute-scaling",
+      "type": "paper",
+      "title": "Scaling LLM Test-Time Compute",
+      "hook": "A new scaling axis: instead of a bigger model, let a model think longer at inference — often a better use of compute, and the principle behind o1 and R1.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-08-06"
+    },
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_56ac6c#0",
+      "format": "quiz",
+      "prompt": "Why are very long contexts and long reasoning chains normally expensive?",
+      "choices": [
+        {
+          "text": "Standard attention costs grow quadratically with sequence length",
+          "correct": true
+        },
+        {
+          "text": "Mixture-of-experts disables the KV cache",
+          "correct": false
+        },
+        {
+          "text": "Longer outputs require more parameters",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMiniMax-M1 mixes lightning attention with MoE so both long inputs and extended thinking scale efficiently, avoiding the quadratic cost.\u003c/p\u003e"
+    },
+    {
+      "id": "card_56ac6c#1",
+      "format": "flip",
+      "prompt": "What does the CISPO RL algorithm clip during MiniMax-M1's training?",
+      "back_html": "\u003cp\u003eIt clips importance-sampling weights rather than token updates, helping the full RL run finish efficiently.\u003c/p\u003e"
+    },
+    {
+      "id": "card_56ac6c#2",
+      "format": "flip",
+      "prompt": "Why are MiniMax-M1's economics considered the headline story?",
+      "back_html": "\u003cp\u003eIt showed competitive RL-trained reasoning need not require a nine-figure budget, pushing open-weight frontier reasoning forward.\u003c/p\u003e"
+    }
+  ]
+}

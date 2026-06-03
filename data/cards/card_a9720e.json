@@ -1,0 +1,110 @@
+{
+  "id": "card_a9720e",
+  "slug": "word2vec",
+  "type": "paper",
+  "title": "Word2Vec: Word Embeddings",
+  "hook": "Teach a model to predict a word's neighbors, and it quietly learns vectors where king minus man plus woman lands near queen.",
+  "key_points": [
+    "Represents each word as a dense vector learned from the contexts it appears in.",
+    "Words used in similar ways end up close together in the vector space.",
+    "Trained efficiently by predicting context words (or the center word) — no labels needed.",
+    "Analogies emerge as vector arithmetic, e.g. king − man + woman ≈ queen."
+  ],
+  "content_html": "\u003cp\u003eMikolov and colleagues introduced Word2Vec, which represents words as dense vectors learned by predicting the words around them in raw text. Because words used in similar contexts get similar vectors, related words land near each other in the space. A famous side effect: analogies fall out of simple vector arithmetic, like king − man + woman landing close to queen.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eWord2Vec slides a window over a large text corpus and trains a shallow model on a self-supervised task — either predicting a word from its neighbors or predicting the neighbors from a word. To make this fast on huge corpora, it uses efficient training tricks rather than a costly full output layer. The model's learned weights become the word vectors, and directions in that space end up capturing meaningful relationships between words.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eWord2Vec showed that useful meaning could be captured in compact vectors learned from unlabeled text alone, which reshaped how NLP systems represented language. These embeddings became a standard building block and a conceptual stepping stone toward the contextual representations used in modern models. The clean analogy demos also made the idea vivid and widely influential.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Tomas Mikolov",
+      "Kai Chen",
+      "Greg Corrado",
+      "Jeffrey Dean"
+    ],
+    "url": "https://arxiv.org/abs/1301.3781",
+    "published_at": "2013-01-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "tokenization"
+  ],
+  "tags": [
+    "nlp",
+    "foundational",
+    "landmark"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2013-01-16",
+  "related": [
+    {
+      "id": "card_a2690e",
+      "slug": "byte-pair-encoding",
+      "type": "paper",
+      "title": "Subword Tokenization with Byte-Pair Encoding",
+      "hook": "Whole words make a giant vocabulary; single characters make long sequences. Subwords split the difference — and let models read words they've never seen.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2015-08-31"
+    },
+    {
+      "id": "card_32f3c7",
+      "slug": "bert",
+      "type": "paper",
+      "title": "BERT: Pretraining Deep Bidirectional Transformers",
+      "hook": "What if a model read a sentence both directions at once? BERT did, by masking words and predicting them — and made pretrain-then-fine-tune the default recipe in NLP.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2018-10-11"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a9720e#0",
+      "format": "flip",
+      "prompt": "What training task lets Word2Vec learn word vectors without labels?",
+      "back_html": "\u003cp\u003eA self-supervised task over raw text: predicting a word from its neighbors, or the neighbors from a word, as a window slides over the corpus.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a9720e#1",
+      "format": "quiz",
+      "prompt": "Why do related words end up near each other in Word2Vec's space?",
+      "choices": [
+        {
+          "text": "Words used in similar contexts get similar vectors",
+          "correct": true
+        },
+        {
+          "text": "Words are sorted alphabetically into the space",
+          "correct": false
+        },
+        {
+          "text": "Each word is assigned a vector by a human annotator",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eWord2Vec learns vectors from context, so words appearing in similar contexts land close together.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a9720e#2",
+      "format": "quiz",
+      "prompt": "What surprising property emerges from Word2Vec's vector space?",
+      "choices": [
+        {
+          "text": "Analogies fall out of vector arithmetic, e.g. king - man + woman is near queen",
+          "correct": true
+        },
+        {
+          "text": "Each vector dimension corresponds to a part of speech",
+          "correct": false
+        },
+        {
+          "text": "Vectors are integers that count word frequency",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDirections in the space capture meaningful relationships, so analogies emerge as simple vector arithmetic.\u003c/p\u003e"
+    }
+  ]
+}

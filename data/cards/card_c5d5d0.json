@@ -1,0 +1,72 @@
+{
+  "id": "card_c5d5d0",
+  "slug": "arxiv-cornell-spinout",
+  "type": "news",
+  "title": "arXiv Becomes an Independent Nonprofit",
+  "hook": "After 25 years hosted by Cornell, arXiv — the preprint server ML research runs on — spun out as its own nonprofit on July 1, 2026, backed by Simons Foundation and Schmidt Sciences.",
+  "key_points": [
+    "On July 1, 2026, arXiv spun out from Cornell University, its home for 25 years, to become an independent nonprofit organization.",
+    "Major funding support comes from the Simons Foundation and Schmidt Sciences.",
+    "arXiv says its mission stays the same: free to read and free to submit to, with equitable access to new research.",
+    "The service hosts more than 3 million articles and expects minimal disruption for users during the transition.",
+    "Independence is framed as giving arXiv more flexibility to keep growing as submission volume increases."
+  ],
+  "content_html": "\u003cp\u003earXiv — the preprint server nearly every ML paper lands on before (or instead of) formal peer review — is no longer part of Cornell University. On July 1, 2026, it spun out to become an independent nonprofit, after 25 years hosted by the university.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe new organization gets major funding support from the Simons Foundation and Schmidt Sciences. arXiv's own announcement frames the move as giving it more flexibility to keep growing — the service now hosts more than 3 million articles — while insisting its core mission doesn't change: free to read, free to submit to, with equitable access to new ideas and discoveries. arXiv says to expect minimal disruption during the transition, with further updates on governance and policy to follow.\u003c/p\u003e\n\u003cp\u003earXiv is invisible infrastructure for how AI research actually circulates. This is a governance and funding change rather than a research result, but it matters for the long-term stability of the pipeline that gets papers — including many covered on this app — in front of the field. Source: arXiv's official blog, via a widely shared r/MachineLearning post, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit (r/MachineLearning)",
+    "authors": [
+      "/u/Nunki08"
+    ],
+    "url": "https://reddit.com/r/MachineLearning/comments/1ukjtlm/on_july_1_2026_arxiv_will_spin_out_from_cornell",
+    "published_at": "2026-07-01",
+    "license": "Community post"
+  },
+  "topic_ids": [
+    "lab-updates"
+  ],
+  "tags": [
+    "news",
+    "landmark"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-07-13",
+  "date": "2026-07-01",
+  "related": [],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_c5d5d0#0",
+      "format": "flip",
+      "prompt": "What changed for arXiv on July 1, 2026?",
+      "back_html": "\u003cp\u003eIt spun out from Cornell University, its host for 25 years, to become an independent nonprofit organization with its own leadership.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c5d5d0#1",
+      "format": "quiz",
+      "prompt": "Who provides major funding support for arXiv's new independent structure?",
+      "choices": [
+        {
+          "text": "The Simons Foundation and Schmidt Sciences",
+          "correct": true
+        },
+        {
+          "text": "Cornell University's endowment",
+          "correct": false
+        },
+        {
+          "text": "A consortium of frontier AI labs",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003earXiv's announcement names the Simons Foundation and Schmidt Sciences as major funders of the new nonprofit.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c5d5d0#2",
+      "format": "flip",
+      "prompt": "Does arXiv's independence change how researchers use it day to day?",
+      "back_html": "\u003cp\u003eNo — arXiv says its mission of free access to read and submit stays the same, and expects minimal disruption during the transition.\u003c/p\u003e"
+    }
+  ]
+}

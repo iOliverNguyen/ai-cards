@@ -1,0 +1,127 @@
+{
+  "id": "card_a50942",
+  "slug": "perceptron",
+  "type": "concept",
+  "title": "The Perceptron",
+  "hook": "The 1958 perceptron was the first algorithm that learned its own weights from examples — the seed of everything, and the model whose limits sparked the first AI winter.",
+  "key_points": [
+    "Rosenblatt's perceptron (1958) is a single linear classifier that learns from data.",
+    "It adjusts weights whenever it misclassifies an example, until it separates the classes.",
+    "Minsky \u0026 Papert (1969) showed one layer can't learn XOR — a famous limitation.",
+    "Stacking perceptrons into layers, trained by backprop, became the neural network."
+  ],
+  "content_html": "\u003cp\u003eThe perceptron, introduced by Frank Rosenblatt in 1958, was the first machine that learned its own decision rule from examples instead of being programmed by hand. It takes a weighted sum of its inputs and fires if the sum crosses a threshold — a single artificial neuron — and it updates those weights every time it gets an answer wrong. It is the historical and conceptual seed of modern neural networks.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eFor each training example the perceptron computes a weighted sum of the inputs and outputs one of two classes. When it misclassifies, it nudges the weights toward the correct answer. If the two classes can be separated by a straight line (or hyperplane), this simple rule is guaranteed to find such a boundary. That \u0026quot;learn from your mistakes\u0026quot; loop prefigured how all later models train.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe perceptron's fame is double-edged. Its success fueled early optimism about machine intelligence, but in 1969 Minsky and Papert proved a single perceptron cannot even learn the XOR function, helping trigger the first \u0026quot;AI winter.\u0026quot; The resolution — stacking perceptrons into layers and training them with backpropagation — is exactly the multi-layer network at the heart of deep learning today.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/Perceptron",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "ml-basics"
+  ],
+  "tags": [
+    "foundational",
+    "classic-ml",
+    "landmark"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-06-03",
+  "date": "2026-06-03",
+  "related": [
+    {
+      "id": "card_dd14c6",
+      "slug": "how-neural-networks-learn",
+      "type": "concept",
+      "title": "How Neural Networks Learn: Backpropagation",
+      "hook": "A neural net learns by asking, for every weight, 'how much did you contribute to my mistake?' Backprop answers all of them at once.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2017-10-05"
+    },
+    {
+      "id": "card_ce155a",
+      "slug": "what-is-machine-learning",
+      "type": "concept",
+      "title": "What Is Machine Learning?",
+      "hook": "Instead of hand-coding rules, you show a program examples and let it find the patterns — then it handles inputs it has never seen.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_74906c",
+      "slug": "activation-functions",
+      "type": "concept",
+      "title": "Activation Functions: ReLU \u0026 Friends",
+      "hook": "Stack linear layers and you still just have one linear layer. The nonlinearity between them is what gives a network its power.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_ce155a",
+      "slug": "what-is-machine-learning",
+      "type": "concept",
+      "title": "What Is Machine Learning?",
+      "hook": "Instead of hand-coding rules, you show a program examples and let it find the patterns — then it handles inputs it has never seen.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_a50942#0",
+      "format": "flip",
+      "prompt": "How does the perceptron learn its decision rule from examples?",
+      "back_html": "\u003cp\u003eIt computes a weighted sum of inputs; whenever it misclassifies an example, it nudges the weights toward the correct answer.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a50942#1",
+      "format": "quiz",
+      "prompt": "What famous limitation of a single perceptron did Minsky and Papert show?",
+      "choices": [
+        {
+          "text": "It cannot learn the XOR function",
+          "correct": true
+        },
+        {
+          "text": "It cannot be trained on labeled data",
+          "correct": false
+        },
+        {
+          "text": "It requires more than two inputs",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIn 1969 Minsky and Papert proved one perceptron cannot learn XOR, helping trigger the first AI winter.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a50942#2",
+      "format": "quiz",
+      "prompt": "What resolved the single perceptron's limitations?",
+      "choices": [
+        {
+          "text": "Stacking perceptrons into layers trained by backpropagation",
+          "correct": true
+        },
+        {
+          "text": "Using a larger learning rate",
+          "correct": false
+        },
+        {
+          "text": "Removing the threshold function",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe fix was multi-layer networks trained with backprop, the architecture at the heart of deep learning today.\u003c/p\u003e"
+    }
+  ]
+}

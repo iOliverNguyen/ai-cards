@@ -1,0 +1,113 @@
+{
+  "id": "card_4fc64b",
+  "slug": "what-is-mixture-of-experts",
+  "type": "concept",
+  "title": "What Is a Mixture of Experts?",
+  "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+  "key_points": [
+    "A gating network learns which 'expert' sub-networks to activate for each input, typically selecting just 1-2 out of dozens.",
+    "Total parameter count scales with the number of experts, but compute per token stays roughly constant.",
+    "Experts tend to specialize organically - different ones handle different domains or token types.",
+    "Load balancing is a key challenge: poorly tuned gates cause some experts to be over-used and others ignored."
+  ],
+  "content_html": "\u003cp\u003eMixture of Experts (MoE) is an architecture pattern where a model contains many parallel sub-networks (\u0026quot;experts\u0026quot;) and a learned gate that selects only a small subset to process each input. Shazeer and colleagues formalized this for deep learning in a 2017 paper on sparsely-gated MoE for language modeling.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eA gating function (usually a small linear layer with a softmax or top-k operation) scores each expert for the current input and routes the token to the top-k scorers - often just 1 or 2. Each expert is a feed-forward network. The outputs of the chosen experts are weighted and summed. Because only a fraction of experts activate per token, the total floating-point operations stay low even as total parameters grow into the billions or trillions.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eMoE is the architecture behind some of the largest and most compute-efficient models in production today, including Mixtral and the Switch Transformer. It lets teams scale model capacity without proportionally scaling training or inference cost - a significant lever when hardware is the bottleneck. The original 2017 paper on arXiv is a good starting point for the formal treatment.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Noam Shazeer",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/1701.06538",
+    "published_at": "2017-01-23",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "moe"
+  ],
+  "tags": [
+    "architecture",
+    "efficiency"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2017-01-23",
+  "related": [
+    {
+      "id": "card_bf9cd2",
+      "slug": "switch-transformer",
+      "type": "paper",
+      "title": "Switch Transformer: Scaling to Trillion-Parameter Models",
+      "hook": "Route every token to exactly one expert instead of many - this single simplification made trillion-parameter MoE models stable enough to train at scale.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2021-01-11"
+    },
+    {
+      "id": "card_31ff4e",
+      "slug": "mixtral",
+      "type": "paper",
+      "title": "Mixtral of Experts",
+      "hook": "Mixtral packs 8 experts per layer but routes each token through only 2, so you get the capacity of a ~47B model at the compute cost of a ~13B one - open weights included.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-01-08"
+    },
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    },
+    {
+      "id": "card_249e07",
+      "slug": "moe-routers-manifold-power-iteration",
+      "type": "paper",
+      "title": "Redesigning MoE Routers with Manifold Power Iteration",
+      "hook": "An MoE router points each token at the right expert — yet nothing forces its rows to actually represent those experts. This aligns each router row with its expert's principal direction.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_4fc64b#0",
+      "format": "flip",
+      "prompt": "How does MoE grow total capacity without growing compute per token?",
+      "back_html": "\u003cp\u003eA gating network activates only a small subset of experts (often 1-2 of dozens) per input, so total parameters scale with experts but per-token FLOPs stay roughly constant.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4fc64b#1",
+      "format": "quiz",
+      "prompt": "What is a key challenge in training a Mixture of Experts?",
+      "choices": [
+        {
+          "text": "Load balancing — poorly tuned gates over-use some experts and ignore others",
+          "correct": true
+        },
+        {
+          "text": "Experts must all be trained on the same identical data",
+          "correct": false
+        },
+        {
+          "text": "The gate requires a separate dataset of expert labels",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLoad balancing is highlighted as a key challenge: bad gates cause uneven expert usage.\u003c/p\u003e"
+    },
+    {
+      "id": "card_4fc64b#2",
+      "format": "flip",
+      "prompt": "What does the gating network do in an MoE layer?",
+      "back_html": "\u003cp\u003eIt scores each expert for the input and routes the token to the top-k scorers; their outputs are then weighted and summed.\u003c/p\u003e"
+    }
+  ]
+}

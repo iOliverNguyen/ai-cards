@@ -1,0 +1,125 @@
+{
+  "id": "card_cdf5b9",
+  "slug": "semaplc-verification-gated-plc-codegen",
+  "type": "paper",
+  "title": "SemaPLC: Let the Runtime Decide When Generated Code Is Done",
+  "hook": "An agent that stops when it thinks it's finished will always look good. SemaPLC only declares a task complete when external checks — including a live PLC runtime — log that it passed.",
+  "key_points": [
+    "PLCs run industrial plants; LLMs can already write program organization units, but integration was barely tested.",
+    "SemaPLC is built from conventional tools; the novelty is a strict completion rule, not a new model.",
+    "Completion requires logged external checks at three layers: specification, compilation, and behavior on a live runtime.",
+    "72.6% mean strict verified pass rate on 117 independent-POU tasks — best on all seven models tested.",
+    "Static scores separate methods by under 10 points; dynamic trace comparison splits them 22.4–31.4 vs 52.2."
+  ],
+  "content_html": "\u003cp\u003eProgrammable logic controllers run real factories, and language models can already produce individual program organization units for them. The unanswered question was the one that actually matters on a plant floor: does that logic drop into an existing project and behave correctly? SemaPLC, from a team at Midea, is less a new model than a new stopping rule — and the results suggest the stopping rule was the bug all along.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eSemaPLC assembles conventional tooling into an agent harness governed by one strict constraint: the task is not complete when the model says so, only when logged external checks say so. Those checks span three layers — the specification, the compilation, and the behavior of the code on a live PLC runtime. Dynamic behavior is measured by deploying both the generated and the reference logic and comparing their executed traces.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eOn 117 independent-POU tasks matching existing benchmarks, SemaPLC attains the highest strict verified pass rate on all seven models tested (72.6% mean). On a harder project-context track of 65 tasks, where generated logic must compile and run inside a real project, it leads on all three layers. The most useful number in the paper is the spread: static scores put every method within 10 points of each other, while dynamic trace comparison spreads baselines across 22.4–31.4 against SemaPLC's 52.2. If you only score statically, you can't tell these systems apart. SemaPLC is open-sourced.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yanlun Tu",
+      "Huacan Wang",
+      "Ziyue Zhou",
+      "Jie Zhou",
+      "Xiaofeng Mou",
+      "Hui Zhang",
+      "Yi Xu"
+    ],
+    "url": "https://arxiv.org/abs/2608.18565",
+    "published_at": "2026-08-19",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-20",
+  "date": "2026-08-19",
+  "related": [
+    {
+      "id": "card_a2a595",
+      "slug": "verification-horizon-coding-rewards",
+      "type": "paper",
+      "title": "The Verification Horizon: No Silver Bullet for Coding Agent Rewards",
+      "hook": "Checking a solution used to be easier than writing one. For coding agents that's flipped — and this paper argues no fixed reward works forever: verification must co-evolve with the model.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-24"
+    },
+    {
+      "id": "card_5ff636",
+      "slug": "aria-code-agents-software-verification",
+      "type": "paper",
+      "title": "Aria: Letting a Code Agent Write Its Own Formal Proofs",
+      "hook": "Prior LLM provers force the model into a fixed, human-designed strategy and still prove only a fraction of their targets. A free-roaming Claude Code agent, unconstrained, proves every single one.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-07"
+    },
+    {
+      "id": "card_f4c73d",
+      "slug": "llm-as-a-verifier",
+      "type": "paper",
+      "title": "LLM-as-a-Verifier: Verification as a New Scaling Axis",
+      "hook": "Everyone scales pretraining, post-training, and test-time compute. This paper argues verification — checking if a solution is correct — is its own scaling axis, and hits SOTA on four agentic benchmarks.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_cdf5b9#0",
+      "format": "flip",
+      "prompt": "What is SemaPLC's completion rule, and why does it matter?",
+      "back_html": "\u003cp\u003eA task is complete only when logged external checks confirm it — not when the model judges its own output adequate. Self-declared completion is what inflates agent results.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cdf5b9#1",
+      "format": "quiz",
+      "prompt": "Which of SemaPLC's three verification layers was most discriminative between methods?",
+      "choices": [
+        {
+          "text": "Dynamic behavior on a live runtime — 22.4–31.4 for baselines vs 52.2 for SemaPLC",
+          "correct": true
+        },
+        {
+          "text": "Specification conformance, where scores varied most widely",
+          "correct": false
+        },
+        {
+          "text": "Compilation, since most generated logic failed to compile",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAll methods landed within 10 points of one another on static scoring; only deploying the code and comparing executed traces separated them sharply.\u003c/p\u003e"
+    },
+    {
+      "id": "card_cdf5b9#2",
+      "format": "quiz",
+      "prompt": "How does the paper measure dynamic behavior?",
+      "choices": [
+        {
+          "text": "Deploy generated and reference logic to a live PLC runtime and compare executed traces",
+          "correct": true
+        },
+        {
+          "text": "Ask a stronger LLM to judge whether the logic would behave correctly",
+          "correct": false
+        },
+        {
+          "text": "Run a static model checker over the generated program",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eExecution, not static scoring, is the paper's proposed faithful test — traces from the generated and reference logic are compared directly on hardware runtime.\u003c/p\u003e"
+    }
+  ]
+}

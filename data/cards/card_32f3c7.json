@@ -1,0 +1,117 @@
+{
+  "id": "card_32f3c7",
+  "slug": "bert",
+  "type": "paper",
+  "title": "BERT: Pretraining Deep Bidirectional Transformers",
+  "hook": "What if a model read a sentence both directions at once? BERT did, by masking words and predicting them — and made pretrain-then-fine-tune the default recipe in NLP.",
+  "key_points": [
+    "Pretrains a Transformer encoder by masking ~15% of tokens and predicting them from surrounding context.",
+    "Reads context bidirectionally, so each word sees both its left and right neighbors.",
+    "One pretrained model fine-tunes to many tasks: classification, tagging, question answering.",
+    "Encoder-only design makes it strong at understanding text, not generating it.",
+    "Popularized the pretrain-then-fine-tune workflow across NLP."
+  ],
+  "content_html": "\u003cp\u003eBERT, from Devlin and colleagues at Google in 2018, pretrains a Transformer encoder by hiding random words and asking the model to fill them back in. Because it can use words on both sides of the gap, it builds rich, context-aware representations. You then fine-tune that one model on your specific task, and it set new bars across a broad NLP benchmark suite.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eBERT corrupts the input by masking about 15% of the tokens, then trains the encoder to predict the hidden words from everything around them — left and right context at the same time. This \u0026quot;masked language modeling\u0026quot; objective forces the model to learn how words relate. After pretraining on large text corpora, you bolt a small task-specific head on top and fine-tune the whole thing on labeled data.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eBERT showed you can learn language understanding once, from raw text, then cheaply adapt it to many downstream tasks instead of training each from scratch. That pretrain-then-fine-tune pattern became the backbone of modern NLP. Its encoder-only, bidirectional design remains the go-to for understanding tasks like search ranking, classification, and entity extraction, where you analyze text rather than generate it.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jacob Devlin",
+      "Ming-Wei Chang",
+      "Kenton Lee",
+      "Kristina Toutanova"
+    ],
+    "url": "https://arxiv.org/abs/1810.04805",
+    "published_at": "2018-10-11",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining"
+  ],
+  "tags": [
+    "nlp",
+    "landmark"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2018-10-11",
+  "related": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    },
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    },
+    {
+      "id": "card_a9720e",
+      "slug": "word2vec",
+      "type": "paper",
+      "title": "Word2Vec: Word Embeddings",
+      "hook": "Teach a model to predict a word's neighbors, and it quietly learns vectors where king minus man plus woman lands near queen.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2013-01-16"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_32f3c7#0",
+      "format": "flip",
+      "prompt": "Why can BERT use both left and right context when representing a word?",
+      "back_html": "\u003cp\u003eIt is an encoder trained with masked language modeling — it predicts hidden words from everything around them, so each token sees neighbors on both sides at once.\u003c/p\u003e"
+    },
+    {
+      "id": "card_32f3c7#1",
+      "format": "quiz",
+      "prompt": "Why is BERT's encoder-only design better suited to understanding than to generation?",
+      "choices": [
+        {
+          "text": "It's built to analyze text bidirectionally, not to produce text left-to-right",
+          "correct": true
+        },
+        {
+          "text": "It has too few parameters to generate fluent text",
+          "correct": false
+        },
+        {
+          "text": "It was never trained on natural language",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe encoder reads context both directions to build representations, making it strong for tasks like classification and QA rather than text generation.\u003c/p\u003e"
+    },
+    {
+      "id": "card_32f3c7#2",
+      "format": "flip",
+      "prompt": "What workflow did BERT popularize across NLP?",
+      "back_html": "\u003cp\u003ePretrain once on raw text, then cheaply fine-tune that one model with a small task-specific head for many downstream tasks.\u003c/p\u003e"
+    }
+  ]
+}

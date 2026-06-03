@@ -1,0 +1,129 @@
+{
+  "id": "card_a2690e",
+  "slug": "byte-pair-encoding",
+  "type": "paper",
+  "title": "Subword Tokenization with Byte-Pair Encoding",
+  "hook": "Whole words make a giant vocabulary; single characters make long sequences. Subwords split the difference — and let models read words they've never seen.",
+  "key_points": [
+    "Splits text into frequent subword chunks instead of whole words or single characters.",
+    "Builds the vocabulary by repeatedly merging the most common adjacent pairs.",
+    "Rare or unseen words break into known pieces, so nothing is truly out-of-vocabulary.",
+    "Keeps the vocabulary small while still covering open vocabularies — used by most LLMs."
+  ],
+  "content_html": "\u003cp\u003eSennrich, Haddow, and Birch adapted byte-pair encoding to tokenize text into subword units rather than whole words or single characters. The vocabulary is built by repeatedly merging the most frequent adjacent pairs, so common words stay intact while rare ones break into familiar pieces. This lets models handle unseen words with a compact vocabulary, and it's how most large language models read text today.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eYou start by treating each word as a sequence of characters, then count which adjacent symbol pairs appear most often and merge the top one into a single new token. Repeat this thousands of times and frequent character sequences fuse into subword units — common words may become one token while uncommon ones stay split into reusable pieces. At inference, any word, even one never seen in training, can be encoded as some combination of these learned subwords.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eEarlier systems struggled with out-of-vocabulary words, names, and morphologically rich languages because a fixed word list can never cover everything. Subword tokenization removes that hard wall while keeping the vocabulary small enough to be practical. The approach proved so effective that it, and close relatives, became the default way modern language models turn text into tokens.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Rico Sennrich",
+      "Barry Haddow",
+      "Alexandra Birch"
+    ],
+    "url": "https://arxiv.org/abs/1508.07909",
+    "published_at": "2015-08-31",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "tokenization"
+  ],
+  "tags": [
+    "nlp",
+    "foundational"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2015-08-31",
+  "related": [
+    {
+      "id": "card_a9720e",
+      "slug": "word2vec",
+      "type": "paper",
+      "title": "Word2Vec: Word Embeddings",
+      "hook": "Teach a model to predict a word's neighbors, and it quietly learns vectors where king minus man plus woman lands near queen.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2013-01-16"
+    },
+    {
+      "id": "card_9ff16f",
+      "slug": "sentencepiece",
+      "type": "paper",
+      "title": "SentencePiece: Language-Independent Tokenization",
+      "hook": "Most tokenizers assume you can split on spaces first. SentencePiece drops that assumption and tokenizes raw text directly — in any language.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2018-08-19"
+    },
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_a9720e",
+      "slug": "word2vec",
+      "type": "paper",
+      "title": "Word2Vec: Word Embeddings",
+      "hook": "Teach a model to predict a word's neighbors, and it quietly learns vectors where king minus man plus woman lands near queen.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2013-01-16"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_a2690e#0",
+      "format": "flip",
+      "prompt": "How does byte-pair encoding build its subword vocabulary?",
+      "back_html": "\u003cp\u003eStarting from characters, it repeatedly counts adjacent symbol pairs and merges the most frequent one, thousands of times.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a2690e#1",
+      "format": "quiz",
+      "prompt": "How does subword tokenization handle a word never seen in training?",
+      "choices": [
+        {
+          "text": "It encodes the word as a combination of known subword pieces",
+          "correct": true
+        },
+        {
+          "text": "It maps the word to a single shared unknown token",
+          "correct": false
+        },
+        {
+          "text": "It adds the new word to the vocabulary on the fly",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRare or unseen words break into known subword pieces, so nothing is truly out-of-vocabulary.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a2690e#2",
+      "format": "quiz",
+      "prompt": "What problem with whole-word vocabularies does BPE solve?",
+      "choices": [
+        {
+          "text": "A fixed word list can never cover all words; BPE keeps the vocabulary small yet open",
+          "correct": true
+        },
+        {
+          "text": "Whole words make sequences too long to process",
+          "correct": false
+        },
+        {
+          "text": "Whole-word models cannot be trained without labels",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEarlier systems hit a hard out-of-vocabulary wall; subwords remove it while keeping the vocabulary compact.\u003c/p\u003e"
+    }
+  ]
+}

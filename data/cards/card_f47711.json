@@ -1,0 +1,117 @@
+{
+  "id": "card_f47711",
+  "slug": "ui-mopd-multi-platform-gui-distillation",
+  "type": "paper",
+  "title": "UI-MOPD: Teaching One GUI Agent Many Platforms Without Forgetting",
+  "hook": "Train a GUI agent on a new platform and it often forgets the old ones. UI-MOPD picks a different teacher per platform on the fly, so cross-platform learning stops fighting itself.",
+  "key_points": [
+    "Cross-platform GUI agents struggle because platforms differ in interaction conventions — joint training tends to mix behaviors, degrade platform-specific skill, or cause catastrophic forgetting.",
+    "UI-MOPD is the first method to bring multi-teacher on-policy distillation into continual learning for GUI agents.",
+    "It dynamically selects a platform-specific teacher based on the current environment, transferring that platform's behavioral priors into one shared policy via platform-conditioned distillation.",
+    "This lets the shared policy adapt to a new platform while preserving what it already learned on others.",
+    "Paired with a new cross-platform dataset (Uni-GUI); on OSWorld and MobileWorld the method reaches 38.2% and 12.0% task success respectively."
+  ],
+  "content_html": "\u003cp\u003eBuilding one GUI agent that works across desktop, mobile, and web is harder than it sounds: each platform has its own interaction conventions, and training on all of them at once tends to blur behaviors or wipe out skills the agent already had. UI-MOPD is a new fix aimed squarely at that problem.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eNiu Lian and colleagues introduce UI-MOPD, described as the first method to bring multi-teacher on-policy distillation into continual learning for GUI agents. Instead of a single fixed teacher, it dynamically selects a platform-specific teacher based on the agent's current environment, then transfers that platform's behavioral priors into one shared policy through platform-conditioned distillation — letting the agent pick up a new platform without erasing what it learned on prior ones. The team also built Uni-GUI, a cross-platform interaction dataset, to support training. On the OSWorld and MobileWorld benchmarks, the resulting agent reaches 38.2% and 12.0% task success respectively.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Niu Lian",
+      "Alan Chen",
+      "Zhehao Yu",
+      "Chengzhen Duan",
+      "Fazhan Liu",
+      "Hui Liu",
+      "Pei Fu",
+      "Jian Luan",
+      "Yaowei Wang",
+      "Shu-Tao Xia",
+      "Jinpeng Wang"
+    ],
+    "url": "https://arxiv.org/abs/2607.04425",
+    "published_at": "2026-07-05",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "distillation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "training",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-05",
+  "related": [
+    {
+      "id": "card_3a0d83",
+      "slug": "gui-vs-cli-computer-use-agents",
+      "type": "paper",
+      "title": "GUI vs. CLI: Where Computer-Use Agents Get Stuck",
+      "hook": "Should an agent click buttons or type commands? A matched benchmark giving both the same 440 tasks finds GUI agents win by default — but CLI agents leap ahead once their skill library is filled in.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-22"
+    },
+    {
+      "id": "card_822dbf",
+      "slug": "geometry-of-on-policy-distillation",
+      "type": "paper",
+      "title": "On the Geometry of On-Policy Distillation",
+      "hook": "On-policy distillation isn't a midpoint between fine-tuning and RL — it carves its own narrow path through parameter space, locking into a low-dimensional subspace early in training.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-05"
+    },
+    {
+      "id": "card_2408d6",
+      "slug": "trust-region-on-policy-distillation",
+      "type": "paper",
+      "title": "Trust Region On-Policy Distillation",
+      "hook": "On-policy distillation breaks when teacher and student disagree too much. TrOPD only trusts the teacher where its supervision is reliable — and skips the rest.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-05-31"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_f47711#0",
+      "format": "flip",
+      "prompt": "What continual-learning problem does UI-MOPD target in GUI agents?",
+      "back_html": "\u003cp\u003eTraining one agent across multiple platforms (with different interaction conventions) tends to cause behavioral mixing, platform-specific skill loss, or catastrophic forgetting of older platforms.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f47711#1",
+      "format": "quiz",
+      "prompt": "How does UI-MOPD avoid forgetting older platforms while learning a new one?",
+      "choices": [
+        {
+          "text": "It dynamically picks a platform-specific teacher for the current environment and distills its behavior into a shared policy via platform-conditioned distillation",
+          "correct": true
+        },
+        {
+          "text": "It trains a completely separate model for every platform",
+          "correct": false
+        },
+        {
+          "text": "It replays all past interaction logs verbatim during every new training run",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRather than one fixed teacher or isolated per-platform models, UI-MOPD's teacher choice adapts to the current platform, letting one shared policy absorb each platform's behavioral priors without overwriting the others.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f47711#2",
+      "format": "flip",
+      "prompt": "What are UI-MOPD's task success rates on OSWorld and MobileWorld?",
+      "back_html": "\u003cp\u003e38.2% on OSWorld and 12.0% on MobileWorld — reported as evidence it balances retaining old-platform capability with adapting to a new one.\u003c/p\u003e"
+    }
+  ]
+}

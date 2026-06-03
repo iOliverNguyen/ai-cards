@@ -1,0 +1,120 @@
+{
+  "id": "card_9887c8",
+  "slug": "flan-instruction-tuning",
+  "type": "paper",
+  "title": "FLAN: Instruction Tuning",
+  "hook": "Teach a model to follow many tasks phrased as plain instructions, and it learns to follow instructions for tasks it never saw — zero-shot.",
+  "key_points": [
+    "Fine-tunes a model on a large mix of tasks rephrased as natural-language instructions.",
+    "Generalizes to unseen tasks zero-shot, improving over the un-tuned base model.",
+    "Benefits grow with model scale and with the number of distinct tasks in the mix.",
+    "An early, influential step toward models that act like instruction-following assistants."
+  ],
+  "content_html": "\u003cp\u003eJason Wei, Maarten Bosma, and colleagues at Google took a pretrained language model and fine-tuned it on a big collection of existing NLP tasks, each rewritten as a natural-language instruction. The payoff: the resulting model, FLAN, could follow instructions for tasks held out of training, beating the un-tuned base in zero-shot settings. It showed that learning the format of \u0026quot;follow this instruction\u0026quot; transfers across tasks.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe authors gathered many datasets and grouped them into task clusters, then templated each example into an instruction-style prompt — for example, framing a sentiment dataset as \u0026quot;Is this review positive or negative?\u0026quot; They fine-tuned on a mix of clusters while holding others out entirely, then tested on the held-out ones. Because the model sees the instruction-following pattern across diverse tasks during training, it learns to apply that pattern to new instructions at test time rather than memorizing any single task.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eRaw pretrained models are strong but awkward to steer — you often need clever prompting to get useful answers. Instruction tuning reframes the model as something you can simply tell what to do. FLAN demonstrated that this generalizes to unseen tasks and improves with scale and task variety, a recipe that underpins today's instruction-following assistants and complements alignment methods like RLHF.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jason Wei",
+      "Maarten Bosma",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2109.01652",
+    "published_at": "2021-09-03",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "finetuning",
+    "pretraining"
+  ],
+  "tags": [
+    "training",
+    "nlp"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2021-09-03",
+  "related": [
+    {
+      "id": "card_1098fc",
+      "slug": "instructgpt",
+      "type": "paper",
+      "title": "InstructGPT: Aligning LMs with Human Feedback (RLHF)",
+      "hook": "A smaller model people actually like beats a bigger one they don't. InstructGPT used human preferences to make a model follow instructions — the recipe behind ChatGPT.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-03-04"
+    },
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_2cab3e",
+      "slug": "gpt-3",
+      "type": "paper",
+      "title": "GPT-3: Language Models are Few-Shot Learners",
+      "hook": "Show the model a few examples right in the prompt and it picks up the task — no fine-tuning, no gradient updates. GPT-3 turned prompting into the new programming.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_9887c8#0",
+      "format": "flip",
+      "prompt": "How does instruction tuning let FLAN handle tasks it never saw during training?",
+      "back_html": "\u003cp\u003eBy learning the instruction-following pattern across many diverse tasks, the model applies that pattern to new instructions zero-shot.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9887c8#1",
+      "format": "quiz",
+      "prompt": "According to FLAN, what makes the benefits of instruction tuning grow?",
+      "choices": [
+        {
+          "text": "Larger model scale and more distinct tasks in the mix",
+          "correct": true
+        },
+        {
+          "text": "Using fewer but more repetitive tasks",
+          "correct": false
+        },
+        {
+          "text": "Removing natural-language instructions from prompts",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper reports benefits grow with model scale and with the number of distinct tasks in the training mix.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9887c8#2",
+      "format": "quiz",
+      "prompt": "How were existing datasets prepared for FLAN's training?",
+      "choices": [
+        {
+          "text": "Each example was templated into a natural-language instruction prompt",
+          "correct": true
+        },
+        {
+          "text": "They were converted into raw web text",
+          "correct": false
+        },
+        {
+          "text": "They were reduced to single-word labels only",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDatasets were grouped into clusters and each example rewritten as an instruction-style prompt, e.g. framing sentiment as a question.\u003c/p\u003e"
+    }
+  ]
+}

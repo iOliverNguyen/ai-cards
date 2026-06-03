@@ -1,0 +1,129 @@
+{
+  "id": "card_ee028a",
+  "slug": "on-policy-delta-distillation",
+  "type": "paper",
+  "title": "On-Policy Delta Distillation",
+  "hook": "Instead of copying a teacher's raw outputs, this method distills only the *change* reasoning-tuning made — a sharper signal that beats standard on-policy distillation across math, science, and code.",
+  "key_points": [
+    "Defines the 'delta signal': the difference between a reasoning-tuned teacher and its own pre-reasoning-tuning base model, rather than imitating the teacher's output distribution directly.",
+    "The delta signal isolates the specific change reasoning tuning made, giving a more targeted supervision signal for transferring reasoning ability.",
+    "Method is called On-Policy Delta Distillation (OPD²): the student still generates its own tokens on-policy, but is scored against this delta rather than the raw teacher.",
+    "Consistently beats conventional on-policy distillation on math, science, and code-reasoning benchmarks, reaching strong performance with a short post-training run."
+  ],
+  "content_html": "\u003cp\u003eOn-policy distillation lets a student model learn from a teacher's token-level judgments on its own generations, sidestepping some of the constraints reward models impose in standard reinforcement learning post-training. But despite growing use, the basic design choice of \u003cem\u003ewhat signal to distill\u003c/em\u003e had been underexplored.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eByeongho Heo and colleagues at NAVER AI Lab propose distilling a different target: the delta signal, defined as the difference between the reasoning-tuned teacher and its own base model from before instruction/reasoning tuning. Rather than asking the student to imitate the teacher's full output distribution, On-Policy Delta Distillation (OPD²) scores the student's own on-policy generations against this delta — a signal that isolates specifically what reasoning tuning changed, instead of the teacher's whole behavior.\u003c/p\u003e\n\u003cp\u003eAcross math, science, and code-reasoning benchmarks, the authors report OPD² consistently beating conventional on-policy distillation, and reaching strong reasoning performance after only a short post-training run. Code is planned for release at github.com/naver-ai/opd2. Source: arXiv, arxiv.org/abs/2607.15161.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Byeongho Heo",
+      "Jaehui Hwang",
+      "Sangdoo Yun",
+      "Dongyoon Han"
+    ],
+    "url": "https://arxiv.org/abs/2607.15161",
+    "published_at": "2026-07-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "distillation",
+    "rlhf",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-20",
+  "date": "2026-07-16",
+  "related": [
+    {
+      "id": "card_822dbf",
+      "slug": "geometry-of-on-policy-distillation",
+      "type": "paper",
+      "title": "On the Geometry of On-Policy Distillation",
+      "hook": "On-policy distillation isn't a midpoint between fine-tuning and RL — it carves its own narrow path through parameter space, locking into a low-dimensional subspace early in training.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-05"
+    },
+    {
+      "id": "card_63a204",
+      "slug": "direct-on-policy-distillation",
+      "type": "paper",
+      "title": "Weak-to-Strong Generalization via Direct On-Policy Distillation",
+      "hook": "RL post-training gets pricier as models scale, since it needs the strong model's own rollouts. Direct-OPD reuses a cheap RL run on a small model instead, transferring the direction RL moved it.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_2408d6",
+      "slug": "trust-region-on-policy-distillation",
+      "type": "paper",
+      "title": "Trust Region On-Policy Distillation",
+      "hook": "On-policy distillation breaks when teacher and student disagree too much. TrOPD only trusts the teacher where its supervision is reliable — and skips the rest.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-05-31"
+    },
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_ee028a#0",
+      "format": "flip",
+      "prompt": "What is the 'delta signal' in On-Policy Delta Distillation (OPD²)?",
+      "back_html": "\u003cp\u003eThe difference between a reasoning-tuned teacher model and its own base model before reasoning tuning — capturing specifically what reasoning tuning changed, rather than the teacher's full output distribution.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ee028a#1",
+      "format": "quiz",
+      "prompt": "Why might distilling the delta signal transfer reasoning ability better than imitating the teacher's raw outputs?",
+      "choices": [
+        {
+          "text": "It isolates the specific change reasoning tuning induced, giving a more direct and targeted supervision signal",
+          "correct": true
+        },
+        {
+          "text": "It requires no teacher model at all, only the base model",
+          "correct": false
+        },
+        {
+          "text": "It removes the need for on-policy student generations entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eStandard on-policy distillation imitates everything about the teacher's distribution; the delta signal narrows that down to just the reasoning-specific change, which the paper shows transfers more effectively.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ee028a#2",
+      "format": "flip",
+      "prompt": "How does OPD² compare to conventional on-policy distillation across math, science, and code-reasoning benchmarks?",
+      "back_html": "\u003cp\u003eOPD² consistently outperforms conventional on-policy distillation, letting reasoning LLMs reach strong performance after only a short post-training period.\u003c/p\u003e"
+    }
+  ]
+}

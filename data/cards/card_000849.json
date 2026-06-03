@@ -1,0 +1,99 @@
+{
+  "id": "card_000849",
+  "slug": "govern-the-repository-not-the-agent",
+  "type": "paper",
+  "title": "Govern the Repository, Not the Agent",
+  "hook": "Across 930,000+ agent-authored pull requests, half the friction of merging code traces to the repository, not the agent — and AI contributions concentrate that risk 2x more than human ones.",
+  "key_points": [
+    "Studies 'integration friction' — the cost of merging a contribution into a codebase others are concurrently changing.",
+    "About half the variation in friction stays with the repository even after controlling for the contribution, its author, size, and agent.",
+    "Agent-authored contributions concentrate repository-level friction ~2x more than human ones (ICC 0.30 vs 0.16), controls held.",
+    "Conclusion: risk from AI-native software is an ecosystem property, not something fixed by evaluating one agent at a time."
+  ],
+  "content_html": "\u003cp\u003eCoding agents are evaluated the way software components always have been: one at a time, on isolated benchmark tasks. This paper asks whether that's the right level of analysis once agents are merging pull requests into shared repositories at scale — and argues it isn't.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe author studies integration friction across more than 930,000 agent-authored pull requests, measuring how much of the variation in friction stays with the repository itself after accounting for the contribution, its author, its size, and its agent. About half does, and it survives full controls. In the same repositories, agent-authored contributions concentrate this repository-level friction roughly twice as much as human ones (intraclass correlation 0.30 versus 0.16) — a gap that holds even after controlling for codebase size, age, task shape, process maturity, and merge path. The takeaway: agents that each individually pass their own tests can still leave a repository that accumulates problems no single contribution accounts for. That risk is a property of the ecosystem, the paper argues, not the agent — meaning AI-native software is better measured and governed at the repository or ecosystem level than benchmark-by-benchmark. Daniel Russo, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Daniel Russo"
+    ],
+    "url": "https://arxiv.org/abs/2606.28235",
+    "published_at": "2026-06-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "risks-policy",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "safety",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-02",
+  "date": "2026-06-26",
+  "related": [
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    },
+    {
+      "id": "card_83c74b",
+      "slug": "devin",
+      "type": "news",
+      "title": "Devin: The AI Software Engineer",
+      "hook": "Cognition's Devin was marketed as the first 'AI software engineer' — an autonomous agent that plans, writes, runs, and debugs code across a whole task in its own sandbox.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2024-03-12"
+    },
+    {
+      "id": "card_b475e8",
+      "slug": "frontier-ai-regulation",
+      "type": "paper",
+      "title": "Frontier AI Regulation",
+      "hook": "How do you regulate models too new to have rules yet? This paper sketches three building blocks: set standards, make labs report, then enforce.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-07-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_000849#0",
+      "format": "flip",
+      "prompt": "What is 'integration friction' in this paper?",
+      "back_html": "\u003cp\u003eThe cost of merging a code contribution into a repository that other contributors are concurrently changing — a repo-level cost, not just a property of one pull request.\u003c/p\u003e"
+    },
+    {
+      "id": "card_000849#1",
+      "format": "quiz",
+      "prompt": "Why does the paper argue AI coding agents should be governed at the ecosystem level, not one at a time?",
+      "choices": [
+        {
+          "text": "Repository-level friction persists after controlling for the contribution, author, and agent, and agent PRs concentrate it more than human ones",
+          "correct": true
+        },
+        {
+          "text": "Because individual agents are already perfectly safe and need no evaluation",
+          "correct": false
+        },
+        {
+          "text": "Because repositories never accumulate risk from many small contributions",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAbout half the friction variance survives full controls and stays with the repository, and agent contributions concentrate it roughly twice as much as human contributions do.\u003c/p\u003e"
+    }
+  ]
+}

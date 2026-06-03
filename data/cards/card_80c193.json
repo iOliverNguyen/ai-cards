@@ -1,0 +1,121 @@
+{
+  "id": "card_80c193",
+  "slug": "seriality-gap-video-diffusion",
+  "type": "paper",
+  "title": "The Seriality Gap in Video Diffusion Models",
+  "hook": "Give a video diffusion model more denoising steps and you'd expect better predictions on chains of causal events. Instead performance keeps degrading — the steps don't add real serial computation.",
+  "key_points": [
+    "On multi-ball collision chains, standard bidirectional video diffusion degrades as the causal chain of dependent events gets longer.",
+    "More denoising steps don't fix it — they add refinement passes, not usable serial computation for the task.",
+    "A single-ball control (no ball-ball interactions) isolates the cause: dependent-event structure, not video length or visual complexity.",
+    "Interventions that genuinely add serial computation — autoregressive/blockwise generation, more architectural depth — help disproportionately.",
+    "Proves that for deterministic video prediction, denoising steps add no serial computation beyond what the backbone already provides.",
+    "Names this the 'seriality gap': a structural mismatch blocking video diffusion from causal or simulation reasoning tasks like world models."
+  ],
+  "content_html": "\u003cp\u003eIf one billiard ball hits another, then another, a good video model should track the consequences down the whole chain. This paper finds that standard bidirectional video diffusion models get worse at exactly this as the causal chain gets longer — and, oddly, giving the model more denoising steps doesn't help.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe authors isolate the cause with a length-matched single-ball control that removes ball-ball interactions: the degradation largely disappears, pointing at dependent-event structure rather than video length or visual complexity. Methods that genuinely add serial computation, like autoregressive/blockwise generation or more architectural depth, do help. The authors then prove that for deterministic video prediction, denoising steps don't add serial computation beyond what the backbone network already computes — a structural obstacle for using video diffusion on causal or simulation-heavy tasks like world models.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jorge Diaz Chao",
+      "Konpat Preechakul",
+      "Yuxi Liu",
+      "Yutong Bai"
+    ],
+    "url": "https://arxiv.org/abs/2607.13031",
+    "published_at": "2026-07-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "diffusion",
+    "video-audio",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "generative",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-16",
+  "date": "2026-07-14",
+  "related": [
+    {
+      "id": "card_c84948",
+      "slug": "flex-forcing-unified-video-diffusion",
+      "type": "paper",
+      "title": "Flex-Forcing: One Video Diffusion Model, Two Inference Modes",
+      "hook": "Video diffusion models used to force a choice: globally coherent but slow, or fast streaming that drifts apart. Flex-Forcing chunks time and denoising steps together so one model does both.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-03"
+    },
+    {
+      "id": "card_b9d1db",
+      "slug": "world-action-models-survey",
+      "type": "paper",
+      "title": "World Action Models: A Survey",
+      "hook": "Robots are learning to imagine the future before acting. This survey untangles 'world action models' from video generators and VLA policies — and finds them converging on one idea.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_80c193#0",
+      "format": "flip",
+      "prompt": "What is the 'seriality gap' identified in video diffusion models?",
+      "back_html": "\u003cp\u003eA mismatch between tasks needing growing serial computation (chains of dependent events) and video diffusion, whose denoising loop doesn't provide scalable serial compute.\u003c/p\u003e"
+    },
+    {
+      "id": "card_80c193#1",
+      "format": "quiz",
+      "prompt": "In the multi-ball collision experiment, what happened as the causal chain of bounces got longer?",
+      "choices": [
+        {
+          "text": "Standard bidirectional video diffusion's performance degraded",
+          "correct": true
+        },
+        {
+          "text": "Performance stayed constant regardless of chain length",
+          "correct": false
+        },
+        {
+          "text": "Performance improved since more steps resolved later bounces",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePerformance dropped as the dependent-event chain lengthened, even with more denoising steps available.\u003c/p\u003e"
+    },
+    {
+      "id": "card_80c193#2",
+      "format": "flip",
+      "prompt": "How did the single-ball control experiment help isolate the cause of the seriality gap?",
+      "back_html": "\u003cp\u003eWith no ball-ball interactions, the degradation mostly disappeared — showing dependent-event structure, not video length or complexity, is the cause.\u003c/p\u003e"
+    },
+    {
+      "id": "card_80c193#3",
+      "format": "quiz",
+      "prompt": "What did the authors prove about denoising steps and serial computation?",
+      "choices": [
+        {
+          "text": "Denoising steps add no serial computation beyond what the backbone already provides",
+          "correct": true
+        },
+        {
+          "text": "Each denoising step adds one full unit of extra serial computation",
+          "correct": false
+        },
+        {
+          "text": "Serial computation scales linearly with steps only for long videos",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eFor deterministic video prediction, they prove denoising steps don't add serial compute beyond the backbone — a structural limit, not a training issue.\u003c/p\u003e"
+    }
+  ]
+}

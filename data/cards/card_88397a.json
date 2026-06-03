@@ -1,0 +1,99 @@
+{
+  "id": "card_88397a",
+  "slug": "fabricated-evidence-agent-commitment",
+  "type": "paper",
+  "title": "A Fake Dashboard Is Enough to Make an Agent Commit",
+  "hook": "Show an agent a professional-looking market panel and it will make a directional call on a provably unpredictable question — just as readily when every number on the panel is invented.",
+  "key_points": [
+    "Across 12 frontier models, commitment on provably unpredictable questions rose from 6.5% to 54.0% as evidence was escalated.",
+    "Fabricating the entire display still lifted commitment from 24.5% to 36.8% — indistinguishable from the 37.6% produced by real market data.",
+    "What unlocks confident action is the authority of the packaging, not the information.",
+    "Asked to classify knowability first, models call it irreducible 90% of the time — then commit on only 0.4% of those, so the act/don't-act gate is the failure.",
+    "SFT of a 3B model on 540 synthetic cases (dice, coins, jars, timers) drove commitment to 0.0% and transferred to three unseen domains.",
+    "The fix is context-fragile: rigid response formats that remove room to reason leave the model confident and wrong."
+  ],
+  "content_html": "\u003cp\u003eAsk a frontier model a provably unpredictable question and it mostly declines: commitment rate 6.5% across twelve models. Wrap the same question in a professional-looking market panel and commitment climbs to 54.0%. Aggarwal's striking control: fabricate the entire display, so nothing the model can see is true except the question, and commitment still rises from 24.5% to 36.8% — statistically indistinguishable from the 37.6% produced by genuine market data.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eLocating the failure\u003c/h2\u003e\n\u003cp\u003eThe paper is careful about what is \u003cem\u003enot\u003c/em\u003e going wrong. It is not incapacity: on matched \u003cem\u003eanswerable\u003c/em\u003e questions attached to the same panels, the same models answer essentially always, at near-perfect accuracy. It is not belief: stated probabilities barely move across the evidence gradient that swings action by 48 points, and score worse than a climatological baseline. It is not missing judgment either: asked to classify a question's knowability before acting, models call it irreducible 90% of the time — and then commit on just 0.4% of those cases.\u003c/p\u003e\n\u003cp\u003eWhat fails is the act/don't-act gate, and the effect concentrates in a few models rather than being universal.\u003c/p\u003e\n\u003ch2\u003eThe fix, and its limit\u003c/h2\u003e\n\u003cp\u003eBecause the gate is separable, it can be trained. Supervised fine-tuning of a 3B model on 540 synthetic cases — mostly dice, coins, jars, and timers — drove commitment to 0.0% on the original cases and transferred to three unseen domains. But it does not survive everything: the gate holds when the response format leaves room to reason, and rigid formats that remove that room leave the model confident and wrong on questions it otherwise answers correctly.\u003c/p\u003e\n\u003cp\u003eAs the paper puts it, the gate is trainable and context-fragile, and deployment needs both halves of that sentence.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Pranav Aggarwal"
+    ],
+    "url": "https://arxiv.org/abs/2608.27167",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "agent",
+    "alignment",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_0aa2e3",
+      "slug": "linguistic-vs-internal-confidence",
+      "type": "paper",
+      "title": "When a Model Says 90%, Does It Mean It?",
+      "hook": "Across 30 models, the confidence an LLM reports in words is only loosely coupled to the confidence in its logits — a lossy channel, not a readout.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-28"
+    },
+    {
+      "id": "card_dff496",
+      "slug": "post-training-confidence-calibration",
+      "type": "paper",
+      "title": "Post-Training Shifts Confidence: SFT, RL, and OPD Shape Calibration Differently",
+      "hook": "SFT, RL, and on-policy distillation all boost reasoning accuracy — but they leave completely different fingerprints on when a model's confidence signal can actually be trusted.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_88397a#0",
+      "format": "flip",
+      "prompt": "What does the fabricated-panel condition prove about why models commit?",
+      "back_html": "\u003cp\u003eThat the trigger is presentation, not information. A wholly invented display raised commitment as much as genuine market data — nothing on screen was true except the question.\u003c/p\u003e"
+    },
+    {
+      "id": "card_88397a#1",
+      "format": "quiz",
+      "prompt": "Where exactly does the failure sit, according to the paper?",
+      "choices": [
+        {
+          "text": "In the act/don't-act gate — models know the question is unknowable and commit anyway",
+          "correct": true
+        },
+        {
+          "text": "In the model's beliefs — it genuinely thinks the question is answerable",
+          "correct": false
+        },
+        {
+          "text": "In capability — the models cannot parse the panel correctly",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAsked to classify knowability, models called it irreducible 90% of the time, yet committed on 0.4% of those. Judgment and capacity are intact; the decision to act is what breaks.\u003c/p\u003e"
+    },
+    {
+      "id": "card_88397a#2",
+      "format": "flip",
+      "prompt": "How is the trained gate context-fragile?",
+      "back_html": "\u003cp\u003eIt holds when the response format leaves room to reason. Rigid formats that remove that room leave the model confident and wrong on questions it would otherwise decline.\u003c/p\u003e"
+    }
+  ]
+}

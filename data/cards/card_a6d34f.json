@@ -1,0 +1,100 @@
+{
+  "id": "card_a6d34f",
+  "slug": "worldclaw-agentic-3d-worlds",
+  "type": "paper",
+  "title": "Building an Explorable 3D World by Planning It First",
+  "hook": "Text-to-3D usually yields one pretty scene. WorldClaw has planning agents write a spec — regions, terrain, assets, materials — then builds coarse-to-fine, so the world stays editable.",
+  "key_points": [
+    "The hard part of open-world generation is doing three things at once: global spatial coherence, rich local detail, and explicit assets you can edit and reuse afterwards.",
+    "Planning agents first translate the text prompt into a structured specification of regions, terrain, assets, materials, and spatial relations.",
+    "A globally coherent terrain foundation is built from semantic layouts, reusable assets, generative or procedural materials, and a region-aware height field.",
+    "Detail-demanding regions get terrain-conditioned compositions, reconstructed as editable textured meshes with their placement on the terrain recovered.",
+    "Render-based agents then refine terrain, objects, appearance, and contacts.",
+    "The output is instance-level editable assets inside a consistent global terrain — not a single baked scene."
+  ],
+  "content_html": "\u003cp\u003eAsk a generative system for \u0026quot;a windswept coastal region with a ruined fort\u0026quot;, and you can usually get a good-looking scene. Getting a \u003cem\u003eworld\u003c/em\u003e — large, freely explorable, coherent at the horizon and detailed underfoot, with assets you can still open and edit — is a different problem, because those requirements pull against each other.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eSpec first, geometry second\u003c/h2\u003e\n\u003cp\u003eWorldClaw's answer is to make the plan an explicit artifact. Planning agents turn the open-ended prompt into a structured specification: regions, terrain, assets, materials, and the spatial relations among them. Only then does generation start, coarse to fine. A terrain foundation is assembled from semantic layouts, reusable assets, generative or procedural materials, and a region-aware height field — this is what holds global coherence.\u003c/p\u003e\n\u003cp\u003eRegions that demand detail get terrain-conditioned compositions, which are reconstructed into editable textured meshes with their placement back on the terrain recovered. Render-based agents then close the loop, refining terrain, objects, appearance, and contacts against what the scene actually looks like when rendered. Guo and colleagues report that across diverse open-world prompts the result keeps a consistent global terrain structure while still yielding instance-level editable assets — the property that separates a usable world from a pretty one.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Chunchao Guo",
+      "Jinpeng Li",
+      "Yang Li",
+      "Zilong Huang"
+    ],
+    "url": "https://arxiv.org/abs/2608.05248",
+    "published_at": "2026-08-05",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "multimodal-vision",
+    "papers-this-week"
+  ],
+  "tags": [
+    "generative",
+    "agent",
+    "vision",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-10",
+  "date": "2026-08-05",
+  "related": [
+    {
+      "id": "card_9e170d",
+      "slug": "spatialclaw",
+      "type": "paper",
+      "title": "SpatialClaw: Code as the Action Interface for Spatial Reasoning",
+      "hook": "Give a vision-language agent a live Python kernel instead of a fixed tool menu, and let it write one cell at a time. That flexibility lifts 3D/4D spatial reasoning by 11 points.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-11"
+    },
+    {
+      "id": "card_41605e",
+      "slug": "sm4rt-structured-motion",
+      "type": "paper",
+      "title": "Motion Has Geometry Too",
+      "hook": "Tracking and optical flow treat every pixel as drifting on its own. But real objects are rigid — points on the same body move together, so give motion a basis instead of a per-pixel guess.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a6d34f#0",
+      "format": "flip",
+      "prompt": "What three requirements make large-scale text-to-3D world generation hard?",
+      "back_html": "\u003cp\u003eMaintaining global spatial coherence across the whole world, producing rich local content within it, and emitting explicit assets that can still be edited and reused downstream — all at the same time.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a6d34f#1",
+      "format": "quiz",
+      "prompt": "What do WorldClaw's planning agents produce from the text prompt?",
+      "choices": [
+        {
+          "text": "A structured specification of regions, terrain, assets, materials, and spatial relations",
+          "correct": true
+        },
+        {
+          "text": "A rendered preview image that the rest of the pipeline lifts into 3D",
+          "correct": false
+        },
+        {
+          "text": "A sequence of camera trajectories through the world to be generated",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe spec comes first and everything else is built against it — that's what gives the coarse-to-fine pipeline a global structure to stay coherent with as it fills in local detail.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a6d34f#2",
+      "format": "flip",
+      "prompt": "Why does it matter that WorldClaw outputs instance-level editable meshes?",
+      "back_html": "\u003cp\u003eA baked scene can only be looked at. Editable textured meshes with recovered placement on the terrain can be modified, reused, and pulled into downstream pipelines — which is what makes a generated world usable rather than just viewable.\u003c/p\u003e"
+    }
+  ]
+}

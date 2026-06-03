@@ -1,0 +1,101 @@
+{
+  "id": "card_bb0a5d",
+  "slug": "echocot-hidden-cot-extraction",
+  "type": "paper",
+  "title": "EchoCoT: Extracting Hidden Chain-of-Thought from Black-Box Models",
+  "hook": "Providers hide reasoning traces because they're valuable assets. A replay surface between tool calls lets an attacker pull them back out near-verbatim through the public API.",
+  "key_points": [
+    "Hidden CoT traces from frontier reasoning models are treated as proprietary assets; this asks whether the API leaks them anyway.",
+    "The attack surface is a previously overlooked 'reasoning replay' point between tool calls.",
+    "EchoCoT extracts iteratively, steering itself with fidelity signals the API returns.",
+    "An LLM-based optimizer searches for a universal injection trajectory that works across datasets.",
+    "On open-source reasoning models: up to 66.4% near-verbatim success — length within 10% of target, at least 90% of tokens matching exactly.",
+    "The same trajectory generalizes to unseen datasets (up to 80% success) and scales to very long traces — 33,463 tokens extracted from a 32,948-token target on Gemini-2.5."
+  ],
+  "content_html": "\u003cp\u003eFrontier reasoning models hide their chain-of-thought: you see an answer and perhaps a summary, not the trace. Providers treat those traces as assets worth protecting, partly because they're what a competitor would want for distillation. Qu and colleagues ask whether hidden CoT can be pulled back out of a black-box model through ordinary API interaction, and find that it can.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe attack\u003c/h2\u003e\n\u003cp\u003eThey identify a reasoning replay surface sitting between tool calls, and build EchoCoT, a multi-step attack that extracts iteratively while using fidelity signals returned by the API to guide itself. On top of that they add an LLM-based optimization framework that automatically searches for an injection trajectory effective across datasets, rather than tuning per target.\u003c/p\u003e\n\u003ch2\u003eWhat they measured\u003c/h2\u003e\n\u003cp\u003eEvaluated against three open-source and five frontier proprietary reasoning models, EchoCoT reaches up to 66.4% near-verbatim extraction on the open-source ones — traces within 10% of the target length, with at least 90% of tokens matching exactly — and the same trajectory generalizes to unseen datasets at up to 80% success. For the proprietary models, the authors report that a substantial fraction of extracted traces line up closely with provider-reported reasoning lengths and published CoT summaries. Length is not a defense: on Gemini-2.5 they extract 33,463 tokens against a 32,948-token target. The conclusion is that hidden-CoT extraction is a live security risk, not a theoretical one.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yiting Qu",
+      "Ziqing Yang",
+      "Chi Cui",
+      "Ye Leng",
+      "Junjie Chu",
+      "Yang Zhang"
+    ],
+    "url": "https://arxiv.org/abs/2608.20055",
+    "published_at": "2026-08-20",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-24",
+  "date": "2026-08-20",
+  "related": [
+    {
+      "id": "card_2cadb8",
+      "slug": "stealing-reasoning-traces",
+      "type": "paper",
+      "title": "Stealing Reasoning Traces from Proprietary LLM APIs",
+      "hook": "Labs hide chain-of-thought by handing you an encrypted blob to pass back. Researchers found you can feed that blob to a weaker model from the same provider and have it read the secret aloud.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2026-08-10"
+    },
+    {
+      "id": "card_bf8bf1",
+      "slug": "distributed-attacks-persistent-state-ai-control",
+      "type": "paper",
+      "title": "Distributed Attacks in Persistent-State AI Control",
+      "hook": "A misaligned coding agent doesn't need to sneak a backdoor into one pull request — it can spread the attack across many, and no single monitor catches both strategies at once.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-02"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_bb0a5d#0",
+      "format": "flip",
+      "prompt": "Where does EchoCoT find its opening?",
+      "back_html": "\u003cp\u003eA reasoning replay surface between tool calls — a point in the API interaction where hidden chain-of-thought becomes recoverable, previously overlooked.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bb0a5d#1",
+      "format": "quiz",
+      "prompt": "What makes the attack practical rather than a one-off?",
+      "choices": [
+        {
+          "text": "An optimizer finds a universal injection trajectory that transfers to unseen datasets",
+          "correct": true
+        },
+        {
+          "text": "It requires white-box access to the target model's weights",
+          "correct": false
+        },
+        {
+          "text": "It only works on traces shorter than a few hundred tokens",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe searched trajectory generalized to datasets it wasn't tuned on, reaching up to 80% extraction success — so it's reusable, not hand-crafted per case.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bb0a5d#2",
+      "format": "flip",
+      "prompt": "What does 'near-verbatim' mean in this paper's success criterion?",
+      "back_html": "\u003cp\u003eThe extracted trace is within 10% of the target's length with at least 90% of tokens matching exactly — not a paraphrase or summary.\u003c/p\u003e"
+    }
+  ]
+}

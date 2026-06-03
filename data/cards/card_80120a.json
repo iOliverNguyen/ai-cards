@@ -1,0 +1,126 @@
+{
+  "id": "card_80120a",
+  "slug": "transformer-length-generalization-algebra",
+  "type": "paper",
+  "title": "Which Tasks Do Transformers Extrapolate To? Now Decidable",
+  "hook": "Transformers sometimes handle sequences longer than they trained on, sometimes not. For regular languages there's now a complete characterization — and a polynomial-time algorithm to check.",
+  "key_points": [
+    "Before this, it wasn't known which regular languages transformers length-generalize on, despite that being a foundational language class.",
+    "The paper gives the first complete characterization, plus a decision algorithm polynomial in the size of the language's syntactic monoid.",
+    "Classical Krohn-Rhodes decomposition doesn't apply: its building blocks (flip-flops, simple groups) aren't expressible in C-RASP, and C-RASP's building block (unbounded counting) isn't expressible by finite semigroups.",
+    "So length generalization is governed by an algebraic property invisible to classical finite decomposition theory.",
+    "The fix is generalizing decomposition theory from finite semigroups to the infinite additive group of the integers, characterizing C-RASP via iterated wreath products of the integers.",
+    "Experiments across a broad regular-language suite match transformer behavior more accurately than existing classifications."
+  ],
+  "content_html": "\u003cp\u003eTransformers sometimes generalize to sequences longer than anything they saw in training, and sometimes fall apart immediately. Until now there was no crisp account of which is which — not even for regular languages, the most basic class in formal language theory. Yang, Hahn and colleagues close that gap: they give the first complete characterization of which regular languages transformers length-generalize on, together with a decision algorithm that runs in polynomial time in the size of the language's syntactic monoid.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe route runs through C-RASP, a recently established formalism that expresses which languages transformers length-generalize on; the task becomes characterizing which regular languages live in C-RASP. That turns out to be hard for a specific and interesting reason. The classical tool for decomposing finite semigroups, Krohn-Rhodes theory, doesn't fit from either direction: its atoms — flip-flops and simple groups — aren't expressible in C-RASP, and C-RASP's atom, unbounded counting, isn't expressible by finite semigroups. Length generalization is therefore controlled by an algebraic property that classical finite decomposition theory simply cannot see.\u003c/p\u003e\n\u003cp\u003eThe authors' answer is to generalize decomposition theory from finite semigroups to the infinite additive group on the integers, which lets them characterize C-RASP in terms of iterated wreath products of the integers and extract the polynomial-time decision procedure. Experiments over a broad suite of regular languages match observed transformer length-generalization behavior more accurately than existing classifications. This is theory-heavy work, but the payoff is unusually concrete: for a well-defined family of tasks, \u0026quot;will it extrapolate?\u0026quot; stops being an empirical guess.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Andy Yang",
+      "Blerta Veseli",
+      "Corentin Barloy",
+      "Michaël Cadilhac",
+      "Andreas Krebs",
+      "Charles Paperman",
+      "Howard Straubing",
+      "Michael Hahn"
+    ],
+    "url": "https://arxiv.org/abs/2608.13433",
+    "published_at": "2026-08-13",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "transformers",
+    "papers-this-week",
+    "generalization"
+  ],
+  "tags": [
+    "paper",
+    "architecture",
+    "foundational",
+    "reasoning"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-17",
+  "date": "2026-08-13",
+  "related": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    },
+    {
+      "id": "card_e8632a",
+      "slug": "position-interpolation",
+      "type": "paper",
+      "title": "Extending Context Windows via Positional Interpolation",
+      "hook": "Don't extrapolate to positions the model never saw - squeeze the position indices back inside the trained range, and a short fine-tune stretches the context window many times over.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-06-27"
+    },
+    {
+      "id": "card_319ef2",
+      "slug": "full-bandwidth-transformer",
+      "type": "paper",
+      "title": "Full-Bandwidth Transformer: Feed the Hidden State Back",
+      "hook": "Between decoding steps a transformer throws away everything except the sampled token. Widening that channel with the top-layer hidden state buys roughly 1.5x the training tokens' worth of quality.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-09"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_80120a#0",
+      "format": "quiz",
+      "prompt": "What can you now decide about a regular language, according to this paper?",
+      "choices": [
+        {
+          "text": "Whether transformers length-generalize on it — in time polynomial in its syntactic monoid",
+          "correct": true
+        },
+        {
+          "text": "The minimum number of layers a transformer needs to recognize it",
+          "correct": false
+        },
+        {
+          "text": "Whether a transformer can recognize it at all, at any length",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe contribution is a complete characterization of length generalization on regular languages plus a polynomial-time decision algorithm — not a bound on recognition or depth.\u003c/p\u003e"
+    },
+    {
+      "id": "card_80120a#1",
+      "format": "flip",
+      "prompt": "Why is classical Krohn-Rhodes decomposition theory insufficient here?",
+      "back_html": "\u003cp\u003eIts building blocks — flip-flops and simple groups — aren't expressible in C-RASP, while C-RASP's building block, unbounded counting, isn't expressible by finite semigroups. The two theories miss each other in both directions.\u003c/p\u003e"
+    },
+    {
+      "id": "card_80120a#2",
+      "format": "flip",
+      "prompt": "What mathematical move makes the characterization possible?",
+      "back_html": "\u003cp\u003eGeneralizing decomposition theory from finite semigroups to the infinite additive group on the integers, which lets C-RASP be characterized in terms of iterated wreath products of the integers.\u003c/p\u003e"
+    }
+  ]
+}

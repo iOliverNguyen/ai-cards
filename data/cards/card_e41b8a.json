@@ -1,0 +1,108 @@
+{
+  "id": "card_e41b8a",
+  "slug": "adam-optimizer",
+  "type": "paper",
+  "title": "Adam: The Default Optimizer",
+  "hook": "Adam gives every parameter its own adaptive step size by tracking the gradient's recent average and spread — and it mostly just works.",
+  "key_points": [
+    "Adam keeps running estimates of each gradient's mean (first moment) and variance (second moment).",
+    "It uses those to scale per-parameter step sizes adaptively, not one global rate.",
+    "The name comes from 'adaptive moment estimation', combining ideas from momentum and RMSProp.",
+    "It's robust to hyperparameters, which is why it's the go-to default for training deep nets."
+  ],
+  "content_html": "\u003cp\u003eAdam, introduced by Diederik Kingma and Jimmy Ba, is the optimizer most deep learning practitioners reach for first. Instead of using one fixed learning rate for everything, it maintains running estimates of each parameter's gradient mean and variance and uses them to give every parameter its own adaptive step size.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eFor each parameter Adam tracks two exponentially decaying averages: the recent mean of the gradient (momentum-like) and the recent mean of its square (a measure of variance). It divides the step by the square root of that second estimate, so parameters with large, noisy gradients take smaller steps and quiet ones take larger steps. A bias correction fixes the estimates being skewed toward zero early in training.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003ePlain gradient descent can be fussy about learning rates and slow in awkward loss landscapes. Adam's adaptivity makes training far more forgiving, often converging quickly with little tuning, which is exactly why it became the default in so many codebases and tutorials. Understanding it explains a line you'll see in nearly every training script.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Diederik P. Kingma",
+      "Jimmy Ba"
+    ],
+    "url": "https://arxiv.org/abs/1412.6980",
+    "published_at": "2014-12-22",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "optimization"
+  ],
+  "tags": [
+    "training",
+    "foundational"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2014-12-22",
+  "related": [
+    {
+      "id": "card_7921e0",
+      "slug": "gradient-descent",
+      "type": "concept",
+      "title": "Gradient Descent",
+      "hook": "Lost in fog on a hillside, you'd feel for the steepest downhill step and take it, again and again. That's how models learn.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7921e0",
+      "slug": "gradient-descent",
+      "type": "concept",
+      "title": "Gradient Descent",
+      "hook": "Lost in fog on a hillside, you'd feel for the steepest downhill step and take it, again and again. That's how models learn.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_e41b8a#0",
+      "format": "flip",
+      "prompt": "What two quantities does Adam track per parameter, and how do they set the step size?",
+      "back_html": "\u003cp\u003eRunning estimates of the gradient's mean (first moment) and squared mean / variance (second moment). It divides the step by the square root of the second estimate, giving each parameter an adaptive rate.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e41b8a#1",
+      "format": "quiz",
+      "prompt": "What does the bias correction in Adam fix?",
+      "choices": [
+        {
+          "text": "The moment estimates being skewed toward zero early in training",
+          "correct": true
+        },
+        {
+          "text": "Gradients exploding in deep networks",
+          "correct": false
+        },
+        {
+          "text": "Overfitting to the training set",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe running averages start near zero, so a bias correction unskews them early in training.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e41b8a#2",
+      "format": "quiz",
+      "prompt": "Why did Adam become the default optimizer?",
+      "choices": [
+        {
+          "text": "Its adaptivity makes training forgiving, converging quickly with little tuning",
+          "correct": true
+        },
+        {
+          "text": "It guarantees finding the global minimum",
+          "correct": false
+        },
+        {
+          "text": "It uses less memory than plain SGD",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePlain gradient descent is fussy about learning rates; Adam's per-parameter adaptivity makes it robust with little tuning.\u003c/p\u003e"
+    }
+  ]
+}

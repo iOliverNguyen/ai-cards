@@ -1,0 +1,98 @@
+{
+  "id": "card_c6d3e7",
+  "slug": "grok-4",
+  "type": "news",
+  "title": "Grok 4",
+  "hook": "xAI's Grok 4 leaned hard on reinforcement learning and native tool use, topping several reasoning benchmarks at its July 2025 launch.",
+  "key_points": [
+    "xAI's frontier model, released July 2025, trained with large-scale reinforcement learning.",
+    "Built-in tool use and a version tuned for agentic, multi-step tasks.",
+    "Claimed leading scores on hard reasoning benchmarks at launch.",
+    "Integrated with X and offered via the xAI API and a premium subscription."
+  ],
+  "content_html": "\u003cp\u003exAI released Grok 4 in July 2025, positioning it as a frontier reasoning model and the centerpiece of its push to compete with OpenAI, Anthropic, and Google. The release emphasized heavy reinforcement-learning post-training and native tool use, with the company claiming top scores on several demanding reasoning evaluations.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat's new\u003c/h2\u003e\n\u003cp\u003eGrok 4 scaled up the reinforcement-learning stage that had become central to reasoning models, training the model to work through problems and call tools as part of its thinking. xAI also offered a variant aimed at long-horizon agentic tasks. The model is tightly integrated with the X platform and is available through the xAI API and a premium subscription tier.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eGrok 4 marked xAI's arrival as a serious frontier contender within a couple of years of founding, underscoring how quickly a well-resourced lab can reach the frontier given enough compute and the now-standard RL-on-reasoning recipe. Its launch benchmarks were strong, though as always the durable test is real-world use rather than leaderboard numbers.\u003c/p\u003e",
+  "source": {
+    "name": "xAI",
+    "authors": [
+      "xAI"
+    ],
+    "url": "https://x.ai/news/grok-4",
+    "published_at": "2025-07-09",
+    "license": "xAI news"
+  },
+  "topic_ids": [
+    "pretraining",
+    "releases"
+  ],
+  "tags": [
+    "nlp",
+    "reasoning",
+    "agent"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2025-07-09",
+  "related": [
+    {
+      "id": "card_5cb279",
+      "slug": "gpt-5",
+      "type": "news",
+      "title": "GPT-5",
+      "hook": "GPT-5 folds OpenAI's two lines into one: a router decides on the fly whether a prompt needs a fast answer or deep step-by-step reasoning, so you stop picking models.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2025-08-07"
+    },
+    {
+      "id": "card_bf92f3",
+      "slug": "openai-o3",
+      "type": "news",
+      "title": "OpenAI o3: Reasoning that Uses Tools",
+      "hook": "o3 is the first reasoning model that can agentically reach for every ChatGPT tool mid-thought - web search, Python on your files, image input, image generation - and combine them to solve a problem.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-04-16"
+    },
+    {
+      "id": "card_4cd8fd",
+      "slug": "deepseek-r1",
+      "type": "paper",
+      "title": "DeepSeek-R1: Incentivizing Reasoning via Reinforcement Learning",
+      "hook": "DeepSeek shows strong reasoning can emerge from RL on verifiable rewards with minimal supervised data - and those reasoning traces can be distilled into smaller models.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2025-01-22"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_c6d3e7#0",
+      "format": "flip",
+      "prompt": "What training stage did Grok 4 scale up to drive its reasoning gains?",
+      "back_html": "\u003cp\u003eLarge-scale reinforcement-learning post-training, teaching the model to work through problems and call tools as part of its thinking.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c6d3e7#1",
+      "format": "quiz",
+      "prompt": "What does Grok 4's quick arrival at the frontier illustrate?",
+      "choices": [
+        {
+          "text": "A well-resourced lab can reach the frontier fast given compute and the RL-on-reasoning recipe",
+          "correct": true
+        },
+        {
+          "text": "Frontier models no longer require much compute",
+          "correct": false
+        },
+        {
+          "text": "Tool use is unnecessary for reasoning models",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe card notes xAI became a serious contender within a couple of years using enough compute and the now-standard RL recipe.\u003c/p\u003e"
+    }
+  ]
+}

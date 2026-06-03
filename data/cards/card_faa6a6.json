@@ -1,0 +1,100 @@
+{
+  "id": "card_faa6a6",
+  "slug": "unsupervised-on-policy-self-distillation",
+  "type": "paper",
+  "title": "On-Policy Self-Distillation without Any Supervision",
+  "hook": "Self-distillation that finally deserves the name: no ground truth, no bigger teacher — just a model voting against itself and fixing where it was confidently wrong.",
+  "key_points": [
+    "Existing on-policy self-distillation still leans on ground truth, environment feedback, or a larger teacher — so it isn't really self-supervised.",
+    "U-OPSD samples several rollouts, builds a pseudo-solution by majority vote under a self-consistency threshold, then distills on the completions that disagree.",
+    "Conditioning on the pseudo-solution targets exactly the places the model is confidently wrong, rather than reinforcing what it already gets right.",
+    "On AIME24/25, HMMT25, MATH500 and AMC23, it lifts Qwen3 non-thinking mode by 8.5% at 4B and 10.7% at 8B over the base model.",
+    "It beats supervised OPSD by 3.2% (4B) and 2.3% (8B) on average, and stays level with OPSD and slightly ahead of GRPO in thinking mode."
+  ],
+  "content_html": "\u003cp\u003eOn-policy distillation trains a model on its own generations rather than a fixed dataset, which keeps the training distribution honest — but in practice it has always needed something from outside: ground-truth answers, an environment that scores rollouts, or a larger teacher to imitate. A team from UC San Diego argues you can drop all three.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTheir method, U-OPSD, samples several rollouts for a prompt and takes a majority vote — gated by a self-consistency threshold — as a pseudo-solution. It then conditions the model's distribution on that pseudo-solution and distills the model onto the completions that \u003cem\u003edisagreed\u003c/em\u003e, so the update lands precisely where the model was confidently wrong rather than reinforcing what it already had right.\u003c/p\u003e\n\u003cp\u003eThe numbers hold up across five math reasoning benchmarks (AIME24, AIME25, HMMT25, MATH500, AMC23). In Qwen3 non-thinking mode, U-OPSD gains 8.5% at 4B and 10.7% at 8B over the base model, and beats supervised OPSD by 3.2% and 2.3% on average. In thinking mode it stays roughly level with OPSD while edging past GRPO. Li et al., August 2026; code is on GitHub.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yijiang Li",
+      "Bingyang Wang",
+      "Yijun Liang",
+      "Yunjie Tian",
+      "Di Fu",
+      "Nuno Vasconcelos"
+    ],
+    "url": "https://arxiv.org/abs/2608.06296",
+    "published_at": "2026-08-09",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "distillation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "paper",
+    "training",
+    "reasoning"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-13",
+  "date": "2026-08-09",
+  "related": [
+    {
+      "id": "card_3dde74",
+      "slug": "rethinking-on-policy-self-distillation-thinking-models",
+      "type": "paper",
+      "title": "Rethinking On-Policy Self-Distillation for Thinking Models",
+      "hook": "Giving a model the answer as privileged context sounds like it should only help. For thinking models on long reasoning traces, it backfires — accuracy drops up to 17%, and this explains why.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_63a204",
+      "slug": "direct-on-policy-distillation",
+      "type": "paper",
+      "title": "Weak-to-Strong Generalization via Direct On-Policy Distillation",
+      "hook": "RL post-training gets pricier as models scale, since it needs the strong model's own rollouts. Direct-OPD reuses a cheap RL run on a small model instead, transferring the direction RL moved it.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_faa6a6#0",
+      "format": "flip",
+      "prompt": "How does U-OPSD get a training target without any ground truth?",
+      "back_html": "\u003cp\u003eIt samples multiple rollouts and takes a majority vote under a self-consistency threshold as a pseudo-solution, then distills the model on the completions that disagree with it.\u003c/p\u003e"
+    },
+    {
+      "id": "card_faa6a6#1",
+      "format": "quiz",
+      "prompt": "Why do the authors say prior on-policy self-distillation isn't truly 'self'?",
+      "choices": [
+        {
+          "text": "It still relies on external supervision — ground truth, environment feedback, or a larger teacher",
+          "correct": true
+        },
+        {
+          "text": "It trains on off-policy data collected from other models",
+          "correct": false
+        },
+        {
+          "text": "It requires a second copy of the model held in frozen form",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper's framing is that once you need labels or a bigger teacher, the signal comes from outside the model — U-OPSD replaces that with internal consistency.\u003c/p\u003e"
+    },
+    {
+      "id": "card_faa6a6#2",
+      "format": "flip",
+      "prompt": "What kind of errors is U-OPSD designed to attack?",
+      "back_html": "\u003cp\u003eCases where the model is confidently wrong — conditioning on the pseudo-solution isolates the disagreeing completions, so training pressure lands where the model's own consensus contradicts it.\u003c/p\u003e"
+    }
+  ]
+}

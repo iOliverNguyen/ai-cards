@@ -1,0 +1,88 @@
+{
+  "id": "card_99225b",
+  "slug": "small-foundation-models-human-cognition",
+  "type": "paper",
+  "title": "Small Models Are Enough to Imitate Human Choice Behaviour",
+  "hook": "Fourteen models from 135M to 14B were fine-tuned on 10.7 million human decisions. In-distribution, 0.6B matched a 70B baseline — scale only started paying off on unfamiliar tasks.",
+  "key_points": [
+    "Fourteen models, 135M to 14B parameters, across four architecture families, fine-tuned on Psych-101 (10.7M trial-level choices from 160 experiments).",
+    "In-distribution the models sit in a narrow band as if against a ceiling; 0.6B–1B suffices to match a 70B baseline on held-out participants.",
+    "Out-of-distribution the band opens into a much steeper scaling gradient — bigger models generalize better to novel task structure.",
+    "Masking stimulus content and outcome feedback destroys 75.7% of learned information and pushes models below chance.",
+    "That rules out the obvious shortcut: choice history alone does not explain the performance.",
+    "Permuting trial order changes nothing on independent-trial tasks but hurts where order depends on prior responses."
+  ],
+  "content_html": "\u003cp\u003eFine-tuning an LLM on human behavioural data turns it into a general-purpose cognitive proxy — a stand-in participant for psychology experiments. Two questions have hung over that idea: how big does the model need to be, and is it modelling the task or exploiting a statistical shortcut?\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe experiment\u003c/h2\u003e\n\u003cp\u003eNick Oh and Fernand Gobet trained fourteen models, 135M to 14B parameters, across four architecture families, on Psych-101 — 10.7 million trial-level choices drawn from 160 experiments. In-distribution, scale barely registered: the models fell inside a narrow band, as if against a ceiling, with 0.6B to 1B parameters enough to match a 70B baseline on held-out participants. Push them out-of-distribution, onto novel task structure, and that band opens into a markedly steeper scaling gradient where the larger models pull ahead.\u003c/p\u003e\n\u003cp\u003eTo probe what the models were using, the authors ran two diagnostics. Progressively stripping four prompt channels — instructions, stimuli, feedback, choice history — across 27 experiments showed that masking stimulus content and feedback destroys 75.7% of the learned information and pushes performance below chance, so the models are not merely replaying choice history. Permuting trial order left performance intact on independent-trial tasks but degraded it where trial order depends on prior responses.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eIt's a rare case where \u0026quot;scale is not the answer\u0026quot; is the useful finding: small, cognitively fine-tuned models look promising as noise-ceiling estimators for psychological experiments, which makes the approach cheap enough to actually use. The authors are explicit about the limit — the models' scope stays bounded by the paradigms they saw in training, which is exactly where the out-of-distribution scaling gradient starts to bite.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Nick Oh",
+      "Fernand Gobet"
+    ],
+    "url": "https://arxiv.org/abs/2608.05224",
+    "published_at": "2026-08-05",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-science",
+    "pretraining",
+    "papers-this-week"
+  ],
+  "tags": [
+    "paper",
+    "training",
+    "benchmark"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-10",
+  "date": "2026-08-05",
+  "related": [
+    {
+      "id": "card_85f66a",
+      "slug": "scaling-laws",
+      "type": "paper",
+      "title": "Scaling Laws for Neural Language Models",
+      "hook": "Loss doesn't drop randomly as models grow — it follows a smooth power law in size, data, and compute. That predictability is what made betting on bigger models rational.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2020-01-23"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_99225b#0",
+      "format": "quiz",
+      "prompt": "Where did model scale actually matter in this study?",
+      "choices": [
+        {
+          "text": "Out-of-distribution — generalizing to novel task structure",
+          "correct": true
+        },
+        {
+          "text": "In-distribution, on held-out participants from the training paradigms",
+          "correct": false
+        },
+        {
+          "text": "Nowhere; all fourteen models were statistically indistinguishable",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIn-distribution the models clustered in a narrow band, with 0.6B–1B matching a 70B baseline. The steep scaling gradient only appeared out-of-distribution.\u003c/p\u003e"
+    },
+    {
+      "id": "card_99225b#1",
+      "format": "flip",
+      "prompt": "How did the authors rule out models just parroting choice history?",
+      "back_html": "\u003cp\u003eThey progressively stripped prompt channels across 27 experiments. Masking stimulus content and outcome feedback destroyed 75.7% of learned information and drove models below chance — so history alone cannot account for performance.\u003c/p\u003e"
+    },
+    {
+      "id": "card_99225b#2",
+      "format": "flip",
+      "prompt": "What did permuting trial order reveal?",
+      "back_html": "\u003cp\u003eModels were invariant to order on tasks with independent trials, but sensitive where trial order is determined by prior responses — evidence they track task structure rather than a fixed sequence.\u003c/p\u003e"
+    }
+  ]
+}

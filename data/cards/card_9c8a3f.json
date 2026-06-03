@@ -1,0 +1,109 @@
+{
+  "id": "card_9c8a3f",
+  "slug": "kronq-kronecker-factored-quantization",
+  "type": "paper",
+  "title": "KronQ: LLM Quantization via Kronecker-Factored Hessian",
+  "hook": "GPTQ assumes every output channel matters equally. KronQ adds gradient information to challenge that — rescuing 2-bit LLaMA-3-70B from a perplexity blowup down to 7.93.",
+  "key_points": [
+    "GPTQ and GPTAQ build their quantization objective only from input-activation stats, implicitly treating every output channel as equally important.",
+    "KronQ adds gradient covariance via a Kronecker-factored Hessian, so quantization loss depends on activation AND gradient statistics.",
+    "Bidirectional incoherence processing extends input-side random rotation to the output dimension too, using gradient covariance to cut weight variance.",
+    "A new sensitivity metric, from gradient and activation Hessian traces, decides which layers get extra bits in mixed-precision allocation.",
+    "At 2-bit weight-only quantization on LLaMA-3-70B, GPTQ/GPTAQ diverge (\u003e2000 WikiText-2 perplexity); KronQ reaches 7.93."
+  ],
+  "content_html": "\u003cp\u003ePost-training quantization methods like GPTQ compress a trained model's weights without retraining, but they define \u0026quot;error\u0026quot; purely from input activations — implicitly assuming every output channel deserves equal protection. Donghyun Lee and colleagues introduce KronQ, which brings gradient covariance into that picture through a Kronecker-factored Hessian approximation, using it both to rotate weights more evenly across input and output dimensions and to decide which layers deserve more bits.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe payoff shows up hardest at extreme compression. At 2-bit weight-only quantization on LLaMA-3-70B, the paper reports that GPTQ and GPTAQ diverge or produce degenerate quantizations — perplexity blowing past 2000 on WikiText-2 — while KronQ holds together at 7.93 perplexity. The authors frame this as evidence that ignoring gradient information, as prior second-order PTQ methods do, is a real blind spot once bit-widths get aggressive. Full details are on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Donghyun Lee",
+      "Yuhang Li",
+      "Ruokai Yin",
+      "Priyadarshini Panda"
+    ],
+    "url": "https://arxiv.org/abs/2607.07964",
+    "published_at": "2026-07-08",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "quantization",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-16",
+  "date": "2026-07-08",
+  "related": [
+    {
+      "id": "card_d01b1d",
+      "slug": "gptq",
+      "type": "paper",
+      "title": "GPTQ: Accurate Post-Training Quantization",
+      "hook": "Already trained a giant LLM? GPTQ squeezes its weights down to 3–4 bits afterward — no retraining — with surprisingly little quality loss.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-10-31"
+    },
+    {
+      "id": "card_72ef98",
+      "slug": "illusion-of-equivalency-quantization",
+      "type": "paper",
+      "title": "The Illusion of Equivalency: Why 'Same Accuracy' Doesn't Mean 'Same Model'",
+      "hook": "Two quantized models can score identically on accuracy while disagreeing on which individual examples they get right — a gap standard benchmarks are structurally blind to.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-09"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_d01b1d",
+      "slug": "gptq",
+      "type": "paper",
+      "title": "GPTQ: Accurate Post-Training Quantization",
+      "hook": "Already trained a giant LLM? GPTQ squeezes its weights down to 3–4 bits afterward — no retraining — with surprisingly little quality loss.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-10-31"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_9c8a3f#0",
+      "format": "flip",
+      "prompt": "Why do GPTQ and GPTAQ implicitly treat every output channel as equally important?",
+      "back_html": "\u003cp\u003eThey build the quantization objective purely from input-activation statistics, which carries no signal about which output channels matter more.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9c8a3f#1",
+      "format": "quiz",
+      "prompt": "What does KronQ's gradient covariance get used for?",
+      "choices": [
+        {
+          "text": "Bidirectional incoherence processing (rotating input AND output dims) plus a sensitivity metric for mixed-precision allocation",
+          "correct": true
+        },
+        {
+          "text": "Retraining the full model end-to-end before quantizing",
+          "correct": false
+        },
+        {
+          "text": "Deciding which layers to skip quantizing entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eKronQ uses gradient covariance both to extend random rotation to the output dimension and to derive a per-layer sensitivity score for bit allocation.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9c8a3f#2",
+      "format": "flip",
+      "prompt": "At 2-bit weight-only quantization on LLaMA-3-70B, how did KronQ compare to GPTQ and GPTAQ?",
+      "back_html": "\u003cp\u003eGPTQ and GPTAQ collapsed into degenerate quantizations (over 2000 WikiText-2 perplexity), while KronQ stayed usable at 7.93 perplexity.\u003c/p\u003e"
+    }
+  ]
+}

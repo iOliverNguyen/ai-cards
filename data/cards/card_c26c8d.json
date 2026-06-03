@@ -1,0 +1,80 @@
+{
+  "id": "card_c26c8d",
+  "slug": "sl2t-sign-language",
+  "type": "news",
+  "title": "Sign Language to Text, Shipped to Users",
+  "hook": "DeepMind's SL2T translates sign language into text — and unlike most accessibility research demos, it's going into products Deaf and hard-of-hearing users can actually use.",
+  "key_points": [
+    "SL2T is Google DeepMind's sign-language-to-text model, announced August 2026.",
+    "It powers new sign language features aimed at Deaf and hard of hearing users.",
+    "The emphasis is deployment, not benchmark scores — the model is being put in users' hands.",
+    "Sign language is a hard multimodal problem: meaning lives in hand shape, motion, facial expression and spatial grammar at once.",
+    "Recognition-to-text is a different task from generation — it needs continuous video understanding, not just isolated gesture classification."
+  ],
+  "content_html": "\u003cp\u003eGoogle DeepMind has announced SL2T, a sign-language-to-text model, and — more notably — is shipping it into features for Deaf and hard of hearing users rather than leaving it as a research result.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eSign language translation is a genuinely hard multimodal problem, and the reason is structural. Meaning isn't carried by hand shape alone: it lives simultaneously in handshape, movement, facial expression, and the use of space around the signer, all unfolding continuously rather than as discrete separable gestures. That makes it much closer to translating speech than to classifying images, and it's why isolated-sign recognizers have historically failed to generalize to fluent signing.\u003c/p\u003e\n\u003cp\u003eThe deployment framing is the part worth noting. Accessibility AI has a long history of impressive demos that never reach the people they're built for; DeepMind is explicitly positioning this one around getting it into users' hands. Google DeepMind, August 2026.\u003c/p\u003e",
+  "source": {
+    "name": "Google DeepMind",
+    "authors": [
+      "Google DeepMind"
+    ],
+    "url": "https://deepmind.google/blog/putting-sign-language-ai-into-users-hands",
+    "published_at": "2026-08-12",
+    "license": "Google DeepMind (blog post)"
+  },
+  "topic_ids": [
+    "video-audio",
+    "lab-updates",
+    "multimodal-vision"
+  ],
+  "tags": [
+    "multimodal",
+    "vision",
+    "news"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-08-13",
+  "date": "2026-08-12",
+  "related": [
+    {
+      "id": "card_8a4426",
+      "slug": "whisper",
+      "type": "paper",
+      "title": "Whisper: Robust Speech Recognition at Scale",
+      "hook": "Train a plain encoder-decoder transformer on 680,000 hours of weakly-labeled multilingual audio and you get near-human transcription robustness without task-specific fine-tuning.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_c26c8d#0",
+      "format": "flip",
+      "prompt": "What does SL2T do?",
+      "back_html": "\u003cp\u003eIt translates sign language into text, powering new sign language features Google DeepMind is shipping to Deaf and hard of hearing users.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c26c8d#1",
+      "format": "quiz",
+      "prompt": "Why is sign language translation harder than isolated gesture recognition?",
+      "choices": [
+        {
+          "text": "Meaning is carried simultaneously by hand shape, motion, facial expression and spatial grammar across continuous video",
+          "correct": true
+        },
+        {
+          "text": "Sign languages have no consistent grammar to model",
+          "correct": false
+        },
+        {
+          "text": "There is no way to represent signs as discrete tokens",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA classifier over single gestures misses the structure — real signing is continuous and multi-channel, closer to translating speech than to labeling images.\u003c/p\u003e"
+    }
+  ]
+}

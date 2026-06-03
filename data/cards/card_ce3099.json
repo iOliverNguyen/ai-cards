@@ -1,0 +1,122 @@
+{
+  "id": "card_ce3099",
+  "slug": "compactionrl-context-compaction",
+  "type": "paper",
+  "title": "CompactionRL: Reinforcement Learning with Context Compaction for Long-Horizon Agents",
+  "hook": "Long-running coding agents eventually run out of context before finishing the job. CompactionRL trains them to summarize their own history mid-task, as part of the RL objective itself.",
+  "key_points": [
+    "Jointly optimizes task execution and summary generation, so the agent learns to compact context well mid-rollout.",
+    "Uses token-level loss normalization and cross-trajectory generalized advantage estimation to keep RL stable under compaction.",
+    "On GLM-4.5-Air (106B-A30B): 66.8% Pass@1 on SWE-bench Verified (+7.0pp), 24.5% on Terminal-Bench 2.0 (+3.1pp).",
+    "On GLM-4.7-Flash (30B-A3B): +5.5 and +6.8pp Pass@1, reaching 56.0% and 20.2% on the same two benchmarks.",
+    "Now deployed in the production RL pipeline used to train the GLM-5.2 model (750B-A40B)."
+  ],
+  "content_html": "\u003cp\u003eLong-running coding agents eventually run out of context window before finishing the job. \u003cstrong\u003eCompactionRL\u003c/strong\u003e trains agents to summarize their own history mid-task as part of the RL objective, instead of bolting compaction on as an afterthought.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eCompactionRL jointly optimizes two things at once: getting the task done, and generating a good running summary when context needs to be compacted. It uses token-level loss normalization and cross-trajectory generalized advantage estimation so the RL signal stays stable when trajectories are compacted at different points. That lets the agent actually learn what to keep and what to summarize away, rather than compacting with a fixed, untrained heuristic.\u003c/p\u003e\n\u003ch2\u003eResults\u003c/h2\u003e\n\u003cp\u003eTrained on top of GLM-4.5-Air (106B-A30B), CompactionRL reaches 66.8% Pass@1 on SWE-bench Verified (+7.0 points) and 24.5% on Terminal-Bench 2.0 (+3.1 points). On the smaller GLM-4.7-Flash (30B-A3B), it improves Pass@1 by 5.5 and 6.8 points, reaching 56.0% and 20.2% on the same two benchmarks respectively. The technique is now part of the production RL pipeline used to train GLM-5.2 (750B-A40B), evidence the lab treats it as load-bearing for long-horizon agent training, not just a research demo. Li, Hou, and colleagues (Zhipu AI / Tsinghua), arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yujiang Li",
+      "Zhenyu Hou",
+      "Yi Jing",
+      "Jie Tang",
+      "Yuxiao Dong"
+    ],
+    "url": "https://arxiv.org/abs/2607.05378",
+    "published_at": "2026-07-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "context-memory",
+    "agents",
+    "ai-for-code",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "training",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-06",
+  "related": [
+    {
+      "id": "card_9c1f76",
+      "slug": "plans-dont-persist-context",
+      "type": "paper",
+      "title": "Plans Don't Persist: Context Management Is Load-Bearing for Agents",
+      "hook": "An agent writes a plan, then context compression evicts it. This paper shows the plan never became internal state — once it leaves the window, the agent forgets it and task success craters.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-22"
+    },
+    {
+      "id": "card_42f624",
+      "slug": "agent-token-budget-overruns",
+      "type": "paper",
+      "title": "Token Budgets: When Agents Burn Money",
+      "hook": "A single retry loop can spend thousands of dollars before anyone notices. This paper catalogs 63 real budget-overrun incidents — and asks the type system to make over-spending a compile error.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    },
+    {
+      "id": "card_221e28",
+      "slug": "referential-dangling-prompt-compression",
+      "type": "paper",
+      "title": "Referential Dangling: How Prompt Compression Quietly Breaks Multi-Hop Answers",
+      "hook": "Compressors score chunks independently, so they can keep the sentence holding the answer and delete the one defining who it's about — leaving text that reads fine and answers wrong.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-05"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_ce3099#0",
+      "format": "flip",
+      "prompt": "What does CompactionRL add to standard agentic RL training?",
+      "back_html": "\u003cp\u003eIt jointly optimizes task execution and summary generation, so the agent learns to compact its own context well mid-rollout instead of using a fixed, untrained heuristic.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ce3099#1",
+      "format": "quiz",
+      "prompt": "What two technical pieces let CompactionRL train stably across compacted trajectories?",
+      "choices": [
+        {
+          "text": "Token-level loss normalization and cross-trajectory generalized advantage estimation",
+          "correct": true
+        },
+        {
+          "text": "A separate, frozen summarization model trained independently of the agent",
+          "correct": false
+        },
+        {
+          "text": "Simply truncating context and ignoring the discarded tokens",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThese two design choices keep the RL signal stable when trajectories get compacted at different points and lengths.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ce3099#2",
+      "format": "flip",
+      "prompt": "What's the significance of CompactionRL being used to train GLM-5.2?",
+      "back_html": "\u003cp\u003eIt shows the lab moved the technique from a research result into their production RL pipeline for a flagship model (750B-A40B), not just a one-off benchmark improvement.\u003c/p\u003e"
+    }
+  ]
+}

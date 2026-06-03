@@ -1,0 +1,105 @@
+{
+  "id": "card_059210",
+  "slug": "cyclegan",
+  "type": "paper",
+  "title": "CycleGAN: Unpaired Image-to-Image Translation",
+  "hook": "Translate horses to zebras without a single matched pair - a cycle-consistency constraint does the work that paired data used to do.",
+  "key_points": [
+    "Trains two generators (A→B and B→A) and two discriminators simultaneously without paired examples.",
+    "Cycle-consistency loss requires that translating an image there and back should reconstruct the original.",
+    "Removes the paired-data bottleneck that limited Pix2Pix to tasks with aligned datasets.",
+    "Works on artistic style transfer, season change, object transfiguration, and medical image translation."
+  ],
+  "content_html": "\u003cp\u003eZhu et al. at Berkeley introduced CycleGAN in 2017 to solve a fundamental limitation of Pix2Pix: it needs pairs of aligned images, which are expensive or impossible to collect in many domains. CycleGAN learns to translate between two image domains using only unorganized collections from each domain - think summer photos and winter photos, or real horses and real zebras, with no correspondence required.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eCycleGAN trains two generator-discriminator pairs in tandem: one learns domain A to B, the other learns B to A. The cycle-consistency loss is the key innovation: take an image from A, translate it to B, then translate it back - the result should match the original. This constraint prevents the generators from mapping all inputs to the same plausible output and forces them to preserve meaningful content across translations.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eBy eliminating the need for paired data, CycleGAN opened image translation to a vast range of new applications - medical scans, historical photos, artistic style - wherever collecting aligned pairs is impractical. It remains one of the most cited GAN papers and a standard benchmark for generative vision models. Read the full method and results on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jun-Yan Zhu",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/1703.10593",
+    "published_at": "2017-03-30",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "gans"
+  ],
+  "tags": [
+    "generative",
+    "vision",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2017-03-30",
+  "related": [
+    {
+      "id": "card_047809",
+      "slug": "generative-adversarial-networks",
+      "type": "paper",
+      "title": "Generative Adversarial Networks (GANs)",
+      "hook": "Pit two networks against each other — a forger making fakes and a detective catching them — and the forger gets so good its fakes look real.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2014-06-10"
+    },
+    {
+      "id": "card_39b805",
+      "slug": "pix2pix",
+      "type": "paper",
+      "title": "Pix2Pix: Image-to-Image Translation with Conditional GANs",
+      "hook": "Give a GAN paired input-output images and it learns a general recipe for translating any image domain to another - sketch to photo, map to satellite, day to night.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2016-11-21"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_047809",
+      "slug": "generative-adversarial-networks",
+      "type": "paper",
+      "title": "Generative Adversarial Networks (GANs)",
+      "hook": "Pit two networks against each other — a forger making fakes and a detective catching them — and the forger gets so good its fakes look real.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2014-06-10"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_059210#0",
+      "format": "flip",
+      "prompt": "What does CycleGAN's cycle-consistency loss require?",
+      "back_html": "\u003cp\u003eTranslating an image from A to B and back again should reconstruct the original, forcing generators to preserve meaningful content.\u003c/p\u003e"
+    },
+    {
+      "id": "card_059210#1",
+      "format": "quiz",
+      "prompt": "What limitation of Pix2Pix does CycleGAN remove?",
+      "choices": [
+        {
+          "text": "The need for paired, aligned training images",
+          "correct": true
+        },
+        {
+          "text": "The need for a discriminator network",
+          "correct": false
+        },
+        {
+          "text": "The need to train on images at all",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eCycleGAN learns from unorganized collections of each domain, eliminating the paired-data bottleneck that limited Pix2Pix.\u003c/p\u003e"
+    },
+    {
+      "id": "card_059210#2",
+      "format": "flip",
+      "prompt": "What does the cycle-consistency constraint prevent the generators from doing?",
+      "back_html": "\u003cp\u003eIt stops them from mapping all inputs to a single plausible output, forcing them to preserve content across translations.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "id": "card_afec8d",
+  "slug": "moebius-lightweight-inpainting",
+  "type": "paper",
+  "title": "Moebius: 0.2B Inpainting Rivaling 10B",
+  "hook": "A 0.22B image-inpainting model that matches an 11.9B generalist (FLUX.1-Fill-Dev) — under 2% of the parameters and 15x faster — by pairing a linear-interaction backbone with latent-space distillation.",
+  "key_points": [
+    "Targets image inpainting, where 10B-class foundation models are too costly to deploy widely.",
+    "Replaces the diffusion backbone with a Local-λ Mix Interaction block that compresses spatial and global context into fixed-size linear matrices.",
+    "An adaptive multi-granularity distillation strategy operates in latent space, avoiding expensive pixel-space decoding.",
+    "Rivals or beats FLUX.1-Fill-Dev with 0.22B vs 11.9B parameters and over 15x faster inference."
+  ],
+  "content_html": "\u003cp\u003eThe best image-inpainting models — the ones that fill in or replace parts of a picture convincingly — are now 10-billion-parameter foundation models, and they're often too heavy to deploy in practice. Moebius asks whether a tiny, task-specific specialist can do the same job, and answers yes.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe core trick is the \u003cem\u003eLocal-λ Mix Interaction\u003c/em\u003e (LλMI) block, which replaces the heavy diffusion backbone: its Local-λ and Interactive-λ modules summarize spatial context and global semantic priors into fixed-size linear matrices, preserving rich latent interactions while shedding most of the parameters. To get full performance out of such a compact architecture, the authors pair it with an adaptive multi-granularity distillation strategy that works strictly in latent space — dynamically balancing several gradient-based losses without ever paying for pixel-space decoding.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eOn natural-image and portrait benchmarks, Moebius rivals or surpasses the 11.9B-parameter FLUX.1-Fill-Dev using just 0.22B parameters — under 2% of the size — while running more than 15x faster. It's a clean demonstration that extreme compression doesn't have to mean a quality cliff: a well-designed specialist plus the right distillation recipe can stand in for a giant generalist on a focused task, which is exactly what makes a model deployable.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Kangsheng Duan",
+      "Ziyang Xu",
+      "Wenyu Liu",
+      "Xiaohu Ruan",
+      "Xiaoxin Chen",
+      "Xinggang Wang"
+    ],
+    "url": "https://arxiv.org/abs/2606.19195",
+    "published_at": "2026-06-17",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "text-to-image",
+    "diffusion",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "generative",
+    "vision"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-22",
+  "date": "2026-06-17",
+  "related": [
+    {
+      "id": "card_ac2918",
+      "slug": "flux-1",
+      "type": "news",
+      "title": "FLUX.1",
+      "hook": "FLUX.1 became the leading open-weight image model — from the Black Forest Labs team that built Stable Diffusion, now shipping a frontier-quality model you can run yourself.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2024-08-01"
+    },
+    {
+      "id": "card_7e3221",
+      "slug": "latent-diffusion-models",
+      "type": "paper",
+      "title": "High-Resolution Image Synthesis with Latent Diffusion (Stable Diffusion)",
+      "hook": "Running diffusion on raw pixels is brutally expensive. Do it in a compressed latent space instead, and high-res text-to-image becomes cheap enough to run on a consumer GPU.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-12-20"
+    },
+    {
+      "id": "card_dd86b0",
+      "slug": "sdxl",
+      "type": "paper",
+      "title": "SDXL: Improving Latent Diffusion for High-Resolution Synthesis",
+      "hook": "A larger UNet, two text encoders, and a refinement diffusion stage gave open-source Stable Diffusion a major quality leap - now the workhorse of community image generation.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-07-04"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_afec8d#0",
+      "format": "flip",
+      "prompt": "How does Moebius match a 10B-class inpainting model with under 2% of the parameters?",
+      "back_html": "\u003cp\u003eIt rebuilds the diffusion backbone around a Local-λ Mix Interaction block that summarizes spatial and global context into fixed-size linear matrices, then trains it with adaptive multi-granularity distillation done entirely in latent space.\u003c/p\u003e"
+    },
+    {
+      "id": "card_afec8d#1",
+      "format": "quiz",
+      "prompt": "What general lesson does Moebius illustrate about model efficiency?",
+      "choices": [
+        {
+          "text": "A small task-specific specialist plus strong distillation can rival a giant generalist on a narrow task",
+          "correct": true
+        },
+        {
+          "text": "Inpainting is impossible below 10B parameters",
+          "correct": false
+        },
+        {
+          "text": "Distillation only works in pixel space",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMoebius shows extreme compression need not mean a quality cliff: with the right backbone and distillation, 0.22B matches 11.9B on inpainting at 15x the speed.\u003c/p\u003e"
+    }
+  ]
+}

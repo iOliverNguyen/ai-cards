@@ -1,0 +1,106 @@
+{
+  "id": "card_9b754f",
+  "slug": "precision-recall-f1",
+  "type": "concept",
+  "title": "Precision, Recall \u0026 F1",
+  "hook": "On rare events, a model can be 99% accurate and still useless. Precision and recall reveal what accuracy hides.",
+  "key_points": [
+    "Accuracy misleads on imbalanced data — always predicting the majority class can look great.",
+    "Precision: of the items you flagged positive, how many really were?",
+    "Recall: of all the real positives out there, how many did you catch?",
+    "F1 is the harmonic mean of precision and recall, rewarding a balance of both."
+  ],
+  "content_html": "\u003cp\u003eWhen the classes you're predicting are lopsided — say, rare diseases or fraud — plain accuracy can be high while the model misses everything that matters. Precision and recall split the question apart: precision asks how trustworthy your positive predictions are, recall asks how many of the true positives you found. F1 combines them into one number.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003ePrecision is true positives divided by everything you predicted positive, so it punishes false alarms. Recall is true positives divided by all actual positives, so it punishes misses. The two trade off: cast a wide net and recall rises while precision falls, and vice versa. F1, the harmonic mean of the two, stays low unless both are reasonably high, which is why it's a popular single-number summary.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eChoosing the right metric is choosing what kind of mistake you can live with. A cancer screen wants high recall even at the cost of false alarms; a spam filter may favor precision so it doesn't trash real mail. Reporting accuracy alone on imbalanced data is one of the easiest ways to be misled.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/Precision_and_recall",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "evaluation"
+  ],
+  "tags": [
+    "foundational",
+    "benchmark"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2026-06-02",
+  "related": [
+    {
+      "id": "card_0a4806",
+      "slug": "train-validation-test-split",
+      "type": "concept",
+      "title": "Train / Validation / Test Splits",
+      "hook": "If you tune and grade on the same data, you'll fool yourself. Keep a test set you never touch until the very end.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_0a4806",
+      "slug": "train-validation-test-split",
+      "type": "concept",
+      "title": "Train / Validation / Test Splits",
+      "hook": "If you tune and grade on the same data, you'll fool yourself. Keep a test set you never touch until the very end.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_9b754f#0",
+      "format": "quiz",
+      "prompt": "Why can accuracy mislead on imbalanced data?",
+      "choices": [
+        {
+          "text": "Always predicting the majority class can look great",
+          "correct": true
+        },
+        {
+          "text": "Accuracy can never exceed 50%",
+          "correct": false
+        },
+        {
+          "text": "Accuracy ignores true positives entirely",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOn lopsided classes, a model can be highly accurate yet miss everything that matters by just predicting the majority class.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9b754f#1",
+      "format": "flip",
+      "prompt": "What is the difference between precision and recall?",
+      "back_html": "\u003cp\u003ePrecision: of items flagged positive, how many really were. Recall: of all real positives, how many you caught.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9b754f#2",
+      "format": "quiz",
+      "prompt": "Why is F1 low unless both precision and recall are reasonably high?",
+      "choices": [
+        {
+          "text": "It is the harmonic mean of the two",
+          "correct": true
+        },
+        {
+          "text": "It is the maximum of the two",
+          "correct": false
+        },
+        {
+          "text": "It only measures false alarms",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eF1 is the harmonic mean of precision and recall, so it stays low unless both are reasonably high.\u003c/p\u003e"
+    }
+  ]
+}

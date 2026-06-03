@@ -1,0 +1,128 @@
+{
+  "id": "card_63a204",
+  "slug": "direct-on-policy-distillation",
+  "type": "paper",
+  "title": "Weak-to-Strong Generalization via Direct On-Policy Distillation",
+  "hook": "RL post-training gets pricier as models scale, since it needs the strong model's own rollouts. Direct-OPD reuses a cheap RL run on a small model instead, transferring the direction RL moved it.",
+  "key_points": [
+    "RLVR post-training gets more expensive as models scale, since it needs many rollouts from the very model being trained.",
+    "Direct-OPD runs RL on a small, cheap model, then reuses that run's signal to improve a much larger model — without collecting a single RL rollout on the big model.",
+    "The trick: compare the small model's post-RL and pre-RL checkpoints. Their log-ratio becomes a dense implicit reward, rather than something to imitate directly.",
+    "That reward is applied to the strong student's OWN on-policy generations, transferring the 'direction' RL moved the small model rather than its exact outputs.",
+    "Boosts the student model Qwen3-1.7B from 48.3% to 62.4% on AIME 2024 in just 4 hours on 8 A100 GPUs, beating step-matched direct RL.",
+    "Multiple such policy shifts can be composed sequentially — RL runs become reusable signal, not just disposable final models."
+  ],
+  "content_html": "\u003cp\u003eReinforcement learning with verifiable rewards (RLVR) keeps getting more expensive as models scale, because it needs many rollouts from the very model being trained. Direct On-Policy Distillation (Direct-OPD), from a Tsinghua-affiliated team, asks whether a cheap RL run on a small model can be reused to improve a much bigger one — without ever running RL on the big model directly.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eNaively distilling the small model's final post-RL policy doesn't work well: that policy mixes genuine RL gains with the small model's own capability ceiling, and imitating it drags the bigger student toward those same limits. Direct-OPD instead compares the small model's checkpoints before and after RL. The log-ratio between them tells you which actions RL made more or less likely — a dense, implicit reward signal — and Direct-OPD applies that signal to the strong student's own on-policy generations, rather than having it imitate the small model's outputs. No explicit reward model and no RL rollouts on the target model are needed.\u003c/p\u003e\n\u003cp\u003eThe authors — Shiyuan Feng, Hao Zhou, and colleagues — report boosting the student model Qwen3-1.7B from 48.3% to 62.4% on AIME 2024 in just 4 hours on 8 A100 GPUs, beating step-matched direct RL on the same compute budget. The policy shifts from separate RL runs can even be composed sequentially, suggesting RL outcomes are reusable training signal across model scales, not just disposable final checkpoints.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Shiyuan Feng",
+      "Huan-ang Gao",
+      "Haohan Chi",
+      "Hanlin Wu",
+      "Zhilong Zhang",
+      "Zheng Jiang",
+      "Bingxiang He",
+      "Wei-Ying Ma",
+      "Ya-Qin Zhang",
+      "Hao Zhou"
+    ],
+    "url": "https://arxiv.org/abs/2607.05394",
+    "published_at": "2026-07-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "distillation",
+    "rlhf",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "alignment",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-13",
+  "date": "2026-07-06",
+  "related": [
+    {
+      "id": "card_822dbf",
+      "slug": "geometry-of-on-policy-distillation",
+      "type": "paper",
+      "title": "On the Geometry of On-Policy Distillation",
+      "hook": "On-policy distillation isn't a midpoint between fine-tuning and RL — it carves its own narrow path through parameter space, locking into a low-dimensional subspace early in training.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-05"
+    },
+    {
+      "id": "card_49afeb",
+      "slug": "opid-skill-distillation",
+      "type": "paper",
+      "title": "OPID: On-Policy Skill Distillation for Agentic RL",
+      "hook": "Outcome-only RL tells an agent it failed but not which move was the mistake. OPID mines that lesson from the agent's own finished trajectories — turning hindsight into dense, per-token supervision.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-25"
+    },
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_63a204#0",
+      "format": "flip",
+      "prompt": "What signal does Direct-OPD extract from a weak model's RL run, instead of imitating its final policy?",
+      "back_html": "\u003cp\u003eThe log-ratio between the weak model's post-RL and pre-RL checkpoints — a dense implicit reward describing which actions RL made more or less likely, applied to the student's own on-policy states.\u003c/p\u003e"
+    },
+    {
+      "id": "card_63a204#1",
+      "format": "quiz",
+      "prompt": "Why doesn't directly distilling the weak teacher's final post-RL policy work as well?",
+      "choices": [
+        {
+          "text": "That policy mixes genuine RL gains with the small model's own capability limits, dragging the student toward those limits",
+          "correct": true
+        },
+        {
+          "text": "The weak model's policy is too large in file size to transfer",
+          "correct": false
+        },
+        {
+          "text": "RL policies cannot be represented as probability distributions",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eDirect imitation copies the weak model's ceiling along with its RL gains. Direct-OPD instead extracts only the shift RL caused, applying it to the stronger student's own states.\u003c/p\u003e"
+    },
+    {
+      "id": "card_63a204#2",
+      "format": "flip",
+      "prompt": "What result does Direct-OPD report on Qwen3-1.7B?",
+      "back_html": "\u003cp\u003eIt raises AIME 2024 accuracy from 48.3% to 62.4% in 4 hours on 8 A100 GPUs, outperforming step-matched direct RL on the same target model.\u003c/p\u003e"
+    }
+  ]
+}

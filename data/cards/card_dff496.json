@@ -1,0 +1,113 @@
+{
+  "id": "card_dff496",
+  "slug": "post-training-confidence-calibration",
+  "type": "paper",
+  "title": "Post-Training Shifts Confidence: SFT, RL, and OPD Shape Calibration Differently",
+  "hook": "SFT, RL, and on-policy distillation all boost reasoning accuracy — but they leave completely different fingerprints on when a model's confidence signal can actually be trusted.",
+  "key_points": [
+    "Introduces a three-stage calibration framework: confidence before, during, and after chain-of-thought — corresponding to difficulty estimation, early termination, and answer aggregation.",
+    "On-policy distillation (OPD) gives the most useful pre-reasoning confidence; SFT gives the strongest online signal for early stopping; RL gives the most reliable trace-level signal for final aggregation.",
+    "Confidence reliability is position-dependent: RL's confidence only becomes informative after a 'path-commitment' phase partway through reasoning.",
+    "OPD's confidence is useful early in reasoning but can become inversely calibrated later on — trusting it late actively hurts.",
+    "PosConf, a position-aware confidence strategy that uses each method's confidence only in its reliable interval, improves RL answer aggregation by 6.1 points over majority voting.",
+    "PosConf also improves OPD early stopping under tight token budgets, gaining up to 4.3 points by avoiding OPD's later inverse-calibration region."
+  ],
+  "content_html": "\u003cp\u003eSupervised fine-tuning, reinforcement learning, and on-policy distillation (OPD) are all standard ways to sharpen a reasoning model's accuracy — but accuracy is usually the only thing measured. This paper asks a different question: how does each method reshape the model's \u003cem\u003econfidence\u003c/em\u003e while it reasons, and can that confidence actually be trusted?\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eShuhao Li, Guodong Du, and colleagues introduce a three-stage calibration framework that checks confidence before, during, and after chain-of-thought generation — mapping onto difficulty estimation, early termination, and answer aggregation respectively. Testing on math reasoning benchmarks, they find each post-training method has its own strength: OPD gives the most useful confidence before reasoning starts, SFT gives the strongest signal for deciding when to stop early, and RL gives the most trustworthy trace-level signal once reasoning is aggregated into a final answer. Crucially, reliability isn't constant across a trace: RL's confidence only becomes informative after a \u0026quot;path-commitment\u0026quot; phase, while OPD's confidence helps early on but can flip to inversely calibrated later in the same trace.\u003c/p\u003e\n\u003cp\u003eBuilding on that observation, the authors propose PosConf, a position-aware strategy that only trusts each method's confidence in the interval where it's actually reliable. PosConf improves RL-based answer aggregation by 6.1 points over plain majority voting, and improves OPD's early-stopping decisions under tight token budgets by up to 4.3 points by steering clear of OPD's later inverse-calibration region. The authors' code is public on GitHub. Shuhao Li, Guodong Du, and colleagues, arXiv, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Shuhao Li",
+      "Guodong Du",
+      "Anhao Zhao",
+      "Wanyu Lin",
+      "Tianyu Yuan",
+      "Xiaoyu Shen"
+    ],
+    "url": "https://arxiv.org/abs/2607.13753",
+    "published_at": "2026-07-15",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "finetuning",
+    "papers-this-week"
+  ],
+  "tags": [
+    "alignment",
+    "training",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-20",
+  "date": "2026-07-15",
+  "related": [
+    {
+      "id": "card_1710c1",
+      "slug": "zone-of-proximal-policy-optimization",
+      "type": "paper",
+      "title": "ZPPO: Put the Teacher in the Prompt, Not the Gradient",
+      "hook": "A small student learns from a bigger teacher without the drift that breaks on-policy RL - by feeding the teacher's answer into the prompt as a candidate to judge, never into the gradient.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-16"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_dff496#0",
+      "format": "flip",
+      "prompt": "What are the three stages in this paper's calibration framework, and what does each correspond to?",
+      "back_html": "\u003cp\u003ePre-CoT confidence (difficulty estimation), intra-CoT confidence (early termination), and post-CoT confidence (answer aggregation) — confidence measured before, during, and after chain-of-thought generation.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dff496#1",
+      "format": "quiz",
+      "prompt": "Which post-training method gives the most reliable trace-level confidence signal for final answer aggregation?",
+      "choices": [
+        {
+          "text": "RL",
+          "correct": true
+        },
+        {
+          "text": "SFT",
+          "correct": false
+        },
+        {
+          "text": "On-policy distillation (OPD)",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eRL produces the most reliable trace-level signal for aggregation, while OPD is best pre-reasoning and SFT is strongest for online early-stopping signals.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dff496#2",
+      "format": "quiz",
+      "prompt": "Why can't OPD's confidence be trusted throughout the whole reasoning trace?",
+      "choices": [
+        {
+          "text": "It's useful early on but can become inversely calibrated later in the trace",
+          "correct": true
+        },
+        {
+          "text": "OPD produces no usable confidence signal at any point",
+          "correct": false
+        },
+        {
+          "text": "OPD's confidence is constant and uninformative throughout",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOPD confidence is position-dependent: it helps early in reasoning but can flip to inversely calibrated later, which is why PosConf avoids trusting it in that later region.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dff496#3",
+      "format": "flip",
+      "prompt": "How much does PosConf improve RL answer aggregation over plain majority voting?",
+      "back_html": "\u003cp\u003e6.1 points, by using RL's confidence signal only from the relative-position interval where it's actually reliable (after the path-commitment phase).\u003c/p\u003e"
+    }
+  ]
+}

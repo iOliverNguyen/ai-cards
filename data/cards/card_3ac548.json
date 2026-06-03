@@ -1,0 +1,109 @@
+{
+  "id": "card_3ac548",
+  "slug": "nemotron-3-puzzle-75b",
+  "type": "news",
+  "title": "Nemotron-Labs-3-Puzzle-75B-A9B: Shrinking a 120B Model Without Retraining From Scratch",
+  "hook": "NVIDIA compressed its 120B-A12B Nemotron model down to 75B-A9B using 'Iterative Puzzle,' a post-training framework aimed at squeezing more inference efficiency out of an already-trained model.",
+  "key_points": [
+    "Nemotron-Labs-3-Puzzle-75B-A9B is derived from the larger Nemotron-3-Super-120B-A12B, not trained from scratch.",
+    "Iterative Puzzle is NVIDIA's post-training compression framework: it shrinks the parent model while aiming to preserve downstream accuracy.",
+    "Architecture is a hybrid Mixture-of-Experts with interleaved Mamba, MoE, and Attention layers.",
+    "Supports Multi-Token Prediction (MTP), like its Nemotron-3-Super parent, for faster generation.",
+    "Goal: better inference efficiency for interactive, reasoning-heavy, and long-context workloads."
+  ],
+  "content_html": "\u003cp\u003eMaking a big model smaller usually means retraining from scratch. NVIDIA's Nemotron-Labs-3-Puzzle-75B-A9B instead takes an already-trained 120B model and compresses it after the fact.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe model is derived from Nemotron-3-Super-120B-A12B using \u003cstrong\u003eIterative Puzzle\u003c/strong\u003e, NVIDIA's post-training compression framework, shrinking it to 75B total parameters with 9B active per token while aiming to preserve downstream accuracy. Architecturally it's a hybrid Mixture-of-Experts that interleaves Mamba (state-space), MoE, and Attention layers, and — like its parent — supports Multi-Token Prediction for faster generation. NVIDIA's stated goal is better inference efficiency specifically for interactive, reasoning-heavy, and long-context workloads. Released on Hugging Face; reported on r/LocalLLaMA, 2026-07-07.\u003c/p\u003e",
+  "source": {
+    "name": "Reddit (r/LocalLLaMA)",
+    "authors": [
+      "/u/jacek2023"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1upsdmi/nvidianvidianemotronlabs3puzzle75ba9bbf16_hugging",
+    "published_at": "2026-07-07",
+    "license": "Community post"
+  },
+  "topic_ids": [
+    "distillation",
+    "ssm-mamba",
+    "releases"
+  ],
+  "tags": [
+    "efficiency",
+    "architecture",
+    "inference",
+    "open-source",
+    "news"
+  ],
+  "importance": 2,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-07",
+  "related": [
+    {
+      "id": "card_ccd6d9",
+      "slug": "nemotron-3-ultra",
+      "type": "paper",
+      "title": "Nemotron 3 Ultra: Open Hybrid Mamba-Attention MoE",
+      "hook": "NVIDIA's open 550B model interleaves Mamba and attention inside a Mixture-of-Experts - hitting ~6x the inference throughput of comparable LLMs at on-par accuracy.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-12"
+    },
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_3ac548#0",
+      "format": "flip",
+      "prompt": "How was Nemotron-Labs-3-Puzzle-75B-A9B produced?",
+      "back_html": "\u003cp\u003eNot trained from scratch — it's derived from the larger Nemotron-3-Super-120B-A12B via Iterative Puzzle, NVIDIA's post-training compression framework, aiming to keep accuracy while shrinking the model.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3ac548#1",
+      "format": "quiz",
+      "prompt": "What does the '75B-A9B' naming tell you about this model?",
+      "choices": [
+        {
+          "text": "75B total parameters, with 9B active per token",
+          "correct": true
+        },
+        {
+          "text": "It was trained on 75 billion tokens for 9 epochs",
+          "correct": false
+        },
+        {
+          "text": "It has 75 experts, 9 of which activate per query",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eNemotron naming follows total-parameters/active-parameters: 75B total, 9B active per token — down from the 120B-A12B parent it was compressed from.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3ac548#2",
+      "format": "flip",
+      "prompt": "What three layer types does Nemotron-Labs-3-Puzzle-75B-A9B interleave?",
+      "back_html": "\u003cp\u003eMamba (state-space), Mixture-of-Experts, and Attention layers, combined in a hybrid architecture aimed at inference efficiency.\u003c/p\u003e"
+    }
+  ]
+}

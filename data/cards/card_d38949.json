@@ -1,0 +1,108 @@
+{
+  "id": "card_d38949",
+  "slug": "puro-2b-consumer-gpu-pretraining",
+  "type": "paper",
+  "title": "Puro-2B: Pretraining a Real LLM for $6,900",
+  "hook": "Reproducing SmolLM3-3B costs over $700K. This team pretrained a 2B model on 1.4T tokens using consumer RTX 5090s for under $6.9K — and released the whole recipe.",
+  "key_points": [
+    "Open weights and open training recipes exist, but a cost-efficient, hardware-accessible pretraining recipe was missing.",
+    "For scale: the authors cite over $1.5M to train Llama-3.2-3B and over $700K to reproduce SmolLM3-3B.",
+    "Puro-2B models are trained from scratch on up to 1.4 trillion tokens in FP8 on consumer-grade RTX 5090 GPUs.",
+    "Best model costs under $6.9K of compute and approaches Qwen2.5-1.5B performance under their evaluation protocol.",
+    "Enabling ingredients: hardware selection, low-precision training, hyperball optimization, curriculum model averaging, and the data recipe.",
+    "A fitted Puro Cost Scaling Law suggests about $4.4K — less than the price of one 5090 at $5,090 — suffices to match Qwen2-1.5B."
+  ],
+  "content_html": "\u003cp\u003ePretraining a language model has become synonymous with a budget most labs and all hobbyists lack. The authors put numbers on it: over $1.5M to train Llama-3.2-3B, over $700K to reproduce SmolLM3-3B. Open weights and open recipes exist, but an open recipe that is \u003cem\u003echeap and runs on accessible hardware\u003c/em\u003e did not.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat they built\u003c/h2\u003e\n\u003cp\u003ePuro-2B is a collection of models trained from scratch on up to 1.4 trillion tokens, in FP8, on consumer-grade RTX 5090 GPUs. Models in the collection differ in token budget and recipe variant. The best of them costs under $6.9K in compute and approaches Qwen2.5-1.5B performance under the authors' evaluation protocol.\u003c/p\u003e\n\u003cp\u003eThe cost efficiency comes from a stack of choices rather than one trick: hardware selection, low-precision training, hyperball optimization, curriculum model averaging, and the data recipe. All of it — data, code, weights — is released under Apache 2.0.\u003c/p\u003e\n\u003ch2\u003eTwo results beyond the recipe\u003c/h2\u003e\n\u003cp\u003eThey fit a \u003cstrong\u003ePuro Cost Scaling Law\u003c/strong\u003e relating training cost to average performance across the collection; the fit suggests about $4.4K, less than the $5,090 sticker price the GPU is named for, is enough to reach Qwen2-1.5B-level results. And they run an end-to-end case study on how pretraining data curricula shape performance \u003cem\u003eafter\u003c/em\u003e post-training — the kind of controlled study you can only do when you own the whole pipeline rather than downloading the weights at the end of it.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eFrontier-scale pretraining stays out of reach, but the \u003cem\u003estudy\u003c/em\u003e of pretraining does not have to. A recipe anyone with a few consumer GPUs can rerun turns pretraining from something you read about into something you can experiment on.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Kairong Luo",
+      "Jiarui Cui",
+      "Yaorui Yin",
+      "Shengqi Chen",
+      "Yiming Yang",
+      "Linxiang Gao",
+      "Yanmohan Wang",
+      "Mingzhe Zhang",
+      "Kaiyue Wen",
+      "Kaifeng Lyu",
+      "Wenguang Chen"
+    ],
+    "url": "https://arxiv.org/abs/2608.27370",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining",
+    "distributed-training",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "efficiency",
+    "open-source",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_a18682",
+      "slug": "openeurollm-lr-batch-scaling-laws",
+      "type": "paper",
+      "title": "Scaling Laws for Learning Rate and Batch Size",
+      "hook": "Chinchilla told you how many tokens. This tells you what learning rate and batch size to use as you get there — including whether the optimum survives the decay phase.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-08-28"
+    },
+    {
+      "id": "card_85f66a",
+      "slug": "scaling-laws",
+      "type": "paper",
+      "title": "Scaling Laws for Neural Language Models",
+      "hook": "Loss doesn't drop randomly as models grow — it follows a smooth power law in size, data, and compute. That predictability is what made betting on bigger models rational.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2020-01-23"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_d38949#0",
+      "format": "flip",
+      "prompt": "Why does releasing the full pretraining pipeline enable studies that open weights cannot?",
+      "back_html": "\u003cp\u003eQuestions like \u0026quot;how does the data curriculum shape post-training?\u0026quot; require rerunning pretraining under controlled variations. Weights alone fix the curriculum you got.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d38949#1",
+      "format": "quiz",
+      "prompt": "What is the Puro Cost Scaling Law used for?",
+      "choices": [
+        {
+          "text": "Relating training cost to average model performance across the Puro-2B collection",
+          "correct": true
+        },
+        {
+          "text": "Predicting the optimal learning rate from batch size",
+          "correct": false
+        },
+        {
+          "text": "Estimating inference latency on consumer GPUs",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIt fits cost against performance over their model collection; the fit suggests roughly $4.4K is enough to reach Qwen2-1.5B-level results.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d38949#2",
+      "format": "flip",
+      "prompt": "What are the main ingredients behind Puro-2B's cost efficiency?",
+      "back_html": "\u003cp\u003eHardware selection (consumer RTX 5090s), FP8 low-precision training, hyperball optimization, curriculum model averaging, and the data recipe.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "id": "card_fc8066",
+  "slug": "humanoid-gpt",
+  "type": "paper",
+  "title": "Humanoid-GPT: Scaling Data and Structure for Zero-Shot Motion Tracking",
+  "hook": "What happens when you train whole-body humanoid control like a language model? A GPT-style transformer on 2 billion frames of motion that tracks new moves it never saw in training.",
+  "key_points": [
+    "A GPT-style causal transformer for whole-body humanoid control, replacing the shallow MLP trackers used before.",
+    "Pre-trained on a 2-billion-frame retargeted corpus unifying major mocap datasets plus large in-house recordings.",
+    "Scaling both data and model capacity breaks the usual agility-vs-generalization trade-off.",
+    "Shows strong zero-shot generalization to unseen motions and control tasks while tracking highly dynamic behaviors."
+  ],
+  "content_html": "\u003cp\u003eHumanoid motion tracking — getting a robot to reproduce a reference movement with its whole body — has been held back by two things: small datasets and a stubborn trade-off where models good at agile motions generalized poorly, and vice versa. Humanoid-GPT borrows the recipe that worked for language: a big transformer trained on a lot of data.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe model is a GPT-style transformer with causal attention, trained for whole-body control on a 2-billion-frame corpus. That corpus is built by retargeting and unifying all the major motion-capture datasets together with large-scale in-house recordings — a deliberate bet that scale of data, not clever architecture, is the missing ingredient. The authors scale both the dataset and the model capacity together and study how performance grows.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe result is a single generative transformer that tracks highly dynamic behaviors \u003cem\u003eand\u003c/em\u003e generalizes zero-shot to motions and control tasks it never saw during training — the agility-generalization trade-off that constrained earlier MLP trackers largely dissolves. It's another data point for the broader thesis that the \u0026quot;scale data and a general architecture\u0026quot; playbook from language and vision transfers to embodied control.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zekun Qi",
+      "Xuchuan Chen",
+      "Dairu Liu",
+      "Chenghuai Lin",
+      "He Wang",
+      "Li Yi",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.03985",
+    "published_at": "2026-06-02",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "papers-this-week"
+  ],
+  "tags": [
+    "generative",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-04",
+  "date": "2026-06-02",
+  "related": [
+    {
+      "id": "card_0dc810",
+      "slug": "pi-zero",
+      "type": "paper",
+      "title": "π0: A Vision-Language-Action Model",
+      "hook": "π0 is a generalist robot policy: it takes camera images, joint angles, and a plain-language instruction, and outputs smooth action sequences — folding laundry, bussing tables, bagging groceries.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-10-31"
+    },
+    {
+      "id": "card_dd8539",
+      "slug": "rt-2",
+      "type": "paper",
+      "title": "RT-2: Vision-Language-Action Models",
+      "hook": "Treat a robot's actions as just more text tokens, and a vision-language model can learn to act — carrying its web knowledge into the physical world.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-07-28"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_fc8066#0",
+      "format": "flip",
+      "prompt": "What is Humanoid-GPT's core bet about whole-body humanoid control?",
+      "back_html": "\u003cp\u003eThat scale of data and a general architecture — the language-model recipe — is the missing ingredient, not clever architecture.\u003c/p\u003e"
+    },
+    {
+      "id": "card_fc8066#1",
+      "format": "quiz",
+      "prompt": "What did scaling data and model capacity together achieve in Humanoid-GPT?",
+      "choices": [
+        {
+          "text": "It largely dissolved the agility-vs-generalization trade-off",
+          "correct": true
+        },
+        {
+          "text": "It improved agility only, at the cost of generalization",
+          "correct": false
+        },
+        {
+          "text": "It required a separate model per motion type",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eScaling both breaks the usual trade-off, tracking dynamic behaviors while generalizing zero-shot.\u003c/p\u003e"
+    },
+    {
+      "id": "card_fc8066#2",
+      "format": "flip",
+      "prompt": "What did Humanoid-GPT replace, and with what?",
+      "back_html": "\u003cp\u003eThe shallow MLP trackers used before, replaced by a GPT-style causal transformer for whole-body control.\u003c/p\u003e"
+    }
+  ]
+}

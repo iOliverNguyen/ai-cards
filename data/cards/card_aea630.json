@@ -1,0 +1,124 @@
+{
+  "id": "card_aea630",
+  "slug": "handoff-tax-agent-model-switching",
+  "type": "paper",
+  "title": "The Handoff Tax: Swapping Models Mid-Run in Coding Agents",
+  "hook": "Escalating a struggling coding agent to a stronger model recovers less than half the quality gap while costing a premium. Downshifting, oddly, is the good deal.",
+  "key_points": [
+    "Long coding-agent runs tempt you to swap models mid-trajectory: escalate when stuck, downshift once the hard reasoning is done.",
+    "Each swap forces the receiving model to continue a non-native trajectory written by a different model.",
+    "Across Claude and GPT pairs, full-trajectory escalation recovered under half the weak-to-strong quality gap at a substantial cost premium — the handoff tax.",
+    "Downshifting from the strong to the cheap model gave a favorable cost-quality point instead.",
+    "The best interface reverses with direction: trim the weak model's trajectory when escalating, keep the strong model's when downshifting.",
+    "Repository state was preserved across handoffs, so the effect comes from inherited trajectory context, not lost work."
+  ],
+  "content_html": "\u003cp\u003eCoding agents now run for dozens of model calls, tool uses, and edits, which makes model choice a mid-run decision rather than a setup flag. Ganz and colleagues studied what actually happens when you switch: escalate to a stronger, pricier model when a cheap one is floundering, or downshift once the hard reasoning is over. Either way, the receiving model has to continue a \u003cem\u003enon-native trajectory\u003c/em\u003e someone else wrote.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eUsing low-cost/low-capability and high-cost/high-capability pairs from the Claude and GPT families, the authors varied handoff direction, timing, and interface — full-trajectory transfer, compaction, or trajectory removal — while keeping the repository state intact. Across both families, full-trajectory escalation recovered less than half of the weak-to-strong quality gap and still charged a substantial cost premium; they name this penalty the \u003cstrong\u003ehandoff tax\u003c/strong\u003e. Downshift, by contrast, sat at a favorable cost-quality point. The most useful practical detail is that the preferred interface flips with direction: giving the receiver \u003cem\u003eless\u003c/em\u003e of the weak model's trajectory improved escalation, while stripping the strong model's trajectory made downshift worse. Full setup and numbers are in the paper on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Roy Ganz",
+      "Mor Shpigel Nacson",
+      "Adi Kalyanpur",
+      "Ron Litman"
+    ],
+    "url": "https://arxiv.org/abs/2608.24358",
+    "published_at": "2026-08-25",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "efficiency",
+    "inference",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-25",
+  "related": [
+    {
+      "id": "card_f32b73",
+      "slug": "cli-coding-agent-failure-anatomy",
+      "type": "paper",
+      "title": "Failure as a Process: An Anatomy of CLI Coding Agent Trajectories",
+      "hook": "A 3,843-trajectory autopsy of coding agents finds most failures aren't slips — they're wrong beliefs formed in the first few steps, invisible until it's too late to recover.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-10"
+    },
+    {
+      "id": "card_42f624",
+      "slug": "agent-token-budget-overruns",
+      "type": "paper",
+      "title": "Token Budgets: When Agents Burn Money",
+      "hook": "A single retry loop can spend thousands of dollars before anyone notices. This paper catalogs 63 real budget-overrun incidents — and asks the type system to make over-spending a compile error.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_969cdf",
+      "slug": "model-routing-systems-optimization",
+      "type": "blog",
+      "title": "Model Routing Is Simple. Until It Isn't.",
+      "hook": "Picking the 'right' model per query looks like classification. IBM Research argues it's really a systems-optimization problem — and treating it as less costs money and speed.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_aea630#0",
+      "format": "flip",
+      "prompt": "What is the 'handoff tax' in a coding agent run?",
+      "back_html": "\u003cp\u003eThe cost-quality penalty paid when one model continues another's trajectory. Full-trajectory\nescalation to a stronger model recovered less than half the quality gap at a substantial cost premium.\u003c/p\u003e"
+    },
+    {
+      "id": "card_aea630#1",
+      "format": "quiz",
+      "prompt": "How should the inherited trajectory be handled differently when escalating versus downshifting?",
+      "choices": [
+        {
+          "text": "Reduce the weak model's trajectory when escalating; keep the strong model's when downshifting",
+          "correct": true
+        },
+        {
+          "text": "Always pass the full trajectory — more context helps in both directions",
+          "correct": false
+        },
+        {
+          "text": "Always strip the trajectory and hand over only the repository state",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe preferred interface reverses with direction: less weak-model trajectory improved escalation\nquality, while removing the strong model's trajectory hurt downshift quality.\u003c/p\u003e"
+    },
+    {
+      "id": "card_aea630#2",
+      "format": "quiz",
+      "prompt": "Which switch direction offered the better cost-quality trade-off in this study?",
+      "choices": [
+        {
+          "text": "Downshifting to the cheaper model once the hard reasoning is done",
+          "correct": true
+        },
+        {
+          "text": "Escalating to the stronger model as soon as the cheap one struggles",
+          "correct": false
+        },
+        {
+          "text": "Neither — both directions degraded quality equally",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEscalation paid the handoff tax, whereas downshift landed at a favorable cost-quality point.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "id": "card_15e015",
+  "slug": "dualifm-interpretable-retinal-foundation-model",
+  "type": "paper",
+  "title": "DualIFM: An Interpretable-by-Design Retinal Foundation Model",
+  "hook": "Most medical foundation models are black boxes you explain after the fact. DualIFM builds the explanation into the architecture — and still matches a rival 16 times its size.",
+  "key_points": [
+    "Trained with self-supervised learning on over 800,000 color fundus photographs to produce transferable retinal representations.",
+    "Interpretability is architectural, not post-hoc: a BagNet backbone with small receptive fields yields class evidence maps faithful to the actual decision.",
+    "A 2D projection layer added during pretraining makes the representation space directly viewable, revealing clinical clusters and spurious correlations.",
+    "Performance is comparable to RETFound, a model with 16x more parameters, while staying interpretable on out-of-distribution data.",
+    "Suggests large-scale SSL pretraining and inherent interpretability aren't a trade-off — you can have both in high-stakes imaging."
+  ],
+  "content_html": "\u003cp\u003eFoundation models in medical imaging usually arrive as black boxes: you train a big self-supervised encoder, then bolt on saliency maps to guess at what it's doing. Samuel Ofosu Mensah, Camila Roa, Kerol Djoumessi, and Philipp Berens (Berens lab, Tübingen) take the other route with DualIFM, a retinal fundus foundation model whose explanations are baked into the architecture.\u003c/p\u003e\n\u003cp\u003eTwo design choices do the work. The backbone is a BagNet, whose deliberately small receptive fields mean each region of the image contributes local evidence to the class score — so the resulting evidence maps are faithful to the decision rather than an after-the-fact story. And a 2D projection layer trained in during pretraining lets you look at the representation space itself, surfacing meaningful clinical clusters alongside potential spurious correlations. Pretrained on more than 800,000 color fundus photographs, DualIFM reaches performance the authors describe as comparable to RETFound, a model with 16 times the parameters, while keeping its predictions interpretable on out-of-distribution data.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe broader claim worth taking away: in high-stakes domains, interpretability-by-design and large-scale self-supervised pretraining are not in tension. Code and pretrained weights are released by the authors; see the source for the paper and repository.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Samuel Ofosu Mensah",
+      "Camila Roa",
+      "Kerol Djoumessi",
+      "Philipp Berens"
+    ],
+    "url": "https://arxiv.org/abs/2603.18846",
+    "published_at": "2026-08-04",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "ai-for-science",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "vision",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-10",
+  "date": "2026-08-04",
+  "related": [
+    {
+      "id": "card_9f7fa7",
+      "slug": "dino",
+      "type": "paper",
+      "title": "DINO: Self-Supervised Vision Transformers",
+      "hook": "Train a Vision Transformer with no labels at all, and something surprising happens: its attention maps trace out object boundaries on their own.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2021-04-29"
+    },
+    {
+      "id": "card_a4d8b0",
+      "slug": "automedbench",
+      "type": "paper",
+      "title": "AutoMedBench: Medical AutoResearch with Agentic AI",
+      "hook": "Can an AI agent run a whole medical-imaging research project end to end? AutoMedBench scores each stage — and finds agents can build pipelines but can't tell when they're broken.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_15e015#0",
+      "format": "flip",
+      "prompt": "What makes DualIFM interpretable-by-design rather than post-hoc explained?",
+      "back_html": "\u003cp\u003eIts BagNet backbone has small receptive fields, so the class evidence maps it produces are part of how the decision is made — faithful by construction, not a separate explanation fitted afterwards.\u003c/p\u003e"
+    },
+    {
+      "id": "card_15e015#1",
+      "format": "quiz",
+      "prompt": "What does DualIFM's 2D projection layer, added during pretraining, give you?",
+      "choices": [
+        {
+          "text": "A dataset-level view of the representation space, exposing clinical clusters and spurious correlations",
+          "correct": true
+        },
+        {
+          "text": "A compression step that shrinks the model for mobile deployment",
+          "correct": false
+        },
+        {
+          "text": "A segmentation mask for each retinal lesion",
+          "correct": false
+        },
+        {
+          "text": "A calibration layer that rescales predicted probabilities",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe projection layer makes the learned representation space directly visualizable, so you can inspect structure across the whole dataset — including correlations the model may be leaning on for the wrong reasons.\u003c/p\u003e"
+    },
+    {
+      "id": "card_15e015#2",
+      "format": "flip",
+      "prompt": "How does DualIFM compare to RETFound, and why is that notable?",
+      "back_html": "\u003cp\u003eThe authors report comparable performance with 16x fewer parameters, while also giving interpretable predictions on out-of-distribution data — evidence that interpretability need not cost accuracy.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "id": "card_d0b6fe",
+  "slug": "nemotron-labs-diffusion-tri-mode",
+  "type": "paper",
+  "title": "Nemotron-Labs-Diffusion: One Model, Three Decoding Modes",
+  "hook": "Instead of picking autoregressive or diffusion decoding, Nemotron-Labs-Diffusion trains one model to do both — plus a self-speculation mode that decodes up to 6x more tokens per forward pass.",
+  "key_points": [
+    "A single model is trained with a joint AR-diffusion objective, then can switch decoding mode to fit the deployment setting and concurrency level.",
+    "The authors argue AR and diffusion are complementary: diffusion helps lookahead planning, AR supplies left-to-right linguistic priors.",
+    "In self-speculation mode, a diffusion drafter proposes tokens and an AR verifier checks them — beating multi-token prediction (MTP) on both acceptance rate and real-device speed.",
+    "Nemotron-Labs-Diffusion-8B decodes up to 6x more tokens per forward pass than Qwen3-8B at comparable accuracy, for ~4x higher throughput on SPEED-Bench (SGLang, GB200).",
+    "Scales to 3B/8B/14B, with base, instruct, and vision-language variants, consistently beating prior open AR and diffusion LMs on accuracy and speed."
+  ],
+  "content_html": "\u003cp\u003eMost language models pick one decoding strategy — autoregressive, one token at a time, or diffusion, denoising a block at once — and stick with it. Nemotron-Labs-Diffusion trains a single model to do both, plus a third mode that combines them.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe model is trained with a joint AR-diffusion objective, so it can switch modes to sustain high throughput across different deployment settings and concurrency levels. The authors' framing: AR and diffusion objectives are complementary rather than substitutes — diffusion improves lookahead planning, while AR supplies the left-to-right linguistic priors AR models are known for. The most notable mode is \u003cstrong\u003eself-speculation\u003c/strong\u003e: the model's diffusion side drafts tokens, and its own AR side verifies them, which the paper reports beats multi-token-prediction (MTP) approaches on both acceptance rate and real-device efficiency. Scaled to 3B, 8B, and 14B parameters (with base, instruct, and vision-language variants), Nemotron-Labs-Diffusion-8B decodes up to 6x more tokens per forward pass than Qwen3-8B at comparable accuracy, translating to roughly 4x higher throughput on SPEED-Bench under SGLang on a GB200 GPU. From NVIDIA, arXiv, 2026-07-07.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yonggan Fu",
+      "Lexington Whalen",
+      "Abhinav Garg",
+      "Chengyue Wu",
+      "Maksim Khadkevich",
+      "Nicolai Oswald",
+      "Enze Xie",
+      "Daniel Egert",
+      "Sharath Turuvekere Sreenivas",
+      "Shizhe Diao",
+      "Chenhan Yu",
+      "Ye Yu",
+      "Weijia Chen",
+      "Sajad Norouzi",
+      "Jingyu Liu",
+      "Shiyi Lan",
+      "Ligeng Zhu",
+      "Jin Wang",
+      "Jindong Jiang",
+      "Morteza Mardani",
+      "Mehran Maghoumi",
+      "Song Han",
+      "Ante Jukić",
+      "Nima Tajbakhsh",
+      "Jan Kautz",
+      "Pavlo Molchanov"
+    ],
+    "url": "https://arxiv.org/abs/2607.05722",
+    "published_at": "2026-07-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "diffusion",
+    "inference",
+    "papers-this-week"
+  ],
+  "tags": [
+    "generative",
+    "efficiency",
+    "inference",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-13",
+  "date": "2026-07-07",
+  "related": [
+    {
+      "id": "card_764d0e",
+      "slug": "nemotron-twotower-diffusion-lm",
+      "type": "news",
+      "title": "NVIDIA Nemotron-TwoTower: A Diffusion-Based Language Model",
+      "hook": "NVIDIA's open Nemotron-TwoTower bolts a diffusion 'denoiser' tower onto a frozen autoregressive model to fill token blocks in parallel — reportedly 2.42x faster at ~98.7% of baseline quality.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-25"
+    },
+    {
+      "id": "card_cf3048",
+      "slug": "illada-diffusion-language-model",
+      "type": "paper",
+      "title": "iLLaDA: Improved Large Language Diffusion Models",
+      "hook": "An 8B language model trained from scratch with full bidirectional attention and a masked-diffusion objective — no autoregression — that holds its own against same-size autoregressive LLMs.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-24"
+    },
+    {
+      "id": "card_951958",
+      "slug": "speculative-decoding",
+      "type": "paper",
+      "title": "Speculative Decoding",
+      "hook": "Let a small, fast model guess the next few words, then have the big model check them all in one shot. Same output, fewer slow steps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-30"
+    },
+    {
+      "id": "card_1bff26",
+      "slug": "jetspec-speculative-decoding",
+      "type": "paper",
+      "title": "JetSpec: Breaking the Scaling Ceiling of Speculative Decoding",
+      "hook": "Speculative decoding stalls when bigger draft trees stop paying off. JetSpec trains a causal parallel draft head that drafts in one pass yet stays branch-consistent — hitting up to 9.64x speedup.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-25"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_951958",
+      "slug": "speculative-decoding",
+      "type": "paper",
+      "title": "Speculative Decoding",
+      "hook": "Let a small, fast model guess the next few words, then have the big model check them all in one shot. Same output, fewer slow steps.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-30"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_d0b6fe#0",
+      "format": "flip",
+      "prompt": "What are the three decoding modes Nemotron-Labs-Diffusion unifies in one architecture?",
+      "back_html": "\u003cp\u003eAutoregressive (AR), diffusion, and self-speculation — where a diffusion drafter proposes tokens and an AR verifier checks them, all within a single model trained on a joint AR-diffusion objective.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d0b6fe#1",
+      "format": "quiz",
+      "prompt": "How does self-speculation mode differ from standard multi-token prediction (MTP)?",
+      "choices": [
+        {
+          "text": "A diffusion drafter (not a simple MTP head) proposes tokens, verified by the model's own AR mode, beating MTP on acceptance rate and real-device speed",
+          "correct": true
+        },
+        {
+          "text": "It skips verification entirely and trusts the drafted tokens",
+          "correct": false
+        },
+        {
+          "text": "It requires a separate, differently-trained drafter model",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSelf-speculation reuses the same model's diffusion capability as the drafter and its AR capability as verifier, and the authors report it outperforms MTP methods on both acceptance rate and real-device efficiency.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d0b6fe#2",
+      "format": "flip",
+      "prompt": "Why do the authors say AR and diffusion training objectives are complementary rather than competing?",
+      "back_html": "\u003cp\u003eDiffusion improves lookahead planning (seeing more of the sequence at once), while AR provides left-to-right linguistic priors — combining both in one model, rather than picking one, is what enables mode-switching.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "id": "card_d8531b",
+  "slug": "gemini-3-7-flash",
+  "type": "news",
+  "title": "Gemini 3.7 Flash: The Workhorse Gets Agentic",
+  "hook": "Google's cheap-and-fast tier now targets long-horizon engineering work — DeepSWE jumps from 49.0% to 65.3% over 3.6 Flash, at $0.75 per million input tokens.",
+  "key_points": [
+    "Announced 13 August 2026 and framed by Google as its most intelligent workhorse model yet for coding and agents.",
+    "Production code quality: 43.6% on FrontierCode, up from 34.4% for Gemini 3.6 Flash.",
+    "Long-horizon engineering: 65.3% on DeepSWE, up from 49.0% — the largest reported jump.",
+    "Document comprehension 34.0% (from 22.0%) and business automation 30.4% (from 17.0%) on Google's GDP.pdf and AutomationBench.",
+    "Introductory pricing through 31 December 2026: $0.75 per million input tokens, $3.75 per million output.",
+    "Available in Google AI Studio, Android Studio, Gemini Enterprise, and Gemini Spark for Pro/Ultra subscribers."
+  ],
+  "content_html": "\u003cp\u003eGoogle introduced Gemini 3.7 Flash on 13 August 2026, calling it \u0026quot;our most intelligent workhorse model yet for coding and agents.\u0026quot; The reported gains over 3.6 Flash are concentrated where agents live: 65.3% versus 49.0% on DeepSWE for long-horizon engineering, 43.6% versus 34.4% on FrontierCode for production-quality code, 34.0% versus 22.0% on document comprehension, and 30.4% versus 17.0% on business automation.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003ePricing is the other half of the story. Through 31 December 2026 the introductory rate is $0.75 per million input tokens and $3.75 per million output, with standard pricing starting 1 January 2027 — cheap enough that the long-horizon numbers matter for real deployments, not just demos. Access is via Google AI Studio, Android Studio, Gemini Enterprise, and Gemini Spark for Pro and Ultra subscribers.\u003c/p\u003e\n\u003cp\u003eAll benchmark figures here are Google's own, from the announcement post; several (GDP.pdf, AutomationBench) are internal evaluations rather than community-standard ones, so treat the cross-vendor comparison as unsettled until third parties weigh in.\u003c/p\u003e",
+  "source": {
+    "name": "Google DeepMind",
+    "authors": [
+      "Google DeepMind"
+    ],
+    "url": "https://deepmind.google/blog/introducing-gemini-3-7-flash",
+    "published_at": "2026-08-13",
+    "license": "Google blog (link-out)"
+  },
+  "topic_ids": [
+    "releases",
+    "lab-updates"
+  ],
+  "tags": [
+    "news",
+    "agent",
+    "inference"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-08-17",
+  "date": "2026-08-13",
+  "related": [
+    {
+      "id": "card_5e431b",
+      "slug": "gemini-3-6-flash",
+      "type": "news",
+      "title": "Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber",
+      "hook": "Google splits its fast tier three ways: a workhorse that answers in fewer tokens, a 350-tokens-per-second speed model, and a security specialist locked behind a government pilot.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-07-21"
+    },
+    {
+      "id": "card_39d91b",
+      "slug": "gemini-3-pro",
+      "type": "news",
+      "title": "Gemini 3 Pro",
+      "hook": "Gemini 3 Pro was Google's late-2025 frontier leap — a natively multimodal reasoning model that shipped to billions of Search and Gemini users on day one.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2025-11-18"
+    },
+    {
+      "id": "card_e19fbb",
+      "slug": "gpt-5-6",
+      "type": "news",
+      "title": "GPT-5.6: Frontier Intelligence That Scales With Your Ambition",
+      "hook": "GPT-5.6 ships as three tiers instead of one model — Luna, Terra, Sol — built around squeezing more capability out of every token rather than just scaling up.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-07-09"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_d8531b#0",
+      "format": "quiz",
+      "prompt": "Which capability shows the largest reported gain from Gemini 3.6 Flash to 3.7 Flash?",
+      "choices": [
+        {
+          "text": "Long-horizon engineering on DeepSWE — 49.0% to 65.3%",
+          "correct": true
+        },
+        {
+          "text": "Production code quality on FrontierCode — 34.4% to 43.6%",
+          "correct": false
+        },
+        {
+          "text": "Document comprehension on GDP.pdf — 22.0% to 34.0%",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAll three improved, but DeepSWE moves the most in absolute terms (+16.3 points), which is why Google pitches 3.7 Flash at agentic work rather than single-shot completion.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d8531b#1",
+      "format": "flip",
+      "prompt": "What does Google's 'Flash' tier positioning tell you about how to read this release?",
+      "back_html": "\u003cp\u003eFlash is the cheap, high-volume workhorse rather than the frontier model — so the news is that agent and coding work is getting good enough at $0.75 per million input tokens to run at scale, not that a new capability ceiling was set.\u003c/p\u003e"
+    }
+  ]
+}

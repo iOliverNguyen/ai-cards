@@ -1,0 +1,117 @@
+{
+  "id": "card_2b95b6",
+  "slug": "denoising-diffusion-probabilistic-models",
+  "type": "paper",
+  "title": "Denoising Diffusion Probabilistic Models (DDPM)",
+  "hook": "Wreck an image into pure static one tiny step at a time, then train a network to undo it. Run the undo from random noise and you get a brand-new image.",
+  "key_points": [
+    "Forward process gradually adds Gaussian noise until an image becomes pure static.",
+    "A network learns to reverse one denoising step at a time.",
+    "Sampling starts from random noise and denoises down to a clean image.",
+    "Achieves high sample quality with stable training, unlike many GANs.",
+    "Became the foundation for modern image generators."
+  ],
+  "content_html": "\u003cp\u003eHo, Jain, and Abbeel showed how to generate high-quality images by learning to reverse a noising process. You take a clean image, add a little noise over and over until it's indistinguishable from static, then train a network to walk that back step by step. Generating a new image means starting from pure noise and denoising. The approach delivered excellent quality with notably stable training.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThere are two processes. The forward (fixed, not learned) process slowly corrupts a training image by adding small amounts of Gaussian noise across many steps. The reverse process is what the network learns: at each step it predicts the noise that was added, so it can subtract a bit of it and produce a slightly cleaner image. To sample, you begin with random noise and apply this learned denoiser repeatedly, gradually revealing a coherent image. The denoiser is typically a U-Net.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eDiffusion models gave generation a training recipe that is far more stable than the adversarial game GANs play, while reaching competitive or better image quality. This paper is the technical backbone of the text-to-image systems that followed, including latent diffusion and the consumer tools built on it. The trade-off is speed: sampling takes many steps, which later work has worked hard to reduce.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jonathan Ho",
+      "Ajay Jain",
+      "Pieter Abbeel"
+    ],
+    "url": "https://arxiv.org/abs/2006.11239",
+    "published_at": "2020-06-19",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "diffusion"
+  ],
+  "tags": [
+    "vision",
+    "architecture",
+    "landmark"
+  ],
+  "importance": 5,
+  "difficulty": "deep",
+  "created_at": "2026-06-02",
+  "date": "2020-06-19",
+  "related": [
+    {
+      "id": "card_7e3221",
+      "slug": "latent-diffusion-models",
+      "type": "paper",
+      "title": "High-Resolution Image Synthesis with Latent Diffusion (Stable Diffusion)",
+      "hook": "Running diffusion on raw pixels is brutally expensive. Do it in a compressed latent space instead, and high-res text-to-image becomes cheap enough to run on a consumer GPU.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-12-20"
+    },
+    {
+      "id": "card_047809",
+      "slug": "generative-adversarial-networks",
+      "type": "paper",
+      "title": "Generative Adversarial Networks (GANs)",
+      "hook": "Pit two networks against each other — a forger making fakes and a detective catching them — and the forger gets so good its fakes look real.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2014-06-10"
+    },
+    {
+      "id": "card_d622c0",
+      "slug": "classifier-free-guidance",
+      "type": "paper",
+      "title": "Classifier-Free Guidance",
+      "hook": "Want a diffusion model to follow your prompt more closely? Blend its prompt-aware and prompt-blind predictions — no extra classifier required. That's the guidance-scale slider.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-07-26"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_dd14c6",
+      "slug": "how-neural-networks-learn",
+      "type": "concept",
+      "title": "How Neural Networks Learn: Backpropagation",
+      "hook": "A neural net learns by asking, for every weight, 'how much did you contribute to my mistake?' Backprop answers all of them at once.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2017-10-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_2b95b6#0",
+      "format": "quiz",
+      "prompt": "In DDPM, which process is fixed (not learned) and which does the network learn?",
+      "choices": [
+        {
+          "text": "The forward noising process is fixed; the reverse denoising process is learned",
+          "correct": true
+        },
+        {
+          "text": "The forward process is learned; the reverse process is fixed",
+          "correct": false
+        },
+        {
+          "text": "Both processes are learned jointly",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe forward process slowly adds Gaussian noise (fixed). The network learns the reverse: predicting the noise so it can subtract a bit each step.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2b95b6#1",
+      "format": "flip",
+      "prompt": "How does DDPM generate a brand-new image at sampling time?",
+      "back_html": "\u003cp\u003eIt starts from pure random noise and applies the learned denoiser repeatedly, gradually revealing a coherent image.\u003c/p\u003e"
+    },
+    {
+      "id": "card_2b95b6#2",
+      "format": "flip",
+      "prompt": "What advantage does diffusion training have over GANs, and what's the trade-off?",
+      "back_html": "\u003cp\u003eTraining is far more stable than the adversarial game GANs play, with competitive quality — but sampling is slow, taking many steps.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,690 @@
+{
+  "version": "2026-09-03.5f64a433",
+  "topics": [
+    {
+      "id": "foundations",
+      "title": "Foundations",
+      "slug": "foundations",
+      "order": 10,
+      "blurb": "The math and intuition everything else builds on."
+    },
+    {
+      "id": "ml-basics",
+      "title": "What ML Is",
+      "slug": "ml-basics",
+      "parent": "foundations",
+      "order": 10,
+      "card_order": "learning-path",
+      "blurb": "Learning patterns from data instead of writing rules.",
+      "related_topic_ids": [
+        "training-intuition",
+        "generalization",
+        "evaluation",
+        "neural-nets"
+      ]
+    },
+    {
+      "id": "training-intuition",
+      "title": "How Models Learn",
+      "slug": "training-intuition",
+      "parent": "foundations",
+      "order": 11,
+      "card_order": "learning-path",
+      "blurb": "Measure the error, find the slope, step downhill — the loop at the heart of every model.",
+      "related_topic_ids": [
+        "ml-basics",
+        "generalization",
+        "optimization",
+        "neural-nets"
+      ]
+    },
+    {
+      "id": "generalization",
+      "title": "Generalization",
+      "slug": "generalization",
+      "parent": "foundations",
+      "order": 12,
+      "card_order": "learning-path",
+      "blurb": "Why a model that fits its training data still works on new data — and when it suddenly doesn't.",
+      "related_topic_ids": [
+        "ml-basics",
+        "training-intuition",
+        "evaluation",
+        "optimization"
+      ]
+    },
+    {
+      "id": "evaluation",
+      "title": "Evaluation \u0026 Benchmarks",
+      "slug": "evaluation",
+      "parent": "foundations",
+      "order": 13,
+      "card_order": "learning-path",
+      "blurb": "How we measure whether a model is any good.",
+      "related_topic_ids": [
+        "ml-basics",
+        "data"
+      ]
+    },
+    {
+      "id": "data",
+      "title": "Datasets \u0026 Data Quality",
+      "slug": "data",
+      "parent": "foundations",
+      "order": 14,
+      "card_order": "learning-path",
+      "blurb": "The fuel of machine learning — building, cleaning, and scaling the datasets models learn from.",
+      "related_topic_ids": [
+        "evaluation",
+        "ml-basics"
+      ]
+    },
+    {
+      "id": "classic-ml",
+      "title": "Classic ML",
+      "slug": "classic-ml",
+      "order": 20,
+      "blurb": "Pre-deep-learning workhorses still everywhere in practice."
+    },
+    {
+      "id": "linear-models",
+      "title": "Linear \u0026 Logistic Regression",
+      "slug": "linear-models",
+      "parent": "classic-ml",
+      "order": 20,
+      "card_order": "learning-path",
+      "blurb": "The simplest models — and the foundation everything else builds on.",
+      "related_topic_ids": [
+        "ml-basics",
+        "trees-ensembles"
+      ]
+    },
+    {
+      "id": "trees-ensembles",
+      "title": "Trees, Forests \u0026 Boosting",
+      "slug": "trees-ensembles",
+      "parent": "classic-ml",
+      "order": 21,
+      "card_order": "learning-path",
+      "blurb": "Decision trees and the ensembles that still win on tabular data.",
+      "related_topic_ids": [
+        "linear-models",
+        "svm-kernels"
+      ]
+    },
+    {
+      "id": "svm-kernels",
+      "title": "SVMs \u0026 Kernels",
+      "slug": "svm-kernels",
+      "parent": "classic-ml",
+      "order": 22,
+      "card_order": "learning-path",
+      "blurb": "Maximum-margin classifiers and the kernel trick.",
+      "related_topic_ids": [
+        "linear-models",
+        "clustering-dimred"
+      ]
+    },
+    {
+      "id": "clustering-dimred",
+      "title": "Clustering \u0026 Dimensionality Reduction",
+      "slug": "clustering-dimred",
+      "parent": "classic-ml",
+      "order": 23,
+      "card_order": "learning-path",
+      "blurb": "Finding structure in unlabeled data.",
+      "related_topic_ids": [
+        "svm-kernels",
+        "ml-basics"
+      ]
+    },
+    {
+      "id": "deep-learning",
+      "title": "Deep Learning",
+      "slug": "deep-learning",
+      "order": 30,
+      "blurb": "Neural networks and how to train them."
+    },
+    {
+      "id": "neural-nets",
+      "title": "Neural Networks 101",
+      "slug": "neural-nets",
+      "parent": "deep-learning",
+      "order": 30,
+      "card_order": "learning-path",
+      "blurb": "What a neural net is and how it learns.",
+      "related_topic_ids": [
+        "cnns",
+        "rnns",
+        "optimization"
+      ]
+    },
+    {
+      "id": "cnns",
+      "title": "CNNs \u0026 Computer Vision",
+      "slug": "cnns",
+      "parent": "deep-learning",
+      "order": 31,
+      "card_order": "learning-path",
+      "blurb": "Convolutional networks that learned to see.",
+      "related_topic_ids": [
+        "neural-nets",
+        "optimization",
+        "vision-transformers"
+      ]
+    },
+    {
+      "id": "rnns",
+      "title": "RNNs \u0026 Sequences",
+      "slug": "rnns",
+      "parent": "deep-learning",
+      "order": 32,
+      "card_order": "learning-path",
+      "blurb": "Networks with memory — and the road to attention.",
+      "related_topic_ids": [
+        "neural-nets",
+        "attention-mechanisms"
+      ]
+    },
+    {
+      "id": "optimization",
+      "title": "Optimization \u0026 Training Tricks",
+      "slug": "optimization",
+      "parent": "deep-learning",
+      "order": 33,
+      "card_order": "learning-path",
+      "blurb": "The optimizers and tricks that actually make deep nets train — Adam, weight decay, dropout, mixed precision.",
+      "related_topic_ids": [
+        "neural-nets",
+        "generalization"
+      ]
+    },
+    {
+      "id": "architectures",
+      "title": "Architectures",
+      "slug": "architectures",
+      "order": 40,
+      "blurb": "The model families that define the modern era."
+    },
+    {
+      "id": "attention-mechanisms",
+      "title": "Attention Mechanisms",
+      "slug": "attention-mechanisms",
+      "parent": "architectures",
+      "order": 40,
+      "card_order": "learning-path",
+      "blurb": "The learned lookup at the heart of transformers.",
+      "related_topic_ids": [
+        "transformers",
+        "rnns",
+        "context-memory"
+      ]
+    },
+    {
+      "id": "transformers",
+      "title": "Transformers",
+      "slug": "transformers",
+      "parent": "architectures",
+      "order": 41,
+      "card_order": "learning-path",
+      "blurb": "How attention-based models work and why they took over.",
+      "related_topic_ids": [
+        "attention-mechanisms",
+        "pretraining"
+      ]
+    },
+    {
+      "id": "diffusion",
+      "title": "Diffusion Models",
+      "slug": "diffusion",
+      "parent": "architectures",
+      "order": 42,
+      "card_order": "learning-path",
+      "blurb": "Generating images by reversing noise.",
+      "related_topic_ids": [
+        "gans",
+        "vision-transformers"
+      ]
+    },
+    {
+      "id": "gans",
+      "title": "GANs",
+      "slug": "gans",
+      "parent": "architectures",
+      "order": 43,
+      "card_order": "learning-path",
+      "blurb": "Generative adversarial networks.",
+      "related_topic_ids": [
+        "diffusion"
+      ]
+    },
+    {
+      "id": "ssm-mamba",
+      "title": "State-Space Models (Mamba)",
+      "slug": "ssm-mamba",
+      "parent": "architectures",
+      "order": 44,
+      "card_order": "learning-path",
+      "blurb": "Linear-time sequence models challenging the transformer.",
+      "related_topic_ids": [
+        "transformers",
+        "rnns"
+      ]
+    },
+    {
+      "id": "moe",
+      "title": "Mixture-of-Experts",
+      "slug": "moe",
+      "parent": "architectures",
+      "order": 45,
+      "card_order": "learning-path",
+      "blurb": "Scaling parameters without scaling compute per token.",
+      "related_topic_ids": [
+        "transformers",
+        "pretraining"
+      ]
+    },
+    {
+      "id": "language-models",
+      "title": "Language Models",
+      "slug": "language-models",
+      "order": 50,
+      "blurb": "How LLMs are built and used."
+    },
+    {
+      "id": "tokenization",
+      "title": "Tokenization \u0026 Embeddings",
+      "slug": "tokenization",
+      "parent": "language-models",
+      "order": 50,
+      "card_order": "learning-path",
+      "blurb": "Turning text into vectors a model can read.",
+      "related_topic_ids": [
+        "pretraining"
+      ]
+    },
+    {
+      "id": "pretraining",
+      "title": "Pretraining \u0026 Scaling Laws",
+      "slug": "pretraining",
+      "parent": "language-models",
+      "order": 51,
+      "card_order": "learning-path",
+      "blurb": "Training large models and the laws that govern it.",
+      "related_topic_ids": [
+        "transformers",
+        "finetuning",
+        "tokenization"
+      ]
+    },
+    {
+      "id": "prompting",
+      "title": "Prompting \u0026 In-Context Learning",
+      "slug": "prompting",
+      "parent": "language-models",
+      "order": 52,
+      "card_order": "learning-path",
+      "blurb": "Steering models with context instead of weights.",
+      "related_topic_ids": [
+        "pretraining",
+        "agents"
+      ]
+    },
+    {
+      "id": "rag",
+      "title": "Retrieval-Augmented Generation",
+      "slug": "rag",
+      "parent": "language-models",
+      "order": 53,
+      "card_order": "learning-path",
+      "blurb": "Grounding LLMs in external knowledge.",
+      "related_topic_ids": [
+        "agents",
+        "pretraining"
+      ]
+    },
+    {
+      "id": "agents",
+      "title": "Agents \u0026 Reasoning",
+      "slug": "agents",
+      "parent": "language-models",
+      "order": 54,
+      "card_order": "learning-path",
+      "blurb": "Getting LLMs to reason and use tools.",
+      "related_topic_ids": [
+        "rag",
+        "rlhf",
+        "robotics"
+      ]
+    },
+    {
+      "id": "context-memory",
+      "title": "Long Context \u0026 Memory",
+      "slug": "context-memory",
+      "parent": "language-models",
+      "order": 55,
+      "card_order": "learning-path",
+      "blurb": "Stretching the context window — fitting more tokens in, and remembering them for less.",
+      "related_topic_ids": [
+        "attention-mechanisms",
+        "inference"
+      ]
+    },
+    {
+      "id": "finetuning",
+      "title": "Fine-tuning \u0026 LoRA",
+      "slug": "finetuning",
+      "parent": "training-alignment",
+      "order": 60,
+      "card_order": "learning-path",
+      "blurb": "Adapting big models cheaply.",
+      "related_topic_ids": [
+        "rlhf",
+        "pretraining",
+        "distillation"
+      ]
+    },
+    {
+      "id": "training-alignment",
+      "title": "Training \u0026 Alignment",
+      "slug": "training-alignment",
+      "order": 60,
+      "blurb": "Turning a base model into something useful and safe."
+    },
+    {
+      "id": "rlhf",
+      "title": "RLHF \u0026 Preference Optimization",
+      "slug": "rlhf",
+      "parent": "training-alignment",
+      "order": 61,
+      "card_order": "learning-path",
+      "blurb": "Teaching models to follow human intent.",
+      "related_topic_ids": [
+        "finetuning",
+        "evals-safety"
+      ]
+    },
+    {
+      "id": "distillation",
+      "title": "Distillation",
+      "slug": "distillation",
+      "parent": "training-alignment",
+      "order": 62,
+      "card_order": "learning-path",
+      "blurb": "Compressing a big model's knowledge into a smaller, faster student.",
+      "related_topic_ids": [
+        "finetuning",
+        "quantization"
+      ]
+    },
+    {
+      "id": "synthetic-data",
+      "title": "Synthetic \u0026 Self-Generated Data",
+      "slug": "synthetic-data",
+      "parent": "training-alignment",
+      "order": 63,
+      "card_order": "learning-path",
+      "blurb": "Models teaching models — generating training data instead of collecting it.",
+      "related_topic_ids": [
+        "finetuning",
+        "distillation"
+      ]
+    },
+    {
+      "id": "multimodal-vision",
+      "title": "Multimodal \u0026 Vision",
+      "slug": "multimodal-vision",
+      "order": 70,
+      "blurb": "Models that connect images, text, and more."
+    },
+    {
+      "id": "vision-transformers",
+      "title": "Vision Transformers \u0026 CLIP",
+      "slug": "vision-transformers",
+      "parent": "multimodal-vision",
+      "order": 70,
+      "card_order": "learning-path",
+      "blurb": "Transformers for images and image–text models.",
+      "related_topic_ids": [
+        "transformers",
+        "cnns"
+      ]
+    },
+    {
+      "id": "text-to-image",
+      "title": "Text-to-Image",
+      "slug": "text-to-image",
+      "parent": "multimodal-vision",
+      "order": 71,
+      "card_order": "learning-path",
+      "blurb": "Turning prompts into pictures — Stable Diffusion and beyond.",
+      "related_topic_ids": [
+        "diffusion",
+        "vlms"
+      ]
+    },
+    {
+      "id": "video-audio",
+      "title": "Video, Audio \u0026 Speech",
+      "slug": "video-audio",
+      "parent": "multimodal-vision",
+      "order": 72,
+      "card_order": "learning-path",
+      "blurb": "Generative and recognition models for sound and motion.",
+      "related_topic_ids": [
+        "text-to-image",
+        "vlms"
+      ]
+    },
+    {
+      "id": "vlms",
+      "title": "Vision-Language Models",
+      "slug": "vlms",
+      "parent": "multimodal-vision",
+      "order": 73,
+      "card_order": "learning-path",
+      "blurb": "Models that see and talk — connecting images and text.",
+      "related_topic_ids": [
+        "vision-transformers",
+        "text-to-image"
+      ]
+    },
+    {
+      "id": "quantization",
+      "title": "Quantization",
+      "slug": "quantization",
+      "parent": "systems-efficiency",
+      "order": 80,
+      "card_order": "learning-path",
+      "blurb": "Running big models in low precision.",
+      "related_topic_ids": [
+        "inference",
+        "finetuning"
+      ]
+    },
+    {
+      "id": "systems-efficiency",
+      "title": "Systems \u0026 Efficiency",
+      "slug": "systems-efficiency",
+      "order": 80,
+      "blurb": "Making models run fast and cheap."
+    },
+    {
+      "id": "inference",
+      "title": "Inference \u0026 Serving",
+      "slug": "inference",
+      "parent": "systems-efficiency",
+      "order": 81,
+      "card_order": "learning-path",
+      "blurb": "Generating tokens fast at scale.",
+      "related_topic_ids": [
+        "quantization",
+        "transformers",
+        "context-memory"
+      ]
+    },
+    {
+      "id": "distributed-training",
+      "title": "Distributed Training",
+      "slug": "distributed-training",
+      "parent": "systems-efficiency",
+      "order": 82,
+      "card_order": "learning-path",
+      "blurb": "Splitting giant models and batches across hundreds of GPUs.",
+      "related_topic_ids": [
+        "pretraining",
+        "inference"
+      ]
+    },
+    {
+      "id": "hardware",
+      "title": "Hardware \u0026 Accelerators",
+      "slug": "hardware",
+      "parent": "systems-efficiency",
+      "order": 83,
+      "card_order": "learning-path",
+      "blurb": "The chips that shaped deep learning — GPUs, TPUs, and beyond.",
+      "related_topic_ids": [
+        "inference",
+        "distributed-training"
+      ]
+    },
+    {
+      "id": "ai-safety",
+      "title": "AI Safety \u0026 Interpretability",
+      "slug": "ai-safety",
+      "order": 90,
+      "blurb": "Understanding and stress-testing models."
+    },
+    {
+      "id": "interpretability",
+      "title": "Interpretability",
+      "slug": "interpretability",
+      "parent": "ai-safety",
+      "order": 90,
+      "card_order": "learning-path",
+      "blurb": "Looking inside the black box.",
+      "related_topic_ids": [
+        "evals-safety"
+      ]
+    },
+    {
+      "id": "evals-safety",
+      "title": "Evals \u0026 Red-teaming",
+      "slug": "evals-safety",
+      "parent": "ai-safety",
+      "order": 91,
+      "card_order": "learning-path",
+      "blurb": "Measuring capability and finding failures.",
+      "related_topic_ids": [
+        "interpretability",
+        "rlhf",
+        "risks-policy"
+      ]
+    },
+    {
+      "id": "risks-policy",
+      "title": "Risks, Safety \u0026 Policy",
+      "slug": "risks-policy",
+      "parent": "ai-safety",
+      "order": 92,
+      "card_order": "learning-path",
+      "blurb": "Frontier risks, dangerous-capability evals, and the governance starting to shape AI.",
+      "related_topic_ids": [
+        "evals-safety",
+        "interpretability"
+      ]
+    },
+    {
+      "id": "ai-for-code",
+      "title": "AI for Code",
+      "slug": "ai-for-code",
+      "parent": "applications",
+      "order": 100,
+      "card_order": "learning-path",
+      "blurb": "Models that read, write, and fix software.",
+      "related_topic_ids": [
+        "agents",
+        "ai-for-science"
+      ]
+    },
+    {
+      "id": "applications",
+      "title": "Applications",
+      "slug": "applications",
+      "order": 100,
+      "blurb": "AI applied to real-world domains."
+    },
+    {
+      "id": "ai-for-science",
+      "title": "AI for Science",
+      "slug": "ai-for-science",
+      "parent": "applications",
+      "order": 101,
+      "card_order": "learning-path",
+      "blurb": "Deep learning as a tool for scientific discovery.",
+      "related_topic_ids": [
+        "vision-transformers"
+      ]
+    },
+    {
+      "id": "robotics",
+      "title": "Robotics \u0026 Embodied AI",
+      "slug": "robotics",
+      "parent": "applications",
+      "order": 102,
+      "card_order": "learning-path",
+      "blurb": "Putting learning into the physical world — robots that see, plan, and act.",
+      "related_topic_ids": [
+        "agents",
+        "vlms"
+      ]
+    },
+    {
+      "id": "now",
+      "title": "Now",
+      "slug": "now",
+      "order": 200,
+      "blurb": "Fresh papers, releases, and lab updates — newest first."
+    },
+    {
+      "id": "papers-this-week",
+      "title": "Papers This Week",
+      "slug": "papers-this-week",
+      "parent": "now",
+      "order": 200,
+      "card_order": "recency",
+      "blurb": "Notable research as it lands.",
+      "related_topic_ids": [
+        "releases",
+        "lab-updates"
+      ]
+    },
+    {
+      "id": "lab-updates",
+      "title": "News \u0026 Lab Updates",
+      "slug": "lab-updates",
+      "parent": "now",
+      "order": 201,
+      "card_order": "recency",
+      "blurb": "What the major labs just shipped or said.",
+      "related_topic_ids": [
+        "papers-this-week",
+        "releases"
+      ]
+    },
+    {
+      "id": "releases",
+      "title": "Model \u0026 Tool Releases",
+      "slug": "releases",
+      "parent": "now",
+      "order": 202,
+      "card_order": "recency",
+      "blurb": "New models and tools you can use today.",
+      "related_topic_ids": [
+        "papers-this-week",
+        "lab-updates"
+      ]
+    }
+  ]
+}

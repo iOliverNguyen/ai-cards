@@ -1,0 +1,118 @@
+{
+  "id": "card_3deeba",
+  "slug": "swarmworld-stigmergic-agent-societies",
+  "type": "paper",
+  "title": "SwarmWorld: Stigmergic Technological Evolution in Societies of LLM Agents",
+  "hook": "Drop identical LLM agents into a shared world with no roles and no recipes. They differentiate, build on each other's leftovers, and accumulate technology — mostly by looking, not talking.",
+  "key_points": [
+    "Most multi-agent systems rely on direct conversation, predefined roles, or centralized workflows; SwarmWorld uses none of them.",
+    "Initially homogeneous agents explore a spatial world, process resources, test materials, build artifacts, and write executable controllers.",
+    "Artifacts are scored under unseen disturbances after the agents are removed, so results can't be talked into existence.",
+    "Shared societies develop broader, more resilient portfolios than a strong best-of-N isolated-search baseline.",
+    "Isolated search still wins on the single strongest artifact — sharing buys breadth and resilience, not peak quality.",
+    "Most technology reuse begins through physical observation of artifacts rather than communication."
+  ],
+  "content_html": "\u003cp\u003eCollective intelligence can emerge when individuals coordinate through a shared \u003cem\u003eenvironment\u003c/em\u003e rather than through conversation — biologists call it stigmergy, and it's how termites build mounds. Most LLM multi-agent systems do the opposite: direct chat, predefined roles, centralized workflows. Pal, Wang, and Buehler ask whether decentralized agents can build functional technologies without any of that.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe world\u003c/h2\u003e\n\u003cp\u003eIn \u003cstrong\u003eSwarmWorld\u003c/strong\u003e, initially homogeneous LLM agents receive no assigned roles and no recipes. They explore a spatial environment, process resources, test materials, construct persistent artifacts, and write executable controllers. The key design choice is splitting \u003cstrong\u003ecognition from consequence\u003c/strong\u003e: agents propose architectures and controllers within fixed action and material schemas, while a deterministic simulator determines whether anything actually works — evaluated under unseen disturbances \u003cem\u003eafter the agents are removed\u003c/em\u003e, so nothing can be talked into being functional.\u003c/p\u003e\n\u003ch2\u003eWhat emerges\u003c/h2\u003e\n\u003cp\u003eAgents differentiate into exploration, construction, maintenance, and coordination behaviors, transitioning as the world matures. Technologies accumulate through collaborative construction, executable inheritance, and persistent agent-artifact networks — and notably, most reuse begins through \u003cstrong\u003ephysical observation\u003c/strong\u003e of artifacts rather than communication. Shared societies develop broader and more resilient technological portfolios than a strong best-of-N isolated-search baseline, though isolated search stays competitive for the single strongest artifact. Explicit cultural mechanisms amplify collaboration and organization, but their functional benefit depends on which outcome you measure and over what timescale. The authors' summary is a useful corrective to multi-agent hype: physical stigmergy alone supports capable societies, while interaction drives persistent technological \u003cem\u003eecologies\u003c/em\u003e rather than universally better individual inventions. arXiv, 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Subhadeep Pal",
+      "Fiona Y. Wang",
+      "Markus J. Buehler"
+    ],
+    "url": "https://arxiv.org/abs/2608.26081",
+    "published_at": "2026-08-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_ee33bd",
+      "slug": "economy-of-minds",
+      "type": "paper",
+      "title": "Economy of Minds: Agents That Bid to Act",
+      "hook": "Skip the orchestrator. Let agents bid in auctions for the right to act, pay each other, and accumulate wealth — and collective intelligence emerges from the market, not from central control.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-01"
+    },
+    {
+      "id": "card_553800",
+      "slug": "multi-agent-llms-fail-to-explore",
+      "type": "paper",
+      "title": "Multi-Agent LLMs Fail to Explore Each Other",
+      "hook": "Drop LLM agents into a room together and they don't probe each other's abilities — they lock into narrow, polarized patterns that tank coordination and inflate regret.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-13"
+    },
+    {
+      "id": "card_b96ee0",
+      "slug": "evoarena",
+      "type": "paper",
+      "title": "EvoArena: Testing Agents in Environments That Keep Changing",
+      "hook": "Most agent benchmarks freeze the world. EvoArena makes the environment keep updating beneath the agent — and finds today's agents crack, averaging under 40%.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-11"
+    },
+    {
+      "id": "card_085057",
+      "slug": "multi-agent-coordination-benchmark",
+      "type": "paper",
+      "title": "A Benchmark for Open-Ended Multi-Agent Coordination",
+      "hook": "13 LLMs try to explore, trade, craft, and build together in an open world — and most manage only ~6% of normalized return. Communication, not raw capability, turns out to be the biggest lever.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-14"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_3deeba#0",
+      "format": "flip",
+      "prompt": "What does 'stigmergy' mean in the SwarmWorld setting?",
+      "back_html": "\u003cp\u003eCoordination through the shared environment rather than through messages — agents read what other agents have physically built and act on it. In SwarmWorld most technology reuse begins this way, not through communication.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3deeba#1",
+      "format": "quiz",
+      "prompt": "How do shared agent societies compare to a best-of-N isolated-search baseline?",
+      "choices": [
+        {
+          "text": "Societies produce broader, more resilient portfolios, but isolated search remains competitive on the single strongest artifact",
+          "correct": true
+        },
+        {
+          "text": "Societies dominate on every measure, including the single best artifact",
+          "correct": false
+        },
+        {
+          "text": "Isolated search dominates on every measure",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper is explicit about the split: interaction drives persistent technological ecologies rather than universally superior individual inventions.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3deeba#2",
+      "format": "flip",
+      "prompt": "Why does SwarmWorld separate 'cognition' from 'consequence'?",
+      "back_html": "\u003cp\u003eAgents only propose architectures and controllers within fixed action and material schemas; a deterministic simulator evaluates them under unseen disturbances after the agents are gone. Function is decided by the world, not by the agents' own claims.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "id": "card_249e07",
+  "slug": "moe-routers-manifold-power-iteration",
+  "type": "paper",
+  "title": "Redesigning MoE Routers with Manifold Power Iteration",
+  "hook": "An MoE router points each token at the right expert — yet nothing forces its rows to actually represent those experts. This aligns each router row with its expert's principal direction.",
+  "key_points": [
+    "In a Mixture-of-Experts, router rows act as expert proxies; their dot-product with a token decides which experts fire.",
+    "There's no design principle making a router row a faithful summary of its expert, so token–expert affinity can be mismeasured.",
+    "Manifold Power Iteration (MPI) aligns each router row with the principal singular direction of its expert matrix — the most expressive 1-vector description of that matrix.",
+    "A 'Power-then-Retract' step runs a power iteration on the router weights, then retracts to a norm constraint for stability and efficiency.",
+    "Theory shows MPI drives router rows toward experts' principal singular directions; pretraining MoE models from 1B–11B confirms the alignment helps."
+  ],
+  "content_html": "\u003cp\u003eThe router is the cornerstone of a Mixture-of-Experts model: the rows of the router matrix act as expert proxies, and their dot-product with an incoming token decides which subset of experts is activated. Ideally each router row condenses its expert into a representative vector — but, the authors note, no existing design principle actually enforces that condensation. They propose aligning each router row with the \u003cem\u003eprincipal singular direction\u003c/em\u003e of its associated expert, on the grounds that this direction is the most expressive single-vector description of a matrix.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTheir method, Manifold Power Iteration (MPI), introduces a \u0026quot;Power-then-Retract\u0026quot; paradigm: a power-iteration step nudges the router weights toward those principal directions, followed by a retraction that imposes a norm constraint to keep the update efficient and stable. Theoretically, they show MPI drives router rows to converge toward the principal singular directions of their experts. Empirically, they pretrain MoE models across scales from 1B to 11B parameters and report that this alignment yields more effective models. The takeaway is a clean, transferable idea: treat the router not as an arbitrary learned gate but as something that should provably summarize each expert.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Songhao Wu",
+      "Ang Lv",
+      "Ruobing Xie",
+      "Yankai Lin"
+    ],
+    "url": "https://arxiv.org/abs/2606.12397",
+    "published_at": "2026-06-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "moe",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "training",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-15",
+  "date": "2026-06-10",
+  "related": [
+    {
+      "id": "card_4fc64b",
+      "slug": "what-is-mixture-of-experts",
+      "type": "concept",
+      "title": "What Is a Mixture of Experts?",
+      "hook": "Instead of running every input through one big network, route each token to a few specialist sub-networks - total capacity grows without proportional compute.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2017-01-23"
+    },
+    {
+      "id": "card_bf9cd2",
+      "slug": "switch-transformer",
+      "type": "paper",
+      "title": "Switch Transformer: Scaling to Trillion-Parameter Models",
+      "hook": "Route every token to exactly one expert instead of many - this single simplification made trillion-parameter MoE models stable enough to train at scale.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2021-01-11"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_249e07#0",
+      "format": "flip",
+      "prompt": "What does Manifold Power Iteration align each MoE router row with?",
+      "back_html": "\u003cp\u003eThe principal singular direction of that row's associated expert matrix — the single vector that most expressively summarizes the expert — so the router's dot-product better reflects token–expert affinity.\u003c/p\u003e"
+    },
+    {
+      "id": "card_249e07#1",
+      "format": "quiz",
+      "prompt": "What is the 'Power-then-Retract' step in MPI?",
+      "choices": [
+        {
+          "text": "A power-iteration step on the router weights, then a retraction to a norm constraint",
+          "correct": true
+        },
+        {
+          "text": "Dropping the lowest-scoring experts, then retraining the router",
+          "correct": false
+        },
+        {
+          "text": "Doubling the number of experts, then pruning the weakest",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePower iteration pushes router rows toward the experts' principal directions; the retraction imposes a norm constraint to keep the step efficient and stable.\u003c/p\u003e"
+    },
+    {
+      "id": "card_249e07#2",
+      "format": "flip",
+      "prompt": "Why redesign the router rather than the experts in an MoE?",
+      "back_html": "\u003cp\u003eThe router's rows are the proxies that decide routing; if a row poorly represents its expert, affinity is mismeasured. MPI makes each row a faithful summary of its expert without touching the experts.\u003c/p\u003e"
+    }
+  ]
+}

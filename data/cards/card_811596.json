@@ -1,0 +1,108 @@
+{
+  "id": "card_811596",
+  "slug": "subquadratic-architectures",
+  "type": "paper",
+  "title": "Subquadratic Architectures: xLSTM vs. Mamba-2 vs. Gated DeltaNet",
+  "hook": "Transformers pay a quadratic tax on sequence length. Pitting xLSTM, Mamba-2, and Gated DeltaNet head-to-head on hard tasks, xLSTM comes out ahead — and the paper explains why.",
+  "key_points": [
+    "Subquadratic architectures avoid attention's quadratic cost; the open question is which design actually models sequences best.",
+    "The study compares xLSTM, Mamba-2, and Gated DeltaNet on code pretraining, code-model distillation, and time-series foundation-model pretraining.",
+    "xLSTM delivers the strongest overall performance across these settings.",
+    "A unified formulation traces xLSTM's edge to more flexible, stable memory correction via its gating scheme.",
+    "Controlled length-generalization tasks confirm the gains come from robust state tracking and accumulation."
+  ],
+  "content_html": "\u003cp\u003eTransformers dominate sequence modeling, but their quadratic attention is expensive, and subquadratic architectures promise a more scalable alternative. The catch, the authors note, is that it's unclear \u003cem\u003ewhich\u003c/em\u003e subquadratic design actually models sequences best. They run a head-to-head comparison of three leading approaches — xLSTM, Mamba-2, and Gated DeltaNet — on tasks with complex dependencies: code-model pretraining, distillation of code models from LLMs, and pretraining of time-series foundation models.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eAcross these settings, xLSTM delivers the strongest overall performance. To explain why, the authors present a unified formulation and analyze the underlying mechanisms, focusing on state tracking and memory dynamics. Their account: xLSTM's gating scheme enables more flexible and stable memory correction than its rivals, and controlled synthetic length-generalization tasks corroborate that its gains stem from robust state tracking and accumulation. The card-sized takeaway is that, among modern recurrence/state-space designs, \u003cem\u003ehow a model corrects and accumulates its hidden state\u003c/em\u003e — not just that it's subquadratic — is what separates the strong from the merely fast.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Anamaria-Roberta Hartl",
+      "Levente Zólyomi",
+      "David Stap",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.12364",
+    "published_at": "2026-06-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ssm-mamba",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-15",
+  "date": "2026-06-10",
+  "related": [
+    {
+      "id": "card_8c7d52",
+      "slug": "gated-delta-networks",
+      "type": "paper",
+      "title": "Feature Learning in Gated Delta Networks at Scale",
+      "hook": "muP lets you tune hyperparameters on a small model and transfer them to a huge one. This paper derives the equivalent rules for gated delta networks, so sub-quadratic models scale without re-tuning.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_5dd64e",
+      "slug": "mamba",
+      "type": "paper",
+      "title": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+      "hook": "Make the state-space transitions depend on the input itself, add a hardware-aware scan, and you get a linear-time sequence model that matches Transformers on language - with no KV cache.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2023-12-01"
+    },
+    {
+      "id": "card_ccd6d9",
+      "slug": "nemotron-3-ultra",
+      "type": "paper",
+      "title": "Nemotron 3 Ultra: Open Hybrid Mamba-Attention MoE",
+      "hook": "NVIDIA's open 550B model interleaves Mamba and attention inside a Mixture-of-Experts - hitting ~6x the inference throughput of comparable LLMs at on-par accuracy.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-12"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_811596#0",
+      "format": "flip",
+      "prompt": "Why study subquadratic architectures at all?",
+      "back_html": "\u003cp\u003eTransformer attention scales quadratically with sequence length; subquadratic models (xLSTM, Mamba-2, Gated DeltaNet) aim to model long sequences without that cost.\u003c/p\u003e"
+    },
+    {
+      "id": "card_811596#1",
+      "format": "quiz",
+      "prompt": "Among xLSTM, Mamba-2, and Gated DeltaNet, which gave the strongest overall results in this study?",
+      "choices": [
+        {
+          "text": "xLSTM",
+          "correct": true
+        },
+        {
+          "text": "Mamba-2",
+          "correct": false
+        },
+        {
+          "text": "Gated DeltaNet",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAcross code pretraining, code-model distillation, and time-series pretraining, xLSTM was strongest — the paper credits its gating-based memory correction.\u003c/p\u003e"
+    },
+    {
+      "id": "card_811596#2",
+      "format": "flip",
+      "prompt": "What mechanism does the paper credit for xLSTM's advantage?",
+      "back_html": "\u003cp\u003eIts gating scheme, which enables more flexible and stable memory correction — yielding robust state tracking and accumulation on tasks with complex dependencies.\u003c/p\u003e"
+    }
+  ]
+}

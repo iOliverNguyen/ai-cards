@@ -1,0 +1,115 @@
+{
+  "id": "card_dc93d8",
+  "slug": "phantom-gains-measured-null",
+  "type": "paper",
+  "title": "Phantom Gains: Auditing Self-Improvement Against a Measured Null",
+  "hook": "Run a frozen, untrained model through your self-improvement pipeline and it appears to gain and lose capabilities. Without that control, seven common measurement habits invert their own findings.",
+  "key_points": [
+    "Self-improvement is increasingly judged per-problem — which items were gained and lost — which means differencing two noisy estimates.",
+    "Auditing three rounds of rank-32 LoRA self-training on Qwen3-8B against a frozen control found seven measurement failures, each of which flips a reported finding when the control is missing.",
+    "A ledger built on a single greedy decode invents capability changes on an untrained model, largely an artifact of inference batching.",
+    "The authors replace threshold repairs with a per-problem exact test against a pooled baseline under false-discovery-rate control; it detects nothing on held-out replicates.",
+    "Under that audit, external distillation reached problems the base model rarely solves while three forms of self-training did not.",
+    "Self-training also corrupted problems the base model already solved, at rates well above the measured floor."
+  ],
+  "content_html": "\u003cp\u003eClaims of model self-improvement have moved past mean accuracy: the interesting question is which individual problems a model gains and which it loses. Xu and colleagues point out that this means subtracting one noisy estimate from another, which is exactly the setting where measurement artifacts masquerade as findings. So they audited three rounds of rank-32 LoRA self-training on Qwen3-8B against a frozen control pushed through the identical pipeline.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat the control exposed\u003c/h2\u003e\n\u003cp\u003eSeven measurement failures, several of them standard practice, each of which inverts a reported finding when its control is absent. The starkest: a ledger built on a single greedy decode manufactures capability changes on a model that was never trained — largely an artifact of inference batching — and the statistic meant to separate genuine acquisition from mere sharpening assigns that untrained model a rate of 0.280. The obvious threshold fix doesn't survive replication either; estimated across frozen comparisons the design already contains, its null stays non-zero. The authors substitute a per-problem exact test against a pooled baseline under false-discovery-rate control, which detects nothing on any held-out replicate and holds up as the multiple-testing rule, error rate, and pool size vary.\u003c/p\u003e\n\u003ch2\u003eWhat survives the audit\u003c/h2\u003e\n\u003cp\u003eApplied to arms matched on data stream, volume, and evaluation, external distillation improved problems the base model rarely reaches while three forms of self-training did not — and a regression rejects that asymmetry as a side effect of distillation's larger overall gain (p \u0026lt; 10⁻⁸). On the small set of problems the base model never solves, the evidence is inconclusive; meanwhile self-training corrupts previously-solved problems at rates well above the measured floor. The takeaway generalizes past self-improvement: any transition-level statistic needs its own separately measured null, and you can build one from baseline replicates you already have.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Cheng Xu",
+      "Nan Yan",
+      "Liming Chen",
+      "M-Tahar Kechadi"
+    ],
+    "url": "https://arxiv.org/abs/2608.20290",
+    "published_at": "2026-08-20",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evaluation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "benchmark",
+    "training",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-24",
+  "date": "2026-08-20",
+  "related": [
+    {
+      "id": "card_57f8b7",
+      "slug": "reproducing-2200-icml-papers",
+      "type": "blog",
+      "title": "What 2,226 Reproduced ICML Papers Revealed",
+      "hook": "A community hackathon re-ran a third of ICML 2026. Half the papers had a claim verified — and 23% had a claim falsified or contested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-13"
+    },
+    {
+      "id": "card_35a936",
+      "slug": "item-response-theory-ai-evaluation",
+      "type": "paper",
+      "title": "Can We Trust Item Response Theory for AI Evaluation?",
+      "hook": "IRT ranks models off a handful of items instead of averaging accuracy — but the math was built for human test-takers, and AI benchmarks break its assumptions in ways that quietly distort rankings.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-16"
+    },
+    {
+      "id": "card_1f360f",
+      "slug": "illusion-of-robustness-prediction-flips",
+      "type": "paper",
+      "title": "The Illusion of Robustness: Aggregate Accuracy Hides Prediction Flips",
+      "hook": "A model's accuracy barely budges when you paste in random gibberish — but under the hood, a chunk of its individual answers silently flip, some right to wrong, some wrong to right.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-14"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_dc93d8#0",
+      "format": "flip",
+      "prompt": "Why is per-problem gain/loss analysis statistically fragile?",
+      "back_html": "\u003cp\u003eIt differences two noisy accuracy estimates, so ordinary measurement noise shows up as apparent capability transitions.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dc93d8#1",
+      "format": "quiz",
+      "prompt": "What did running a frozen, untrained model through the same pipeline reveal?",
+      "choices": [
+        {
+          "text": "It showed apparent capability changes — a non-zero null largely traceable to inference batching",
+          "correct": true
+        },
+        {
+          "text": "It confirmed the pipeline is noise-free when greedy decoding is used",
+          "correct": false
+        },
+        {
+          "text": "It reproduced the trained model's gains exactly",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA ledger built on a single greedy decode manufactured transitions on a model that never trained, which is why every transition-level statistic needs its own separately measured null.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dc93d8#2",
+      "format": "flip",
+      "prompt": "What did the audited comparison find about self-training versus distillation?",
+      "back_html": "\u003cp\u003eExternal distillation improved problems the base model rarely reaches; three forms of self-training did not, and self-training corrupted already-solved problems above the measured floor.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dc93d8#3",
+      "format": "flip",
+      "prompt": "Where does the paper say the null should come from?",
+      "back_html": "\u003cp\u003eFrom baseline replicates a multi-arm study already owns — no new experiments needed, though most studies hold too few replicates to do it.\u003c/p\u003e"
+    }
+  ]
+}

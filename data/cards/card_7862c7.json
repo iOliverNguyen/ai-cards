@@ -1,0 +1,106 @@
+{
+  "id": "card_7862c7",
+  "slug": "tracelab-coding-agent-workloads",
+  "type": "paper",
+  "title": "TraceLab: What Coding-Agent Traffic Actually Looks Like",
+  "hook": "The first real trace of day-to-day coding-agent usage — 350,000 LLM steps from Claude Code and Codex sessions — reveals serving patterns no prior benchmark captured.",
+  "key_points": [
+    "Released ~4,300 real coding-agent sessions: ~350,000 LLM steps and ~430,000 tool calls from everyday Claude Code and Codex use.",
+    "Workloads feature long autonomous loops, long contexts paired with short outputs, and heavily tailed, diverse tool calls.",
+    "Prefix cache hit rates are high but imperfect, leaving room for smarter caching around human-paced gaps between requests.",
+    "Points to concrete serving optimizations: lower-overhead tool calling, append-aware prefill, and latency-aware tool-call prediction."
+  ],
+  "content_html": "\u003cp\u003eCoding agents are becoming one of the biggest applications of agentic LLMs, but serving them efficiently is hard partly because nobody had published what their traffic actually looks like. TraceLab fills that gap with a real trace instead of a synthetic guess.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe team collects and releases roughly 4,300 real coding-agent sessions — about 350,000 LLM steps and 430,000 tool calls — drawn from their own everyday use of Claude Code and Codex. The analysis surfaces patterns a synthetic benchmark would likely miss: long autonomous loops that run for many steps without human intervention, long input contexts paired with comparatively short outputs, a heavily tailed and diverse distribution of tool calls, and prefix cache hit rates that are high but still imperfect. These findings point to concrete serving optimizations — lower-overhead tool calling, append-length-aware prefill, semantic-aware tool-latency prediction, and better KV-cache management around the human-paced gaps between requests. Dataset, collection pipeline, and analysis code are open source. Kan Zhu and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Kan Zhu",
+      "Mathew Jacob",
+      "Chenxi Ma",
+      "Yi Pan",
+      "Stephanie Wang",
+      "Arvind Krishnamurthy",
+      "Baris Kasikci"
+    ],
+    "url": "https://arxiv.org/abs/2606.30560",
+    "published_at": "2026-06-29",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "inference",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "inference",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-02",
+  "date": "2026-06-29",
+  "related": [
+    {
+      "id": "card_688904",
+      "slug": "kv-cache-and-batching",
+      "type": "concept",
+      "title": "The KV Cache \u0026 Continuous Batching",
+      "hook": "Generating one token reuses every prior key and value - that growing cache is why LLM inference is memory-bound, and continuous batching is how servers fight back.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-11-09"
+    },
+    {
+      "id": "card_ef8b5f",
+      "slug": "paged-attention-vllm",
+      "type": "paper",
+      "title": "PagedAttention / vLLM: Efficient LLM Serving",
+      "hook": "LLM serving wastes huge amounts of GPU memory on the attention cache. PagedAttention borrows an OS trick — paging — to recover it and serve many more requests at once.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-09-12"
+    },
+    {
+      "id": "card_3e4a5d",
+      "slug": "swe-bench",
+      "type": "paper",
+      "title": "SWE-bench: Can Language Models Resolve Real GitHub Issues?",
+      "hook": "Test a coding agent on real GitHub issues with real test suites - not toy problems - and the bar turns out to be much harder than HumanEval suggested.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-10-10"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_7862c7#0",
+      "format": "flip",
+      "prompt": "Why did the TraceLab authors need to collect a new dataset instead of using existing benchmarks?",
+      "back_html": "\u003cp\u003ePublic traces and benchmarks didn't capture real, everyday coding-agent usage patterns across multiple agents and models — data needed for serving-system analysis.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7862c7#1",
+      "format": "quiz",
+      "prompt": "What workload pattern does TraceLab highlight that matters for LLM serving?",
+      "choices": [
+        {
+          "text": "Long autonomous loops with long contexts but short outputs, and heavily tailed tool-call distributions",
+          "correct": true
+        },
+        {
+          "text": "Every request being short, uniform, and independent of prior context",
+          "correct": false
+        },
+        {
+          "text": "Tool calls that are rare and evenly distributed",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eReal coding-agent sessions loop autonomously for a long time, read a lot of context but generate little each step, and call a long tail of diverse tools.\u003c/p\u003e"
+    }
+  ]
+}

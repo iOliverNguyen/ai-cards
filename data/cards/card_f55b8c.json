@@ -1,0 +1,99 @@
+{
+  "id": "card_f55b8c",
+  "slug": "state-prediction-separation-hypothesis",
+  "type": "paper",
+  "title": "The State-Prediction Separation Hypothesis",
+  "hook": "A transformer uses one stream to both predict the next token and carry state for future predictions — split those two jobs apart, and the model gets measurably better.",
+  "key_points": [
+    "Standard transformers overload one forward computation stream with two jobs: predicting the next token now, and carrying state useful for predicting later tokens.",
+    "The 'state-prediction separation hypothesis': disentangling these two roles should improve language modeling.",
+    "A two-stream Transformer variant tests this across multiple pretraining scales.",
+    "Separation consistently improves data and compute efficiency (better validation loss) and beats standard Transformers by 2-3 percentage points on downstream tasks.",
+    "Extensive analysis rules out confounders and shows the design produces genuinely different gradients, not just a cosmetic change."
+  ],
+  "content_html": "\u003cp\u003eTransformers predict the next token and carry forward useful context for later tokens through the exact same computation stream — one stream, two jobs. This paper asks what happens if you stop asking one stream to do both.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eSplitting the stream\u003c/h2\u003e\n\u003cp\u003eThe authors formulate the \u0026quot;state-prediction separation hypothesis\u0026quot;: disentangling next-token prediction from state-carrying should yield better language modeling, because the two roles can pull the representation in different directions. They design a two-stream Transformer variant that separates the functions explicitly and pretrain it across multiple scales to test the idea.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe separated design consistently improves data and compute efficiency — better validation loss for the same budget — and outperforms standard Transformers by 2-3 percentage points on average on downstream tasks. Extensive analysis rules out simpler explanations (like extra capacity from added parameters) and shows the two streams genuinely receive different gradients during training. It's a reminder that even the transformer's basic forward pass — one stream serving two purposes — still has structural assumptions worth questioning.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Giovanni Monea",
+      "Nathan Godey",
+      "Kianté Brantley",
+      "Yoav Artzi"
+    ],
+    "url": "https://arxiv.org/abs/2607.01218",
+    "published_at": "2026-07-01",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "transformers",
+    "papers-this-week"
+  ],
+  "tags": [
+    "architecture",
+    "training",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-06",
+  "date": "2026-07-01",
+  "related": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_a7468c",
+      "slug": "attention-is-all-you-need",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "hook": "Drop recurrence and convolution, keep only attention — and you get a model that trains in parallel and powers nearly every LLM since.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2017-06-12"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_f55b8c#0",
+      "format": "flip",
+      "prompt": "What two jobs does a standard transformer's forward stream do at once, according to this hypothesis?",
+      "back_html": "\u003cp\u003eIt predicts the next token right now, and it carries state (context useful for predicting later tokens) — both through the same computation stream.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f55b8c#1",
+      "format": "quiz",
+      "prompt": "What did separating the prediction and state-carrying roles into two streams do to performance?",
+      "choices": [
+        {
+          "text": "Improved data and compute efficiency and beat standard transformers by 2-3 points on downstream tasks",
+          "correct": true
+        },
+        {
+          "text": "Made no measurable difference at any pretraining scale",
+          "correct": false
+        },
+        {
+          "text": "Improved downstream tasks but made validation loss worse",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAcross multiple pretraining scales, the two-stream variant showed better validation loss and outperformed standard transformers by 2-3 percentage points on average downstream.\u003c/p\u003e"
+    },
+    {
+      "id": "card_f55b8c#2",
+      "format": "flip",
+      "prompt": "How did the authors rule out that the improvement was just a cosmetic side effect (e.g. extra parameters)?",
+      "back_html": "\u003cp\u003eExtensive empirical analysis ruled out potential confounders and showed the two-stream design produces fundamentally different gradients than a standard transformer, not just an incidental capacity increase.\u003c/p\u003e"
+    }
+  ]
+}

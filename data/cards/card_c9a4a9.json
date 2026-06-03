@@ -1,0 +1,120 @@
+{
+  "id": "card_c9a4a9",
+  "slug": "controlnet",
+  "type": "paper",
+  "title": "ControlNet: Adding Conditional Control to Diffusion Models",
+  "hook": "Lock a diffusion model's weights, attach a trainable copy of its encoder fed with spatial signals like edges or pose, and gain precise compositional control without touching the original model.",
+  "key_points": [
+    "A trainable copy of the UNet encoder is connected back to the frozen decoder via zero-initialized convolutions, preserving the original model.",
+    "Spatial conditions - Canny edges, human pose, depth maps, scribbles, segmentation masks - replace or augment the text prompt.",
+    "Zero convolutions start at zero output, so training begins from the pretrained model's behavior and diverges only as needed.",
+    "Multiple ControlNets can be combined at inference to apply several spatial constraints simultaneously."
+  ],
+  "content_html": "\u003cp\u003eZhang, Rao, and Agrawala published ControlNet in February 2023, solving a real frustration with text-to-image models: you can describe what you want in words, but you can't easily say where things should go. ControlNet adds a trainable side-network to a frozen diffusion model that lets you steer composition using structured spatial inputs like sketches, human keypoints, or depth maps.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eControlNet duplicates the encoder half of a pretrained UNet. The copy receives the spatial condition (e.g., a Canny edge map) alongside the noisy latent, and its output is added back into the frozen decoder via zero-initialized 1x1 convolutions. Because those convolutions start at exactly zero, ControlNet's output starts at zero and the original model behavior is preserved at the beginning of training. As training proceeds, the side network learns to push the decoder toward the conditioned composition while the frozen backbone retains its texture and style capabilities.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eControlNet transformed diffusion models from purely prompt-driven tools into layout-aware image editors, enabling applications like pose-consistent character generation, architectural visualization from rough sketches, and depth-guided scene composition. It integrates directly with Stable Diffusion and SDXL tooling. Read the full method in the paper on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Lvmin Zhang",
+      "Anyi Rao",
+      "Maneesh Agrawala"
+    ],
+    "url": "https://arxiv.org/abs/2302.05543",
+    "published_at": "2023-02-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "text-to-image"
+  ],
+  "tags": [
+    "generative",
+    "vision",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2023-02-10",
+  "related": [
+    {
+      "id": "card_7e3221",
+      "slug": "latent-diffusion-models",
+      "type": "paper",
+      "title": "High-Resolution Image Synthesis with Latent Diffusion (Stable Diffusion)",
+      "hook": "Running diffusion on raw pixels is brutally expensive. Do it in a compressed latent space instead, and high-res text-to-image becomes cheap enough to run on a consumer GPU.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-12-20"
+    },
+    {
+      "id": "card_dd86b0",
+      "slug": "sdxl",
+      "type": "paper",
+      "title": "SDXL: Improving Latent Diffusion for High-Resolution Synthesis",
+      "hook": "A larger UNet, two text encoders, and a refinement diffusion stage gave open-source Stable Diffusion a major quality leap - now the workhorse of community image generation.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-07-04"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7e3221",
+      "slug": "latent-diffusion-models",
+      "type": "paper",
+      "title": "High-Resolution Image Synthesis with Latent Diffusion (Stable Diffusion)",
+      "hook": "Running diffusion on raw pixels is brutally expensive. Do it in a compressed latent space instead, and high-res text-to-image becomes cheap enough to run on a consumer GPU.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-12-20"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_c9a4a9#0",
+      "format": "flip",
+      "prompt": "Why do ControlNet's zero convolutions start at zero output?",
+      "back_html": "\u003cp\u003eSo training begins from the pretrained model's exact behavior and the side network diverges only as needed, preserving the original.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c9a4a9#1",
+      "format": "quiz",
+      "prompt": "What does ControlNet add to a frozen diffusion model?",
+      "choices": [
+        {
+          "text": "A trainable copy of the UNet encoder fed spatial signals",
+          "correct": true
+        },
+        {
+          "text": "A second text encoder for richer prompts",
+          "correct": false
+        },
+        {
+          "text": "A refiner diffusion stage for sharper details",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eControlNet attaches a trainable copy of the encoder, fed spatial conditions, connected back via zero convolutions.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c9a4a9#2",
+      "format": "quiz",
+      "prompt": "Which kind of input does ControlNet use to steer composition?",
+      "choices": [
+        {
+          "text": "Spatial conditions like Canny edges, pose, or depth maps",
+          "correct": true
+        },
+        {
+          "text": "Longer, more detailed text prompts",
+          "correct": false
+        },
+        {
+          "text": "Higher classifier-free guidance scales",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSpatial conditions — edges, pose, depth, scribbles, segmentation — replace or augment the text prompt.\u003c/p\u003e"
+    }
+  ]
+}

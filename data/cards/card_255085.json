@@ -1,0 +1,133 @@
+{
+  "id": "card_255085",
+  "slug": "reasoning-pretraining-to-rl",
+  "type": "paper",
+  "title": "Understanding Reasoning from Pretraining to Post-Training",
+  "hook": "RL post-training is usually studied apart from pretraining. Using chess as a testbed, this paper shows post-RL performance is predictable from pretraining loss alone.",
+  "key_points": [
+    "Uses chess as a controlled testbed: pretrain 5M-1B parameter models on human games, SFT on synthetic reasoning traces, then RL on puzzles with verifiable rewards.",
+    "Post-RL performance at a given RL compute level is well-predicted from pretraining loss alone.",
+    "The slope of the RL reward curve improves roughly linearly with pretraining tokens seen.",
+    "RL doesn't just sharpen the SFT policy uniformly: on easy puzzles it amplifies moves SFT already preferred; on hard puzzles it surfaces correct moves nearly absent under SFT.",
+    "The same predictive pattern (longer pretraining -\u003e higher, faster post-RL gains) replicates when transferring to a 1B math-domain language model."
+  ],
+  "content_html": "\u003cp\u003eRL post-training gets most of the credit for today's reasoning models, but it's almost always studied disconnected from the pretraining that comes before it. This paper asks: what does pretraining actually buy you when RL comes next — and what does RL actually change?\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eJingyan Shen, Pavel Izmailov, and colleagues sidestep the usual problem — pretraining corpora are too vast and uncontrolled to cleanly attribute behavior — by using chess as a testbed. They pretrain models from 5M to 1B parameters on human chess games, run supervised fine-tuning on synthetic reasoning traces, then apply RL on chess puzzles with verifiable rewards, mirroring the standard LLM pipeline end to end. They find post-RL performance at a fixed RL compute budget is well-predicted just from pretraining loss, and that the RL reward curve's slope improves roughly linearly with pretraining tokens seen.\u003c/p\u003e\n\u003cp\u003eBeyond scaling curves, they find RL isn't a uniform sharpening of the SFT policy: on easy puzzles it mostly amplifies moves the SFT policy already leaned toward, while on hard puzzles it surfaces correct moves that were nearly absent beforehand. To check this isn't a chess-only artifact, they retrain a 1B model on math-domain text and see the same pattern: longer pretraining leads to higher and faster post-RL gains. The result is a quantitative account of the pretraining-to-RL interface, plus a reusable controlled testbed for studying it further. arXiv, July 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jingyan Shen",
+      "Ang Li",
+      "Salman Rahman",
+      "Yifan Sun",
+      "Micah Goldblum",
+      "Matus Telgarsky",
+      "Pavel Izmailov"
+    ],
+    "url": "https://arxiv.org/abs/2607.16097",
+    "published_at": "2026-07-17",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining",
+    "rlhf",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-20",
+  "date": "2026-07-17",
+  "related": [
+    {
+      "id": "card_46fd66",
+      "slug": "chinchilla-scaling-laws",
+      "type": "paper",
+      "title": "Chinchilla: Compute-Optimal Scaling",
+      "hook": "Most giant models were starved of data. Chinchilla showed that for a fixed compute budget you should grow parameters and tokens together — and a smaller, longer-trained model won.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2022-03-29"
+    },
+    {
+      "id": "card_3e0124",
+      "slug": "group-relative-policy-optimization",
+      "type": "paper",
+      "title": "GRPO: Group Relative Policy Optimization",
+      "hook": "GRPO dropped the value network from PPO and scored each answer against a group of sampled siblings — the cheap RL recipe that made DeepSeek-R1's reasoning trainable.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2024-02-05"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_46fd66",
+      "slug": "chinchilla-scaling-laws",
+      "type": "paper",
+      "title": "Chinchilla: Compute-Optimal Scaling",
+      "hook": "Most giant models were starved of data. Chinchilla showed that for a fixed compute budget you should grow parameters and tokens together — and a smaller, longer-trained model won.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2022-03-29"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_255085#0",
+      "format": "flip",
+      "prompt": "Why do the authors use chess instead of standard LLM pretraining corpora to study RL's returns?",
+      "back_html": "\u003cp\u003eStandard corpora are vast and uncontrolled, making it hard to attribute behavior to pretraining vs. RL, and compute sweeps across both stages are prohibitively expensive. Chess gives a controlled testbed.\u003c/p\u003e"
+    },
+    {
+      "id": "card_255085#1",
+      "format": "quiz",
+      "prompt": "What predicts post-RL performance at a given RL compute level, per this paper?",
+      "choices": [
+        {
+          "text": "The model's pretraining loss",
+          "correct": true
+        },
+        {
+          "text": "Only the number of RL steps, independent of pretraining",
+          "correct": false
+        },
+        {
+          "text": "The size of the SFT dataset alone",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThey find post-RL performance at a given RL compute level is well-predicted from pretraining loss, and the RL reward curve's slope scales roughly linearly with pretraining tokens.\u003c/p\u003e"
+    },
+    {
+      "id": "card_255085#2",
+      "format": "flip",
+      "prompt": "How does RL affect easy puzzles differently from hard puzzles, according to the paper?",
+      "back_html": "\u003cp\u003eOn easy puzzles it amplifies correct moves the SFT policy already favored; on hard puzzles it surfaces correct moves that were nearly absent under SFT.\u003c/p\u003e"
+    },
+    {
+      "id": "card_255085#3",
+      "format": "quiz",
+      "prompt": "Did the chess-derived findings hold up outside chess?",
+      "choices": [
+        {
+          "text": "Yes — a 1B math-domain model showed the same pattern: longer pretraining, higher and faster post-RL gains",
+          "correct": true
+        },
+        {
+          "text": "No — the pattern was specific to chess and did not transfer",
+          "correct": false
+        },
+        {
+          "text": "It was only tested on chess, with no transfer experiment",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors trained a 1B model on math-domain text and found the same predictive pattern emerged there too.\u003c/p\u003e"
+    }
+  ]
+}

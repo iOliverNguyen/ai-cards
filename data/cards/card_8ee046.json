@@ -1,0 +1,118 @@
+{
+  "id": "card_8ee046",
+  "slug": "co-rl-cohort-multi-agent-rl",
+  "type": "paper",
+  "title": "Co-RL: Unsupervised Reasoning from a Diverse Cohort",
+  "hook": "Self-rewarding RL collapses because a model's errors reinforce themselves. Co-RL breaks the loop by having a diverse cohort of models grade each other — no labels at all.",
+  "key_points": [
+    "RL for reasoning still leans on verifiable rewards, which get scarce as models pass what humans can check.",
+    "Self-rewarding RL removes the labels but reinforces the model's own biases, shrinking diversity until training collapses.",
+    "Co-RL trains several models that share no parameters, each rewarded by its peers' judgments.",
+    "Cohort diversity — different families, sizes, and rephrased samples — is the active ingredient: it decorrelates errors.",
+    "Reports +3.0–8.6% average gains on seven text benchmarks and +2.3–7.2% on four multimodal ones, with no ground truth."
+  ],
+  "content_html": "\u003cp\u003eReinforcement learning has been the engine behind the reasoning jump in recent models, but its best results still depend on a verifier that knows the right answer. That's fine for math and code; it runs out exactly where you'd most want it — on problems past the point where humans can reliably judge. Self-rewarding RL is the obvious escape hatch, and it has a known failure mode: a model grading itself amplifies its own biases until responses homogenize and training collapses.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eCo-RL replaces the single self-grader with a cohort. Multiple models, sharing no parameters, are optimized at the same time, each one's reward derived from its peers' judgments of its completions. The authors' central finding is that \u003cem\u003ediversity\u003c/em\u003e is what makes this work: mixing model families, model sizes, and rephrased versions of the training samples reduces the correlated errors that let a feedback loop close on itself.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAcross text-only and multimodal domains the authors report consistent gains over the base models and over prior label-free methods — average improvements of 3.0–8.6% on seven text benchmarks and 2.3–7.2% on four multimodal benchmarks — while matching or beating supervised methods without touching a single ground-truth label. It also preserves behavioral diversity rather than eroding it, which is the property self-rewarding RL loses first. Code is open-sourced.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yunhao Yang",
+      "Yuexin Bian",
+      "Yunjie Tian",
+      "Di Fu",
+      "Tianjin Huang",
+      "Yuanyuan Shi",
+      "Ziang Xiao",
+      "Nuno Vasconcelos",
+      "Yijiang Li"
+    ],
+    "url": "https://arxiv.org/abs/2608.17253",
+    "published_at": "2026-08-19",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "papers-this-week"
+  ],
+  "tags": [
+    "alignment",
+    "reasoning",
+    "training",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-20",
+  "date": "2026-08-19",
+  "related": [
+    {
+      "id": "card_4cd8fd",
+      "slug": "deepseek-r1",
+      "type": "paper",
+      "title": "DeepSeek-R1: Incentivizing Reasoning via Reinforcement Learning",
+      "hook": "DeepSeek shows strong reasoning can emerge from RL on verifiable rewards with minimal supervised data - and those reasoning traces can be distilled into smaller models.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2025-01-22"
+    },
+    {
+      "id": "card_f4c73d",
+      "slug": "llm-as-a-verifier",
+      "type": "paper",
+      "title": "LLM-as-a-Verifier: Verification as a New Scaling Axis",
+      "hook": "Everyone scales pretraining, post-training, and test-time compute. This paper argues verification — checking if a solution is correct — is its own scaling axis, and hits SOTA on four agentic benchmarks.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_8ee046#0",
+      "format": "flip",
+      "prompt": "What goes wrong when a model trains purely on rewards derived from its own completions?",
+      "back_html": "\u003cp\u003eIts existing biases get reinforced, response diversity shrinks, and outputs homogenize — a self-reinforcing feedback loop that can end in training collapse.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8ee046#1",
+      "format": "quiz",
+      "prompt": "In Co-RL, where does the reward signal come from?",
+      "choices": [
+        {
+          "text": "From peer models in the cohort, which share no parameters",
+          "correct": true
+        },
+        {
+          "text": "From a verifier that checks answers against ground-truth labels",
+          "correct": false
+        },
+        {
+          "text": "From a single frozen reward model trained on human preferences",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eCo-RL optimizes several decoupled models simultaneously, each scored by the others. No ground-truth labels are used.\u003c/p\u003e"
+    },
+    {
+      "id": "card_8ee046#2",
+      "format": "quiz",
+      "prompt": "Why does the paper push for heterogeneous model families and sizes in the cohort?",
+      "choices": [
+        {
+          "text": "Diversity reduces correlated errors, which is what drives self-reinforcing collapse",
+          "correct": true
+        },
+        {
+          "text": "Larger models need smaller ones to distill into during training",
+          "correct": false
+        },
+        {
+          "text": "It lets the cohort be sharded across cheaper hardware",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eIf every peer makes the same mistake, peer reward is no better than self-reward. Decorrelating errors is what makes the mutual signal informative.\u003c/p\u003e"
+    }
+  ]
+}

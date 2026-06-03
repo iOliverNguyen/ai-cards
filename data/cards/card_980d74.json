@@ -1,0 +1,94 @@
+{
+  "id": "card_980d74",
+  "slug": "nemotron-3-embed-rteb",
+  "type": "news",
+  "title": "NVIDIA Nemotron 3 Embed Ranks #1 Overall on RTEB",
+  "hook": "A new embedding model from NVIDIA takes the top overall spot on RTEB, the retrieval-focused benchmark — with an eye toward making agentic retrieval, not just search, more reliable.",
+  "key_points": [
+    "Nemotron 3 Embed ranks #1 overall on RTEB (Retrieval Text Embedding Benchmark).",
+    "Framed explicitly around advancing agentic retrieval — embeddings good enough to support multi-step agent workflows, not just one-shot search.",
+    "Part of NVIDIA's Nemotron model family, positioned as a foundation-layer component for RAG and agent pipelines."
+  ],
+  "content_html": "\u003cp\u003eNVIDIA's latest embedding model, Nemotron 3 Embed, took the #1 overall spot on RTEB — the Retrieval Text Embedding Benchmark used to compare how well embedding models support real retrieval tasks. The announcement frames the achievement specifically around agentic retrieval: making embeddings robust enough to back multi-step agent workflows, not just single-shot document search.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eEmbedding quality is the foundation layer under most RAG and agent-retrieval systems — a better embedding model means more relevant context reaches the LLM at each step, which compounds over multi-step agentic tasks where retrieval happens repeatedly. Ranking first overall on RTEB puts Nemotron 3 Embed ahead of prior retrieval embedding models on that benchmark's suite. Published on the Hugging Face blog by NVIDIA, July 2026 — see the source for benchmark details.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face Blog (NVIDIA)",
+    "url": "https://huggingface.co/blog/nvidia/nemotron-3-embed-wins-rteb",
+    "published_at": "2026-07-16",
+    "license": "Hugging Face blog"
+  },
+  "topic_ids": [
+    "rag",
+    "lab-updates"
+  ],
+  "tags": [
+    "rag",
+    "benchmark",
+    "efficiency"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-16",
+  "related": [
+    {
+      "id": "card_02ad74",
+      "slug": "retrieval-augmented-generation",
+      "type": "paper",
+      "title": "Retrieval-Augmented Generation (RAG)",
+      "hook": "Why force a model to memorize everything? RAG lets it look things up — fetch relevant documents, then answer from that evidence instead of frozen weights alone.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2020-05-22"
+    },
+    {
+      "id": "card_667a26",
+      "slug": "dense-passage-retrieval",
+      "type": "paper",
+      "title": "Dense Passage Retrieval (DPR)",
+      "hook": "Keyword search misses answers that use different words. DPR embeds questions and passages into one vector space and retrieves by meaning — the backbone of modern vector search.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-04-10"
+    },
+    {
+      "id": "card_b43f8e",
+      "slug": "what-is-rag",
+      "type": "concept",
+      "title": "Why RAG? Grounding LLMs in Your Data",
+      "hook": "An LLM only knows what it was trained on — until it's stale, private, or just wrong. RAG bolts on a search step so the model answers from your data and can cite it.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_980d74#0",
+      "format": "flip",
+      "prompt": "What benchmark did NVIDIA's Nemotron 3 Embed top, and at what rank?",
+      "back_html": "\u003cp\u003eIt ranked #1 overall on RTEB, the Retrieval Text Embedding Benchmark.\u003c/p\u003e"
+    },
+    {
+      "id": "card_980d74#1",
+      "format": "quiz",
+      "prompt": "What use case does NVIDIA emphasize for Nemotron 3 Embed beyond plain document search?",
+      "choices": [
+        {
+          "text": "Agentic retrieval — supporting multi-step agent workflows",
+          "correct": true
+        },
+        {
+          "text": "Image classification",
+          "correct": false
+        },
+        {
+          "text": "Speech-to-text transcription",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe announcement frames the model around advancing agentic retrieval, not just one-shot semantic search, since agents often need to retrieve iteratively across steps.\u003c/p\u003e"
+    }
+  ]
+}

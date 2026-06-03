@@ -1,0 +1,110 @@
+{
+  "id": "card_1c3ebc",
+  "slug": "code-world-model-world-brain",
+  "type": "paper",
+  "title": "Code World Model: Coding Agent as World Brain",
+  "hook": "Video world models learn what happens, not why. Put a coding agent in charge of the rules — writing executable code that holds world state — and let the video model handle only the pixels.",
+  "key_points": [
+    "Video-based world models learn dynamics from observations, which show outcomes rather than the rules producing them.",
+    "Code World Model separates world evolution from visual realization.",
+    "A coding agent acts as 'world brain': it reasons about events and emits executable code holding persistent state.",
+    "A proxy representation encodes frame-wise spatiotemporal constraints and compiles into a proxy video.",
+    "That proxy video conditions a video model to render the high-fidelity observation.",
+    "After fine-tuning on paired gameplay data, MiniMax-H3 follows the proxy specs while keeping visual detail."
+  ],
+  "content_html": "\u003cp\u003eWorld models aim to simulate how environments evolve under actions and events. The dominant approach learns that evolution from video — but video shows you \u003cem\u003eoutcomes\u003c/em\u003e, not the knowledge, rules, and mechanisms behind them. Chen, Lin, and Zhang argue that's why such models struggle to maintain persistent consequences or support coherent open-ended evolution: they never represented the rules in the first place.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eDivision of labour\u003c/h2\u003e\n\u003cp\u003e\u003cstrong\u003eCode World Model\u003c/strong\u003e separates world evolution from visual realization. A \u003cstrong\u003ecoding agent\u003c/strong\u003e serves as the world brain: it reasons about events and their consequences and generates executable code that maintains persistent world state and performs rule-consistent evolution. Code is a good substrate for this — state persists, rules are explicit and inspectable, and consequences compound the way they do in a real simulator. The video model is demoted to a renderer.\u003c/p\u003e\n\u003ch2\u003eThe interface\u003c/h2\u003e\n\u003cp\u003eConnecting executable state to pixels is the hard part. The authors introduce a \u003cstrong\u003eproxy representation\u003c/strong\u003e that encodes frame-wise spatiotemporal constraints and compiles into a \u003cem\u003eproxy video\u003c/em\u003e, which then conditions a video model to render high-fidelity observations. They also build data pipelines for constructing aligned proxy-observation pairs from gameplay and real-world video. After fine-tuning on paired gameplay data, MiniMax-H3 follows proxy-based spatiotemporal specifications from simple interactive worlds built by the coding agent while preserving rich visual detail and dynamics. The demonstrated worlds are simple, and that's the honest scope — but the split it argues for (code for persistence, video for realization) is a clean idea worth borrowing. arXiv, 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yiwen Chen",
+      "Guosheng Lin",
+      "Chi Zhang"
+    ],
+    "url": "https://arxiv.org/abs/2608.25927",
+    "published_at": "2026-08-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-code",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "generative",
+    "multimodal",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_9a9bd2",
+      "slug": "world-models-meet-language-models",
+      "type": "paper",
+      "title": "World Models Meet Language Models",
+      "hook": "A world model can imagine what happens next; an LLM can reason about it. The hard part is knowing when to trust the daydream — and when the simulation is just plausible nonsense.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_80c974",
+      "slug": "persistent-recursive-worlds-genesis",
+      "type": "paper",
+      "title": "Persistent Recursive Worlds Enable Autonomous Software Evolution",
+      "hook": "Instead of keeping the agent alive across a long project, keep the project alive and let agents be disposable — enough to grow a 250k-line Rust C compiler for $44.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-12"
+    },
+    {
+      "id": "card_401ea9",
+      "slug": "echowm-omnimodal-world-model",
+      "type": "paper",
+      "title": "EchoWM: A World Model You Can Walk Into and Hear",
+      "hook": "Most world models generate silent video. EchoWM generates 720p video plus environmental sound, music, and speech, and lets you navigate it continuously.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_1c3ebc#0",
+      "format": "flip",
+      "prompt": "What limitation of video-based world models does Code World Model target?",
+      "back_html": "\u003cp\u003eVideo models learn dynamics from visual observations, which reveal outcomes rather than the underlying knowledge, rules, and mechanisms — making persistent consequences and coherent open-ended evolution hard to maintain.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1c3ebc#1",
+      "format": "quiz",
+      "prompt": "In Code World Model, what connects the executable world state to the rendered video?",
+      "choices": [
+        {
+          "text": "A proxy representation encoding frame-wise spatiotemporal constraints, compiled into a proxy video that conditions the video model",
+          "correct": true
+        },
+        {
+          "text": "A text description of each frame fed to the video model as a prompt",
+          "correct": false
+        },
+        {
+          "text": "Direct fine-tuning of the video model on the coding agent's source code",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe proxy video is the interface: it carries the spatiotemporal constraints the code decided, and the video model renders high-fidelity observations conditioned on it.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1c3ebc#2",
+      "format": "flip",
+      "prompt": "What role does the coding agent play in this framework?",
+      "back_html": "\u003cp\u003eIt's the 'world brain' — reasoning about events and their consequences, then generating executable code that maintains persistent world state and evolves it consistently with the rules.\u003c/p\u003e"
+    }
+  ]
+}

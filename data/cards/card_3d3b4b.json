@@ -1,0 +1,123 @@
+{
+  "id": "card_3d3b4b",
+  "slug": "xiaomi-robotics-u0-world-foundation-model",
+  "type": "paper",
+  "title": "Xiaomi-Robotics-U0: A World Foundation Model for Embodied Synthesis",
+  "hook": "Instead of training a robot on real footage, generate the footage: a 38B image/video model that beats GPT-Image-2.0 at imagining robot scenes — and nearly doubles a real policy's success rate.",
+  "key_points": [
+    "38B-parameter model unifying text-to-image, image editing, embodied scene generation, transfer, and video generation in one framework.",
+    "Beats GPT-Image-2.0 in human evals on embodied scene generation/transfer; ranks #1 on World Arena for embodied video generation.",
+    "As a synthetic data engine, it lifts pi_0.5's real-world manipulation out-of-distribution success rate from 36.9% to 63.2%.",
+    "First model with high-quality multi-view scene generation across robot embodiments, plus controllable embodied transfer preserving consistency and dynamics.",
+    "Shows one foundation world model can serve as both an embodied simulator and a scalable data engine for training robot policies."
+  ],
+  "content_html": "\u003cp\u003eMost \u0026quot;foundation model for robotics\u0026quot; efforts fine-tune an image or video generator on scarce robot footage, and end up trading away the broad visual knowledge that made the base model good in the first place. Xiaomi-Robotics-U0 takes the opposite approach: a 38-billion-parameter multimodal autoregressive model that treats embodied generation — multi-view scenes, robot-state edits, action-conditioned video — as just another task alongside ordinary text-to-image generation and image editing, all trained jointly.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eBecause embodied synthesis shares a backbone with general image/video generation, the model keeps the multi-view consistency, geometric coherence, and controllability that foundation generators have but robotics-specific models usually lack. It's the first model to generate high-quality multi-view scenes across multiple robot embodiments and to support \u0026quot;embodied transfer\u0026quot; — fine-grained edits to a scene that preserve consistency and interaction dynamics rather than just repainting pixels. In human evaluations it beats GPT-Image-2.0 on embodied scene generation and transfer, and tops the World Arena leaderboard for embodied video generation. The more consequential result: used generatively as a data engine, it boosted an existing manipulation policy (pi_0.5) from 36.9% to 63.2% out-of-distribution success on hard real-world tasks — evidence that a good enough world model can manufacture the training data a robot needs, not just simulate it. Xinghang Li and coauthors (Xiaomi Robotics), arXiv 2026; code and checkpoints at robotics.xiaomi.com.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xinghang Li",
+      "Jun Guo",
+      "Qiwei Li",
+      "Long Qian",
+      "Hang Lai",
+      "Yueze Wang",
+      "Hongyu Yan",
+      "Jiahang Cao",
+      "Xi Chen",
+      "Jingen Qu",
+      "Jiaxi Song",
+      "Nan Sun",
+      "Hanye Zhao",
+      "Futeng Liu",
+      "Wanli Peng",
+      "Heyun Wang",
+      "Yunhong Wang",
+      "Caoyu Xia",
+      "Jack Zhao",
+      "Diyun Xiang",
+      "Hangjun Ye",
+      "Heng Qu",
+      "Huaping Liu",
+      "Jason Li"
+    ],
+    "url": "https://arxiv.org/abs/2607.11643",
+    "published_at": "2026-07-13",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "releases"
+  ],
+  "tags": [
+    "vision",
+    "multimodal",
+    "generative",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-16",
+  "date": "2026-07-13",
+  "related": [
+    {
+      "id": "card_0dc810",
+      "slug": "pi-zero",
+      "type": "paper",
+      "title": "π0: A Vision-Language-Action Model",
+      "hook": "π0 is a generalist robot policy: it takes camera images, joint angles, and a plain-language instruction, and outputs smooth action sequences — folding laundry, bussing tables, bagging groceries.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-10-31"
+    },
+    {
+      "id": "card_b9d1db",
+      "slug": "world-action-models-survey",
+      "type": "paper",
+      "title": "World Action Models: A Survey",
+      "hook": "Robots are learning to imagine the future before acting. This survey untangles 'world action models' from video generators and VLA policies — and finds them converging on one idea.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-18"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_3d3b4b#0",
+      "format": "flip",
+      "prompt": "Why does Xiaomi-Robotics-U0 treat embodied generation as an extension of foundation image/video generation, rather than training a separate robotics model?",
+      "back_html": "\u003cp\u003eSo it keeps the broad visual generalization learned from large-scale image/video pretraining instead of sacrificing it to adapt on limited robot data — the usual trade-off prior methods made.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3d3b4b#1",
+      "format": "quiz",
+      "prompt": "How is Xiaomi-Robotics-U0 actually used to improve a real robot policy's performance?",
+      "choices": [
+        {
+          "text": "As a data engine generating synthetic scenes/video to train and augment the policy",
+          "correct": true
+        },
+        {
+          "text": "It directly replaces the policy's action head",
+          "correct": false
+        },
+        {
+          "text": "It fine-tunes the policy's language encoder only",
+          "correct": false
+        },
+        {
+          "text": "It only evaluates the policy, without generating training data",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eUsed generatively as a synthetic data engine, it lifted pi_0.5's real-world manipulation OOD success rate from 36.9% to 63.2%.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3d3b4b#2",
+      "format": "flip",
+      "prompt": "What real-world manipulation result did pi_0.5 achieve after training with Xiaomi-Robotics-U0-generated data?",
+      "back_html": "\u003cp\u003eIts out-of-distribution success rate on challenging real-world manipulation tasks rose from 36.9% to 63.2%.\u003c/p\u003e"
+    }
+  ]
+}

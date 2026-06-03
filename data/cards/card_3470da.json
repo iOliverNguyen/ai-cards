@@ -1,0 +1,107 @@
+{
+  "id": "card_3470da",
+  "slug": "pathways-of-visual-information-flow",
+  "type": "paper",
+  "title": "Pathways of Visual Information Flow in VLMs",
+  "hook": "Vision-language models don't have one route from pixels to answer — this paper finds two, and shows the model switches between them depending on the task, even falling back when one is blocked.",
+  "key_points": [
+    "Direct pathway: visual information stays in image-token representations and gets read out directly by the final token in later layers.",
+    "Text-mediated pathway: visual information transfers to query (text) tokens first, then gets read out from there.",
+    "Which pathway a model uses depends on the task, the data distribution, and even prompt wording — it's not fixed per model.",
+    "Ablating the usual pathway with attention knockouts shows models can fall back to the other one — the routing is flexible, not hard-wired."
+  ],
+  "content_html": "\u003cp\u003eIf you ask how a vision-language model \u0026quot;sees,\u0026quot; you might assume there's one circuit that carries pixel information to the answer. This paper's causal-patching experiments say otherwise: there are (at least) two.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eUsing causal patching on controlled synthetic and natural datasets, the authors trace two distinct pathways VLMs use to solve visual tasks. In the direct pathway, visual information stays parked in image-token representations and gets read out by the final token late in the network. In the text-mediated pathway, visual information is first transferred into the query (text) tokens, then read out from there. Which pathway dominates is task-dependent, and even data distribution and prompt phrasing can shift the balance. The more striking finding comes from ablation: when the researchers knock out attention to force a model off its usual pathway, it can often fall back to the other one — meaning the routing is a flexible property of the model's mechanisms under intervention, not a fixed circuit per task. That reframes what earlier probing studies were measuring: what a model \u003cem\u003ecould\u003c/em\u003e do, not necessarily what it normally does. Israfel Salazar and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Israfel Salazar",
+      "Stella Frank",
+      "Dan Oneata",
+      "Desmond Elliott",
+      "Constanza Fierro"
+    ],
+    "url": "https://arxiv.org/abs/2607.03358",
+    "published_at": "2026-07-03",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "vlms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "multimodal",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-09",
+  "date": "2026-07-03",
+  "related": [
+    {
+      "id": "card_0946f0",
+      "slug": "towards-monosemanticity",
+      "type": "paper",
+      "title": "Towards Monosemanticity: Decomposing Models with Dictionary Learning",
+      "hook": "If neurons mean several things at once, can we find cleaner units? A sparse autoencoder pulled 4,000+ single-concept features out of one tiny transformer layer.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2023-10-05"
+    },
+    {
+      "id": "card_3d7d44",
+      "slug": "clip",
+      "type": "paper",
+      "title": "CLIP: Learning Visual Models from Language",
+      "hook": "Skip the fixed label list. Train on image–caption pairs so pictures and text share one space, and you can classify images from plain-text labels you make up on the spot.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-02-26"
+    },
+    {
+      "id": "card_837a7b",
+      "slug": "llava",
+      "type": "paper",
+      "title": "LLaVA: Visual Instruction Tuning",
+      "hook": "Connect a CLIP vision encoder to an LLM with just a linear projection, fine-tune on GPT-4-generated image dialogues, and get a capable open chat-with-images model for under a day of training.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-04-17"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_3470da#0",
+      "format": "flip",
+      "prompt": "What are the two pathways this paper finds for how VLMs route visual information to an answer?",
+      "back_html": "\u003cp\u003eA direct pathway (visual info stays in image tokens, read out by the final token in later layers) and a text-mediated pathway (visual info first transfers to query/text tokens, then gets read out from there).\u003c/p\u003e"
+    },
+    {
+      "id": "card_3470da#1",
+      "format": "quiz",
+      "prompt": "What happens when the researchers ablate a VLM's usual pathway with attention knockouts?",
+      "choices": [
+        {
+          "text": "The model can fall back to the other pathway, showing the routing is flexible rather than fixed",
+          "correct": true
+        },
+        {
+          "text": "The model always fails completely, proving each task has exactly one fixed pathway",
+          "correct": false
+        },
+        {
+          "text": "The model's accuracy improves, since the ablated pathway was unnecessary",
+          "correct": false
+        },
+        {
+          "text": "Nothing changes, since attention knockouts don't affect visual routing",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eCorrupted-input patching and attention knockouts reveal both pathways are viable routes: when the usual one is blocked, the model can rely on the other as fallback — showing what it \u003cem\u003ecould\u003c/em\u003e do, not just what it normally does.\u003c/p\u003e"
+    }
+  ]
+}

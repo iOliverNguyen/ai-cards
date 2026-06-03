@@ -1,0 +1,111 @@
+{
+  "id": "card_da23fd",
+  "slug": "robottt-context-scaling-robot-policies",
+  "type": "paper",
+  "title": "RoboTTT: Context Scaling for Robot Policies",
+  "hook": "Robot policies mostly look at the last step or two. NVIDIA's RoboTTT pushes visuomotor context to 8,000 timesteps without slowing inference — and finds performance keeps climbing the whole way.",
+  "key_points": [
+    "Most robot foundation models condition on single-step or short-history visual input; RoboTTT scales context to 8K timesteps, three orders of magnitude further, without added inference latency.",
+    "It folds Test-Time Training into the policy: 'fast weights' updated by gradient descent compress history into weight space, both during training and at inference.",
+    "Training recipe combines sequence action forcing with truncated backpropagation through time to make the long context trainable.",
+    "At 8K-timestep context, the model beats its own 1K-timestep version by 62% and the single-step baseline by 87% on real-robot manipulation.",
+    "Unlocks one-shot imitation from human video, on-the-fly policy improvement, and completing a 5-minute, 10-stage assembly task no baseline finished."
+  ],
+  "content_html": "\u003cp\u003eRobot foundation models have mostly been stuck looking at the current frame or a short window before it. A team including NVIDIA's GEAR lab (Yunfan Jiang, Linxi \u0026quot;Jim\u0026quot; Fan, and collaborators including Li Fei-Fei and Yuke Zhu) pushes that window out to 8,000 timesteps with RoboTTT — three orders of magnitude beyond prior policies — while keeping inference speed flat.\u003c/p\u003e\n\u003cp\u003eThe trick is Test-Time Training: instead of attending over a growing sequence, RoboTTT compresses history into a set of \u0026quot;fast weights\u0026quot; that get updated by gradient descent both while training and while the robot is acting, then retrieves from that compressed state for long-context conditioning. To make training over such long context tractable, they combine sequence action forcing with truncated backpropagation through time. The payoff, per the paper: 87% better performance than a single-step baseline, a 62% jump over their own 1K-timestep version, one-shot imitation from human video, and completion of a five-minute, ten-stage assembly task that no baseline managed. The authors frame context length itself as a new scaling axis for robot policies, alongside model size and data. Videos and details are linked via the source.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThis work sits alongside a broader trend of bringing test-time training into agentic and embodied systems — using update-time compute, not just more parameters, to adapt to what's happening right now. Full paper and demo videos are linked via the source.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yunfan Jiang",
+      "Yevgen Chebotar",
+      "Ruijie Zheng",
+      "Fengyuan Hu",
+      "Yunhao Ge",
+      "Jimmy Wu",
+      "Tianyuan Dai",
+      "Scott Reed",
+      "Li Fei-Fei",
+      "Yuke Zhu",
+      "Linxi \"Jim\" Fan"
+    ],
+    "url": "https://arxiv.org/abs/2607.15275",
+    "published_at": "2026-07-16",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "context-memory",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "efficiency",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-20",
+  "date": "2026-07-16",
+  "related": [
+    {
+      "id": "card_7e5a32",
+      "slug": "agentic-test-time-training",
+      "type": "paper",
+      "title": "Agentic Test-Time Training: Adapting Mid-Episode",
+      "hook": "LLM agents degrade over long episodes, repeating failed moves — this method updates the model's weights continuously during the episode itself, but only on genuinely new information.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-03"
+    },
+    {
+      "id": "card_0dc810",
+      "slug": "pi-zero",
+      "type": "paper",
+      "title": "π0: A Vision-Language-Action Model",
+      "hook": "π0 is a generalist robot policy: it takes camera images, joint angles, and a plain-language instruction, and outputs smooth action sequences — folding laundry, bussing tables, bagging groceries.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-10-31"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_da23fd#0",
+      "format": "flip",
+      "prompt": "How does RoboTTT scale a robot policy's context to 8K timesteps without growing inference latency?",
+      "back_html": "\u003cp\u003eIt uses Test-Time Training: a recurrent 'fast weights' state, updated by gradient descent during both training and inference, compresses long history into weight space instead of a growing token sequence.\u003c/p\u003e"
+    },
+    {
+      "id": "card_da23fd#1",
+      "format": "quiz",
+      "prompt": "What did RoboTTT observe as pretraining context length scaled up, for the first time in this line of work?",
+      "choices": [
+        {
+          "text": "Steady gains in closed-loop performance as context length increased",
+          "correct": true
+        },
+        {
+          "text": "Performance plateaued immediately past 1K timesteps",
+          "correct": false
+        },
+        {
+          "text": "Inference latency grew linearly with context length",
+          "correct": false
+        },
+        {
+          "text": "Longer context only helped on tasks under one stage",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors report steady closed-loop performance gains as context scales, framing context length itself as a new scaling axis for robot foundation models — the 8K-context model beat the 1K-context version by 62%.\u003c/p\u003e"
+    },
+    {
+      "id": "card_da23fd#2",
+      "format": "flip",
+      "prompt": "Name two new robot capabilities RoboTTT's long context unlocks.",
+      "back_html": "\u003cp\u003eOne-shot in-context imitation from human video demonstrations, and on-the-fly policy improvement — plus better robustness to perturbations and long-horizon, multi-stage tasks.\u003c/p\u003e"
+    }
+  ]
+}

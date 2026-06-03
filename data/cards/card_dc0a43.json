@@ -1,0 +1,108 @@
+{
+  "id": "card_dc0a43",
+  "slug": "rlvr-domain-fusion-merge-mix-mopd",
+  "type": "paper",
+  "title": "Three Ways to Fuse Domain Experts, Compared",
+  "hook": "Merge task vectors, pool the RL data, or distil from multiple teachers? Average scores differ by 1.4 points — but on a single benchmark the gap hits 8.6.",
+  "key_points": [
+    "RLVR usually produces domain experts that must then be consolidated into one multi-capability model.",
+    "Three paradigms, organized by what they reuse: Merge (expert task vectors), Mix RL (pooled datasets), MOPD (both, via multi-teacher on-policy distillation).",
+    "Average performance differs by at most 1.4 points, but per-benchmark gaps reach 8.6 points.",
+    "Domain-level variation tracks cross-domain relations visible in task-vector geometry.",
+    "All three improve single-sample accuracy without measurable gains in solution coverage.",
+    "Guideline: Merge when experts exist and fusion must be cheap; Mix RL when training from scratch; MOPD to preserve domain-specific gains."
+  ],
+  "content_html": "\u003cp\u003eRLVR is usually run per domain: a math expert, a code expert, a tool-use expert. Then you have to combine them. Three approaches exist, they have mostly been studied in isolation, and nobody knew how to choose. Wu and colleagues run all three with shared experts and shared data across model scales.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe comparison\u003c/h2\u003e\n\u003cp\u003eThe paper organizes the paradigms by what they reuse. \u003cstrong\u003eMerge\u003c/strong\u003e combines the experts' task vectors — cheap, no training. \u003cstrong\u003eMix RL\u003c/strong\u003e pools their datasets and trains one model. \u003cstrong\u003eMOPD\u003c/strong\u003e (multi-teacher on-policy distillation) uses both the experts and the data, compressing all expert updates into one student.\u003c/p\u003e\n\u003cp\u003eAverage performance differs by at most 1.4 points, which makes the choice look unimportant — until you look per benchmark, where the gap reaches 8.6 points. Domain-level variation tracks cross-domain relations visible in task-vector geometry, so which capabilities help or fight each other is partly predictable from the weights.\u003c/p\u003e\n\u003cp\u003eTraining dynamics expose different constraints: Mix RL depends on getting the domain mixture proportions right, MOPD is bounded above by its teachers, and Merge just compresses.\u003c/p\u003e\n\u003ch2\u003eThe practical guideline\u003c/h2\u003e\n\u003cp\u003eUse Merge when the experts already exist and cheap fusion matters most; Mix RL when training a unified model without experts, tuning proportions for cross-domain transfer; MOPD when preserving domain-specific gains beats surpassing the teachers or minimizing cost. One sobering shared result: all three improve single-sample accuracy without measurably improving solution coverage.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Siye Wu",
+      "Kai Yang",
+      "Yuchen Cai",
+      "Xin Xu",
+      "Peng-Yuan Wang",
+      "Jiaxuan Wang",
+      "Jiashun Liu",
+      "Jiafei Lyu",
+      "Yangkun Chen",
+      "Saiyong Yang",
+      "Yanghua Xiao"
+    ],
+    "url": "https://arxiv.org/abs/2608.27409",
+    "published_at": "2026-08-27",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "finetuning",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "reasoning",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-08-31",
+  "date": "2026-08-27",
+  "related": [
+    {
+      "id": "card_8a1aa9",
+      "slug": "evolution-strategies-vs-grpo",
+      "type": "paper",
+      "title": "Evolution Strategies Beat GRPO on Reasoning Coverage",
+      "hook": "GRPO sharpens one answer and collapses entropy. Evolution strategies keep the population diverse — improving pass@1 while also raising pass@k, which GRPO gives up.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-08-27"
+    },
+    {
+      "id": "card_c3ffdb",
+      "slug": "opsd-collapse-three-levers",
+      "type": "paper",
+      "title": "One Symptom, Three Levers: A Critical Review of On-Policy Self-Distillation",
+      "hook": "Self-distillation drops the costly teacher by letting a model teach itself with privileged information. The asymmetry that creates the signal also biases it — into collapse.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-26"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_dc0a43#0",
+      "format": "flip",
+      "prompt": "What distinguishes Merge, Mix RL, and MOPD?",
+      "back_html": "\u003cp\u003eWhat they reuse. Merge combines the experts' task vectors, Mix RL pools their training datasets, and multi-teacher on-policy distillation uses both experts and data.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dc0a43#1",
+      "format": "quiz",
+      "prompt": "Why is comparing the three methods on average score misleading?",
+      "choices": [
+        {
+          "text": "Averages differ by at most 1.4 points while single-benchmark gaps reach 8.6",
+          "correct": true
+        },
+        {
+          "text": "The three methods use incompatible evaluation protocols",
+          "correct": false
+        },
+        {
+          "text": "Averages favour Merge because it trains for fewer steps",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe choice barely moves the mean but moves individual domains a lot, so the right method depends on which capabilities you actually care about.\u003c/p\u003e"
+    },
+    {
+      "id": "card_dc0a43#2",
+      "format": "flip",
+      "prompt": "What did all three fusion methods fail to improve?",
+      "back_html": "\u003cp\u003eSolution coverage. Each raised single-sample accuracy without measurable coverage gains — fusion consolidates what the experts can already do rather than finding new solutions.\u003c/p\u003e"
+    }
+  ]
+}

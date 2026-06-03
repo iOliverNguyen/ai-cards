@@ -1,0 +1,97 @@
+{
+  "id": "card_44d93a",
+  "slug": "grammar-constrained-decoding-jailbreak",
+  "type": "paper",
+  "title": "When Grammar-Constrained Decoding Jailbreaks LLMs",
+  "hook": "A trick meant to make code generation reliable turns into an attack. Forcing a model to follow a benign code grammar can bypass its safety refusals — raising attack success by over 30 points.",
+  "key_points": [
+    "Grammar-Constrained Decoding (GCD) forces syntactically valid output and is widely used to make LLM code generation reliable.",
+    "CodeSpear shows GCD is itself an attack surface: applying a benign code grammar can jailbreak the model into producing malicious code.",
+    "Across 10 LLMs and 4 benchmarks, CodeSpear raises attack success rate by more than 30 points on average over prior jailbreaks.",
+    "The defense, CodeShield, teaches the model to emit semantically harmless, structurally diverse 'honeypot' code under GCD.",
+    "Lesson: reliability-oriented decoding constraints can erode safety that was only enforced in natural language."
+  ],
+  "content_html": "\u003cp\u003eLLMs are increasingly used to generate code, raising the worry that they could be misused to write malicious code. Separately, Grammar-Constrained Decoding (GCD) — forcing the model's output to satisfy a formal grammar — has been widely adopted to make generated code reliably valid. This paper reveals a counterintuitive risk: that reliability technique is itself an attack surface. The authors introduce CodeSpear, a jailbreak that exploits GCD, and show that simply applying a \u003cem\u003ebenign\u003c/em\u003e code grammar constraint can be enough to jailbreak a model into emitting malicious code.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe intuition is that safety alignment often lives in the natural-language channel — the model refuses in prose — but GCD can constrain the model into the code modality where that refusal path is suppressed. Across 10 popular LLMs and 4 benchmarks, the authors report CodeSpear beating representative jailbreak baselines, raising attack success rate by more than 30 percentage points on average. Their defense, CodeShield, aligns the model \u003cem\u003ein the code modality\u003c/em\u003e: it learns to produce \u0026quot;honeypot\u0026quot; code under GCD that is semantically harmless (so it doesn't fulfill the malicious request) yet structurally diverse (so it's hard to suppress by tightening the grammar), while still refusing in natural language when that channel is available. The broader caution: techniques chosen for reliability can quietly weaken safety.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yitong Zhang",
+      "Shiteng Lu",
+      "Jia Li"
+    ],
+    "url": "https://arxiv.org/abs/2606.11817",
+    "published_at": "2026-06-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "ai-for-code",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-15",
+  "date": "2026-06-10",
+  "related": [
+    {
+      "id": "card_395956",
+      "slug": "red-teaming-lms",
+      "type": "paper",
+      "title": "Red Teaming Language Models with Language Models",
+      "hook": "Finding the prompts that make a model misbehave is slow if humans do it by hand. So use another language model to generate those attacks automatically — at scale.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-02-07"
+    },
+    {
+      "id": "card_683aef",
+      "slug": "constitutional-ai",
+      "type": "paper",
+      "title": "Constitutional AI",
+      "hook": "What if a model could critique and improve its own answers against a written set of principles, instead of relying on humans to label every harmful case?",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_44d93a#0",
+      "format": "flip",
+      "prompt": "How does the CodeSpear attack jailbreak an LLM into writing malicious code?",
+      "back_html": "\u003cp\u003eIt applies a benign code grammar constraint during decoding (GCD); forcing syntactically valid code can bypass the model's refusals and elicit the malicious output.\u003c/p\u003e"
+    },
+    {
+      "id": "card_44d93a#1",
+      "format": "quiz",
+      "prompt": "Why is Grammar-Constrained Decoding a surprising attack surface?",
+      "choices": [
+        {
+          "text": "It's a reliability technique, yet constraining output structure can suppress safety refusals",
+          "correct": true
+        },
+        {
+          "text": "It only works on quantized models",
+          "correct": false
+        },
+        {
+          "text": "It requires fine-tuning the victim model first",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGCD is adopted to improve code reliability, so its use as a jailbreak is counterintuitive: tightening the output grammar can squeeze out the natural-language path the model uses to refuse.\u003c/p\u003e"
+    },
+    {
+      "id": "card_44d93a#2",
+      "format": "flip",
+      "prompt": "How does the CodeShield defense keep a model safe under grammar constraints?",
+      "back_html": "\u003cp\u003eIt teaches the model to generate semantically harmless, structurally diverse 'honeypot' code under GCD (hard to suppress by tightening the grammar) while preserving natural-language refusals.\u003c/p\u003e"
+    }
+  ]
+}

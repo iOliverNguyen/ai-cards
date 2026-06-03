@@ -1,0 +1,102 @@
+{
+  "id": "card_b457fa",
+  "slug": "interaction-scaling-third-axis-test-time-compute",
+  "type": "paper",
+  "title": "Interaction Scaling: Grounding the Third Axis of Test-Time Compute",
+  "hook": "Reasoning longer and sampling more both mine the same frozen weights — they can't tell a model anything new. Let it poke a real tool instead, and a coding loop hits 100% pass rate with zero variance.",
+  "key_points": [
+    "Reasoning-longer and sample-more are both internal — every extra token comes from the same frozen weights, so neither teaches the model anything new.",
+    "Interaction is a third axis: propose an artifact, let a real instrument observe it, then revise — each cycle imports a genuinely new observation.",
+    "On hard coding tasks, a grounded proposer-reviewer loop hits 100% pass rate with zero variance, while reasoning-only and oracle best-of-N both plateau below it.",
+    "On visual artifacts, a VLM judge rates 14 of 15 broken figures 'perfect' — fooled by the screenshot; a real layout-measuring tool removes 40-74% of defects.",
+    "The gain only appears when both the feedback and the scoring metric come from an instrument that actually observes the real flaw."
+  ],
+  "content_html": "\u003cp\u003eThere are two familiar ways to spend more compute at inference time: let the model think longer, or sample many attempts and keep the best. This paper points out both are dead ends in the same way — every extra token still comes from the same frozen weights and the same prompt, so neither can hand the model a fact it doesn't already possess.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe authors study a third axis: interaction. A model proposes an artifact, an external instrument observes how it actually behaves, and the model revises based on that real observation — each cycle imports genuinely new information rather than re-mining what's already inside the weights. They argue a single variable, grounding, governs whether this works: the feedback driving revision and the metric scoring the result both have to come from an instrument that truly observes the flaw. On hard coding tasks at a fixed token budget, reasoning-only and best-of-N sampling both plateau (best-of-N even with an oracle picking the winning sample), while a proposer-reviewer loop that actually runs the code keeps improving, reaching a perfect 100% pass rate with no variance across runs — and the effect holds across three model families. The starker demonstration is visual: ask a vision-language model to judge screenshots of rendered layouts, and it calls 14 of 15 visibly broken figures \u0026quot;perfect,\u0026quot; fooled by what the screenshot conceals. Swap in a tool that measures the actual layout geometry, and the same revision loop removes 40-74% of real defects across four different modalities. Bojie Li and Noah Shi, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Bojie Li",
+      "Noah Shi"
+    ],
+    "url": "https://arxiv.org/abs/2607.11598",
+    "published_at": "2026-07-13",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "reasoning",
+    "agent",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-16",
+  "date": "2026-07-13",
+  "related": [
+    {
+      "id": "card_f4c73d",
+      "slug": "llm-as-a-verifier",
+      "type": "paper",
+      "title": "LLM-as-a-Verifier: Verification as a New Scaling Axis",
+      "hook": "Everyone scales pretraining, post-training, and test-time compute. This paper argues verification — checking if a solution is correct — is its own scaling axis, and hits SOTA on four agentic benchmarks.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-07-06"
+    },
+    {
+      "id": "card_9f80ef",
+      "slug": "modal-ceiling-test-time-scaling",
+      "type": "paper",
+      "title": "When More Sampling Hurts: The Modal Ceiling and Correlation Ceiling of Test-Time Scaling",
+      "hook": "Sample a reasoning model dozens of times and coverage keeps climbing — but picking the right answer from the pile plateaus fast, and extra samples past that point can backfire.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-27"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_b457fa#0",
+      "format": "flip",
+      "prompt": "Why do the two standard test-time compute axes (reasoning longer, sampling more) share a hidden ceiling?",
+      "back_html": "\u003cp\u003eBoth are internal — every extra token still comes from the same frozen weights and prompt, so neither can give the model information it doesn't already have.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b457fa#1",
+      "format": "quiz",
+      "prompt": "On hard coding tasks at a fixed token budget, what did the grounded proposer-reviewer loop achieve that reasoning-only and best-of-N sampling could not?",
+      "choices": [
+        {
+          "text": "100% pass rate with zero run-to-run variance, while the others plateaued below it",
+          "correct": true
+        },
+        {
+          "text": "Slightly better accuracy, but with much higher variance",
+          "correct": false
+        },
+        {
+          "text": "The same accuracy, just using less compute",
+          "correct": false
+        },
+        {
+          "text": "Worse accuracy but faster wall-clock time",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBest-of-N plateaued even with an oracle selecting the best sample; only the grounded interaction loop kept improving, hitting a perfect, zero-variance result.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b457fa#2",
+      "format": "flip",
+      "prompt": "Why did a VLM-as-judge rate 14 of 15 visibly broken figures as 'perfect,' while a layout-measuring tool caught the same defects?",
+      "back_html": "\u003cp\u003eThe screenshot the VLM looked at hid the flaws from view; a tool that measures actual layout geometry observes the real defect directly, removing 40-74% of them across four modalities.\u003c/p\u003e"
+    }
+  ]
+}

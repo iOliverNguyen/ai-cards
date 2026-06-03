@@ -1,0 +1,92 @@
+{
+  "id": "card_7e087b",
+  "slug": "world-models-persistent-state",
+  "type": "paper",
+  "title": "World Models Lack a Persistent State",
+  "hook": "Today's video world models render great frames but treat the world like a tracking shot: look away and back, and off-screen events freeze instead of running on — the moon keeps orbiting unwatched.",
+  "key_points": [
+    "A real world model needs an internal state that evolves over time, decoupled from what the camera observes.",
+    "Existing benchmarks reward fidelity, motion, and camera control — never whether the world keeps evolving while unobserved.",
+    "WRBench treats camera motion as an intervention on observability across 9,600 videos from 23 models.",
+    "Across all four control paradigms, models resume a returning target in its abandoned state rather than advancing the event."
+  ],
+  "content_html": "\u003cp\u003e\u0026quot;World model\u0026quot; is one of the hottest phrases in AI, often pitched as a step toward AGI. But this paper argues that modeling the world means more than generating convincing frames on demand: it requires an internal state that keeps evolving over time, decoupled from observation, so objects endure and events run to completion whether or not a camera is watching — much as the moon holds its orbit when no one is looking.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat they tested\u003c/h2\u003e\n\u003cp\u003eThe authors note that existing benchmarks reward surface properties — fidelity, motion, camera controllability — but never ask whether a generated world keeps evolving once unobserved. So they built WRBench, a diagnostic that treats camera motion as an \u003cem\u003eintervention on observability\u003c/em\u003e: does the camera execute the requested move, does the scene stay continuous while in view, and does a returning target remain consistent with the event that was set in motion? Across 9,600 videos from 23 models spanning four control paradigms, one failure was stubborn: systems maintain the observed world as a tracking shot, resuming a returning target in the state where it was abandoned rather than advancing the event while it was unseen.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eCrucially, the failure recurred across control paradigms, model families, and scale — so robust world-state evolution doesn't fall out of cleaner imagery, tighter control, or more parameters. The authors argue that the stability of the physical state kernel and the consistency of \u0026quot;worldlines\u0026quot; under viewpoint changes should become first-class design objectives, shifting the goal from how the next frame looks to how the world will actually unfold.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Jinpeng Lu",
+      "Dexu Zhu",
+      "Haoyuan Shi",
+      "Linghan Cai",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.20545",
+    "published_at": "2026-06-18",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "papers-this-week"
+  ],
+  "tags": [
+    "generative",
+    "benchmark",
+    "vision"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-22",
+  "date": "2026-06-18",
+  "related": [
+    {
+      "id": "card_296943",
+      "slug": "dreamerv3",
+      "type": "paper",
+      "title": "DreamerV3: Mastering Domains through World Models",
+      "hook": "Instead of learning only from real experience, DreamerV3 builds a world model and practices inside its own imagination — one fixed config, 150+ tasks.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2023-01-10"
+    },
+    {
+      "id": "card_9a9bd2",
+      "slug": "world-models-meet-language-models",
+      "type": "paper",
+      "title": "World Models Meet Language Models",
+      "hook": "A world model can imagine what happens next; an LLM can reason about it. The hard part is knowing when to trust the daydream — and when the simulation is just plausible nonsense.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_7e087b#0",
+      "format": "flip",
+      "prompt": "What capability do current video world models lack, according to this paper?",
+      "back_html": "\u003cp\u003eA persistent state core: an internal world state that keeps evolving even when unobserved. They render the observed world like a tracking shot, freezing off-camera events instead of advancing them.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7e087b#1",
+      "format": "quiz",
+      "prompt": "How does WRBench probe whether a world model maintains state?",
+      "choices": [
+        {
+          "text": "It treats camera motion as an intervention on observability, then checks if a returning target advanced while unseen",
+          "correct": true
+        },
+        {
+          "text": "It only measures image sharpness and frame rate",
+          "correct": false
+        },
+        {
+          "text": "It asks humans to rate how realistic single frames look",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eWRBench moves the camera away and back, testing whether the off-screen event continued. Across 23 models and four control paradigms, targets resumed in their abandoned state — a failure that didn't go away with scale.\u003c/p\u003e"
+    }
+  ]
+}

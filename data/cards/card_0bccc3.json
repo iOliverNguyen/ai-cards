@@ -1,0 +1,125 @@
+{
+  "id": "card_0bccc3",
+  "slug": "mixed-sft-vs-next-chunk-rl",
+  "type": "paper",
+  "title": "Is Next-Chunk Reasoning RL Really Better Than SFT?",
+  "hook": "A controlled rerun finds the simplest baseline wins: plain mixed supervised fine-tuning beats next-chunk reasoning RL on no-CoT data, at over 60x less training compute.",
+  "key_points": [
+    "No-CoT data means reasoning-rich text — worked solutions, textbook derivations — with no explicit chain-of-thought annotations.",
+    "Next-chunk reasoning RL makes the model emit implicit reasoning, rewarded by how well it predicts the next chunk of text.",
+    "Mixed SFT — one supervised stage trained jointly on no-CoT and long-CoT data — reaches a higher post-RLVR ceiling.",
+    "It does so with over 60 times less training compute, and the gap holds in-domain and out-of-domain.",
+    "Higher pre-RLVR accuracy did not predict higher post-RLVR accuracy, so mid-pipeline scores mislead.",
+    "Takeaway: judge a post-training recipe at the end of the full pipeline, not at the stage you changed."
+  ],
+  "content_html": "\u003cp\u003eA recent line of work proposed \u003cem\u003enext-chunk reasoning RL\u003c/em\u003e to squeeze value out of \u0026quot;no-CoT\u0026quot; data — corpora like worked solutions and textbook derivations that are full of reasoning but carry no explicit chain-of-thought. The model is trained to generate implicit reasoning traces, rewarded by how well those traces predict the next chunk of text. Tang, Fang, Sun and colleagues asked the obvious control question: is the win coming from the RL formulation, or just from finally putting no-CoT data in front of the model?\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTheir controlled study pits the method against \u003cstrong\u003eMixed SFT\u003c/strong\u003e — one plain supervised stage trained jointly on no-CoT and long-CoT data. Mixed SFT reaches a clearly higher post-RLVR performance ceiling while using over 60 times less training compute, and the advantage holds on both in-domain mathematical reasoning and out-of-domain reasoning tasks. A second finding cuts wider: higher pre-RLVR accuracy did not reliably translate into higher post-RLVR accuracy, so any no-CoT training strategy has to be scored at the end of the full post-training pipeline rather than at the stage it modifies. Details and the full experimental setup are in the paper on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Yinhao Tang",
+      "Youqing Fang",
+      "Yanan Sun",
+      "Jiangning Liu",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.23256",
+    "published_at": "2026-08-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "rlhf",
+    "papers-this-week"
+  ],
+  "tags": [
+    "training",
+    "reasoning",
+    "alignment",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-24",
+  "related": [
+    {
+      "id": "card_9bc413",
+      "slug": "sft-conflicts-rl-coexists",
+      "type": "paper",
+      "title": "Why Multi-Task SFT Fights Itself and Multi-Task RL Doesn't",
+      "hook": "Train a model on several tasks with SFT and they interfere; with RL they coexist. The difference is a bound: SFT interference scales with gradient magnitude, RL's only with variance.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-06"
+    },
+    {
+      "id": "card_9887c8",
+      "slug": "flan-instruction-tuning",
+      "type": "paper",
+      "title": "FLAN: Instruction Tuning",
+      "hook": "Teach a model to follow many tasks phrased as plain instructions, and it learns to follow instructions for tasks it never saw — zero-shot.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2021-09-03"
+    },
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_0bccc3#0",
+      "format": "quiz",
+      "prompt": "Why did the authors doubt that next-chunk reasoning RL's reported gains came from the RL formulation?",
+      "choices": [
+        {
+          "text": "Prior evaluations only compared it to conventional SFT, so the gain might just be better exposure to no-CoT data",
+          "correct": true
+        },
+        {
+          "text": "The RL reward signal was found to be mathematically undefined",
+          "correct": false
+        },
+        {
+          "text": "The method had only ever been tested on non-reasoning corpora",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eExisting comparisons used conventional SFT baselines, leaving open whether RL itself helped or\nwhether the method simply exposed the model to no-CoT data more effectively.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0bccc3#1",
+      "format": "flip",
+      "prompt": "What is Mixed SFT, and how does its cost compare to next-chunk reasoning RL?",
+      "back_html": "\u003cp\u003eA single supervised fine-tuning stage trained jointly on no-CoT and long-CoT data. It reaches a\nhigher post-RLVR ceiling while using over 60 times less training compute.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0bccc3#2",
+      "format": "quiz",
+      "prompt": "What does the paper's finding about pre-RLVR accuracy imply for evaluating post-training recipes?",
+      "choices": [
+        {
+          "text": "Recipes must be judged after the full pipeline, since higher pre-RLVR accuracy doesn't guarantee higher post-RLVR accuracy",
+          "correct": true
+        },
+        {
+          "text": "Pre-RLVR accuracy is the most reliable early predictor of final quality",
+          "correct": false
+        },
+        {
+          "text": "RLVR should be skipped whenever pre-RLVR accuracy is already high",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors show the two are not monotonically linked, so a strategy that looks best mid-pipeline\ncan lose once RLVR is applied.\u003c/p\u003e"
+    }
+  ]
+}

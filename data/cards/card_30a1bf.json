@@ -1,0 +1,104 @@
+{
+  "id": "card_30a1bf",
+  "slug": "playful-agentic-robot-learning",
+  "type": "paper",
+  "title": "Playful Agentic Robot Learning",
+  "hook": "Let a robot play before it works: it invents its own exploratory tasks and distills the wins into a reusable skill library — and the skills transfer to other agents for free.",
+  "key_points": [
+    "Most agentic robots are task-driven — they only acquire skills after an explicit instruction arrives.",
+    "Robotics Agent Teams (RATs) use self-directed play as a continual skill-learning stage before any task.",
+    "During play they propose learnable tasks, run code-policies, verify, diagnose failures, retry, and distill successes into a persistent skill library.",
+    "Play-learned skills gave 20.6 and 17.0-point gains on held-out tasks, and transferred to other agents without fine-tuning."
+  ],
+  "content_html": "\u003cp\u003eMost agentic robots are reactive students: they can write executable \u0026quot;Code-as-Policy\u0026quot; programs, watch the result, and revise — but only once you hand them a task. This work, from a Berkeley-led team, asks what happens if the robot gets to \u003cem\u003eplay\u003c/em\u003e first.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe authors introduce Playful Agentic Robot Learning, where an embodied coding agent treats self-directed play as a continual skill-learning stage that runs \u003cem\u003ebefore\u003c/em\u003e downstream tasks arrive. Their system, Robotics Agent Teams (RATs), proposes novel-yet-learnable exploratory tasks, plans and executes robot-code policies, verifies intermediate progress, diagnoses failures, and retries with dense step-level feedback — then distills the successful executions into a persistent code-skill library. At test time the agent simply retrieves relevant skills from this frozen library to help with new tasks.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003ePlay paid off: on the LIBERO-PRO and MolmoSpaces benchmarks, play-learned skills beat no-play and random-play baselines by 20.6 and 17.0 percentage points. The more striking result is portability — the learned skills plug into \u003cem\u003eother\u003c/em\u003e Code-as-Policy agents just by being retrieved into context, improving simulation and real-world transfer by ~9 points each without any fine-tuning. It points toward robots that accumulate a shareable, growing repertoire of skills the way curious animals do, rather than relearning from scratch for every job.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Junyi Zhang",
+      "Jiaxin Ge",
+      "Ken Goldberg",
+      "Ion Stoica",
+      "Trevor Darrell",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2606.19419",
+    "published_at": "2026-06-17",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "robotics",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "training",
+    "reasoning"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-22",
+  "date": "2026-06-17",
+  "related": [
+    {
+      "id": "card_0dc810",
+      "slug": "pi-zero",
+      "type": "paper",
+      "title": "π0: A Vision-Language-Action Model",
+      "hook": "π0 is a generalist robot policy: it takes camera images, joint angles, and a plain-language instruction, and outputs smooth action sequences — folding laundry, bussing tables, bagging groceries.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2024-10-31"
+    },
+    {
+      "id": "card_5b91a4",
+      "slug": "geometric-action-model",
+      "type": "paper",
+      "title": "Geometric Action Model: One Backbone for Geometry and Action",
+      "hook": "GAM turns a pretrained 3D-geometry model into a robot's brain - a single backbone that forecasts both future geometry and the actions to get there, beating heavier VLA baselines.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-15"
+    },
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_30a1bf#0",
+      "format": "flip",
+      "prompt": "What is the 'play' stage in Playful Agentic Robot Learning?",
+      "back_html": "\u003cp\u003eBefore any task arrives, the agent proposes its own novel-but-learnable exploratory tasks, executes code-policies, verifies progress, diagnoses failures, retries, and distills successful runs into a persistent code-skill library it can reuse later.\u003c/p\u003e"
+    },
+    {
+      "id": "card_30a1bf#1",
+      "format": "quiz",
+      "prompt": "What made the play-learned skills especially valuable?",
+      "choices": [
+        {
+          "text": "They transferred to other Code-as-Policy agents by retrieval, with no fine-tuning",
+          "correct": true
+        },
+        {
+          "text": "They only worked for the exact agent that learned them",
+          "correct": false
+        },
+        {
+          "text": "They required retraining the base model for every new task",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBeyond 20.6 and 17.0-point gains on held-out tasks, the frozen skill library plugged into other agents via context retrieval, improving simulation and real-world transfer without fine-tuning.\u003c/p\u003e"
+    }
+  ]
+}

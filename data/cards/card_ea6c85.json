@@ -1,0 +1,106 @@
+{
+  "id": "card_ea6c85",
+  "slug": "a2a-protocol",
+  "type": "news",
+  "title": "Agent2Agent (A2A) Protocol",
+  "hook": "A2A is an open standard for agents from different vendors to discover and delegate to each other — the agent-to-agent complement to MCP's agent-to-tool layer.",
+  "key_points": [
+    "Open protocol announced by Google in April 2025 with 50+ founding partners.",
+    "Lets agents built on different frameworks discover each other and coordinate tasks.",
+    "Uses HTTP, Server-Sent Events, and JSON-RPC, with 'Agent Cards' advertising capabilities.",
+    "Donated to the Linux Foundation in June 2025 for vendor-neutral governance."
+  ],
+  "content_html": "\u003cp\u003eThe Agent2Agent (A2A) protocol, announced by Google in April 2025, is an open standard for interoperability between AI agents. Where the Model Context Protocol (MCP) connects an agent to tools and data, A2A connects agents to each other: it lets agents built by different vendors, on different frameworks, discover one another's capabilities and delegate work.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eA2A uses ordinary web plumbing — HTTP, Server-Sent Events for streaming, and JSON-RPC for calls — so it is straightforward to adopt. Each agent publishes an \u0026quot;Agent Card\u0026quot; describing what it can do, which other agents read to decide how to route a task. The launch included more than 50 technology and consulting partners, and in June 2025 Google donated A2A to the Linux Foundation, putting it under neutral governance with backers including AWS, Microsoft, Salesforce, and SAP.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAs organizations deploy many specialized agents, those agents need a common language to cooperate without bespoke integrations for every pair. A2A and MCP are complementary halves of an emerging agent stack — one for talking to tools, the other for talking to agents — and moving A2A to the Linux Foundation signaled an intent to make it a shared standard rather than one company's API.\u003c/p\u003e",
+  "source": {
+    "name": "Google",
+    "authors": [
+      "Google"
+    ],
+    "url": "https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/",
+    "published_at": "2025-04-09",
+    "license": "Google Developers blog"
+  },
+  "topic_ids": [
+    "agents",
+    "lab-updates"
+  ],
+  "tags": [
+    "agent"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2025-04-09",
+  "related": [
+    {
+      "id": "card_e283b9",
+      "slug": "model-context-protocol",
+      "type": "news",
+      "title": "Model Context Protocol (MCP): A Standard for Connecting LLMs to Tools",
+      "hook": "MCP is an open protocol that standardizes how AI applications expose tools, data, and resources to models - think USB-C for AI tool integrations.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-11-25"
+    },
+    {
+      "id": "card_764730",
+      "slug": "react-agents",
+      "type": "paper",
+      "title": "ReAct: Reasoning + Acting",
+      "hook": "Thinking alone can drift; acting alone is blind. ReAct interleaves reasoning with tool calls so an LLM can plan, look things up, and correct course — the template for agents.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-10-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_ea6c85#0",
+      "format": "flip",
+      "prompt": "How does A2A's role differ from MCP's in the agent stack?",
+      "back_html": "\u003cp\u003eA2A connects agents to each other (discovery and delegation); MCP connects an agent to tools and data. They're complementary halves.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ea6c85#1",
+      "format": "quiz",
+      "prompt": "What does an agent publish under A2A so others can route work to it?",
+      "choices": [
+        {
+          "text": "An 'Agent Card' describing its capabilities",
+          "correct": true
+        },
+        {
+          "text": "A shared model checkpoint",
+          "correct": false
+        },
+        {
+          "text": "A list of MCP tool definitions",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eEach agent publishes an \u0026quot;Agent Card\u0026quot; describing what it can do, which other agents read to decide how to route a task.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ea6c85#2",
+      "format": "quiz",
+      "prompt": "Why did Google donate A2A to the Linux Foundation?",
+      "choices": [
+        {
+          "text": "To make it a vendor-neutral shared standard rather than one company's API",
+          "correct": true
+        },
+        {
+          "text": "To deprecate it in favor of MCP",
+          "correct": false
+        },
+        {
+          "text": "To restrict it to founding partners only",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMoving A2A to the Linux Foundation signaled intent to make it a shared standard under neutral governance, not one company's API.\u003c/p\u003e"
+    }
+  ]
+}

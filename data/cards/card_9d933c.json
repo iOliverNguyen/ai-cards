@@ -1,0 +1,116 @@
+{
+  "id": "card_9d933c",
+  "slug": "awq-quantization",
+  "type": "paper",
+  "title": "AWQ: Activation-Aware Weight Quantization",
+  "hook": "Not all weights are equal - protect the 1% that matter most (flagged by activation magnitude) and quantize the rest to 4-bit with minimal quality loss.",
+  "key_points": [
+    "Identifies salient weights by looking at activation scales: weights paired with large activations matter more.",
+    "Protects those weights via per-channel scaling rather than mixed precision, keeping the kernel uniform.",
+    "Achieves near-FP16 quality at 4-bit weight quantization on a range of LLM benchmarks.",
+    "Complements GPTQ but uses activation statistics rather than Hessian-based second-order information."
+  ],
+  "content_html": "\u003cp\u003eLin et al. proposed Activation-Aware Weight Quantization (AWQ) as a post-training method for compressing large language models to around 4 bits per weight. The core observation is that weight importance is not uniform: roughly 1% of weights connect to channels with large activation magnitudes, and quantizing those weights aggressively causes disproportionate quality degradation.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eAWQ identifies salient weight channels by examining the scale of the corresponding input activations on a small calibration set. Rather than keeping those weights in a higher-bit format (which would complicate hardware kernels), AWQ applies a per-channel scaling transformation that effectively amplifies the salient channels before quantization and absorbs the inverse scale into the next layer. This is a math-equivalent reparameterization, so it requires no retraining and works with standard INT4 kernels.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAWQ produces 4-bit models that, according to the authors, closely match FP16 quality on language modeling and instruction-following benchmarks - with a smaller memory footprint than GPTQ at comparable bit widths. It is widely used in deployment frameworks like TinyChat and llm-awq. Read the paper on arXiv for benchmark details and the scaling analysis.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Ji Lin",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2306.00978",
+    "published_at": "2023-06-01",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "quantization",
+    "inference"
+  ],
+  "tags": [
+    "efficiency",
+    "inference",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2023-06-01",
+  "related": [
+    {
+      "id": "card_d01b1d",
+      "slug": "gptq",
+      "type": "paper",
+      "title": "GPTQ: Accurate Post-Training Quantization",
+      "hook": "Already trained a giant LLM? GPTQ squeezes its weights down to 3–4 bits afterward — no retraining — with surprisingly little quality loss.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-10-31"
+    },
+    {
+      "id": "card_5bd418",
+      "slug": "llm-int8",
+      "type": "paper",
+      "title": "LLM.int8(): 8-bit Inference for Transformers",
+      "hook": "Big transformers usually run in 16-bit. LLM.int8() halves that to 8-bit integers without losing accuracy — by treating a few rare 'outlier' features with care.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-08-15"
+    },
+    {
+      "id": "card_4deb70",
+      "slug": "smoothquant",
+      "type": "paper",
+      "title": "SmoothQuant: Accurate Post-Training Quantization for LLMs",
+      "hook": "Activations are hard to quantize; weights are easy. SmoothQuant shifts that difficulty from activations into weights with a simple rescaling, enabling clean 8-bit inference.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2022-11-18"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_d01b1d",
+      "slug": "gptq",
+      "type": "paper",
+      "title": "GPTQ: Accurate Post-Training Quantization",
+      "hook": "Already trained a giant LLM? GPTQ squeezes its weights down to 3–4 bits afterward — no retraining — with surprisingly little quality loss.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-10-31"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_9d933c#0",
+      "format": "flip",
+      "prompt": "How does AWQ decide which weights are the salient ones to protect?",
+      "back_html": "\u003cp\u003eIt examines the scale of the corresponding input activations on a small calibration set — weights paired with large activations matter more.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9d933c#1",
+      "format": "quiz",
+      "prompt": "How does AWQ protect its salient weights without complicating the kernel?",
+      "choices": [
+        {
+          "text": "A per-channel scaling transformation absorbed into the next layer",
+          "correct": true
+        },
+        {
+          "text": "Keeping those weights in a higher-bit mixed-precision format",
+          "correct": false
+        },
+        {
+          "text": "Retraining the model on the calibration set",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAWQ uses a math-equivalent per-channel rescaling rather than mixed precision, so it stays compatible with standard INT4 kernels and needs no retraining.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9d933c#2",
+      "format": "flip",
+      "prompt": "What kind of information distinguishes AWQ from GPTQ?",
+      "back_html": "\u003cp\u003eAWQ uses activation statistics to find salient weights, whereas GPTQ relies on Hessian-based second-order information.\u003c/p\u003e"
+    }
+  ]
+}

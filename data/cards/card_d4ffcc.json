@@ -1,0 +1,103 @@
+{
+  "id": "card_d4ffcc",
+  "slug": "learning-words-like-a-child",
+  "type": "paper",
+  "title": "Learning Words Like a Child",
+  "hook": "Most models learn from data shuffled and replayed for hundreds of epochs. BabyCL learns word-object links from a child's-eye video in one pass through time — close to how a kid actually learns.",
+  "key_points": [
+    "BabyCL trains on SAYCam (head-mounted child video) in one chronological pass, not shuffled epochs.",
+    "It pairs streaming visual representation learning with an image-text contrastive objective.",
+    "A temporal segmentation plus a dual replay buffer keep separate visual and multimodal histories.",
+    "Under a matched compute budget it beats streaming baselines on the Labeled-S 4AFC test.",
+    "Word-referent mappings can emerge under training much closer to real childhood experience."
+  ],
+  "content_html": "\u003cp\u003eEarlier work showed neural networks can learn which words go with which objects from the\nSAYCam dataset — video recorded from a head camera worn by a young child. But those models\ncheated on realism: they shuffled the footage and looped over it for hundreds of epochs,\nnothing like the single, ordered stream of experience a child actually gets.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eBabyCL, from Jiang, Yang, Norman, Lake, and Ren, processes that stream in one chronological\npass. It combines streaming visual representation learning with an image-text contrastive\nobjective on a shared backbone, using a multi-stage temporal segmentation of the stream and a\ndual replay buffer that separately manages visual and multimodal histories. Under a matched\noptimization budget it outperforms streaming-learning baselines on the SAYCam Labeled-S 4AFC\nbenchmark, substantially narrowing the gap to an offline-trained upper bound — and the gains\nhold up as they vary the segmentation window and the buffer's eviction rule. The takeaway:\nword-referent learning can emerge under training conditions much closer to a child's real\nexperience, not just under heavily shuffled, many-epoch regimes. See arXiv for details.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xiaoyang Jiang",
+      "Yanlai Yang",
+      "Kenneth A. Norman",
+      "Brenden Lake",
+      "Mengye Ren"
+    ],
+    "url": "https://arxiv.org/abs/2606.05115",
+    "published_at": "2026-06-03",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "training-intuition",
+    "ai-for-science",
+    "multimodal-vision"
+  ],
+  "tags": [
+    "training",
+    "multimodal"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-06-05",
+  "date": "2026-06-03",
+  "related": [
+    {
+      "id": "card_dd14c6",
+      "slug": "how-neural-networks-learn",
+      "type": "concept",
+      "title": "How Neural Networks Learn: Backpropagation",
+      "hook": "A neural net learns by asking, for every weight, 'how much did you contribute to my mistake?' Backprop answers all of them at once.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2017-10-05"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_d4ffcc#0",
+      "format": "flip",
+      "prompt": "How does BabyCL's training setup differ from standard practice?",
+      "back_html": "\u003cp\u003eIt makes a single chronological (streaming) pass over a child's egocentric video, rather\nthan shuffling the data and looping over it for hundreds of epochs.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d4ffcc#1",
+      "format": "quiz",
+      "prompt": "What is the role of BabyCL's dual replay buffer?",
+      "choices": [
+        {
+          "text": "It separately manages visual and multimodal histories during streaming",
+          "correct": true
+        },
+        {
+          "text": "It stores gradients to speed up backpropagation",
+          "correct": false
+        },
+        {
+          "text": "It caches the test set to boost benchmark scores",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eReplay buffers re-expose past examples to fight forgetting in continual learning; BabyCL keeps\ntwo — one for visual history, one for multimodal — alongside temporal segmentation of the stream.\u003c/p\u003e"
+    },
+    {
+      "id": "card_d4ffcc#2",
+      "format": "quiz",
+      "prompt": "What is the significance of BabyCL's result?",
+      "choices": [
+        {
+          "text": "Meaningful word-object mappings can emerge from realistic, in-order experience",
+          "correct": true
+        },
+        {
+          "text": "Children no longer need language exposure to learn words",
+          "correct": false
+        },
+        {
+          "text": "Shuffled multi-epoch training is the only way to learn word meanings",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBy narrowing the gap to offline training while learning in a single chronological pass, BabyCL\nshows learning closer to a child's actual experience can still yield word-referent mappings.\u003c/p\u003e"
+    }
+  ]
+}

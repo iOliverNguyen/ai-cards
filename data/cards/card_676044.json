@@ -1,0 +1,97 @@
+{
+  "id": "card_676044",
+  "slug": "mentalthink-svg-scratchpad",
+  "type": "paper",
+  "title": "MentalThink: Reasoning Through Rendered SVG Sketches",
+  "hook": "Instead of imagining a scene in words, this model sketches it — generating SVG code, rendering it, and looking at the result to check its own spatial reasoning.",
+  "key_points": [
+    "Think-with-SVG: the model writes SVG code as an intermediate visual hypothesis, renders it, and inspects the image before continuing to reason.",
+    "Trained in two stages: supervised fine-tuning for SVG syntax, then multi-turn RL to reward iterative inspection and revision.",
+    "Scores 55.1% on VSIBench and 76.0% on MindCube, both spatial-reasoning benchmarks for multimodal LLMs.",
+    "Deterministic rendering makes the intermediate representation verifiable — unlike free-form chain-of-thought text."
+  ],
+  "content_html": "\u003cp\u003eAsk someone to reason about spatial layout, and they often picture it — a rough sketch in the mind's eye they can inspect and adjust. MentalThink gives multimodal LLMs a literal version of that: instead of reasoning purely in text, the model writes SVG code, renders it, looks at the result, and revises.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe pipeline trains in two stages: supervised fine-tuning teaches the model correct SVG syntax, then multi-turn reinforcement learning rewards it for inspecting its own rendered sketches and iteratively refining them — externalizing hypotheses about object positions, geometry, and scene layout into a constrained, checkable visual workspace. Because SVG renders deterministically, the model's intermediate \u0026quot;thoughts\u0026quot; become verifiable in a way free-form chain-of-thought text isn't. On spatial-reasoning benchmarks, MentalThink reaches 55.1% on VSIBench and 76.0% on MindCube. Kangheng Lin and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Kangheng Lin",
+      "Jisheng Yin",
+      "Dingming Li",
+      "En Yu",
+      "Yana Wei",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.03530",
+    "published_at": "2026-07-03",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "vlms",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-07-09",
+  "date": "2026-07-03",
+  "related": [
+    {
+      "id": "card_896f54",
+      "slug": "multimodal-cot-limits",
+      "type": "paper",
+      "title": "Look Light, Think Heavy: The Limits of Multimodal Chain-of-Thought",
+      "hook": "Chain-of-thought should make models think harder. For vision-language tasks this study finds it's no free lunch — it can hurt perception, and models keep talking while they stop looking.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-21"
+    },
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_676044#0",
+      "format": "flip",
+      "prompt": "What is 'think-with-SVG' in MentalThink?",
+      "back_html": "\u003cp\u003eA reasoning loop where the model generates SVG code as a visual hypothesis, renders it deterministically, and inspects the rendered image before revising — externalizing mental imagery into something checkable.\u003c/p\u003e"
+    },
+    {
+      "id": "card_676044#1",
+      "format": "quiz",
+      "prompt": "Why use SVG specifically as the intermediate representation, rather than free-form text reasoning?",
+      "choices": [
+        {
+          "text": "SVG renders deterministically, so the model can inspect an exact, verifiable image of its hypothesis",
+          "correct": true
+        },
+        {
+          "text": "SVG files are smaller than JPEG images, saving compute",
+          "correct": false
+        },
+        {
+          "text": "SVG is the only format vision-language models can generate",
+          "correct": false
+        },
+        {
+          "text": "It avoids using any reinforcement learning",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eFree-form chain-of-thought text can't be directly checked for spatial correctness. Rendering SVG code gives a deterministic, inspectable image the model can compare against its intent — plus RL training rewards revising it.\u003c/p\u003e"
+    }
+  ]
+}

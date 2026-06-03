@@ -1,0 +1,107 @@
+{
+  "id": "card_6e175b",
+  "slug": "internal-state-probes-misalignment-monitoring",
+  "type": "paper",
+  "title": "Internal-State Probes Read the Situation, Not the Action",
+  "hook": "Probes that seem to detect an LLM's harmful intent before it acts mostly just detect the prompt's topic — three careful tests find they don't predict future misbehavior.",
+  "key_points": [
+    "Tested three probing methods across three model families, including fine-tune/base direction probes and steering vectors.",
+    "One probe separates fine-tune from base at AUC 1.000 — but fires on 0 of 143 real pre-action contexts where the model later misbehaves.",
+    "Another decodes prompt domain almost perfectly (AUC 0.999) but its future-behavior signal barely beats guessing the majority class.",
+    "Steering effects that look semantically meaningful lose specificity against unrelated concepts like weather or sports."
+  ],
+  "content_html": "\u003cp\u003eInterpretability probes that flag harmful intent inside a model's activations sound like an ideal safety net — catch the bad action before it's generated. This paper tests that promise rigorously, and finds it doesn't hold up.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe authors test three probing methods across three model families: a fine-tune-versus-base direction on Qwen2.5-Coder-32B-Instruct, last-token probes on unsafe prefills for Llama-3.1-8B-Instruct, and Gemma-3-27B-IT emotion-concept vectors used for projection and steering in a blackmail scenario. Each looks impressive on its own construction test — the Qwen direction hits AUC 1.000 separating fine-tune from base — but none survive stronger checks for genuine pre-action prediction. That same Qwen probe crosses its threshold on 0 of 143 audited pre-assistant-turn contexts and 0 of 342 prefill rows where the model actually continues an unsafe trajectory. The Llama probe decodes prompt domain almost perfectly (AUC 0.999) but its best future-behavior version reaches only AUC 0.801 with a mere 5.1-point lift over the majority baseline, and barely transfers across domains. The Gemma emotion projections look semantically coherent but can't distinguish a shared-prefix minimal pair before the differing input arrives, and their steering specificity weakens against unrelated concepts like cats, weather, or sports. The paper's contribution is a methodology for converting \u0026quot;my probe detects X\u0026quot; claims into pre-action tests — and a clear warning that construction validity alone isn't evidence a safety monitor works. Max Fomin, Elad David, and Amit LeVi, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Max Fomin",
+      "Elad David",
+      "Amit LeVi"
+    ],
+    "url": "https://arxiv.org/abs/2606.30449",
+    "published_at": "2026-06-29",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "safety",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-02",
+  "date": "2026-06-29",
+  "related": [
+    {
+      "id": "card_e2857d",
+      "slug": "sae-interventions-unreliable",
+      "type": "paper",
+      "title": "SAE Interventions Are Unreliable",
+      "hook": "Clamping a 'harmful' sparse-autoencoder feature looks like it stops bad behavior — but this paper recovers it 95.8% of the time, exposing the gap between feature-level and real control.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-16"
+    },
+    {
+      "id": "card_395956",
+      "slug": "red-teaming-lms",
+      "type": "paper",
+      "title": "Red Teaming Language Models with Language Models",
+      "hook": "Finding the prompts that make a model misbehave is slow if humans do it by hand. So use another language model to generate those attacks automatically — at scale.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-02-07"
+    },
+    {
+      "id": "card_426fcd",
+      "slug": "scaling-monosemanticity",
+      "type": "paper",
+      "title": "Scaling Monosemanticity: Features from Claude 3 Sonnet",
+      "hook": "Does dictionary learning survive at production scale? Anthropic found millions of features in Claude 3 Sonnet — and could steer the model by turning one up.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2024-05-21"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_6e175b#0",
+      "format": "flip",
+      "prompt": "What distinction does this paper test — 'reading the prompt' versus what?",
+      "back_html": "\u003cp\u003eWhether a probe genuinely predicts a model's future harmful action before it happens, versus merely detecting the topic or setup of the current prompt.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6e175b#1",
+      "format": "quiz",
+      "prompt": "Why is a probe with AUC 1.000 on one test still reported as a negative result here?",
+      "choices": [
+        {
+          "text": "It separates fine-tune from base perfectly but fails to fire on real pre-action contexts where the model actually misbehaves later",
+          "correct": true
+        },
+        {
+          "text": "Because AUC 1.000 is mathematically impossible and signals a bug",
+          "correct": false
+        },
+        {
+          "text": "Because the authors don't trust AUC as a metric at all",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eConstruction-validity AUC doesn't guarantee the probe generalizes to real pre-action monitoring — it can look perfect on its training setup and still miss actual unsafe trajectories.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6e175b#2",
+      "format": "flip",
+      "prompt": "Why does this matter for AI safety monitoring in practice?",
+      "back_html": "\u003cp\u003eA monitor that looks strong on construction-validity tests can still fail to catch real misalignment before it happens — teams need generalization and specificity checks, not just a high AUC.\u003c/p\u003e"
+    }
+  ]
+}

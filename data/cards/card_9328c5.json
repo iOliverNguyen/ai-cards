@@ -1,0 +1,110 @@
+{
+  "id": "card_9328c5",
+  "slug": "chatbot-arena",
+  "type": "paper",
+  "title": "Chatbot Arena: Ranking LLMs by Human Preference",
+  "hook": "How do you rank chatbots when there's no single right answer? Let people pick the better of two anonymous replies, then aggregate the votes into a leaderboard.",
+  "key_points": [
+    "An open platform from LMSYS that ranks LLMs by crowdsourced pairwise human preference.",
+    "Users compare two anonymous model responses and vote for the better one.",
+    "Had collected over 240,000 votes by the paper's writing.",
+    "Widely cited as a leading LLM leaderboard, built entirely from these comparisons."
+  ],
+  "content_html": "\u003cp\u003eWei-Lin Chiang, Lianmin Zheng, Ying Sheng, and colleagues at LMSYS built Chatbot Arena to rank language models the way people actually judge them: by preference. Rather than scoring answers against a fixed key, the platform shows a user two anonymous responses to their own prompt and asks which is better. Aggregating those pairwise votes — over 240,000 of them by the time the paper was written — produces a leaderboard that has become one of the most-cited references for comparing LLMs.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eA visitor types a prompt and gets two replies from unnamed models side by side, then votes for the one they prefer. Because the models stay anonymous until after the vote, brand bias is reduced and the judgment is about the response itself. These pairwise comparisons are collected at scale and combined into rankings, so a model's standing reflects how often real people prefer it over its rivals across a wide range of open-ended prompts.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eStatic multiple-choice benchmarks measure knowledge, but they miss the open-ended, conversational quality that users care about. Chatbot Arena fills that gap with human preference at scale, giving the field a common scoreboard for chat ability. It became a fixture in model launches and discussion. Worth noting: the live leaderboard now has far more votes than at paper time, so the 240,000 figure is a snapshot, not the current total.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Wei-Lin Chiang",
+      "Lianmin Zheng",
+      "Ying Sheng",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2403.04132",
+    "published_at": "2024-03-07",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety"
+  ],
+  "tags": [
+    "benchmark",
+    "nlp",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "intro",
+  "created_at": "2026-06-03",
+  "date": "2024-03-07",
+  "related": [
+    {
+      "id": "card_063597",
+      "slug": "mmlu",
+      "type": "paper",
+      "title": "MMLU: Measuring Massive Multitask Language Understanding",
+      "hook": "Want one number for how broadly an LLM 'knows stuff'? MMLU is a 57-subject exam spanning history, law, medicine, and math — and it became a default yardstick.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-09-07"
+    },
+    {
+      "id": "card_3ce408",
+      "slug": "helm",
+      "type": "paper",
+      "title": "HELM: Holistic Evaluation of Language Models",
+      "hook": "A single accuracy number hides a lot. HELM evaluates language models across many scenarios and many metrics at once — and reports it all in the open.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-11-16"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_9328c5#0",
+      "format": "flip",
+      "prompt": "How does Chatbot Arena rank models?",
+      "back_html": "\u003cp\u003eUsers see two anonymous responses to their own prompt and vote for the better one; aggregating these pairwise votes produces a leaderboard.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9328c5#1",
+      "format": "quiz",
+      "prompt": "Why does Chatbot Arena keep the two models anonymous until after the vote?",
+      "choices": [
+        {
+          "text": "To reduce brand bias so the judgment is about the response itself",
+          "correct": true
+        },
+        {
+          "text": "To prevent the models from cheating",
+          "correct": false
+        },
+        {
+          "text": "To speed up the voting interface",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eKeeping models anonymous until after the vote reduces brand bias, so the judgment focuses on the response.\u003c/p\u003e"
+    },
+    {
+      "id": "card_9328c5#2",
+      "format": "quiz",
+      "prompt": "What gap does Chatbot Arena fill that static multiple-choice benchmarks miss?",
+      "choices": [
+        {
+          "text": "Open-ended, conversational quality that users actually care about",
+          "correct": true
+        },
+        {
+          "text": "Exact arithmetic accuracy",
+          "correct": false
+        },
+        {
+          "text": "Inference latency measurement",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eStatic benchmarks measure knowledge but miss conversational quality; the Arena captures human preference at scale.\u003c/p\u003e"
+    }
+  ]
+}

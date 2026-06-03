@@ -1,0 +1,98 @@
+{
+  "id": "card_6be305",
+  "slug": "agent-memory-poisoning-screening-limits",
+  "type": "paper",
+  "title": "Agent Memory Poisoning Beats Content Screening",
+  "hook": "Poison 1.2% of an agent's long-term memory with plain false sentences and accuracy falls from 0.85 to 0.30 — while an injection screener catches literally none of them.",
+  "key_points": [
+    "Persistent memory makes false information durable: once stored, a false claim keeps getting retrieved into later sessions.",
+    "The attack needs no trigger, no instruction, and no retriever optimization — just plainly worded false assertions.",
+    "Poisoning 1.2% of a LongMemEval corpus dropped accuracy from 0.850 to 0.300.",
+    "A four-stage write-time screener with 0.832 recall on prompt injection rejected 0 of 360 poisoned memories.",
+    "The boundary: telling a false assertion from a true one generally needs external grounding, not text-level features.",
+    "Provenance-weighted retrieval fails too — a weight strong enough to resist poison also suppresses legitimate untrusted evidence."
+  ],
+  "content_html": "\u003cp\u003eGive an agent persistent memory and you give it a place for lies to settle in. Arulnidhi Karunanidhi measures how bad that is with the least sophisticated attack available: plainly worded false assertions, generated in a single pass, with no trigger phrases, no instructions, and no retriever tuning. Poisoning 1.2% of a LongMemEval corpus took accuracy from 0.850 down to 0.300.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe interesting part is what failed to stop it. A four-stage write-time screening pipeline that hits 0.832 recall on indirect prompt injection rejected zero of 360 poisoned memories — the paper's argument being that content-only screening hits a hard boundary, since separating a false claim from a true one needs grounding outside the text. Provenance-weighted retrieval fared no better: the shipped weight was indistinguishable from no defense (p=0.80), and a stronger weight recovered utility only by throwing out untrusted content, collapsing to 0.0417 accuracy when the answer itself arrived untrusted. The author argues for bounded occupancy constraints at retrieval instead, and releases the harnesses and corpora.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Arulnidhi Karunanidhi"
+    ],
+    "url": "https://arxiv.org/abs/2608.21230",
+    "published_at": "2026-08-21",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "evals-safety",
+    "context-memory",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "safety",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-24",
+  "date": "2026-08-21",
+  "related": [
+    {
+      "id": "card_ca8eef",
+      "slug": "forensic-trajectory-signatures-memory-poisoning",
+      "type": "paper",
+      "title": "Catching Agent Memory Poisoning from Tool-Call Logs Alone",
+      "hook": "A memory-poisoning attack on an LLM agent leaves a near-perfect fingerprint in its tool-call order — a simple rule catches it at AUC 0.956, a small classifier pushes that to 0.99.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-29"
+    },
+    {
+      "id": "card_cc4fb6",
+      "slug": "memsyco-bench",
+      "type": "paper",
+      "title": "MemSyco-Bench: Benchmarking Sycophancy in Agent Memory",
+      "hook": "Agent memory sounds purely good — until retrieved memories start pushing an agent to agree with the user over the facts. MemSyco-Bench is built specifically to catch that failure.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_6be305#0",
+      "format": "flip",
+      "prompt": "Why did a strong prompt-injection screener catch none of the poisoned memories?",
+      "back_html": "\u003cp\u003eInjection screeners look for adversarial text patterns. These memories were plainly worded false statements — nothing about the text marks them as attacks.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6be305#1",
+      "format": "quiz",
+      "prompt": "What does the paper conclude about provenance-weighted retrieval as a defense?",
+      "choices": [
+        {
+          "text": "No usable setting exists: a weight strong enough to resist query-shaped poison also suppresses legitimate untrusted evidence",
+          "correct": true
+        },
+        {
+          "text": "It fully solves the problem once provenance is tracked per memory",
+          "correct": false
+        },
+        {
+          "text": "It works, but only for corpora where all content is trusted",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe shipped weight was statistically indistinguishable from no defense (p=0.80); a stronger weight recovered utility only by excluding untrusted content, and collapsed to 0.0417 accuracy when the answer-bearing evidence itself was untrusted.\u003c/p\u003e"
+    },
+    {
+      "id": "card_6be305#2",
+      "format": "flip",
+      "prompt": "What defense direction does the author argue for instead?",
+      "back_html": "\u003cp\u003eBounded occupancy constraints at retrieval time — limiting how much of a retrieval any one source can fill — rather than additive provenance penalties.\u003c/p\u003e"
+    }
+  ]
+}

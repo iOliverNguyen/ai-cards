@@ -1,0 +1,119 @@
+{
+  "id": "card_e74a78",
+  "slug": "s4-structured-state-spaces",
+  "type": "paper",
+  "title": "S4: Efficiently Modeling Long Sequences with Structured State Spaces",
+  "hook": "A clever matrix parameterization turns the notoriously unstable state-space recurrence into a stable, fast sequence model that handles sequences 100x longer than Transformers.",
+  "key_points": [
+    "Constrains the state matrix A to a diagonal-plus-low-rank (DPLR) structure, making the recurrence numerically stable and efficiently computable.",
+    "Computes the SSM as a global convolution during training - parallelizable and fast.",
+    "Outperforms prior sequence models on Long Range Arena benchmarks, including raw audio and pathfinder image tasks.",
+    "Sequence length scales linearly in time and memory, compared to quadratic for self-attention."
+  ],
+  "content_html": "\u003cp\u003eGu, Goel, and Re (Stanford, 2021) introduced S4, the first deep state-space model that was both computationally practical and competitive with Transformers on difficult long-range benchmarks. The key was a structured parameterization of the recurrence matrix that had stymied earlier SSM work.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eEarlier SSMs were hard to train because learning the state transition matrix A in an unconstrained way led to vanishing or exploding gradients. S4 constrains A to a diagonal-plus-low-rank form inspired by the HiPPO framework (which initializes A to optimally memorize past inputs). With this structure, the full-sequence computation collapses into a global convolution that runs efficiently on modern hardware, and the model switches to the recurrent form at inference time for constant-memory steps.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eS4 proved that SSMs could match or beat attention-based models on tasks requiring very long context - raw audio at 16 kHz, pixel-level image classification, and more - while using far less memory and compute at long sequence lengths. It laid the groundwork for Mamba and the broader wave of attention-free architectures. The paper on arXiv includes full derivations and ablations worth reading if you plan to work with SSMs seriously.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Albert Gu",
+      "Karan Goel",
+      "Christopher Re"
+    ],
+    "url": "https://arxiv.org/abs/2111.00396",
+    "published_at": "2021-10-31",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ssm-mamba"
+  ],
+  "tags": [
+    "architecture",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-06-03",
+  "date": "2021-10-31",
+  "related": [
+    {
+      "id": "card_f58fe4",
+      "slug": "what-are-state-space-models",
+      "type": "concept",
+      "title": "What Are State-Space Models?",
+      "hook": "A compact hidden state summarizes everything seen so far - update it with each new input and you get sequence modeling that scales linearly, not quadratically.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-03"
+    },
+    {
+      "id": "card_5dd64e",
+      "slug": "mamba",
+      "type": "paper",
+      "title": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+      "hook": "Make the state-space transitions depend on the input itself, add a hardware-aware scan, and you get a linear-time sequence model that matches Transformers on language - with no KV cache.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2023-12-01"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_f58fe4",
+      "slug": "what-are-state-space-models",
+      "type": "concept",
+      "title": "What Are State-Space Models?",
+      "hook": "A compact hidden state summarizes everything seen so far - update it with each new input and you get sequence modeling that scales linearly, not quadratically.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-03"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_e74a78#0",
+      "format": "flip",
+      "prompt": "What structural constraint on the state matrix A makes S4 trainable?",
+      "back_html": "\u003cp\u003eA diagonal-plus-low-rank (DPLR) form, which makes the recurrence numerically stable and efficiently computable.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e74a78#1",
+      "format": "quiz",
+      "prompt": "Why were earlier unstructured SSMs hard to train?",
+      "choices": [
+        {
+          "text": "Learning A unconstrained led to vanishing or exploding gradients",
+          "correct": true
+        },
+        {
+          "text": "They required quadratic memory like attention",
+          "correct": false
+        },
+        {
+          "text": "They could not be expressed as a convolution",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAn unconstrained transition matrix A caused vanishing/exploding gradients; S4's structured parameterization fixed this.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e74a78#2",
+      "format": "quiz",
+      "prompt": "How does S4 run the SSM efficiently during training?",
+      "choices": [
+        {
+          "text": "As a global convolution that is parallelizable and fast",
+          "correct": true
+        },
+        {
+          "text": "As a step-by-step recurrence over the full sequence",
+          "correct": false
+        },
+        {
+          "text": "By computing full self-attention over the sequence",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe structured form collapses the full-sequence computation into a parallelizable global convolution for training.\u003c/p\u003e"
+    }
+  ]
+}

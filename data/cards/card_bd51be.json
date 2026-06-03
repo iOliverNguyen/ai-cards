@@ -1,0 +1,100 @@
+{
+  "id": "card_bd51be",
+  "slug": "llama-2",
+  "type": "paper",
+  "title": "Llama 2: Open Foundation and Fine-Tuned Chat Models",
+  "hook": "Meta released Llama 2 with open weights and a commercial-use license, giving anyone a strong RLHF-tuned chat model to build on - and kicked off a wave of open-LLM development.",
+  "key_points": [
+    "Releases both base and chat-tuned variants (7B to 70B), with RLHF and rejection sampling used to align the chat models.",
+    "Permissive license allowed commercial use, which accelerated community fine-tuning and the open-LLM ecosystem.",
+    "Used two separate reward models - one for helpfulness, one for safety - and iterative RLHF to balance both.",
+    "Llama 2-Chat outperformed most open models at the time on human preference evaluations."
+  ],
+  "content_html": "\u003cp\u003eMeta's Touvron and colleagues released Llama 2 in July 2023, providing pretrained base models and instruction-tuned chat variants ranging from 7 billion to 70 billion parameters. Unlike many frontier releases, the weights were made publicly available under a license that permitted commercial use, which set it apart from its predecessor and from most contemporaries.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe base models were trained on roughly 2 trillion tokens of public data. The chat variants went through supervised fine-tuning on human-annotated conversations, then iterative reinforcement learning from human feedback using two reward models — one optimizing for helpfulness, one for safety — to navigate the tension between the two goals.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eOpen weights with a permissive license meant researchers and companies could fine-tune, quantize, and deploy Llama 2 without restriction, catalyzing a wave of community models (instruction tunes, merges, distillations) that would not have been possible with closed-weights releases. The careful dual-reward RLHF approach also became a reference point for open alignment work. Read the full paper on arXiv.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Hugo Touvron",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2307.09288",
+    "published_at": "2023-07-18",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "pretraining",
+    "releases"
+  ],
+  "tags": [
+    "nlp",
+    "open-source",
+    "alignment",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2023-07-18",
+  "related": [
+    {
+      "id": "card_397203",
+      "slug": "llama",
+      "type": "paper",
+      "title": "LLaMA: Open \u0026 Efficient Foundation Models",
+      "hook": "You don't need a 175B-parameter model to compete. LLaMA trained smaller models on lots of public data — and lit a fire under the open-weights community.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-02-27"
+    },
+    {
+      "id": "card_ea6afd",
+      "slug": "llama-3",
+      "type": "paper",
+      "title": "The Llama 3 Herd of Models",
+      "hook": "Meta's Llama 3 family, trained on roughly 15 trillion tokens with a 405B-parameter flagship, narrowed the gap to closed frontier models while staying open-weights.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2024-07-23"
+    },
+    {
+      "id": "card_1098fc",
+      "slug": "instructgpt",
+      "type": "paper",
+      "title": "InstructGPT: Aligning LMs with Human Feedback (RLHF)",
+      "hook": "A smaller model people actually like beats a bigger one they don't. InstructGPT used human preferences to make a model follow instructions — the recipe behind ChatGPT.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-03-04"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_bd51be#0",
+      "format": "flip",
+      "prompt": "Why did Llama 2-Chat use two separate reward models in its RLHF?",
+      "back_html": "\u003cp\u003eOne optimized for helpfulness and one for safety, to navigate the tension between the two goals via iterative RLHF.\u003c/p\u003e"
+    },
+    {
+      "id": "card_bd51be#1",
+      "format": "quiz",
+      "prompt": "Why did Llama 2's permissive license matter for the ecosystem?",
+      "choices": [
+        {
+          "text": "It allowed commercial use, accelerating community fine-tuning and open-LLM development",
+          "correct": true
+        },
+        {
+          "text": "It restricted the model to academic research only",
+          "correct": false
+        },
+        {
+          "text": "It required users to share their training data with Meta",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eOpen weights plus a commercial-use license let researchers and companies fine-tune, quantize, and deploy freely.\u003c/p\u003e"
+    }
+  ]
+}

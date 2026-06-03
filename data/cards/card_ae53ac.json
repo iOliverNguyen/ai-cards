@@ -1,0 +1,110 @@
+{
+  "id": "card_ae53ac",
+  "slug": "gpqa",
+  "type": "paper",
+  "title": "GPQA: A Graduate-Level Google-Proof Q\u0026A Benchmark",
+  "hook": "What makes a question hard for a model? GPQA's are hard even for skilled people with Google: non-experts reach only 34% after 30+ minutes of searching.",
+  "key_points": [
+    "448 multiple-choice questions written by domain experts in biology, physics, and chemistry.",
+    "PhD-level domain experts reach 65% accuracy (74% discounting clear mistakes).",
+    "Skilled non-experts with full web access reach only 34%, spending 30+ minutes per question.",
+    "A GPT-4 baseline reached 39% — hence 'Google-proof.'"
+  ],
+  "content_html": "\u003cp\u003eDavid Rein, Betty Li Hou, Asa Cooper Stickland, and colleagues built GPQA to be genuinely hard, not just trivia you can look up. It is a set of 448 multiple-choice questions written by domain experts in biology, physics, and chemistry, designed so that even motivated non-experts can't crack them by searching the web. PhD-level domain experts reach 65% accuracy, while skilled non-experts with full internet access reach only 34% — the property the authors call \u0026quot;Google-proof.\u0026quot;\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eEach question is authored by an expert in the relevant field and vetted to be both correct and genuinely difficult. To measure difficulty, the team has two groups attempt the questions. PhD-level experts in the matching domain reach 65% accuracy, or 74% if you discount clear mistakes. Skilled non-experts who have full web access and spend 30 or more minutes per question still reach only 34%, showing the questions resist quick lookup. A GPT-4 baseline landed at 39%.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAs models saturate easier benchmarks, the field needs questions that test real expertise rather than recall of searchable facts. GPQA's Google-proof design makes it a useful yardstick for advanced reasoning and a natural setting for scalable oversight research, where the goal is to supervise models on problems humans find hard. The wide gap between expert and non-expert scores is also a reminder that a high model score here signals something beyond surface knowledge.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "David Rein",
+      "Betty Li Hou",
+      "Asa Cooper Stickland",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2311.12022",
+    "published_at": "2023-11-20",
+    "license": "arXiv (CC BY 4.0)"
+  },
+  "topic_ids": [
+    "evals-safety"
+  ],
+  "tags": [
+    "benchmark",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-06-03",
+  "date": "2023-11-20",
+  "related": [
+    {
+      "id": "card_063597",
+      "slug": "mmlu",
+      "type": "paper",
+      "title": "MMLU: Measuring Massive Multitask Language Understanding",
+      "hook": "Want one number for how broadly an LLM 'knows stuff'? MMLU is a 57-subject exam spanning history, law, medicine, and math — and it became a default yardstick.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2020-09-07"
+    },
+    {
+      "id": "card_9328c5",
+      "slug": "chatbot-arena",
+      "type": "paper",
+      "title": "Chatbot Arena: Ranking LLMs by Human Preference",
+      "hook": "How do you rank chatbots when there's no single right answer? Let people pick the better of two anonymous replies, then aggregate the votes into a leaderboard.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2024-03-07"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_ae53ac#0",
+      "format": "flip",
+      "prompt": "What does GPQA's 'Google-proof' property mean in practice?",
+      "back_html": "\u003cp\u003eSkilled non-experts with full web access reach only 34%, even spending 30+ minutes per question — the questions resist quick lookup.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ae53ac#1",
+      "format": "quiz",
+      "prompt": "What accuracy do PhD-level domain experts reach on GPQA?",
+      "choices": [
+        {
+          "text": "65% (74% discounting clear mistakes)",
+          "correct": true
+        },
+        {
+          "text": "34%, the same as non-experts",
+          "correct": false
+        },
+        {
+          "text": "Over 90%",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe card states PhD-level domain experts reach 65% accuracy, or 74% if clear mistakes are discounted.\u003c/p\u003e"
+    },
+    {
+      "id": "card_ae53ac#2",
+      "format": "quiz",
+      "prompt": "Why is the wide expert/non-expert gap useful for evaluating models?",
+      "choices": [
+        {
+          "text": "A high model score signals real expertise, not searchable recall",
+          "correct": true
+        },
+        {
+          "text": "It proves the questions are ambiguous",
+          "correct": false
+        },
+        {
+          "text": "It means the benchmark is too easy",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe gap is a reminder that scoring well here signals something beyond surface knowledge — advanced reasoning, not lookup.\u003c/p\u003e"
+    }
+  ]
+}

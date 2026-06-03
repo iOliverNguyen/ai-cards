@@ -1,0 +1,112 @@
+{
+  "id": "card_3d67cb",
+  "slug": "training-leaves-traces-model-lineage",
+  "type": "paper",
+  "title": "Training Leaves Traces: Reading a Model's Ancestry From Its Weights",
+  "hook": "Open weights get fine-tuned, quantized, pruned and merged with no paper trail. This work finds a data-free signature in the weights that says whether two checkpoints share an ancestor.",
+  "key_points": [
+    "Task: data-free white-box lineage verification — decide shared ancestry from weights alone, no inference required.",
+    "Residual training creates a shared identity-aligned component in branch products, so that structure alone proves nothing.",
+    "Removing it and comparing the checkpoint-specific structure across residual blocks yields a symmetric lineage score.",
+    "The score is calibrated against independent checkpoints, separating descendants from unrelated models at AUROC 1.0 on their benchmarks.",
+    "It distinguishes weight ancestry from mere behavioral similarity — distilled models read as unrelated.",
+    "Survives function-preserving 'checkpoint laundering' that breaks weight-space baselines, and runs 76x faster than the nearest robust one."
+  ],
+  "content_html": "\u003cp\u003eAn open-weight model in the wild has usually been through several hands: fine-tuned, LoRA-merged, pruned, quantized, merged again. The provenance is rarely documented. Thakur and Khoury ask whether the weights alone give it away — no training data, no probing inputs, just two compatible checkpoints and a question about shared ancestry.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eThe obvious signal is a trap. Residual training produces a shared identity-aligned component in branch products, present in any compatible pair, so it can't establish ancestry. The method removes that component and compares what remains — the checkpoint-specific structure across residual blocks — into a symmetric lineage score, calibrated against independent checkpoints so the threshold is meaningful.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eOn residual-MLP and GPT-2 benchmarks the score cleanly separates fine-tuned, LoRA-merged, pruned and quantized descendants from independent \u003cem\u003eand\u003c/em\u003e distilled models at AUROC 1.0 — meaning it reads weight ancestry rather than behavioral resemblance, which is exactly the distinction a provenance claim needs. Under function-preserving \u0026quot;checkpoint laundering,\u0026quot; weight-space baselines lose their margin or fail outright while this score stays put, and it runs 76x faster than the nearest robust baseline on GPT-2. The authors report the projection-pairing signal appears across six model families, and a case study correctly sorts 3 related from 7 unrelated public LLaMA-2 checkpoints.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Aman Singh Thakur",
+      "Rayan Khoury"
+    ],
+    "url": "https://arxiv.org/abs/2608.14929",
+    "published_at": "2026-08-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "open-source",
+    "safety",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-08-20",
+  "date": "2026-08-14",
+  "related": [
+    {
+      "id": "card_a19552",
+      "slug": "warp-recovering-training-data-portfolios",
+      "type": "paper",
+      "title": "WARP: Weight-Space Analysis for Recovering Training Data Portfolios",
+      "hook": "Labs rarely disclose their data mixture recipes — but WARP shows you can recover a fine-tuned model's training-domain proportions just from its released weights, no training data required.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-07-02"
+    },
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_3d67cb#0",
+      "format": "flip",
+      "prompt": "Why can't you establish ancestry just by finding shared structure in two checkpoints' residual branch products?",
+      "back_html": "\u003cp\u003eResidual training itself produces a shared identity-aligned component in those products. Every compatible model has it, so its presence carries no information about lineage.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3d67cb#1",
+      "format": "quiz",
+      "prompt": "Why do distilled models score as *unrelated* under this lineage signal?",
+      "choices": [
+        {
+          "text": "The score tracks weight ancestry, not behavioral similarity — distillation copies behavior, not weights",
+          "correct": true
+        },
+        {
+          "text": "Distilled models are always smaller, so the checkpoints aren't compatible",
+          "correct": false
+        },
+        {
+          "text": "Distillation randomizes the residual blocks",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eSeparating provenance from behavior is the point: fine-tuned, LoRA-merged, pruned and quantized descendants are detected, while a model that merely imitates is not.\u003c/p\u003e"
+    },
+    {
+      "id": "card_3d67cb#2",
+      "format": "quiz",
+      "prompt": "What is 'checkpoint laundering' in this paper, and how does the proposed score hold up?",
+      "choices": [
+        {
+          "text": "Function-preserving transformations meant to hide provenance; the score is unchanged while weight-space baselines lose margin or fail",
+          "correct": true
+        },
+        {
+          "text": "Retraining on synthetic data until the weights drift; the score degrades gracefully",
+          "correct": false
+        },
+        {
+          "text": "Publishing weights under a new license; the score is irrelevant",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eLaundering applies transformations that preserve the model's function. The authors report their score is unaffected and runs 76x faster than the nearest robust baseline on GPT-2.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "id": "card_a4574e",
+  "slug": "overfitting-and-regularization",
+  "type": "concept",
+  "title": "Overfitting \u0026 Regularization",
+  "hook": "A model that aces its training data but flops on anything new hasn't learned — it has memorized. Regularization is the cure.",
+  "key_points": [
+    "Overfitting means the model fits noise and quirks of the training set, not the real pattern.",
+    "The tell: great training accuracy, much worse performance on held-out data.",
+    "Regularization fights it — weight decay, dropout, and early stopping all rein in complexity.",
+    "More and more varied data is one of the most reliable defenses against overfitting."
+  ],
+  "content_html": "\u003cp\u003eOverfitting happens when a model learns the training data too well — including its random noise — and then fails to generalize to new examples. Regularization is the family of techniques that discourage this by limiting how complex or confident the model can get, so it captures the genuine pattern instead of memorizing the sample.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eA model with enough capacity can drive its training error to nearly zero by contorting itself around every data point, noise included. Regularization pushes back: weight decay penalizes large weights, dropout randomly silences units during training so the model can't lean on any one of them, and early stopping halts training before it starts memorizing. Adding more diverse data also makes the noise harder to fit.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe whole point of a model is to work on data it hasn't seen, so a model that only shines on its training set is useless. Recognizing the symptom — a big gap between training and validation performance — and reaching for the right regularizer is one of the most practical skills in applied ML.\u003c/p\u003e",
+  "source": {
+    "name": "Wikipedia",
+    "authors": [
+      "Wikipedia contributors"
+    ],
+    "url": "https://en.wikipedia.org/wiki/Overfitting",
+    "license": "CC BY-SA (Wikipedia)"
+  },
+  "topic_ids": [
+    "generalization"
+  ],
+  "tags": [
+    "foundational"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2026-06-02",
+  "related": [
+    {
+      "id": "card_9cb2a0",
+      "slug": "bias-variance-tradeoff",
+      "type": "concept",
+      "title": "The Bias–Variance Tradeoff",
+      "hook": "Too simple and your model misses the pattern; too flexible and it chases noise. Generalization lives between the two.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    },
+    {
+      "id": "card_0d296c",
+      "slug": "cross-validation",
+      "type": "concept",
+      "title": "Cross-Validation",
+      "hook": "One lucky or unlucky split can flatter or sink your model. Rotate the holdout and average — that's cross-validation.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_ce155a",
+      "slug": "what-is-machine-learning",
+      "type": "concept",
+      "title": "What Is Machine Learning?",
+      "hook": "Instead of hand-coding rules, you show a program examples and let it find the patterns — then it handles inputs it has never seen.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2026-06-02"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_a4574e#0",
+      "format": "flip",
+      "prompt": "What is the tell-tale symptom of overfitting?",
+      "back_html": "\u003cp\u003eGreat training accuracy but much worse performance on held-out data — a big gap between training and validation results.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a4574e#1",
+      "format": "quiz",
+      "prompt": "Which of these is a regularization technique against overfitting?",
+      "choices": [
+        {
+          "text": "Dropout — randomly silencing units during training",
+          "correct": true
+        },
+        {
+          "text": "Driving training error to exactly zero",
+          "correct": false
+        },
+        {
+          "text": "Removing the validation set",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eWeight decay, dropout, and early stopping all rein in complexity. Adding more diverse data also makes the noise harder to fit.\u003c/p\u003e"
+    }
+  ]
+}

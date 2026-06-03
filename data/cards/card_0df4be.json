@@ -1,0 +1,107 @@
+{
+  "id": "card_0df4be",
+  "slug": "alphago",
+  "type": "paper",
+  "title": "AlphaGo: Mastering the Game of Go",
+  "hook": "Go has more board positions than atoms in the universe, and experts thought superhuman play was a decade off. AlphaGo beat a top professional in 2016.",
+  "key_points": [
+    "Combined deep neural networks with Monte Carlo tree search to play Go at superhuman level.",
+    "A policy network suggests promising moves; a value network estimates who's winning from a position.",
+    "Learned from human expert games and then improved through self-play reinforcement learning.",
+    "Defeated a top professional player, a milestone many expected was still years away."
+  ],
+  "content_html": "\u003cp\u003eDavid Silver, Aja Huang, and the DeepMind team built AlphaGo, the first program to play Go at a superhuman level. Go's enormous branching factor had long defeated the brute-force search that conquered chess, so AlphaGo paired deep neural networks with Monte Carlo tree search to focus its thinking. It learned from a large set of human expert games and then sharpened itself through self-play, and in 2016 it beat a top professional — a result many believed was still a decade away.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eAlphaGo uses two neural networks. A policy network looks at a board and proposes which moves are worth considering, pruning the otherwise impossibly wide search. A value network estimates the chance of winning from a given position, so the program doesn't have to play every line to the end. These guide a Monte Carlo tree search that explores promising sequences. The networks were first trained to imitate strong human play, then improved by playing many games against versions of themselves.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eGo was a long-standing symbol of the gap between human intuition and machine search, precisely because good play seemed to require pattern recognition rather than calculation. AlphaGo's win showed that learned evaluation plus guided search could capture that intuition, and it became a defining public moment for deep reinforcement learning. It set the stage for more general successors that needed no human game data at all.\u003c/p\u003e",
+  "source": {
+    "name": "Nature",
+    "authors": [
+      "David Silver",
+      "Aja Huang",
+      "et al."
+    ],
+    "url": "https://www.nature.com/articles/nature16961",
+    "published_at": "2016-01-27",
+    "license": "© Nature (link-out)"
+  },
+  "topic_ids": [
+    "ai-for-science"
+  ],
+  "tags": [
+    "landmark"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2016-01-27",
+  "related": [
+    {
+      "id": "card_f14fdc",
+      "slug": "alphazero",
+      "type": "paper",
+      "title": "AlphaZero: Mastering Games from Scratch",
+      "hook": "AlphaGo learned from human games. AlphaZero threw those away — one algorithm reached superhuman chess, shogi, and Go knowing only the rules and playing itself.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2017-12-05"
+    },
+    {
+      "id": "card_c38a80",
+      "slug": "alphafold",
+      "type": "paper",
+      "title": "AlphaFold: Protein Structure Prediction",
+      "hook": "Predicting a protein's 3D shape from its sequence stumped biology for ~50 years. AlphaFold cracked it at near-experimental accuracy — and then released the structures to everyone.",
+      "importance": 5,
+      "difficulty": "deep",
+      "date": "2021-07-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_0df4be#0",
+      "format": "flip",
+      "prompt": "What are the roles of AlphaGo's policy and value networks?",
+      "back_html": "\u003cp\u003eThe policy network proposes which moves are worth considering (pruning the search); the value network estimates the chance of winning from a position, so it needn't play every line to the end.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0df4be#1",
+      "format": "quiz",
+      "prompt": "How did AlphaGo combine learning with search to handle Go's huge branching factor?",
+      "choices": [
+        {
+          "text": "Neural networks guided a Monte Carlo tree search",
+          "correct": true
+        },
+        {
+          "text": "Brute-force exhaustive search over all positions",
+          "correct": false
+        },
+        {
+          "text": "A lookup table of memorized expert games",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eGo's branching factor defeated brute force; AlphaGo used networks to focus a Monte Carlo tree search on promising lines.\u003c/p\u003e"
+    },
+    {
+      "id": "card_0df4be#2",
+      "format": "quiz",
+      "prompt": "How was AlphaGo trained?",
+      "choices": [
+        {
+          "text": "First imitating human expert games, then improving via self-play reinforcement learning",
+          "correct": true
+        },
+        {
+          "text": "Purely from random self-play with no human data",
+          "correct": false
+        },
+        {
+          "text": "Only by playing against human professionals live",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAlphaGo learned from human expert games, then sharpened itself through self-play — later successors dropped the human data.\u003c/p\u003e"
+    }
+  ]
+}

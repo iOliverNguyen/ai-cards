@@ -1,0 +1,121 @@
+{
+  "id": "card_1976e4",
+  "slug": "quantization-aware-healing",
+  "type": "paper",
+  "title": "Quantization-Aware Healing: Distill, Don't Re-fit",
+  "hook": "Compress a 120B to 60B, drop it to 4 bits, and it breaks. QAT heals it slowly and then collapses; distilling from the original model instead gets there ~7x faster and stays stable.",
+  "key_points": [
+    "Shipping cheap LLMs now means both structural compression and 4-bit quantization — together they degrade reasoning, math, code, and long context.",
+    "The default recovery, quantization-aware training, re-fits the compressed model to hard labels; the authors saw slow convergence and a collapse past peak.",
+    "Key insight: a structurally compressed model's bfloat16 checkpoint is itself only a distillation-recovered approximation, not a real full-precision model.",
+    "QAH therefore distills the 4-bit student directly from the original uncompressed teacher instead of re-fitting to labels.",
+    "On a GPT-OSS 120B to 60B to MXFP4 pipeline, the student matches or beats its bfloat16 source on 7 of 9 benchmarks at roughly 4x less weight memory.",
+    "It reaches a comparable peak about 7x faster than matched QAT and stays stable under continued training, with no hand-tuned early stopping."
+  ],
+  "content_html": "\u003cp\u003eServing a large model cheaply increasingly means two compressions stacked on each other: cut the parameter count structurally, then quantize what's left to 4 bits. Both hurt, and together they hurt enough — on reasoning, math, coding, and long-context behaviour — that you need a recovery, or \u003cem\u003ehealing\u003c/em\u003e, stage before shipping. Ryskulov and colleagues report that the standard recovery, quantization-aware training, behaved badly in their pipeline: slow to converge, then collapsing once past its peak.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe teacher you actually want\u003c/h2\u003e\n\u003cp\u003eTheir fix rests on a neat observation. A structurally compressed model was never trained at full precision in its own right — its bfloat16 checkpoint is itself a distillation-recovered approximation of the original network. So re-fitting the 4-bit student to that checkpoint's hard labels means learning from a copy of a copy. Quantization-Aware Healing instead distills the 4-bit student directly from the original, uncompressed model.\u003c/p\u003e\n\u003ch2\u003eResults and caveats\u003c/h2\u003e\n\u003cp\u003eRunning a GPT-OSS 120B to 60B to MXFP4 pipeline, the authors report the QAH student matching or beating its bfloat16 source on 7 of 9 benchmarks at roughly a quarter of the weight memory and half the teacher's parameter count, released open-weight as Hypernova-60B. Against a matched QAT baseline it reaches a comparable peak about 7x faster and does not degrade under continued training. They also flag a deployment lesson worth remembering: a large, reproducible quality gap between distributed-training backends.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Bakbergen Ryskulov",
+      "Iker García-Ferrero",
+      "David Montero",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2608.20953",
+    "published_at": "2026-08-21",
+    "license": "arXiv (open access)"
+  },
+  "resources": [
+    {
+      "title": "Quantization-Aware Healing (Hugging Face blog)",
+      "url": "https://huggingface.co/blog/MultiverseComputingCAI/quantization-aware-healing"
+    }
+  ],
+  "topic_ids": [
+    "quantization",
+    "distillation",
+    "papers-this-week"
+  ],
+  "tags": [
+    "efficiency",
+    "training",
+    "open-source",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-21",
+  "related": [
+    {
+      "id": "card_f56fb1",
+      "slug": "quantization-aware-distillation-lfm25",
+      "type": "blog",
+      "title": "Quantization-Aware Distillation: Train the 4-bit Model, Don't Squash It",
+      "hook": "Liquid AI distilled BF16 teachers straight into Q4_0 students and recovered 97% of the accuracy that post-training quantization was throwing away.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2026-08-19"
+    },
+    {
+      "id": "card_ec7996",
+      "slug": "gemma-4-qat",
+      "type": "news",
+      "title": "Gemma 4 QAT: 4-Bit Weights That Keep Their Quality",
+      "hook": "Squeezing a model to 4 bits after training loses quality. Quantization-aware training bakes the rounding into training instead — and Google shipped Gemma 4 checkpoints that do exactly that.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-06-05"
+    },
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_1976e4#0",
+      "format": "flip",
+      "prompt": "Why does QAH distill from the original uncompressed model rather than the compressed bfloat16 checkpoint?",
+      "back_html": "\u003cp\u003eA structurally compressed model was never independently trained at full precision — its bfloat16 checkpoint is already a distillation-recovered approximation, so the original model is the better teacher.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1976e4#1",
+      "format": "quiz",
+      "prompt": "What went wrong with quantization-aware training in the authors' pipeline?",
+      "choices": [
+        {
+          "text": "It converged slowly and then collapsed past its peak, needing hand-tuned early stopping",
+          "correct": true
+        },
+        {
+          "text": "It required more weight memory than the uncompressed model",
+          "correct": false
+        },
+        {
+          "text": "It could not represent 4-bit weights at all",
+          "correct": false
+        },
+        {
+          "text": "It only worked on models under 10B parameters",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eQAT re-fits the compressed, quantized model to hard labels; in this pipeline that was both slow and unstable, which is what motivated the distillation-based alternative.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1976e4#2",
+      "format": "flip",
+      "prompt": "What surprising result does the QAH student achieve?",
+      "back_html": "\u003cp\u003eOn a GPT-OSS 120B to 60B to MXFP4 pipeline it matches or beats its own bfloat16 source on 7 of 9 benchmarks, at roughly 4x less weight memory and half the teacher's parameters.\u003c/p\u003e"
+    }
+  ]
+}

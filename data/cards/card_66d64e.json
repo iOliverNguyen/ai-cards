@@ -1,0 +1,146 @@
+{
+  "id": "card_66d64e",
+  "slug": "paratempo-temporal-confidence",
+  "type": "paper",
+  "title": "ParaTempo: Steering Parallel Reasoning With Temporal Confidence",
+  "hook": "Exploring many solution paths at once makes reasoning models better and slower. ParaTempo watches how fast each branch converges on an answer and kills, retires, or forks branches on that one signal.",
+  "key_points": [
+    "Parallel reasoning buys accuracy and robustness, but cost grows with both reasoning depth and branch count.",
+    "Existing control signals are weak: final-answer consensus arrives too late, token confidence is noisy, isolated probes miss reasoning progress.",
+    "Temporal confidence periodically probes each branch for a tentative answer distribution and measures how sharply recent probes concentrate.",
+    "One signal drives everything — prune low-confidence branches, retire committed ones early, fork new branches with the freed compute, stop when the weighted vote concentrates.",
+    "Training-free and asynchronous: no synchronization between reasoning trajectories.",
+    "On math and science reasoning benchmarks: 21.8-32.2% lower average latency, 18.1-30.3% fewer tokens, competitive accuracy."
+  ],
+  "content_html": "\u003cp\u003eLetting a reasoning model explore several solution paths in parallel reliably improves accuracy — and the bill scales with how deep each path goes and how many you run. Zhang and colleagues' \u003cstrong\u003eParaTempo\u003c/strong\u003e argues the problem is that nobody has a good signal for deciding, mid-flight, which branches deserve the compute.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe signal\u003c/h2\u003e\n\u003cp\u003eFinal-answer consensus only exists after branches finish. Per-token confidence is noisy. Isolated intermediate probes are only weakly tied to whether a branch is actually making progress. ParaTempo's alternative, \u003cstrong\u003etemporal confidence\u003c/strong\u003e, probes each branch periodically for a tentative answer distribution and asks how sharply those recent probes are converging on one dominant answer — a branch-local reading of momentum rather than a snapshot.\u003c/p\u003e\n\u003ch2\u003eWhat it drives\u003c/h2\u003e\n\u003cp\u003eOnce enough evidence has accumulated, that single number runs the whole controller: low-confidence branches are pruned, branches that keep re-committing to their dominant answer are retired early, freed compute is reallocated by forking new branches, and generation halts globally when the confidence-weighted vote concentrates. Because branches never synchronize, this is training-free orchestration on top of an existing model. On the math and science reasoning benchmarks tested, the authors report 21.8-32.2% lower average latency and 18.1-30.3% fewer total tokens at competitive accuracy, and find temporal confidence more stable and more predictive of future branch convergence than token-level or instantaneous signals. arXiv, August 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Xuteng Zhang",
+      "Wenhao Zeng",
+      "Xiaodong Gu",
+      "Chao Hu",
+      "Haotian Lin",
+      "Yuling Shi",
+      "Min Wang",
+      "Beijun Shen"
+    ],
+    "url": "https://arxiv.org/abs/2608.16425",
+    "published_at": "2026-08-17",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "prompting",
+    "papers-this-week"
+  ],
+  "tags": [
+    "inference",
+    "efficiency",
+    "reasoning",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-24",
+  "date": "2026-08-17",
+  "related": [
+    {
+      "id": "card_d58b92",
+      "slug": "second-thought-parallel-reasoning",
+      "type": "paper",
+      "title": "Second Thought: Reasoning in Parallel While an Agent Acts",
+      "hook": "Every time a ReAct agent calls a tool and waits, its reasoning sits idle. Second Thought fills that gap with side branches that think ahead — no retraining, fewer turns.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-08-13"
+    },
+    {
+      "id": "card_1f00c3",
+      "slug": "test-time-compute-scaling",
+      "type": "paper",
+      "title": "Scaling LLM Test-Time Compute",
+      "hook": "A new scaling axis: instead of a bigger model, let a model think longer at inference — often a better use of compute, and the principle behind o1 and R1.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2024-08-06"
+    },
+    {
+      "id": "card_812537",
+      "slug": "self-consistency",
+      "type": "paper",
+      "title": "Self-Consistency Improves Chain-of-Thought Reasoning",
+      "hook": "Sample the model many times, let each run reason its own way, then take the majority answer - diverse reasoning paths vote out individual errors.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-03-21"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_812537",
+      "slug": "self-consistency",
+      "type": "paper",
+      "title": "Self-Consistency Improves Chain-of-Thought Reasoning",
+      "hook": "Sample the model many times, let each run reason its own way, then take the majority answer - diverse reasoning paths vote out individual errors.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2022-03-21"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_66d64e#0",
+      "format": "flip",
+      "prompt": "What does 'temporal confidence' measure in ParaTempo?",
+      "back_html": "\u003cp\u003eBranch-local convergence: each branch is periodically probed for a tentative answer distribution, and temporal confidence scores how sharply the recent probes concentrate on one dominant answer.\u003c/p\u003e"
+    },
+    {
+      "id": "card_66d64e#1",
+      "format": "quiz",
+      "prompt": "Why do the authors reject final-answer consensus as a control signal for parallel reasoning?",
+      "choices": [
+        {
+          "text": "It only arrives once branches finish, so it can't steer compute while reasoning is still running",
+          "correct": true
+        },
+        {
+          "text": "It requires retraining the reasoning model on labelled branch data",
+          "correct": false
+        },
+        {
+          "text": "It can only be computed for math problems, not scientific ones",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper's complaint is timing: consensus signals are delayed, token confidence is noisy, and isolated probes are weakly tied to actual reasoning progress — none support live branch-level control.\u003c/p\u003e"
+    },
+    {
+      "id": "card_66d64e#2",
+      "format": "flip",
+      "prompt": "Name the four control actions ParaTempo drives from its single confidence signal.",
+      "back_html": "\u003cp\u003ePrune low-confidence branches, retire branches that keep committing to the same answer, fork new branches with the freed compute, and stop globally once the confidence-weighted vote concentrates.\u003c/p\u003e"
+    },
+    {
+      "id": "card_66d64e#3",
+      "format": "quiz",
+      "prompt": "What does ParaTempo require in order to deploy?",
+      "choices": [
+        {
+          "text": "Nothing extra — it is training-free and needs no synchronization between branches",
+          "correct": true
+        },
+        {
+          "text": "A fine-tuned reward model to score each intermediate branch",
+          "correct": false
+        },
+        {
+          "text": "A synchronization barrier so every branch probes at the same step",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eParaTempo is a training-free asynchronous framework: branches converge on their own schedule and the controller reacts to each branch's local temporal confidence.\u003c/p\u003e"
+    }
+  ]
+}

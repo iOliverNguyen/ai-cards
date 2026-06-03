@@ -1,0 +1,122 @@
+{
+  "id": "card_e778b2",
+  "slug": "resnet",
+  "type": "paper",
+  "title": "Deep Residual Learning (ResNet)",
+  "hook": "Stacking more layers used to make networks worse, not better. ResNet's fix — let each layer learn a tweak to its input — unlocked nets over 100 layers deep.",
+  "key_points": [
+    "Skip connections compute F(x)+x, so a layer learns a residual change rather than a full transformation.",
+    "This solved the degradation problem where very deep plain nets trained worse than shallow ones.",
+    "Enabled networks of 100+ (and even 1000+) layers that keep improving with depth.",
+    "Won the ImageNet 2015 classification challenge.",
+    "Skip connections are now a default building block across architectures."
+  ],
+  "content_html": "\u003cp\u003eHe, Zhang, Ren, and Sun noticed that simply stacking more layers made deep networks harder to train, not better. Their fix — residual or \u0026quot;skip\u0026quot; connections that let a block learn a small change to its input instead of a full mapping — let them train networks over 100 layers deep and win the ImageNet 2015 challenge.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eHow it works\u003c/h2\u003e\n\u003cp\u003eA residual block computes F(x) + x: the layers learn F(x), the adjustment, and then the original input x is added back. If a block has nothing useful to add, it can simply push F toward zero and pass the input through unchanged. That gives gradients a clean shortcut path during backpropagation, so signal flows to early layers without vanishing — which is what makes very deep training stable.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eResNet showed that depth, done right, keeps paying off, and it removed the practical ceiling on how deep a network could be. The skip connection turned out to be a general trick: it shows up in Transformers, U-Nets, and most modern architectures, making ResNet one of the most influential ideas in deep learning.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Kaiming He",
+      "Xiangyu Zhang",
+      "Shaoqing Ren",
+      "Jian Sun"
+    ],
+    "url": "https://arxiv.org/abs/1512.03385",
+    "published_at": "2015-12-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "cnns"
+  ],
+  "tags": [
+    "vision",
+    "architecture",
+    "landmark"
+  ],
+  "importance": 5,
+  "difficulty": "core",
+  "created_at": "2026-06-02",
+  "date": "2015-12-10",
+  "related": [
+    {
+      "id": "card_f94290",
+      "slug": "alexnet",
+      "type": "paper",
+      "title": "ImageNet Classification with Deep CNNs (AlexNet)",
+      "hook": "In 2012 a single deep CNN trained on two GPUs crushed the ImageNet contest by a wide margin — and kicked off the deep learning era.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2012-12-03"
+    },
+    {
+      "id": "card_df9c22",
+      "slug": "batch-normalization",
+      "type": "paper",
+      "title": "Batch Normalization",
+      "hook": "Re-center and re-scale each layer's activations on every minibatch, and deep nets suddenly train faster and tolerate much higher learning rates.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2015-02-11"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_dd14c6",
+      "slug": "how-neural-networks-learn",
+      "type": "concept",
+      "title": "How Neural Networks Learn: Backpropagation",
+      "hook": "A neural net learns by asking, for every weight, 'how much did you contribute to my mistake?' Backprop answers all of them at once.",
+      "importance": 5,
+      "difficulty": "intro",
+      "date": "2017-10-05"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_e778b2#0",
+      "format": "flip",
+      "prompt": "What does a residual block compute, and why does it help?",
+      "back_html": "\u003cp\u003eF(x) + x: the layers learn a residual change F(x), then the input x is added back, giving gradients a clean shortcut path.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e778b2#1",
+      "format": "quiz",
+      "prompt": "What problem did residual connections solve?",
+      "choices": [
+        {
+          "text": "Degradation, where very deep plain nets trained worse than shallow ones",
+          "correct": true
+        },
+        {
+          "text": "Models being too small to overfit",
+          "correct": false
+        },
+        {
+          "text": "The need for labeled training data",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eResNet solved the degradation problem, letting networks of 100+ layers keep improving with depth.\u003c/p\u003e"
+    },
+    {
+      "id": "card_e778b2#2",
+      "format": "quiz",
+      "prompt": "If a residual block has nothing useful to add, what can it do?",
+      "choices": [
+        {
+          "text": "Push F toward zero and pass the input through unchanged",
+          "correct": true
+        },
+        {
+          "text": "Discard the input entirely",
+          "correct": false
+        },
+        {
+          "text": "Double the input value",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eA block can drive F toward zero to pass its input through unchanged, which keeps very deep training stable.\u003c/p\u003e"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "id": "card_99ec55",
+  "slug": "agent-skill-regression-tax",
+  "type": "paper",
+  "title": "The Regression Tax on Agent Skills",
+  "hook": "Handing an agent a procedural skill doesn't only add wins — it also breaks tasks it used to solve. The best skills win by regressing less, not by gaining more.",
+  "key_points": [
+    "Compares agents with and without skills across ~6,000 runs, two office-automation benchmarks, and three model harness stacks.",
+    "Splits outcomes: a regression is a task solved without skills but failed with them; a residual failure fails either way.",
+    "Skill description osmosis: a skill shifts the agent's behavior just by sitting in context, even when it is never invoked.",
+    "Grounding displacement: the skill's prescribed procedure overrides how the agent reads its actual inputs.",
+    "Verification displacement: following the procedure suppresses output checks the agent would otherwise have run.",
+    "Existing skills over-invest in procedural guidance — the stage least often to blame — and under-support grounding and verification."
+  ],
+  "content_html": "\u003cp\u003eTank and Nama looked at what happens when you hand an LLM agent a written procedural skill, and measured both directions of the effect rather than just the average. Across roughly 6,000 runs on two office-automation benchmarks and three harness stacks, they separate a \u003cem\u003eregression\u003c/em\u003e — a task the agent solved without the skill and failed with it — from a \u003cem\u003eresidual failure\u003c/em\u003e that fails either way. Regressions turn out to be large enough that the best-performing skills lead mainly by regressing less, not by winning more.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThree ways a skill backfires\u003c/h2\u003e\n\u003cp\u003eThe authors name three mechanisms. \u003cstrong\u003eSkill description osmosis\u003c/strong\u003e is the most unsettling: a skill alters the agent's behavior simply by being present in the context window, even on tasks where it is never invoked. \u003cstrong\u003eGrounding displacement\u003c/strong\u003e happens when the skill's prescribed procedure overrides how the agent interprets the inputs actually in front of it. \u003cstrong\u003eVerification displacement\u003c/strong\u003e is when following the procedure crowds out the output checks the agent would otherwise have performed.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eAnalysing the tasks that fail persistently reveals the same imbalance: skills as written pile on procedural guidance, which the authors find is the stage least often responsible for failure, while under-supporting grounding and verification, which dominate the remaining errors. After correcting for evaluation artifacts, they report that many regressions and persistent failures look recoverable through better grounding and verification. The practical takeaway for anyone writing agent skills is to report gains and regressions separately, and to spend the context budget on helping the agent read its inputs and check its work rather than on ever-more-detailed procedure.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Darshan Tank",
+      "Baran Nama"
+    ],
+    "url": "https://arxiv.org/abs/2607.22520",
+    "published_at": "2026-07-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "paper",
+    "benchmark"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-27",
+  "date": "2026-07-24",
+  "related": [
+    {
+      "id": "card_2e50ab",
+      "slug": "claude-agent-skills",
+      "type": "news",
+      "title": "Claude Agent Skills",
+      "hook": "Agent Skills package instructions, scripts, and resources into folders an agent loads on demand — composable, portable expertise, later opened as a standard like MCP.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2025-10-16"
+    },
+    {
+      "id": "card_9624de",
+      "slug": "agent-optimizers-compound-continual-learning",
+      "type": "paper",
+      "title": "Do Agent Optimizers Compound? A Continual-Learning Evaluation",
+      "hook": "Most agent-optimization papers report a one-shot gain and stop. Rerun the optimizer on new tasks and two of three popular methods actually make the agent worse than doing nothing.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-15"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_99ec55#0",
+      "format": "flip",
+      "prompt": "Why is average task-success improvement a misleading way to evaluate an agent skill?",
+      "back_html": "\u003cp\u003eIt nets out two opposite effects. A skill both fixes tasks and breaks tasks the agent already solved, and the aggregate hides those regressions — so the authors argue for decomposing net effect into gains and regressions.\u003c/p\u003e"
+    },
+    {
+      "id": "card_99ec55#1",
+      "format": "quiz",
+      "prompt": "What is 'skill description osmosis'?",
+      "choices": [
+        {
+          "text": "A skill changes the agent's behavior merely by being present in context, even when never invoked",
+          "correct": true
+        },
+        {
+          "text": "A skill's instructions gradually degrade as context is truncated over a long run",
+          "correct": false
+        },
+        {
+          "text": "Several skills blend into each other when loaded together, so the agent picks the wrong one",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePresence alone is enough: the skill text in context shifts behavior without the agent ever calling the skill, so its cost isn't limited to the tasks it was written for.\u003c/p\u003e"
+    },
+    {
+      "id": "card_99ec55#2",
+      "format": "flip",
+      "prompt": "According to this paper, where does agent reliability actually come from?",
+      "back_html": "\u003cp\u003eMore from grounding (reading inputs correctly) and verification (checking outputs) than from the choice of procedural skill — those two are the dominant sources of remaining errors.\u003c/p\u003e"
+    }
+  ]
+}

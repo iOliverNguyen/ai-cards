@@ -1,0 +1,100 @@
+{
+  "id": "card_954a0c",
+  "slug": "jadr-j-space-quantization-safety",
+  "type": "paper",
+  "title": "Silent Alarm: Catching Quantization's Hidden Safety Cost with J-Space",
+  "hook": "Quantizing a model to save memory can quietly gut its internal danger-recognition circuitry — even when its answers on safety benchmarks look unchanged.",
+  "key_points": [
+    "JADR reads a model's internal 'danger recognition' from J-space activations before a single response token — no external judge needed.",
+    "Tested on 6 models (Qwen3 1.7B/4B/8B, Qwen3-Uncensored-4B, Qwen3-SafeRL-4B, Gemma 2 9B) across BF16, INT8, and INT4 quantization.",
+    "The SafetyAUC metric statistically separates models with strong vs. weak internal safety mechanisms, with bootstrap confidence intervals.",
+    "Quantization degrades this internal signal by substantively different amounts across models — a risk response-based safety evals can miss.",
+    "Lands amid a wider community response to Anthropic's Jacobian-Lens release, including visualizer tools and follow-up experiments."
+  ],
+  "content_html": "\u003cp\u003eMost jailbreak-robustness research grades safety by reading a model's generated responses through an LLM judge — sensitive to the grading procedure, and blind to why a model's defenses are fragile. This paper measures danger recognition directly from the model's own activations, before it writes a single word.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eJADR (Jacobian Assessment of Danger Recognition) builds on J-space, a workspace of verbalizable concepts recently introduced through Anthropic's Jacobian-Lens interpretability method. For each prompt and layer, the authors record the top J-space tokens, group them into six behavioral scenario axes, and compare a danger sample (from StrongREJECT) against safe controls (XSTest, OKTest) — entirely from local activations, with no external judge model. Applied to six models (Qwen3 1.7B/4B/8B, Qwen3-Uncensored-4B, Qwen3-SafeRL-4B, Gemma 2 9B) across BF16, INT8, and INT4 quantization, their SafetyAUC metric statistically separates strong from weak internal safety mechanisms and shows quantization degrades that internal signal by substantively different amounts across models — a fragility that behavioral, response-based safety evals can miss entirely. The paper lands amid a broader wave of community activity around Anthropic's Jacobian-Lens release, including third-party visualizer/steering tools and follow-up entropy-based error-detection experiments — a sign the underlying method is quickly becoming a shared toolkit for probing model internals. Roman Prosvirnin and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Roman Prosvirnin",
+      "Victor Minchenkov",
+      "Alexey Soldatov",
+      "Vladimir Bashun"
+    ],
+    "url": "https://arxiv.org/abs/2607.12792",
+    "published_at": "2026-07-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "interpretability",
+    "ai-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "interpretability",
+    "safety",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-16",
+  "date": "2026-07-14",
+  "related": [
+    {
+      "id": "card_72ef98",
+      "slug": "illusion-of-equivalency-quantization",
+      "type": "paper",
+      "title": "The Illusion of Equivalency: Why 'Same Accuracy' Doesn't Mean 'Same Model'",
+      "hook": "Two quantized models can score identically on accuracy while disagreeing on which individual examples they get right — a gap standard benchmarks are structurally blind to.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-09"
+    },
+    {
+      "id": "card_6e175b",
+      "slug": "internal-state-probes-misalignment-monitoring",
+      "type": "paper",
+      "title": "Internal-State Probes Read the Situation, Not the Action",
+      "hook": "Probes that seem to detect an LLM's harmful intent before it acts mostly just detect the prompt's topic — three careful tests find they don't predict future misbehavior.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2026-06-29"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_954a0c#0",
+      "format": "flip",
+      "prompt": "What does JADR measure, and when does it measure it?",
+      "back_html": "\u003cp\u003eA model's internal danger-recognition representation in J-space, measured from local activations before the model generates its first response token.\u003c/p\u003e"
+    },
+    {
+      "id": "card_954a0c#1",
+      "format": "quiz",
+      "prompt": "Why is measuring J-space activations an advantage over typical LLM-as-judge safety evals?",
+      "choices": [
+        {
+          "text": "It runs on the evaluated model's own local activations, needing no external judge and capturing hidden mechanism, not just output behavior",
+          "correct": true
+        },
+        {
+          "text": "It requires running the model on many more prompts than judge-based evals",
+          "correct": false
+        },
+        {
+          "text": "It only works on models that have never been fine-tuned",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eJudge-based evals only see generated responses and inherit the grader's own biases; JADR reads the internal representation directly, before any output exists.\u003c/p\u003e"
+    },
+    {
+      "id": "card_954a0c#2",
+      "format": "flip",
+      "prompt": "What did JADR reveal about quantization's effect on safety that behavioral evals might miss?",
+      "back_html": "\u003cp\u003eQuantizing a model (BF16 to INT8/INT4) can weaken its internal danger-recognition mechanism by different amounts per model, even if safety scores look stable.\u003c/p\u003e"
+    }
+  ]
+}

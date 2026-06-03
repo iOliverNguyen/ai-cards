@@ -1,0 +1,116 @@
+{
+  "id": "card_971f11",
+  "slug": "self-improving-agents-survey",
+  "type": "paper",
+  "title": "Self-Improvements in Modern Agentic Systems: A Survey",
+  "hook": "Self-improving agents are leaving the lab for production. This survey, co-authored by Jürgen Schmidhuber, gives the field a shared vocabulary for what an agent can update about itself, and what drives that update.",
+  "key_points": [
+    "Frames a modern agent as a foundation model coupled with an operational scaffold — prompts, memory, tools, and control logic — and asks what 'self-improvement' means for that combined system.",
+    "Formalizes self-improvement as a self-induced update operator that commits changes to either model parameters or scaffold components.",
+    "Organizes prior work along two axes: what update target changes, and what signal drives the change.",
+    "Reviews applications and evaluation practice for self-improving agents, then closes on open problems and future directions.",
+    "Maintains a companion tracker of technical updates on GitHub for readers following the fast-moving literature."
+  ],
+  "content_html": "\u003cp\u003eSelf-improving agents — systems that get better from their own experience with little or no human input — are moving from research demos into deployed products. That shift is exactly why a survey like this one matters: without a shared vocabulary, it's easy to conflate very different kinds of \u0026quot;self-improvement.\u0026quot;\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eZhe Ren and a large team, including Jürgen Schmidhuber, model a modern agent as a foundation model paired with an operational scaffold — its prompts, memory, tools, and control logic. Against that frame, they formalize self-improvement as a self-induced update operator: the agent itself obtains and commits changes, whether those changes land in the model's parameters or in scaffold components. The survey organizes existing work along what gets updated and what signal triggers the update, then works through how these systems are applied and evaluated in practice.\u003c/p\u003e\n\u003cp\u003eIt closes with open problems and future directions, and the authors maintain a companion GitHub tracker for readers who want to follow new work as it lands. As a survey, its value is less a single new result than a map of the design space — useful groundwork before diving into any specific self-improving-agent paper. Ren and colleagues, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zhe Ren",
+      "Yimeng Chen",
+      "Dandan Guo",
+      "Guowei Rong",
+      "Tonghui Li",
+      "R. B. Xiong",
+      "Qingfeng Lan",
+      "Wenyi Wang",
+      "Li Nanbo",
+      "Yibo Yang",
+      "Mingchen Zhuge",
+      "Jürgen Schmidhuber"
+    ],
+    "url": "https://arxiv.org/abs/2607.13104",
+    "published_at": "2026-07-14",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "training",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-07-20",
+  "date": "2026-07-14",
+  "related": [
+    {
+      "id": "card_1b799b",
+      "slug": "agentic-environment-engineering-survey",
+      "type": "paper",
+      "title": "Agentic Environment Engineering: A Survey",
+      "hook": "Agents only get as good as the worlds they practice in. This survey maps the full lifecycle of agent environments — how we model, synthesize, evaluate, and grow them.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-06-10"
+    },
+    {
+      "id": "card_c54cf2",
+      "slug": "star",
+      "type": "paper",
+      "title": "STaR: Bootstrapping Reasoning With Reasoning",
+      "hook": "Let the model write its own step-by-step rationales, keep only the ones that reach the right answer, fine-tune on those, and repeat — reasoning data that bootstraps itself.",
+      "importance": 4,
+      "difficulty": "deep",
+      "date": "2022-03-28"
+    },
+    {
+      "id": "card_ee33bd",
+      "slug": "economy-of-minds",
+      "type": "paper",
+      "title": "Economy of Minds: Agents That Bid to Act",
+      "hook": "Skip the orchestrator. Let agents bid in auctions for the right to act, pay each other, and accumulate wealth — and collective intelligence emerges from the market, not from central control.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-06-01"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_971f11#0",
+      "format": "flip",
+      "prompt": "How does this survey model a 'modern agent' before defining self-improvement?",
+      "back_html": "\u003cp\u003eAs a configuration coupling a foundation model with an operational scaffold of prompts, memory, tools, and control logic — self-improvement is then defined against that whole system, not just the model.\u003c/p\u003e"
+    },
+    {
+      "id": "card_971f11#1",
+      "format": "quiz",
+      "prompt": "How does the survey formalize 'self-improvement'?",
+      "choices": [
+        {
+          "text": "As a self-induced update operator that obtains and commits updates to model parameters or scaffold components",
+          "correct": true
+        },
+        {
+          "text": "As any increase in benchmark score over time, regardless of cause",
+          "correct": false
+        },
+        {
+          "text": "As a human engineer manually retraining the model on new data",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe key word is 'self-induced' — the agent itself drives the update, whether that update lands in its parameters or in scaffold pieces like memory or tools.\u003c/p\u003e"
+    },
+    {
+      "id": "card_971f11#2",
+      "format": "flip",
+      "prompt": "What two axes does the survey use to organize prior self-improvement research?",
+      "back_html": "\u003cp\u003eWhat update target changes (model parameters vs. scaffold components) and what signal drives the change.\u003c/p\u003e"
+    }
+  ]
+}

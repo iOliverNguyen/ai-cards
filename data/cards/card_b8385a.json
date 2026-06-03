@@ -1,0 +1,129 @@
+{
+  "id": "card_b8385a",
+  "slug": "kv-eviction-error-certificates",
+  "type": "paper",
+  "title": "Top-k KV Eviction Can't Know What It Threw Away",
+  "hook": "Deterministic cache eviction is blind by construction: nothing you kept reveals how much error the deletions caused. Sample randomly instead and the leftovers become a statistical certificate.",
+  "key_points": [
+    "The authors prove no serving-time estimator of deterministic top-k eviction error can be consistent.",
+    "Evicted values can be altered so everything the server retains is unchanged while true attention-output error grows arbitrarily.",
+    "Poisson-sampling the tail at known inclusion probabilities restores identifiability; one logit offset applies the Hajek correction inside the softmax.",
+    "A survey-sampling variance estimator over the retained set yields a per-step error certificate at 0.97 empirical coverage and no accuracy cost.",
+    "Seven claims were pre-registered and three lost — notably, output log-probability predicts failure better than the certificate does.",
+    "What survives is attribution: the certificate separates cache-induced from inherent failures (AUC 0.73-0.75 vs 0.47-0.54) and schedules recomputation."
+  ],
+  "content_html": "\u003cp\u003eLong-context serving leans on KV-cache eviction: score each token's importance, keep the top \u003cem\u003ek\u003c/em\u003e, delete the rest. The uncomfortable question is how much accuracy that costs on any given request. This paper's first result is that with deterministic eviction, you fundamentally cannot tell.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eAn impossibility, then a fix\u003c/h2\u003e\n\u003cp\u003eThe proof is a construction: you can alter the evicted values so that everything the serving system still holds is bit-identical while the true attention-output error grows without bound. Since the retained set is all a server can see, no serving-time estimator of that error can be consistent — deterministic eviction \u0026quot;cannot know what it destroyed.\u0026quot; Randomization restores identifiability. Poisson-sample the tail at known inclusion probabilities, apply the Hájek correction with a single logit offset inside the softmax, and a standard survey-sampling variance estimator over the retained set becomes a per-step error certificate — 0.97 empirical coverage, at no accuracy cost.\u003c/p\u003e\n\u003ch2\u003ePre-registered, and partly wrong\u003c/h2\u003e\n\u003cp\u003eThe evaluation is unusually honest: seven claims registered in advance, three lost. Question-aware eviction at 25-50% budgets turns out to be nearly free; output log-probability predicts failure \u003cem\u003ebetter\u003c/em\u003e than the certificate does; and certificate-gated budget escalation adds nothing. What survives is attribution — the certificate separates cache-induced failures from failures the model would have had anyway (AUC 0.73-0.75, against 0.47-0.54 for output confidence) and schedules recomputation better than random or confidence gating. The author's own summary: randomization buys attribution, not prediction. Xie, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Peng Xie"
+    ],
+    "url": "https://arxiv.org/abs/2607.21475",
+    "published_at": "2026-07-23",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "inference",
+    "context-memory",
+    "papers-this-week"
+  ],
+  "tags": [
+    "inference",
+    "efficiency",
+    "attention",
+    "paper"
+  ],
+  "importance": 3,
+  "difficulty": "deep",
+  "created_at": "2026-07-27",
+  "date": "2026-07-23",
+  "related": [
+    {
+      "id": "card_688904",
+      "slug": "kv-cache-and-batching",
+      "type": "concept",
+      "title": "The KV Cache \u0026 Continuous Batching",
+      "hook": "Generating one token reuses every prior key and value - that growing cache is why LLM inference is memory-bound, and continuous batching is how servers fight back.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-11-09"
+    },
+    {
+      "id": "card_202003",
+      "slug": "refreekv-threshold-free-kv-cache",
+      "type": "paper",
+      "title": "ReFreeKV: Threshold-Free KV Cache Compression",
+      "hook": "Most KV-cache pruning needs a hand-tuned budget threshold per input — pick wrong and performance craters. ReFreeKV adapts the budget on the fly instead.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-06-26"
+    },
+    {
+      "id": "card_69407e",
+      "slug": "windowed-mtp-draft-kv-tax",
+      "type": "paper",
+      "title": "The Draft Isn't Free at a Million Tokens",
+      "hook": "Speculative decoding assumes the draft is cheap. At million-token context the draft head reads the entire KV cache every step — and can end up slower than no speculation at all.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-23"
+    },
+    {
+      "id": "card_ef8b5f",
+      "slug": "paged-attention-vllm",
+      "type": "paper",
+      "title": "PagedAttention / vLLM: Efficient LLM Serving",
+      "hook": "LLM serving wastes huge amounts of GPU memory on the attention cache. PagedAttention borrows an OS trick — paging — to recover it and serve many more requests at once.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-09-12"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_688904",
+      "slug": "kv-cache-and-batching",
+      "type": "concept",
+      "title": "The KV Cache \u0026 Continuous Batching",
+      "hook": "Generating one token reuses every prior key and value - that growing cache is why LLM inference is memory-bound, and continuous batching is how servers fight back.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-11-09"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_b8385a#0",
+      "format": "flip",
+      "prompt": "Why can't a serving system estimate the error caused by deterministic top-k KV eviction?",
+      "back_html": "\u003cp\u003eThe evicted values can be changed so that everything retained looks identical while the true attention-output error grows arbitrarily — so no consistent estimator exists from the retained set.\u003c/p\u003e"
+    },
+    {
+      "id": "card_b8385a#1",
+      "format": "quiz",
+      "prompt": "What does randomized (Poisson-sampled) eviction buy, according to the paper's own conclusion?",
+      "choices": [
+        {
+          "text": "Attribution — telling cache-induced failures apart from inherent ones — rather than prediction of failure",
+          "correct": true
+        },
+        {
+          "text": "Better raw accuracy at the same cache budget than top-k eviction",
+          "correct": false
+        },
+        {
+          "text": "A reliable early-warning signal that beats output confidence at predicting failures",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe authors are blunt: output log-probability predicts failure better than the certificate. The certificate's value is separating cache-caused failures from inherent ones (AUC 0.73-0.75 vs 0.47-0.54).\u003c/p\u003e"
+    },
+    {
+      "id": "card_b8385a#2",
+      "format": "flip",
+      "prompt": "What makes this paper's negative results credible?",
+      "back_html": "\u003cp\u003eSeven claims were pre-registered before the experiments and three were lost, including one of the paper's own proposed uses — certificate-gated budget escalation, which added nothing.\u003c/p\u003e"
+    }
+  ]
+}

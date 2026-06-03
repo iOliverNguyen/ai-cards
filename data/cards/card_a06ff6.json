@@ -1,0 +1,118 @@
+{
+  "id": "card_a06ff6",
+  "slug": "avoid-debate-interactive-proofs-ai-safety",
+  "type": "paper",
+  "title": "How to Avoid Debate: Scalable AI Safety via Interactive Proofs",
+  "hook": "AI safety via debate assumes two equally matched AIs arguing before a human judge. This paper shows a weak verifier can be convinced by a single powerful AI instead — no opponent required.",
+  "key_points": [
+    "Debate-based verification needs two competing, comparably capable AI provers, one of which is truthful — an assumption that may not hold in practice.",
+    "The authors instead study single-prover interactive proofs: one powerful AI convincing a weak verifier (a human) that its output is correct, without a rival AI to check it.",
+    "Prior single-prover interactive-proof results break down when the computation calls an oracle, like human judgment or an external database — this paper extends them to that setting.",
+    "They give doubly-efficient single-prover proofs/arguments for oracle-aided ('relativizing') computations in two cases: robust computations tolerant of some wrong oracle answers, and computations where the oracle is a low-degree polynomial.",
+    "Upshot: interactive verification of powerful AI may be possible without needing a second, equally capable AI to debate against."
+  ],
+  "content_html": "\u003cp\u003e\u0026quot;AI safety via debate\u0026quot; pits two AI models against each other to convince a human judge which one is telling the truth — but that only works if the two AIs are comparably capable and at least one is honest. This paper asks what's possible without that setup.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe authors initiate the study of \u003cstrong\u003esingle-prover interactive proofs\u003c/strong\u003e for AI safety: can one powerful AI convince a weak verifier (a human) that its output is correct, without a second AI to check its work? Classic single-prover interactive-proof results don't carry over directly, because they don't handle computations that call an \u003cem\u003eoracle\u003c/em\u003e mid-computation — like consulting human judgment or querying an external database — which is exactly the kind of computation real AI safety verification involves. The paper's contribution is doubly-efficient single-prover proofs and arguments for these oracle-aided (\u0026quot;relativizing\u0026quot;) computations, covering two structured cases: computations that are \u003cem\u003erobust\u003c/em\u003e (the output doesn't change even if a small fraction of oracle answers are wrong), and computations where the oracle behaves as a low-degree polynomial. Together, these results suggest interactive verification of powerful AI systems may be achievable under structured or noise-tolerant oracle access, without requiring debate's two-competing-prover setup. Liyan Chen, Yael Tauman Kalai, and Zoe Xi, arXiv 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Liyan Chen",
+      "Yael Tauman Kalai",
+      "Zoe Xi"
+    ],
+    "url": "https://arxiv.org/abs/2607.03561",
+    "published_at": "2026-07-03",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "alignment",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "deep",
+  "created_at": "2026-07-13",
+  "date": "2026-07-03",
+  "related": [
+    {
+      "id": "card_490028",
+      "slug": "model-evaluation-for-extreme-risks",
+      "type": "paper",
+      "title": "Model Evaluation for Extreme Risks",
+      "hook": "General-purpose AI tends to pick up dangerous capabilities alongside useful ones. So test for those capabilities directly — before you ship, not after.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-24"
+    },
+    {
+      "id": "card_b475e8",
+      "slug": "frontier-ai-regulation",
+      "type": "paper",
+      "title": "Frontier AI Regulation",
+      "hook": "How do you regulate models too new to have rules yet? This paper sketches three building blocks: set standards, make labs report, then enforce.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2023-07-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a06ff6#0",
+      "format": "flip",
+      "prompt": "What assumption does AI safety via debate rely on that this paper tries to avoid?",
+      "back_html": "\u003cp\u003eDebate assumes two AI provers of comparable ability compete against each other, and that one of them is truthful — an assumption that may not hold if capabilities are mismatched or both provers are unreliable.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a06ff6#1",
+      "format": "quiz",
+      "prompt": "What is a 'single-prover interactive proof' as used in this paper?",
+      "choices": [
+        {
+          "text": "A setup where one powerful AI (the prover) convinces a weak verifier its output is correct, with no second AI needed",
+          "correct": true
+        },
+        {
+          "text": "A proof requiring two AIs to agree before any output is trusted",
+          "correct": false
+        },
+        {
+          "text": "A formal proof that debate always produces the correct answer",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eUnlike debate, this approach only needs one prover and one weak (human) verifier — removing the need for a comparably capable, truthful second AI.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a06ff6#2",
+      "format": "flip",
+      "prompt": "Why don't prior single-prover interactive-proof results directly apply to AI safety verification?",
+      "back_html": "\u003cp\u003eThose results don't handle computations that call an oracle mid-computation — such as human judgment or an external database — which is exactly the setting real AI safety verification needs.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a06ff6#3",
+      "format": "quiz",
+      "prompt": "In which two oracle settings do the authors give doubly-efficient single-prover proofs?",
+      "choices": [
+        {
+          "text": "Robust computations tolerant of some incorrect oracle answers, and computations where the oracle is a low-degree polynomial",
+          "correct": true
+        },
+        {
+          "text": "Only computations with zero access to any oracle",
+          "correct": false
+        },
+        {
+          "text": "Only computations where the oracle is always perfectly reliable",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe two structured cases are: (1) robustness to a small fraction of wrong oracle answers, and (2) oracles that behave as low-degree polynomials — both allow efficient proofs despite the oracle dependency.\u003c/p\u003e"
+    }
+  ]
+}

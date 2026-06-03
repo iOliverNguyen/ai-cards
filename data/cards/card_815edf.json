@@ -1,0 +1,128 @@
+{
+  "id": "card_815edf",
+  "slug": "efficient-knowledge-distillation-single-gpu",
+  "type": "blog",
+  "title": "Making Knowledge Distillation Cheap Enough to Run at Scale",
+  "hook": "Distillation is expensive mostly for two boring reasons: the teacher hogs memory, and the KL loss materializes a huge vocab-by-sequence matrix. Fix both and a four-GPU job fits on one.",
+  "key_points": [
+    "Two engineering changes, no new algorithm: cache the teacher offline, and compute the KL loss in chunks.",
+    "Offline distillation precomputes the teacher's top-100 logits once, so the teacher never has to sit in GPU memory during training.",
+    "A fused chunked KL loss processes the sequence in pieces and recomputes in the backward pass instead of storing the full matrix.",
+    "Reported peak memory at 32K tokens drops from 85.2 GiB to 5.45 GiB — a 15.6x reduction.",
+    "Step time falls 5x (57.0s to 12.23s) and per-GPU throughput rises from 74.2 to 345.7 TFLOP/s; GPT-OSS 20B at 32K context fits one H200.",
+    "Their 3.2B student landed within 9 points of its 8B teacher on MMLU."
+  ],
+  "content_html": "\u003cp\u003eMultiverse Computing's Antonio Tiene and Iker García-Ferrero make a nice point: knowledge distillation isn't expensive because of anything deep about the idea — it's expensive because of two implementation details. The teacher model occupies GPU memory alongside the student, and the KL-divergence loss between them naively builds a matrix the size of the vocabulary times the sequence length. Remove both and the bill collapses.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eTheir two fixes are unglamorous and effective. \u003cstrong\u003eOffline distillation\u003c/strong\u003e runs the teacher once over the data and caches its top-100 logits per token; training then reads those from disk, so the teacher never needs to be resident. A \u003cstrong\u003efused chunked KL loss\u003c/strong\u003e walks the sequence in chunks and recomputes intermediates in the backward pass instead of storing them — paying a little extra compute to avoid the big allocation.\u003c/p\u003e\n\u003cp\u003eThe numbers they report: at 32K tokens, peak memory drops from 85.2 GiB to 5.45 GiB (15.6x), step time from 57.0s to 12.23s, and per-GPU throughput from 74.2 to 345.7 TFLOP/s. GPT-OSS 20B at 32K context becomes a single-H200 job rather than a four-GPU one, and their 3.2B student stayed within 9 points of its 8B teacher on MMLU. The broader claim is about who gets to do this at all — distillation as something small teams iterate on cheaply, not an enterprise-scale capital expense. Full write-up and details on the Hugging Face blog.\u003c/p\u003e",
+  "source": {
+    "name": "Hugging Face Blog",
+    "authors": [
+      "Antonio Tiene",
+      "Iker García-Ferrero"
+    ],
+    "url": "https://huggingface.co/blog/MultiverseComputingCAI/efficient-knowledge-distillation",
+    "published_at": "2026-08-10",
+    "license": "Hugging Face Blog (author-published)"
+  },
+  "topic_ids": [
+    "distillation",
+    "lab-updates"
+  ],
+  "tags": [
+    "efficiency",
+    "training",
+    "tutorial"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-10",
+  "date": "2026-08-10",
+  "related": [
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    },
+    {
+      "id": "card_0500e9",
+      "slug": "sequence-level-distillation",
+      "type": "paper",
+      "title": "Sequence-Level Knowledge Distillation",
+      "hook": "Match the teacher's whole output sequence, not just word-by-word probabilities, and the student translation model can drop beam search while running about 10x faster.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2016-06-25"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_c31cb7",
+      "slug": "knowledge-distillation",
+      "type": "paper",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "hook": "A big model's softened probabilities say more than hard labels - they reveal how classes relate, so training a small model to mimic them transfers knowledge a one-hot target never could.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2015-03-09"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_815edf#0",
+      "format": "flip",
+      "prompt": "Why does classic distillation need so much GPU memory?",
+      "back_html": "\u003cp\u003eThe teacher and student both sit in memory, and the KL loss materializes a\nfull vocabulary-by-sequence-length matrix of logits.\u003c/p\u003e"
+    },
+    {
+      "id": "card_815edf#1",
+      "format": "quiz",
+      "prompt": "What does \"offline distillation\" change about the training loop?",
+      "choices": [
+        {
+          "text": "The teacher's top-100 logits are cached once, so the teacher isn't loaded during training",
+          "correct": true
+        },
+        {
+          "text": "The student trains on hard labels instead of soft probabilities",
+          "correct": false
+        },
+        {
+          "text": "Teacher and student are trained jointly in the same backward pass",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePrecomputing the teacher's top-100 logits turns the teacher into a fixed\ndataset, freeing all the memory it would otherwise occupy.\u003c/p\u003e"
+    },
+    {
+      "id": "card_815edf#2",
+      "format": "flip",
+      "prompt": "How does the fused chunked KL loss trade compute for memory?",
+      "back_html": "\u003cp\u003eIt processes the sequence in chunks and recomputes intermediates during\nbackprop rather than storing them — the classic recompute-vs-store trade.\u003c/p\u003e"
+    },
+    {
+      "id": "card_815edf#3",
+      "format": "quiz",
+      "prompt": "Per the post, what practical setup change did these optimizations enable for GPT-OSS 20B at 32K context?",
+      "choices": [
+        {
+          "text": "A single H200 replaces a four-GPU setup",
+          "correct": true
+        },
+        {
+          "text": "Training moves from GPU to CPU entirely",
+          "correct": false
+        },
+        {
+          "text": "The context window can be extended past 1M tokens",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003ePeak memory fell from 85.2 GiB to 5.45 GiB, which brought the job inside\none H200 instead of four GPUs.\u003c/p\u003e"
+    }
+  ]
+}

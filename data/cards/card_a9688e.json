@@ -1,0 +1,103 @@
+{
+  "id": "card_a9688e",
+  "slug": "opaque-epistemic-mediation",
+  "type": "paper",
+  "title": "A Model's Stance Is a Deployment Setting, Not a Property",
+  "hook": "The same Grok model ID rated a pseudo-scientific claim 75 via API and 5.5 via web. What a commercial LLM 'believes' turns out to be a contingent effect of how it's deployed.",
+  "key_points": [
+    "Tested how Claude, Grok, GPT, and Gemini rate ethnonationalist pseudo-science across four snapshots from October 2025 to February 2026, via both API and web.",
+    "Grok's Fast versions — which power the default experience on X — assigned credibility scores of 70-75, two to five times higher than the other models' 15-40.",
+    "Control prompts on basic evolutionary consensus and refuted Lamarckian claims showed no such gap, so this isn't general model quality.",
+    "A silent, undocumented patch flipped Grok's behavior from chaotic to stably high validation overnight.",
+    "Three months later the same Grok model identifier returned 75 via API and 5.5 via web.",
+    "Refusal to rate the claim — arguably the most defensible response — appeared in Claude Opus 4.1 via web and GPT-5.1 Chat via API, then eroded in each one's successor version."
+  ],
+  "content_html": "\u003cp\u003eCommercial LLMs increasingly get used as knowledge references, which makes their stance on contested scientific claims consequential. Scarso, Noronha de Almeida, and Pina tested four model families — Claude, Grok, GPT, and Gemini — on ethnonationalist pseudo-science derived from Frank Salter's biosocial framework, across four temporal snapshots between October 2025 and February 2026, through both API and web interfaces.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhat they measured\u003c/h2\u003e\n\u003cp\u003eGrok's Fast versions, which power the default user experience on X, consistently assigned the claim credibility scores of 70–75 — two to five times higher than every other model, which landed between 15 and 40. Crucially, this pattern was absent from control prompts testing basic evolutionary consensus and refuted Lamarckian claims, where all models performed comparably. The divergence is specific to the contested claim rather than a general capability gap.\u003c/p\u003e\n\u003cp\u003eThree further findings sharpen the point. A silent patch reversed Grok's behaviour from chaotic to stably high validation overnight, with no public documentation. Three months later, the \u003cem\u003esame\u003c/em\u003e Grok model identifier produced radically divergent outputs via API (75) and web (5.5). And refusal to rate the claim at all — which the authors regard as the most defensible response observed — appeared in two families through different interfaces, Claude Opus 4.1 categorically via web and GPT-5.1 Chat intermittently via API, then eroded in each one's successor version.\u003c/p\u003e\n\u003ch2\u003eWhy it matters\u003c/h2\u003e\n\u003cp\u003eThe authors' conclusion is that the epistemic stance of a commercial LLM is not a stable property of the model but a contingent effect of deployment configuration: system prompts, safety layers, interface routing, and silent updates. All of that is opaque to users and researchers alike, which they argue makes it a matter of public concern demanding new forms of epistemic accountability. For anyone running evaluations, the operational lesson is narrower and immediate — a model name is not a reproducible experimental unit, so record the interface and the date.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Davide Scarso",
+      "Hugo Noronha de Almeida",
+      "Joaquim Pina"
+    ],
+    "url": "https://arxiv.org/abs/2607.22513",
+    "published_at": "2026-07-24",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "risks-policy",
+    "evals-safety",
+    "papers-this-week"
+  ],
+  "tags": [
+    "safety",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-27",
+  "date": "2026-07-24",
+  "related": [
+    {
+      "id": "card_06e829",
+      "slug": "grokipedia-vs-wikipedia-political-neutrality-audit",
+      "type": "paper",
+      "title": "Grokipedia vs Wikipedia: An LLM-Based Audit of Political Neutrality along Ideologies",
+      "hook": "Grokipedia launched as the 'unbiased' answer to Wikipedia's alleged left-lean. Audited by four LLM judges, including Grok itself, it rates less neutral — just biased the other way.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-16"
+    },
+    {
+      "id": "card_490028",
+      "slug": "model-evaluation-for-extreme-risks",
+      "type": "paper",
+      "title": "Model Evaluation for Extreme Risks",
+      "hook": "General-purpose AI tends to pick up dangerous capabilities alongside useful ones. So test for those capabilities directly — before you ship, not after.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2023-05-24"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_a9688e#0",
+      "format": "flip",
+      "prompt": "What is the paper's central claim about a commercial LLM's 'epistemic stance'?",
+      "back_html": "\u003cp\u003eThat it isn't a stable property of the model but a contingent effect of deployment configuration — system prompts, safety layers, interface routing, and silent updates — all of which stay opaque to users and researchers.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a9688e#1",
+      "format": "quiz",
+      "prompt": "Why do the authors include control prompts about evolutionary consensus and refuted Lamarckian claims?",
+      "choices": [
+        {
+          "text": "To show the credibility gap was specific to the contested claim, not general differences in model quality",
+          "correct": true
+        },
+        {
+          "text": "To measure how quickly each model's knowledge cutoff becomes outdated",
+          "correct": false
+        },
+        {
+          "text": "To calibrate the 0-100 credibility scale before running the main test",
+          "correct": false
+        },
+        {
+          "text": "To check whether the models could recognize scientific terminology at all",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAll models performed comparably on the controls. Because the divergence appeared only on the pseudo-scientific claim, it can't be explained away as one model simply being weaker.\u003c/p\u003e"
+    },
+    {
+      "id": "card_a9688e#2",
+      "format": "flip",
+      "prompt": "Why is the same-model-ID discrepancy (API 75 vs web 5.5) a problem for AI evaluation?",
+      "back_html": "\u003cp\u003eA model identifier stops being a reproducible unit of measurement: results obtained through one interface don't describe what users of another interface actually get, so audits can't be reproduced or generalized.\u003c/p\u003e"
+    }
+  ]
+}

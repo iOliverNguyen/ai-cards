@@ -1,0 +1,111 @@
+{
+  "id": "card_1e4ede",
+  "slug": "audex-unified-audio-text-llm",
+  "type": "paper",
+  "title": "Audex: A Unified Audio-Text LLM That Doesn't Forget How to Think",
+  "hook": "Bolting audio onto a strong text model usually costs some of its reasoning. NVIDIA's Audex treats speech and text as one token stream, reporting top audio skills with little to no loss on text.",
+  "key_points": [
+    "Nemotron-Labs-Audex-30B-A3B (Audex): a single Transformer decoder built on a strong text-only MoE LLM (Nemotron-Cascade-2-30B-A3B).",
+    "Audio inputs are encoded into the text embedding space; text tokens and quantized audio tokens are generated uniformly by one decoder — no separate audio-specific head.",
+    "Trained on 157.4B audio tokens and 320.5B text tokens via multi-stage supervised training, then text-only RL, then multi-domain on-policy distillation.",
+    "Reports state-of-the-art audio understanding, ASR/speech translation, text-to-speech, audio generation, and speech-to-speech generation.",
+    "Preserves the text backbone's reasoning, alignment, knowledge, long-context, and agentic capabilities with marginal or no regression.",
+    "Model checkpoints released for open research."
+  ],
+  "content_html": "\u003cp\u003eMost audio-capable LLMs are built by grafting speech modules onto a text model, and that graft often costs the model some of its original reasoning sharpness. NVIDIA's Nemotron team built Audex to test whether audio and text can share one decoder without that trade-off.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eAudex (Nemotron-Labs-Audex-30B-A3B) starts from Nemotron-Cascade-2-30B-A3B, a strong text-only mixture-of-experts LLM, and extends it with a single unified design: audio inputs are encoded and projected into the same embedding space as text, and the decoder generates text tokens and quantized audio tokens uniformly during generation, rather than routing audio through a separate specialized head. The authors trained it on a curated mix of 157.4B audio tokens and 320.5B text tokens, using staged supervised training followed by text-only reinforcement learning (Cascade RL) and multi-domain on-policy distillation.\u003c/p\u003e\n\u003cp\u003eThe result, per the paper, is state-of-the-art performance on audio understanding, speech recognition and translation, text-to-speech, audio generation, and speech-to-speech generation — while keeping the backbone's reasoning, alignment, knowledge, long-context, and agentic capabilities with marginal or no regression. NVIDIA released the checkpoints for open research.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Zhifeng Kong",
+      "Sang-gil Lee",
+      "Jaehyeon Kim",
+      "et al."
+    ],
+    "url": "https://arxiv.org/abs/2607.05196",
+    "published_at": "2026-07-06",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "video-audio",
+    "moe",
+    "papers-this-week"
+  ],
+  "tags": [
+    "multimodal",
+    "speech",
+    "efficiency",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-07-13",
+  "date": "2026-07-06",
+  "related": [
+    {
+      "id": "card_e4a022",
+      "slug": "hf-cerebras-gemma4-voice-ai",
+      "type": "news",
+      "title": "Hugging Face and Cerebras Bring Gemma 4 to Real-Time Voice AI",
+      "hook": "Multi-second delays are why voice assistants feel like phone menus. Running Gemma 4 on Cerebras hardware in a modular speech pipeline already powers 9,000+ Reachy Mini robots in production.",
+      "importance": 3,
+      "difficulty": "intro",
+      "date": "2026-07-01"
+    },
+    {
+      "id": "card_8a4426",
+      "slug": "whisper",
+      "type": "paper",
+      "title": "Whisper: Robust Speech Recognition at Scale",
+      "hook": "Train a plain encoder-decoder transformer on 680,000 hours of weakly-labeled multilingual audio and you get near-human transcription robustness without task-specific fine-tuning.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-06"
+    },
+    {
+      "id": "card_bf9cd2",
+      "slug": "switch-transformer",
+      "type": "paper",
+      "title": "Switch Transformer: Scaling to Trillion-Parameter Models",
+      "hook": "Route every token to exactly one expert instead of many - this single simplification made trillion-parameter MoE models stable enough to train at scale.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2021-01-11"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_1e4ede#0",
+      "format": "flip",
+      "prompt": "What is the usual cost of adding audio capability to a text LLM, and how does Audex avoid it?",
+      "back_html": "\u003cp\u003eBolting on audio typically regresses text reasoning/knowledge. Audex instead trains one decoder where text and quantized audio tokens are generated uniformly from the start, on a strong MoE text backbone, so the text skills stay largely intact.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1e4ede#1",
+      "format": "quiz",
+      "prompt": "What training recipe does Audex use to get strong audio skills without regressing on text?",
+      "choices": [
+        {
+          "text": "Multi-stage supervised training on paired audio-text data, then text-only RL, then multi-domain on-policy distillation",
+          "correct": true
+        },
+        {
+          "text": "Training the audio and text capabilities as two completely separate models",
+          "correct": false
+        },
+        {
+          "text": "Freezing the text model entirely and only training a small audio adapter",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eAudex uses staged supervised training across large audio-text and text datasets, followed by text-only Cascade RL and multi-domain on-policy distillation, to fuse audio skills in without eroding the backbone's text abilities.\u003c/p\u003e"
+    },
+    {
+      "id": "card_1e4ede#2",
+      "format": "flip",
+      "prompt": "Architecturally, how does Audex handle audio input and output compared to a typical audio LLM?",
+      "back_html": "\u003cp\u003eOne Transformer decoder handles both: audio is encoded and projected into the text embedding space on input, and quantized audio tokens are generated alongside text tokens on output — no separate audio-only pipeline.\u003c/p\u003e"
+    }
+  ]
+}

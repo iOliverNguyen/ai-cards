@@ -1,0 +1,109 @@
+{
+  "id": "card_7c515e",
+  "slug": "macaron-v1-mixture-of-lora",
+  "type": "paper",
+  "title": "Macaron-V1: Mixture-of-LoRA for Continual Learning",
+  "hook": "Freeze the base model, keep a shelf of specialist LoRA adapters, pick one per user turn. It's a bet that continual learning belongs in the adapters, not the weights.",
+  "key_points": [
+    "Macaron-V1 is an open agent-model family built around learning from experience and continuing to learn after deployment.",
+    "Mixture-of-LoRA (MoL) freezes the base model, composes specialist LoRA adapters, and selects one LoRA per user turn.",
+    "The flagship Macaron-V1-Venti pairs a 744B GLM-5.2 base with four LoRAs — chat, agent, coding, and GenUI.",
+    "Macaron-V1-Tall (50B, Qwen3.6-based) applies the same design for local deployment.",
+    "Adaptation works by recursive improvement of versioned model-harness pairs: experience from one configuration is scored against an external contract and used to build its successor.",
+    "The authors state that compounding gains from continual learning remain an open question, not a demonstrated result."
+  ],
+  "content_html": "\u003cp\u003eMacaron-V1 is an open agent-model family organized around a single question: how does a model keep learning after it ships? Mind Lab's answer separates the problem into adaptation and collaboration, and puts a distinctive architecture underneath.\u003c/p\u003e",
+  "extra_html": "\u003cp\u003eThe architecture is Mixture-of-LoRA. Rather than routing tokens through experts inside every layer the way a standard MoE does, MoL freezes the base model, keeps a set of specialist LoRA adapters, and selects one per user turn. The flagship Macaron-V1-Venti combines a 744B GLM-5.2 base with four LoRAs covering chat, agent, coding, and GenUI; Macaron-V1-Tall uses the same design on a 50B Qwen3.6 base for local deployment. Because the base never moves, adding a capability means adding a specialist — which is exactly the property continual learning wants.\u003c/p\u003e\n\u003cp\u003eAdaptation is handled by recursive improvement over versioned model-harness pairs: experience from one configuration is evaluated under an external contract, and that evaluation constructs the successor. The report spans architecture, algorithms (the MindForge agentic RL framework, the LongStraw long-context RL method) and infrastructure. Notably, the authors close by saying the compounding gains from continual learning remain an open question rather than a demonstrated result. Mind Lab, August 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Mind Lab"
+    ],
+    "url": "https://arxiv.org/abs/2608.09819",
+    "published_at": "2026-08-10",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "finetuning",
+    "agents",
+    "papers-this-week"
+  ],
+  "tags": [
+    "agent",
+    "training",
+    "paper",
+    "open-source"
+  ],
+  "importance": 3,
+  "difficulty": "core",
+  "created_at": "2026-08-13",
+  "date": "2026-08-10",
+  "related": [
+    {
+      "id": "card_cae140",
+      "slug": "lora",
+      "type": "paper",
+      "title": "LoRA: Low-Rank Adaptation",
+      "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-06-17"
+    },
+    {
+      "id": "card_75c088",
+      "slug": "adapters",
+      "type": "paper",
+      "title": "Parameter-Efficient Transfer Learning (Adapters)",
+      "hook": "Don't fine-tune the whole model for every new task — slip in a few tiny trainable modules and freeze the rest. This 2019 idea seeded parameter-efficient fine-tuning.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2019-02-02"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_cae140",
+      "slug": "lora",
+      "type": "paper",
+      "title": "LoRA: Low-Rank Adaptation",
+      "hook": "Why retrain billions of weights when you can freeze them all and train tiny add-on matrices instead? LoRA tunes under ~1% of the parameters with near-full-fine-tune quality.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2021-06-17"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_7c515e#0",
+      "format": "quiz",
+      "prompt": "How does Mixture-of-LoRA differ from a standard Mixture-of-Experts layer?",
+      "choices": [
+        {
+          "text": "It freezes the base model and selects one specialist LoRA adapter per user turn, rather than routing tokens through experts inside each layer",
+          "correct": true
+        },
+        {
+          "text": "It routes each token to several LoRA adapters and averages their outputs",
+          "correct": false
+        },
+        {
+          "text": "It merges all LoRA adapters into the base weights before inference",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eMoL routes at the conversational-turn level over adapters, which is what makes it extensible — you can add a specialist without retraining the frozen base.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7c515e#1",
+      "format": "flip",
+      "prompt": "What makes Mixture-of-LoRA a natural fit for continual learning?",
+      "back_html": "\u003cp\u003eThe base stays frozen, so new capabilities arrive as additional LoRA specialists rather than as edits to shared weights — extending the model without disturbing what it already does.\u003c/p\u003e"
+    },
+    {
+      "id": "card_7c515e#2",
+      "format": "flip",
+      "prompt": "How does Macaron-V1 produce each successive version of itself?",
+      "back_html": "\u003cp\u003eThrough recursive improvement of versioned model-harness pairs: experience gathered under one configuration is evaluated against an external contract, and that evaluation is used to construct the next version.\u003c/p\u003e"
+    }
+  ]
+}

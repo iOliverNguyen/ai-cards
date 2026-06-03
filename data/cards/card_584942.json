@@ -1,0 +1,116 @@
+{
+  "id": "card_584942",
+  "slug": "intermediate-tokens-arent-reasoning",
+  "type": "blog",
+  "title": "Stop Anthropomorphizing Intermediate Tokens",
+  "hook": "Calling the scratchpad 'thinking' imports an assumption. A model's intermediate tokens augment its own prompt — which is why the answer can be right while the 'reasoning' rambles.",
+  "key_points": [
+    "Human step-by-step reasoning leads to a conclusion; a model's intermediate tokens instead extend the context it then conditions on.",
+    "That reframing explains a common observation: a verbose or incoherent trace sitting next to a perfectly good answer.",
+    "The post cites research challenging the narrative that intermediate tokens constitute a semantically meaningful reasoning process.",
+    "Practical consequence: judging a model by how sensible its trace reads is a weak proxy for judging the answer.",
+    "Separate concerns worth not conflating: flooding the context window and fighting compaction are engineering problems, not reasoning ones."
+  ],
+  "content_html": "\u003cp\u003eA widely-shared point about reasoning models: the word \u0026quot;thinking\u0026quot; does a lot of unearned work. When a person reasons step by step, the steps lead to the conclusion. When a model emits intermediate tokens, those tokens become part of the context it then conditions on — a functionally different thing. The post argues this explains an experience many people have had, where a model's trace looks verbose or muddled and yet the final answer is good.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eWhy the distinction matters\u003c/h2\u003e\n\u003cp\u003eIf the trace is context rather than inference, then reading it as an explanation of the answer is unreliable, and \u0026quot;the model overthought this\u0026quot; may be describing token count rather than any cognitive event. The post quotes linked research whose findings, it says, consistently challenge the prevailing narrative that intermediate tokens constitute a semantically meaningful reasoning process. It also separates out two things often bundled into the same complaint: flooding the context window and fighting compaction are real engineering problems about budget and truncation, independent of what the tokens mean.\u003c/p\u003e\n\u003cp\u003eThe takeaway isn't that chain-of-thought doesn't work — it demonstrably improves results. It's that \u003cem\u003ewhy\u003c/em\u003e it works is not \u0026quot;the model is thinking,\u0026quot; and vocabulary that assumes otherwise will lead you to trust traces more than you should. Follow the linked discussion for the cited papers.\u003c/p\u003e",
+  "source": {
+    "name": "r/LocalLLaMA",
+    "authors": [
+      "/u/ThirdWaveCat"
+    ],
+    "url": "https://reddit.com/r/LocalLLaMA/comments/1vsjcf7/stop_anthropomorphisizing_intermediate_tokens",
+    "published_at": "2026-08-19",
+    "license": "Reddit (user post)"
+  },
+  "topic_ids": [
+    "agents",
+    "interpretability"
+  ],
+  "tags": [
+    "reasoning",
+    "interpretability",
+    "news"
+  ],
+  "importance": 3,
+  "difficulty": "intro",
+  "created_at": "2026-08-24",
+  "date": "2026-08-19",
+  "related": [
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    },
+    {
+      "id": "card_01a1d7",
+      "slug": "cot-scaling-trap-latent-reasoning",
+      "type": "blog",
+      "title": "Chain of Thought Is a Scaling Trap? The Case for Latent Reasoning",
+      "hook": "A visible chain of thought reads like the model's thinking — but it can be an unfaithful, expensive trace. The next wave reasons in hidden state instead of tokens.",
+      "importance": 3,
+      "difficulty": "core",
+      "date": "2026-07-13"
+    },
+    {
+      "id": "card_fda922",
+      "slug": "llms-encode-remaining-output-length",
+      "type": "paper",
+      "title": "How Much Is Left? LLMs Linearly Encode Their Remaining Output Length",
+      "hook": "Before an LLM writes a single token of its answer, its hidden state already seems to know roughly how long the answer will be — and the estimate jumps when it restarts a draft.",
+      "importance": 3,
+      "difficulty": "deep",
+      "date": "2026-07-06"
+    }
+  ],
+  "prereqs": [
+    {
+      "id": "card_7d42a1",
+      "slug": "chain-of-thought",
+      "type": "paper",
+      "title": "Chain-of-Thought Prompting",
+      "hook": "Ask a big model to 'think step by step' and its math and logic scores jump. Reasoning was there all along — you just had to ask it to show its work.",
+      "importance": 5,
+      "difficulty": "core",
+      "date": "2022-01-28"
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "card_584942#0",
+      "format": "flip",
+      "prompt": "Functionally, what do a model's intermediate 'reasoning' tokens do?",
+      "back_html": "\u003cp\u003eThey augment its own prompt — the model conditions on the tokens it just emitted, rather than following a chain of inference toward a conclusion the way a person does.\u003c/p\u003e"
+    },
+    {
+      "id": "card_584942#1",
+      "format": "quiz",
+      "prompt": "Under this framing, why can a model produce a strong answer after a rambling trace?",
+      "choices": [
+        {
+          "text": "The trace is context the model conditions on, not a proof it must follow",
+          "correct": true
+        },
+        {
+          "text": "The final answer is generated by a separate model that ignores the trace",
+          "correct": false
+        },
+        {
+          "text": "Verbose traces are always truncated before the answer is produced",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eBecause intermediate tokens serve as extra context rather than as reasoning steps that determine the conclusion, trace quality and answer quality can come apart.\u003c/p\u003e"
+    },
+    {
+      "id": "card_584942#2",
+      "format": "flip",
+      "prompt": "What two issues does the post say not to confuse with 'overthinking'?",
+      "back_html": "\u003cp\u003eFlooding the context window and fighting compaction — those are engineering problems about token budget, distinct from any claim about the model's reasoning.\u003c/p\u003e"
+    }
+  ]
+}

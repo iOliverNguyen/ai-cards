@@ -1,0 +1,102 @@
+{
+  "id": "card_c95adc",
+  "slug": "ai-weather-models-missing-butterfly",
+  "type": "paper",
+  "title": "Missing the Butterfly and Predicting the Past: Features or Bugs of Accurate AI Weather Models?",
+  "hook": "AI weather models can be trained to predict the past as skillfully as the future. The same flaw that lets them do it explains why their forecasts beat physics.",
+  "key_points": [
+    "AI weather models can be trained to backcast (predict the past) skillfully, though less accurately than they forecast.",
+    "Skillful backcasting appears to violate the second law of thermodynamics — there should be an arrow of time.",
+    "All the forecasting and backcasting models tested miss the butterfly effect: errors don't grow the way chaos says they should.",
+    "One cause explains both plus the surprising accuracy — coarse-graining of training data removes fast, small scales and some variables.",
+    "Reduce the coarse-graining and predictions become more physics-like (arrow of time and butterfly-like effects appear) while accuracy declines.",
+    "Tested across a hierarchy: reanalysis data, a general circulation model, and the multi-scale Lorenz system, up to Pangu-Weather."
+  ],
+  "content_html": "\u003cp\u003eAI weather prediction models now rival physics-based ones, and nobody was quite sure why they were so good. Hassanzadeh and colleagues find the answer by asking the models to do something they shouldn't be able to: \u003cstrong\u003epredict the past\u003c/strong\u003e.\u003c/p\u003e",
+  "extra_html": "\u003ch2\u003eThe diagnostic\u003c/h2\u003e\n\u003cp\u003eAcross a hierarchy spanning observation-based reanalysis, a general circulation model, and the multi-scale Lorenz system, the authors show AI models can be trained to \u003cem\u003ebackcast\u003c/em\u003e skillfully — systematically less accurately than they forecast, but skillfully all the same. That's a problem, because skillful backcasting appears to violate the second law of thermodynamics: real atmospheric dynamics have an arrow of time. Separately, all these models — forecasting and backcasting alike — \u003cstrong\u003emiss the butterfly effect\u003c/strong\u003e, failing to reproduce the rapid error growth that chaos demands.\u003c/p\u003e\n\u003ch2\u003eOne cause, three symptoms\u003c/h2\u003e\n\u003cp\u003eThe paper traces the surprising accuracy, the missing butterfly, and the skillful backcasting to a single source: the inevitable \u003cstrong\u003ecoarse-graining of training data\u003c/strong\u003e, which strips out fast, small scales and sometimes entire variables. From the Lorenz system up to official Pangu-Weather models, reducing that coarse-graining makes predictions more physics-like — an arrow of time and butterfly-like effects emerge — while forecast accuracy declines. So the forecast skill has an explanation that is also a caveat: unlike physics-based models, AI models implicitly learn how fast, small scales affect large ones \u003cem\u003ewithout inheriting their rapid error growth\u003c/em\u003e. The authors argue this calls for revisiting predictability theory and long-term climate emulation strategies, and propose backcasting as a new diagnostic lens. arXiv, 2026.\u003c/p\u003e",
+  "source": {
+    "name": "arXiv",
+    "authors": [
+      "Pedram Hassanzadeh",
+      "Weidong Li",
+      "Y. Qiang Sun",
+      "Jiangdi Wang",
+      "Alexander Wikner",
+      "Justin Finkel",
+      "Jonathan Q. Weare"
+    ],
+    "url": "https://arxiv.org/abs/2608.25835",
+    "published_at": "2026-08-26",
+    "license": "arXiv (open access)"
+  },
+  "topic_ids": [
+    "ai-for-science",
+    "papers-this-week"
+  ],
+  "tags": [
+    "foundational",
+    "benchmark",
+    "paper"
+  ],
+  "importance": 4,
+  "difficulty": "core",
+  "created_at": "2026-08-27",
+  "date": "2026-08-26",
+  "related": [
+    {
+      "id": "card_0b6e14",
+      "slug": "graphcast",
+      "type": "paper",
+      "title": "GraphCast: Skillful Medium-Range Weather Forecasting",
+      "hook": "A graph neural network predicts 10-day global weather in under a minute on one machine, matching or beating physics-based forecast models on most variables.",
+      "importance": 4,
+      "difficulty": "core",
+      "date": "2022-12-24"
+    },
+    {
+      "id": "card_ebc582",
+      "slug": "weathernext-cyclones",
+      "type": "news",
+      "title": "WeatherNext Cyclones: An Extra Day of Hurricane Warning",
+      "hook": "DeepMind's cyclone model makes three-day forecasts as accurate as yesterday's two-day forecasts — about a decade of meteorological progress, delivered in under a minute on a TPU.",
+      "importance": 4,
+      "difficulty": "intro",
+      "date": "2026-08-06"
+    }
+  ],
+  "prereqs": [],
+  "flashcards": [
+    {
+      "id": "card_c95adc#0",
+      "format": "flip",
+      "prompt": "What single cause do the authors trace the missing butterfly effect, skillful backcasting, and surprising forecast accuracy to?",
+      "back_html": "\u003cp\u003eCoarse-graining of the training data, which removes fast, small scales and sometimes whole variables. The model learns how small scales affect large ones without inheriting their rapid error growth.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c95adc#1",
+      "format": "quiz",
+      "prompt": "What happens when the coarse-graining of the training data is reduced?",
+      "choices": [
+        {
+          "text": "Predictions become more physics-like — an arrow of time and butterfly-like effects emerge — but forecast accuracy declines",
+          "correct": true
+        },
+        {
+          "text": "Both physical fidelity and forecast accuracy improve together",
+          "correct": false
+        },
+        {
+          "text": "The models stop being able to backcast but forecast accuracy is unchanged",
+          "correct": false
+        }
+      ],
+      "explanation_html": "\u003cp\u003eThe paper reports a direct trade-off from the Lorenz system up to official Pangu-Weather models: more physical fidelity, less forecast skill.\u003c/p\u003e"
+    },
+    {
+      "id": "card_c95adc#2",
+      "format": "flip",
+      "prompt": "Why is skillful backcasting by an AI weather model a red flag?",
+      "back_html": "\u003cp\u003eIt appears to violate the second law of thermodynamics. Real atmospheric dynamics have an arrow of time, so a model that runs backwards nearly as well as forwards isn't capturing that dynamics.\u003c/p\u003e"
+    }
+  ]
+}
